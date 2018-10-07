@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/exercise.css" />
+	</head>
+
+	<body>
+		<div class="box">
+			<div class="title clearfix">
+				<div class="fl">申请人</div>
+				<div class="fr">流程名称</div>
+			</div>
+			<div class="itemBox">
+				<div class="item">
+					<div class="item_re">
+						<div class="canSee clearfix">
+							<div class="head_logo fl">
+								<img src="img/user-img.png" />
+							</div>
+							<div class="item_info fl">
+								<p>李悠纯<span>10分钟前</span></p>
+								<p class="am-text-truncate">由于感冒了，需要请假休息一天！</p>
+							</div>
+							<div class="type">
+								请假
+							</div>
+						</div>
+						<div class="canNotSee clearfix">
+							<div class="noPass">
+								不通过
+							</div>
+							<div class="Pass">
+								通过
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/hammer.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var oItem = document.querySelector(".item");
+			var hammer = new Hammer(oItem);
+			//			hammer.get('pan').set({
+			//				direction: Hammer.DIRECTION_ALL
+			//			});
+
+			hammer.on("panstart", function(e) {
+				e.deltaX=0;
+				var left = oItem.offsetLeft;
+//				console.log(left);
+				hammer.on("panmove", function(e) {
+//					console.log(e.deltaX);
+					oItem.style.left = left + e.deltaX + 'px';
+					
+				});
+				hammer.on("panend",function (e) {
+				//向左
+					if(-(e.deltaX) > 50) {
+						oItem.style = "left:-506px;transition:all 1s"
+					}
+					else{
+						oItem.style.left = left + e.deltaX + 'px';
+						oItem.style = "left:0px;transition:all 1s"
+					}
+			})
+
+			});
+			
+		</script>
+	</body>
+
+</html>

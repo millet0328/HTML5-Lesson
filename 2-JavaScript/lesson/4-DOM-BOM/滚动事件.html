@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div style="height: 4000px;">
+        <a href="http://www.baidu.com">百度一下</a>
+        <button id="btn" type="button">滚动</button>
+    </div>
+    <script type="text/javascript">
+        window.onload = function () {
+            var oBtn = document.getElementById('btn');
+            var oLink = document.querySelector('a');
+            //阻止默认事件 
+            oLink.onclick = function (e) {
+                e.preventDefault();
+				location.reload();
+                location.href = "http://www.jd.com";
+            }
+
+        }
+    </script>
+</body>
+
+</html>

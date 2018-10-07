@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			function Person(name, age, job) {
+				this.name = name;
+				this.age = age;
+				this.job = job;
+				this.lessons = ['Math', 'Physics'];
+			}
+			Person.prototype = {
+				constructor: Person, //原型字面量方式会将对象的constructor变为Object，此外强制指回Person
+				getName: function() {
+					return this.name;
+				}
+			}
+			var person1 = new Person('Jack', 19, 'SoftWare Engneer');
+			console.log(person1);
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,108 @@
+@charset "utf-8";
+h1,
+p {
+	margin: 0;
+	padding: 0;
+}
+
+.color_red {
+	color: red;
+}
+
+.color_69 {
+	color: #666699;
+}
+
+.color666 {
+	color: #666;
+}
+
+.color_49 {
+	color: #494949;
+}
+
+.color_fff {
+	color: #fff;
+}
+
+.color_111 {
+	color: #111;
+}
+
+.color_0 {
+	color: #000;
+}
+
+.color_aaa {
+	color: #aaa;
+}
+
+.size22 {
+	font-size: 22px;
+}
+
+.br2 {
+	border-radius: 2px;
+}
+
+.padding0 {
+	padding: 1px 5px;
+}
+
+.padding1 {
+	padding-right: 5px;
+}
+
+.fontweight {
+	font-weight: normal;
+}
+
+.fontweight1 {
+	font-weight: bold;
+}
+
+.details {
+	width: 70%;
+	margin: 100px auto 0;
+}
+.details_wih{
+	width: 70%;
+	margin: 0 auto;
+}
+.details_img {
+	width: 175px;
+	height: 260px;
+}
+
+.details_right {
+	width: 390px;
+}
+
+.start {
+	background-color: #80C8DA;
+}
+
+.intrsting {
+	display: inline-block;
+	background: transparent url(../img/redbutt.gif) no-repeat;
+	color: #ff7676;
+	padding: 2px 7px 3px 7px;
+}
+
+.rili:hover {
+	color: #fff;
+	background-color: gray;
+}
+
+.tuijian {
+	border-color: #e3f1ed;
+	background-color: #f2f8f2;
+	color: #4f946e;
+	display: inline-block;
+	padding: 0 8px;
+	border: 1px solid #b9dcd0;
+	border-radius: 3px;
+}
+.fl_no{
+	
+}

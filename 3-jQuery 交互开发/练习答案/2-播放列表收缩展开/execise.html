@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <style type="text/css">
+    .playBox {
+        width: 200px;
+        margin: 0 auto;
+    }
+
+    .playBox .title {
+        background: url(img/down_list_h2_bg.gif);
+        padding: 0 8px;
+        height: 25px;
+        line-height: 25px;
+    }
+
+    .playBox .arrow {
+        width: 8px;
+        height: 25px;
+        transition: all 0.5s;
+    }
+
+    .playBox .arrow.up {
+        background: url(img/up.gif) no-repeat center;
+    }
+
+    .playBox .arrow.down {
+        background: url(img/down.gif) no-repeat center;
+    }
+
+    .playList {
+        border: 1px solid #CBD1D4;
+        border-top: none;
+    }
+
+    .playList li a {
+        display: block;
+        background-color: #EEEEF7;
+        padding: 3px 6px;
+    }
+
+    .playList li a:hover {
+        background-color: #FFFFFF;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="bg playBox clearfix">
+        <div class="title clearfix">
+            <b>播放列表</b>
+            <div class="arrow up fr">
+            </div>
+        </div>
+        <div class="playList">
+            <ul>
+                <li>
+                    <a href="#">
+                        流年——王菲
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        忘情水——刘德华
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        流年——王菲
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        忘情水——刘德华
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+    //标志当前列表是否显示
+    // var flag = true;
+    // $(".playBox .title").click(function() {
+    // 	if(flag == true) {
+    // 		//隐藏列表
+    // 		$(".playList").css({
+    // 			"display": "none"
+    // 		});
+    // 		//改变箭头
+    // 		$(".arrow").removeClass("up").addClass("down");
+    // 		flag = false;
+    // 	} else {
+    // 		//显示列表
+    // 		$(".playList").css({
+    // 			"display": "block"
+    // 		});
+    // 		//改变箭头
+    // 		$(".arrow").removeClass("down").addClass("up");
+    // 		flag = true;
+    // 	}
+    // });
+    // 标志当前列表是否显示
+    $(".playBox .title").click(function() {
+    	var flag = $(".playList").is(':visible');
+        if (flag) {
+            //隐藏列表
+            $(".playList").css({
+                "display": "none"
+            });
+            //改变箭头
+            $(".arrow").css({
+                "transform": "rotate(180deg)"
+            });
+        } else {
+            //显示列表
+            $(".playList").css({
+                "display": "block"
+            });
+            //改变箭头
+            $(".arrow").css({
+                "transform": "rotate(360deg)"
+            });
+        }
+    });
+    </script>
+</body>
+
+</html>

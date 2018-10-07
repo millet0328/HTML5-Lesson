@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <style type="text/css">
+    .main {
+        padding: 20px;
+    }
+
+    .txt_center {
+        text-align: center;
+    }
+
+    .txt_left {
+        text-align: left;
+    }
+
+    .number {
+        padding: 4px 6px;
+        color: #3EAFE0;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .requestList li {
+        list-style: decimal;
+        padding: 8px 0;
+    }
+
+    .question,
+    .requestList {
+        font-size: 14px;
+        padding-bottom: 10px;
+    }
+
+    .button {
+        padding: 4px 12px;
+        font-size: 14px;
+    }
+
+    .queue {
+        min-height: 60px;
+        padding: 30px 0;
+    }
+
+    .queue span {
+        width: 40px;
+        height: 60px;
+        line-height: 60px;
+        border: 1px solid #797979;
+        display: inline-block;
+        background-color: #E8E8E8;
+        color: #323232;
+        margin: 2px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container txt_center">
+        <div class="main">
+            <input type="text" id="txt" class="number" placeholder="在此输入数字！" name="" id="" value="" />
+            <!--队列-->
+            <div class="clearfix">
+                <div class="fl">
+                    <input type="button" class="button" name="" id="lAddBtn" value="左侧入" />
+                </div>
+                <div class="fr">
+                    <input type="button" class="button" name="" id="rAddBtn" value="右侧入" />
+                </div>
+            </div>
+            <div class="queue">
+                <!--初始为空-->
+            </div>
+            <div class="clearfix">
+                <div class="fl">
+                    <input type="button" class="button" name="" id="lDelBtn" value="左侧出" />
+                </div>
+                <div class="fr">
+                    <input type="button" class="button" name="" id="rDelBtn" value="右侧出" />
+                </div>
+            </div>
+        </div>
+        <img src="img/intro.jpg" alt="">
+        <div class="question txt_left">
+            题目： 如图，模拟一个队列，队列的每个元素是一个数字，初始队列为空 有一个input输入框，以及4个操作按钮
+        </div>
+        <ol class="requestList txt_left">
+            <li>
+                点击"左侧入"，将input中输入的数字从左侧插入队列中；
+            </li>
+            <li>点击"右侧入"，将input中输入的数字从右侧插入队列中；</li>
+            <li>点击"左侧出"，读取并删除队列左侧第一个元素，并弹窗显示元素中数值；</li>
+            <li>
+                点击"右侧出"，读取并删除队列右侧第一个元素，并弹窗显示元素中数值；
+            </li>
+            <li>
+                点击队列中任何一个元素，则该元素会被从队列中删除;
+            </li>
+        </ol>
+    </div>
+    <!--DOM操作-->
+    <script type="text/javascript">
+    window.onload = function() {
+        //查找元素
+        var lAddBtn = document.getElementById("lAddBtn");
+        var rAddBtn = document.getElementById("rAddBtn");
+        var lDelBtn = document.getElementById("lDelBtn");
+        var rDelBtn = document.getElementById("rDelBtn");
+        var oTxt = document.getElementById("txt");
+        var oQueue = document.querySelectorAll(".queue")[0];
+        //绑定事件
+        //右边加
+        rAddBtn.onclick = function() {
+            var oSpan = document.createElement("span");
+            oSpan.innerText = oTxt.value;
+            oQueue.appendChild(oSpan);
+        }
+        //左边加
+        lAddBtn.onclick = function() {
+            var oSpan = document.createElement("span");
+            oSpan.innerText = oTxt.value;
+            oQueue.insertBefore(oSpan, oQueue.firstChild);
+        }
+        //左边减
+        lDelBtn.onclick = function() {
+            oQueue.removeChild(oQueue.firstChild);
+        }
+        //右边减
+        rDelBtn.onclick = function() {
+            oQueue.removeChild(oQueue.lastChild)
+        }
+        //事件委托--新增元素
+        // 父级元素 
+        oQueue.onclick = function(event) {
+            if (event.target.tagName == "SPAN") {
+                this.removeChild(event.target);
+            }
+        }
+    }
+    </script>
+    <!--数组方法-->
+    <!--<script type="text/javascript">
+    window.onload = function() {
+        //查找元素
+        var lAddBtn = document.getElementById("lAddBtn");
+        var rAddBtn = document.getElementById("rAddBtn");
+        var lDelBtn = document.getElementById("lDelBtn");
+        var rDelBtn = document.getElementById("rDelBtn");
+        var oTxt = document.getElementById("txt");
+        var oQueue = document.querySelectorAll(".queue")[0];
+        //生成数组
+        var arr = [];
+        //绑定事件
+        //右边加
+        rAddBtn.onclick = function() {
+            arr.push(oTxt.value);
+            generateHTML()
+        }
+        //左边加
+        lAddBtn.onclick = function() {
+            arr.unshift(oTxt.value);
+            generateHTML()
+        }
+        //左边减
+        lDelBtn.onclick = function() {
+            arr.shift(arr[0]);
+            generateHTML()
+        }
+        //右边减
+        rDelBtn.onclick = function() {
+            arr.pop(arr[arr.length - 1]);
+            generateHTML()
+        }
+
+        //事件委托
+        oQueue.onclick = function(event) {
+            if (event.target.tagName == "SPAN") {
+                //下标
+                console.log(event.target.title);
+                //删除
+                arr.splice(event.target.title, 1);
+                generateHTML();
+            }
+        }
+
+        //生成HTML
+        function generateHTML() {
+            oQueue.innerHTML = '';
+            for (var i = 0; i < arr.length; i++) {
+                var oSpan = document.createElement("span");
+                oSpan.title = i;
+                oSpan.innerText = arr[i];
+                oQueue.appendChild(oSpan);
+            }
+        }
+
+    }
+    </script> -->
+</body>
+
+</html>

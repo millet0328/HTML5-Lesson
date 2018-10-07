@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/calendar.css" />
+
+	</head>
+
+	<body>
+		<div id="desktop" class="desktop">
+			<div class="file garbage" id="garbage" style="left: 10px; top: 10px;">
+				<div class="icon bin"></div>
+				<p class="fileName">回收站</p>
+			</div>
+			<div class="file music" id="music" style="left: 10px; top: 110px;">
+				<div class="icon music"></div>
+				<p class="fileName">音乐</p>
+			</div>
+			<div class="time">
+				<div class="left fl">
+					<ul class="top">
+						<li class="fl"></li>
+						<li class="fl"></li>
+						<li class="fl"></li>
+						<li class="fl"></li>
+						<div class="clear"></div>
+					</ul>
+					<div class="bottom">
+						<div class="center">-</div>
+						<div class="days">
+							<b></b>
+						</div>
+					</div>
+				</div>
+				<div class="right fl">
+					<div id="time">
+					</div>
+					<div id="date">
+					</div>
+					<div id="week">
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="canlinder1">
+				<div class="zhezhao"></div>
+				<div class="leftT fl relative1">
+					<div id="time1">
+						00:00:00
+					</div>
+					<div id="date1"></div>
+					<div id="choose"></div>
+				</div>
+				<div class="xx fr relative1">
+					X
+				</div>
+				<div class="clear"></div>
+				<div class="toolerBar relative1">
+					<div class="clear"></div>
+					<div id="demo">
+						<div id="ca"></div>
+					</div>
+				</div>
+			</div>
+			<div class="rightlist">
+				<div class="icon1">
+					<div class="icon zhi"></div>
+					<span>小图标</span>
+					<span>大图标</span>
+					<span>中等图标</span>
+				</div>
+				<div class="date">
+					<div class="icon zhi"></div>
+					<span>修改日期</span>
+				</div>
+				<ul class="top">
+					<li>
+						<div class="icon see fl"></div>
+						<span class="fl">查看（V）</span>
+						<span class="x fr"><b>></b></span>
+						<div class="clear"></div>
+					</li>
+					<li>
+						<div class="icon order fl"></div>
+						<span class="fl">排序方式（O）</span>
+						<span class="x fr"><b>></b></span>
+						<div class="clear"></div>
+					</li>
+					<li class="ff5">
+						<div class="icon f5 fl"></div>
+						<span class="fl">刷新（E）</span>
+						<div class="clear"></div>
+					</li>
+					<li>
+						<div class="icon add fl"></div>
+						<span class="fl">新建文件夹（N）</span>
+						<div class="clear"></div>
+					</li>
+				</ul>
+				<ul class="bottom">
+					<li>
+						<div class="icon set fl"></div>
+						<span class="fl">显示设置</span>
+						<div class="clear"></div>
+					</li>
+					<li>
+						<div class="icon indiv fl"></div>
+						<span class="fl">个性化</span>
+						<div class="clear"></div>
+					</li>
+					<li>
+						<div class="icon control fl"></div>
+						<span class="fl">控制面板</span>
+						<div class="clear"></div>
+					</li>
+					<li>
+						<div class="icon clean fl"></div>
+						<span class="fl">清除本地缓存</span>
+						<div class="clear"></div>
+					</li>
+				</ul>
+			</div>
+			<!--<div class="pictureWall">
+				
+			</div>-->
+		</div>
+		<!--<script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>-->
+		<!--<script src="js/index.js" type="text/javascript" charset="utf-8"></script>-->
+		<!--<script src="js/calendar.js" type="text/javascript" charset="utf-8"></script>-->
+		<script type="text/javascript">
+			window.onload = function() {
+				var oDeskTop = document.getElementById("desktop");
+				//防止文字选中
+				oDeskTop.onselectstart = function() {
+					return false;
+				}
+
+				//鼠标按下
+				oDeskTop.onmousedown = function(event) {
+					//如果是鼠标右键，屏蔽菜单
+					if(event.button == 2) {
+						this.oncontextmenu = function() {
+							return false;
+						}
+					}
+					//如果是鼠标左键
+					if(event.button == 0) {
+						//判断是否可以拖动，若可以拖动，返回拖动的主体
+						var res = isDrag(event.target);
+						var flag = res.dragable;
+						var dragBox = res.dragBox;
+						if(flag) {
+							//获取当前鼠标的X、Y坐标
+							var currentX = event.clientX;
+							var currentY = event.clientY;
+							//获取当前拖动主体的left/top
+							var nowX = dragBox.offsetLeft;
+							var nowY = dragBox.offsetTop;
+							oDeskTop.onmousemove = function(e) {
+								//计算位移的距离
+								var distanceX = e.clientX - currentX;
+								var distanceY = e.clientY - currentY;
+								//更改拖动主体的left/top
+								dragBox.style.left = distanceX + nowX + "px";
+								dragBox.style.top = distanceY + nowY + "px";
+							}
+							oDeskTop.onmouseup = function() {
+								oDeskTop.onmousemove = null;
+							}
+						}
+
+					}
+				}
+				//判断是否需要拖动
+				function isDrag(el) {
+					if(el.className.indexOf("file") > -1) {
+						return {
+							dragable: true,
+							dragBox: el
+						};
+					}
+					if(el.parentNode.className.indexOf("file") > -1) {
+						return {
+							dragable: true,
+							dragBox: el.parentNode
+						};
+					}
+					return {
+						dragable: false,
+						dragBox: null
+					};
+				}
+			}
+		</script>
+	</body>
+
+</html>

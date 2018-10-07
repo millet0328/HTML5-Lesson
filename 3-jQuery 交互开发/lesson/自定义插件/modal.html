@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>modal</title>
+		<style>
+			.container {
+				width: 1200px;
+				margin: 0 auto;
+			}
+			
+			.modal-shadow {
+				display: none;
+				width: 100%;
+				width: 100vw;
+				height: 100%;
+				height: 100vh;
+				background-color: rgba(0, 0, 0, .35);
+				text-align: center;
+				position: fixed;
+				top: 0;
+				left: 0;
+				z-index: 10;
+			}
+			
+			.modal-shadow::after {
+				display: inline-block;
+				content: '';
+				width: 0;
+				height: 100%;
+				vertical-align: middle;
+			}
+			
+			.modal {
+				display: inline-block;
+				border: 1px solid #ccc;
+				text-align: left;
+				vertical-align: middle;
+				position: relative;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<input type="button" value="点击">
+			<div class="modal-shadow">
+				<div class="modal">
+					<div class="modal-title">
+						弹窗标题
+					</div>
+					<div class="modal-body">
+						弹窗主体
+					</div>
+					<div class="modal-button">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>

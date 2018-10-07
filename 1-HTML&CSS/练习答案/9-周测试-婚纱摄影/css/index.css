@@ -1,0 +1,71 @@
+@charset "utf-8";
+.relative {
+    position: relative;
+}
+
+.nav {
+    background-color: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+}
+
+.logo {
+    width: 168px;
+    height: 130px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.navbar {
+    padding-left: 175px;
+}
+
+.navbar ul {
+    display: block;
+}
+
+.navbar ul li {
+    float: left;
+    position: relative;
+}
+
+.navbar ul li a {
+    display: block;
+    color: #FFFFFF;
+    text-align: center;
+    width: 125px;
+    height: 58px;
+    line-height: 58px;
+    font-size: 16px;
+}
+
+.navbar ul li a:hover {
+    background-color: #e80808;
+}
+
+.navbar dl {
+    display: none;
+    width: 125px;
+    position: absolute;
+    left: 0;
+    top: 58px;
+}
+
+.navbar ul li:hover dl {
+    display: block;
+}
+
+.navbar dl dd {
+    color: #FFFFFF;
+    text-align: center;
+    width: 125px;
+    height: 58px;
+    line-height: 58px;
+    font-size: 16px;
+    background-color: rgba(0, 0, 0, 0.3);
+}

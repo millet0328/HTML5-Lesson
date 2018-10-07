@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<style type="text/css">
+			body {
+				margin: 0;
+				padding: 0;
+			}
+			
+			ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			
+			.header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				flex-wrap: wrap;
+				padding: 29.5px 15.5px 24.5px;
+				font-family: PingFangSC-Medium;
+				font-size: 16px;
+				color: #333333;
+				letter-spacing: 0;
+				text-align: center;
+				border-bottom: 1px solid #efece5;
+			}
+			
+			.header .desc {
+				flex: 1;
+				font-weight: bold;
+			}
+			
+			
+			.main {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				flex-wrap: wrap;
+				padding: 34px 15px 23px 15px;
+			}
+			
+			.main .name {
+				font-size: 20px;
+				color: #333333;
+				letter-spacing: 0;
+			}
+			
+			.main .star {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				flex-wrap: wrap;
+				margin-top: 17px;
+			}
+			
+			.main .star .star_pho {
+				width: 82.5px;
+				height: 13.5px;
+			}
+			
+			.main .star .star_pho img {
+				width: 100%;
+				display: block;
+			}
+			
+			.main .star .star_num {
+				font-size: 10px;
+				color: #ffc51b;
+				letter-spacing: 0;
+				margin-left: 12px;
+			}
+			
+			.main .num {
+				font-size: 12px;
+				color: #999999;
+				letter-spacing: 0;
+				margin-top: 6px;
+			}
+			
+			.main .right {
+				width: 60px;
+				height: 60px;
+			}
+			
+			.main .right img {
+				width: 100%;
+			}
+			
+			.seniority {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 0 57px;
+			}
+			
+			.seniority p {
+				font-size: 16px;
+				color: #333333;
+				letter-spacing: 0;
+				margin: 0;
+			}
+			
+			.seniority .desc {
+				font-size: 13px;
+				color: #999999;
+				letter-spacing: 0;
+				text-align: center;
+			}
+			
+			.item {
+				background: #f7f4ed;
+				width: 100%;
+				height: 8px;
+				margin-top: 21px;
+			}
+			
+			.item2 {
+				background: #f7f4ed;
+				width: 100%;
+				height: 8px;
+				margin-top: 23px;
+			}
+			
+			.service {
+				padding: 16px 20px 0 23px;
+			}
+			
+			.service p {
+				margin: 0;
+				font-size: 15px;
+				color: #666666;
+				letter-spacing: 0;
+			}
+			
+			.service .service_list {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-top: 19px;
+				border-bottom: 1px solid #eee;
+				padding-bottom: 9px;
+			}
+			
+			.service .service_list:nth-child(3) {
+				border: none;
+				margin-bottom: 34.5px;
+			}
+			
+			.service .service_list .name {
+				font-size: 14px;
+				color: #333333;
+				letter-spacing: 0;
+			}
+			
+			.service .service_list .time {
+				font-size: 13px;
+				color: #333333;
+				letter-spacing: 0;
+			}
+			
+			.service .site {
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+				font-size: 13px;
+				color: #666666;
+				letter-spacing: 0;
+				margin-top: 12px;
+			}
+			
+			.service .site .left {
+				background: #f7f4ed;
+				border-radius: 6px;
+				width: 67px;
+				line-height: 27px;
+				height: 27px;
+				text-align: center;
+			}
+			
+			.service .site .center {
+				background: #f7f4ed;
+				border-radius: 6px;
+				width: 67px;
+				line-height: 27px;
+				height: 27px;
+				text-align: center;
+				margin-left: 10px;
+			}
+			
+			.service .site .right {
+				background: #f7f4ed;
+				border-radius: 6px;
+				width: 67px;
+				line-height: 27px;
+				height: 27px;
+				text-align: center;
+				margin-left: 10px;
+			}
+			
+			ul {
+				padding: 14px 20px 0 15px;
+			}
+			
+			ul li {
+				list-style: none;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				flex-wrap: wrap;
+				padding: 14px 0 15px 0;
+				border-bottom: 1px solid #eee;
+			}
+			
+			ul li .left {
+				list-style: none;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			
+			ul li .left .photo {
+				width: 38.5px;
+				height: 38.5px;
+			}
+			
+			ul li .left .photo img {
+				width: 100%;
+			}
+			
+			ul li .left .box {
+				margin-left: 7px;
+				font-size: 14px;
+			}
+			
+			ul li .left .box .star {
+				list-style: none;
+				display: flex;
+				justify-content: space-between;
+			}
+			
+			ul li .left .box .star_pho {
+				margin-top: 3px;
+				width: 60px;
+				height: 9.5px;
+			}
+			
+			ul li .left .box .star_pho img {
+				width: 100%;
+				display: block;
+			}
+			
+			ul li .left .box .star_num {
+				font-size: 10px;
+				color: #ffb475;
+				letter-spacing: 0;
+				margin-left: 9px;
+			}
+			
+			ul li .date {
+				font-size: 13px;
+				color: #999999;
+				letter-spacing: 0;
+			}
+			
+			ul li .view {
+				width: 100%;
+				box-sizing: border-box;
+				padding: 7px 0 12px 47px;
+			}
+			
+			.btn {
+				background: #ffc51b;
+				width: 100%;
+				height: 45px;
+				font-family: PingFangSC-Regular;
+				font-size: 13px;
+				line-height: 45px;
+				color: #ffffff;
+				letter-spacing: 0;
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="header">
+			<div class="icon">
+				<img src="img/2B86E7D0-6744-4A5A-82B4-CA05BA1D7C01@0.5x.png" />
+			</div>
+			<div class="desc">
+				医生主页
+			</div>
+		</div>
+		<div class="main">
+			<div class="left">
+				<div class="name">
+					张大千
+				</div>
+				<div class="star">
+					<div class="star_pho">
+						<img src="icons/star-y-s.png" />
+					</div>
+					<div class="star_num">
+						4.5
+					</div>
+				</div>
+				<div class="num">
+					工号：123923
+				</div>
+			</div>
+			<div class="right">
+				<img src="img/launch-user-img03.png" />
+			</div>
+		</div>
+
+		<div class="seniority">
+			<div class="left">
+				<p>10年</p>
+				<div class="desc">
+					经验
+				</div>
+			</div>
+			<div class="center">
+				<p>123123份</p>
+				<div class="desc">
+					预约
+				</div>
+			</div>
+			<div class="right">
+				<p>3-6岁</p>
+				<div class="desc">
+					对象
+				</div>
+			</div>
+		</div>
+		<div class="item">
+
+		</div>
+		<div class="service">
+			<p>服务</p>
+			<div class="service_list">
+				<div class="name">
+					心理咨询
+				</div>
+				<div class="time">
+					2小时
+				</div>
+			</div>
+			<div class="service_list">
+				<div class="name">
+					脾胃调理
+				</div>
+				<div class="time">
+					2小时
+				</div>
+			</div>
+			<p>服务区域</p>
+			<div class="site">
+				<div class="left">
+					上地
+				</div>
+				<div class="center">
+					回龙观
+				</div>
+				<div class="right">
+					立水桥
+				</div>
+			</div>
+
+		</div>
+		<div class="item2">
+
+		</div>
+
+		<ul>
+			<li>评价(2)</li>
+			<li>
+				<div class="left">
+					<div class="photo">
+						<img src="img/launch-user-img03.png" />
+					</div>
+					<div class="box">
+						<div class="name">
+							王大呐
+						</div>
+						<div class="star">
+							<div class="star_pho">
+								<img src="icons/star-y-s.png" />
+							</div>
+							<div class="star_num">
+								4.5
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="date">
+					2018-07-01
+				</div>
+				<div class="view">
+					王大呐王大呐王大呐王大呐王大呐王大呐王大呐王大呐王大呐王大呐王大呐王大呐王大呐王大呐王大呐王大呐王大呐
+				</div>
+			</li>
+			<li>
+				<div class="left">
+					<div class="photo">
+						<img src="img/launch-user-img03.png" />
+					</div>
+					<div class="box">
+						<div class="name">
+							王大呐
+						</div>
+						<div class="star">
+							<div class="star_pho">
+								<img src="icons/star-y-s.png" />
+							</div>
+							<div class="star_num">
+								4.5
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="date">
+					2018-07-01
+				</div>
+				<div class="view">
+					王大呐王大呐王大呐王大呐王大呐王大呐王大呐王大呐王大呐王大呐王大呐王大呐王大呐王大呐王大呐王大呐王大呐
+				</div>
+			</li>
+		</ul>
+		<div class="btn">
+			立即预约
+		</div>
+	</body>
+
+</html>

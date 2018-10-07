@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style type="text/css">
+			.register {
+				border: 0;
+				padding: 10px 20px;
+				font-size: 16px;
+				color: #FFFFFF;
+				background-color: #FF9900;
+				outline: 0;
+			}
+			/*.register:hover {
+				background-color: blue;
+			}*/
+			
+			.flower {
+				position: absolute;
+				top: 0;
+				left: 0;
+				color: deeppink;
+				font-size: 30px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<button class="register" id="reg" type="button">注 册</button>
+		<a id="link" href="http://www.jd.com/">京东</a>
+		<div class="flower">
+			❉
+		</div>
+		<script type="text/javascript">
+			//js方法 hover
+			window.onload = function() {
+				//查找元素
+				var oReg = document.getElementById("reg");
+				var oFlower = document.querySelector(".flower");
+				var oLink = document.getElementById("link");
+
+				//阻止默认事件
+				oLink.onclick = function(e) {
+					e.preventDefault();
+				}
+
+				//鼠标down
+				document.onmousedown = function() {
+					//鼠标move
+					document.onmousemove = function(e) {
+						oFlower.style.left = e.clientX + 'px';
+						oFlower.style.top = e.clientY + 'px';
+					}
+				}
+				//鼠标up
+				document.onmouseup = function(event) {
+					//移除事件
+					document.onmousemove = null;
+				}
+				//绑定事件 --移入
+				oReg.onmouseover = function() {
+					this.style.backgroundColor = "blue";
+				}
+				//移出事件
+				oReg.onmouseout = function() {
+					this.style.backgroundColor = "#FF9900";
+				}
+			}
+		</script>
+	</body>
+
+</html>

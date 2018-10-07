@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+
+	<body>
+		<input type="text" name="" id="txt" value="" />
+		<button type="button" id="btn">点击</button>
+		<input type="text" name="" placeholder="请输入手机号" id="phone" value="" />
+		<script type="text/javascript">
+			window.onload = function() {
+				var oTxt = document.getElementById("txt");
+				var oBtn = document.getElementById("btn");
+				var oPhone = document.getElementById("phone");
+				//手机号处理
+				oPhone.onchange = function() {
+					var tel = oPhone.value;
+					//位数检测
+					if(tel.length != 11) {
+						alert("请输入正确的手机号！");
+						this.value = '';
+						return false;
+					}
+					/* 15863008280
+					 * 158 6300 8280
+					 */
+					var res;
+					res = tel.slice(0, 3) + ' ' + tel.slice(3, 7) + ' ' + tel.slice(7);
+					this.value = res;
+				}
+
+				oBtn.onclick = function() {
+					var str = oTxt.value;
+					//检索字符串
+					var flag = str.indexOf("智障");
+					if(flag > -1) {
+						//有违禁词
+						str = str.replace("智障", "**");
+					}
+					console.log(str);
+				}
+
+				var query = 'name=moz&age=30&sex=1&job=actor';
+				var arr1 = query.split("&");
+				console.log(arr1);
+				obj = {
+					name: "moz",
+					age: 30,
+					aex: 1,
+					job: "actor"
+				}
+				console.log(obj);
+			}
+		</script>
+	</body>
+
+</html>

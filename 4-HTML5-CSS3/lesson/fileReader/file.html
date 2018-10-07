@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style type="text/css">
+			img {
+				max-width: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<input type="file" name="" id="input" value="" />
+
+		<!--预览-->
+		<div width="1000" height="1000" id="preview">
+
+		</div>
+	</body>
+	<script type="text/javascript">
+		var oInput = document.getElementById("input");
+		var oPreview = document.getElementById("preview");
+
+		var fileReader = new FileReader();
+		//选择文件
+		oInput.onchange = function() {
+			//文件file对象
+			fileReader.readAsDataURL(oInput.files[0]);
+			fileReader.onload = function() {
+				oPreview.innerHTML = '<img src="' + fileReader.result + '" />';
+//				oPreview.innerHTML = fileReader.result;
+			}
+		}
+	</script>
+
+</html>

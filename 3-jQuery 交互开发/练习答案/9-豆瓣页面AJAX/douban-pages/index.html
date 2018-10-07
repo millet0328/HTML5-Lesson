@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>列表页</title>
+		<link rel="stylesheet" type="text/css" href="assets/css/amazeui.css" />
+		<link rel="stylesheet" type="text/css" href="assets/css/app.css" />
+		<link rel="stylesheet" type="text/css" href="css/list.css" />
+	</head>
+
+	<body>
+		<div>
+			<script type="text/javascript">
+				var letvcloud_player_conf = {
+					"auto_play": "1",
+					"height": "320",
+					"uu": "8c88806df4",
+					"vu": "b0665aedb2",
+					"width": "500"
+				};
+			</script>
+			<!--<script type="text/javascript" src="http://yuntv.letv.com/bcloud.js"></script>-->
+		</div>
+		<div class="list">
+
+		</div>
+	</body>
+	<script type="text/javascript">
+		var letvcloud_player_conf = {
+			"auto_play": "1",
+			"height": "320",
+			"uu": "8c88806df4",
+			"vu": "b0665aedb2",
+			"width": "500"
+		};
+	</script>
+
+	<script src=" http://libs.baidu.com/jquery/2.0.0/jquery.min.js "></script>
+	<script src="js/template-web.js" type="text/javascript" charset="utf-8"></script>
+	<!--模板-->
+	<script id="tpl-list" type="text/html">
+		{{each events}}
+		<div class="list_box am-cf padding1 margin0">
+			<a href="{{$value.url}}">
+				<div class="list_img am-fl">
+					<img src="{{$value.image}}" />
+				</div>
+			</a>
+			<div class="list_right am-fl am-text-xs">
+				<a href="{{$value.url}}" class="list_t am-text-sm">{{$value.title}}</a>
+				<p class="color666 am-padding-top-xs time">
+					<span>时间：</span>
+					<span>05月19日 周五 19:30-21:30</span>
+				</p>
+				<p class="color666">
+					<span>地点：</span>
+					<span>青岛大剧院</span>
+				</p>
+				<p class="color666">
+					<span>票价：</span>
+					<span>100元起</span>
+				</p>
+				<p class="color666">
+					<span>发起：</span>
+					<a href="" class="yp">
+						<span>永乐票务</span>
+					</a>
+				</p>
+				<p class="am-margin-top-sm bg_color_f5 padding0 disin color666">
+					<span>26人参加</span>
+					<span class="line"></span>
+					<span>38人感兴趣</span>
+					<span class="line"></span>
+					<span>2</span>
+					<span>人已购票</span>
+				</p>
+			</div>
+		</div>
+		{{/each}}
+	</script>
+	<script type="text/javascript ">
+		$(document).ready(function() {
+			//获取假数据
+			$.getJSON("js/iscroll.json", function(result) {
+				var html = template("tpl-list", result);
+				$(".list").html(html);
+			});
+			//真实写法
+			//$.getJSON("/get/act/?pageindex=3&pagesize=10&local=qd ")
+		});
+	</script>
+
+</html>

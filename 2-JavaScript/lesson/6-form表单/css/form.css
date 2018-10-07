@@ -1,0 +1,54 @@
+@charset "utf-8";
+table {
+	width: 600px;
+	margin: 0 auto;
+	border: 1px solid #999;
+	padding: 10px;
+}
+
+td {
+	text-align: center;
+	line-height: 40px;
+	font-size: 20px;
+	font-weight: 300;
+}
+
+input {
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid #999;
+}
+
+select {
+	width: 123px;
+	line-height: 40px;
+	font-size: 18px;
+	text-align: center;
+}
+
+.bottom_se {
+	width: 450px;
+	line-height: 40px;
+	font-size: 18px;
+	text-align: center;
+}
+.btn{
+	background: #fff;
+	border: 1px solid #999;
+	width: 18px;
+	height: 18px;
+	vertical-align: middle;
+}
+.cstd {
+	width: 430px;
+}
+
+.bottom_ta {
+	background: pink;
+	color: #fff;
+	width: 100%;
+	line-height: 50px;
+	border-radius: 5px;
+	margin-top: 20px;
+	display: block;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <script type="text/javascript">
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toGMTString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
+        }
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i].trim();
+                var arrC = c.split("=");
+                if (arrC[0] == cname) {
+                    return arrC[1];
+                }
+            }
+            return "";
+        }
+        //创建cookie
+        setCookie('user', 'Mrz', 1);
+        setCookie('age', 30, 1);
+        setCookie('sex', 1, 1);
+        //改
+        setCookie('age', 20, 1);
+        //获取cookie中age
+        var age = getCookie('age');
+        //在cookie中存储对象,对象==>字符串
+        var obj = {
+            name: '黄渤',
+            age: 40
+        }
+		setCookie('person', JSON.stringify(obj), 1);
+		//获取cookie中的对象，字符串==>对象
+		var person=JSON.parse(getCookie('person'));
+		console.log(person);
+    </script>
+</body>
+
+</html>

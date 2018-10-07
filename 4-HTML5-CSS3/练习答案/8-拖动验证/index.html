@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+    .box {
+        width: 300px;
+        height: 40px;
+        line-height: 40px;
+        background-color: #e8e8e8;
+        position: relative;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .bg {
+        width: 42px;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: #75CDF9;
+    }
+
+    .btn {
+        width: 40px;
+        height: 38px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        border: 1px solid #ccc;
+        cursor: move;
+        font-family: "宋体";
+        text-align: center;
+        background-color: #fff;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        color: #666;
+        z-index: 10;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        请拖动滑块解锁
+        <div class="bg"></div>
+        <div class="btn">&gt;&gt;</div>
+    </div>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    //一、定义一个获取DOM元素的方法
+    var $box = $(".box"); //容器
+    var $bg = $(".bg"); //背景
+    var $btn = $(".btn"); //滑块
+    var success = false; //是否通过验证的标志
+    var maxWidth = $box.outerWidth() - $btn.outerWidth(); //滑动成功的宽度（距离）
+    var downX; //滑块在鼠标按下去的X坐标
+
+    //二、给滑块注册鼠标按下事件
+    $btn.on('mousedown', function(e) {
+        //说明：clientX 事件属性会返回当事件被触发时，鼠标指针向对于浏览器页面(或客户区)的水平坐标。
+        //2.当滑块位于初始位置时，得到鼠标按下时的水平位置
+        var e = e || window.event;
+        downX = e.clientX;
+        //三、给文档注册鼠标移动事件
+        $(document).on('mousemove', moveHandle);
+    });
+    //取消文字选中事件，拖拽事件
+    $btn.on('selectstart dragstart', function() {
+        return false;
+    });
+
+    function moveHandle(e) {
+        //防止验证成功之后，二次拖动
+        if (success) {
+            return false;
+        }
+        var e = e || window.event;
+        //1.获取鼠标移动后的水平位置
+        var moveX = e.clientX;
+        //2.得到鼠标水平位置的偏移量（鼠标移动时的位置 - 鼠标按下时的位置）
+        var distanceX = moveX - downX;
+        //3.在这里判断一下：鼠标水平移动的距离 与 滑动成功的距离 之间的关系
+        if (distanceX > maxWidth) {
+            distanceX = maxWidth; //如果滑过了终点，就将它停留在终点位置
+        }
+        if (distanceX < 0) {
+            distanceX = 0; //如果滑到了起点的左侧，就将它重置为起点位置
+        }
+        //4.根据鼠标移动的距离来动态设置滑块的偏移量和背景颜色的宽度
+        $btn.css('left', distanceX);
+        $bg.width(distanceX);
+        //如果鼠标的水平移动距离 = 滑动成功的宽度
+        if (distanceX == maxWidth) {
+            //1.设置滑动成功后的样式
+            $btn.html("&radic;");
+            $btn.css("color", "green");
+            $bg.text("验证通过");
+            $bg.css("color", "#fff");
+            $bg.css("backgroundColor", "lightgreen");
+            //2.设置滑动成功后的状态
+            success = true;
+            //成功后，清除掉鼠标按下事件和移动事件（因为移动时并不会涉及到鼠标松开事件）
+            //3.成功解锁后的回调函数
+        }
+    }
+    //四、给文档注册鼠标松开事件
+    $(document).on('mouseup', function(e) {
+        //只要鼠标松开了，说明此时不需要拖动滑块了，那么就清除鼠标移动和松开事件。
+        $(document).off('mousemove', moveHandle);
+        //如果鼠标松开时，滑到了终点，则验证通过
+        if (success) {
+            return;
+        } else {
+            //反之，则将滑块复位（设置了1s的属性过渡效果）
+            $btn.animate({
+                'left': 0
+            });
+            $bg.animate({
+                'width': 0
+            });
+        }
+    });
+    </script>
+</body>
+
+</html>

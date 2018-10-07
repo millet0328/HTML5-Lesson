@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<input type="button" name="send" id="send" value="查询" />
+		<input type="button" name="check" id="check" value="获取JSON" />
+		<div id="box">
+		</div>
+		<script type="text/javascript">
+			var oCheck = document.getElementById("check");
+			oCheck.onclick = function() {
+				//创建对象
+				var ajax = new XMLHttpRequest();
+				//打开请求，目的：获取数据
+				ajax.open("GET", "./band.json", true);
+				//发送请求
+				ajax.send();
+				//响应（回调函数）
+				ajax.onreadystatechange = function() {
+					if(ajax.readyState == 4) {
+						console.log(ajax.responseText);
+					}
+				}
+
+			}
+		</script>
+
+	</body>
+
+</html>

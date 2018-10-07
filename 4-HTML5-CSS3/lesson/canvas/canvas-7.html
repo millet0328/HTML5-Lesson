@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+
+	<body>
+		<canvas id="canvas" width="400" height="300"></canvas>
+		<script type="text/javascript">
+			var oCanvas = document.getElementById("canvas");
+			var context = oCanvas.getContext("2d");
+			var bgGrd = context.createRadialGradient(200, 150, 30, 200, 150, 300);
+			bgGrd.addColorStop(0, "rgb(255,214,0)");
+			bgGrd.addColorStop(0.8, "rgb(0,210,210)")
+			bgGrd.addColorStop(1, "rgb(255,255,255)");
+			context.fillStyle = bgGrd;
+			context.fillRect(0, 0, 400, 300);
+			//绘制矩形
+			context.translate(200,50);
+			context.fillStyle="rgba(255,0,0,0.25)";
+			for (var i = 0; i < 50; i++) {
+				context.translate(25,25);
+				context.scale(0.95,0.95);
+				context.rotate(Math.PI/10);
+				context.fillRect(0,0,100,50);
+			}
+			oCanvas.onmousemove = function(e) {
+				var x = e.clientX - this.offsetLeft;
+				var y = e.clientY - this.offsetTop;
+				console.log(x, y);
+			}
+		</script>
+	</body>
+
+</html>

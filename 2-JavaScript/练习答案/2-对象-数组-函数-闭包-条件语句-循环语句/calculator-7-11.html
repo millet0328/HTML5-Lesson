@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <pre>
+			编写一个函数，返回一个字符串，计算0-1024之间既能被11整除又能被7整除的整数
+		</pre>
+    <script type="text/javascript">
+    function run() {
+        var str = '';
+        for (var i = 0; i <= 1024; i++) {
+            if (i % 11 == 0 && i % 7 == 0) {
+                str = str + i + ' ';
+            }
+        }
+        console.log(str);
+        return str;
+    }
+    // 调用函数
+    run();
+    </script>
+</body>
+
+</html>

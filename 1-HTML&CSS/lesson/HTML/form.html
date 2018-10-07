@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<h1>iframe嵌套</h1>
+		<!--嵌套部分页面-->
+		<!--<iframe src="http://www.jd.com/" width="100%" height="600"></iframe>-->
+		<!--缺点：js操作内部页面很麻烦-->
+		<!--placeholder IE>=10-->
+		<h2>表单</h2>
+		<form action="http://www.baidu.com">
+			<label for="user">账号：</label>
+			<input type="text" name="user"  id="user" value="admin" />
+			<br />
+			<label for="">密码：</label>
+			<input type="password" placeholder="请输入密码" name="password" id="" value="" />
+			<br />
+			<!--下拉菜单-->
+			<label for="">省份：</label>
+			<select name="">
+				<option value="SD">山东</option>
+				<option value="HB">河北</option>
+				<option value="上海">上海</option>
+				<option value="浙江">浙江</option>
+			</select>
+			<br />
+			<label for="">城市：</label>
+			<select name="">
+				<option value="">青岛</option>
+				<option value="">德州</option>
+				<option value="">潍坊</option>
+				<option value="">菏泽</option>
+			</select>
+			<br />
+			<label for="">区域：</label>
+			<select name="">
+				<option value="">城阳</option>
+				<option value="">市北</option>
+				<option value="">市南</option>
+				<option value="">崂山</option>
+			</select>
+			<!--单选 name一致-->
+			<br />
+			<label for="">性别：</label>
+			<label for="man">
+				<input id="man" name="sex" value="1" type="radio" />男
+			</label>
+			<label for="woman">
+				<input id="woman" name="sex" value="0" type="radio" />女
+			</label>
+			<!--复选框组 name一致-->
+			<br />
+			<label for="">爱好：</label>
+			<label for="">
+				<input type="checkbox" name="fav" id="" value="" />旅游
+			</label>
+			<label for="">
+				<input type="checkbox" name="fav" id="" value="" />摄影
+			</label>
+			<label for="">
+				<input type="checkbox" name="fav" id="" value="" />游泳
+			</label>
+			<!--多行文本-->
+			<br />
+			<label for="">介绍：</label>
+			<textarea name="" rows="4" cols="30"></textarea>
+			<!--按钮btn-->
+			<br />
+			<input type="submit" name="" id="" value="提交" />
+			<button type="submit">提交</button>
+			
+			<input type="reset" name="" id="" value="重置" />
+			
+			<!--普通按钮-->
+			<input type="button" name="" id="" value="按钮" />
+			<button type="button">按&nbsp;钮</button>
+			
+			<!--默认按钮-->
+			<br />
+			<input type="" name="" id="" value="" />
+			<button type="">默认(submit)按钮</button>
+			
+			<!--隐藏表单-->
+			<input type="hidden" name="" id="" value="" />
+			
+		</form>
+	</body>
+
+</html>

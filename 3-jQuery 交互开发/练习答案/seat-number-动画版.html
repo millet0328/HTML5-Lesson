@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+    .maxBox {
+        padding: 4px 6px;
+        font-size: 16px;
+        color: #3EAFE0;
+    }
+
+    .clickBtn {
+        border: 1px solid #3EAFE0;
+        background-color: #3EAFE0;
+        color: #FFF;
+        font-size: 14px;
+        padding: 6px 60px;
+    }
+
+    .result {
+        font-size: 80px;
+        color: #3EAFE0;
+        font-weight: bold;
+        padding: 30px;
+    }
+
+    .txt_center {
+        text-align: center;
+    }
+
+    .exist {
+        border: 1px solid #EEE;
+        padding: 20px;
+        margin: 20px auto;
+        width: 600px;
+        min-height: 100px;
+        text-align: left;
+    }
+
+    .exist span {
+        display: inline-block;
+        padding: 2px 10px;
+        margin: 4px;
+        border-radius: 3px;
+        background-color: #3EAFE0;
+        color: #FFFFFF;
+    }
+
+    .info {
+        border: 1px solid blue;
+        color: #000;
+        font-weight: 500;
+        padding: 20px;
+        margin: 20px auto;
+        width: 600px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="txt_center">
+        <div class="result">
+            <span class="" id="result">姓名</span>
+        </div>
+        <input class="clickBtn" type="button" id="btn" value="开 始">
+        <div class="exist">
+            <div>已抽取：</div>
+            <div id="exist"></div>
+        </div>
+    </div>
+    <!--练习说明-->
+    <div class="info">
+        1、在文本框中输入抽号最大值
+        <br/> 2、点击按钮，开始抽号，随机生成1~最大值之间的整数
+        <br/> 3、已经抽取的号码存入一个数组
+        <br/> 4、为了保证号码的唯一性，每次生成一个号码，跟数组中的已抽取的号码比对
+        <br/> 5、如果已存在，重新生成号码
+        <br/> 6、如果不存在，放入数组中保存，并显示出来
+        <br/> 7、将号码结果放入result中显示出来
+        <br/> 8、将已经生成的号码（数组）存入exist中显示出来
+        <br/>
+    </div>
+    <script type="text/javascript">
+    window.onload = function() {
+        var oBtn = document.getElementById("btn");
+        var oTxt = document.getElementById("txt");
+        var oRes = document.getElementById("result");
+        var oExt = document.getElementById("exist");
+        var students = ['袁政泰', '腾秀旻', '方建飞', '张后义', '白雅慧', '牛倩', '张弛', '成进', '田洛洛', '秦相荣', '王亚婷', '吴敏', '刘素芳', '臧思奥', '王晓迪', '王娈', '王彬馨', '张百惠', '赵燕', '许博硕', '孙全友', '樊宇跃', '贾若林', '綦鹏', '纪文龙', '邢智彦', '赵康', '申孝辉', '高杰', '滕岱松', '刘镕恺', '战沙沙', '曾振银', '吴硕', '王艳超', '周岩', '王明阳', '郝为公', '刘浩', '张佳明', '张晨夕', '任宝赟', '任鹏程', '李彤彤', '沈世超', '刘鸿章', '武凤丽'];
+        var i = 0;
+        var current = 0;
+        var arr = [];
+        var tick;
+        // 是否开始抽奖
+        var flag = false;
+        oBtn.onclick = function() {
+            if (flag) {
+                this.value = '开 始';
+                stop();
+                flag = false;
+            } else {
+                this.value = '暂 停';
+                if (students.length == 0) {
+                    alert("已全部抽取完!");
+                    return false;
+                }
+                loop();
+                flag = true;
+            }
+        }
+        // 循环数组
+        function loop() {
+            clearInterval(tick);
+            tick = setInterval(function() {
+                current = i;
+                console.log(current);
+                oRes.innerText = students[i];
+                if (i == students.length - 1) {
+                    i = 0;
+                } else {
+                    i++;
+                }
+            }, 30);
+        }
+        // 停止
+        function stop() {
+            clearInterval(tick);
+            arr.push(students[current]);
+            students.splice(current, 1);
+            generateExist();
+            i = 0;
+        }
+        //生成已抽取的号码
+        function generateExist() {
+            var html = ''
+            for (var i = 0; i < arr.length; i++) {
+                html += '<span>' + arr[i] + '</span>';
+            }
+            oExt.innerHTML = html;
+        }
+
+    }
+    </script>
+</body>
+
+</html>

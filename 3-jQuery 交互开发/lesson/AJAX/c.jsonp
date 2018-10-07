@@ -1,0 +1,16 @@
+jQuery_1234567890070([{
+	"term": "CALAMITY",
+	"part": "n.",
+	"definition": "A more than commonly plain and unmistakable reminder that the affairs of this life are not of our own ordering.  Calamities are of two kinds:  misfortune to ourselves, and good fortune to others."
+}, {
+	"term": "CANNIBAL",
+	"part": "n.",
+	"definition": "A gastronome of the old school who preserves the simple tastes and adheres to the natural diet of the pre-pork period."
+}])
+
+//
+jQuery_1234567890070({
+	"term": "CALAMITY",
+	"part": "n.",
+	"definition": "A more than commonly plain and unmistakable reminder that the affairs of this life are not of our own ordering.  Calamities are of two kinds:  misfortune to ourselves, and good fortune to others."
+})

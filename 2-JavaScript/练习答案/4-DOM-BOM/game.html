@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			html {
+				font-size: 16px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<pre>
+		题目：
+			一个游戏，前20关是每一关自身的分数,
+			//21-30关每一关是10分 
+			//31-40关，每一关是20分 
+			//41-49关，每一关是30分 
+			//50关，是100分 
+			//输入你现在闯过的关卡数，求你现在拥有的分数 
+		</pre>
+		<div>
+			请输入现在闯过的关卡数：
+			<input type="text" id="txt">
+			<input type="button" id="btn" value="计算得分">
+		</div>
+		<div class="" id="result">
+		</div>
+		<script type="text/javascript">
+			window.onload = function() {
+				var oBtn = document.getElementById("btn");
+				var oTxt = document.getElementById("txt");
+				var oRes = document.getElementById("result");
+				//click
+				oBtn.onclick = function() {
+					var num = parseInt(oTxt.value);
+					//判断是不是数字？
+					if(isNaN(num)) {
+						alert("请输入数字！");
+						oTxt.value = "";
+						return;
+					}
+					//计算得分
+					compute(num);
+				}
+				//计算得分
+				function compute(x) {
+					var res = 0;
+					if(x < 0) {
+						alert("请输入正确的关卡数！");
+						oTxt.value = "";
+						return;
+					}
+					if(x > 50) {
+						alert("总关卡是50！");
+						oTxt.value = "";
+						return;
+					}
+					
+					for(var i = 0; i <= x; i++) {
+						if(i <= 20) {
+							res += i;
+						}
+						if(i > 20 && i <= 30) {
+							res += 10;
+						}
+						if(i > 30 && i <= 40) {
+							res += 20;
+						}
+						if(i > 40 && i <= 49) {
+							res += 30;
+						}
+						if(i == 50) {
+							res += 100;
+						}
+					}
+					oRes.innerHTML = res;
+				}
+			};
+		</script>
+	</body>
+
+</html>

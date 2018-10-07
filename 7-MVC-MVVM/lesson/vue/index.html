@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title></title>
+		<style type="text/css">
+			.active {
+				border: 2px solid #F0AD4E;
+				padding: 6px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="app-5">
+			<div v-bind:class="{ active: isActive }">
+				{{message}}
+			</div>
+			<button v-on:click="toggle">切换</button>
+		</div>
+
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app5 = new Vue({
+				el: '#app-5',
+				data: {
+					message: 'Hello Vue.js!',
+					isActive: true
+				},
+				methods: {
+					toggle: function() {
+						if(this.isActive) {
+							this.isActive = false;
+						} else {
+							this.isActive = true;
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

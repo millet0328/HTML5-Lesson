@@ -1,0 +1,40 @@
+@charset "utf-8";
+.ssale_list li{
+	float: left;
+	border: 1px solid #EEE;
+}
+.ssale_list a {
+	display: block;
+	overflow: hidden;
+	width: 588px;
+	height: 234px;
+}
+
+.ssale_list .band_box {
+	position: absolute;
+	bottom: -60px;
+	left: 0;
+	width: 100%;
+	height: 60px;
+	background-color: #FFFFFF;
+	line-height: 60px;
+	overflow: hidden;
+}
+
+.band_box .logo {
+	height: 56px;
+}
+
+.band_box .title {
+	font-size: 16px;
+	position: relative;
+	top: 40px;
+}
+
+.band_box .sologan {
+	font-size: 21px;
+	color: #e5004b;
+	padding-right: 4px;
+	position: relative;
+	top: 40px;
+}

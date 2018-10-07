@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+    <pre>
+		题目：
+			在for循环里生成10个button,并绑定click事件，点击button分别弹出1~10（数字代表每一个button的序号）
+		</pre>
+    <div class="" id="result">
+    	
+    </div>
+    <script type="text/javascript">
+    var oRes = document.getElementById('result');
+    for (var i = 0; i < 10; i++) {
+        var btn = document.createElement("input");
+        btn.type = "button";
+        btn.value = (i + 1);
+        // 绑定事件
+        btn.onclick = function() {
+            alert(this.value);
+        }
+        oRes.appendChild(btn);
+    }
+    </script>
+</body>
+
+</html>

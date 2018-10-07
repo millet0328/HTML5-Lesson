@@ -1,0 +1,94 @@
+.multipleColumn {
+	overflow: hidden;
+	position: relative;
+	width: 870px;
+	border: 1px solid #ccc;
+}
+
+.multipleColumn .hd {
+	overflow: hidden;
+	height: 30px;
+	background: #f4f4f4;
+	padding: 0 10px;
+}
+
+.multipleColumn .hd .prev,
+.multipleColumn .hd .next {
+	display: block;
+	width: 5px;
+	height: 9px;
+	float: right;
+	margin-right: 5px;
+	margin-top: 10px;
+	overflow: hidden;
+	cursor: pointer;
+	background: url("../images/icoLeft.gif") no-repeat;
+}
+
+.multipleColumn .hd .next {
+	background: url("../images/icoRight.gif") no-repeat;
+}
+
+.multipleColumn .hd ul {
+	float: right;
+	overflow: hidden;
+	zoom: 1;
+	margin-top: 10px;
+	zoom: 1;
+}
+
+.multipleColumn .hd ul li {
+	float: left;
+	width: 9px;
+	height: 9px;
+	overflow: hidden;
+	margin-right: 5px;
+	text-indent: -999px;
+	cursor: pointer;
+	background: url("../images/icoCircle.gif") 0 -9px no-repeat;
+}
+
+.multipleColumn .hd ul li.on {
+	background-position: 0 0;
+}
+
+.multipleColumn .bd {
+	padding: 10px;
+	overflow: hidden;
+}
+
+.multipleColumn .bd ul {
+	overflow: hidden;
+	zoom: 1;
+	width: 870px;
+	float: left;
+	_display: inline;
+}
+
+.multipleColumn .bd ul li {
+	margin: 0 8px;
+	float: left;
+	_display: inline;
+	overflow: hidden;
+	text-align: center;
+}
+
+.multipleColumn .bd ul li .pic {
+	text-align: center;
+}
+
+.multipleColumn .bd ul li .pic img {
+	width: 120px;
+	height: 90px;
+	display: block;
+	padding: 2px;
+	border: 1px solid #ccc;
+}
+
+.multipleColumn .bd ul li .pic a:hover img {
+	border-color: #999;
+}
+
+.multipleColumn .bd ul li .title {
+	line-height: 24px;
+}

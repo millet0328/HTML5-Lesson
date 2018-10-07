@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.list {
+				padding: 0;
+			}
+			
+			.list li {
+				list-style: none;
+				margin: 10px auto;
+				height: 100px;
+				background-color: #eee;
+				padding: 20px;
+				border-bottom: 5px solid #CCCCCC;
+			}
+		</style>
+	</head>
+
+	<body>
+		<input type="button" name="" id="btn" value="批量修改样式" />
+		<ul class="list">
+			<li>
+				可循环变化
+			</li>
+			<li>
+				可循环变化
+			</li>
+			<li>
+				可循环变化
+			</li>
+		</ul>
+		<script type="text/javascript">
+			window.onload = function() {
+				var oBtn = document.getElementById("btn");
+				var oLis = document.querySelectorAll(".list li");
+				var flag = true;
+				oBtn.onclick = function() {
+					if(flag) {
+						flag = false;
+						for(var i = 0; i < oLis.length; i++) {
+							oLis[i].style.width = "600px";
+							oLis[i].style.backgroundColor = "#FFFF00";
+						}
+					} else {
+						flag = true;
+						for(var i = 0; i < oLis.length; i++) {
+							oLis[i].style.width = "auto";
+							oLis[i].style.backgroundColor = "#eee";
+						}
+					}
+
+				}
+			}
+		</script>
+	</body>
+
+</html>

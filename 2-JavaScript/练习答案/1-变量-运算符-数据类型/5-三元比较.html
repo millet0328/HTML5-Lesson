@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <input type="text" name="" id="txt1" value="" />
+    <input type="text" name="" id="txt2" value="" />
+    <input type="text" name="" id="txt3" value="" />
+    <button id="btn" class="button">按钮</button>
+    <script type="text/javascript">
+    var oBtn = document.getElementById("btn");
+    var oTxt1 = document.getElementById("txt1");
+    var oTxt2 = document.getElementById("txt2");
+    var oTxt3 = document.getElementById("txt3");
+    oBtn.onclick = function() {
+        var num1 = oTxt1.value;
+        var num2 = oTxt2.value;
+        var num3 = oTxt3.value;
+        num1 = parseInt(num1);
+        num2 = parseInt(num2);
+        num3 = parseInt(num3);
+        var bigger = (num1 > num2) ? num1 : num2;
+        var biggest = (bigger > num3) ? bigger : num3;
+        alert(biggest);
+    }
+    </script>
+</body>
+
+</html>

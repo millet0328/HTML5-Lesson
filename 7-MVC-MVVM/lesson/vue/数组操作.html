@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div id="app">
+			<input type="text" v-model="newTodo" name="" id="" @keyup.enter="addTodo" />
+			<ul>
+				<li v-for="(item,index) in todos">
+					{{item.title}}
+					<button @click="remove(index)">X</button>
+				</li>
+			</ul>
+			<button @click="sortUp">排序</button>
+		</div>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					newTodo: '',
+					todos: [{
+							id: 1,
+							title: 'Do the dishes',
+						},
+						{
+							id: 2,
+							title: 'Take out the trash',
+						},
+						{
+							id: 3,
+							title: 'Mow the lawn'
+						}
+					],
+				},
+				methods: {
+					remove: function(i) {
+						//数组方法
+						this.todos.splice(i, 1);
+					},
+					sortUp: function() {
+						this.todos.sort(function(a, b) {
+							var val1 = a.title[0];
+							var val2 = b.title[0];
+							if(val1 > val2) {
+								return -1;
+							} else {
+								return 1;
+							}
+						});
+					},
+					addTodo: function() {
+						//数组方法
+						this.todos.push({
+							id: this.todos.length + 1,
+							title: this.newTodo
+						});
+						this.newTodo = "";
+					}
+				}
+			})
+		</script>
+
+	</body>
+
+</html>

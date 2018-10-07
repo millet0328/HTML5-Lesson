@@ -1,0 +1,100 @@
+@charset "utf-8";
+.fl {
+	float: left;
+}
+
+.clear {
+	clear: both;
+}
+
+.relative {
+	position: relative;
+}
+
+.main {
+	width: 1319px;
+	margin: 0 auto;
+}
+
+.main .left {
+	padding-top: 66px;
+}
+
+.main label {
+	padding: 0 33px 0 29px;
+	display: inline-block;
+}
+
+.main .name {
+	font-size: 15px;
+	width: 75px;
+	font-weight: bold;
+	text-align: right;
+}
+
+.main .input {
+	width: 445px;
+	padding: 8px;
+	margin: 0 54px 17px 0;
+	outline: 0;
+	border-radius: 5px;
+	border: 1px solid #cccccc;
+}
+
+.main .right {
+	padding-top: 66px;
+}
+
+.main .btn {
+	position: absolute;
+	width: 104px;
+	color: #ffffff;
+	text-align: center;
+	background-color: #337ab7;
+	border: 1px solid #2e6da4;
+	border-radius: 5px;
+	padding: 7px 2px;
+	margin: 0 409px 0 804px;
+	top: 214px;
+	right: 0;
+}
+
+.main .btn.hide {
+	display: none;
+}
+
+.main .tab table {
+	width: 1319px;
+	font-size: 9px;
+	text-align: left;
+	border: 1px solid #c0d1d7;
+}
+
+.tab thead th {
+	border-bottom: 1px solid #CCCCCC;
+}
+
+.main .tab img {
+	margin: 0 5px;
+}
+
+.main .tab td {
+	padding: 6px 0;
+}
+
+.main .header {
+	border-bottom: 2px solid #c0d1d7;
+}
+
+.main .tab th {
+	padding: 6px;
+}
+
+.main .tab td {
+	padding: 6px;
+	border-left: 1px dashed #c0d1d7;
+}
+
+.main .tab td:first-child {
+	border-left: none;
+}

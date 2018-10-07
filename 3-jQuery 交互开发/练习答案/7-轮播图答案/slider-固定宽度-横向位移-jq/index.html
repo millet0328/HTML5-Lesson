@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <style type="text/css">
+    .slider_main {
+        width: 790px;
+        height: 340px;
+        margin: 20px auto;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .slider_list {
+        position: relative;
+        left: 0px;
+    }
+
+    .item {
+        float: left;
+    }
+
+    .item:first-child {
+        display: block;
+    }
+
+    .item a img {
+        display: block;
+    }
+
+    .circle_dot {
+        position: absolute;
+        left: 50%;
+        bottom: 20px;
+        margin: auto;
+        font-size: 0;
+        padding: 4px 8px;
+        border-radius: 12px;
+        background-color: hsla(0, 0%, 100%, .3);
+        z-index: 1;
+        transform: translateX(-50%);
+    }
+
+    .dot {
+        display: inline-block;
+        margin: 0 5px;
+        width: 12px;
+        height: 12px;
+        border-radius: 100%;
+        background-color: #fff;
+        cursor: pointer;
+    }
+
+    .dot.active {
+        background-color: #db192a;
+    }
+
+    .arrow {
+        display: none;
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        margin-top: -30px;
+        width: 30px;
+        height: 60px;
+        background-color: rgba(0, 0, 0, .1);
+        line-height: 60px;
+        text-align: center;
+        color: #fff;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .arrow:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .prev {
+        left: 0;
+    }
+
+    .next {
+        right: 0;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="slider" class="slider_main">
+        <ul class="slider_list clearfix">
+            <li class="item">
+                <a href="#">
+                    <img class="item_img" src="img/1.jpg" />
+                </a>
+            </li>
+            <li class="item">
+                <a href="#">
+                    <img class="item_img" src="img/2.jpg" />
+                </a>
+            </li>
+            <li class="item">
+                <a href="#">
+                    <img class="item_img" src="img/3.jpg" />
+                </a>
+            </li>
+            <li class="item">
+                <a href="#">
+                    <img class="item_img" src="img/4.jpg" />
+                </a>
+            </li>
+            <li class="item">
+                <a href="#">
+                    <img class="item_img" src="img/5.jpg" />
+                </a>
+            </li>
+            <li class="item">
+                <a href="#">
+                    <img class="item_img" src="img/6.jpg" />
+                </a>
+            </li>
+            <li class="item">
+                <a href="#">
+                    <img class="item_img" src="img/7.jpg" />
+                </a>
+            </li>
+            <li class="item">
+                <a href="#">
+                    <img class="item_img" src="img/8.jpg" />
+                </a>
+            </li>
+        </ul>
+        <!--指示器-->
+        <div class="circle_dot">
+        </div>
+        <!--箭头-->
+        <div class="prev arrow">&lt;</div>
+        <div class="next arrow">&gt;</div>
+    </div>
+</body>
+<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+function Slider(option) {
+    // 默认参数
+    this.defaultOpt = {
+        //容器
+        wrap: ".slider_main",
+        //轮播间隔
+        duration: 3000,
+        //切换速度
+        speed: 1000
+    }
+    this.opt = $.extend({}, this.defaultOpt, option);
+
+    this.wrap = $(this.opt.wrap);
+    this.$list = this.wrap.find('.slider_list');
+    this.prevBtn = this.wrap.find('.prev');
+    this.nextBtn = this.wrap.find('.next');
+    this.dotBox = this.wrap.find('.circle_dot');
+    this.li = this.$list.find('li');
+    //定时器obj
+    this.time = null;
+    //当前图片停留时的索引
+    this.index = 0;
+    //自动运行
+    this.init();
+}
+Slider.prototype = {
+    constructor: Slider,
+    init: function() {
+        var self = this;
+        this.createDot();
+        //取得每次移动距离
+        this.step = this.wrap.width();
+        //设置list的总宽度
+        this.$list.width(this.step * (this.li.length + 1));
+        //获取指示器li数组
+        this.dot = this.dotBox.find('.dot');
+        this.indicator(this.index);
+        //取得第一个元素，插入到末尾
+        var $copyLi = this.li.eq(0).clone(true);
+        this.$list.append($copyLi);
+        //绑定事件
+        this.bindEvent();
+        //自动轮播
+        this.play();
+    },
+    createDot: function() {
+        var self = this;
+        this.li.each(function(i) {
+            //生成指示器的点
+            var $li = $('<div class="dot"></div>');
+            self.dotBox.append($li);
+        });
+    },
+    animate: function(step) {
+        var now = this.$list.position().left;
+        var hope = now + step;
+        // 第一张
+        if (hope > 0) {
+            this.$list.stop(true, true).animate({
+                left: this.step * (1 - this.li.length)
+            }, this.opt.speed);
+            return;
+        }
+        // 最后一张
+        if (hope <= -this.step * this.li.length) {
+            this.$list.animate({
+                left: hope
+            }, this.opt.speed, function() {
+                $(this).css({
+                    left: 0
+                });
+            });
+            return;
+        }
+        this.$list.stop(true, true).animate({
+            left: hope
+        }, this.opt.speed);
+    },
+    bindEvent: function() {
+        var self = this;
+        //右边箭头点击
+        this.nextBtn.click(function() {
+            self.index++;
+            if (self.index > (self.li.length - 1)) {
+                self.index = 0;
+            }
+            self.animate(-self.step);
+            self.indicator(self.index);
+        });
+        //左边箭头点击
+        this.prevBtn.click(function() {
+            self.index--;
+            //判断临界值
+            if (self.index < 0) {
+                self.index = self.li.length - 1;
+            }
+            self.animate(self.step);
+            self.indicator(self.index);
+        });
+        //轮播图hover事件
+        this.wrap.hover(function() {
+            self.prevBtn.stop(true, true).fadeIn();
+            self.nextBtn.stop(true, true).fadeIn();
+            self.stop();
+        }, function() {
+            self.prevBtn.stop(true, true).fadeOut();
+            self.nextBtn.stop(true, true).fadeOut();
+            self.play();
+        });
+        //指示器点击事件
+        this.dotBox.on("click", ".dot", function() {
+            //计算需要位移的距离，self.index当前图片索引，$(this).index()点击的指示器索引
+            var index = $(this).index();
+            self.indicator(index);
+            var distance = self.step * (self.index - index);
+            self.animate(distance);
+            //存放鼠标点击后的位置，用于小圆点的正常显示
+            self.index = index;
+        });
+    },
+    stop: function() {
+        clearInterval(this.time);
+    },
+    play: function() {
+        var self = this;
+        this.time = setInterval(function() {
+            self.nextBtn.trigger("click");
+        }, this.opt.duration);
+    },
+    indicator: function(index) {
+        //修改指示器的样式
+        this.dot.removeClass('active');
+        this.dot.eq(index).addClass('active');
+    }
+}
+$(document).ready(function() {
+    var mySlider = new Slider({
+        duration:1600
+    });
+});
+</script>
+
+</html>

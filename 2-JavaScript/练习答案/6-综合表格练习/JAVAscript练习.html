@@ -1,0 +1,404 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0048)http://www.mhero.com/javascript/js005/js009.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" class="hb-loaded">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>JAVAscript练习</title>
+    <link rel="apple-touch-icon-precomposed" href="http://www.mhero.com/logo_icon.png">
+    <link href="./JAVAscript练习_files/style.css" rel="stylesheet">
+    <style>
+    .table,
+    .list-group {
+        margin-bottom: 0;
+    }
+    
+    thead tr {
+        font-weight: bold;
+    }
+    </style>
+    <script>
+    function startTrBackground(obj, color) {
+        for (var i = 0; i < obj.rows.length; i++) {
+            obj.rows[i].onmouseover = function() {
+                this.style.background = color;
+            }
+            obj.rows[i].onmouseout = function() {
+                this.style.background = 'none';
+            }
+        }
+    }
+
+    function aDelTr(obj) {
+        var oDel = obj.getElementsByTagName('a');
+        for (var i = 0; i < oDel.length; i++) {
+            oDel[i].onclick = function() {
+                obj.removeChild(this.parentNode.parentNode);
+            }
+        }
+    }
+
+    window.onload = function() {
+        var oDiv1 = document.getElementById('div1');
+        var aBtn1 = oDiv1.getElementsByTagName('button');
+        var aIpt1 = oDiv1.getElementsByTagName('input');
+        var aTab1 = oDiv1.getElementsByTagName('table')[0];
+        var nId3 = aTab1.tBodies[0].rows.length + 1;
+
+        aDelTr(aTab1.tBodies[0]);
+
+        aBtn1[0].onclick = function() {
+            if (aIpt1[0].value == '' || aIpt1[1].value == '') {
+                alert('必须输入名字和年龄才能添加');
+            } else {
+                var oName = aIpt1[0].value;
+                var oSage = aIpt1[1].value;
+
+                var oTr = document.createElement('tr');
+
+                var oTd = document.createElement('td');
+                oTd.innerHTML = nId3++;
+                oTr.appendChild(oTd);
+
+                var oTd = document.createElement('td');
+                oTd.innerHTML = oName;
+                oTr.appendChild(oTd);
+
+                var oTd = document.createElement('td');
+                oTd.innerHTML = oSage;
+                oTr.appendChild(oTd);
+
+                var oTd = document.createElement('td');
+                oTd.innerHTML = '<a href="javascript:;">删除</a>';
+                oTr.appendChild(oTd);
+                /*
+                		var oA=oTd.getElementsByTagName('a')[0];
+                		oA.onclick=function ()
+                		{
+                			aTab1.tBodies[0].removeChild(this.parentNode.parentNode);
+                		}
+                */
+                aTab1.tBodies[0].appendChild(oTr);
+                if (aBtn1[1].innerHTML == '关闭移入变色') {
+                    startTrBackground(aTab1.tBodies[0], '#EEE');
+                }
+
+                aDelTr(aTab1.tBodies[0]);
+            }
+        }
+
+        aBtn1[1].onclick = function() {
+            if (this.innerHTML == '开启移入变色') {
+                this.innerHTML = '关闭移入变色';
+                this.className = 'btn btn-danger';
+                startTrBackground(aTab1.tBodies[0], '#EEE');
+            } else {
+                this.innerHTML = '开启移入变色';
+                this.className = 'btn btn-info';
+                for (var i = 0; i < aTab1.tBodies[0].rows.length; i++) {
+                    aTab1.tBodies[0].rows[i].onmouseover = aTab1.tBodies[0].rows[i].onmouseout = function() {
+                        this.style.background = 'none';
+                    }
+                }
+            }
+        }
+
+        aBtn1[2].onclick = function() {
+            if (aIpt1[2].value != '') {
+                for (var i = 0; i < aTab1.tBodies[0].rows.length; i++) {
+                    var oTxt = aIpt1[2].value.toLowerCase();
+                    var oTab = aTab1.tBodies[0].rows[i].cells[1].innerHTML.toLowerCase();
+                    var aArr = oTxt.split(' ');
+                    aTab1.tBodies[0].rows[i].removeAttribute('style');
+                    for (var j = 0; j < aArr.length; j++) {
+                        if (oTab.search(aArr[j]) != -1) {
+                            aTab1.tBodies[0].rows[i].setAttribute('style', 'background:yellow')
+                        }
+                    }
+                }
+            } else {
+                alert('必须输入搜索内容');
+            }
+        }
+
+        aBtn1[3].onclick = function() {
+            var aArr = [];
+            for (var i = 0; i < aTab1.tBodies[0].rows.length; i++) {
+                aArr[i] = aTab1.tBodies[0].rows[i];
+            }
+            aArr.sort(function(tr1, tr2) {
+                var n1 = parseInt(tr1.cells[2].innerHTML);
+                var n2 = parseInt(tr2.cells[2].innerHTML);
+                return n1 - n2;
+            })
+            for (var i = 0; i < aArr.length; i++) {
+                aTab1.tBodies[0].appendChild(aArr[i]);
+            }
+        }
+    }
+    </script>
+    <!--
+<script>
+//删除表格-----------------------------------------------------------
+function DelTab (obj)
+{
+	var aDel=obj.getElementsByTagName('a');
+	for(var i=0;i<aDel.length;i++)
+	{
+		if(aDel[i].innerHTML=='删除')
+		{
+			aDel[i].onclick=function ()
+			{
+				obj.removeChild(this.parentNode.parentNode);
+			}
+		}
+	}
+}
+//开启移入变色--------------------------------------------------------
+function OverBg (obj)
+{
+	var oldbg='';
+	for(var i=0;i<obj.rows.length;i++)
+		{
+			obj.rows[i].onmouseover=function ()
+			{
+				oldbg=this.style.background;
+				this.style.background='#f1f1f1';
+			}
+			obj.rows[i].onmouseout=function ()
+			{
+				this.style.background=oldbg;
+			}
+		}
+}
+//关闭移入变色--------------------------------------------------------
+function OutBg (obj)
+{
+	var oldbg='';
+	for(var i=0;i<obj.rows.length;i++)
+		{
+			obj.rows[i].onmouseover=function ()
+			{
+				oldbg=this.style.background;
+				this.style.background='';
+			}
+			obj.rows[i].onmouseout=function ()
+			{
+				this.style.background=oldbg;
+			}
+		}
+}
+window.onload=function ()
+{
+	var oDiv1=document.getElementById('div1');
+	var oTxt1=oDiv1.getElementsByTagName('input');
+	var oBtn1=oDiv1.getElementsByTagName('button');
+	var oTab1=oDiv1.getElementsByTagName('table')[0];
+	var aId=oTab1.tBodies[0].rows.length+1;
+//添加表格按钮-------------------------------------------------------	
+	oBtn1[0].onclick=function ()
+	{
+		if(oTxt1[0].value==''||oTxt1[1].value==''||isNaN(oTxt1[1].value))
+		{
+			alert('请检查输入'+'\n'+'姓名和年龄必须输入'+'\n'+'年龄必须为数字');
+		}
+		else
+		{
+			var name=oTxt1[0].value;
+			var sage=oTxt1[1].value;
+			
+			var oTr=document.createElement('tr');
+			
+			var oTd=document.createElement('td');
+			oTd.innerHTML=aId++;
+			oTr.appendChild(oTd);
+			
+			var oTd=document.createElement('td');
+			oTd.innerHTML=name;
+			oTr.appendChild(oTd);
+			
+			var oTd=document.createElement('td');
+			oTd.innerHTML=sage;
+			oTr.appendChild(oTd);
+			
+			var oTd=document.createElement('td');
+			oTd.innerHTML='<a href="javascript:;">删除</a>';
+			oTr.appendChild(oTd);
+			
+			oTab1.tBodies[0].appendChild(oTr);
+			
+			DelTab (oTab1.tBodies[0]);//删除表格
+			oTxt1[0].value=oTxt1[1].value='';
+		}
+		
+//判断移入变色是否开启--------------------------------------------------------
+		if(oBtn1[1].innerHTML!='开启移入变色')
+		{
+			OverBg (oTab1.tBodies[0]);
+		}
+	}
+	
+	DelTab (oTab1.tBodies[0]);//删除表格
+//移入变色按钮-------------------------------------------
+	oBtn1[1].onclick=function ()
+	{
+		if(this.innerHTML=='开启移入变色')
+		{
+			OverBg (oTab1.tBodies[0]);
+			this.innerHTML='关闭移入变色';
+		}
+		else
+		{
+			OutBg (oTab1.tBodies[0]);
+			this.innerHTML='开启移入变色';
+		}
+	}
+//搜索按钮-----------------------------------------------------
+	oBtn1[2].onclick=function ()
+	{
+		if(oTxt1[2].value=='')
+		{
+			alert('必须输入名字才能搜索')
+		}
+		else
+		{
+			for(var i=0;i<oTab1.tBodies[0].rows.length;i++)
+			{
+				oTab1.tBodies[0].rows[i].style.background='';
+				var sTxt=oTxt1[2].value.toLowerCase();
+				var sTab=oTab1.tBodies[0].rows[i].cells[1].innerHTML.toLowerCase();
+				var aArr=sTxt.split(' ');
+				for(var j=0;j<aArr.length;j++)
+				{
+					if(sTab.search(aArr[j])!=-1)
+					{
+						oTab1.tBodies[0].rows[i].style.background='yellow';
+					}
+				}
+			}
+		}
+	}
+//年龄从小排序按钮---------------------------------------------------
+	oBtn1[3].onclick=function ()
+	{
+		if(oBtn1[3].innerHTML=='年龄从小排序')
+		{
+			this.innerHTML='恢复默认排序';
+			var aSage=[];
+			for(var i=0;i<oTab1.tBodies[0].rows.length;i++)
+			{
+				aSage[i]=oTab1.tBodies[0].rows[i];
+			}
+			//alert(aSage[0].innerHTML)
+			aSage.sort(function (sage1,sage2)
+			{
+				var n1=parseInt(sage1.cells[2].innerHTML);
+				var n2=parseInt(sage2.cells[2].innerHTML);
+				
+				return n1-n2;
+			})
+			//alert(aSage[0].innerHTML)
+			for(var i=0;i<aSage.length;i++)
+			{
+				oTab1.tBodies[0].appendChild(aSage[i])
+			}
+		}
+//恢复默认排序-----------------------------------------------------
+		else
+		{
+			this.innerHTML='年龄从小排序';
+			var aId=[];
+			for(var i=0;i<oTab1.tBodies[0].rows.length;i++)
+			{
+				aId[i]=oTab1.tBodies[0].rows[i];
+			}
+			aId.sort(function (tr1,tr2)
+			{
+				var n1=parseInt(tr1.cells[0].innerHTML);
+				var n2=parseInt(tr2.cells[0].innerHTML);
+				
+				return n1-n2;
+			})
+			for(var i=0;i<aId.length;i++)
+			{
+				oTab1.tBodies[0].appendChild(aId[i]);
+			}
+			//alert(aId[0].innerHTML)
+		}
+	}
+}
+</script>
+-->
+</head>
+
+<body huaban_collector_injected="true">
+    <div id="wx_pic"><img src="./JAVAscript练习_files/pic300.png" alt="微信标志"></div>
+    <pre><h1><a href="http://www.mhero.com/index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=314777&amp;site=qq&amp;menu=yes" class="right"><img border="0" src="./JAVAscript练习_files/pa" alt="点击这里给我发消息" title="点击这里给我发消息"></a>
+</pre>
+    <div id="div1" class="box box-re form-inline">
+        添加：
+        <input type="text" class="form-control" placeholder="姓名">
+        <input type="text" class="form-control" placeholder="年龄">
+        <button class="btn btn-info content">添加</button> 变色：
+        <button class="btn btn-info content">开启移入变色</button>
+        <br>
+        <br>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>姓名</td>
+                    <td>年龄</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>张三</td>
+                    <td>33</td>
+                    <td><a href="javascript:;">删除</a></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>李四</td>
+                    <td>34</td>
+                    <td><a href="javascript:;">删除</a></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>王五</td>
+                    <td>25</td>
+                    <td><a href="javascript:;">删除</a></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>赵六</td>
+                    <td>16</td>
+                    <td><a href="javascript:;">删除</a></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>王四</td>
+                    <td>44</td>
+                    <td><a href="javascript:;">删除</a></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Danny</td>
+                    <td>23</td>
+                    <td><a href="javascript:;">删除</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <br> 搜索：
+        <input type="text" class="form-control" placeholder="姓名">
+        <button class="btn btn-info content">搜索</button> 排序：
+        <button class="btn btn-info content">年龄从小排序</button>
+        <br>
+        <br> 数组里存的是所有tr，排序的时候按照第三个单元格的innerHTML大小排序。最后按照新的顺序重新添加所有tr。
+    </div>
+</body>
+
+</html>

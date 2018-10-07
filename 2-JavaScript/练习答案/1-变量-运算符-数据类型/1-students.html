@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			html,
+			body {
+				margin: 0, padding: 0;
+			}
+			
+			pre {
+				width: 100%;
+				white-space: normal;
+				max-width: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<pre>students={UI:{name:'UI设计201632班',man:10,woman:8},Andriod:{name:'安卓开发201608班',man:11,woman:0},IOS:{name:'IOS开发201612班',man:9,woman:5}}</pre>
+		<div>
+			students是学校班级人数的数据， 1、请计算出学校男生和女生分别多少人? 2、将计算出来的结果存储至对象school中，并console.log(school)!
+		</div>
+		<script type="text/javascript">
+			var students = {
+				UI: {
+					name: 'UI设计201632班',
+					man: 10,
+					woman: 8
+				},
+				Andriod: {
+					name: '安卓开发201608班',
+					man: 11,
+					woman: 0
+				},
+				IOS: {
+					name: 'IOS开发201612班',
+					man: 9,
+					woman: 5
+				}
+			}
+			var man = students.UI.man + students.Andriod.man + students.IOS.man;
+			var woman = students.UI.woman + students.Andriod.woman + students.IOS.woman;
+			var school = {
+				boy: man,
+				girl: woman
+			}
+			console.log(school);
+		</script>
+	</body>
+
+</html>

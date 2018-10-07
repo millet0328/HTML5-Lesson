@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body {
+				text-align: center;
+			}
+			
+			#trash {
+				opacity: .2;
+				margin: 15px;
+				transition: all 0.3s ease-in-out;
+			}
+			
+			.trashBox {
+				border: 1px solid #EEEEEE;
+				width: 1200px;
+				min-height: 300px;
+				display: inline-block;
+			}
+			
+			.bin {
+				width: 900px;
+				padding: 10px;
+				min-height: 300px;
+				margin: 10px auto;
+				box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.2) inset;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h3>拖动飞机到垃圾桶后从DOM树中删除子元素</h3>
+		<div id="trashBox" class="trashBox">
+			<img id="trash" src="img/trash_full.png">
+			<div id="bin" class="bin">
+
+			</div>
+		</div>
+		<hr/>
+		<img class="fly" src="img/p3.png">
+		<img class="fly" src="img/p4.png">
+		<img class="fly" src="img/p5.png">
+		<script type="text/javascript">
+			window.onload = function() {
+				var oFly = document.querySelectorAll(".fly");
+				var oTrash = document.getElementById("trash");
+				var oBin = document.getElementById("bin");
+				for(var i = 0; i < oFly.length; i++) {
+					oFly[i].index = i;
+					oFly[i].addEventListener("dragstart", function(e) {
+						console.log("drag start");
+						e.dataTransfer.setData("index", this.index);
+					});
+				}
+				//进入区域
+				oTrash.addEventListener("dragenter", function() {
+					console.log('drag enter');
+					this.style.opacity = "1"; //将透明度变成1
+				});
+				//离开区域
+				oTrash.addEventListener("dragleave", function() {
+					console.log('drag leave');
+					this.style.opacity = "0.2"; //将透明度变成1
+					this.style.transform = "scale(1)"; //缩放
+				});
+				//区域上面
+				oTrash.addEventListener("dragover", function(e) {
+					//阻止默认行为，使得drop可以触发
+					e.preventDefault();
+					console.log('drag over');
+					this.style.transform = "scale(1.1)";
+				});
+				//释放源目标
+				oTrash.addEventListener("drop", function(e) {
+					console.log('drop');
+					this.style.opacity = "0.2"; //将透明度变成1
+					this.style.transform = "scale(1)"; //缩放
+					var index = e.dataTransfer.getData("index");
+					//document.body.removeChild(oFly[index]);
+					oBin.appendChild(oFly[index]);
+				});
+				//
+			}
+		</script>
+	</body>
+
+</html>

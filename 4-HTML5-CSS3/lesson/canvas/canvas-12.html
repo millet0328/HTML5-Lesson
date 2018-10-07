@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+
+	<body>
+		<canvas id="canvas" width="400" height="300"></canvas>
+		<script type="text/javascript">
+			var oCanvas = document.getElementById("canvas");
+			var context = oCanvas.getContext("2d");
+			context.fillStyle = "#EDEDED";
+			context.fillRect(0, 0, 400, 300);
+			//绘制矩形
+			var image = new Image();
+			image.src = "http://img1.touxiang.cn/uploads/20121217/17-024911_660.jpg"
+			image.onload = function() {
+				drawImg(context, image);
+			}
+
+			function drawImg(context, image) {
+				create5starClip(context);
+				context.drawImage(image, 0, -100, 200, 200)
+			}
+			function create5starClip(context) {
+				var dx = 100;
+				var dy = 0;
+				var s = 100;
+				context.beginPath();
+				context.translate(100,100);
+				context.fillStyle = "rgba(255,0,0,0.5)";
+				var x = Math.sin(0);
+				var y = Math.cos(0);
+				var dig = Math.PI / 5 * 4;
+				for(var i = 0; i < 5; i++) {
+					var x = Math.sin(i * dig);
+					var y = Math.cos(i * dig);
+					context.lineTo(dx + x * s, dy + y * s);
+				}
+				context.closePath();
+				context.clip();
+			}
+			oCanvas.onmousemove = function(e) {
+				var x = e.clientX - this.offsetLeft;
+				var y = e.clientY - this.offsetTop;
+			}
+		</script>
+	</body>
+
+</html>

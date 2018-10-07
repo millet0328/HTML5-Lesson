@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box {
+				width: 120px;
+				height: 120px;
+				background-color: #EEE;
+				position: relative;
+			}
+			
+			.dot {
+				width: 60px;
+				height: 60px;
+				border-radius: 100%;
+				position: absolute;
+				top: 50%;
+				margin-top: -30px;
+				text-align: center;
+				line-height: 60px;
+			}
+			
+			.blue {
+				background-color: #95d5ee;
+				left: 0;
+				animation: moveRight 5s ease infinite;
+			}
+			
+			.pink {
+				background-color: #ffb6bb;
+				right: 0;
+				animation: moveLeft 5s ease infinite;
+			}
+			
+			@keyframes moveRight {
+				0% {
+					-webkit-transform: translate3d(0%, 0, 2px);
+					-moz-transform: translate3d(0%, 0, 2px);
+					-ms-transform: translate3d(0%, 0, 2px);
+					-o-transform: translate3d(0%, 0, 2px);
+					transform: translate3d(0%, 0, 2px);
+				}
+				50% {
+					-webkit-transform: translate3d(100%, 0, 1px);
+					-moz-transform: translate3d(100%, 0, 1px);
+					-ms-transform: translate3d(100%, 0, 1px);
+					-o-transform: translate3d(100%, 0, 1px);
+					transform: translate3d(100%, 0, 1px);
+				}
+				100% {
+					-webkit-transform: translate3d(0%, 0, 2px);
+					-moz-transform: translate3d(0%, 0, 2px);
+					-ms-transform: translate3d(0%, 0, 2px);
+					-o-transform: translate3d(0%, 0, 2px);
+					transform: translate3d(0%, 0, 2px);
+				}
+			}
+			
+			@keyframes moveLeft {
+				0% {
+					-webkit-transform: translate3d(0%, 0, 1px);
+					-moz-transform: translate3d(0%, 0, 1px);
+					-ms-transform: translate3d(0%, 0, 1px);
+					-o-transform: translate3d(0%, 0, 1px);
+					transform: translate3d(0%, 0, 1px);
+				}
+				50% {
+					-webkit-transform: translate3d(-100%, 0, 2px);
+					-moz-transform: translate3d(-100%, 0, 2px);
+					-ms-transform: translate3d(-100%, 0, 2px);
+					-o-transform: translate3d(-100%, 0, 2px);
+					transform: translate3d(-100%, 0, 2px);
+				}
+				100% {
+					-webkit-transform: translate3d(0%, 0, 1px);
+					-moz-transform: translate3d(0%, 0, 1px);
+					-ms-transform: translate3d(0%, 0, 1px);
+					-o-transform: translate3d(0%, 0, 1px);
+					transform: translate3d(0%, 0, 1px);
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<div class="dot blue">
+			</div>
+			<div class="dot pink">
+			</div>
+		</div>
+
+	</body>
+
+</html>

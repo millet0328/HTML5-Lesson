@@ -1,0 +1,346 @@
+@charset "utf-8";
+
+/*右边栏*/
+
+.fixright {
+	position: fixed;
+	top: 150px;
+	right: 20px;
+	width: 62px;
+	height: 238px;
+	background-color: #D63D57;
+	z-index: 1000;
+}
+
+.fixright ul {
+	margin: 0;
+	padding: 0;
+}
+
+.fixright ul li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	float: left;
+	width: 62px;
+	height: 61px;
+	border-bottom: 1px white solid;
+	cursor: pointer;
+}
+
+.fixright ul .lastli {
+	border-bottom: none;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	float: left;
+	width: 62px;
+	height: 61px;
+	cursor: pointer;
+}
+
+.fixright ul .lastli a {
+	text-decoration: none;
+}
+
+.fixright ul li img {
+	padding-top: 4px;
+	display: block;
+	margin: 0 auto;
+}
+
+.fixright ul li span {
+	color: white;
+	display: block;
+	text-align: center;
+}
+
+
+/*底部*/
+
+.tail {
+	width: 100%;
+	background-color: #444;
+}
+
+.middlo ul {
+	width: 52rem;
+	margin: 0;
+	padding: 0;
+}
+
+.middlo ul li {
+	width: 0.65rem;
+	margin-right: 0.21rem;
+}
+
+.middlo ul li a {
+	color: #aaa;
+	font-size: 0.16rem;
+}
+
+.middlo ul span {
+	width: 0.01rem;
+	height: 0.17rem;
+	margin-top: 0.03rem;
+	margin-right: 0.21rem;
+	background-color: #555;
+}
+
+.text p {
+	color: #a78c58;
+	font-size: 1rem;
+}
+
+.text p span {
+	width: 24px;
+	height: 24px;
+	vertical-align: middle;
+	margin-right: 6px;
+	display: inline-block;
+}
+
+.text .ding {
+	background: url(../img/map_03.png) no-repeat;
+}
+
+.text .dian {
+	background: url(../img/tel_06.png) no-repeat;
+}
+
+.right {
+	width: 3.8rem;
+}
+
+.tail-2 {
+	width: 100%;
+	background-color: #555555;
+	font-size: 0.12rem;
+	color: #959595;
+	margin: 0 auto;
+}
+
+.tail-2 span {
+	margin-right: 15px;
+}
+
+
+/*自适应*/
+
+@media only screen and (min-width: 320px) and (max-width: 640px) {
+	/*头部*/
+	.be {
+		display: none;
+	}
+	.daohang li:first-child em {
+		margin-left: 10px;
+		font-size: 18px;
+	}
+	/*color_w*/
+	.color_w {
+		color: #fff !important;
+	}
+	/*top*/
+	.top {
+		margin-top: 25px;
+		margin-bottom: 10px;
+	}
+	/*ad*/
+	.cunt {
+		padding-bottom: 20px;
+		width: 100%;
+	}
+	.ad {
+		margin-top: 0.2rem;
+		width: 100%;
+	}
+	.banner {
+		margin-top: 10px;
+	}
+	.banner .bg {
+		margin-bottom: 10px;
+	}
+	.txt {
+		margin-top: 20px;
+	}
+	.txt ul li {
+		width: 100%;
+	}
+	.cebianlan {
+		display: none;
+	}
+	/*底部*/
+	.left {
+		width: 100%;
+		text-align: center;
+		margin: 0;
+		padding: 0;
+	}
+	.left img {
+		padding: 15px 0 15px 0;
+		width: 5.6rem;
+	}
+	.middlo {
+		width: 100%;
+		text-align: center;
+	}
+	.middlo ul {
+		display: none;
+	}
+	.text {
+		margin-top: 0.1rem;
+	}
+	.right {
+		width: 100%;
+		text-align: center;
+	}
+	.right span {
+		display: none;
+	}
+	.text-2 p {
+		display: none;
+	}
+	.tail-2 {
+		display: none;
+	}
+}
+
+@media only screen and (min-width: 1000px) {
+	.fl {
+		float: left;
+	}
+	.fr {
+		float: right;
+	}
+	.clear {
+		_zoom: 1;
+		clear: both;
+	}
+	.clear:after {
+		content: '\0020';
+		display: block;
+		clear: both;
+		height: 0;
+	}
+	/*导航*/
+	.be {
+		padding-right: 10%;
+		padding-bottom: 0.083rem;
+		background: #fff;
+	}
+	.be>li+li:before {
+		content: "";
+		padding: 0 0;
+	}
+	/*.daohang*/
+	.daohang li:first-child img {
+		width: 46px;
+		height: 52px;
+	}
+	.daohang li:first-child em:last-child {
+		margin-left: 22px;
+	}
+	.daohang li {
+		float: left;
+		padding-top: 0.2rem;
+		padding-right: 70px;
+		font-size: 0.133rem;
+	}
+	.daohang li:nth-child(2) {
+		padding-left: 60px;
+	}
+	.daohang li:last-child {
+		padding-right: 0;
+	}
+	.daohang li a:hover {
+		text-decoration: none;
+		color: #d63d57;
+	}
+	.bg {
+		margin-bottom: 65px;
+	}
+	/*ad*/
+	.cunt_box1 {
+		width: 70%;
+	}
+	/*cunt*/
+	.cunt {
+		padding-bottom: 50px;
+		margin: 0 auto;
+	}
+	.txt ul li {
+		width: 50%;
+		float: left;
+	}
+	/*底部*/
+	.content {
+		width: 1100px;
+		margin: 0 auto;
+	}
+	.content2 {
+		width: 600px;
+		margin: 0 auto;
+	}
+	.tail {
+		width: 100%;
+		background-color: #444;
+	}
+	.left img {
+		padding: 32px 0 24px 0;
+	}
+	.middlo {
+		width: 555px;
+		border-right: 1px solid #333333;
+		margin-top: 50px;
+		margin-left: 40px;
+	}
+	.middlo ul {
+		width: 520px;
+		margin: 0;
+		padding: 0;
+	}
+	.middlo ul li {
+		width: 65px;
+		margin-right: 21px;
+	}
+	.middlo ul li a {
+		color: #aaa;
+		font-size: 16px;
+	}
+	.middlo ul span {
+		display: block;
+		width: 1px;
+		height: 17px;
+		margin-top: 3px;
+		margin-right: 21px;
+		background-color: #555;
+	}
+	.text {
+		margin-top: 32px;
+	}
+	.right {
+		width: 380px;
+	}
+	.right .span {
+		width: 121px;
+		height: 121px;
+		background: url(../img/erwima_03.png) no-repeat;
+		margin: 46px 12px 22px 27px;
+	}
+	.text-2 {
+		text-align: center;
+		color: #aaaaaa;
+		font-size: 16px;
+		margin-top: 43px;
+	}
+	.tail-2 {
+		width: 100%;
+		background-color: #555555;
+		font-size: 12px;
+		color: #959595;
+		margin: 0 auto;
+	}
+	.tail-2 span {
+		margin-right: 15px;
+	}
+}

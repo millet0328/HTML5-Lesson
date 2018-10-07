@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<input type="text" name="num1" id="num1" value="" /> -
+		<input type="text" name="num2" id="num2" value="" />
+		<button id="sumBtn" type="button">求和</button>
+		<script type="text/javascript">
+			//查找元素
+			var oNum1 = document.getElementById("num1");
+			var oNum2 = document.getElementById("num2");
+			var oBtn = document.getElementById("sumBtn");
+			//绑定事件
+			oBtn.onclick = function() {
+				//获取value
+				var num1 = oNum1.value;
+				var num2 = oNum2.value;
+				//转换数据类型 string==>number
+				//				num1 = parseFloat(num1);
+				//				num2 = parseFloat(num2);
+				//求和
+				//				var res = num1 + num2;
+				var res = num1 - num2;
+				alert(res);
+
+			}
+		</script>
+	</body>
+
+</html>

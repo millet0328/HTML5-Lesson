@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<style type="text/css">
+			.selectBox {
+				width: 100px;
+				padding: 5px 0;
+				min-height: 150px;
+				font-size: 14px;
+			}
+			
+			.chooseBox {
+				width: 450px;
+				margin: 0 auto;
+				padding: 80px;
+				border: 1px solid #EEEEEE;
+			}
+			
+			.btn {
+				padding: 3px 0px;
+				width: 50px;
+				margin: 6px;
+			}
+			
+			.chooseBtn {
+				width: 128px;
+				height: 74px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-top: -37px;
+				margin-left: -64px;
+			}
+			
+			.requestList li {
+				list-style: decimal;
+				padding: 8px 0;
+			}
+			
+			.question,
+			.requestList {
+				font-size: 14px;
+				padding-bottom: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="chooseBox relative clearfix">
+				<div class="fl">
+					<select class="selectBox txt_center" name="" multiple>
+						<option value="北京">北京</option>
+						<option value="上海">上海</option>
+						<option value="深圳">深圳</option>
+					</select>
+				</div>
+				<div class="chooseBtn">
+					<div>
+						<input type="button" class="btn" name="" title="右加" id="" value="->" />
+						<input type="button" class="btn" name="" title="全部右加" id="" value="->>" />
+					</div>
+					<div>
+						<input type="button" class="btn" name="" title="左加" id="" value="<-" />
+						<input type="button" class="btn" name="" title="全部左加" id="" value="<<-" />
+					</div>
+				</div>
+				<div class="fr">
+					<select class="selectBox txt_center" name="" multiple>
+						<option value="广州">广州</option>
+						<option value="重庆">重庆</option>
+						<option value="天津">天津</option>
+					</select>
+				</div>
+			</div>
+			<div class="question txt_left">
+				题目： 如上图，select标签可以实现多选功能，只要按下ctrl/shift键即可多选。要求完成如下功能:</div>
+			<ol class="requestList txt_left">
+				<li>
+					点击"右加"按钮（->），将左边选中的项目添加到右边；
+				</li>
+				<li>点击"全部右加"按钮（->>），将左边的全部项目添加到右边；</li>
+				<li>点击"左加"按钮（<-），将右边选中的项目添加到左边；</li>
+				<li>
+					点击"全部左加"按钮（<<-），将右边的所有项目添加到左边；
+				</li>
+			</ol>
+		</div>
+	</body>
+
+</html>

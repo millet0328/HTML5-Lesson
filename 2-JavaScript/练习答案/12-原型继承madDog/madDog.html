@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			function Dog() {
+				this.wow = function() {
+					alert("Wow");
+				}
+				this.yelp = function() {
+					this.wow();
+				}
+			}
+
+			//madDoag
+			function MadDog() {
+				this.yelp = function() {
+					//this指向转存
+					var self = this;
+					setInterval(function() {
+						//this指向window
+						self.wow();
+					}, 500);
+				}
+			}
+			
+			MadDog.prototype = new Dog();
+
+			//for test
+			var dog = new Dog();
+			//dog.yelp();
+			var madDog = new MadDog();
+			madDog.yelp();
+			console.dir(madDog);
+		</script>
+	</body>
+
+</html>

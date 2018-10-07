@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.relative {
+				position: relative;
+			}
+			
+			.clearfix::after {
+				content: "";
+				display: block;
+				clear: both;
+				height: 0;
+			}
+			
+			.fl {
+				float: left;
+			}
+			
+			.fr {
+				float: right;
+			}
+			
+			.cube {
+				width: 100px;
+				height: 100px;
+				border: 1px solid #33CCCC;
+				margin: 10px;
+			}
+			
+			.btn {
+				border: 0;
+				padding: 4px 8px;
+				background-color: #CCCCCC;
+				margin-bottom: 20px;
+			}
+			/*.btn:hover {
+            color: #FFFFFF;
+            background-color: #0000FF;
+        }*/
+		</style>
+	</head>
+
+	<body>
+		<!--鼠标移出移出事件-->
+		<button class="btn" type="button">放鼠标</button>
+		<!--批量修改样式-->
+		<div class="change_box">
+			<input type="button" name="" id="btn" value="批量修改样式" />
+			<input type="button" name="reload" id="reload" value="重新加载" />
+			<div class="clearfix">
+				<div class="cube fl">
+					45
+				</div>
+				<div class="cube fl">
+					565
+				</div>
+				<div class="cube fl">
+					456
+				</div>
+				<div class="cube fl">
+					111
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//			//查找元素
+			//			var oBtn = document.getElementById("btn");
+			//			var oCube = document.querySelectorAll(".cube"); //Nodelist
+			//			//绑定事件
+			//			oBtn.onclick = function() {
+			//				for(var i = 0; i < oCube.length; i++) {
+			//					oCube[i].style.backgroundColor = "#FFFF00";
+			//				}
+			//			}
+			//			//批量绑定事件--this==>绑定事件的主体
+			//			for(var i = 0; i < oCube.length; i++) {
+			//				oCube[i].onclick = function() {
+			//					this.style.backgroundColor = "#FFF";
+			//				}
+			//			}
+		</script>
+		<script type="text/javascript">
+			$("#btn").click(function() {
+				$(".cube").css("background-color", "yellow");
+			});
+			$(".cube").click(function() {
+				//索引值
+				var i = $(this).index();
+				$(this).css("background-color", "white");
+			});
+			$("#reload").click(function() {
+				var sum = 0;
+				$(".cube").each(function(index) {
+					var num = parseFloat($(this).text());
+					sum = sum + num;
+				});
+			});
+			//eq使用index
+			$('.cube').eq(1).css("border-color", "red");
+			//获取个数
+			$('.cube').length;
+			console.log($('.cube').length);
+		</script>
+	</body>
+
+</html>
