@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <pre>
+			加油站搞活动，92#汽油，价格为6元一升，r如果加20L以上，价格为均为5元一升；97#汽油，价格为7元一升，如果加30L以上，价格jun为5.5元一升，
+			编写程序，根据用户输入的汽油型号和数量，输出汽油总价。
+		</pre>
+    <input type="text" name="" id="num" value="" />
+    <input type="text" name="" id="amount" value="" />
+    <button type="button" id="btn">
+        总价格
+    </button>
+    <script type="text/javascript">
+    //查找元素
+    var Num = document.getElementById("num");
+    var Amount = document.getElementById("amount");
+    var oBtn = document.getElementById("btn");
+
+    //定义函数用来计算总价格
+    function price(i, j) {
+        return i * j;
+    }
+
+    //绑定事件
+
+    oBtn.onclick = function() {
+        //获取元素
+        var type = Num.value; //获取汽油的型号
+        var amount = Amount.value; //获取添加汽油的数量
+
+        //绑定事件
+        //首先确保文本框中的内容不能为空
+
+        if (type == "" || amount == "") {
+            alert("内容不能为空！");
+        }
+        //当内容不为空的时候
+        else {
+            if (type == "92#") {
+                if (amount < 20 || amount == 20) {
+                    alert(price(amount, 6));
+                } else {
+                    alert(price(amount, 5));
+                }
+            } else if (type == "97#") {
+                if (amount < 30 || amount == 30) {
+                    alert(price(amount, 7));
+                } else {
+                    alert(price(amount, 5.5));
+                }
+            } else {
+                alert("没有该型号的汽油！");
+            }
+
+        }
+
+    }
+
+    //			if(a == "92#") {
+    //				if(b < 20 || b == 20) {
+    //					alert(price(b, 6));
+    //				} else {
+    //					alert(price(b, 5));
+    //				}
+    //
+    //			}
+    //
+    //			if(a == "97#") {
+    //				if(b < 30 || b == 30) {
+    //					alert(price(b, 7));
+    //				} else {
+    //					alert(price(b, 5.5));
+    //				}
+    //			}
+    //			}
+    </script>
+</body>
+
+</html>

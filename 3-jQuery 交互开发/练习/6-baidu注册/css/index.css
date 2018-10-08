@@ -1,0 +1,88 @@
+@charset "utf-8";
+div,input{
+	margin: 0;
+	padding:0;
+}
+ol,ul,li{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+form{
+	overflow: hidden;
+}
+li{
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+a{
+	text-decoration: none;
+}
+li label{
+	display: inline-block;
+	width: 65px;
+	height: 42px;
+	float: left;
+	line-height: 42px;
+	margin-right: 10px;
+	text-align: right;
+	font-size: 14px;
+    color: #666;
+    font-weight: 700;
+}
+li label span{
+	display:inline-block;
+	height: 42px;
+	border: 1px solid red;
+	float: left;
+	line-height: 42px;
+}
+.iput p{
+	margin: 0;
+	float: left;
+	height: 40px;
+	color: red;
+	margin-left: 10px;
+	line-height: 40px;
+	display: none;
+}
+
+.iput input{
+	float: left;
+	display: inline-block;
+	width: 328px;
+	height: 19px;
+	border: 1px solid #DDDDDD;
+	font-size: 16px;
+	padding:11px 10px;
+}
+input[type=checkbox]{
+	float: left;
+	margin-left: 75px;
+}
+.fu span{
+	float: left;
+	display: inline-block;
+	color: #666;
+    font-size: 12px;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+.fu span a{
+    color: #1b66c7;
+}
+input[type=button]{
+	border: none;
+	float: left;
+	display: inline-block;
+	width: 350px;
+    background-color: #4490f7;
+	font-size: 16px;
+	height: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #fff;
+    background-image: none;
+    margin-left: 75px;
+    border-radius: 5px;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<pre>
+    有如下函数：
+    sum(2,3)   //结果是5
+    sum(2)(3)  //结果是5
+    请写出sum函数的具体怎么实现
+		</pre>
+		<script type="text/javascript">
+			function sum(x, y) {
+				x = parseFloat(x);
+				y = parseFloat(y);
+				if(y) {
+					console.log(x + y)
+					return x + y
+				} else {
+					function innerFun(z) {
+						console.log(x + z);
+						return x + z
+					}
+					return innerFun;
+				}
+			}
+			//sum(2, 3);
+			sum(2)(3);
+		</script>
+	</body>
+
+</html>

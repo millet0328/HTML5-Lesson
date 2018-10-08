@@ -1,0 +1,7 @@
+1、改背景色
+css("background-color","#FFF");
+2、添加、删除class
+addClass("up")
+removeClass("down")
+
+3、判断是否已经隐藏，使用一个布尔变量

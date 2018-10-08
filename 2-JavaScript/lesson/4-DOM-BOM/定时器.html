@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style type="text/css">
+			.cube {
+				width: 100px;
+				height: 100px;
+				background-color: #FF1493;
+				position: absolute;
+				left: 0px;
+				top: 35px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--方块-->
+		<div class="cube" id="cube"></div>
+
+		<script type="text/javascript">
+			window.onload = function() {
+				//查找元素
+				var oBox = document.getElementById('box');
+				var oCube = document.getElementById('cube');
+				//整个窗口的宽度
+				var winWidth = window.innerWidth;
+				var width = oCube.clientWidth;
+				var maxLeft = winWidth - width;
+				//定时器
+				var timer;
+				//标示运动状态
+				var flag = false;
+				//绑定事件
+				oCube.onclick = function() {
+					if(flag) {
+						clearInterval(timer);
+						flag = false;
+					} else {
+						clearInterval(timer);
+						timer = setInterval(function() {
+							move();
+						}, 10);
+						flag = true;
+					}
+				}
+				var step = 6;
+
+				function move() {
+					//cube的left值
+					var left = oCube.offsetLeft;
+					if(left >= maxLeft) {
+						step = -step;
+					}
+					if(left < 0) {
+						step = -step;
+					}
+					oCube.style.left = left + step + 'px';
+				}
+				//获取当前时间
+				function Clock() {
+					//date对象 
+					var now = new Date();
+					//出生日期 
+					var holiday = new Date(2018, 5, 15, 17, 30);
+					var res = holiday - now;
+					//计算出生至现在的年-月-日-小时-分钟-秒
+					var msec = parseInt(res % 1000);
+					var sec = parseInt(res / 1000 % 60);
+					var min = parseInt(res / (1000 * 60) % 60);
+					var hour = parseInt(res / (1000 * 60 * 60) % 24);
+					var day = parseInt(res / (1000 * 60 * 60 * 24) % 365);
+					var year = parseInt(res / (1000 * 60 * 60 * 24 * 365));
+					oBox.innerHTML = '距离放假还有：' + year + '年' + day + '天' + hour + '小时' + min + '分钟' + sec + '秒' + msec +
+						'毫秒';
+				}
+			}
+		</script>
+	</body>
+
+</html>

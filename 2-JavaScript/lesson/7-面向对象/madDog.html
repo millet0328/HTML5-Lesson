@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+
+	<body>
+		<script type="text/javascript">
+		</script>
+		<script type="text/javascript">
+			function Dog() {
+				this.wow = function() {
+					alert('Wow');
+				}
+				this.yelp = function() {
+					this.wow();
+				}
+			}
+
+			function MadDog() {
+
+			}
+			MadDog.prototype = new Dog();
+			MadDog.prototype.constructor = MadDog;
+			MadDog.prototype.yelp = function() {
+				var self = this;
+				setInterval(function() {
+					self.wow();
+				}, 500);
+			}
+			//for test
+			var dog = new Dog();
+			//dog.yelp();
+			var madDog = new MadDog();
+			//			madDog.yelp();
+			console.log(madDog instanceof Dog);
+		</script>
+	</body>
+
+</html>

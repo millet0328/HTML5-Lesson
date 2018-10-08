@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				margin: 0;
+			}
+			
+			.bg {
+				position: absolute;
+				height: 100%;
+				width: 100%;
+				background: url(img/image23.jpg) no-repeat top center;
+				background-size: cover;
+				overflow: hidden;
+			}
+			
+			.bg img {
+				position: absolute;
+				left: 0;
+				top: 10px;
+				-webkit-transition: all 0.5s ease-out;
+				-moz-transition: all 0.5s ease-out;
+				-ms-transition: all 0.5s ease-out;
+				-o-transition: all 0.5s ease-out;
+				transition: all 0.5s ease-out;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box" class="bg">
+		</div>
+		<script type="text/javascript">
+			window.onload = function() {
+				var oBox = document.getElementById("box");
+				var width;
+				var height;
+				//生成雪花的计时器变量
+				var timer = null;
+				//计算窗口宽高
+				function calWindow() {
+					width = oBox.clientWidth;
+					height = oBox.clientHeight;
+				}
+				calWindow();
+				//窗口改变重新计算
+				window.onresize = calWindow;
+				//随机生成雪花
+				function generateSnow() {
+					var oSnow = document.createElement("img");
+					//图像随机
+					oSnow.src = "img/snowflake" + Math.floor(Math.random() * 20 + 1) + ".png";
+					//大小随机 1~32
+					oSnow.width = oSnow.height = Math.floor(Math.random() * 32 + 1);
+					//left随机
+					oSnow.style.left = Math.floor(Math.random() * width) + "px";
+					oBox.appendChild(oSnow);
+					//下降过程
+					drop(oSnow);
+				}
+				//下落运动
+				function drop(el) {
+					var tick;
+					var speed = (height - el.offsetTop) / Math.floor(Math.random() * 20 + 1);
+					tick = setInterval(function() {
+						if(el.offsetTop > height) {
+							clearInterval(tick);
+							oBox.removeChild(el);
+						}
+						//获取top当前值,加speed,重新赋值给left
+						el.style.top = el.offsetTop + speed + "px";
+					}, 200);
+				}
+				timer = setInterval(function() {
+					generateSnow();
+				}, 200);
+			}
+		</script>
+	</body>
+
+</html>

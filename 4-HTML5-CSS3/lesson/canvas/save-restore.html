@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<script language="javascript">
+			function drawTop(ctx, fillStyle) {
+				ctx.fillStyle = fillStyle;
+				ctx.beginPath();
+				ctx.arc(0, 0, 30, 0, Math.PI, true);
+				ctx.closePath();
+				ctx.fill();
+			}
+
+			function draw() {
+				var ctx = document.getElementById('myCanvas').getContext("2d");
+				// 注意：所有的移动都是基于这一上下文。
+				ctx.translate(80, 80);
+				for(var i = 1; i < 10; i++) {
+					ctx.save();
+					ctx.translate(60 * i, 0);
+					drawTop(ctx, "rgb(" + (30 * i) + "," + (255 - 30 * i) + ",255)");
+					ctx.restore();
+				}
+			}
+			window.onload = function() {
+				draw();
+			}
+		</script>
+	</head>
+
+	<body>
+		<canvas id="myCanvas" width="700" height="300"></canvas>
+		<pre>
+举个例子吧，
+你的循环是从i=1开始的下面分别列出有无save——restore的情况，就写i=1和i=2吧
+有save——restore
+i=1
+执行save保存起点（0,0）
+执行ctx.translate（），起点变为（60*i，0）即（60,0）
+执行drawTop（）：起点偏移到(x + radius*cos( startAngle), y + radius*sin( startAngle))即（90,0）
+执行restroe起点回到（0,0）
+i=2
+执行save保存起点（0,0）
+执行ctx.translate（），起点变为（60*i，0）即（120,0）
+执行drawTop（）：起点偏移到(x + radius*cos( startAngle), y + radius*sin( startAngle))即（150,0）
+执行restroe起点回到（0,0）
+i=3
+执行save保存起点（0,0）
+执行ctx.translate（），起点变为（60*i，0）即（180,0）
+执行drawTop（）：起点偏移到(x + radius*cos( startAngle), y + radius*sin( startAngle))即（210,0）
+执行restroe起点回到（0,0）
+看到坐标点的变化了吗？你画的半圆直径是60，所以第一个半圆的起止点在（60,0）和（120,0）
+第二个半圆的起止点在（120,0）和（180,0），
+第三个半圆的起止点（180,0）和（240,0）
+所以这些半圆都是相切的，就像下面那个图一样。
+无save——restore
+i=1
+执行ctx.translate（），起点变为（60*i，0）即（60,0）
+执行drawTop（）：起点偏移到(x + radius*cos( startAngle), y + radius*sin( startAngle))即（90,0）
+i=2
+执行ctx.translate（），起点变为（90+60*i，0）即（210,0）
+执行drawTop（）：起点偏移到(x + radius*cos( startAngle), y + radius*sin( startAngle))即（240,0）
+i=3
+执行ctx.translate（），起点变为（240+60*i，0）即（420,0）
+执行drawTop（）：起点偏移到(x + radius*cos( startAngle), y + radius*sin( startAngle))即（450,0）
+对比坐标，第一个半圆起止点是（60,0）和（120,0），
+第二个半圆起止点是（210,0）和（270,0），
+第三个半圆的起止点是（420,0）和（480,0）。
+看到坐标了吗？
+第一个半圆的止点与第二个半圆的起点差了90，
+第二个半圆的止点与第三个半圆的起点差了150，
+所以你画出的图像就错位了，就像你的上图一样
+</pre>
+	</body>
+
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/slider.css" />
+	</head>
+
+	<body>
+		<div id="slider" class="fullSlide">
+			<div class="bd">
+				<ul class="clearfix">
+					<li _src="url(img/banner01.jpg)" style="background:#E2025E center 0 no-repeat;">
+						<a href="http://www.baidu.com"></a>
+					</li>
+					<li _src="url(img/banner02.jpg)" style="background:#DED5A1 center 0 no-repeat;">
+						<a href="http://www.baidu.com"></a>
+					</li>
+					<li _src="url(img/banner03.jpg)" style="background:#B8CED1 center 0 no-repeat;">
+						<a href="http://www.baidu.com"></a>
+					</li>
+					<li _src="url(img/banner04.jpg)" style="background:#B8CED1 center 0 no-repeat;">
+						<a href="http://www.baidu.com"></a>
+					</li>
+				</ul>
+			</div>
+			<div class="hd">
+				<ul></ul>
+			</div>
+			<span class="prev"></span>
+			<span class="next"></span>
+		</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		function slider(option) {
+			this.defaultOpt = {
+				//容器
+				wrap: ".fullSlide",
+				//轮播间隔
+				duration: 3000,
+				//轮播速度
+				speed: 1000
+			}
+			this.opt = $.extend({}, this.defaultOpt, option);
+			this.wrap = $(this.opt.wrap);
+			this.bdUl = this.wrap.find('.bd ul');
+			this.prevBtn = this.wrap.find('.prev');
+			this.nextBtn = this.wrap.find('.next');
+			this.hdUl = this.wrap.find('.hd ul');
+			this.li = this.bdUl.find('li');
+			//定时器obj
+			this.time = null;
+			//当前图片停留时的索引
+			this.index = 0;
+			//自动运行
+			this.init();
+		}
+		slider.prototype = {
+			constructor: slider,
+			init: function() {
+				var self = this;
+				//窗口大小初始化
+				this.resetSize();
+				this.li.each(function(i) {
+					//设置背景图、宽度
+					$(this).css({
+						background: $(this).attr('_src') + 'center 0 no-repeat'
+					});
+					//生成指示器的点
+					var $li = $('<li></li>');
+					self.hdUl.append($li);
+				});
+				//获取指示器li数组
+				this.hdLi = this.hdUl.find('li');
+				this.indicator(this.index);
+				//取得第一个元素，插入到末尾
+				var $copyLi = this.li.eq(0).clone(true);
+				this.bdUl.append($copyLi);
+				//绑定事件
+				this.bindEvent();
+				//自动轮播
+				this.play();
+			},
+			resetSize: function() {
+				var self = this;
+				//重新设置step
+				//取得每次移动距离
+				this.step = this.wrap.width();
+				//设置ul的总宽度
+				this.bdUl.width(this.step * (this.li.length + 1));
+				//设置li的宽度，窗口resize的时候，把克隆的li也需要修改宽度
+				this.bdUl.find('li').each(function() {
+					$(this).width(self.step);
+				});
+				//窗口改变的时候，先停止当先的动画，再修正ulBox的left值
+				this.bdUl.stop(true, true).css({
+					left: -this.index * this.step + 'px'
+				});
+			},
+			animate: function(step) {
+				var now = this.bdUl.position().left;
+				var hope = now + step;
+				if(hope > 0) {
+					this.bdUl.stop(true, true).animate({
+						left: this.step * (1 - this.li.length)
+					}, this.opt.speed);
+					return;
+				}
+				if(hope <= -this.step * this.li.length) {
+					this.bdUl.animate({
+						left: hope
+					}, this.opt.speed, function() {
+						$(this).css({
+							left: 0
+						});
+					});
+					return;
+				}
+				this.bdUl.stop(true, true).animate({
+					left: hope
+				}, this.opt.speed);
+			},
+			bindEvent: function() {
+				var self = this;
+				//右边箭头点击
+				this.nextBtn.click(function() {
+					self.index++;
+					if(self.index > (self.li.length - 1)) {
+						self.index = 0;
+					}
+					self.animate(-self.step);
+					self.indicator(self.index);
+				});
+				//左边箭头点击
+				this.prevBtn.click(function() {
+					self.index--;
+					//判断临界值
+					if(self.index < 0) {
+						self.index = self.li.length - 1;
+					}
+					self.animate(self.step);
+					self.indicator(self.index);
+				});
+				//轮播图hover事件
+				this.wrap.hover(function() {
+					self.prevBtn.stop(true, true).fadeIn();
+					self.nextBtn.stop(true, true).fadeIn();
+					self.stop();
+				}, function() {
+					self.prevBtn.stop(true, true).fadeOut();
+					self.nextBtn.stop(true, true).fadeOut();
+					self.play();
+				});
+				//指示器点击事件
+				this.hdLi.click(function() {
+					//计算需要位移的距离，self.index当前图片索引，$(this).index()点击的指示器索引
+					var index = $(this).index();
+					self.indicator(index);
+					var distance = self.step * (self.index - index);
+					self.animate(distance);
+					//存放鼠标点击后的位置，用于小圆点的正常显示
+					self.index = index;
+				});
+				//窗口改变大小事件
+				$(window).resize(function() {
+					//先停止计时器
+					self.stop();
+					//重新计算移动距离
+					self.resetSize();
+					//重新开始轮播
+					self.play();
+				});
+			},
+			stop: function() {
+				clearInterval(this.time);
+			},
+			play: function() {
+				var self = this;
+				this.time = setInterval(function() {
+					self.nextBtn.click();
+				}, this.opt.duration);
+			},
+			indicator: function(index) {
+				//修改指示器的样式
+				this.hdLi.removeClass('on');
+				this.hdLi.eq(index).addClass('on');
+			}
+		}
+		$(document).ready(function() {
+			var mySlider = new slider({
+				wrap: '#slider',
+				//轮播间隔
+				duration: 3000,
+				//轮播速度
+				speed: 500
+			});
+		});
+	</script>
+
+</html>

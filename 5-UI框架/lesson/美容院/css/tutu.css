@@ -1,0 +1,59 @@
+@charset "utf-8";
+.font-size1 {
+	font-size: 0.1rem;
+	margin-top: 0.2rem;
+}
+
+.font-size20 {
+	margin-top: 0.3rem;
+}
+
+.baifenbai {
+	float: left;
+}
+
+.rightbottom ul {
+	padding: 0 0.3rem;
+}
+
+.rightbottom ul li {
+	margin-bottom: 0.05rem;
+}
+
+.tuhe {
+	margin: 0 auto;
+	text-align: center;
+}
+.font-icon .pic {
+	float: left;
+}
+
+.font-icon .zhuanjia {
+	float: left;
+}
+
+.font-icon .item {
+	font-size: 0.1rem;
+	padding: 4px;
+	color: #D3B781;
+	text-align: center;
+	border: 1px solid #d3b781;
+	margin-bottom: 4px;
+}
+
+.font-icon .item:hover {
+	background-color: #d3b781;
+	color: white;
+}
+
+.media-bottom {
+	float: left;
+}
+.container-fix{
+	padding: 0 15px;
+}
+@media only screen and (min-width: 320px) and (max-width: 640px) {
+	.tuhe {
+		display: none;
+	}
+}

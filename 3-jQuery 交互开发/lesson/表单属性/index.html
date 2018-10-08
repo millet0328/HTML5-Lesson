@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+    .Validform_checktip {
+        margin-left: 8px;
+        line-height: 20px;
+        height: 20px;
+        overflow: hidden;
+        color: #999;
+        font-size: 12px;
+    }
+
+    .Validform_right {
+        color: #71b83d;
+        padding-left: 20px;
+        background: url(../images/right.png) no-repeat left center;
+    }
+
+    .Validform_wrong {
+        color: red;
+        padding-left: 20px;
+        white-space: nowrap;
+        background: url(../images/error.png) no-repeat left center;
+    }
+
+    .Validform_loading {
+        padding-left: 20px;
+        background: url(../images/onLoad.gif) no-repeat left center;
+    }
+
+    .Validform_error {
+        background-color: #ffe7e7;
+    }
+
+    #Validform_msg {
+        color: #7d8289;
+        font: 12px/1.5 tahoma, arial, \5b8b\4f53, sans-serif;
+        width: 280px;
+        -webkit-box-shadow: 2px 2px 3px #aaa;
+        -moz-box-shadow: 2px 2px 3px #aaa;
+        background: #fff;
+        position: absolute;
+        top: 0px;
+        right: 50px;
+        z-index: 99999;
+        display: none;
+        filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#999999');
+    }
+
+    #Validform_msg .iframe {
+        position: absolute;
+        left: 0px;
+        top: -1px;
+        z-index: -1;
+    }
+
+    #Validform_msg .Validform_title {
+        line-height: 25px;
+        height: 25px;
+        text-align: left;
+        font-weight: bold;
+        padding: 0 8px;
+        color: #fff;
+        position: relative;
+        background-color: #000;
+    }
+
+    #Validform_msg a.Validform_close:link,
+    #Validform_msg a.Validform_close:visited {
+        line-height: 22px;
+        position: absolute;
+        right: 8px;
+        top: 0px;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    #Validform_msg a.Validform_close:hover {
+        color: #cc0;
+    }
+
+    #Validform_msg .Validform_info {
+        padding: 8px;
+        border: 1px solid #000;
+        border-top: none;
+        text-align: left;
+    }
+
+    .info {
+        display: none;
+        text-align: center;
+        background-color: red;
+    }
+
+    .Validform_checktip {
+        margin-left: 0;
+        color: #FFF;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container" style="padding-top: 60px;">
+        <form class="form-horizontal" action="#">
+            <div class="form-group">
+                <label for="inputEmail" class="col-sm-2 control-label">邮箱</label>
+                <div class="col-sm-10">
+                    <input name="" type="email" datatype="e" class="form-control" id="inputEmail" nullmsg="请输入您的昵称！" errormsg="昵称至少6个字符,最多18个字符！" placeholder="请输入邮箱">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword" class="col-sm-2 control-label">密码</label>
+                <div class="col-sm-10">
+                    <input type="password" datatype="s5-16" errormsg="至少5个字符,最多16个字符！" class="form-control" id="inputPassword" placeholder="Password">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">评论</label>
+                <div class="col-sm-10">
+                    <textarea placeholder="请输入评论内容！" class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">地区</label>
+                <div class="col-sm-10">
+                    <select class="form-control">
+                        <option>山东</option>
+                        <option>上海</option>
+                        <option>北京</option>
+                        <option>河北</option>
+                        <option>吉林</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">性别</label>
+                <div class="col-sm-10">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="sex" id="" value="option2">男
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="sex" id="" value="option3">女
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">爱好</label>
+                <div class="col-sm-10">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">香蕉
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">苹果
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">注 册</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/Validform_v5.3.2_min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    <!-- 单选复选 -->
+    $('input[type=checkbox]').prop('checked', true);
+    // select
+    $('select option').eq(3).prop('selected', true);
+    // 禁用button
+    // $('button').prop('disabled', true);
+
+    $('button').click(function() {
+        // 逐个验证
+        var email = $('#inputEmail').val();
+        var reg = /\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/;
+        var flag = reg.test(email);
+    });
+
+    $("form").Validform({
+        ajaxPost: true,
+        tiptype: function(msg, o, cssctl) {
+            //msg：提示信息;
+            //o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
+            //cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
+            var $tip = o.obj.next().find(".Validform_checktip");
+            cssctl($tip, o.type);
+            $tip.text(msg);
+
+            var infoObj = o.obj.next(".info");
+            if (o.type == 2) {
+                infoObj.fadeOut(200);
+            } else {
+                o.obj.css({
+                    'border': '1px solid red'
+                });
+                infoObj.fadeIn(200);
+            }
+
+        }
+    });
+    </script>
+</body>
+
+</html>

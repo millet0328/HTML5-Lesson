@@ -1,0 +1,134 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	width: 100%;
+}
+
+.head {
+	display: flex;
+	/*height: 9.74vh;*/
+	justify-content: space-between;
+	align-items: center;
+	box-sizing: border-box;
+	padding: 4vw;
+}
+
+.back {
+	width: 25%;
+}
+
+.back img {
+	width: 2.9333vw;
+	height: 2.4vw;
+	display: block;
+}
+
+.head-t {
+	width: 50%;
+	text-align: center;
+	font-size: 4.26667vw;
+}
+
+.kong {
+	width: 25%;
+}
+
+.line {
+	background: #efece5;
+	width: 100%;
+	height: 1px;
+}
+
+.yishengbox {
+	padding: 0 5.3333vw;
+}
+
+.area {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1.7241vh 0;
+	font-size: 3.46667vw;
+}
+
+.mendian {
+	border: 1px solid #c8c3b7;
+	border-radius: 28px;
+	width: 20.53333vw;
+	text-align: center;
+	line-height: 2em;
+}
+
+.yishen-i {
+	padding: 1.7991vh 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.yishen-i img {
+	width: 18.66667vw;
+	height: 18.66667vw;
+	display: block;
+}
+
+.xinxi {
+	text-align: left;
+}
+
+.doc {
+	font-size: 4.266667vw;
+}
+
+.doc-ad {
+	font-size: 3.466667vw;
+	color: #666666;
+	padding: 1vh 0;
+}
+
+.yuyue {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 3.466667vw;
+	color: #666666;
+}
+
+.lenth {
+	color: #999;
+}
+
+.footbac {
+	background: #f7f4ed;
+	height: 31.6vw;
+}
+
+.foot {
+	display: flex;
+	justify-content: space-around;
+	
+}
+.foot-item{
+	color: #999;
+	font-size: 2.9333vw;
+}
+.foot-i{
+	padding: 17px 0 10px;
+}
+.foot-i .img1{
+	width: 6.1333vw;
+	height: 6.1333vw;
+	display: block;
+}
+.foot-i .img2{
+	width: 6.1333vw;
+	height: 6.1333vw;
+	display: none;
+}
+.foot-wen{
+	padding-bottom: 0.93333vw;
+}

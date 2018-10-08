@@ -1,0 +1,80 @@
+.box {
+	width: 200px;
+	height: 200px;
+	border: 1px solid #999999;
+	padding: 40px 20px;
+	margin-bottom: 40px;
+}
+
+.item {
+	width: 234px;
+	border: 1px solid #999;
+	padding: 20px 10px 50px 10px;
+	text-align: center;
+	margin: 5px;
+	float: left;
+	/*成为参照物*/
+	position: relative;
+	/*超出区域隐藏*/
+	overflow: hidden;
+}
+
+.clear {
+	clear: both;
+}
+
+.photo {
+	width: 160px;
+}
+
+.name {
+	color: #333333;
+	font-size: 14px;
+	padding: 18px 0 2px 0;
+}
+
+.des {
+	color: #b0b0b0;
+	font-size: 12px;
+	padding-bottom: 10px;
+}
+
+
+/*后代选择器*/
+
+.price .new {
+	color: #ff6700;
+	font-size: 14px;
+}
+
+.price .old {
+	font-size: 14px;
+	color: #B0B0B0;
+	text-decoration: line-through;
+}
+
+.cover {
+	position: absolute;
+	bottom: -73px;
+	left: 0;
+	width: 242px;
+	background-color: #FF6700;
+	color: white;
+	padding: 6px;
+	transition: all 0.5s;
+}
+
+.item:hover .cover {
+	bottom: 0;
+}
+
+
+/*Ctrl+/*/
+
+
+/*flex布局---IE10以上*/
+
+
+/*.list {
+	display: flex;
+}*/

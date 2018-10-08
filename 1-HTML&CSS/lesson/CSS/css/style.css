@@ -1,0 +1,46 @@
+.box1,
+.box2,
+.box3 {
+	float: left;
+	width: 100px;
+	height: 100px;
+	border: 1px solid #FF0;
+}
+
+.box4 {
+	height: 50px;
+	background-color: green;
+}
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.clear {
+	clear: both;
+}
+
+body {
+	margin: 0;
+}
+
+ul.actor-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.actor-list li {
+	float: left;
+	padding: 6px 10px;
+	color: #FF6700;
+}
+
+.actor-list li a {
+	text-decoration: none;
+	color: #FF6700;
+}

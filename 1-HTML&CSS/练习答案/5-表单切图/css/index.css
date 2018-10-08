@@ -1,0 +1,90 @@
+@charset "utf-8";
+.container {
+	width: 840px;
+	margin: 0 auto;
+}
+
+.relative {
+	position: relative;
+}
+
+.basic-info {
+	margin-top: 40px;
+	font-size: 14px;
+}
+
+.basic-info .title {
+	color: #00729e;
+	font-size: 14px;
+	margin-bottom: 8px;
+	border-bottom: 1px solid #93a8be;
+}
+
+.input-control {
+	padding: 4px 0;
+}
+
+.input-control label {
+	width: 154px;
+	display: inline-block;
+}
+
+.input-control label span {
+	color: #ff5300;
+}
+
+.col .input-control .input-txt,
+.row .input-control .input-txt {
+	width: 200px;
+	border: 1px solid #d1d1d1;
+	padding: 5px 8px;
+}
+
+.row .input-control .input-txt {
+	width: 663px;
+}
+
+.row .input-control .label-fix {
+	vertical-align: top;
+}
+
+.row .input-control .textarea {
+	border: 1px solid #d1d1d1;
+	padding: 5px 8px;
+	width: 663px;
+}
+
+.input-control .input-wrap {
+	width: 218px;
+	display: inline-block;
+}
+
+.input-control .input-wrap .input-txt {
+	padding-right: 24px;
+	width: 184px;
+}
+
+.input-control .icon-calender {
+	position: absolute;
+	right: 4px;
+	top: 6px;
+}
+
+.table {
+	text-align: center;
+}
+
+.table th {
+	background-color: #e7e7e7;
+	padding: 6px 10px;
+	text-align: center;
+}
+
+.table tr {
+	border: 1px solid #E7E7E7;
+}
+
+.table tr td:first-child {
+	background-color: #e7e7e7;
+	padding: 6px 10px;
+}

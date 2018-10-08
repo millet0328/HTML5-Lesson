@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">留言板</div>
+            <div class="panel-body">
+                <form>
+                    <div class="form-group">
+                        <label for="nickname">昵称：</label>
+                        <input type="text" class="form-control" id="nickname" placeholder="请填写昵称">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">留言：</label>
+                        <textarea class="form-control" id="message" rows="3"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary">发表留言</button>
+                </form>
+            </div>
+        </div>
+        <!-- 留言列表 -->
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">最新留言</div>
+            <!-- List group -->
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <h5><span class="text-primary">nickname</span> 说:</h5> 款的吉萨看见
+                    <div class="clearfix">
+                        <button type="button" class="btn btn-link pull-right">删除</button>
+                        <a href="msgDetail.html" type="button" class="btn btn-link pull-right">编辑</a>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <h5><span class="text-primary">nickname</span> 说:</h5> 款的吉萨看见
+                    <div class="clearfix">
+                        <button type="button" class="btn btn-link pull-right">删除</button>
+                        <a href="msgDetail.html" type="button" class="btn btn-link pull-right">编辑</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <nav class="text-right" aria-label="Page navigation">
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">1</a>
+                </li>
+                <li>
+                    <a href="#">2</a>
+                </li>
+                <li>
+                    <a href="#">3</a>
+                </li>
+                <li>
+                    <a href="#">4</a>
+                </li>
+                <li>
+                    <a href="#">5</a>
+                </li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript"></script>
+</body>
+
+</html>

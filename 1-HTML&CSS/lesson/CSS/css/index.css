@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+/*公共类*/
+
+.container {
+	width: 1120px;
+	margin: 0 auto;
+}
+
+
+/*浮动*/
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.clear {
+	clear: both;
+}
+
+.nav-box {
+	background-color: #000;
+}
+
+.banner-right {
+	width: 160px;
+}
+
+.banner {
+	background: url(../img/loading-2.jpg) top center;
+	height: 1080px;
+}
+
+.banner2 {
+	background: url(../img/5b504bd2N3a0de6e5.jpg) top center fixed;
+	height: 500px;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+
+	<body>
+		<canvas id="canvas" width="400" height="300"></canvas>
+		<script type="text/javascript">
+			var oCanvas = document.getElementById("canvas");
+			var context = oCanvas.getContext("2d");
+//			context.fillStyle = "#EDEDED";
+//			context.fillRect(0, 0, 400, 300);
+			//绘制矩形
+			var image = new Image();
+			image.src = "http://img1.touxiang.cn/uploads/20121217/17-024911_660.jpg"
+			image.onload = function() {
+				var pat = context.createPattern(image, "repeat");
+				context.fillStyle = pat;
+				context.fillRect(0, 0, 400, 300);
+			}
+			oCanvas.onmousemove = function(e) {
+				var x = e.clientX - this.offsetLeft - 20;
+				var y = e.clientY - this.offsetTop - 20;
+			}
+		</script>
+	</body>
+
+</html>

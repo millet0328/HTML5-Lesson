@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			var arr = [12, 49, 87, 95, 148, 49, 178, 65];
+			var str = arr.join("-");
+			console.log(str);
+
+			//冒泡排序
+			function bubbleSort(arr) {
+				var len = arr.length;
+				for(var i = 0; i < len - 1; i++) {
+					for(var j = 0; j < len - 1 - i; j++) {
+						if(arr[j] > arr[j + 1]) { // 相邻元素两两对比
+							var temp = arr[j + 1]; // 元素交换
+							arr[j + 1] = arr[j];
+							arr[j] = temp;
+						}
+					}
+				}
+				return arr;
+			}
+
+			arr.sort(function(a, b) {
+				return a - b;
+			});
+			//push方法构建新数组
+			// 偶数单独成一个数组
+			var even = [];
+			for(var i = 0; i < arr.length; i++) {
+				if(arr[i] % 2 == 0) {
+					even.push(arr[i]);
+				}
+			}
+			//对象排序 
+			var student = [{
+				name: '黄渤',
+				age: 38
+			}, {
+				name: '黄磊',
+				age: 42
+			}, {
+				name: '孙红雷',
+				age: 45
+			}, {
+				name: '罗志祥',
+				age: 42
+			}, {
+				name: '张艺兴',
+				age: 28
+			}, {
+				name: '王迅',
+				age: 46
+			}]
+			//排序
+			student.sort(function(a, b) {
+				if(a.age > b.age) {
+					return 1;
+				} else {
+					return -1;
+				}
+			});
+			var obj = {
+				6: 23,
+				1: 5,
+				4: 6,
+				8: 9
+			}
+			var tickArray = [];
+			for(key in obj) {
+				var temp = {
+					name: key,
+					time: obj[key]
+				}
+				tickArray.push(temp);
+			}
+			console.log(tickArray);
+		</script>
+	</body>
+
+</html>

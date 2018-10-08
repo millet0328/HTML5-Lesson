@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body {
+				text-align: center;
+			}
+			
+			#trash {
+				opacity: .2;
+				margin: 15px;
+				transition: all 0.3s ease-in-out;
+			}
+			
+			.trashBox {
+				border: 1px solid #EEEEEE;
+				width: 1200px;
+				display: inline-block;
+			}
+			
+			.bin {
+				width: 900px;
+				padding: 10px;
+				min-height: 160px;
+				margin: 10px auto;
+				box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.2) inset;
+			}
+			
+			.fly {
+				transition: all 0.5s;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h3>拖动飞机到垃圾桶后从DOM树中删除子元素</h3>
+		<div id="trashBox" class="trashBox">
+			<img id="trash" src="img/trash_full.png">
+			<div id="bin" class="bin">
+
+			</div>
+		</div>
+		<hr/>
+		<img class="fly" src="img/p3.png">
+		<img class="fly" src="img/p4.png">
+		<img class="fly" src="img/p5.png">
+	</body>
+	<script type="text/javascript">
+		//查找元素
+		//源对象
+		var oFly = document.querySelectorAll(".fly");
+		//目标对象
+		var oTrash = document.getElementById("trash");
+		var oBin = document.getElementById("bin");
+
+		for(var i = 0; i < oFly.length; i++) {
+			oFly[i].index = i;
+			oFly[i].ondragstart = function(e) {
+				e.dataTransfer.setData("index", this.index);
+			}
+		}
+		//
+		oTrash.ondragenter = function() {
+			this.style.opacity = 1;
+		};
+		oTrash.ondragleave = function() {
+			this.style.opacity = 0.2;
+		};
+		oTrash.ondragover = function(e) {
+			e.preventDefault();
+		};
+		oTrash.ondrop = function(e) {
+			this.style.opacity = 0.2;
+			var i = e.dataTransfer.getData("index");
+			oBin.appendChild(oFly[i]);
+		}
+	</script>
+
+</html>

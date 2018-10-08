@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="ssale_list">
+				<ul class="clearfix">
+					<li>
+						<a href="#" target="_blank" class="relative">
+							<img src="img/1469439825862.jpg" width="588" height="234" />
+							<div class="band_box clearfix">
+								<div class="logo fl">
+									<img src="img/1469439825608.jpg" width="120" height="56" />
+								</div>
+								<div class="title fl">
+									基因检测
+								</div>
+								<div class="sologan fr">
+									给孩子更好的未来
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			// 移入事件
+			$('.ssale_list li').mouseenter(function() {
+				$(this).find('.band_box').animate({
+					'bottom': '0px'
+				}, function() {
+					// 回调函数
+					$(this).find('.title').animate({
+						'top': '0px'
+					});
+					$(this).find('.sologan').animate({
+						'top': '0px'
+					});
+				});
+			});
+
+			// 移出事件
+			$('.ssale_list li').mouseleave(function() {
+				$(this).find('.title').animate({
+					'top': '40px'
+				}, 600);
+				$(this).find('.sologan').stop(true).animate({
+					'top': '40px'
+				}, 600);
+				// delay延迟
+				$(this).find('.band_box').stop(true).delay(600).animate({
+					'bottom': '-60px'
+				});
+
+			});
+
+		})
+	</script>
+
+</html>

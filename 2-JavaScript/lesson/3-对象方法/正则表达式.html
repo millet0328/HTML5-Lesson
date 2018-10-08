@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+
+	<body>
+		<input type="text" name="" id="txt" value="" />
+		<button id="btn" type="button">验证</button>
+		<script type="text/javascript">
+			window.onload = function() {
+				var oTxt = document.getElementById('txt');
+				var oBtn = document.getElementById('btn');
+				oTxt.onchange = function() {
+					var txt = oTxt.value;
+					//正则校验
+					var reg = /^0?(13|14|15|17|18|19)[0-9]{9}$/;
+					var carReg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/
+					var wordReg = /智障/g;
+					var flag = reg.test(txt);
+					if(flag) {
+						this.style.borderColor = "green";
+					} else {
+						this.style.borderColor = "red";
+					}
+				}
+			}
+		</script>
+	</body>
+
+</html>

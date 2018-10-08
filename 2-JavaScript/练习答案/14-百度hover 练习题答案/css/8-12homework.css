@@ -1,0 +1,75 @@
+@charset "utf-8";
+.nav_box {
+	padding: 20px 10px 0;
+}
+
+.nav {
+	margin-left: 19px;
+}
+
+.nav>a {
+	display: inline-block;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 28px;
+	height: 28px;
+}
+
+.nav .more {
+	display: inline-block;
+	line-height: 28px;
+	height: 28px;
+	padding: 0 7px;
+	background-color: #398bfb;
+	font-size: 13px;
+	text-align: center;
+	color: #FFFFFF;
+}
+
+.xiala {
+	width: 86px;
+	height: 100%;
+	text-align: center;
+	background-color: #f9f9f9;
+	position: fixed;
+	right: 0;
+	top: 0;
+	display: none;
+}
+
+.more_list {
+	line-height: 34px;
+	font-size: 14px;
+	height: 30px;
+	width: 66px;
+	margin: 0 auto;
+	padding: 16px 0 10px 0;
+	border-bottom: 1px solid #f0f0f0;
+}
+
+.more_link li a {
+	display: block;
+	text-align: center;
+	width: 66px;
+	margin: 0 10px;
+	border-bottom: 1px solid #f0f0f0;
+	text-decoration: none;
+}
+
+.more_link img {
+	display: block;
+	margin: 10px auto 5px auto;
+}
+
+.more_link span {
+	display: block;
+	padding-bottom: 10px;
+}
+
+.all {
+	margin-top: 15px;
+}
+
+.relative {
+	position: relative;
+}

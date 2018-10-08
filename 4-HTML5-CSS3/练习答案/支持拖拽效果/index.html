@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset='utf-8'>
+		<title>jQuery可拖拽排序的列表代码 - 站长素材</title>
+		<link rel="stylesheet" type="text/css" href="css/stylesheet.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="css/github-dark.css" media="screen">
+		<style type="text/css">
+			html,
+			body,
+			ul,
+			li {
+				margin: 0;
+				padding: 0;
+			}
+			
+			ul,
+			li {
+				list-style-type: none;
+				color: #b5e853;
+				border: 1px solid #3f3f3f;
+			}
+			
+			ul.sTree,
+			ul {
+				padding: 0px;
+				background-color: #151515;
+			}
+			
+			ul.sTree2 li,
+			ul#sortableListsBase li {
+				padding-left: 50px;
+				margin: 5px;
+				border: 1px solid #3f3f3f;
+				background-color: #3f3f3f;
+			}
+			
+			li div {
+				padding: 7px;
+				background-color: #222;
+				border: 1px solid #3f3f3f;
+			}
+			
+			li,
+			ul,
+			div {
+				border-radius: 3px;
+			}
+			
+			.red {
+				background-color: #ff9999;
+			}
+			
+			.blue {
+				background-color: #aaaaff;
+			}
+			
+			.green {
+				background-color: #99ff99;
+			}
+			
+			.gree2 {
+				background-color: #bbffbb;
+			}
+			
+			.yellow {
+				background-color: #ff8;
+			}
+			
+			.brown {
+				background-color: #c26b2b;
+			}
+			
+			.pT20 {
+				padding-top: 20px;
+			}
+			
+			.pV10 {
+				padding-top: 10px;
+				padding-bottom: 10px;
+			}
+			
+			.dN {
+				display: none;
+			}
+			
+			.zI1000 {
+				z-index: 1000;
+			}
+			
+			.c1 {
+				color: #b5e853;
+			}
+			
+			.c2 {
+				color: #63c0f5;
+			}
+			
+			.c3 {
+				color: #f77720;
+			}
+			
+			.c4 {
+				color: #888;
+			}
+			
+			.bgC1 {
+				background-color: #ccc;
+			}
+			
+			.bgC2 {
+				background-color: #ff8;
+			}
+			
+			.small1 {
+				font-size: 0.8em;
+			}
+			
+			.small2 {
+				font-size: 0.7em;
+			}
+			
+			.small3 {
+				font-size: 0.6em;
+			}
+			
+			.tAR {
+				text-align: right;
+			}
+			
+			.clear {
+				clear: both;
+			}
+			
+			img.descPicture {
+				display: block;
+				width: 100%;
+				margin: 0 7px 30px 0;
+				float: left;
+				cursor: pointer;
+				/*transition: all 0.5s ease;*/
+			}
+			
+			img.descPicture.descPictureClose {
+				width: 150px;
+			}
+			
+			#sTree2 {
+				margin: 10px auto;
+			}
+			/*附加样式*/
+			
+			.sortableListsClosed>div>span,
+			.sortableListsOpen>div>span {
+				float: left;
+				display: inline-block;
+				background-position: center center;
+				background-repeat: no-repeat;
+				width: 18px;
+				height: 18px;
+				margin-left: -35px;
+				margin-right: 5px;
+			}
+			
+			.sortableListsOpen>div>span {
+				background-image: url(images/Remove2.png);
+			}
+			
+			.sortableListsClosed>div>span {
+				background-image: url(images/Add2.png);
+			}
+			
+			.sortableListsClosed>ul {
+				display: none;
+			}
+			
+			.sTree2 .placeholder {
+				background-color: rgb(153, 255, 153);
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div class="container">
+			<section id="main_content">
+				<ul draggable="true" class="sTree2 listsClass" id="sTree2">
+					<li draggable="true" id="item_a" data-module="a">
+						<div><span></span>选项 a</div>
+					</li>
+					<li draggable="true" class="sortableListsOpen" id="item_b" data-module="b">
+						<div><span></span>选项 b</div>
+						<ul class="">
+							<li draggable="true" id="item_b1" data-module="b">
+								<div><span></span>选项 b1</div>
+							</li>
+							<li draggable="true" id="item_b2" data-module="b">
+								<div><span></span>选项 b2</div>
+							</li>
+							<li draggable="true" id="item_b3" data-module="b">
+								<div><span></span>选项 b3</div>
+							</li>
+							<li draggable="true" id="item_b4" data-module="b">
+								<div><span></span>选项 b4</div>
+							</li>
+							<li draggable="true" id="item_b5" data-module="b">
+								<div><span></span>选项 b5</div>
+							</li>
+						</ul>
+					</li>
+					<li draggable="true" class="sortableListsClosed" id="item_c" data-module="c">
+						<div><span></span>选项 c</div>
+						<ul class="">
+							<li draggable="true" id="item_c1" data-module="c">
+								<div><span></span>选项 c1</div>
+							</li>
+							<li draggable="true" id="item_c2" data-module="c">
+								<div><span></span>选项 c2</div>
+							</li>
+							<li draggable="true" id="item_c3" data-module="c">
+								<div><span></span>选项 c3</div>
+							</li>
+							<li draggable="true" id="item_c4" data-module="c">
+								<div><span></span>选项 c4</div>
+							</li>
+							<li draggable="true" id="item_c5" data-module="c">
+								<div><span></span>选项 c5</div>
+							</li>
+						</ul>
+					</li>
+					<li draggable="true" class="sortableListsClosed" id="item_d" data-module="d">
+						<div><span></span>选项 d</div>
+						<ul class="">
+							<li draggable="true" id="item_d1" data-module="d">
+								<div><span></span>选项 d1</div>
+							</li>
+							<li draggable="true" id="item_d2" data-module="d">
+								<div><span></span>选项 d2</div>
+							</li>
+							<li draggable="true" id="item_d3" data-module="d">
+								<div><span></span>选项 d3</div>
+							</li>
+							<li draggable="true" id="item_d4" data-module="d">
+								<div><span></span>选项 d4</div>
+							</li>
+							<li draggable="true" id="item_d5" data-module="d">
+								<div><span></span>选项 d5</div>
+							</li>
+						</ul>
+					</li>
+					<li draggable="true" class="" id="item_e" data-module="e">
+						<div><span></span>选项 e</div>
+					</li>
+					<li draggable="true" class="" id="item_f" data-module="f">
+						<div><span></span>选项 f</div>
+					</li>
+				</ul>
+			</section>
+		</div>
+		<script src="js/jquery-git1.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var $tree = $("#sTree2");
+				//储存拖拽对象
+				var $source;
+				//源目标占位符
+				var $placeholder = $('<ul><li class="placeholder"></li></ul>');
+				//判断是否有子元素
+				function isHasChild($obj) {
+					var len = $obj.children("ul").length;
+					if(len > 0) {
+						return true;
+					} else {
+						return false;
+					}
+				}
+				//折叠菜单
+				$tree.on("click", "li", function(e) {
+					e.stopPropagation();
+					var flag = isHasChild($(this));
+					if(!flag) {
+						return;
+					}
+					var isOpen = $(this).hasClass("sortableListsOpen");
+					if(isOpen) {
+						$(this).removeClass("sortableListsOpen").addClass("sortableListsClosed");
+					} else {
+						$(this).removeClass("sortableListsClosed").addClass("sortableListsOpen");
+					}
+
+				});
+
+				//源目标拖拽事件
+
+				$tree.find("li").on("dragstart", function(e) {
+					e.stopPropagation();
+					$source = $(this);
+					$placeholder.children().height($(this).height());
+				});
+
+				$tree.find("li").on("drag", function(e) {
+					e.stopPropagation();
+					$(this).css("background-color", "rgb(255,255,136)").children().css("visibility", "hidden");
+				});
+
+				$tree.find("li").on("dragend", function(e) {
+					e.stopPropagation();
+					$(this).css("background-color", "").children().css("visibility", "");
+				});
+
+				//目标元素拖拽事件
+				$tree.find("li").on("dragover", function(e) {
+					e.preventDefault();
+					e.stopPropagation();
+					//判断是否同一个对象
+					if($(this).is(e.target)) {
+						return;
+					}
+					var bool = isHasChild($(this));
+					if(!bool) {
+						$placeholder.css("visibility", "visible");
+						$(this).append($placeholder);
+					}
+				});
+
+				$tree.find("li").on("drop", function(e) {
+					e.stopPropagation();
+					$placeholder.detach();
+					$(this).append("<ul></ul>");
+					$(this).find("ul").append($source);
+				});
+			});
+		</script>
+	</body>
+
+</html>

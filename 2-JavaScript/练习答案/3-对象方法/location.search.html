@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<pre>
+        加分题目：
+                编写一个带return的function，将字符串str中search的“键值对”转化成obj对象，并return出来！
+        </pre>
+		<div class="" id="result">
+		</div>
+		<script type="text/javascript">
+			var str = '?q=%E6%AF%9B%E9%92%88%E7%BB%87%E8%A1%AB&refpid=430274_1006&source=tbsy&style=grid&tab=all&pvid=5a409b0c6e66d0359b527a85224dfd7c&clk1=ad2693f8e1bda7b794fb06ef34484470&spm=a21bo.50862.201856-sline.22.SnU3TL';
+			// 结果示例
+			obj = {
+				q: '%E6%AF%9B%E9%92%88%E7%BB%87%E8%A1%AB',
+				refpid: '430274_1006',
+				source: 'tbsy'
+			}
+
+			function params(search) {
+				var obj = {};
+				search = search.slice(1);
+				var arr = search.split("&");
+				for(var i = 0; i < arr.length; i++) {
+					var tmp = arr[i].split("=");
+					obj[tmp[0]] = tmp[1];
+				}
+				return obj
+			}
+			console.log(params(str));
+		</script>
+	</body>
+
+</html>

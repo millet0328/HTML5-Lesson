@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+
+	<body>
+		<canvas id="canvas" width="400" height="400"></canvas>
+		<script type="text/javascript">
+			var oCanvas = document.getElementById("canvas");
+			var context = oCanvas.getContext("2d");
+			var grd = context.createLinearGradient(0, 0, 400, 0);
+			grd.addColorStop(0, "#356789");
+			grd.addColorStop(0.6, "#128478");
+			grd.addColorStop(1, "#F87478");
+			context.fillStyle = grd;
+			context.fillRect(0, 0, 400, 400);
+
+			//			bgGrd.addColorStop(0, "rgb(255,214,0)");
+			//			bgGrd.addColorStop(0.8, "rgb(0,210,210)")
+			//			bgGrd.addColorStop(1, "rgb(255,255,255)");
+			//			context.fillStyle = bgGrd;
+			//			context.fillRect(0, 0, 400, 300);
+			//			var grd = context.createLinearGradient(0, 0, 300, 0);
+			//			grd.addColorStop(0, "rgba(0,0,255,0.4)");
+			//			grd.addColorStop(1, "rgba(255,0,0,0.5)");
+			//			for(var i = 0; i < 10; i++) {
+			//				context.beginPath();
+			//				context.arc(i * 25, i * 25, i * 10, 0, 2 * Math.PI, true);
+			//				//				context.ellipse(i * 25, i * 25, i * 10, i * 6, 30, 0, 2 * Math.PI, true);
+			//				context.closePath();
+			//				context.fillStyle = grd;
+			//				context.fill();
+			//			}
+		</script>
+	</body>
+
+</html>

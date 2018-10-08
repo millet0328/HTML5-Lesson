@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/fullpage.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/app.css" />
+	</head>
+
+	<body>
+		<div id="dowebok">
+			<div class="section page1">
+				<h3>第一屏</h3>
+			</div>
+			<div class="section">
+				<h3>第二屏</h3>
+			</div>
+			<div class="section overflow">
+				<div class="iphone_box">
+					<img src="img/iphone-yellow.png" class="ip_yellow" />
+					<img src="img/iphone-red.png" class="ip_red" />
+					<img src="img/iphone-blue.png" class="ip_blue" />
+				</div>
+				<div class="txt">
+					<h2>Amazing stuff</h2> Combining <strong>fullPage.js</strong> with your own CSS styles and animations, you will be able to create something remarkable.
+				</div>
+			</div>
+			<div class="section">
+				<div class="container">
+					<div class="box txt_center">
+						<h2>Just a demo</h2> This is, of course, just a demo. I didn't want to spend much time on it. Don't expect it to work perfectly in all kind of screens. It has been designed to work on 1180px width or over on modern browsers with CSS3.
+					</div>
+					<div class="green_box">
+						<img src="img/iphone-green.png" class="ip_green" />
+					</div>
+					<img src="img/iphone-two.png" class="ip_two" />
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/fullpage.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function() {
+				var $cube = $(".cube");
+				$('#dowebok').fullpage({
+					continuousVertical: true,
+					navigation: true,
+					afterLoad: function(anchorLink, index) {
+						//						console.log(index);
+						switch(index) {
+							case 1:
+								$cube.animate({
+									marginLeft: "400px"
+								});
+								break;
+							default:
+								break;
+						}
+					},
+					onLeave: function(index, nextIndex, direction) {
+						console.log(index);
+						console.log(nextIndex);
+						console.log(direction);
+						switch(index) {
+							case 1:
+								$cube.animate({
+									marginLeft: "0px"
+								});
+								break;
+							default:
+								break;
+						}
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

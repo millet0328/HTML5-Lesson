@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div>
+			<input type="button" name="save" id="save" value="存储" />
+			<input type="button" name="show" id="show" value="显示" />
+		</div>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			var oSave = document.getElementById("save");
+			localStorage.cart = JSON.stringify([]);
+
+			oSave.onclick = function() {
+				//增
+				localStorage.name = "moz";
+				localStorage.age = 30;
+				var phone = {
+					id: 1, //唯一
+					name: "荣耀10",
+					price: '￥2399.00',
+					color: "幻影蓝",
+					version: "全网通6G+64GB",
+					num: 1
+				}
+				phone = JSON.stringify(phone);
+				localStorage.phone = phone;
+				//已经存储的购物车数据
+				var cart = localStorage.cart;
+				//字符串=>数组
+				cart = JSON.parse(cart);
+				cart.push(phone);
+				//存储新的购物车数据
+				//数组=>字符串
+				var newCart = JSON.stringify(cart);
+				localStorage.cart = newCart;
+			}
+			//取
+			$("#show").click(function() {
+				var name = localStorage.name;
+				var phone = localStorage.phone;
+				phone = JSON.parse(phone);
+				console.log(phone);
+			})
+		</script>
+	</body>
+
+</html>

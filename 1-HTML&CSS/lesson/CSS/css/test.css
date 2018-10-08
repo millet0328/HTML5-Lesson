@@ -1,0 +1,33 @@
+/*公共类*/
+
+html,
+body {
+	color: #898989;
+	background: #FFF;
+	font-family: "Microsoft YaHei UI", "Microsoft YaHei UI Light", "微软雅黑", "宋体", Helvetica-Black-SemiBold, Tahoma, Arial, sans-serif;
+	font-size: 12px;
+}
+
+.price .old {
+	color: #999;
+	text-decoration: none;
+}
+
+p {
+	text-indent: 2em;
+}
+
+.code {
+	text-transform: uppercase;
+}
+
+.website img {
+	vertical-align: middle;
+}
+
+.website span {
+	vertical-align: middle;
+	font-size: 36px;
+	font-weight: bold;
+}
+

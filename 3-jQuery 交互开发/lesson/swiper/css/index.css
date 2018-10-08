@@ -1,0 +1,56 @@
+html,
+body {
+	position: relative;
+}
+
+body {
+	background: #eee;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	color: #000;
+	margin: 0;
+	padding: 0;
+}
+
+.swiper-container {
+	width: 100%;
+	height: 360px;
+}
+
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+}
+
+.banner {
+	position: relative;
+	height: 100%;
+	background: no-repeat top center;
+}
+
+.banner a {
+	display: block;
+	height: 100%;
+}
+
+.swiper-pagination-bullet {
+	background-color: white;
+	opacity: 0.5;
+	width: 10px;
+	height: 10px;
+}
+
+.swiper-pagination-bullet-active {
+	opacity: 1;
+}
+
+.swiper-container-horizontal>.swiper-pagination-bullets {
+	display: inline-block;
+	background-color: rgba(0, 0, 0, 0.3);
+	width: auto;
+	left: 50%;
+	transform: translateX(-50%);
+	padding: 4px;
+	border-radius: 30px;
+}

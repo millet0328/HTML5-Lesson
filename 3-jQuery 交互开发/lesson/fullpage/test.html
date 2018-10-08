@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/fullpage.min.css" />
+		<!--自己的文件-->
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+	</head>
+
+	<body>
+		<div id="fullpage">
+			<div class="section active">
+				<div class="iphone">
+					<img src="img/iphone-green.png" />
+				</div>
+			</div>
+			<div class="section">
+				<div class="slide"> 幻灯片 1 </div>
+				<div class="slide"> 幻灯片 2 </div>
+				<div class="slide"> 幻灯片 3 </div>
+				<div class="slide"> 幻灯片 4 </div>
+			</div>
+			<div class="section">
+				<div class="iphone_red">
+					<img src="img/iphone-red.png" />
+				</div>
+			</div>
+			<div class="section">
+				<div class="iphone_two">
+					<img src="img/iphone-two.png" />
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/fullpage.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#fullpage').fullpage({
+					scrollingSpeed: 1600,
+				});
+			});
+		</script>
+	</body>
+
+</html>

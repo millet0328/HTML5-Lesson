@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+
+	<body>
+		<canvas id="canvas" width="400" height="300"></canvas>
+		<script type="text/javascript">
+			var oCanvas = document.getElementById("canvas");
+			var context = oCanvas.getContext("2d");
+			var oprtnArr = [
+				"normal",
+				"darken",
+				"lighten",
+				"multiply",
+				"screen",
+				"color-burn",
+				"color-dodge",
+				"hard-light",
+				"soft-light",
+				"overlay",
+				"difference",
+				"exclusion"
+			];
+			//绘制矩形
+			//添加图片
+			var img = new Image();
+			img.src = "http://img.pconline.com.cn/images/upload/upc/tx/wallpaper/1308/02/c0/24056523_1375430477611.jpg"
+				//选择图形合并方式
+			i = 0;
+			context.globalCompositeOperation = oprtnArr[i];
+			img.onload = function() {
+				context.drawImage(img, 0, 0, 400, 300);
+				var img2 = new Image();
+				img2.src = "http://img1.touxiang.cn/uploads/20121217/17-024911_660.jpg"
+				img2.onload=function () {
+					context.drawImage(img2,100,160,100,100)
+				}
+			}
+			oCanvas.onmousemove = function(e) {
+				var x = e.clientX - this.offsetLeft;
+				var y = e.clientY - this.offsetTop;
+			}
+		</script>
+	</body>
+
+</html>

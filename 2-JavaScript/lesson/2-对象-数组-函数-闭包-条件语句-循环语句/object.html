@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				width: 100px;
+				font-weight: bold;
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			var obj = {
+				goodName: '士力架',
+				goodDes: '饿货，来根士力架！',
+				price: 9.80,
+				"sales-num": 745,
+				qw: [1, 3, 5, 7, 8],
+				stars: 4.5,
+				sex: 1
+			};
+			obj.price
+			obj['price']
+			//修改属性 赋值
+			obj.price = 12.80;
+			obj.salesNum = 460;
+			//添加属性 0==>1
+			obj.type = "草莓味";
+			//删除属性
+			delete obj.qw;
+
+			console.log(obj);
+
+			var person = {
+				name: "范冰冰",
+				age: 36,
+				job: ["actor", "singer"],
+				boyfriend: {
+					name: "李晨",
+					age: 40
+				}
+			};
+			obj.price * 20
+			//年龄差
+			var res = (person.boyfriend.age + person.age) / 2;
+			alert(res);
+
+			//数组
+			var arr = [56, 98, 75, 68, 45];
+			//特殊化的对象
+			//			var arr = {
+			//				0: 56,
+			//				1: 98,
+			//				2: 75,
+			//				3: 68,
+			//				4: 45,
+			//				length: 5
+			//			}
+			//（下标/索引） index
+			//查找数组中元素
+			console.log(arr[2]);
+			//查看数组结构
+			console.log(arr);
+			//元素个数
+			arr.length
+			//获取最后一个元素
+			arr[arr.length - 1]
+			//修改元素 赋值
+			arr[2] = 60;
+			//添加元素
+			arr[5] = 100;
+			console.log(arr);
+		</script>
+
+	</body>
+
+</html>

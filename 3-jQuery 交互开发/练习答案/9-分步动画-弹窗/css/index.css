@@ -1,0 +1,79 @@
+@charset "utf-8";
+.bg {
+	background-color: #494A5F;
+}
+
+.white {
+	color: #FFFFFF;
+}
+
+
+/*弹窗1*/
+
+.dialog1_box {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 554px;
+	border-left: 4px solid rgba(0, 0, 0, 0.7);
+	height: 0%;
+	overflow: hidden;
+}
+
+.dialog1_box .content_box {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.dialog1_box .content {
+	opacity: 0;
+	right: -40px;
+	padding: 35px 40px;
+	position: relative;
+}
+
+.dialog1_box .shutDown {
+	position: absolute;
+	top: 20px;
+	right: 15px;
+	font-size: 30px;
+}
+
+
+/*弹窗2*/
+
+.dialog2_box {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 554px;
+	border-right: 4px solid #D2527F;
+	height: 0%;
+	overflow: hidden;
+}
+
+.dialog2_box .content_box {
+	background-color: #D2527F;
+	width: 0;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+.dialog2_box .content {
+	opacity: 0;
+	left: -40px;
+	padding: 35px 40px;
+	position: relative;
+}
+
+.dialog2_box .shutDown {
+	position: absolute;
+	top: 20px;
+	left: 15px;
+	font-size: 30px;
+}

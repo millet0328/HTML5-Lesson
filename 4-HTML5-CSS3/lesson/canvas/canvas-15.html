@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+
+	<body>
+		<canvas id="canvas" width="400" height="300"></canvas>
+		<script type="text/javascript">
+			var oCanvas = document.getElementById("canvas");
+			var context = oCanvas.getContext("2d");
+
+			context.fillStyle = "#01204F";
+			context.font = "bold 24px sans-serif";
+			context.strokeText("从你的全世界路过", 50, 50);
+
+			context.fillText("世界那么大，我想去看看！", 0, 160);
+			var metrics = context.measureText("世界那么大，我想去看看！");
+			
+			context.fillText("解忧杂货店", metrics.width, 160);
+			
+		</script>
+	</body>
+
+</html>

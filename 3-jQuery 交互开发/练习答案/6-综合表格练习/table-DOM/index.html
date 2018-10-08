@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>表格操作</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+</head>
+
+<body class="">
+    <div class="bg-grey pd20">
+        <div class="table_box pd20 bg-white">
+            <form class="form-inline" action="" method="">
+                <div class="form-group">
+                    <label for="">添加：</label>
+                    <input type="text" class="form-control" id="name_input" placeholder="姓名">
+                    <input type="text" class="form-control" id="age_input" placeholder="年龄">
+                    <button type="button" class="btn btn-info" id="add_btn">添加</button>
+                </div>
+                <div class="form-group">
+                    <label for="">变色：</label>
+                    <button type="button" class="btn btn-info" id="hover_btn">开启移入变色</button>
+                </div>
+            </form>
+            <br />
+            <!--表格-->
+            <table class="table table-bordered" id="chart">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>姓名</td>
+                        <td>年龄</td>
+                        <td>操作</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>张三</td>
+                        <td>33</td>
+                        <td>
+                            <a href="javascript:;">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>李四</td>
+                        <td>34</td>
+                        <td>
+                            <a href="javascript:;">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>王五</td>
+                        <td>25</td>
+                        <td>
+                            <a href="javascript:;">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>赵六</td>
+                        <td>16</td>
+                        <td>
+                            <a href="javascript:;">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>王四</td>
+                        <td>44</td>
+                        <td>
+                            <a href="javascript:;">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Danny</td>
+                        <td>23</td>
+                        <td>
+                            <a href="javascript:;">删除</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--尾部操作-->
+            <form class="form-inline" action="" method="">
+                <div class="form-group">
+                    <label for="">搜索：</label>
+                    <input type="text" class="form-control" id="search_txt" placeholder="姓名">
+                    <button type="button" class="btn btn-info" id="search_btn">搜索</button>
+                </div>
+                <div class="form-group">
+                    <label for="">排序：</label>
+                    <button type="button" class="btn btn-info" id="sort_btn">年龄从小到大排序</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        //
+        var $row = $("tbody tr");
+        //添加数据
+        $("#add_btn").click(function() {
+            var name = $("#name_input").val();
+            var age = $("#age_input").val();
+
+            //DOM操作--添加
+            //计算序号
+            var index = $("tbody tr").length + 1;
+            //创建元素+修饰元素
+            var $tr = $('<tr><td>' + index + '</td><td>' + name + '</td><td>' + age + '</td><td><a href="javascript:;">删除</a></td></tr>')
+            //插入元素
+            $("tbody").append($tr);
+        });
+        //删除数据
+        $("#chart").on("click", "a", function() {
+            //偷偷把this指向了实际点击的元素
+            $(this).parents("tr").remove();
+        });
+        //开启移入变色
+        //开启标志
+        var flag = false;
+        $("#hover_btn").click(function() {
+            if (flag) {
+                $(this).removeClass("btn-danger").addClass("btn-info");
+                $(this).text("开启移入变色");
+                flag = false;
+                //关闭变色
+                // $("#chart").removeClass("table-hover");
+
+                $("tbody tr").off("mouseenter");
+                $("tbody tr").off("mouseleave");
+
+            } else {
+                $(this).removeClass("btn-info").addClass("btn-danger");
+                $(this).text("关闭移入变色");
+                flag = true;
+                //开启变色
+                // $("#chart").addClass("table-hover");
+
+                $("tbody tr").on("mouseenter", enter);
+                $("tbody tr").on("mouseleave", leave);
+
+            }
+        });
+
+        function enter() {
+            $(this).css("background-color", "#EEEEEE");
+        }
+
+        function leave() {
+            $(this).css("background-color", "");
+        }
+        //搜索
+        $("#search_btn").click(function() {
+            var keyword = $("#search_txt").val();
+            //去除两端空格
+            keyword = $.trim(keyword);
+            //模糊查询
+            $row.css("background-color", "");
+            $("tbody tr td:nth-child(2)")
+                .filter(":contains('" + keyword + "')")
+                .parent()
+                .css("background-color", "yellow");
+        });
+        //年龄排序
+        $("#sort_btn").click(function() {
+            //转化成数组
+            // var arr = $.makeArray($row);
+            var arr = [];
+            $("tbody tr").each(function(i, item) {
+                arr.push(item);
+            })
+            //数组排序
+            arr.sort(function(a, b) {
+                var age_a = parseInt($(a).children("td").eq(2).text());
+                var age_b = parseInt($(b).children("td").eq(2).text());
+                return age_a - age_b;
+            });
+            //插入DOM
+            // $("tbody").html(arr);
+
+            // 清空==>插入排序之后的数组元素
+            $("tbody").html('');
+            $.each(arr, function(index, item) {
+                $('tbody').append(item);
+            })
+        });
+    });
+    </script>
+</body>
+
+</html>

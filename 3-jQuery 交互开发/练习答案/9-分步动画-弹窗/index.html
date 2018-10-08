@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+	</head>
+
+	<body class="bg">
+		<div class="container">
+			<h3 class="white">点击按钮查看效果</h3>
+			<div class="row">
+				<div class="col col-lg-4 col-xs-4">
+					<input type="button" class="btn btn-lg btn-success" name="" id="btn1" value="Demo1" />
+				</div>
+				<div class="col-lg-4 col-xs-4">
+					<input type="button" class="btn btn-lg btn-success" name="" id="btn2" value="Demo2" />
+				</div>
+				<div class="col-lg-4 col-xs-4">
+
+				</div>
+			</div>
+		</div>
+		<!--demo1-->
+		<div id="dialog_1" class="dialog1_box clearfix white">
+			<div class="content_box">
+				<div class="content">
+					<i class="glyphicon glyphicon-remove shutDown"></i>
+					<h1>jQuery</h1>
+					<p>jQuery is a cross-platform JavaScript library designed to simplify the client-side scripting of HTML. jQuery is the most popular JavaScript library in use today, with installation on 65% of the top 10 million highest-trafficked sites on the Web. jQuery is free, open-source software licensed under the MIT License.
+						<br>
+						<br> jQuery's syntax is designed to make it easier to navigate a document, select DOM elements, create animations, handle events, and develop Ajax applications. jQuery also provides capabilities for developers to create plug-ins on top of the JavaScript library. This enables developers to create abstractions for low-level interaction and animation, advanced effects and high-level, theme-able widgets. The modular approach to the jQuery library allows the creation of powerful dynamic web pages and Web applications.
+						<br>
+						<br> The set of jQuery core features—DOM element selections, traversal and manipulation—enabled by its selector engine (named "Sizzle" from v1.3), created a new "programming style", fusing algorithms and DOM data structures. This style influenced the architecture of other JavaScript frameworks like YUI v3 and Dojo, later stimulating the creation of the standard Selectors API.
+						<br>
+						<br> Microsoft and Nokia bundle jQuery on their platforms. Microsoft includes it with Visual Studio for use within Microsoft's ASP.NET AJAX and ASP.NET MVC frameworks while Nokia has integrated it into the Web Run-Time widget development platform. jQuery has also been used in MediaWiki since version 1.16.
+					</p>
+				</div>
+			</div>
+		</div>
+		<!--demo2-->
+		<div id="dialog_2" class="dialog2_box clearfix white">
+			<div class="content_box pull-right">
+				<div class="content">
+					<i class="glyphicon glyphicon-remove shutDown"></i>
+					<h1>jQuery</h1>
+					<p>jQuery is a cross-platform JavaScript library designed to simplify the client-side scripting of HTML. jQuery is the most popular JavaScript library in use today, with installation on 65% of the top 10 million highest-trafficked sites on the Web. jQuery is free, open-source software licensed under the MIT License.
+						<br>
+						<br> jQuery's syntax is designed to make it easier to navigate a document, select DOM elements, create animations, handle events, and develop Ajax applications. jQuery also provides capabilities for developers to create plug-ins on top of the JavaScript library. This enables developers to create abstractions for low-level interaction and animation, advanced effects and high-level, theme-able widgets. The modular approach to the jQuery library allows the creation of powerful dynamic web pages and Web applications.
+						<br>
+						<br> The set of jQuery core features—DOM element selections, traversal and manipulation—enabled by its selector engine (named "Sizzle" from v1.3), created a new "programming style", fusing algorithms and DOM data structures. This style influenced the architecture of other JavaScript frameworks like YUI v3 and Dojo, later stimulating the creation of the standard Selectors API.
+						<br>
+						<br> Microsoft and Nokia bundle jQuery on their platforms. Microsoft includes it with Visual Studio for use within Microsoft's ASP.NET AJAX and ASP.NET MVC frameworks while Nokia has integrated it into the Web Run-Time widget development platform. jQuery has also been used in MediaWiki since version 1.16.
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//弹窗2
+			var $dialog2 = $("#dialog_2");
+			//打开
+			$("#btn2").click(function() {
+				$dialog2.animate({
+					height: "100%"
+				}, "slow", function() {
+					$(this).find(".content_box").animate({
+						width: "100%"
+					}, function() {
+						$(this).find(".content").animate({
+							opacity: 1,
+							left: "0"
+						}, "slow")
+					});
+				})
+			});
+			//关闭
+			$("#dialog_2 .shutDown").click(function() {
+				$dialog2.find(".content").animate({
+					opacity: 0,
+					left: "-40px"
+				}, 600);
+				$dialog2.find(".content_box").delay(600).animate({
+					width: 0
+				}, 200);
+				$dialog2.delay(800).animate({
+					height: 0
+				});
+
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		//弹窗1
+		var $dialog1 = $("#dialog_1");
+		//打开
+		$("#btn1").click(function() {
+			$dialog1.animate({
+				height: "100%"
+			}, 600);
+			$dialog1.find(".content_box").delay(600).animate({
+				width: "100%"
+			}, 200);
+			$dialog1.find(".content").delay(900).animate({
+				opacity: 1,
+				right: "0px"
+			},"slow");
+		});
+		//关闭
+		$("#dialog_1 .shutDown").click(function() {
+			$dialog1.find(".content").animate({
+				opacity: 0,
+				right: "-40px"
+			}, 400);
+			$dialog1.find(".content_box").delay(400).animate({
+				width: 0
+			}, 400);
+			$dialog1.delay(800).animate({
+				height: 0
+			}, 400);
+		});
+	</script>
+
+</html>

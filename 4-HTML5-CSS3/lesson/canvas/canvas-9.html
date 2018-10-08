@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+
+	<body>
+		<canvas id="canvas" width="400" height="300"></canvas>
+		<script type="text/javascript">
+			var oCanvas = document.getElementById("canvas");
+			var context = oCanvas.getContext("2d");
+			var bgGrd = context.createRadialGradient(200, 150, 30, 200, 150, 300);
+			bgGrd.addColorStop(0, "rgb(255,214,0)");
+			bgGrd.addColorStop(0.8, "rgb(0,210,210)")
+			bgGrd.addColorStop(1, "rgb(255,255,255)");
+			context.fillStyle = bgGrd;
+			context.fillRect(0, 0, 400, 300);
+			//绘制矩形
+			context.translate(200, 50);
+			context.shadowOffsetX = 10;
+			context.shadowOffsetY = 10;
+			context.shadowColor = "rgba(100,100,100,0.5)";
+			context.shadowBlur = 5;
+			context.fillStyle = "rgba(255,0,0,0.25)";
+			for(var i = 0; i < 50; i++) {
+				context.translate(25, 25);
+				context.scale(0.95, 0.95);
+				context.rotate(Math.PI / 10);
+				create5star(context);
+				context.fill();
+			}
+
+			function create5star(context) {
+				var dx = 100;
+				var dy = 0;
+				var s = 50;
+				context.beginPath();
+				context.fillStyle = "rgba(255,0,0,0.5)";
+				var x = Math.sin(0);
+				var y = Math.cos(0);
+				var dig = Math.PI / 5 * 4;
+				for(var i = 0; i < 5; i++) {
+					var x = Math.sin(i * dig);
+					var y = Math.cos(i * dig);
+					context.lineTo(dx + x * s, dy + y * s);
+				}
+				context.closePath();
+			}
+			oCanvas.onmousemove = function(e) {
+				var x = e.clientX - this.offsetLeft;
+				var y = e.clientY - this.offsetTop;
+				console.log(x, y);
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        .input-box {
+            padding: 20px 10px;
+        }
+
+        .input-box b {
+            cursor: pointer;
+        }
+
+        .input-box input {
+            outline: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="" method="post">
+        <div class="input-box">
+            <label for="">账号：</label>
+            <input type="text" placeholder="请输入账号" name="" id="user" value="" />
+            <b id="clear">x</b>
+        </div>
+        <div class="input-box">
+            <label for="">密码：</label>
+            <input type="password" placeholder="请输入密码" name="" id="password" value="" />
+            <b id="eye">o</b>
+        </div>
+        <div class="input-box">
+            <label>搜索：</label>
+            <input id="search-text" placeholder="请输入关键词" type="text">
+        </div>
+        <div class="input-box">
+            <textarea id="comment" rows="10" cols="28">请输入评论</textarea>
+        </div>
+        <input id="login" type="button" value="登录" />
+    </form>
+    <script type="text/javascript">
+        window.onload = function () {
+            //查找元素
+            var oLog = document.getElementById("login");
+            var oUser = document.getElementById("user");
+            var oPaswrd = document.getElementById("password");
+            var oComment = document.getElementById('comment');
+            var oSearch = document.getElementById("search-text");
+            //input事件
+            oSearch.oninput = function () {
+                var keyword = this.value;
+                console.log(keyword);
+            }
+
+            //change事件 value值的改变才会触发
+            oUser.onchange = function () {
+                var user = this.value;
+                if (!user) {
+                    this.style.border = "1px solid #eee";
+                    return false;
+                }
+
+                if (user.length < 6) {
+                    this.style.border = "1px solid red";
+                } else {
+                    this.style.border = "1px solid #eee";
+                }
+            }
+            //获得焦点 onfocus
+            oComment.onfocus = function () {
+                if (this.value == "请输入评论") {
+                    this.value = "";
+                }
+                // ...
+            }
+            //失去焦点 onblur
+            oComment.onblur = function () {
+                if (this.value == '') {
+                    this.value = "请输入评论";
+                }
+            }
+
+            //清除X
+            var oCLear = document.getElementById("clear");
+            //眼睛
+            var oEye = document.getElementById("eye");
+            //清除事件
+            oCLear.onclick = function () {
+                oUser.value = "";
+            }
+            //显示/隐藏密码
+            var flag = false;
+            oEye.onclick = function () {
+                if (flag) {
+                    oPaswrd.type = "password";
+                    flag = false;
+                } else {
+                    oPaswrd.type = "text";
+                    flag = true;
+                }
+            }
+            //绑定事件
+            oLog.onclick = function () {
+                var user = oUser.value;
+                var password = oPaswrd.value;
+                var str = "abcdef";
+                //字符串==字符的数组
+                console.log("账号：" + user + " 密码：" + password);
+            }
+			
+        }
+    </script>
+
+</body>
+
+</html>

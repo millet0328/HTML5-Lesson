@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			ul {
+				list-style: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<ul>
+			<li>
+				<label>
+					<input type="checkbox" />
+					<span>选项一</span>
+				</label>
+			</li>
+			<li>
+				<label>
+					<input type="checkbox" />
+					<span>选项二</span>
+				</label>
+			</li>
+			<li>
+				<label>
+					<input type="checkbox" />
+					<span>选项三</span>
+				</label>
+			</li>
+			<li>
+				<label>
+					<input type="checkbox" />
+					<span>选项四</span>
+				</label>
+			</li>
+		</ul>
+
+		<div>
+			<button type="button" id="selectAll">全选</button>
+			<button type="button" id="selectNone">全不选</button>
+			<button type="button" id="reverse">反选</button>
+		</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		//js版本
+		var oChk = document.querySelectorAll("input[type=checkbox]");
+		
+		var oAll = document.getElementById('selectAll');
+		console.dir(oAll);
+		var $chk = $("#selectAll");
+		console.dir($chk);
+		
+		document.getElementById("selectAll").onclick = function() {
+			for(var i = 0; i < oChk.length; i++) {
+				oChk[i].setAttribute("checked", true);
+			}
+		}
+		for(var i = 0; i < oChk.length; i++) {
+			oChk[i].onclick = function() {
+				if(this.checked) {
+					this.nextElementSibling.style.color = "#0000FF"
+				} else {
+					this.nextElementSibling.style.color = "#000000"
+				}
+			}
+		}
+
+		//jQuery版本
+		var $chk = $("input[type=checkbox]");
+		$("#selectAll").click(function() {
+			$chk.prop("checked", true);
+		});
+
+		$chk.click(function() {
+			if($(this).prop("checked")) {
+				$(this).next().css("color", "#0000FF");
+			} else {
+				$(this).next().css("color", "#000000");
+			}
+		});
+	</script>
+
+</html>

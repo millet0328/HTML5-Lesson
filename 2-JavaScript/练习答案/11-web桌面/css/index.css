@@ -1,0 +1,362 @@
+@charset "utf-8";
+.icon {
+	background-image: url(../img/sprits.png);
+	background-repeat: no-repeat;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+body {
+	overflow: hidden;
+}
+
+.desktop {
+	background: url(../img/bg.jpg) no-repeat top center;
+	background-size: 100%;
+	width: 100%;
+	height: 1000px;
+}
+
+.bin {
+	background-position: 0 -198px;
+	height: 67px;
+	width: 56px;
+	position: relative;
+	left: 1px;
+}
+
+.exe li span {
+	display: block;
+	text-align: center;
+	width: 78px;
+}
+
+.exe {
+	padding: 20px 0px 0px 10px;
+	width: 100px;
+}
+
+.exe li {
+	padding: 5px 0px;
+	width: 87px;
+}
+
+.exe div {
+	margin: 0px 10px;
+}
+
+.music {
+	background-position: -203px -109px;
+	height: 67px;
+	width: 63px;
+}
+
+.relative {
+	position: relative;
+}
+
+.fl {
+	float: left;
+}
+
+.clear {
+	clear: both;
+}
+
+.time .top li {
+	width: 2px;
+	height: 2px;
+	border: 1px solid #E50020;
+	border-radius: 100%;
+	margin: 5px 4px;
+}
+
+.time .left {
+	width: 48px;
+	height: 68px;
+	border: 1px solid #E50020;
+	border-radius: 5px;
+}
+
+.time .bottom {
+	text-align: center;
+	background: #fd9187;
+	width: 40px;
+	height: 45px;
+	margin: 0 auto;
+}
+
+#time,
+#date,
+#week {
+	width: 130px;
+	height: 26px;
+	color: dimgray;
+	padding-left: 20px;
+}
+
+.time .right {
+	width: 130px;
+	height: 70px;
+	overflow: hidden;
+}
+
+.time {
+	width: 180px;
+	height: 70px;
+	cursor: default;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	border: 1px dotted rgba(200, 200, 200, 0);
+	border-radius: 5px;
+	padding: 10px;
+	border: 1px solid red
+}
+
+.canlinder1 {
+	width: 320px;
+	height: 450px;
+	position: absolute;
+	bottom: -450px;
+	right: 0;
+}
+
+.zhezhao {
+	background: url(../img/check_bg.png) repeat;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 1;
+}
+
+.relative1 {
+	position: relative;
+	z-index: 2;
+}
+
+.fr {
+	float: right;
+}
+
+.xx {
+	padding: 5px 10px;
+	margin-top: 5px;
+	margin-right: 5px;
+	cursor: pointer;
+}
+
+.file {
+	width: 100px;
+	height: 100px;
+	border: 1px solid transparent;
+	box-sizing: border-box;
+	padding: 8px 0;
+	text-align: center;
+	font-size: 14px;
+	color: #fff;
+	border-radius: 5px;
+	position: absolute;
+	cursor: default;
+}
+
+.file:hover {
+	background-color: gray;
+	border: 1px solid #fff;
+	border-radius: 5px;
+}
+
+#time1 {
+	padding: 10px 0px 5px 10px;
+	font-size: 22px;
+}
+
+#date1 {
+	padding: 5px;
+	padding-left: 10px;
+	color: #fd9187;
+}
+
+.toolerBar .YMs {
+	display: inline-block;
+	width: 100px;
+	line-height: 45px;
+	color: #fff;
+	float: left;
+	padding: 0 12px;
+	font-size: 16px;
+	cursor: default;
+}
+
+.toolerBar .changeCalendar a {
+	display: inline-block;
+	width: 30px;
+	height: 43px;
+	font-size: 16px;
+	line-height: 43px;
+	color: white;
+	background-color: gray;
+	text-align: center;
+}
+
+.toolerBar .YMs:hover {
+	color: #e15671;
+	text-shadow: 0 0 10px #fff;
+}
+
+.toolerBar .changeCalendar a:hover {
+	background-color: lightgray;
+}
+
+#demo {
+	width: 100%;
+	margin: 0px auto;
+}
+
+.rightlist {
+	position: absolute;
+	top: 100px;
+	left: 150px;
+	width: 260px;
+	border: 2px solid #919292;
+	display: none;
+}
+
+.see {
+	background-position: -470px -5px;
+	width: 20px;
+	height: 13px;
+	position: relative;
+	top: 17px;
+	left: 20px;
+}
+
+.rightlist li {
+	background-color: #f1f2f2;
+	width: 260px;
+	color: #3a3a3a;
+	cursor: pointer;
+}
+
+.rightlist li:hover {
+	background-color: #dadadb;
+}
+
+.rightlist span {
+	display: block;
+	padding: 15px 34px;
+}
+
+.rightlist .top {
+	border-bottom: 1px solid #c2c3c3;
+}
+
+.order {
+	background-position: -439px -3px;
+	width: 19px;
+	height: 17px;
+	position: relative;
+	top: 15px;
+	left: 20px;
+}
+
+.rightlist span.x {
+	display: block;
+	padding: 15px 20px;
+}
+
+.f5 {
+	background-position: -391px -5px;
+	width: 21px;
+	height: 18px;
+	position: relative;
+	top: 15px;
+	left: 20px;
+}
+
+.add {
+	background-position: 0px 0px;
+	width: 20px;
+	height: 20px;
+	position: relative;
+	top: 14px;
+	left: 20px;
+}
+
+.set,
+.indiv {
+	background-position: -120px 0px;
+	width: 20px;
+	height: 20px;
+	position: relative;
+	top: 14px;
+	left: 20px;
+}
+
+.control {
+	background-position: -89px 0px;
+	width: 20px;
+	height: 20px;
+	position: relative;
+	top: 14px;
+	left: 20px;
+}
+
+.clean {
+	background-position: -225px -5px;
+	width: 21px;
+	height: 21px;
+	position: relative;
+	top: 14px;
+	left: 20px;
+}
+
+.icon1 {
+	position: absolute;
+	top: -2px;
+	left: 260px;
+	width: 100px;
+	border: 2px solid #919292;
+	display: none;
+}
+
+.icon1 span,
+.date span {
+	display: block;
+	padding: 15px 10px;
+	background-color: #f1f2f2;
+	text-align: center;
+	color: #3a3a3a;
+	cursor: pointer;
+}
+
+.icon1 span:hover,
+.date span:hover {
+	background-color: #dadadb;
+}
+
+.date {
+	position: absolute;
+	top: 45px;
+	left: 260px;
+	width: 100px;
+	border: 2px solid #919292;
+	display: none;
+}
+
+.rightlist .zhi {
+	background-position: -540px -5px;
+	width: 9px;
+	height: 15px;
+	position: absolute;
+	top: 15px;
+	left: -9px;
+}
+
+.addfile {
+	background-position: -96px -198px;
+	width: 54px;
+	height: 67px;
+}

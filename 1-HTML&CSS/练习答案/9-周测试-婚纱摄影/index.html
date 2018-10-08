@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>主页</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/slider.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+	</head>
+
+	<body>
+		<!--头部-->
+		<div class="relative">
+			<div class="nav">
+				<div class="container relative">
+					<div class="logo">
+						<a href="#">
+							<img src="img/logo.jpg" width="168" height="130" />
+						</a>
+					</div>
+					<div class="navbar">
+						<ul class="clearfix">
+							<li>
+								<a href="index.html">网站首页</a>
+							</li>
+							<li>
+								<a href="works.html">客片欣赏</a>
+								<dl>
+									<dd>
+										<a href="#">婚纱客片</a>
+									</dd>
+									<dd>
+										<a href="#">写真客片</a>
+									</dd>
+									<dd>
+										<a href="#">其他客片</a>
+									</dd>
+								</dl>
+							</li>
+							<li>
+								<a href="#">样片大赏</a>
+								<dl>
+									<dd>
+										<a href="#">婚纱作品</a>
+									</dd>
+									<dd>
+										<a href="#">写真作品</a>
+									</dd>
+									<dd>
+										<a href="#">其他作品</a>
+									</dd>
+								</dl>
+							</li>
+							<li>
+								<a href="#">最新资讯</a>
+								<dl>
+									<dd>
+										<a href="#">优惠活动</a>
+									</dd>
+									<dd>
+										<a href="#">行业新闻</a>
+									</dd>
+								</dl>
+							</li>
+							<li>
+								<a href="#">拍摄场景</a>
+								<dl>
+									<dd>
+										<a href="#">内景场地</a>
+									</dd>
+									<dd>
+										<a href="#">外景景点</a>
+									</dd>
+								</dl>
+							</li>
+							<li>
+								<a href="#">公司简介</a>
+								<dl>
+									<dd>
+										<a href="#">公司简介</a>
+									</dd>
+									<dd>
+										<a href="#">联系我们</a>
+									</dd>
+									<dd>
+										<a href="#">精英团队</a>
+									</dd>
+								</dl>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!--轮播图-->
+			<div class="fullSlide">
+				<div class="bd">
+					<ul>
+						<li _src="url(img/banner01.jpg)" style="background:#E2025E center 0 no-repeat;">
+							<a href="http://www.baidu.com"></a>
+						</li>
+						<li _src="url(img/banner02.jpg)" style="background:#DED5A1 center 0 no-repeat;">
+							<a href="http://www.baidu.com"></a>
+						</li>
+						<li _src="url(img/banner03.jpg)" style="background:#B8CED1 center 0 no-repeat;">
+							<a href="http://www.baidu.com"></a>
+						</li>
+					</ul>
+				</div>
+				<div class="hd">
+					<ul></ul>
+				</div>
+				<span class="prev"></span>
+				<span class="next"></span>
+			</div>
+		</div>
+
+		<script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/superslide.2.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(".fullSlide").slide({
+				titCell: ".hd ul",
+				mainCell: ".bd ul",
+				effect: "fold",
+				autoPlay: true,
+				autoPage: true,
+				trigger: "click",
+				startFun: function(i) {
+					var curLi = jQuery(".fullSlide .bd li").eq(i);
+					if (!!curLi.attr("_src")) {
+						curLi.css("background-image", curLi.attr("_src")).removeAttr("_src")
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

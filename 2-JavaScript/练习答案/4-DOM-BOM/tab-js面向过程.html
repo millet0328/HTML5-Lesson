@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+    .tab {
+        width: 600px;
+        margin: 20px auto;
+        font-family: "微软雅黑";
+        color: #657180;
+    }
+
+    .tab-title,
+    .tab-content {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .tab-content {
+        border: 1px solid #d7dde4;
+    }
+
+    .clear::after {
+        clear: both;
+        content: "";
+        display: block;
+    }
+
+    .tab-title li {
+        float: left;
+        text-align: center;
+        padding: 5px 16px 4px;
+        margin-right: 6px;
+        background-color: #f5f7f9;
+        border: 1px solid #d7dde4;
+        border-bottom: none;
+        cursor: pointer;
+        position: relative;
+        font-size: 14px;
+    }
+
+    .tab-title li:hover {
+        color: #39f;
+    }
+
+    .tab-title li.active {
+        background-color: #FFF;
+    }
+
+    .tab-title li.active::after {
+        content: "";
+        border-bottom: 1px solid #FFFFFF;
+        position: absolute;
+        width: 100%;
+        bottom: -1px;
+        left: 0;
+    }
+
+    .tab-content li {
+        display: none;
+        width: 578px;
+        height: 300px;
+        background-color: #FFF;
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .tab-content li:first-child {
+        display: block;
+    }
+    </style>
+</head>
+
+<body>
+    <pre>
+			采用面向过程的方式，原生js编写一套选项卡:
+			1、标题的tab-title 索引index 储存至标签中
+			2、点击标题，对应的标签取出index
+			3、根据index 显示对应的内容content, 先隐藏所有，再显示
+			4、切换完成，对应的标题title, 突出显示
+			5、手动添2套标签，能够正常运转
+			参考网址：http://amazeui.org/javascript/tabs
+	</pre>
+    <!--选项卡-->
+    <div class="tab" id="tab1">
+        <ul class="tab-title clear">
+            <li class="active">详情</li>
+            <li>评价</li>
+            <li>活动</li>
+            <li>投票</li>
+            <li>视频</li>
+        </ul>
+        <ul class="tab-content">
+            <li>第一个</li>
+            <li>第二个</li>
+            <li>第三个</li>
+            <li>第四个</li>
+            <li>第五个</li>
+        </ul>
+    </div>
+</body>
+<script type="text/javascript">
+window.onload = function() {
+    var oWrap = document.getElementById("tab1");
+    var oTitle = oWrap.querySelectorAll(".tab-title li");
+    var oContent = oWrap.querySelectorAll(".tab-content li");
+    //绑定事件
+    for (var i = 0; i < oTitle.length; i++) {
+        //存下标
+        oTitle[i].index = i;
+        // oTitle[i].title = i;
+        oTitle[i].onclick = function() {
+            //移除所有的active
+            for (var i = 0; i < oTitle.length; i++) {
+                oTitle[i].className = "";
+            }
+            this.className = "active";
+            //隐藏所有的content
+            for (var i = 0; i < oContent.length; i++) {
+                oContent[i].style.display = "none";
+            }
+            oContent[this.index].style.display = "block";
+        }
+    }
+}
+</script>
+
+</html>

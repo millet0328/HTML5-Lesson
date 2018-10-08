@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			window.onload = function() {
+				var deg = Math.PI / 2;
+				var res = Math.sin(deg);
+
+				//上舍入
+				var num = 1.86;
+				console.log(Math.ceil(num)); //2
+				//下舍入
+				console.log(Math.floor(num)); //1
+				//四舍五入
+				console.log(Math.round(num)); //2
+
+				//随机数 0`1
+				var m = Math.random();
+				//随机数 1`43(包含)
+				var n = Math.floor(Math.random() * 43 + 1);
+				console.log(n);
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>小米天气</title>
+	</head>
+
+	<body>
+		<canvas id="canvas" width="380" height="400"></canvas>
+		<script type="text/javascript">
+			var oCanvas = document.getElementById('canvas');
+			var context = oCanvas.getContext('2d');
+			//context.fillStyle = '#59cc95';
+			// context.strokeStyle = '#2cb081';
+			context.fillRect(0, 0, 380, 400);
+
+			context.save();
+			context.restore();
+			//画山-小山
+			context.beginPath();
+			context.moveTo(0, 300);
+			context.lineTo(0, 230);
+			context.quadraticCurveTo(100, 225, 230, 250);
+			context.quadraticCurveTo(40, 310, 0, 300);
+			context.closePath();
+			context.fillStyle = "#35C6D0";
+			context.fill();
+			//画山-大山
+//			context.beginPath();
+//			context.moveTo(0, 300);
+//			context.lineTo(0, 400);
+//			context.lineTo(380, 400);
+//			context.lineTo(380, 250);
+//			context.bezierCurveTo(380, 240, 285, 220, 230, 250);
+//			context.quadraticCurveTo(40, 310, 0, 300);
+//			context.closePath();
+//			context.fillStyle = "#2cb081"
+//			context.fill();
+		</script>
+	</body>
+
+</html>

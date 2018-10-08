@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title></title>
+		<style type="text/css">
+			.ticket-box {
+				width: 300px;
+				line-height: 80px;
+				text-align: center;
+				margin: 60px auto;
+				position: relative;
+				font-size: 14px;
+				font-weight: bold;
+				border: 1px solid #EEE;
+			}
+			
+			.ticket-box .result {
+				-moz-user-select: none;
+				-webkit-user-select: none;
+			}
+			
+			.ticket-box canvas {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 10;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="ticket-box">
+			<div class="result">
+				一等奖
+			</div>
+			<canvas id="canvas" width="300" height="80"></canvas>
+		</div>
+		<script type="text/javascript">
+			var oCanvas = document.getElementById('canvas');
+			var context = oCanvas.getContext('2d');
+			//容器
+			var oBox = document.querySelector('.ticket-box');
+			//抽奖结果
+			var oRes = document.querySelector('.ticket-box .result');
+			//初始化
+			context.fillStyle = "gray";
+			context.fillRect(0, 0, oCanvas.width, oCanvas.height);
+			//随机产出抽奖结果
+			var num = Math.random() * 10;
+			if(num >= 0 && num < 5) {
+				oRes.innerText = "谢谢惠顾"
+			}
+			if(num >= 5 && num < 8) {
+				oRes.innerText = "10元"
+			}
+			if(num >= 8 && num < 9) {
+				oRes.innerText = "1000元"
+			}
+			if(num >= 9) {
+				oRes.innerText = "100万元"
+			}
+			//绑定事件
+			oCanvas.onmousedown = function() {
+				document.onmousemove = moveHandle;
+			}
+
+			function moveHandle(e) {
+				var x = e.clientX - oBox.offsetLeft;
+				var y = e.clientY - oBox.offsetTop;
+				context.globalCompositeOperation = 'destination-out';
+				context.beginPath()
+				context.arc(x, y, 20, 0, 2 * Math.PI);
+				context.closePath();
+				context.fillStyle = "#FFF";
+				context.fill();
+			}
+			document.onmouseup = function() {
+				document.onmousemove = null;
+			}
+		</script>
+	</body>
+
+</html>

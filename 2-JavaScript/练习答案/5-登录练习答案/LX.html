@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<title>Document</title>
+		<style type="text/css">
+			.bg {
+				position: fixed;
+				top: 0;
+				left: 0;
+				z-index: 100;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.4);
+				display: none;
+			}
+			
+			.dialog {
+				position: fixed;
+				margin: auto;
+				top: 50%;
+				left: 50%;
+				margin-left: -150px;
+				margin-top: -75px;
+				width: 300px;
+				height: 150px;
+				border: 4px solid #616479;
+				font-weight: bold;
+				text-align: center;
+				background-color: #FFF;
+			}
+			
+			.am-padding-top-sm {
+				margin-top: 15px;
+			}
+			
+			.am-padding-top-md {
+				margin-top: 20px;
+			}
+			
+			.am-padding-top-lg {
+				margin-top: 30px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="dj">
+			<input type="button" value="点击登录" class="" />
+		</div>
+		<div class="bg" id="bg">
+			<div class="dialog">
+				<div class="am-padding-top-md">
+					<label>账号：</label>
+					<input type="text" value="" name="userName" id="userName" />
+				</div>
+				<div class="am-padding-top-md">
+					<label>密码：</label>
+					<input type="password" value="" name="password" id="password" />
+				</div>
+				<div class="am-padding-top-lg">
+					<input type="button" value="登录" id="login" />
+					<input type="button" value="关闭" id="close" />
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var oDj = document.querySelector(".dj");
+			var oBg = document.getElementById("bg");
+			var oWin = oBg.querySelector(".dialog");
+			var oName = document.getElementById("userName");
+			var oPassword = document.getElementById("password");
+			var oLogin = document.getElementById("login");
+			var oClose = document.getElementById("close");
+
+			oDj.onclick = function() {
+				oBg.style.display = "block";
+			}
+
+			oLogin.onclick = function() {
+				var name = oName.value;
+				var code = oPassword.value;
+				var reg = /^([0-9]|[A-z])\w{0,7}$/;
+				var flag = reg.test(name);
+				if(flag && code == "123") {
+					oBg.style.display = "none";
+				} else {
+					alert("用户名或密码错误");
+				}
+			};
+
+			oClose.onclick = function() {
+				oBg.style.display = "none";
+			};
+			//			oBg.onmousedown = function(event) {
+			//				//如果是鼠标左键
+			//				if(event.button == 0) {
+			//					//获取当前鼠标的X、Y坐标
+			//					var currentX = event.clientX;
+			//					var currentY = event.clientY;
+			//					//获取当前拖动主体的left/top
+			//					var nowX = oWin.offsetLeft;
+			//					var nowY = oWin.offsetTop;
+			//					oWin.onmousemove = function(e) {
+			//						//计算位移的距离
+			//						var distanceX = e.clientX - currentX;
+			//						var distanceY = e.clientY - currentY;
+			//						//更改拖动主体的left/top
+			//						this.style.left = distanceX + nowX + "px";
+			//						this.style.top = distanceY + nowY + "px";
+			//					}
+			//					oBg.onmouseup = function() {
+			//						oWin.onmousemove = null;
+			//					}
+			//				}
+			//			}
+		</script>
+	</body>
+
+</html>

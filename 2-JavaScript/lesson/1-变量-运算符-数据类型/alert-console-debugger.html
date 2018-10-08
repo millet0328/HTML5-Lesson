@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+	</head>
+
+	<body>
+		<input type="text" name="num1" id="num1" value="" />
+		<input type="text" name="num2" id="num2" value="" />
+		<input type="button" name="btn" id="btn" value="求和" />
+
+	</body>
+	<script type="text/javascript">
+		var str = "Hello World!";
+		var name = 1024;
+		var res = '/user/login/?uid=' + name + "&name=" + str;
+		var html = '<div class="test">' + str + '</div>';
+		var html = '<div class="' + str + '">' + name + '</div>';
+		var data = '';
+		data += '<div class="test">';
+		data += str;
+		data += '</div>';
+		var flag = true;
+
+		var obj = {
+			name: "MI6",
+			price: 2499,
+			store: 10000,
+			des: "大多数进口"
+		}
+		var total = (123 + 45 * 78) / (34 + 543) - 9 * (324 - 34);
+		var test = "d3293.565"
+		console.log(isNaN(test));
+
+		//对象
+		var person = {
+			age: 30,
+			size: [34, 56, 78],
+			wife: {
+				name: "黄小米",
+				car: {
+					name: "BMW",
+					price: 400000
+				}
+			}
+		}
+		var myCar = {};
+		myCar = person.wife.car;
+		console.log(myCar);
+
+		person.child = {
+			name: "小明"
+		}
+		delete person.wife.car;
+
+		//处理字符串
+		function DoString() {
+
+		}
+		//运行方法
+		DoString();
+		//带参数的方法
+		function sum(str, foo) {
+			console.log(str + foo);
+		}
+		//运行
+		sum("12", 45);
+
+		function convert(tmp) {
+			if(tmp - 47) {
+				console.log("高温预警！")
+			} else {
+				console.log(9 / 5 * tmp + 32);
+			}
+		}
+		convert(47);
+	</script>
+	<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+
+</html>

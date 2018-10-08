@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.tab {
+				width: 600px;
+				margin: 20px auto;
+				font-family: "微软雅黑";
+				color: #657180;
+			}
+			
+			.tab-title,
+			.tab-content {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			
+			.tab-content {
+				border: 1px solid #d7dde4;
+			}
+			
+			.clear::after {
+				clear: both;
+				content: "";
+				display: block;
+			}
+			
+			.tab-title li {
+				float: left;
+				text-align: center;
+				padding: 5px 16px 4px;
+				margin-right: 6px;
+				background-color: #f5f7f9;
+				border: 1px solid #d7dde4;
+				border-bottom: none;
+				cursor: pointer;
+				position: relative;
+				font-size: 14px;
+			}
+			
+			.tab-title li:hover {
+				color: #39f;
+			}
+			
+			.tab-title li.active {
+				background-color: #FFF;
+			}
+			
+			.tab-title li.active::after {
+				content: "";
+				border-bottom: 1px solid #FFFFFF;
+				position: absolute;
+				width: 100%;
+				bottom: -1px;
+				left: 0;
+			}
+			
+			.tab-content li {
+				display: none;
+				width: 578px;
+				height: 300px;
+				background-color: #FFF;
+				padding: 10px;
+				font-size: 12px;
+			}
+			
+			.tab-content li:first-child {
+				display: block;
+			}
+		</style>
+	</head>
+
+	<body>
+		<pre>
+			采用面向对象的方式，原生js编写一套选项卡:
+			0、当前页状态要突出显示
+			1、通过设置参数，默认显示第几个选项卡
+			2、通过设置参数，修改触发事件的类型，例如："click","hover"
+			思考题（附加题）：
+			3、不传参，有默认参数
+			4、通过class来找元素，不通过id来找,根据class="tab"来启动选项卡；
+			参考网址：http://amazeui.org/javascript/tabs
+		</pre>
+		<!--选项卡1-->
+		<div class="tab" id="tab1">
+			<ul class="tab-title clear">
+				<li class="active">详情</li>
+				<li>评价</li>
+				<li>活动</li>
+			</ul>
+			<ul class="tab-content">
+				<li>第一个</li>
+				<li>第二个</li>
+				<li>第三个</li>
+			</ul>
+		</div>
+		<!--选项卡2-->
+		<div class="tab" id="tab2">
+			<ul class="tab-title clear" id="">
+				<li class="active">详情</li>
+				<li>评价</li>
+				<li>活动</li>
+			</ul>
+			<ul class="tab-content" id="">
+				<li>第一个</li>
+				<li>第二个</li>
+				<li>第三个</li>
+			</ul>
+		</div>
+
+	</body>
+	<!--<script type="text/javascript">
+		window.onload = function() {
+			var oWrap = document.getElementById("tab1");
+			var oTitle = oWrap.querySelectorAll(".tab-title li");
+			var oContent = oWrap.querySelectorAll(".tab-content li");
+			//绑定事件
+			for(var i = 0; i < oTitle.length; i++) {
+				//存下标
+				oTitle[i].index = i;
+				//oTitle[i].title = i;
+				oTitle[i].onclick = function() {
+					//移除所有的active
+					for(var i = 0; i < oTitle.length; i++) {
+						oTitle[i].className = "";
+					}
+					this.className = "active";
+					//隐藏所有的content
+					for(var i = 0; i < oContent.length; i++) {
+						oContent[i].style.display = "none";
+					}
+					oContent[this.index].style.display = "block";
+				}
+			}
+		}
+	</script>-->
+	<script type="text/javascript">
+		//面向对象的选项卡
+		function tabs(id, current, eveName) {
+			this.oWrap = document.getElementById(id);
+			//默认显示第几个
+			this.current = current;
+			//触发的事件类型
+			this.eveName = eveName;
+			this.oTitle = this.oWrap.querySelectorAll(".tab-title li");
+			this.oContent = this.oWrap.querySelectorAll(".tab-content li");
+			//自动初始化
+			this.init();
+		}
+		tabs.prototype = {
+			constructor: tabs,
+			setActive: function(x) {
+				//移除所有的active
+				for(var i = 0; i < this.oTitle.length; i++) {
+					this.oTitle[i].className = "";
+				}
+				this.oTitle[x].className = "active";
+			},
+			showContent: function(x) {
+				//隐藏所有的content
+				for(var i = 0; i < this.oContent.length; i++) {
+					this.oContent[i].style.display = "none";
+				}
+				this.oContent[x].style.display = "block";
+			},
+			init: function() {
+				//转存this
+				var self = this;
+				//绑定事件
+				for(var i = 0; i < this.oTitle.length; i++) {
+					//存储下标
+					this.oTitle[i].index = i;
+					if(self.eveName == "hover") {
+						this.oTitle[i].addEventListener("mouseover", function() {
+							self.setActive(this.index);
+							self.showContent(this.index);
+						});
+					} else {
+						this.oTitle[i].addEventListener(self.eveName, function() {
+							self.setActive(this.index);
+							self.showContent(this.index);
+						});
+					}
+				}
+				//默认显示选项卡
+				if(self.current) {
+					self.setActive(self.current);
+					self.showContent(self.current);
+				}
+			}
+		}
+		new tabs("tab1", 1, "hover");
+		new tabs("tab2", 2, "click");
+	</script>
+
+</html>

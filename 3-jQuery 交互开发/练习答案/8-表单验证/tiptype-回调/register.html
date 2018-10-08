@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <style type="text/css">
+    body {
+        padding: 0;
+        margin: 0;
+        background: url(img/bg-2.jpg) no-repeat center;
+        background-size: 100%;
+    }
+
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    .content {
+        width: 600px;
+        margin: 100px auto;
+        color: #fff;
+        text-align: center;
+    }
+
+    .content p {
+        margin-top: 18px;
+    }
+
+    .content .form {
+        width: 300px;
+        margin: 0 auto;
+    }
+
+    input {
+        padding: 10px 15px;
+        width: 100%;
+        display: inline-block;
+        background-color: mediumslateblue;
+        opacity: 0.8;
+        color: #FFFFFF;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .form-control {
+        margin-top: 20px;
+    }
+
+    .Validform_error {
+        background-color: mediumslateblue;
+    }
+
+    .check-tip {
+        display: none;
+        color: #FFFFFF;
+        margin-left: 0;
+        padding: 6px 0;
+        box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1) inset;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+        background: rgba(245, 26, 26, 0.81);
+        border-radius: 0px 0px 5px 5px;
+    }
+
+    .list {
+        list-style: none;
+    }
+
+    .list li {
+        margin-top: 20px;
+    }
+
+    .list button {
+        padding: 10px 15px;
+        width: 280px;
+        font-size: 14px;
+        border-radius: 5px;
+        background: #888888;
+        color: #FFFFFF;
+        border: none;
+        outline: none;
+        display: none;
+        cursor: pointer;
+    }
+
+     :-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: #FFFFFF;
+    }
+
+     ::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: #FFFFFF;
+    }
+
+    input:-ms-input-placeholder,
+    textarea:-ms-input-placeholder {
+        color: #fff;
+    }
+
+    input::-webkit-input-placeholder,
+    textarea::-webkit-input-placeholder {
+        color: #FFFFFF;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <h1>ShareLink</h1>
+        <p>Link the world. Share to world</p>
+        <form class="form" action="http://127.0.0.1:3000/mobile/login" method="post">
+            <ul class="list">
+                <li>
+                    <input type="text" name="count" datatype="*6-16" errormsg="请输入6到16位任意字符！" placeholder="用户名" />
+                    <div class="check-tip">请输入6到16位任意字符！</div>
+                </li>
+                <li>
+                    <input type="password" name="paswrd" datatype="n6-16" errormsg="请输入6到16位数字！" minlength="6" placeholder="密码" />
+                    <div class="check-tip">请输入6到16位数字！</div>
+                </li>
+                <li>
+                    <input type="password" name="" datatype="*" recheck="paswrd" nullmsg="请再输入一次密码！" errormsg="您两次输入的账号密码不一致！" placeholder="请再次输入密码" />
+                    <div class="check-tip">请再输入一次密码！</div>
+                </li>
+                <li>
+                    <input type="text" name="telephone" datatype="m" errormsg="请输入正确的手机号码！" placeholder="请输入手机号" />
+                    <div class="check-tip">请输入正确的手机号码！</div>
+                </li>
+                <li>
+                    <input type="text" name="email" datatype="e" errormsg="请输入正确的邮箱地址！" placeholder="请输入邮箱地址" />
+                    <div class="check-tip">请输入正确的邮箱地址！</div>
+                </li>
+                <li>
+                    <input type="submit" name="" id="register" value="注册" />
+                </li>
+                <li>
+                    <a href="login.html">
+                        <input type="button" name="" id="back_login" value="已经有账号？" />
+                    </a>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/Validform_v5.3.2.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+    $(".form").Validform({
+        ajaxPost: true,
+        tiptype: function(msg, o, cssctl) {
+            //msg：提示信息;
+            //o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
+            //cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
+            var $tip = o.obj.next(".check-tip");
+            cssctl($tip, o.type);
+            $tip.text(msg);
+            if (o.type == 2) {
+                $tip.slideUp(200);
+            } else {
+                $tip.slideDown(200);
+            }
+
+        }
+
+    });
+    </script>
+</body>
+
+</html>

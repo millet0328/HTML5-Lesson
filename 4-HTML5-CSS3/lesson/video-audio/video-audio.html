@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+	</head>
+
+	<body>
+		<!--声频-->
+		<audio controls="controls">
+			<source src="south Mountain.mp3" type="audio/mp3" />
+		</audio>
+		<button type="button" id="speed">加速</button>
+		<br />
+		<!--视频-->
+		<video controls="controls" width="500">
+			<source src="demo.mp4"></source>
+		</video>
+		<button type="button" id="play">播放</button>
+		<button type="button" id="pause">暂停</button>
+		<script type="text/javascript">
+			var oVideo = document.querySelector("video");
+			var oPlay = document.getElementById("play");
+			var oPause = document.getElementById("pause");
+			var oAudio = document.querySelector("audio");
+			var oSpeed = document.getElementById("speed");
+			//加速
+			oSpeed.onclick = function() {
+				oAudio.playbackRate = 2.5;
+			}
+			//播放
+			oPlay.onclick = function() {
+				oVideo.play();
+			}
+			//暂停
+			oPause.onclick = function() {
+				oVideo.pause();
+			}
+			//总时间 duration
+			//静音 muted
+			//音量 volume
+			oVideo.onplay = function() {
+				console.log(this.currentTime);
+			}
+
+			//当前时间
+			oVideo.ontimeupdate = function() {
+				console.log(this.currentTime);
+			}
+			//控制条 currentTime
+			
+		</script>
+	</body>
+
+</html>

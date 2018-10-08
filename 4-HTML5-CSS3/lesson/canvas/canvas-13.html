@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+
+	<body>
+		<canvas id="canvas" width="400" height="300"></canvas>
+		<script type="text/javascript">
+			var oCanvas = document.getElementById("canvas");
+			var context = oCanvas.getContext("2d");
+			var oprtnArr = [
+				"source-atop",
+				"source-in",
+				"source-out",
+				"source-over",
+				"destination-atop",
+				"destination-in",
+				"destination-out",
+				"destination-over",
+				"lighter",
+				"copy",
+				"xor"
+			];
+			//绘制矩形
+			context.fillStyle = "blue";
+			context.fillRect(10, 10, 60, 60);
+			//选择图形合并方式
+			i = 3;
+			context.globalCompositeOperation = oprtnArr[i];
+			context.beginPath();
+			context.fillStyle = "red";
+			context.arc(60, 60, 30, 0, 2 * Math.PI, false);
+			context.fill();
+			oCanvas.onmousemove = function(e) {
+				var x = e.clientX - this.offsetLeft;
+				var y = e.clientY - this.offsetTop;
+			}
+		</script>
+	</body>
+
+</html>

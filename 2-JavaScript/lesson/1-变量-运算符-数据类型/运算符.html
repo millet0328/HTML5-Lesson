@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<input type="text" name="" id="txt" value="" />
+		<button id="btn" type="button">按钮</button>
+		<script type="text/javascript">
+			//查找元素
+			var oBtn = document.getElementById("btn");
+			var oTxt = document.getElementById("txt");
+			//绑定事件
+			oBtn.onclick = function() {
+				//获取value值
+				var res = typeof oTxt.value;
+				console.log(res);
+				var x = oTxt.value + 7;
+				alert(x);
+			}
+
+			//求余---奇偶数
+			13 % 2 == 1; //奇数
+			12 % 2 == 0; //偶数
+			//求余---整除
+			3565 % 7 == 0
+
+			var y = 5;
+			x = ++y;
+			//扩展
+			y = y + 1;
+			x = y; //6
+
+			x = y++;
+			//扩展
+			x = y; //5
+			y = y + 1; //6
+
+			var m = 8;
+			var n = 6;
+			var flag = m > n;
+			console.log(flag);
+
+			var bool = m < 10 && n < 2;
+			console.log(bool);
+		</script>
+	</body>
+
+</html>

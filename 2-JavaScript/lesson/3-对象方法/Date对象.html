@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div id="box">
+    </div>
+    <button type="button" id="stop">停止</button>
+    <button type="button" id="start">开始</button>
+    <div id="time">
+    </div>
+    <script type="text/javascript">
+    window.onload = function() {
+        //查找元素
+        var oBox = document.getElementById("box");
+        var oStop = document.getElementById("stop");
+        var oStart = document.getElementById("start");
+        var oTime = document.getElementById("time");
+        //设定变量
+        var timer;
+
+        //开始
+        //重复绑定定时器bug
+        oStart.onclick = function() {
+            //timer = setInterval(function() {
+            //	clock();
+            //}, 1);
+            clearInterval(timer);
+            timer = setInterval(clock, 1);
+        }
+
+        oStop.onclick = function() {
+            clearInterval(timer);
+        }
+
+        function clock() {
+            var now = new Date();
+            //获取
+            var year = now.getFullYear();
+            var month = now.getMonth() + 1;
+            var day = now.getDate();
+            var week = now.getDay();
+            var hour = now.getHours();
+            var min = now.getMinutes();
+            var sec = now.getSeconds();
+            var msec = now.getMilliseconds();
+            //显示
+            oBox.innerText = year + "-" + month + "-" + day + " " +
+                hour + ":" + min + ":" + sec + ":" + msec;
+
+        }
+        //修正页面打开无时间
+        clock();
+
+        //设置10天之后的日期
+        var now = new Date();
+        var Tenday = now.getTime() + 10 * 24 * 60 * 60 * 1000;
+
+    }
+    </script>
+</body>
+
+</html>

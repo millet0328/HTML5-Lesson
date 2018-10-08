@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.flower {
+				position: absolute;
+				left: 0;
+				top: 0;
+				color: #E77064;
+				font-size: 40px;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<img src="img/1.jpg" width="" height="" id="photo" />
+		<div class="">
+			<h1 id="goBack">后退</h1>
+			<input type="button" name="btn" id="btn" value="点击" />
+			<a href="http://www.jd.com/" id="link">京东</a>
+		</div>
+		<!--<img src="http://www.cps88.cn/UploadFiles/FCK/2015-06/201506192.jpg" />-->
+		<div class="clockBox">
+			<h1 id="clock">15:49:23</h1>
+			<button type="button" id="stop">停止</button>
+		</div>
+		<div id="flower" class="flower">
+			❉
+		</div>
+		<button id="log">点击</button>
+		<script type="text/javascript">
+			var oBack = document.getElementById("goBack");
+			var oLog = document.getElementById("log");
+			//
+			oBack.onclick = function() {
+				//后退
+				history.back();
+			}
+			//弹窗
+			oLog.onclick = function() {
+				//选择类
+				//				var flag = confirm("确定要删除对方好友吗？");
+				//				console.log(flag);
+				//				if(flag) {
+				//					//删除好友
+				//					
+				//				} else {
+				//					//不做任何操作
+				//					
+				//				}
+				//输入类
+				var res = prompt("请输入你的出生日期：", "2000-10-25");
+				console.log(res);
+			}
+
+		</script>
+	</body>
+
+</html>

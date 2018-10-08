@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+
+	</head>
+
+	<body>
+		<input type="button" name="" id="connect" value="1.连接test" />
+		<input type="button" name="" id="listen" value="2.监听版本号" />
+		<input type="button" name="" id="create" value="3.创建obj仓库/索引" />
+		<input type="button" name="" id="store" value="4.存储数据" />
+		<input type="button" name="" id="check" value="5.查询数据" />
+		<script type="text/javascript">
+			window.onload = function() {
+				var btn_connect = document.getElementById("connect");
+				var btn_listen = document.getElementById("listen");
+				var btn_create = document.getElementById("create");
+				var btn_store = document.getElementById("store");
+				var btn_check = document.getElementById("check");
+
+				//连接
+				btn_connect.onclick = function() {
+					var request = indexedDB.open('test', 1); // 打开 dbName 数据库
+					request.onerror = function(e) { // 监听连接数据库失败时执行
+						console.log('连接数据库失败');
+					}
+					request.onsuccess = function(e) { // 监听连接数据库成功时执行
+						console.log('连接数据库成功');
+					}
+				}
+				//侦测版本号
+				btn_listen.onclick = function() {
+					var request = indexedDB.open('test', 2); // 更新版本，打开版本为2的数据库
+					request.onupgradeneeded = function(e) {
+						console.log('新数据库版本号为=' + e.newVersion);
+					}
+				}
+				//创建obj仓库
+				btn_create.onclick = function() {
+					var request = indexedDB.open('test', 3);
+					request.onupgradeneeded = function(e) {
+						var db = e.target.result;
+						var store = db.createObjectStore('Users', {
+							keyPath: 'userId',
+							autoIncrement: true
+						});
+						console.log('创建对象仓库成功');
+						var idx = store.createIndex('id', 'userId', {
+							unique: true
+						})
+						console.log('创建对象索引成功');
+					}
+				}
+
+				//存储数据
+				btn_store.onclick = function() {
+					var request = indexedDB.open('test', 4);
+					request.onsuccess = function(e) {
+						var db = e.target.result;
+						var tx = db.transaction('Users', 'readwrite');
+						var store = tx.objectStore('Users');
+						var value = {
+							'userId': 1,
+							'userName': 'linxin',
+							'age': 24
+						}
+						var req1 = store.put(value); // 保存数据
+						var req2 = store.get(1); // 获取索引userId为1的数据
+						req2.onsuccess = function() {
+							console.log(this.result.userName); // linxin
+						}
+					}
+				}
+
+				//查询数据
+				btn_check.onclick = function() {
+					var request = indexedDB.open('test', 5);
+					// ...
+					request.onsuccess = function(e) {
+						var db = e.target.result;
+						var tx = db.transaction('Users', 'readwrite');
+						var store = tx.objectStore('Users');
+						var range = IDBKeyRange.bound(1, 10);
+						var req = store.openCursor(range, 'next');
+						req.onsuccess = function() {
+							var cursor = this.result;
+							if(cursor) {
+								console.log(cursor.value.userName);
+								cursor.continue();
+							} else {
+								console.log('检索结束');
+							}
+						}
+					}
+				}
+
+			}
+		</script>
+	</body>
+
+</html>
