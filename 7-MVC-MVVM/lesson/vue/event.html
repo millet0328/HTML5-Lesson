@@ -5,31 +5,52 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<style type="text/css">
-			.grid:hover {
-				background-color: #269ABC;
+			.type {
+				display: inline-block;
+				padding: 6px 12px;
+				border: 2px solid #999999;
+				margin: 6px;
+			}
+			
+			.type.selected {
+				border: 2px solid #C12E2A;
 			}
 		</style>
 	</head>
 
 	<body>
 		<div id="app" class="">
-			<h1 :class="{grid:flag}" @mouseover="enter" @mouseout="leave">
-				Hello World!
-			</h1>
+			<span @click="toggle" class="type" :class="{selected:type.selected}">{{type.text}}</span>
+			<!--<span class="type" v-for="item in types">{{item}}</span>-->
 		</div>
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var app = new Vue({
 				el: "#app",
 				data: {
-					flag: true
+					type: {
+						text: "白色",
+						selected: false
+					},
+					types: [{
+						text: "XS",
+						selected: false
+					}, {
+						text: "M",
+						selected: false
+					}, {
+						text: "L",
+						selected: false
+					}]
 				},
 				methods: {
-					enter: function() {
-						console.log("enter")
-					},
-					leave: function() {
-						console.log("leave")
+					toggle: function() {
+						this.type.selected = !this.type.selected;
+						if(this.type.selected) {
+							this.type.text = "黑色";
+						} else {
+							this.type.text = "白色";
+						}
 					}
 				}
 			})
