@@ -6,29 +6,46 @@
     <title></title>
     <style type="text/css">
     body {
-        background: #333;
-    }
-
-    .stage {
-        perspective: 3000px;
-        height: 1000px;
+        background-color: #000;
         -webkit-user-select: none;
-        -moz-user-select: none;
-    }
-
-    .list img {
         -webkit-user-drag: none;
     }
 
-    .stage .list {
-        transform-style: preserve-3d;
+    .list li img {
+        -webkit-user-drag: none;
+    }
+
+    .stage {
         width: 200px;
         height: 300px;
         margin: 200px auto;
+    }
+
+    .list {
         list-style: none;
         padding: 0;
-        transform: rotateX(-25deg);
-        /*animation: around 5s linear infinite;*/
+        margin: 0;
+        transform-style: preserve-3d;
+        transform: rotateX(-10deg);
+        width: 200px;
+        height: 300px;
+        transition: all 1s;
+    }
+
+    .list::after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 1200px;
+        height: 1200px;
+        margin-left: -600px;
+        margin-top: -600px;
+        background: -webkit-radial-gradient(center center, 600px 600px, rgba(50, 50, 50, 1), rgba(0, 0, 0, 0));
+        background: radial-gradient(center center, 600px 600px, rgba(50, 50, 50, 1), rgba(0, 0, 0, 0));
+        -webkit-transform: translateY(200px) rotateX(90deg);
+        transform: translateY(200px) rotateX(90deg)
     }
 
     .list li {
@@ -36,63 +53,54 @@
         transition: all 0.5s;
     }
 
+    /**/
+
     .list.active li:nth-child(1) {
-        transform: translateZ(300px);
-        transition-delay: 0.2s;
+        transform: translateZ(400px);
+        transition-delay: 1.6s;
     }
 
     .list.active li:nth-child(2) {
-        transform: rotateY(40deg) translateZ(300px);
-        transition-delay: 0.5s;
+        transform: rotateY(40deg) translateZ(400px);
+        transition-delay: 1.4s;
     }
 
     .list.active li:nth-child(3) {
-        transform: rotateY(80deg) translateZ(300px);
-        transition-delay: 1s;
+        transform: rotateY(80deg) translateZ(400px);
+        transition-delay: 1.2s;
     }
 
     .list.active li:nth-child(4) {
-        transform: rotateY(120deg) translateZ(300px);
-        transition-delay: 1.5s;
+        transform: rotateY(120deg) translateZ(400px);
+        transition-delay: 1.0s;
     }
 
     .list.active li:nth-child(5) {
-        transform: rotateY(160deg) translateZ(300px);
-        transition-delay: 2.0s;
+        transform: rotateY(160deg) translateZ(400px);
+        transition-delay: 0.8s;
     }
 
     .list.active li:nth-child(6) {
-        transform: rotateY(200deg) translateZ(300px);
-        transition-delay: 2.5s;
+        transform: rotateY(200deg) translateZ(400px);
+
+        transition-delay: 0.6s;
     }
 
     .list.active li:nth-child(7) {
-        transform: rotateY(240deg) translateZ(300px);
-        transition-delay: 3.0s;
+        transform: rotateY(240deg) translateZ(400px);
+
+        transition-delay: 0.4s;
     }
 
     .list.active li:nth-child(8) {
-        transform: rotateY(280deg) translateZ(300px);
-        transition-delay: 3.5s;
+        transform: rotateY(280deg) translateZ(400px);
+        transition-delay: 0.2s;
     }
 
     .list.active li:nth-child(9) {
-        transform: rotateY(320deg) translateZ(300px);
-        transition-delay: 4.0s;
-    }
+        transform: rotateY(320deg) translateZ(400px);
 
-    .list:hover {
-        /*animation-play-state: paused;*/
-        animation-direction: reverse;
-    }
-
-    @keyframes around {
-        from {
-            transform: rotateX(-20deg) rotateY(0deg);
-        }
-        to {
-            transform: rotateX(-20deg) rotateY(360deg);
-        }
+        transition-delay: 0s;
     }
     </style>
 </head>
@@ -135,6 +143,36 @@
     setTimeout(function() {
         $('.list').addClass("active");
     }, 500);
+    var downX, downY;
+    //鼠标down事件
+    function downHandle(e) {
+        //记录当前鼠标坐标
+        downX = e.clientX;
+        downY = e.clientY;
+        $(document).on('mousemove', moveHandle);
+    }
+    $(document).on('mousedown', downHandle);
+    //鼠标move事件
+    function moveHandle(e) {
+        //记录坐标
+        var upX = e.clientX;
+        var upY = e.clientY;
+        //计算鼠标位移距离
+        var distanceX = upX - downX;
+        var distanceY = upY - downY;
+
+        console.log(distanceX);
+        console.log(distanceY);
+        //旋转
+        $('.list').css({
+            transform: 'rotateY(' + distanceX + 'deg)' + ' rotateX(' + distanceY + 'deg)'
+        });
+    }
+
+    // 移除事件
+    $(document).on('mouseup', function() {
+        $(document).off("mousemove", moveHandle);
+    })
     </script>
 </body>
 
