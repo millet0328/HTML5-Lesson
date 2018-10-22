@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box {
+				width: 200px;
+				height: 200px;
+				background-color: blueviolet;
+				margin: 20px;
+				transition: all 2s;
+			}
+			
+			.box.active {
+				transform: translateX(1000px) rotate(360deg);
+				background-color: yellow;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+			<div class="box" v-for="(item,index) in active" :class="{active:item.status}" @click="move(index)">box{{index+1}}</div>
+		</div>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					//active: [false, false, false],
+					active: [{
+						status: false
+					}, {
+						status: false
+					}, {
+						status: false
+					}],
+				},
+				methods: {
+					move: function(i) {
+						this.active[i].status = true;
+						//app.$set(app.active, i, true);
+					},
+				}
+			});
+		</script>
+	</body>
+
+</html>

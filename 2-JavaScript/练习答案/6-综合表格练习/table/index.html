@@ -8,8 +8,8 @@
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
 	</head>
 
-	<body class="">
-		<div class="bg-grey pd20">
+	<body>
+		<div id="app" class="bg-grey pd20">
 			<div class="table_box pd20 bg-white">
 				<form class="form-inline" action="" method="">
 					<div class="form-group">
@@ -99,26 +99,7 @@
 				</form>
 			</div>
 		</div>
-		<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				//添加数据
-				$("#add_btn").click(function() {
-					var name = $("#name_input").val();
-					var age = $("#age_input").val();
-					//DOM操作--添加
-					//创建元素+修饰元素
-					var $tr = $('<tr><td>5</td><td>' + name + '</td><td>' + age + '</td><td><a href="javascript:;">删除</a></td></tr>')
-					//插入元素
-					$("tbody").append($tr);
-				});
-				//删除数据
-				$("#chart").on("click","a",function () {
-					//偷偷把this指向了实际点击的元素
-					$(this).parents("tr").remove();
-				});
-			});
-		</script>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 
 </html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div id="app">
+			<h1 v-if="vip">金牌会员</h1>
+			<div v-if="sex==1">男</div>
+			<div v-else-if="sex==0">女</div>
+			<div v-else>非男非女</div>
+			<h1 v-if="age >= 25">Age: {{ age }}</h1>
+		</div>
+
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					vip: true,
+					sex: 1,
+					age: 30,
+				}
+			})
+		</script>
+	</body>
+
+</html>
