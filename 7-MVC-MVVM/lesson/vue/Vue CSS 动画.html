@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box {
+				width: 200px;
+				height: 200px;
+				background-color: blue;
+				margin: 10px;
+			}
+			
+			.bounce-enter-active {
+				animation: bounce-in .5s;
+			}
+			
+			.bounce-leave-active {
+				animation: bounce-in .5s reverse;
+			}
+			
+			@keyframes bounce-in {
+				0% {
+					transform: scale(0);
+				}
+				50% {
+					transform: scale(1.5);
+				}
+				100% {
+					transform: scale(1);
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="example-2">
+			<button @click="show = !show">Toggle show</button>
+			<transition name="bounce">
+				<p class="box" v-if="show">示例文字示例文字示例文字示例文字示例文字示例文字</p>
+			</transition>
+		</div>
+
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			new Vue({
+				el: '#example-2',
+				data: {
+					show: true
+				}
+			})
+		</script>
+	</body>
+
+</html>

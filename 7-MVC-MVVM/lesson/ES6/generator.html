@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			function loadImageAsync(url) {
+				return new Promise(function(resolve, reject) {
+					const image = new Image();
+					image.src = url;
+
+					image.onload = function() {
+						resolve(image);
+					};
+
+					image.onerror = function() {
+						reject(new Error('Could not load image at ' + url));
+					};
+				});
+			}
+
+			function* loadImage(img1, img2, img3) {
+				yield loadImageAsync(img1);
+				yield loadImageAsync(img2);
+				return loadImageAsync(img3);
+			}
+			var hw = loadImage('./img/0.jpg', './img/1.png');
+			hw.next();
+
+			async function f() {
+				return await 123;
+				return await new Promise(function(reslove, reject) {
+					resolve(123);
+				});
+			}
+		</script>
+	</body>
+
+</html>
