@@ -16,8 +16,7 @@
 	<body>
 		<div id="app">
 			<button @click="showModal = true">弹出confirm</button>
-			<confirm-modal :open="showModal" @confirm="delHandle" @close="showModal = false">
-				<div slot="title">删除</div>
+			<confirm-modal :open="showModal" title="删除记录" @confirm="delHandle" @close="showModal = false">
 				确定要删除这条记录吗？
 			</confirm-modal>
 		</div>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.title {
+				border: 0;
+				padding: 4px 16px;
+				margin-right: 10px;
+				font-size: 16px;
+				border-radius: 3px;
+				outline: 0;
+			}
+			
+			.title.active {
+				background-color: blue;
+				color: white;
+			}
+			
+			.component {
+				margin-top: 5px;
+				border: 1px solid #999999;
+				padding: 20px;
+				font-size: 14px;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="css/tab.css"/>
+	</head>
+
+	<body>
+		<div id="app">
+			<!--标题-->
+			<button class="title" :class="{active:currentTab==item}" @click="currentTab=item" v-for="item in tabs">{{item}}</button>
+			<!--内容-->
+			<keep-alive>
+				<component class="component" :is="currentTabComponent"></component>
+			</keep-alive>
+		</div>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/tab.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Vue.component('detail-tab', {
+				data: function() {
+					return {
+						count: 0
+					}
+				},
+				template: `<div>详情-----内容 {{count}} <button @click="count++" type="button">+</button></div>`
+			});
+			Vue.component('comment-tab', {
+				template: `<div><tab></tab></div>`
+			});
+			Vue.component('more-tab', {
+				template: `<div>更多-----内容</div>`
+			});
+			var app = new Vue({
+				el: '#app',
+				data: {
+					currentTab: '详情',
+					tabs: ['详情', '评价', '更多']
+				},
+				computed: {
+					currentTabComponent: function() {
+						let tabName = '';
+						switch(this.currentTab) {
+							case '详情':
+								tabName = 'detail';
+								break;
+							case '评价':
+								tabName = 'comment';
+								break;
+							default:
+								tabName = 'more';
+								break;
+						}
+
+						return tabName + '-tab';
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

@@ -16,8 +16,7 @@
 	<body>
 		<div id="app">
 			<button @click="showModal = true">弹出confirm</button>
-			<confirm-modal :open="showModal" @close="showModal = false" @confirm="submitHandle">
-				<div slot="title">提交</div>
+			<confirm-modal :open="showModal" title="提交记录" @close="showModal = false" @confirm="submitHandle">
 				<submit-form></submit-form>
 			</confirm-modal>
 		</div>

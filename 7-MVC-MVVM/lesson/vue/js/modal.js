@@ -1,13 +1,13 @@
 //注册组件
 Vue.component('confirm-modal', {
-	props: ['open'],
+	props: ['open','title'],
 	template: `
 	<div class="modal fade" :class="{in:open}">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" @click="$emit('close')" class="close"><span>&times;</span></button>
-					<h4 class="modal-title"><slot name="title"></slot></h4>
+					<h4 class="modal-title">{{title}}</h4>
 				</div>
 				<div class="modal-body">
 					<slot></slot>
