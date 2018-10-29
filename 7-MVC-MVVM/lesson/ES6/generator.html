@@ -8,29 +8,50 @@
 
 	<body>
 		<script type="text/javascript">
-			function loadImageAsync(url) {
-				return new Promise(function(resolve, reject) {
-					const image = new Image();
-					image.src = url;
-
-					image.onload = function() {
-						resolve(image);
-					};
-
-					image.onerror = function() {
-						reject(new Error('Could not load image at ' + url));
-					};
-				});
+			function* getPrice(type, weight) {
+				let price = 0;
+				switch(type) {
+					case '苹果':
+						price = 6;
+						break;
+					case '西瓜':
+						price = 3;
+						break;
+					default:
+						price = 5;
+						break;
+				}
+				yield '单价：' + price;
+				let cost = price * weight;
+				return cost;
 			}
-
-			function* loadImage(img1, img2, img3) {
-				yield loadImageAsync(img1);
-				yield loadImageAsync(img2);
-				return loadImageAsync(img3);
-			}
-			var hw = loadImage('./img/0.jpg', './img/1.png');
-			hw.next();
+			let arrow = getPrice('西瓜', 1.5);
 		</script>
+		<script type="text/javascript">
+			async function getPrice(type, weight) {
+				let price
+				//是否vip
+				let isVip = await getJSON('/isVip/', {
+					type: type
+				});
+				//获取单价
+				if(isVip) {
+					price = await getJSON('/getVipPrice/', {
+						type: type
+					});
+				} else {
+					price = await getJSON('/getPrice/', {
+						type: type
+					});
+				}
+				let cost = price * weight;
+				return cost;
+			}
+			getPrice('苹果', 2).then(function(money) {
+				console.log('总价：' + money);
+			});
+		</script>
+
 	</body>
 
 </html>

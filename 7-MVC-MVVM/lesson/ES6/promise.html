@@ -37,7 +37,28 @@
 				})
 				.then(function(data) {
 					console.log(data);
+				})
+				.catch(function(error) {
+
 				});
+		</script>
+		<script type="text/javascript">
+			(function() {
+				setTimeout(function() {
+					console.log(4);
+				}, 0);
+				var count = 0;
+				new Promise(function(resolve, reject) {
+					console.log(1);
+					for(let i = 0; i < 2; i++) {
+						count += i;
+					};
+					resolve(console.log(2));
+				}).then(function(data) {
+					console.log(3);
+				});
+				console.log(5);
+			})();
 		</script>
 	</body>
 

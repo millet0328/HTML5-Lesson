@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			class Animal {
+				//构造函数
+				constructor(sex = '公') {
+					this.name = 'animal';
+					this.sex = sex;
+				}
+				//原型
+				eat() {
+					console.log('eat....')
+				}
+				drink() {
+					console.log('drink....')
+				}
+			}
+			//实例
+			let animal = new Animal();
+			//继承
+			class Dog extends Animal {
+				constructor(sex) {
+					super(sex);
+					this.color = '黄色';
+				}
+				eat() {
+					console.log('eat bone......')
+				}
+			}
+			let Tai = new Dog('母');
+			console.log(Tai)
+		</script>
+	</body>
+
+</html>
