@@ -3,16 +3,17 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>Demo</title>
+		<title>主页</title>
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
 		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
 		<link rel="stylesheet" href="css/swiper-4.3.3.min.css">
+		<link rel="stylesheet" href="css/animate.css">
 		<link rel="stylesheet" type="text/css" href="css/index.css">
 	</head>
 
 	<body>
 		<!--header-->
-		<header class="mini">
+		<header class="wow fadeInDown mini">
 			<div class="container">
 				<div class="logo fl">
 					<img height="40" src="img/logo.png" />
@@ -62,7 +63,7 @@
 		</header>
 		<!-- Swiper -->
 		<div class="swiper-box">
-			<div class="swiper-container">
+			<div class="wow bounceInUp swiper-container">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide">
 						<a href="#" style="background-image: url(img/1441119592513.jpg);"></a>
@@ -86,21 +87,21 @@
 			<div class="data-box">
 				<div class="container">
 					<ul class="clearfix">
-						<li>
+						<li class="wow bounceInUp">
 							<span>2,008</span>
 							<small>年</small>
 							<div class="des">
 								成立时间
 							</div>
 						</li>
-						<li>
+						<li data-wow-delay="0.5s" class="wow bounceInUp">
 							<span>358</span>
 							<small>个</small>
 							<div class="des">
 								服务客户
 							</div>
 						</li>
-						<li>
+						<li data-wow-delay="1.0s" class="wow bounceInUp">
 							<span>12</span>
 							<small>个</small>
 							<div class="des">
@@ -142,7 +143,7 @@
 					</div>
 					<!--案例列表-->
 					<ul class="clearfix">
-						<li>
+						<li class="wow fadeInRight">
 							<div class="photo">
 								<img class="tran5" src="img/1439312268853.jpg" />
 							</div>
@@ -153,7 +154,7 @@
 								website
 							</div>
 						</li>
-						<li>
+						<li data-wow-delay="0.5s" class="wow fadeInRightBig">
 							<div class="photo">
 								<img class="tran5" src="img/1439312780482.jpg" />
 							</div>
@@ -164,7 +165,7 @@
 								movie fashion
 							</div>
 						</li>
-						<li>
+						<li data-wow-delay="0.8s" class="wow fadeInUp">
 							<div class="photo">
 								<img class="tran5" src="img/1439313022661.jpg" />
 							</div>
@@ -241,20 +242,36 @@
 			<!--团队-->
 			<div class="team-box">
 				<div class="container">
-					<ul class="clearfix">
-						<li>
-							<a href="#">
-								<div class="photo relative">
-									<img src="img/1521689354217.jpg" />
-									<div class="cover">
-										<div class="introduce">
-											<div class="name">Zan Smitch</div>
-											<div class="job">视觉设计师</div>
-										</div>
-									</div>
-								</div>
-								<div class="summary">要以文字、图形、色彩为基本要素的艺术创作，在精神文化领域以其独特的艺术魅力影响着人们的感情和观念</div>
-							</a>
+					<ul>
+						<li class="wow fadeInUp">
+							<div class="photo">
+								<img src="img/1521689354217.jpg" alt="">
+							</div>
+							<div class="info">
+								<div class="name">乔纳森 / Joseph</div>
+								<div class="position">设计总监</div>
+								<div class="des">设计界的“设计鬼才”从题材到表现方式都引起了极大的福布斯中国最具潜力 ...</div>
+							</div>
+						</li>
+						<li data-wow-delay="0.8s" class="wow fadeInUp">
+							<div class="photo">
+								<img src="img/1521689354217.jpg" alt="">
+							</div>
+							<div class="info">
+								<div class="name">乔纳森 / Joseph</div>
+								<div class="position">设计总监</div>
+								<div class="des">设计界的“设计鬼才”从题材到表现方式都引起了极大的福布斯中国最具潜力 ...</div>
+							</div>
+						</li>
+						<li data-wow-delay="1.2s" class="wow fadeInUp">
+							<div class="photo">
+								<img src="img/1521689354217.jpg" alt="">
+							</div>
+							<div class="info">
+								<div class="name">乔纳森 / Joseph</div>
+								<div class="position">设计总监</div>
+								<div class="des">设计界的“设计鬼才”从题材到表现方式都引起了极大的福布斯中国最具潜力 ...</div>
+							</div>
 						</li>
 					</ul>
 				</div>
@@ -263,6 +280,7 @@
 
 		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 		<script src="js/swiper-4.3.3.min.js"></script>
+		<script src="js/wow.min.js"></script>
 		<script>
 			var swiper = new Swiper('.swiper-container', {
 				pagination: {
@@ -275,6 +293,9 @@
 				},
 				//mousewheel: true,
 			});
+		</script>
+		<script>
+			new WOW().init();
 		</script>
 	</body>
 
