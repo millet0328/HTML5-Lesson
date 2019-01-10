@@ -1,0 +1,42 @@
+/* 公共类 */
+.container {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.clear {
+	clear: both;
+}
+
+.floor-1 {
+	background-color: #26d9ce;
+	height: 567px;
+}
+
+.floor-2 {
+	background-color: #8885fb;
+}
+
+.floor-3 {
+	background-color: #26d9df;
+}
+
+.floor-4 {
+	background-color: #ff9e78;
+}
+
+.navbar {
+	background-color: #8884fc;
+}
+
+.nav {
+	background-color: #b6837f;
+}

@@ -1,0 +1,32 @@
+/* 公共类 */
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+/* 清除浮动 */
+.clear {
+	clear: both;
+}
+
+.container {
+	width: 1120px;
+	margin: 0 auto;
+}
+
+/* 实验室 */
+.lab-section .list .item {
+	width: 550px;
+	margin: 0 65px;
+}
+
+.lab-section .list .title {
+	text-align: center;
+	font-size: 16px;
+	color: #333333;
+	padding-top: 21px;
+	padding-bottom: 24px;
+}

@@ -1,0 +1,82 @@
+/* 公共类 */
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+/* 清除浮动 */
+.clear {
+	clear: both;
+}
+
+.container {
+	width: 1120px;
+	margin: 0 auto;
+}
+
+/* 实验室 */
+.lab-section .list .item {
+	width: 550px;
+	margin: 0 5px;
+}
+
+.lab-section .list .title {
+	text-align: center;
+	font-size: 16px;
+	color: #333333;
+	padding-top: 21px;
+	padding-bottom: 24px;
+}
+
+/* 视频 */
+.navbar {
+	padding-bottom: 18px;
+	padding-top: 36px;
+}
+
+.section-name {
+	font-size: 24px;
+	color: #31343b;
+}
+
+.nav {
+	padding-top: 12px;
+}
+
+.nav .link {
+	font-size: 14px;
+	padding-left: 24px;
+}
+
+.nav .link a {
+	color: #31343b;
+	text-decoration: none;
+}
+
+.video_section {
+	background-color: #f7f7f7;
+}
+
+.video_section .item {
+	margin: 6px;
+
+}
+
+.video_section .photo img {
+	display: block;
+}
+
+.video_section .item a {
+	text-decoration: none;
+}
+
+.video_section .title {
+	text-align: center;
+	font-size: 16px;
+	color: #333333;
+	padding-top: 21px;
+	padding-bottom: 24px;
+}
