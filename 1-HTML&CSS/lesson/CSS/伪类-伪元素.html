@@ -5,94 +5,18 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<style type="text/css">
-			/*a:link {
-				color: red;
-				text-decoration: none;
-			}
-			
-			a:visited {
-				color: green;
-			}
-			
-			a:hover {
-				color: yellow;
-			}
-			
-			a:active {
-				color: blue;
-			}*/
-			
 			.relative {
 				position: relative;
 			}
-			
-			.item {
-				width: 220px;
-				border: 1px solid #000;
-				border-right: 0;
-			}
-			
-			.item:first-child {
-				border-left: 0;
-			}
-			
-			.item .cover {
-				position: absolute;
-				left: 0;
-				top: 0;
-				width: 100%;
-				height: 100%;
-				line-height: 224px;
-				background-color: rgba(0, 0, 0, 0.6);
-				color: #FFFFFF;
-				font-size: 60px;
-				text-align: center;
-			}
-			
-			.item a:hover>.cover {
-				display: block;
-			}
-			
-			.item .name {
-				padding: 4px 10px;
-				background-color: #EEEEEE;
-				color: #666;
-				text-align: center;
-			}
-			
-			.item a:hover+.name {
-				color: #FF6700;
-				position: relative;
-				z-index: 10;
-			}
-			
-			p {
-				width: 600px;
-			}
-			
-			p:first-letter {
-				font-size: 24px;
-				font-weight: bold;
-				text-transform: uppercase;
-			}
-			
-			p::before {
-				content: url(img/95742.png);
-			}
-			
-			p::after {
-				content: ",省略中...";
-			}
-			
+
 			.fl {
 				float: left;
 			}
-			
+
 			.clear {
 				clear: both;
 			}
 			/*伪元素清除浮动*/
-			
 			.clearfix::after {
 				display: block;
 				content: "";
@@ -103,72 +27,140 @@
 				width: 1200px;
 				margin: 0 auto;
 			}
-			
+
 			.list {
 				margin: 0;
 				padding: 0;
 				list-style: none;
 			}
-			
+
 			.list li {
 				float: left;
+			}
+
+			a:link {
+				color: yellow;
+			}
+
+			a:visited {
+				color: purple;
+			}
+
+			a:hover {
+				color: #FF6700;
+			}
+
+			a:active {
+				background-color: #0000FF;
+				color: white;
+			}
+
+			.username:focus {
+				border: 2px solid pink;
+			}
+
+			.link {
+				padding: 6px 12px;
+				float: left;
+				background-color: #0000FF;
+			}
+
+			.link a {
+				color: #FFFFFF;
+				text-decoration: none;
+				border-left: 1px solid #FFFFFF;
+				display: inline-block;
+				padding-left: 20px;
+			}
+
+			.link:first-child a {
+				border-left: 1px solid #0000FF;
+			}
+
+			p::after {
+				content: url(img/95742.png);
 			}
 		</style>
 	</head>
 
 	<body>
-		<ul class="list clearfix">
-			<li>主页</li>
-			<li>新闻</li>
-			<li>视频</li>
-		</ul>
-		<div class="container clearfix">
-			<div class="item fl relative">
-				<a href="http://www.hb.com">
-					<img src="img/pms_1528719476.67789934!220x220.jpg" />
-					<div class="cover">
-						+
-					</div>
-				</a>
-				<div class="name">
-					小米手机6
-				</div>
+		<!-- 链接 伪类 -->
+		<a href="http://www.bing.com">链接链接链接链接链接链接</a>
+		<!-- focus伪类 -->
+		<input type="text" class="username">
+		<!-- 段落 伪类 -->
+		<p>
+			此人名叫胡士泰，在1963年出生，祖籍是在中国的天津
+		</p>
+		<!-- first-child 伪类 -->
+		<div class="nav clearfix">
+			<div class="link fl">
+				<a href="#">首页</a>
 			</div>
-			<div class="item fl relative">
-				<a href="http://www.hb.com">
-					<img src="img/pms_1528719476.67789934!220x220.jpg" />
-					<div class="cover">
-						+
-					</div>
-				</a>
-				<div class="name">
-					小米手机6
-				</div>
+			<div class="link fl">
+				<a href="#">视频</a>
 			</div>
-			<div class="item fl relative">
-				<a href="http://www.hb.com">
-					<img src="img/pms_1528719476.67789934!220x220.jpg" />
-					<div class="cover">
-						+
-					</div>
-				</a>
-				<div class="name">
-					小米手机6
-				</div>
+			<div class="link fl">
+				<a href="#">新闻</a>
 			</div>
-			<div class="item fl relative">
-				<a href="http://www.hb.com">
-					<img src="img/pms_1528719476.67789934!220x220.jpg" />
-					<div class="cover">
-						+
-					</div>
-				</a>
-				<div class="name">
-					小米手机6
-				</div>
+			<div class="link fl">
+				<a href="#">我们</a>
 			</div>
 		</div>
-		<p>hello World!大就赶快发的开发大就赶快发的开发大就的</p>
+		<ul class="clearfix">
+			<li>
+				加快递费就
+			</li>
+			<li>
+				加快递费就
+			</li>
+		</ul>
+		<!-- 		<div class="container clearfix">
+			<div class="item fl relative">
+				<a href="http://www.hb.com">
+					<img src="img/pms_1528719476.67789934!220x220.jpg" />
+					<div class="cover">
+						+
+					</div>
+				</a>
+				<div class="name">
+					小米手机6
+				</div>
+			</div>
+			<div class="item fl relative">
+				<a href="http://www.hb.com">
+					<img src="img/pms_1528719476.67789934!220x220.jpg" />
+					<div class="cover">
+						+
+					</div>
+				</a>
+				<div class="name">
+					小米手机6
+				</div>
+			</div>
+			<div class="item fl relative">
+				<a href="http://www.hb.com">
+					<img src="img/pms_1528719476.67789934!220x220.jpg" />
+					<div class="cover">
+						+
+					</div>
+				</a>
+				<div class="name">
+					小米手机6
+				</div>
+			</div>
+			<div class="item fl relative">
+				<a href="http://www.hb.com">
+					<img src="img/pms_1528719476.67789934!220x220.jpg" />
+					<div class="cover">
+						+
+					</div>
+				</a>
+				<div class="name">
+					小米手机6
+				</div>
+			</div>
+		</div> -->
 	</body>
 
 </html>

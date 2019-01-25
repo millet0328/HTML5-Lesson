@@ -5,24 +5,95 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<style type="text/css">
-			.nav ul.firstMenu li {
+			/* 查找到所有标签 */
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			ul {
+				margin: 0;
+				padding: 0;
 				list-style: none;
+			}
+
+			.clearfix::after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+
+			.firstMenu li {
 				float: left;
+				background-color: blue;
+				color: white;
+				padding: 10px 25px;
+				position: relative;
+			}
+
+			.firstMenu .subMenu li {
+				float: none;
+				background-color: red !important;
+			}
+
+			.subMenu {
+				position: absolute;
+				left: 0;
+				top: 40px;
+				width: 120px;
+				display: none;
+				z-index: 1000;
+			}
+
+			.firstMenu li:hover .subMenu {
+				display: block;
+			}
+
+			.blue-box,
+			.red-box {
+				width: 100px;
+				min-height: 100px;
+			}
+
+			.blue-box {
+				background-color: rgba(0, 0, 255, 1);
+				font-size: 12px;
+				color: white;
+			}
+
+			.red-box {
+				background-color: rgba(255, 0, 0, 0.5);
+				color: yellow;
+			}
+
+			.category {
+				position: relative;
+				padding: 20px 30px;
+				color: white;
 				background-color: #FF6700;
 			}
-			
-			.nav .subMenu li {
-				background-color: #0000FF!important;
-				list-style: none;
-				font-size: 28px;
-				float: none;
+
+			.category:hover ul {
+				display: block;
+			}
+
+			.category ul {
+				position: absolute;
+				left: 0;
+				top: 60px;
+				width: 100%;
+				display: none;
+			}
+
+			.category li {
+				background-color: #0DA4D3;
 			}
 		</style>
 	</head>
 
 	<body>
 		<div class="nav">
-			<ul class="firstMenu">
+			<ul class="firstMenu clearfix">
 				<li>
 					主页
 				</li>
@@ -30,6 +101,11 @@
 					<ul class="subMenu">
 						<li>本地新闻</li>
 						<li>全国新闻</li>
+						<li>全国新闻</li>
+						<li>全国新闻</li>
+						<li>全国新闻</li>
+						<li>全国新闻</li>
+
 					</ul>
 				</li>
 				<li>
@@ -37,10 +113,38 @@
 					<ul class="subMenu">
 						<li>本地视频</li>
 						<li>全国视频</li>
+						<li>全国新闻</li>
+						<li>全国新闻</li>
+						<li>全国新闻</li>
+						<li>全国新闻</li>
+
 					</ul>
 				</li>
 				<li>我们</li>
+				<li>我们</li>
+				<li>我们</li>
+				<li>我们</li>
+				<li>我们</li>
+				<li>我们</li>
+				<li>我们</li>
+				<li>我们</li>
 			</ul>
+		</div>
+		<div class="search-box">
+			<div class="category">
+				全部分类
+				<ul>
+					<li>化妆品</li>
+					<li>化妆品</li>
+					<li>化妆品</li>
+					<li>化妆品</li>
+					<li>化妆品</li>
+					<li>化妆品</li>
+					<li>化妆品</li>
+					<li>化妆品</li>
+					<li>化妆品</li>
+				</ul>
+			</div>
 		</div>
 	</body>
 

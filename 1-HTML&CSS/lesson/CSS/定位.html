@@ -6,38 +6,10 @@
 		<title></title>
 		<!--demo-->
 		<style type="text/css">
-			.ad-box {
-				position: fixed;
-				bottom: 20px;
-				right: 20px;
-				background-color: blue;
-				color: #FFFFFF;
-				width: 29px;
-				height: 85px;
-				text-align: center;
-				z-index: 10;
-			}
-			
-			.sidebar {
-				position: fixed;
-				right: 0;
-				bottom: 0;
-				background-color: #000000;
-				color: #FFFFFF;
-				width: 40px;
-				height: 100%;
-			}
-			
 			.vertical-mid {
 				vertical-align: middle;
 			}
-			
-			.title {
-				position: relative;
-				bottom: 20px;
-				left: 10px;
-			}
-			
+
 			.read-tip {
 				position: absolute;
 				bottom: 0;
@@ -46,17 +18,45 @@
 				color: #FFFFFF;
 				padding: 4px 6px;
 			}
-			
+
 			.relative {
 				position: relative;
 			}
-			
+
 			.article {
 				width: 520px;
 			}
-			
+
 			.article img {
 				display: block;
+			}
+
+			.backTop {
+				position: fixed;
+				bottom: 10px;
+				right: 10px;
+				width: 40px;
+				height: 40px;
+				text-align: center;
+				line-height: 40px;
+				color: white;
+				background-color: blue;
+			}
+
+			.text {
+				position: relative;
+				bottom: 30px;
+				left: 15px;
+			}
+
+			.more {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				background-color: #0DA4D3;
+				color: white;
+				font-size: 12px;
+				padding: 4px 12px;
 			}
 		</style>
 	</head>
@@ -65,21 +65,18 @@
 		<div style="height: 2000px;">
 			<!--相对定位-->
 			<img class="" src="img/psd15897_03.jpg" />
-			<span class="title">Rayer设计</span>
+			<span class="text">标题标题标题标题</span>
 			<!--绝对定位-->
 			<div class="article relative">
-				<img src="img/top-5-hot-graphic-design-2018.jpg" />
-				<div class="read-tip">
-					Read Article -->
+				<img src="img/top-5-hot-graphic-design-2018.jpg" alt="">
+				<div class="more">
+					Read Article →
 				</div>
 			</div>
-
 		</div>
-		<div class="ad-box">
-			返回顶部
-		</div>
-		<div class="sidebar">
-			侧边栏
+		<!-- 固定定位 -->
+		<div class="backTop">
+			↑
 		</div>
 	</body>
 

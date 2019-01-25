@@ -1,0 +1,119 @@
+.category {
+	width: 168px;
+	padding: 13px 16px;
+	background-color: #42baff;
+	color: white;
+	font-size: 14px;
+}
+
+.category .text {
+	padding-left: 10px;
+}
+
+.navbar .nav li {
+	float: left;
+	padding: 12px 19px 13px;
+	font-size: 14px;
+}
+
+.nav li a {
+	color: #000000;
+}
+
+.nav li a:hover {
+	color: #ed1717;
+}
+
+/* 子分类 */
+.subCategory {
+	position: absolute;
+	left: 0;
+	top: 45px;
+	width: 100%;
+}
+
+.subCategory>li {
+	color: white;
+	padding: 16px;
+	position: relative;
+	background-color: #42baff;
+}
+
+.subCategory>li:hover {
+	background-color: white;
+	color: #9c9c9c;
+}
+
+.subCategory>li:hover .name {
+	color: #555555;
+}
+
+.subCategory>li:hover .subMenu {
+	display: block;
+}
+
+.subCategory>li>.name {
+	font-size: 14px;
+	padding-bottom: 10px;
+}
+
+.subCategory .name i {
+	font-style: normal;
+}
+
+.subCategory>li>.description {
+	font-size: 12px;
+}
+
+.description .item {
+	display: inline-block;
+	margin-right: 8px;
+}
+
+.description .item:last-child {
+	margin-right: 0;
+}
+
+.subCategory .subMenu {
+	position: absolute;
+	left: 200px;
+	top: 0;
+	width: 495px;
+	background-color: white;
+	border: 2px solid #6cc9ff;
+	padding: 20px;
+	display: none;
+}
+
+.subCategory .subMenu::before {
+	content: "";
+	position: absolute;
+	left: -2px;
+	top: 0;
+	width: 2px;
+	height: 75px;
+	background-color: white;
+}
+
+.subMenu a {
+	color: #555;
+}
+
+.subMenu>.name {
+	color: #42baff;
+	font-weight: bold;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #42baff;
+}
+
+.subMenu>dd {
+	display: inline-block;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+
+/* banner */
+.banner {
+	background: #bfe7ff url(../img/banner.jpg) no-repeat top center;
+	height: 460px;
+}

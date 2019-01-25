@@ -1,0 +1,386 @@
+@charset "utf-8";
+/*公共类*/
+
+html,
+body {
+	background: #FFF;
+	font-family: "Microsoft YaHei UI", "Microsoft YaHei UI Light", "微软雅黑", "宋体", Helvetica-Black-SemiBold, Tahoma, Arial, sans-serif;
+	font-size: 12px;
+	color: #666666;
+}
+
+.fz14 {
+	font-size: 14px;
+}
+
+.blue {
+	color: #34b8de;
+}
+
+a {
+	color: #666666;
+	text-decoration: none;
+}
+
+.white {
+	color: #FFFFFF;
+}
+
+.bg_white {
+	background-color: #FFFFFF;
+}
+
+.bg_grey {
+	background-color: #ededed;
+}
+
+.bg_blue {
+	background-color: #34b8de;
+}
+
+.container {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.clear {
+	clear: both;
+}
+
+.txt_center {
+	text-align: center;
+}
+
+.vertical_mid {
+	vertical-align: middle;
+}
+
+/*header*/
+
+.header_top .welcome {
+	padding: 10px 0;
+}
+
+.header_top .tel {
+	padding: 8px 12px;
+	border-right: 1px solid #FFFFFF;
+}
+
+.header_top .tel span {
+	font-size: 15px;
+}
+
+.header_top .online {
+	padding: 8px 12px;
+	border-left: 1px solid #dadada;
+	border-right: 1px solid #FFFFFF;
+}
+
+.header_top .online span {
+	font-size: 15px;
+}
+
+.header_top .line {
+	height: 35px;
+	border-left: 1px solid #dadada;
+}
+
+/*导航*/
+
+.logo {
+	padding-top: 14px;
+}
+
+.nav {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.nav li {
+	float: left;
+	margin: 0px 12px;
+	padding: 20px 0;
+}
+
+.nav li a {
+	display: block;
+	padding: 10px 6px;
+	border-bottom: 1px solid #FFFFFF;
+	font-size: 15px;
+}
+
+.nav li:hover a {
+	color: #40bfe0;
+	border-bottom: 1px solid #40bfe0;
+}
+
+.nav li:hover {
+	background: url(../img/arrow.png) no-repeat bottom center;
+}
+
+/*banner*/
+
+.banner {
+	background: url(../img/banner.jpg) no-repeat top center;
+	height: 579px;
+	display: block;
+}
+
+/*介绍400电话*/
+
+.title_box .title {
+	font-size: 18px;
+	color: #36bae0;
+	border: 1px solid #3cbce1;
+	padding: 10px;
+	display: inline-block;
+}
+
+.title_box {
+	background: url(../img/blue-line.jpg) repeat-x left center;
+	margin: 35px 0;
+}
+
+.des_li {
+	width: 323px;
+}
+
+.des_li .arrow {
+	padding: 15px 0 12px 0;
+}
+
+.des_content {
+	line-height: 30px;
+	padding: 0px 20px;
+}
+
+.line_bg1 {
+	background: url(../img/bg1.jpg) repeat-x;
+	height: 18px;
+	margin-top: 45px;
+}
+
+/*电话列表*/
+
+.tel_list .title {
+	font-size: 18px;
+	padding: 24px 0;
+}
+
+.tel_table {
+	font-size: 16px;
+	border: 1px solid #FFFFFF;
+	border-left: 0;
+}
+
+.tel_table .border-plus {
+	border-right: 1px solid #FFFFFF;
+	border-left: 1px solid #FFFFFF;
+}
+
+.tel_table th {
+	border: 0;
+	border-bottom: 1px solid #FFFFFF;
+}
+
+.tel_table td {
+	border: 0;
+	border-left: 1px solid #FFFFFF;
+}
+
+.table_footer {
+	margin-top: 1px;
+	padding: 20px 0 30px 60px;
+	background: url(../img/table_footer.png)no-repeat;
+}
+
+.table_footer .tel {
+	font-size: 28px;
+}
+
+.line_bg2 {
+	background: url(../img/bg2.jpg);
+	height: 18px;
+}
+
+/*品牌墙*/
+
+.brand_list {
+	overflow: hidden;
+	width: 999px;
+}
+
+.brand_list ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	width: 1000px;
+	border-bottom: 1px solid #cccdcd;
+}
+
+.brand_list li {
+	float: left;
+	border-top: 1px solid #cccdcd;
+	border-right: 1px solid #cccdcd;
+	width: 249px;
+	height: 164px;
+	padding-top: 62px;
+}
+
+.brand_tel {
+	padding-top: 40px;
+	font-size: 16px;
+}
+
+/*服务介绍*/
+
+.service_list li {
+	float: left;
+	width: 166px;
+}
+
+.service_list .service_icon {
+	height: 166px;
+	margin-bottom: 20px;
+}
+
+.service_icon.icon1 {
+	background: url(../img/service-1-g.png) top center no-repeat;
+}
+
+.service_list li:hover .icon1 {
+	background: url(../img/service-1-b.png) top center no-repeat;
+}
+
+.service_icon.icon2 {
+	background: url(../img/service-2-g.png) top center no-repeat;
+}
+
+.service_icon.icon3 {
+	background: url(../img/service-3-g.png) top center no-repeat;
+}
+
+.service_icon.icon4 {
+	background: url(../img/service-4-g.png) top center no-repeat;
+}
+
+.service_icon.icon5 {
+	background: url(../img/service-5-g.png) top center no-repeat;
+}
+
+.service_icon.icon6 {
+	background: url(../img/service-6-g.png) top center no-repeat;
+}
+
+.service_list .line {
+	border-bottom: 1px solid #474747;
+	width: 34px;
+	/*display: inline-block;*/
+	margin: 12px auto;
+}
+
+.service_list li:hover .fz14 {
+	color: #34b8de;
+}
+
+.service_list li:hover .line {
+	border-bottom: 1px solid #34b8de;
+}
+
+
+.service_list li:hover .icon2 {
+	background: url(../img/service-2-b.png) top center no-repeat;
+}
+
+.service_list li:hover .icon3 {
+	background: url(../img/service-3-b.png) top center no-repeat;
+}
+
+.service_list li:hover .icon4 {
+	background: url(../img/service-4-b.png) top center no-repeat;
+}
+
+.service_list li:hover .icon5 {
+	background: url(../img/service-5-b.png) top center no-repeat;
+}
+
+.service_list li:hover .icon6 {
+	background: url(../img/service-6-b.png) top center no-repeat;
+}
+
+/*文章列表*/
+.news-section {
+	padding-top: 58px;
+}
+
+.news-box {
+	width: 450px;
+}
+
+.title-box {
+	line-height: 40px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #cbcbcb;
+}
+
+.title-box .title {
+	font-size: 16px;
+	font-weight: 450;
+	border-left: 4px solid #34b8de;
+	padding-left: 16px;
+}
+
+.title-box .title a {
+	color: #474747;
+}
+.title-box .title a:hover {
+	color: #34b8de;
+}
+.title-box .more a {
+	font-size: 16px;
+	color: #aeaeae;
+}
+
+.news_list,
+.service_list {
+	padding: 0;
+	list-style: none;
+}
+
+.news-box .list {
+	list-style: none;
+	padding-left: 0;
+	margin: 0;
+	padding-top: 34px;
+}
+
+.news-box .list li {
+	padding: 8px 0;
+}
+
+.news-box a:hover .title {
+	color: #34b8de;
+}
+
+.news-box .list .title {
+	font-size: 14px;
+	color: #474747;
+	width: 350px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.news-list .date {
+	color: #b4b4b4;
+	font-size: 12px;
+}

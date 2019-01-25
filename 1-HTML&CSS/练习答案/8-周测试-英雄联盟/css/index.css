@@ -1,0 +1,17 @@
+.icon {
+	background: url(../img/css-sprite.png) no-repeat;
+	display: inline-block;
+}
+
+.icon-flag {
+	width: 30px;
+	height: 27px;
+	background-position: -92px -48px;
+}
+
+.icon-phone {
+	width: 28px;
+	height: 28px;
+	background-position: -133px -47px;
+}
+ 
