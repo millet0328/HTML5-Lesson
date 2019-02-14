@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 数学成绩
+			var arr = [67, 65, 78, 95, 78, 68];
+			console.log(arr.length);
+			// 总成绩
+			var sum = 0;
+			for (var i = 0; i < arr.length; i++) {
+				sum = sum + arr[i];
+				// sum += arr[i];
+			}
+			// 平均成绩
+			var avg = sum / arr.length;
+			// 1+...+100求和
+			var total = 0;
+			for (var i = 0; i <= 100; i++) {
+				total = total + i;
+			}
+			// 1~1024之间,能被7整除的数,总共有多少个
+			var num = 0;
+			for (var i = 1; i <= 1024; i++) {
+				if (i % 7 == 0) {
+					num++;
+				}
+			}
+			console.log("被7整除的数总共" + num + "个");
+		</script>
+	</body>
+</html>

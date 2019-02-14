@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<input type="text" name="" id="txt" value="" />
+		<button id="btn" type="button">按钮</button>
+		<script type="text/javascript">
+			//查找元素
+			var oBtn = document.getElementById("btn");
+			var oTxt = document.getElementById("txt");
+			//绑定事件
+			oBtn.onclick = function() {
+				//获取value值
+				var res = typeof oTxt.value;
+				console.log(res);
+				var x = oTxt.value + 7;
+				alert(x);
+			}
+
+			// 定义函数/方法 重复利用代码
+			function sum(num1, num2) {
+				console.log(num1 + num2)
+			}
+			// 调用函数
+			sum(12.04, 25.98);
+
+			//对象
+			var person = {
+				name: "黄小米",
+				age: 28,
+				color: "black",
+				salary: 10000, //月工资
+				boyFriend: {
+					name: "黄渤",
+					age: 30,
+					salary: 12000
+				}
+			}
+			// 查找属性,嵌套属性
+			2019 - person.age
+			person.salary * 12 + person.boyFriend.salary * 13
+			// 修改属性 赋值
+			person.boyFriend.name = "王思聪";
+			person.salary = 1000000;
+			// 增加属性 赋值
+			person.job = "演员";
+			// 删除属性
+			delete person.boyFriend;
+			console.log(person);
+		</script>
+	</body>
+
+</html>

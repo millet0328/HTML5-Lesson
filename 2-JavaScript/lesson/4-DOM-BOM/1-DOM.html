@@ -8,58 +8,72 @@
 			body {
 				font-family: "微软雅黑";
 			}
-			
+
 			.face img {
 				max-width: 100%;
 			}
-			
+
 			.result {
 				margin-top: 20px;
 				padding: 10px 10px 0 10px;
 				border: 1px solid #CCCCCC;
 				color: #e77064;
 			}
-			
+
 			.result p {
 				margin-top: 0;
 				padding-left: 10px;
 				border-left: 4px solid #E77064;
 			}
-			
+
 			.result p b {
 				float: right;
 				cursor: pointer;
 			}
-			
+
 			.result p:after {
 				content: '';
 				clear: both;
 				display: block;
 			}
-			
+
 			.box1 {
 				width: 800px;
 				height: 800px;
 				background-color: #000;
 			}
-			
+
 			.box2 {
 				width: 600px;
 				height: 600px;
 				background-color: #FF0;
 			}
-			
+
 			.box3 {
 				width: 200px;
 				height: 200px;
 				background-color: blue;
 			}
+
+			.modal {
+				position: fixed;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				margin: auto;
+				width: 400px;
+				height: 200px;
+				padding: 20px;
+				background-color: pink;
+				display: none;
+			}
 		</style>
 	</head>
 
 	<body>
-		<input type="button" name="remove" id="remove" value="移除事件" />
-		<input type="button" name="remove" id="add" value="添加事件" />
+		<input type="button" id="open" value="打开Modal" />
+		<input type="button" id="add" value="添加事件" />
 		<div id="">
 			<h1 id="title" class="title">一对"CP"</h1>
 		</div>
@@ -83,67 +97,31 @@
 				<p>新的评论<b>X</b></p>
 			</div>
 		</div>
+		<!-- 弹窗 -->
+		<div class="modal">
+			modal框
+			<div class="footer">
+				<button id="close" type="button">关闭</button>
+			</div>
+		</div>
 		<script type="text/javascript">
-			//查找元素 object 匈牙利写法 标示数据类型
-			/*
-			 * a Array
-			 * s String
-			 * o Object
-			 * n Number
-			 */
-			//查找元素
-			var oAdd = document.getElementById("add");
+			// 查找元素
 			var oTitle = document.getElementById("title");
-			//var oTitle = document.querySelectorAll(".title"); //Nodelist
-			var oPhoto = document.querySelector("#content>img");
-
-			var oTxt = document.getElementById("txt");
-			var oBtn = document.getElementById("btn");
-
-			var oRes = document.getElementById("result");
-
-			var oDel = document.querySelectorAll(".result b");
-
-			//绑定事件
-			//修改HTML/Text
+			var oOpen = document.getElementById("open");
+			var oModal = document.querySelector(".modal");
+			var oClose = document.getElementById("close");
 			oTitle.onclick = function() {
-				oTitle.innerHTML = '<div class="red">胡歌霍建华冰天雪地...</div>'
-				//修改样式
-				oTitle.style.textAlign = "center";
-				oPhoto.style.display = "none";
+				oTitle.innerText = "胡歌霍建华冰天雪地";
+				// oTitle.innerHTML = "胡歌<small style='color:red'>霍建华</small>冰天雪地";
+				oTitle.style.color = "white";
+				oTitle.style.backgroundColor = "blue";
+				oTitle.style.padding = "10px";
 			}
-			//获取HTML/TEXT
-			//获取CSS样式
-			getComputedStyle(oTitle).fontSize //方法 IE>9
-			//console.log(oTitle.currentStyle.fontSize) //属性 IE<9
-
-			//绑定click事件
-			oBtn.onclick = function() {
-				//获取value
-				var txt = oTxt.value;
-				if(txt == '') {
-					alert("请输入评论内容！");
-					return;
-				}
-				//创建标签
-				var oP = document.createElement("p");
-				//修饰元素
-				//oP.className = "comment";
-				//oP.setAttribute("class", "comment");
-				oP.innerHTML = txt + '<b>X</b>';
-				//插入元素
-				//oRes.appendChild(oP);
-				oRes.insertBefore(oP, oRes.firstChild);
-				//清空value
-				oTxt.value = '';
+			oOpen.onclick = function() {
+				oModal.style.display = "block";
 			}
-
-			//删除评论
-			//事件委托
-			oRes.onclick = function(e) {
-				if(e.target.tagName == "B") {
-					oRes.removeChild(e.target.parentNode);
-				}
+			oClose.onclick = function() {
+				oModal.style.display = "none";
 			}
 		</script>
 	</body>

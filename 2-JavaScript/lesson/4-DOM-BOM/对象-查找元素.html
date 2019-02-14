@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<button id="btn" type="button">按钮</button>
+		<input type="text" name="fav">
+		<input type="text" name="fav">
+		<input type="text" name="fav">
+		<ul class="list">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<script type="text/javascript">
+			// 查找元素
+			var oBtn = document.getElementById("btn");
+			var oInput = document.getElementsByName("fav");
+			var oLi = document.getElementsByTagName("li");
+			var oLi = document.querySelectorAll(".list li");
+			var oLi = document.querySelector(".list li");
+			var oList = document.getElementsByClassName("list");
+			console.dir(oList);
+
+			// console.dir(oBtn);
+			// console.log(oBtn.id);
+
+			var obj = {
+				name: "黄小米",
+				age: 28,
+				eat: function() {
+					console.log("mixi......")
+				},
+				sing: function(name) {
+					console.log(name)
+				}
+			}
+			//obj.eat();
+			//obj.sing("小苹果");
+
+			var document = {
+				close: function() {
+
+				},
+				getElementById: function() {
+
+				}
+			}
+			// 			document.close();
+			// 			document.getElementById("");
+			console.dir(document);
+		</script>
+	</body>
+
+</html>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title></title>
     <style>
-    html,
+        html,
     body {
         margin: 0, padding: 0;
     }
@@ -62,14 +62,7 @@
         sbData.gongShang.base * sbData.gongShang.personPercent +
         sbData.shiYe.base * sbData.shiYe.personPercent +
         sbData.shengYu.base * sbData.shengYu.personPercent;
-
-    function cal(key) {
-        return sbData[key].base * sbData[key].personPercent;
-    }
-
-    var res = cal("yangLao") + cal("yiLiao") + cal("gongShang") + cal("shiYe") + cal("shengYu");
-    console.log(res);
-
+    console.log(self);
     //公司缴费
     var company =
         sbData.yangLao.base * sbData.yangLao.companyPercent +
@@ -78,6 +71,13 @@
         sbData.shiYe.base * sbData.shiYe.companyPercent +
         sbData.shengYu.base * sbData.shengYu.companyPercent;
     console.log(company);
+
+    // 第二种方法
+    function cal(key) {
+        return sbData[key].base * sbData[key].personPercent;
+    }
+
+    var res = cal("yangLao") + cal("yiLiao") + cal("gongShang") + cal("shiYe") + cal("shengYu");
     </script>
 </body>
 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var person = {
+				name: "黄小米",
+				age: 30,
+				sex: 0,
+				birthday: '1988-03-28'
+			}
+			for (key in person) {
+				// console.log(key + ':' + person[key]);
+			}
+
+			var students = [
+				{ name: "黄小米", code: "3018", age: 16, score: 584 },
+				{ name: "黄渤", code: "3019", age: 19, score: 599 },
+				{ name: "黄磊", code: "3020", age: 18, score: 650 },
+				{ name: "黄晓明", code: "3021", age: 17, score: 530 },
+			];
+			// 平均年龄 -- for
+			var ageSum = 0;
+			for (var i = 0; i < students.length; i++) {
+				if (students[i].age >= 18) {
+					continue;
+				}
+				console.log(students[i]);
+				ageSum += students[i].age
+			}
+			console.log("平均年龄：" + ageSum / students.length);
+			// 高考平均成绩 --forEach
+			var score = 0;
+			students.forEach(function(item) {
+				score = score + item.score;
+			});
+			console.log("平均高考成绩：" + score / students.length);
+		</script>
+	</body>
+</html>

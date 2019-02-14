@@ -22,7 +22,7 @@
         //获取元素（首先获取文本框中的元素——score就是输入的数值）
         var score = parseInt(Grade.value);
         //进行等级判断
-        if (score == "") {
+        if (!score) {
             alert("成绩不能为空！");
             return;
         }

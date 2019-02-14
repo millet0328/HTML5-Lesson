@@ -4,25 +4,18 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-
 	</head>
 
 	<body>
-		<input type="text" name="" id="txt" value="" />
 		<button id="btn" type="button">按钮</button>
-		<!--js-->
 		<script type="text/javascript">
-			//查找元素
-			var oBtn = document.getElementById("btn");
-			var oTxt = document.getElementById("txt");
-			//绑定事件
-			oBtn.onclick = function() {
-				//获取value值
-				console.log("Hello " + oTxt.value);
-			}
+
 		</script>
-		<!--外部js-->
 		<script src="js/test.js" type="text/javascript" charset="utf-8"></script>
+		<!-- 错误示例 -->
+		<script src="js/test.js" type="text/javascript" charset="utf-8">
+			alert("我是错的！");
+		</script>
 	</body>
 
 </html>
