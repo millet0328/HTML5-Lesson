@@ -80,22 +80,22 @@
     //判断display
     // oTitle.onclick = function() {
     //     var status = oPhoto.style.display;
-    //     if (status == "block") {
-    //         oPhoto.style.display = "block"
+    //     if (status == "none") {
+    //         oPhoto.style.display = "block";
     //     } else {
-    //         oPhoto.style.display = "none"
+    //         oPhoto.style.display = "none";
     //     }
     // }
     //布尔值标明状态
     var flag = true; //标明图片的显示/隐藏
     oTitle.onclick = function() {
-    	if(flag) {
-    		oPhoto.style.display = "none";
-    		flag = false;
-    	} else {
-    		oPhoto.style.display = "block";
-    		flag = true;
-    	}
+        if (flag) {
+            oPhoto.style.display = "none";
+            flag = false;
+        } else {
+            oPhoto.style.display = "block";
+            flag = true;
+        }
     }
     </script>
 </body>
