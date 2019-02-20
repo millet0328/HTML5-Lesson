@@ -8,10 +8,57 @@
 	</head>
 
 	<body>
-		<input type="text" name="" id="txt" value="" />
+		<input type="text" id="txt" placeholder="请输入手机号码!" />
 		<button type="button" id="btn">点击</button>
-		<input type="text" name="" placeholder="请输入手机号" id="phone" value="" />
+		<div class="box">
+			<input type="text" id="content" placeholder="请输入聊天内容!" />
+			<button type="button" id="send">发送</button>
+		</div>
 		<script type="text/javascript">
+			window.onload = function() {
+				// 查找元素
+				var oBtn = document.getElementById("btn");
+				var oTxt = document.getElementById("txt");
+				var oContent = document.getElementById("content");
+				var oSend = document.getElementById("send");
+				var query = 'name=moz&age=30&sex=1&job=actor';
+				// 字符串=>数组 split
+				var arr = query.split("&");
+				console.log(arr);
+				/*
+				 for
+				 split
+				 obj["name"]="moz"
+				 */
+				var obj = {
+					name: "moz",
+					age: 30,
+					sex: 1,
+					job: "actor"
+				}
+
+				oSend.onclick = function() {
+					var content = oContent.value;
+					// 存在违禁词
+					if (content.indexOf("智障") > -1) {
+						content = content.replace("智障", "**");
+					}
+					console.log(content);
+				}
+
+				oBtn.onclick = function() {
+					var txt = oTxt.value;
+					if (txt.length != 11) {
+						alert("请输入11位手机号码！")
+					}
+				}
+				oTxt.onchange = function() {
+					var txt = oTxt.value;
+					oTxt.value = txt.slice(0, 3) + ' ' + txt.slice(3, 7) + ' ' + txt.slice(7, 11)
+				}
+			}
+		</script>
+		<!-- <script type="text/javascript">
 			window.onload = function() {
 				var oTxt = document.getElementById("txt");
 				var oBtn = document.getElementById("btn");
@@ -55,7 +102,7 @@
 				}
 				console.log(obj);
 			}
-		</script>
+		</script> -->
 	</body>
 
 </html>

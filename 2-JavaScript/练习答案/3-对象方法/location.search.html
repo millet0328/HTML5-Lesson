@@ -9,7 +9,7 @@
 	<body>
 		<pre>
         加分题目：
-                编写一个带return的function，将字符串str中search的“键值对”转化成obj对象，并return出来！
+                编写一个带return的function，将字符串str中search的"键值对"转化成obj对象，并return出来！
         </pre>
 		<div class="" id="result">
 		</div>
@@ -21,10 +21,10 @@
 				refpid: '430274_1006',
 				source: 'tbsy'
 			}
-
+			
 			function params(search) {
+				var search = search.slice(1);
 				var obj = {};
-				search = search.slice(1);
 				var arr = search.split("&");
 				for(var i = 0; i < arr.length; i++) {
 					var tmp = arr[i].split("=");

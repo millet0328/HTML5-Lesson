@@ -9,6 +9,50 @@
 
 	<body>
 		<script type="text/javascript">
+			var arr = [1, 2, 3, 4];
+			// unshift
+			arr.unshift(-2, -1, 0);
+			// push *****
+			arr.push(5, 6, 7);
+			// 构建一个新数组
+			// 求0-100之间能被7整除的数,将结果放在数组中
+			var res = [];
+			for (var i = 0; i <= 100; i++) {
+				if (i % 7 == 0) {
+					res.push(i);
+				}
+			}
+			console.log(res);
+			// shift
+			arr.shift();
+			// pop
+			arr.pop();
+			// splice
+			arr.splice(3, 2, 12, 13);
+			//join
+			var students = ["B王小米", "C李渤", "R黄磊", "Z张艺兴"];
+			var str = students.join("☀");
+			// 简单数字数组排序，sort
+			var test = [12, 65, 32, 445, 698, 325, 475];
+			test.sort(function(a, b) {
+				return a - b;
+			});
+			// 对象数组排序
+			var run = [
+				{ name: "邓超", age: 40 },
+				{ name: "李晨", age: 36 },
+				{ name: "郑凯", age: 34 },
+				{ name: "陈赫", age: 30 },
+				{ name: "王祖蓝", age: 32 },
+				{ name: "鹿晗", age: 28 },
+				{ name: "杨颖", age: 27 },
+			]
+			run.sort(function(itemA, itemB) {
+				return itemA.age - itemB.age;
+			});
+			console.log(run);
+		</script>
+		<!-- <script type="text/javascript">
 			var arr = [12, 49, 87, 95, 148, 49, 178, 65];
 			var str = arr.join("-");
 			console.log(str);
@@ -82,7 +126,7 @@
 				tickArray.push(temp);
 			}
 			console.log(tickArray);
-		</script>
+		</script> -->
 	</body>
 
 </html>
