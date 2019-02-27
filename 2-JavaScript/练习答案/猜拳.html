@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.container {
+				position: fixed;
+				width: 500px;
+				height: 200px;
+				margin: auto;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+			}
+
+			button {
+				color: #FFFFFF;
+				background-color: #5bc0de;
+				padding: 4px 9px;
+				border: 0;
+				border-radius: 3px
+			}
+
+			.Open {
+				display: block;
+			}
+
+			.Close {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<button type="button" id="openBtn">打开</button>
+			<div class="Close" id="box1">
+				<div>
+					来一起猜数字吧(～￣▽￣)～</br>0——石头；1——剪刀；2——布
+				</div>
+				<input type="text" id="txt">
+				<button type="button" id="trueBtn">确定</button>
+				<button type="button" id="flaseBtn">取消</button>
+			</div>
+			<div class="Close" id="box2">
+				<div id="my"></div>
+				<div id="computer"></div>
+				<div id="result"></div>
+				<button type="button" id="dui">确定</button>
+			</div>
+		</div>
+		<!-- 写一个当前时间 得出结果后在div中放入时间和结果   还可以延时自动输入 -->
+		<script type="text/javascript">
+			window.onload = function() {
+				var oOpenBtn = document.getElementById("openBtn");
+				var oTrueBtn = document.getElementById("trueBtn");
+				var oFlaseBtn = document.getElementById("flaseBtn");
+				var oBox2 = document.getElementById("box2");
+				var oBox1 = document.getElementById("box1");
+				var oDui = document.getElementById("dui");
+				oOpenBtn.onclick = function() {
+					oBox1.className = "Open";
+					oOpenBtn.className = "Close"
+				}
+				oFlaseBtn.onclick = function() {
+					oOpenBtn.className = "Open"
+					oBox1.className = "Close";
+				}
+				oTrueBtn.onclick = function() {
+					var oTxt = document.getElementById("txt")
+					var txt = parseInt(oTxt.value);
+					var oMy = document.getElementById("my");
+					switch (txt) {
+						case 0:
+							oMy.innerText = "你猜的是：石头";
+							break;
+						case 1:
+							oMy.innerText = "你猜的是：剪刀";
+							break;
+						case 2:
+							oMy.innerText = "你猜的是：布";
+							break;
+						default:
+							alert("请输入正确的数值")
+							oTxt.value = "";
+							return;
+					}
+					var computer = Math.floor(Math.random() * 3)
+					var oComper = document.getElementById("computer");
+					switch (computer) {
+						case 0:
+							oComper.innerText = "电脑猜的是：石头";
+							break;
+						case 1:
+							oComper.innerText = "电脑的是：剪刀";
+							break;
+						case 2:
+							oComper.innerText = "电脑的是：布";
+							break;
+					}
+					var result = txt - computer;
+					var oResult = document.getElementById("result");
+					switch (result) {
+						case -1:
+						case 2:
+							oResult.innerText = "你赢了";
+							break;
+						case -2:
+						case 1:
+							oResult.innerText = "你输了";
+							break;
+						case 0:
+							oResult.innerText = "平局";
+							break;
+					}
+					oTxt.value = "";
+					//className 属性设置或返回元素的 class 属性。
+					oBox2.className = "Open";
+					oBox1.className = "Close";
+				}
+				oDui.onclick = function() {
+					oBox1.className = "Open";
+					oBox2.className = "Close";
+				}
+			}
+		</script>
+	</body>
+</html>

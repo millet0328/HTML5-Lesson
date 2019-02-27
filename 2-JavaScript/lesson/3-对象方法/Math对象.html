@@ -12,22 +12,38 @@
 			window.onload = function() {
 				var deg = Math.PI / 2;
 				var res = Math.sin(deg);
-
+				// 绝对值
+				Math.abs(-2)
 				//上舍入
-				var num = 1.86;
+				var num = 1.26;
 				console.log(Math.ceil(num)); //2
 				//下舍入
 				console.log(Math.floor(num)); //1
 				//四舍五入
-				console.log(Math.round(num)); //2
+				console.log(Math.round(num)); //1
 
 				//随机数 0`1
 				var m = Math.random();
-				//随机数 1`43(包含)
-				var n = Math.floor(Math.random() * 43 + 1);
-				console.log(n);
+				if (m >= 0.95) {
+					console.log("一等奖:" + m);
+				}
+				if (m < 0.95 && m >= 0.8) {
+					console.log("二等奖:" + m);
+				}
+				if (m < 0.8 && m >= 0.6) {
+					console.log("三等奖:" + m);
+				}
+				if (m < 0.6) {
+					console.log("谢谢惠顾:" + m);
+				}
+				//随机数 360~720(包含) floor
+				var x = Math.floor(Math.random() * 361 + 360);
+				// 随机数 1~1200
+				var y = Math.floor(Math.random() * 1200 + 1);
+				console.log(y)
 			}
 		</script>
+		
 	</body>
 
 </html>

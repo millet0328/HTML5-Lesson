@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <pre>
+		霍金预言，2215年1月1日地球将面临灾难性毁灭。计算距离霍金预言末日，还剩余多少年，多少天,多少小时，多少分钟，多少秒，格式是200年12天5时43分24秒，将结果在result中显示出来！
+	</pre>
+    <div class="result">
+    </div>
+    <script type="text/javascript">
+    window.onload = function() {
+        // 查找元素
+        var oRes = document.querySelector(".result");
+
+        function CountDown() {
+            // 设置未来的时间
+            var MaxTime = new Date(2215, 0, 1, 0, 0, 0);
+            var now = new Date();
+            // date对象减法运算,结果是毫秒数
+            var rest = MaxTime - now;
+            var msec = parseInt(rest % 1000);
+            var sec = parseInt(rest / 1000 % 60);
+            var min = parseInt(rest / (1000 * 60) % 60);
+            var hour = parseInt(rest / (1000 * 60 * 60) % 24);
+            var day = parseInt(rest / (1000 * 60 * 60 * 24) % 365);
+            var year = parseInt(rest / (1000 * 60 * 60 * 24 * 365));
+            oRes.innerText = year + "年" + day + "天" + hour + "小时" + min + "分" + sec + "秒" + msec;
+        }
+        CountDown();
+        var timer;
+        timer = setInterval(function() {
+            CountDown();
+        }, 1)
+    }
+    </script>
+</body>
+
+</html>

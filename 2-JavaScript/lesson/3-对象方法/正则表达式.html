@@ -15,18 +15,18 @@
 				var oTxt = document.getElementById('txt');
 				var oBtn = document.getElementById('btn');
 				oTxt.onchange = function() {
-					var txt = oTxt.value;
-					//正则校验
-					var reg = /^0?(13|14|15|17|18|19)[0-9]{9}$/;
-					var carReg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/
-					var wordReg = /智障/g;
+					var txt = this.value;
+					var reg = /^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\d{8}$/;
 					var flag = reg.test(txt);
-					if(flag) {
-						this.style.borderColor = "green";
+					if (flag) {
+						console.log("输入正确！");
+						this.style.border = "2px solid green";
 					} else {
-						this.style.borderColor = "red";
+						console.log("输入错误！");
+						this.style.border = "2px solid red";
 					}
 				}
+
 			}
 		</script>
 	</body>

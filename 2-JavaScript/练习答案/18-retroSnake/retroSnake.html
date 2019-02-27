@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/retroSnake.css">
+</head>
+<body>
+<div class="box">
+    <div class="button-list">
+        <button type="button" id="start">开始</button>
+        <button type="button" id="stop">暂停</button>
+        <button type="button" id="restart">重新开始</button>
+        <span>x长度：</span><input type="text" id="xLength">
+        <span>y长度：</span><input type="text" id="yLength">
+        <div class="score">score:<span id="score">0</span></div>
+        <button class="setZoneSize">修改地图尺寸</button>
+        <span>速度：越小越快</span><input type="text" id="speed" >
+    </div>
+    <div class="game-zone">
+
+    </div>
+
+</div>
+</body>
+<script src="./js/retroSnake.js"></script>
+</html>
