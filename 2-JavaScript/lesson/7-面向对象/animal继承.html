@@ -10,21 +10,33 @@
 	<body>
 		<script type="text/javascript">
 			//动物类 
-			function Animal() {　　　　
-				this.species = "动物";　　
+			function Animal() {
+				this.species = "动物";
+			}
+			Animal.prototype = {
+				constructor: Animal,
+				eat: function() {
+					console.log("em......")
+				},
+				sleep:function () {
+					console.log("hu......")
+				}
 			}
 			//猫 
-			function Cat(name, color) {　　　　
-				this.name = name;　　　　
-				this.color = color;　　
+			function Cat(name, color) {
+				this.name = name;
+				this.color = color;
 			}
+			// 原型继承
 			Cat.prototype = new Animal();
+			Cat.prototype.constructor = Cat;
+			// 自有方法
 			Cat.prototype.speak = function() {
 				console.log("miao");
 			}
-			Cat.prototype.constructor = Cat;
 			var cat = new Cat('Tom', 'black');
 			cat.speak();
+			console.log(cat)
 		</script>
 	</body>
 

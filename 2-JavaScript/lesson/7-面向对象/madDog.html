@@ -23,8 +23,10 @@
 			function MadDog() {
 
 			}
+			// 原型继承
 			MadDog.prototype = new Dog();
 			MadDog.prototype.constructor = MadDog;
+
 			MadDog.prototype.yelp = function() {
 				var self = this;
 				setInterval(function() {
@@ -33,10 +35,9 @@
 			}
 			//for test
 			var dog = new Dog();
-			//dog.yelp();
+			// dog.yelp();
 			var madDog = new MadDog();
-			//			madDog.yelp();
-			console.log(madDog instanceof Dog);
+			madDog.yelp();
 		</script>
 	</body>
 
