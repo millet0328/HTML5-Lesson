@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.box {
+				padding: 20px;
+				border: 2px solid blue;
+				width: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<button id="btn" type="button">显示</button>
+		<div class="box">
+			随着移动互联时代的到来，研发项目时，需要快速应对需求变化，构建易扩展、高可用的系统。
+			传统的架构已无法满足业务持续快速创新的需求，微服务架构（MicroService Architecture）应运而生。
+		</div>
+		<img width="600" class="photo" src="img/1.jpg" alt="">
+		<img width="600" class="photo" src="img/2.jpeg" alt="">
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<!-- 		<script type="text/javascript">
+			var flag = true; //标记box的状态
+			$("#btn").click(function() {
+				if (flag) {
+					$(".box").css("display", "none");
+					flag = false;
+				} else {
+					$(".box").css("display", "block");
+					flag = true;
+				}
+			});
+		</script> -->
+		<script type="text/javascript">
+			$("#btn").click(function() {
+				// 判断box是否显示
+				var flag = $(".box").is(":visible");
+				if (flag) {
+					$(".photo").attr("src", "img/2.jpeg");
+					$(".box").css("display", "none");
+				} else {
+					$(".photo").attr("src", "img/1.jpg");
+					$(".box").css("display", "block");
+				}
+			});
+			// 获取属性
+			console.log($("img:eq(1)").attr("src"))
+		</script>
+	</body>
+</html>

@@ -1,0 +1,52 @@
+@charset "utf-8";
+body{
+	background-color: #F3F3F3;
+}
+.container{
+	width: 1226px;
+	margin: 0 auto;
+}
+li{
+	width: calc(20% - 14px);
+    margin-right: 14px;
+    margin-top: 14px;
+    margin-bottom: 14px;
+    padding-top: 40px;
+    padding-bottom: 30px;
+    background-color: white;
+    float: left;
+    text-align: center;
+    position: relative;
+}
+.title{
+	color: black;
+	font-size: 14px;
+	padding: 8px 0;
+}
+.price{
+	color: red;
+	padding-bottom: 8px;
+}
+.high_opinion{
+	padding: 8px 0;
+}
+.add_cart{
+	padding: 5px 12px;
+    border: 1px solid #FD482C;
+    color: #FD482C;
+    font-size: 14px;
+    background-color: white;
+    position: absolute;
+    left: 50%;
+    bottom: 32px;
+    margin-left: -48px;
+    opacity: 0;
+    cursor: pointer;
+}
+li:hover .add_cart{
+	opacity: 1;
+	
+}
+.add_cart a:hover{
+	color: red;
+}

@@ -1,86 +1,103 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style type="text/css">
-    .cate-box .item {
-        padding: 6px 12px;
-        border: 1px solid #EEEEEE;
-        display: inline-block;
-        position: relative;
-    }
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style type="text/css">
+			.box {
+				border: 1px solid #0000FF;
+				width: 300px;
+				height: 300px;
+			}
 
-    .cate-box .item i {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        background: url(img/sys_item_selected.gif);
-        display: none;
-    }
+			.cube {
+				width: 100px;
+				height: 100px;
+				background-color: blue;
+				display: inline-block;
+				position: relative;
+			}
 
-    .cate-box .active {
-        padding: 5px 11px;
-        border: 2px solid red;
-    }
+			.slider {
+				text-align: center;
+				padding: 20px;
+				border: 2px solid #ddd;
+			}
 
-    .cate-box .active i {
-        display: block;
-    }
+			.slider::after {
+				content: "";
+				clear: both;
+				display: block;
+			}
 
-    .box {
-        height: 100px;
-    }
+			.left {
+				float: left;
+			}
 
-    .box .nav {
-        height: 100px;
-        background-color: red;
-        color: #FFFFFF;
-        text-align: center;
-        font-size: 24px;
-    }
-    </style>
-</head>
+			.right {
+				float: right;
+			}
+		</style>
+	</head>
 
-<body>
-    <div class="cate-box">
-        <div class="item">
-            白色
-            <i></i>
-        </div>
-        <div class="item">
-            黑色
-            <i></i>
-        </div>
-        <div class="item">
-            灰色
-            <i></i>
-        </div>
-        <div class="item">
-            粉色
-            <i></i>
-        </div>
-        <div class="item">
-            蓝色
-            <i></i>
-        </div>
-    </div>
-    <div style="height: 1000px"></div>
-    <div class="box">
-        <div class="nav">
-            导航栏
-        </div>
-    </div>
-    <div style="height: 1000px"></div>
-    <script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript">
+	<body>
+		<div class="box"></div>
+		<button id="start" type="button">开启移入变色</button>
+		<button id="close" type="button">关闭移入变色</button>
+		<div class="slider">
+			<button class="left" type="button">左</button>
+			<div class="cube"></div>
+			<button class="right" type="button">右</button>
+		</div>
 
-    </script>
-</body>
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#start").click(function() {
+					// 绑定事件
+					$(".box").on("mouseenter", function() {
+						$(this).css("background-color", "green");
+					});
+					$(".box").on("mouseleave", function() {
+						$(this).css("background-color", "white");
+					});
+				});
+
+				$("#close").click(function() {
+					// 移除事件
+					$(".box").off("mouseenter");
+					$(".box").off("mouseleave");
+				});
+
+				$(".right").click(function() {
+					// 获取left
+					var left = parseFloat($(".cube").css("left"));
+					// var left = $(".cube").position().left;
+					left += 10;
+					$(".cube").css("left", left);
+				});
+				setInterval(function() {
+					$(".right").trigger("click");
+				}, 500);
+				// 				//移入事件
+				// 				$(".box").mouseenter(function() {
+				// 					$(this).css("background-color", "green");
+				// 				});
+				// 				// 移出事件
+				// 				$(".box").mouseleave(function() {
+				// 					$(this).css("background-color", "white");
+				// 				});
+				// 				// hover事件
+				// 				$(".box").hover(function() {
+				// 					$(this).css("background-color", "green");
+				// 				}, function() {
+				// 					$(this).css("background-color", "white");
+				// 				});
+
+			});
+		</script>
+	</body>
 
 </html>

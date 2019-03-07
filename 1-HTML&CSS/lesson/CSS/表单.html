@@ -5,65 +5,132 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<style type="text/css">
-			.input {
-				padding: 8px;
+			.btn {
+				width: 200px;
+				padding: 16px 0;
+				background-color: crimson;
+				color: white;
+				font-size: 18px;
+				border: 1px solid red;
+				outline: 0;
+				border-radius: 5px;
+			}
+
+			.username {
+				padding: 6px;
 				width: 300px;
-				border: 1px solid #666666;
+				margin: 20px 0;
+				font-size: 16px;
+				color: blue;
+				border: 1px solid red;
+				background-color: #ddd;
+				border-radius: 4px;
 				outline: 0;
 			}
-			
-			.login {
-				padding: 6px 12px;
+
+			.province {
+				padding: 6px 8px;
+				width: 300px;
+				font-size: 16px;
+				position: relative;
+			}
+
+			.province::after {
+				content: "^";
+				position: absolute;
+				right: 0;
+				top: 0;
+				width: 60px;
+				height: 60px;
+				display: block;
 				background-color: #0000FF;
-				color: #FFFFFF;
-				font-size: 21px;
-				border: 0;
-				outline: 0;
+				color: white;
+				font-size: 18px;
+				z-index: 100;
 			}
-			
-			.chart th {
-				border: 1px solid #0000FF;
+
+			.sex {
+				width: 60px;
+				height: 60px;
 			}
-			
-			input[type=radio] {
-				width: 150px;
-				height: 150px;
+
+			.fav {
+				width: 40px;
+				height: 40px;
+			}
+
+			.table th {
+				background-color: #0DA4D3;
+			}
+
+			.table td {
+				border: 1px solid #ddd;
+				margin: 10px 4px 20px 0;
 			}
 		</style>
 	</head>
 
 	<body>
-		<input type="text" class="input" name="" id="" value="" />
-		<textarea name="" rows="" cols=""></textarea>
-		<!--下拉-->
-		<select name="">
-			<option value="">山东</option>
-		</select>
-		<br />
-		<!--单选-->
-		<label for="">
-			<input type="radio" name="sex" id="" value="" />男
-		</label>
-		<label for="">
-			<input type="radio" name="sex" id="" value="" />女
-		</label>
-		<br />
-		<!--按钮-->
-		<input type="button" class="login" name="" id="" value="登录" />
-		<!--表格-->
-		<table class="chart" border="0" cellspacing="" cellpadding="">
-			<tr>
-				<th>Header</th>
-				<th>Header</th>
-				<th>Header</th>
-				<th>Header</th>
-			</tr>
-			<tr>
-				<td>Data</td>
-				<td>Data</td>
-				<td>Data</td>
-				<td>Data</td>
-			</tr>
+		<!-- 按钮 -->
+		<input class="btn" type="button" name="" id="" value="input按钮" />
+		<button class="btn" type="button">button按钮</button>
+
+		<form action="" method="">
+			<!-- 文本框 -->
+			<input class="username" type="text">
+			<br>
+			<!-- select -->
+			<select class="province" name="">
+				<option value="">山东</option>
+				<option value="">河北</option>
+				<option value="">河南</option>
+				<option value="">广东</option>
+			</select>
+			<br>
+			<!-- 单选框/复选框 -->
+			<label for="">
+				<input class="sex" type="radio" name="" id="" value="" /> 男
+			</label>
+			<label for="">
+				<input class="sex" type="radio" name="" id="" value="" /> 女
+			</label>
+			<label for="">
+				<input class="fav" type="checkbox" name="" id="" value="" /> 唱歌
+			</label>
+			<label for="">
+				<input class="fav" type="checkbox" name="" id="" value="" /> 街舞
+			</label>
+		</form>
+		<!-- 表格 -->
+		<table class="table" border="0" cellpadding="20">
+			<thead>
+				<tr>
+					<th>Header</th>
+					<th>Header</th>
+					<th>Header</th>
+					<th>Header</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+			</tbody>
 		</table>
 	</body>
 

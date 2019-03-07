@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/getcart.css" />
+
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var ck = document.cookie; //取出的cookie是多个键值对
+				//对cookie解码。str的值是一个键值对序列。a=b;cart=a2;a2=a3;
+				var str = unescape(ck); //解码后的字符串
+				console.log(str);
+				var cookies = str.split(";"); //使用分号将字符串分割成数组，数组的每一个元素就是一个键值对
+				console.log(cookies)
+				for(var i = 0; i < cookies.length; i++) {
+					var c = cookies[i]; //其中的一个键值对
+					console.log(c)
+					var arr = c.split("="); //把键和值分开，放到一个数组中
+					if(arr[0].trim() == "cart") {
+						var cart = JSON.parse(arr[1].trim()); //将字符串转换成JSON对象
+						console.log(cart); //真正可以使用的购物车对象
+
+					} else {
+						console.log("不是购物车的cookie，");
+					}
+				}
+				//	localStorage 获取cart
+				/*var c = window.localStorage.getItem("cart");
+				var cart = JSON.parse(c);*/ //字符串转换成对象
+				//                 循环添加
+                  cart.forEach(function (item) {
+                  	var pro = "<div class='cart_add clearfix'>\
+					<div class='product-item fl'><div class='photo'><img src=" + item.photo + "></div>\
+				    <div class='product_tit'>自营 | <span>" + item.title + "</span></div></div>\
+					<div class='price-item fl'>" + item.price + "</div>\
+					<div class='quantity-item fl'><div class='sum_box'>\
+					<div class='minus'>-</div><div class='num'>1</div><div class='add'>+</div></div>\
+					</div><div class='subtotal-item fl'>" + item.price + "</div>\
+					<div class='actions-item fl'>删除</div></div>";
+					$(".cart_sec").append(pro)
+                  })
+				
+			
+
+				//               数量减少
+				$(".minus").click(function() {
+					var txt = $(this).siblings(".num").text() //获取几件
+					var price = $(this).parent().parent().siblings(".price-item").text(); //获取单价
+					price = price.slice(1, price.length) //字符串截取,去掉¥
+					
+					if(txt>1) {
+						txt--
+						$(this).siblings(".num").text(txt)	
+					} else {			
+						alert("最少购买一个");
+					}
+					var sum = price * txt
+					sum = sum.toFixed(1) //计算结果保留一位小数
+					$(this).parent().parent().siblings(".subtotal-item").text("¥" + sum); // 总价
+				})
+				//				数量增加
+				$(".add").click(function() {
+					var txt = $(this).siblings(".num").text()//获取几件
+					var price = $(this).parents(".quantity-item").siblings(".price-item").text();//获取单价
+					price = price.slice(1, price.length)
+
+					if(txt >= 5) {
+						alert("最多购买五个");
+					} else {
+						txt++
+						$(this).siblings(".num").text(txt)
+					}
+					var sum = price * txt
+					//					保留一位一数
+					sum = sum.toFixed(1)
+					$(this).parent().parent().siblings(".subtotal-item").text("¥" + sum);
+
+				})
+
+				//					删除
+				$(".cart_sec").on("click", ".actions-item", function() {
+					$(this).parent().remove();
+				})
+			})
+		</script>
+	</head>
+
+	<body>
+
+		<div class="cartbox ">
+			<div class="cart_title clearfix">
+				<div class="culling fl">
+					精选特卖
+				</div>
+				<div class="min_title fr  ">
+					<ul class="clearfix">
+						<li>单价</li>
+						<li>数量</li>
+						<li>小计</li>
+						<li>操作</li>
+					</ul>
+				</div>
+
+			</div>
+			<div class="cart_sec">
+				<!--<div class="cart_add clearfix">
+					<div class="product-item fl">
+						<div class="photo">
+
+						</div>
+						<div class="product_tit">
+							自营 | <span>
+							标题
+						</span>
+						</div>
+
+					</div>
+					<div class="price-item fl">
+						单价
+					</div>
+					<div class="quantity-item fl">
+						<div class="sum_box">
+							<div class="minus">
+								-
+							</div>
+							<div class="num">
+								1
+							</div>
+							<div class="add">
+								+
+							</div>
+						</div>
+					</div>
+					<div class="subtotal-item fl">
+						&yen;979
+					</div>
+					<div class="actions-item fl">
+						删除
+					</div>
+
+				</div>-->
+			</div>
+			<div class="carriage">
+				运费 : 自营商品已满足新会员专享全场38元包邮
+			</div>
+		</div>
+
+	</body>
+
+</html>

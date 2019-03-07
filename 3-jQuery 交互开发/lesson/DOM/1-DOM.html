@@ -8,53 +8,53 @@
 			body {
 				font-family: "微软雅黑";
 			}
-			
+
 			.face img {
 				max-width: 100%;
 			}
-			
+
 			.result {
 				margin-top: 20px;
 				padding: 10px 10px 0 10px;
 				border: 1px solid #CCCCCC;
 				color: #e77064;
 			}
-			
+
 			.result p {
 				margin-top: 0;
 				padding-left: 10px;
 				border-left: 4px solid #E77064;
 			}
-			
+
 			.result p b {
 				float: right;
 				cursor: pointer;
 			}
-			
+
 			.result p:after {
 				content: '';
 				clear: both;
 				display: block;
 			}
-			
+
 			.box1 {
 				width: 800px;
 				height: 800px;
 				background-color: #000;
 			}
-			
+
 			.box2 {
 				width: 600px;
 				height: 600px;
 				background-color: #FF0;
 			}
-			
+
 			.box3 {
 				width: 200px;
 				height: 200px;
 				background-color: blue;
 			}
-			
+
 			.active {
 				text-align: center;
 				color: blue;
@@ -97,39 +97,19 @@
 		</div>
 		<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			//保障页面元素全部加载完成
+			// 保障页面全部加载完成
 			$(document).ready(function() {
-				$('#add').click(function() {
-					//获取属性
-					var link = $("#content a").attr("href");
-					//设置属性
-					$("#content a").attr({
-						href: "http://www.baidu.com/"
-					});
-					//修改表单属性
-					$("#add").val("添加属性");
-				});
-
 				$("#title").click(function() {
 					var flag = $("#content img").is(":visible");
-					if(flag) {
-						$("#content img").css("display", "none");
+					if (flag) {
+						$("#content img").hide(4000, "linear", function() {
+							$("#title").css("color", "blue");
+						});
 					} else {
-						$("#content img").css("display", "block");
+						$("#content img").show("slow");
 					}
 				});
-				//添加评论
-				$("#btn").click(function() {
-					//获取value
-					var txt = $("#txt").val();
-					
-					
-					
-				});
-				
-				
 			});
 		</script>
 	</body>
-
 </html>

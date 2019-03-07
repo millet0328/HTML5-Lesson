@@ -407,7 +407,7 @@
 				trigger: "click",
 				startFun: function(i) {
 					var curLi = jQuery(".fullSlide .bd li").eq(i);
-					if(!!curLi.attr("_src")) {
+					if (!!curLi.attr("_src")) {
 						curLi.css("background-image", curLi.attr("_src")).removeAttr("_src")
 					}
 				}
@@ -415,85 +415,91 @@
 		</script>
 		<script type="text/javascript">
 			$(document).ready(function() {
-				$(".title_cn").click(function() {
-					var flag = $(this).next(".title_en").is(":visible");
-					if(flag) {
-						$(this).next(".title_en").hide("slow");
-					} else {
-						$(this).next(".title_en").show("slow");
-					}
+				// 新闻资讯
+				$(".news_box li").mouseenter(function() {
+					$(this).find(".news_date").stop(true).fadeOut("slow");
 				});
-				//动画主体
-				$(".news_box li").hover(function() {
-					$(this).find(".news_date").stop(true).fadeOut();
-				}, function() {
-					$(this).find(".news_date").stop(true).fadeIn();
+				$(".news_box li").mouseleave(function() {
+					$(this).find(".news_date").stop(true).fadeIn("slow");
 				});
-				//菜单
-				$(".navbar li").hover(function() {
-					$(this).find("dl").stop(true).slideDown();
-				}, function() {
-					$(this).find("dl").stop(true).slideUp();
-				});
-				//作品展示
+				// 导航
+				$(".navbar li").mouseenter(function() {
+					$(this).find("dl").stop(true).slideDown("slow");
+				})
+				$(".navbar li").mouseleave(function() {
+					$(this).find("dl").stop(true).slideUp("slow");
+				})
+				// 作品展示
 				$(".works_box .item").hover(function() {
-					$(this).find(".cover").animate({
-						top: '0px'
-					}, 600);
+					$(this).find(".cover").stop(true).animate({
+						top: "0%"
+					}, 1000)
 				}, function() {
-					$(this).find(".cover").animate({
-						top: '100%'
-					}, "slow");
-				});
-				//场景展示
-				$(".theme_box li").hover(function() {
-					$(this).siblings("li").find("img").stop(true).animate({
+					$(this).find(".cover").stop(true).animate({
+						top: "100%"
+					})
+				})
+				// 场景展示
+				$(".theme_box li").mouseenter(function() {
+					$(this).siblings().find("img").stop(true).animate({
 						opacity: 0.3
 					});
-				}, function() {
-					$(this).siblings("li").find("img").stop(true).animate({
+				});
+				$(".theme_box li").mouseleave(function() {
+					$(this).siblings().find("img").stop(true).animate({
 						opacity: 1
 					});
 				});
-				//导航
-				$(window).scroll(function() {
-					var top = $(document).scrollTop();
-					if(top > 0) {
-						$(".nav").css({
-							position: "fixed",
-							backgroundColor: "rgba(0,0,0,0.8)"
-						});
-						$(".nav .logo").stop(true).fadeOut(function() {
-							$('.navbar').stop(true).animate({
-								paddingLeft: '0px'
-							})
-						});
-					} else {
-						$(".nav").css({
-							position: "absolute",
-							backgroundColor: "rgba(0,0,0,0.3)"
-						});
-						$('.navbar').stop(true).animate({
-							paddingLeft: '175px'
-						}, function() {
-							$(".nav .logo").stop(true).fadeIn();
-						});
-					}
-					//回到顶部的显示/隐藏
-					if(top > 1000) {
-						$("#backTop").fadeIn();
-					} else {
-						$("#backTop").fadeOut();
-					}
-				});
-				//回到顶部
+				// 回到顶部
 				$("#backTop").click(function() {
 					$("html,body").animate({
 						scrollTop: 0
-					});
+					}, 1000);
 				});
 
-			})
+				// 滚动
+				$(window).scroll(function() {
+					// 获取滚动值
+					var scrollTop = $(this).scrollTop();
+					// 回到顶部按钮的显示/隐藏
+					if (scrollTop > 400) {
+						$("#backTop").stop(true).fadeIn();
+					} else {
+						$("#backTop").stop(true).fadeOut();
+					}
+
+					if (scrollTop > 0) {
+						$(".nav").css({
+							"position": "fixed",
+							"background-color": "rgba(0,0,0,0.7)"
+						});
+						$(".nav").find("dd").css({
+							"background-color": "rgba(0,0,0,0.7)"
+						});
+
+						$(".nav").find(".logo").stop(true).fadeOut(function() {
+							$(".nav").find(".navbar").stop(true).animate({
+								"padding-left": "0px"
+							});
+						});
+					} else {
+						$(".nav").css({
+							"position": "absolute",
+							"background-color": "rgba(0,0,0,0.3)"
+						});
+						$(".nav").find("dd").css({
+							"background-color": "rgba(0,0,0,0.3)"
+						});
+						$(".nav").find(".navbar").stop(true).animate({
+							"padding-left": "175px"
+						}, 600);
+						$(".nav").find(".logo").stop(true).delay(600).fadeIn();
+
+					}
+
+				});
+
+			});
 		</script>
 	</body>
 

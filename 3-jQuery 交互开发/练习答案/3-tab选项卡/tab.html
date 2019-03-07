@@ -51,9 +51,8 @@ $('.tab-title li').click(function() {
     $(this).addClass("active");
     // 获取索引值
     var i = $(this).index();
-    $(this).parent().siblings(".tab-content").find("li").css("display", "none");
-    $(this).parent().siblings(".tab-content").find("li").eq(i).css("display", "block");
-
+    $(this).parent().siblings(".tab-content").find("li").hide("slow");
+    $(this).parent().siblings(".tab-content").find("li").eq(i).show("slow");
 });
 </script>
 

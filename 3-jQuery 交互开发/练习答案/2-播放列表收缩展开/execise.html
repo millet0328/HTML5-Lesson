@@ -84,49 +84,49 @@
     <script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
     //标志当前列表是否显示
-    // var flag = true;
-    // $(".playBox .title").click(function() {
-    // 	if(flag == true) {
-    // 		//隐藏列表
-    // 		$(".playList").css({
-    // 			"display": "none"
-    // 		});
-    // 		//改变箭头
-    // 		$(".arrow").removeClass("up").addClass("down");
-    // 		flag = false;
-    // 	} else {
-    // 		//显示列表
-    // 		$(".playList").css({
-    // 			"display": "block"
-    // 		});
-    // 		//改变箭头
-    // 		$(".arrow").removeClass("down").addClass("up");
-    // 		flag = true;
-    // 	}
-    // });
-    // 标志当前列表是否显示
+    var flag = true;
     $(".playBox .title").click(function() {
-    	var flag = $(".playList").is(':visible');
-        if (flag) {
+        if (flag == true) {
             //隐藏列表
             $(".playList").css({
                 "display": "none"
             });
             //改变箭头
-            $(".arrow").css({
-                "transform": "rotate(180deg)"
-            });
+            $(".arrow").removeClass("up").addClass("down");
+            flag = false;
         } else {
             //显示列表
             $(".playList").css({
                 "display": "block"
             });
             //改变箭头
-            $(".arrow").css({
-                "transform": "rotate(360deg)"
-            });
+            $(".arrow").removeClass("down").addClass("up");
+            flag = true;
         }
     });
+    // 标志当前列表是否显示
+    // $(".playBox .title").click(function() {
+    // 	var flag = $(".playList").is(':visible');
+    //     if (flag) {
+    //         //隐藏列表
+    //         $(".playList").css({
+    //             "display": "none"
+    //         });
+    //         //改变箭头
+    //         $(".arrow").css({
+    //             "transform": "rotate(180deg)"
+    //         });
+    //     } else {
+    //         //显示列表
+    //         $(".playList").css({
+    //             "display": "block"
+    //         });
+    //         //改变箭头
+    //         $(".arrow").css({
+    //             "transform": "rotate(360deg)"
+    //         });
+    //     }
+    // });
     </script>
 </body>
 

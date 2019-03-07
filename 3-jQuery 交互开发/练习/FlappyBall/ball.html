@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+			}
+
+			#game {
+				width: 800px;
+				height: 600px;
+				border: 1px solid #000;
+				background: url(images/sky.png);
+				overflow: hidden;
+				position: relative;
+				margin: 0 auto;
+			}
+
+			#game .pipeD {
+				background: url(images/pipe1.png) top center;
+				position: absolute;
+			}
+
+			#game .pipeU {
+				background: url(images/pipe2.png) bottom center;
+				position: absolute;
+			}
+
+			#bird {
+				width: 34px;
+				height: 26px;
+				position: absolute;
+				top: 100px;
+				left: 100px;
+				background: url(images/birds.png) -8px -10px no-repeat;
+			}
+			#start {
+				position: absolute;
+				top: 100px;
+				right: 200px;
+				padding: 10px;
+				outline: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<button type="button" id="start">开始游戏</button>
+		<div id="game">
+
+			<div id="bird"></div>
+		</div>
+	</body>
+</html>
+<script>
+	var game = document.getElementById("game");
+	var birdEle = document.getElementById("bird");
+	var start = document.getElementById("start");
+	var gameover = false;
+	var g = 1; //重力加速度
+	var sky = {
+		position: 0
+	}
+	var bird = {
+		entity: birdEle,
+		speedX: 5,
+		speedY: 5,
+		x: birdEle.offsetLeft, //返回当前元素的相对水平偏移位置
+		y: birdEle.offsetTop //返回当前元素的相对垂直偏移位置
+	}
+	start.onclick = function() {
+
+		function Pipe(position) {
+			//管道坐标
+			this.x = position; //管道div的left属性值
+			this.width = 52;
+			this.upPipeY = 0; //上管道div的top属性值
+			this.upPipeH = parseInt(Math.random() * 175) + 100; //上面管道div的高度
+			this.downPipeY = this.upPipeH + 200; //下管道div的top属性值
+			this.downPipeH = 600 - this.downPipeY; //下面管道div的高度。 600是div.game的高度
+			// 动态添加管道
+			var divUp = document.createElement("div");
+			divUp.className = "pipeU";
+			divUp.style.left = this.x + "px";
+			divUp.style.top = this.upPipeY + "px";
+			divUp.style.width = this.width + "px";
+			divUp.style.height = this.upPipeH + "px";
+			game.appendChild(divUp);
+
+			var divDown = document.createElement("div");
+			divDown.className = "pipeD";
+			divDown.style.left = this.x + "px";
+			divDown.style.top = this.downPipeY + "px";
+			divDown.style.width = this.width + "px";
+			divDown.style.height = this.downPipeH + "px";
+			game.appendChild(divDown);
+			//因为定时器会混乱this的指向问题，所以提前保存this的指向，这里的this指向调用该方法的
+			var _this = this;
+			setInterval(function() {
+				_this.x -= 1;
+				//简单实现管子无缝滚动
+				if (_this.x < -52) {
+					_this.x = 800;
+				}
+				if (!gameover) {
+					//上下管道移动
+					divUp.style.left = _this.x + "px";
+					divDown.style.left = _this.x + "px";
+				}
+				// 设置变量，进行游戏碰撞检测，并停止游戏
+				var clsUp = (bird.x + 34 > _this.x) && (bird.x < _this.x + 52) && (bird.y < _this.upPipeH);
+				var clsDown = (bird.x + 34 > _this.x) && (bird.x < _this.x + 52) && (bird.y + 26 > _this.downPipeY);
+				if (clsUp || clsDown) {
+					gameover = true;
+				}
+			}, 10)
+		}
+		setInterval(function() {
+			//游戏没有结束的时候运行代码
+			if (!gameover) {
+				//小鸟下落时y轴的坐标
+				bird.speedY = bird.speedY + g;
+				bird.y = bird.y + bird.speedY;
+				//小鸟的y轴坐标大于最低高度，所以游戏停止
+				if (bird.y > 574) {
+					bird.y = 574;
+					gameover = true;
+				}
+				//小鸟的y轴坐标小于0，说明碰到顶部边框，所以游戏结束
+				if (bird.y < 0) {
+					bird.y = 0;
+					gameover = true;
+				}
+				//小鸟下落
+				//设置游戏开始时小鸟出现的位置
+				bird.entity.style.top = bird.y + "px";
+				//整个游戏背景x轴移动的距离
+				// sky.position -= bird.speedX;
+				// game.style.backgroundPositionX = sky.position + "px";
+			}
+		}, 25)
+		//添加鼠标事件，实现鼠标点击控制小鸟
+		document.onmousedown = function() {
+			bird.speedY = -10; //点击向上10
+		}
+		//执行上面的函数方法
+		var arr = [];
+		for (var i = 0; i < 4; i++) {
+			arr[i] = new Pipe(400 + 800 / 4 * i);
+		}
+	}
+</script>

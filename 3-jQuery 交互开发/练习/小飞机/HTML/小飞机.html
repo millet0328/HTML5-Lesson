@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        .container {
+            text-align: center;
+        }
+
+        .A, .S, .D, .J, .K, .W {
+            width: 60px;
+            height: 60px;
+            display: inline-block;
+            position: relative;
+            margin: 10px;
+        }
+
+        .up {
+            width: 50px;
+            height: 50px;
+            font-size: 25px;
+            line-height: 50px;
+            text-align: center;
+            display: inline-block;
+            color: #fff;
+            font-weight: bold;
+            border: 1px solid #2b2b31;
+
+        }
+
+        .A .up {
+            background: red;
+        }
+
+        .S .up {
+            background: #2b2b31;
+        }
+
+        .D .up {
+            background: #0f74a8;
+        }
+
+        .J .up {
+            background: #0dad51;
+        }
+
+        .K .up {
+            background: #1dd5ff;
+        }
+
+        .W .up {
+            background: #fff4b0;
+        }
+
+        .tran5 {
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -ms-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            transition: all 0.5s;
+        }
+
+        .shade {
+            position: absolute;
+            top: 10px;
+            left: 14px;
+            width: 50px;
+            height: 50px;
+            background: #686872;
+            z-index: -1;
+            box-shadow: 2px 2px 5px #686872;
+        }
+
+        .direction {
+            display: inline-block;
+            width: 300px;
+            vertical-align: middle;
+        }
+
+        .aircraft {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+        }
+
+        .shield {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            border: 2px solid #1476a8;;
+            background: rgba(29, 213, 255, 0.2);
+            z-index: 1;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .rocket {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .boom, .enemy {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 200px;
+            height: 200px;
+        }
+
+        .integral {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            font-size: 14px;
+        }
+
+        .integral span {
+            color: red;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class=" aircraft  tran5">
+    <img src="../img/feiji.png" alt="" class="img">
+    <img src="../img/dan.png" alt="" class="rocket ">
+    <div class="shield"></div>
+</div>
+<div class="integral">您的积分为: <span>0</span></div>
+<div class="container">
+    <div class="direction">
+        <div class="W">
+            <div class="up tran5">W</div>
+            <div class="shade"></div>
+        </div>
+        <br>
+        <div class="A">
+            <div class="up tran5">A</div>
+            <div class="shade"></div>
+        </div>
+        <div class="S">
+            <div class="up tran5">S</div>
+            <div class="shade"></div>
+        </div>
+        <div class="D">
+            <div class="up tran5">D</div>
+            <div class="shade"></div>
+        </div>
+        <br>
+        <span>方向键:WASD</span>
+    </div>
+    <div class="direction">
+        <div class="J">
+            <div class="up tran5">J</div>
+            <div class="shade"></div>
+        </div>
+        <div class="K">
+            <div class="up tran5">K</div>
+            <div class="shade"></div>
+        </div>
+        <br>
+        <span>攻击:J 护罩:K</span>
+    </div>
+</div>
+
+<script type="text/javascript">
+    window.onload = function () {
+        var aircraft = document.querySelector(".aircraft");
+        var body = document.querySelector("body");
+        var rocket = document.querySelector(".rocket");
+        aircraft.style.transform = "rotate(0deg)";
+        var enemyLeft = 0;
+        var enemyTop = 0;
+        //积分
+        var oSpan=document.querySelector(".integral span");
+        var num=0
+        //最大值
+        var MaxWidth = window.innerWidth;
+        var MaxHeight = window.innerHeight;
+        //方向
+        var direction = "up";
+        //护罩
+        var shield = document.querySelector(".shield");
+        var flag = true;
+
+        //控制器
+        var A = document.querySelector(".A");
+        var S = document.querySelector(".S");
+        var D = document.querySelector(".D");
+        var J = document.querySelector(".J");
+        var K = document.querySelector(".K");
+        var W = document.querySelector(".W");
+        document.onkeydown = function (e) {
+            var n = e.keyCode;
+            switch (n) {
+                case 87:
+                    var up = W.querySelector(".up");
+                    up.style.transform = "translate(10px,10px)";
+                    aircraft.style.transform = "rotate(0deg)";
+                    direction = "up";
+                    break;
+                case 65:
+                    var up = A.querySelector(".up");
+                    up.style.transform = "translate(10px,10px)";
+                    direction = "left";
+                    if (aircraft.style.transform == "rotate(180deg)") {
+                        aircraft.style.transform = "rotate(270deg)";
+                        return;
+                    }
+                    aircraft.style.transform = "rotate(-90deg)";
+                    break;
+                case 83:
+                    var up = S.querySelector(".up");
+                    up.style.transform = "translate(10px,10px)";
+                    aircraft.style.transform = "rotate(180deg)";
+                    direction = "down";
+                    break;
+                case 68:
+                    var up = D.querySelector(".up");
+                    up.style.transform = "translate(10px,10px)";
+                    direction = "right";
+                    aircraft.style.transform = "rotate(90deg)";
+                    break;
+                case 74:
+                    var up = J.querySelector(".up");
+                    up.style.transform = "translate(10px,10px)";
+                    launch();
+
+                    break;
+                case 75:
+                    var up = K.querySelector(".up");
+                    up.style.transform = "translate(10px,10px)";
+                    flag = true;
+                    create();
+                    break;
+
+
+            }
+        }
+        document.onkeyup = function (e) {
+            var n = e.keyCode;
+            switch (n) {
+                case 87:
+                    var up = W.querySelector(".up");
+                    up.style.transform = "translate(0px,0px)";
+                    break;
+                case 65:
+                    var up = A.querySelector(".up");
+                    up.style.transform = "translate(0px,0px)";
+                    break;
+                case 83:
+                    var up = S.querySelector(".up");
+                    up.style.transform = "translate(0px,0px)";
+                    break;
+                case 68:
+                    var up = D.querySelector(".up");
+                    up.style.transform = "translate(0px,0px)";
+                    break;
+                case 74:
+                    var up = J.querySelector(".up");
+                    up.style.transform = "translate(0px,0px)";
+                    break;
+                case 75:
+                    var up = K.querySelector(".up");
+                    up.style.transform = "translate(0px,0px)";
+                    flag = false;
+                    break;
+
+
+            }
+        }
+        move();
+
+        //运动
+        function move() {
+            setInterval(function () {
+                if (direction == "down") {
+                    var top = aircraft.offsetTop;
+                    var height = aircraft.offsetHeight;
+                    top += 60;
+                    if (top >= MaxHeight - height) {
+                        top = MaxHeight - height;
+                    }
+                    aircraft.style.top = top + "px";
+                }
+                if (direction == "up") {
+                    var top = aircraft.offsetTop;
+                    top -= 60;
+                    if (top <= 0) {
+                        top = 0;
+                    }
+                    aircraft.style.top = top + "px";
+                }
+                if (direction == "left") {
+                    var left = aircraft.offsetLeft;
+                    left -= 60;
+                    if (left <= 0) {
+                        left = 0;
+                    }
+                    aircraft.style.left = left + "px";
+                }
+                if (direction == "right") {
+                    var left = aircraft.offsetLeft;
+                    var width = aircraft.offsetWidth;
+                    left += 60;
+                    if (left >= MaxWidth - width) {
+                        left = MaxWidth - width;
+                    }
+                    aircraft.style.left = left + "px";
+                }
+            }, 5)
+        }
+
+        //护罩
+        var timer;
+
+        function create() {
+            clearInterval(timer);
+            timer = setInterval(function () {
+                if (flag) {
+                    var width = shield.offsetWidth;
+                    var height = shield.offsetHeight;
+                    width += 5;
+                    height += 5;
+                    if (width >= 200) {
+                        return;
+                    }
+                    shield.style.width = width + "px";
+                    shield.style.height = height + "px";
+                } else {
+                    var width = shield.offsetWidth;
+                    var height = shield.offsetHeight;
+                    width -= 10;
+                    height -= 10;
+                    if (width <= 0) {
+                        shield.style.width = "0px";
+                        shield.style.height = "0px";
+                        return;
+                    }
+                    shield.style.width = width + "px";
+                    shield.style.height = height + "px";
+                }
+
+            }, 10)
+        }
+
+        //导弹发射与打击
+        var launch2;
+
+        function launch() {
+            clearInterval(launch2);
+            var top2 = 0;
+            launch2 = setInterval(function () {
+                if (direction == "down") {
+                    aircraft = document.querySelector(".aircraft");
+                    var top = aircraft.offsetTop;
+                    var left = aircraft.offsetLeft;
+                    var height = aircraft.offsetHeight;
+                    top2 -= 10;
+                    if ((-top2 >= (enemyTop - top - 200) && (enemyTop - top) >= -top2) && (((left >= enemyLeft && left <= enemyLeft + 200)) || ((left <= enemyLeft) && left >= (enemyLeft - 200)))) {
+                        hit();
+                        num++;
+                        oSpan.innerText=num;
+                        return;
+                    }
+                    if (top2 <= -(MaxHeight - top - height)) {
+                        rocket.style.top = "0px";
+                        clearInterval(launch2);
+                        var boom = document.createElement("img");
+                        boom.setAttribute("src", "../img/bao.jpg");
+                        boom.classList.add("boom");
+                        boom.style.left = left + "px";
+                        boom.style.top = (MaxHeight - height) + "px";
+                        body.appendChild(boom);
+                        remove(boom);
+                        return;
+                    }
+                    rocket.style.top = top2 + "px";
+                }
+                if (direction == "up") {
+                    aircraft = document.querySelector(".aircraft");
+                    var top = aircraft.offsetTop;
+                    var left = aircraft.offsetLeft;
+                    top2 -= 10;
+                    if ((-top2 >= (top - enemyTop - 200) && ((top - enemyTop) >= -top2)) && ((left >= enemyLeft && left <= enemyLeft + 200) || ((left <= enemyLeft) && (left >= enemyLeft - 200)))) {
+                        hit();
+                        num++;
+                        oSpan.innerText=num;
+                        return;
+                    }
+                    if (top2 <= -top) {
+                        rocket.style.top = "0px";
+                        clearInterval(launch2);
+                        var boom = document.createElement("img");
+                        boom.setAttribute("src", "../img/bao.jpg");
+                        boom.classList.add("boom");
+                        boom.style.left = left + "px";
+                        body.appendChild(boom);
+                        remove(boom);
+                        return;
+                    }
+                    rocket.style.top = top2 + "px";
+                }
+                if (direction == "left") {
+                    aircraft = document.querySelector(".aircraft");
+                    var left = aircraft.offsetLeft;
+                    var top = aircraft.offsetTop;
+                    top2 -= 10;
+                    if ((-top2 >= (left - enemyLeft - 200) && (-top2 <= left - enemyLeft)) && ((top >= enemyTop && (top <= enemyTop + 200)) || ((top <= enemyTop) && top >= (enemyTop - 200)))) {
+                        hit();
+                        num++;
+                        oSpan.innerText=num;
+                        return;
+                    }
+                    if (top2 <= -left) {
+                        rocket.style.top = "0px";
+                        clearInterval(launch2);
+                        var boom = document.createElement("img");
+                        boom.setAttribute("src", "../img/bao.jpg");
+                        boom.classList.add("boom");
+                        boom.style.left = "0px";
+                        boom.style.top = top + "px";
+                        body.appendChild(boom);
+                        remove(boom);
+                        return;
+                    }
+                    rocket.style.top = top2 + "px";
+                }
+                if (direction == "right") {
+                    aircraft = document.querySelector(".aircraft");
+                    var left = aircraft.offsetLeft;
+                    var top = aircraft.offsetTop;
+                    var width = aircraft.offsetWidth;
+                    top2 -= 10;
+                    if ((-top2 > (enemyLeft - left) && (enemyLeft - left + 200) >= -top2) && ((top >= enemyTop && (top <= enemyTop + 200)) || ((top <= enemyTop) && top >= (enemyTop - 200)))) {
+                        hit();
+                        num++;
+                        oSpan.innerText=num;
+                        return;
+                    }
+                    if (top2 <= -(MaxWidth - left - width)) {
+                        rocket.style.top = "0px";
+                        clearInterval(launch2);
+                        var boom = document.createElement("img");
+                        boom.setAttribute("src", "../img/bao.jpg");
+                        boom.classList.add("boom");
+                        boom.style.left = (MaxWidth - width) + "px";
+                        boom.style.top = top + "px";
+                        body.appendChild(boom);
+                        remove(boom);
+                        return;
+                    }
+                    rocket.style.top = top2 + "px";
+                }
+
+            }, 10);
+        }
+
+        //删除爆炸
+        function remove(boom) {
+            setTimeout(function () {
+                body.removeChild(boom);
+            }, 2000)
+        }
+
+        //敌舰
+        foe();
+
+        function foe() {
+            var enemy = document.createElement("img");
+            enemy.classList.add("enemy");
+            enemyLeft = parseInt(Math.random() * (MaxWidth - 400) + 200);
+            enemyTop = parseInt(Math.random() * (MaxHeight - 300) + 100);
+            console.log(enemyTop)
+            enemy.setAttribute("src", "../img/enemy.png");
+            enemy.style.top = (enemyTop) + "px";
+            enemy.style.left = (enemyLeft) + "px";
+            body.appendChild(enemy);
+        }
+
+        function hit() {
+            rocket.style.top = "0px";
+            clearInterval(launch2);
+            var boom = document.createElement("img");
+            boom.setAttribute("src", "../img/bao.jpg");
+            boom.classList.add("boom");
+            boom.style.left = enemyLeft + "px";
+            boom.style.top = enemyTop + "px";
+            body.appendChild(boom);
+            remove(boom);
+            var enemy = document.querySelector(".enemy");
+            body.removeChild(enemy);
+            foe();
+        }
+    }
+</script>
+</body>
+</html>

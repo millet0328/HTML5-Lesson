@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style type="text/css">
+			.box {
+				width: 100px;
+				height: 100px;
+				background-color: deeppink;
+				position: fixed;
+				right: 0;
+				top: 0;
+			}
+
+			.input {
+				padding: 10px 6px;
+				border: 1px solid #0000FF;
+				width: 300px;
+				outline: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--键盘输入-->
+		<!--placeholder IE>=10-->
+		<input type="text" class="input" id="txt" placeholder="请输入年龄！" />
+		<!--小方块-->
+		<div id="box" class="box"></div>
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				// 窗口的宽、高
+				var winWidth = $(window).innerWidth();
+				var winHeight = $(window).innerHeight();
+				// 计算max
+				var maxLeft = winWidth - $(".box").outerWidth();
+				var maxTop = winHeight - $(".box").outerHeight();
+
+				$(document).on("keydown", function(e) {
+					var left = $(".box").position().left;
+					var top = $(".box").position().top;
+					switch (e.which) {
+						case 40:
+							// 下
+							$(".box").css("top", top + 5);
+							break;
+						case 38:
+							// 上
+							$(".box").css("top", top - 5);
+							break;
+						case 37:
+							// 左
+							$(".box").css("left", left - 5);
+							break;
+						case 39:
+							// 右
+							$(".box").css("left", left + 5);
+							break;
+						default:
+							break;
+					}
+				});
+			})
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				// 失去焦点
+				$("#txt").blur(function() {
+					// 去掉两头空格
+					var txt = $.trim($(this).val());
+					// 年龄正则
+					var reg = /^[0-9]$|^[1-9]\d{1}$|^1[0-4]\d{1}$/;
+					var flag = reg.test(txt);
+					if (flag) {
+						$(this).css("border-color", "green");
+					} else {
+						$(this).css("border-color", "red");
+					}
+				})
+			})
+		</script>
+	</body>
+
+</html>

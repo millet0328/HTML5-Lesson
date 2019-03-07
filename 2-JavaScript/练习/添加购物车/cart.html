@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/cart.css" />
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var cart = [];
+				
+				$(".add_cart").click(function() {
+					//				获取商品信息
+					var photo = $(this).siblings(".photo").children().attr("src");
+					var title = $(this).siblings(".title").text().trim();
+					var price = $(this).siblings(".price").text().trim();
+					//将取出的要添加的商品属性，封装成一个商品对象
+					var product = {
+						"photo": photo,
+						"title": title,
+						"price": price,
+						"amount": 1
+					};
+					addProductToCart(product);
+					 
+					
+				})
+
+				function addProductToCart(product) {
+					var hasSameProduct = false; //购物车中是否已有相同商品
+					for(var i = 0; i < cart.length; i++) {
+						if(cart[i].title == product.title) {
+							hasSameProduct = true; //表示购物车已经有要添加的商品
+							break;
+						}
+					}
+					if(hasSameProduct) { //如果有，什么都不做
+
+					} else { //如果购物车中没有此商品，则直接添加
+						cart.push(product);
+					} 
+				    console.log(cart) 
+			        var str = JSON.stringify(cart);//cookie只能存储字符串， 把一个json（数据）对象转换成字符串
+					//存储到cookie中，使用一个键值对
+					console.log(str)
+					document.cookie = escape("cart="+str);//cookie自能存只能存储部分英文字符，不能存储汉字、空格等，使用escape进行编码
+					
+//					方法二  window.localStorage HTML5新特性，主要是用来作为本地存储来使用的  
+					//window.localStorage.setItem("cart",JSON.stringify(cart));//不能存储对象，转换成字符串
+				}
+				
+
+			})
+		</script>
+	</head>
+
+	<body>
+		<div class="container">
+
+			<ul class="clearfix">
+				<li>
+					<div class="photo"><img src="img/guess/guess.jpg" /></div>
+					<div class="title">红米s2 全网通版 4G版</div>
+					<div class="price">&yen;999</div>
+					<div class="high_opinion ">667人好评</div>
+					<div class="add_cart">
+						<a href="getcart.html" target="_blank">
+							加入购物车
+						</a>
+					</div>
+				</li>
+				<li>
+					<div class="photo"><img src="img/guess/guess01.jpg" /></div>
+					<div class="title">红米5 Plus 全网通版 4GB内存</div>
+					<div class="price">
+						&yen;999
+					</div>
+					<div class="high_opinion ">
+						2.4万人好评
+					</div>
+					<div class="add_cart">
+						<a href="getcart.html" target="_blank">加入购物车</a>
+					</div>
+				</li>
+				<li>
+					<div class="photo">
+						<img src="img/guess/guess02.png" />
+					</div>
+					<div class="title">
+						小米影视会员年卡卷
+					</div>
+					<div class="price">
+						&yen;498
+					</div>
+					<div class="high_opinion ">
+						2人好评
+					</div>
+					<div class="add_cart">
+						<a href="getcart.html" target="_blank">加入购物车</a>
+					</div>
+				</li>
+				<li>
+					<div class="photo">
+						<img src="img/guess/guess03.jpg" />
+					</div>
+					<div class="title">
+						小米铁圈耳机
+					</div>
+					<div class="price">
+						&yen;99
+					</div>
+					<div class="high_opinion ">
+						5.5万人好评
+					</div>
+					<div class="add_cart">
+						<a href="getcart.html" target="_blank">加入购物车</a>
+					</div>
+				</li>
+				<li>
+					<div class="photo">
+						<img src="img/guess/guess04.jpg" />
+					</div>
+					<div class="title">
+						小米平板4 Plus 10英寸 LTE
+					</div>
+					<div class="price">
+						&yen;669
+					</div>
+					<div class="high_opinion ">
+						667人好评
+					</div>
+					<div class="add_cart">
+						<a href="getcart.html" target="_blank">加入购物车</a>
+					</div>
+
+					<li>
+						<div class="photo">
+							<img src="img/guess/guess05.png" />
+						</div>
+						<div class="title">
+							90分智能金属旅行箱 20寸
+						</div>
+						<div class="price">
+							&yen;1099
+						</div>
+						<div class="high_opinion ">
+							558人好评
+						</div>
+						<div class="add_cart">
+							<a href="getcart.html" target="_blank">加入购物车</a>
+						</div>
+					</li>
+					<li>
+						<div class="photo">
+							<img src="img/guess/guess06.png" />
+						</div>
+						<div class="title">
+							1MORE头戴式耳机
+						</div>
+						<div class="price">
+							&yen;299
+						</div>
+						<div class="high_opinion ">
+							666人好评
+						</div>
+						<div class="add_cart">
+							<a href="getcart.html" target="_blank">加入购物车</a>
+						</div>
+					</li>
+					<li>
+						<div class="photo">
+							<img src="img/guess/guess07.png" />
+						</div>
+						<div class="title">
+							米家全景相机自拍杆
+						</div>
+						<div class="price">
+							&yen;67
+						</div>
+						<div class="high_opinion ">
+							2人好评
+						</div>
+						<div class="add_cart">
+							<a href="getcart.html" target="_blank">加入购物车</a>
+						</div>
+					</li>
+					<li>
+						<div class="photo">
+							<img src="img/guess/guess08.png" />
+						</div>
+						<div class="title">
+							小米V领短袖T恤 女款
+						</div>
+						<div class="price">
+							&yen;9.9
+						</div>
+						<div class="high_opinion ">
+							5.5万人好评
+						</div>
+						<div class="add_cart">
+							<a href="getcart.html" target="_blank">加入购物车</a>
+						</div>
+					</li>
+					<li>
+						<div class="photo">
+							<img src="img/guess/guess09.png" />
+						</div>
+						<div class="title">
+							经典款米兔（25cm）
+						</div>
+						<div class="price">
+							&yen;169
+						</div>
+						<div class="high_opinion ">
+							427人好评
+						</div>
+						<div class="add_cart">
+							<a href="getcart.html" target="_blank">加入购物车</a>
+						</div>
+					</li>
+			</ul>
+		</div>
+	</body>
+
+</html>

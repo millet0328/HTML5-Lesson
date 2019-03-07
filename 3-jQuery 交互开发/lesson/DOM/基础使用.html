@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="btn" type="button">按钮</button>
+
+		<input type="text" name="username" value="" />
+
+		<h1>Hello World!</h1>
+		<!-- 表格 -->
+		<table class="table" border="" cellspacing="" cellpadding="">
+			<thead>
+				<tr>
+					<th>姓名</th>
+					<th>年龄</th>
+					<th>性别</th>
+					<th>籍贯</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>黄小米</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>黄渤</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>黄磊</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>黄晓明</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+			</tbody>
+		</table>
+		<!-- 搜索框 -->
+		<form action="">
+			<input type="text" id="searchTxt" value="" />
+			<button id="searchBtn" type="button">搜索</button>
+		</form>
+		<!-- jQuery -->
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// 查找元素
+			$("#btn").click(function() {
+				$("input[name='username']").hide();
+			});
+			// 元素的个数
+			console.log($(".table th").length)
+			// 元素
+			// $(".table th:nth-child(even)").css("background-color", "blue");
+			console.log($(".table th")); //4个元素
+			console.log($("#btn")); //1个元素
+			// 偶数/奇数
+			// 			$(".table tbody tr:even").css("background-color","yellow");
+			// 			$(".table tbody tr:odd").css("background-color","lightblue");
+
+			$("#searchBtn").click(function() {
+				// 获取value
+				var txt = $("#searchTxt").val();
+				// 选择具有特定文本的元素
+				$(".table tbody td:contains('" + txt + "')").css("color", "green")
+			});
+		</script>
+	</body>
+</html>

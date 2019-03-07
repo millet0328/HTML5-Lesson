@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			table {
+				width: 50%;
+				position: relative;
+				margin: 30px auto;
+				border-collapse: collapse;
+				border: 1px solid gray;
+				text-align: center;
+			}
+
+			table th {
+				background: cornflowerblue;
+				height: 2.5em;
+			}
+
+			.serial_number {
+				width: 10%;
+			}
+
+			.quantity {
+				width: 20%;
+			}
+
+			.name {
+				width: 20%;
+			}
+
+			.price {
+				width: 20%;
+			}
+
+			.subtotal {
+				width: 20%;
+			}
+
+			.operation {
+				width: 10%;
+			}
+
+			td {
+				height: 2em;
+				text-align: center;
+				border: 1px solid #ccc;
+			}
+
+			.num {
+				display: inline-block;
+				width: 3em;
+				color: #000000;
+			}
+
+			input {
+				height: 2em;
+			}
+
+			.talast {
+				text-align: left;
+			}
+		</style>
+	</head>
+	<body>
+		<table>
+			<thead id="jsHeader">
+				<tr>
+					<th class="serial_number">序号</th>
+					<th class="name"> 商品名称</th>
+					<th class="quantity">数量</th>
+					<th class="price">单价</th>
+					<th class="subtotal ">小计</th>
+					<th class="operation">操作</th>
+				</tr>
+			</thead>
+			<tbody id="jsList">
+				<tr>
+					<td class="serial_number">1</td>
+					<td class="name">烤煎饼</td>
+					<td class="quantity"><button class="minus" type="button">-</button><span class="num">0</span><button class="add"
+						 type="button">+</button></td>
+					<td class="price">2</td>
+					<td class="subtotal">0</td>
+					<td class="operation"><button class="del" type="button">删除</button></td>
+				</tr>
+				<tr>
+					<td class="serial_number">2</td>
+					<td class="name">珍珠奶茶</td>
+					<td class="quantity"><button class="minus" type="button">-</button><span class="num">0</span><button class="add"
+						 type="button">+</button></td>
+					<td class="price">3.5</td>
+					<td class="subtotal">0</td>
+					<td class="operation"><button class="del" type="button">删除</button></td>
+				</tr>
+				<tr>
+					<td class="serial_number">3</td>
+					<td class="name">羊肉串</td>
+					<td class="quantity"><button class="minus" type="button">-</button><span class="num">0</span><button class="add"
+						 type="button">+</button></td>
+					<td class="price">1.5</td>
+					<td class="subtotal">0</td>
+					<td class="operation"><button class="del" type="button">删除</button></td>
+				</tr>
+				<tr>
+					<td class="serial_number">4</td>
+					<td class="name">牛肉</td>
+					<td class="quantity"><button class="minus" type="button">-</button><span class="num">0</span><button class="add"
+						 type="button">+</button></td>
+					<td class="price">10</td>
+					<td class="subtotal">0</td>
+					<td class="operation"><button class="del" type="button">删除</button></td>
+				</tr>
+				<tr>
+					<td class="serial_number">5</td>
+					<td class="name">烧刀子</td>
+					<td class="quantity"><button class="minus" type="button">-</button><span class="num">0</span><button class="add"
+						 type="button">+</button></td>
+					<td class="price">1.8</td>
+					<td class="subtotal">0</td>
+					<td class="operation"><button class="del" type="button">删除</button></td>
+				</tr>
+				<tr>
+					<td class="serial_number">6</td>
+					<td class="name">水煮鱼</td>
+					<td class="quantity"><button class="minus" type="button">-</button><span class="num">0</span><button class="add"
+						 type="button">+</button></td>
+					<td class="price">15</td>
+					<td class="subtotal">0</td>
+					<td class="operation"><button class="del" type="button">删除</button></td>
+				</tr>
+
+			</tbody>
+			<tr>
+				<td colspan="6" ; class="talast"><span>商品一共 <span class="goods_num">0</span> 件; 共计花费 <span class="pricetal">0</span>
+						元</td>
+			</tr>
+		</table>
+		<script type="text/javascript">
+			window.onload = function() {
+				var oMinus = document.querySelectorAll(".minus");
+				var oAdd = document.querySelectorAll(".add");
+				var oNum = document.querySelectorAll(".num");
+				var oSubtal = document.querySelectorAll(".subtal");
+				var oGoodsNum = document.querySelector(".goods_num");
+				var oPricetal = document.querySelector(".pricetal");
+				var oTr = document.querySelectorAll("#jsList tr ");
+				var oTbody = document.getElementById("jsList");
+				var oTitle = document.querySelectorAll("#jsHeader th")
+				var oTd = document.querySelectorAll("#jslist tr td")
+
+				for (var i = 0; i < oTr.length; i++) {
+					oTr[i].onmousemove = function() {
+						this.style.backgroundColor = "#eeeeee";
+					}
+					oTr[i].onmouseout = function() {
+						this.style.backgroundColor = "#ffffff";
+					}
+				}
+				oTbody.onclick = function(event) {
+					if (event.target.className == "del") {
+						this.removeChild(event.target.parentNode.parentNode);
+					}
+					return
+				}
+
+				oTitle[3].onclick = function() {
+					var arr = [];
+					var oTr = document.querySelectorAll("#jsList tr ");
+					oTr.forEach(function(item) {
+						arr.push(item);
+					});
+					arr.sort(function(itemA, itemB) {
+						var priceA = itemA.cells[3].innerHTML;
+						var priceB = itemB.cells[3].innerHTML;
+						return priceA - priceB;
+					})
+					arr.forEach(function(item) {
+						oTbody.appendChild(item);
+					})
+				}
+				oTitle[4].onclick = function() {
+					var arr = [];
+					var oTr = document.querySelectorAll("#jsList tr ");
+					oTr.forEach(function(item) {
+						arr.push(item);
+						// console.log(arr);
+					});
+					arr.sort(function(itemA, itemB) {
+						var priceA = itemA.cells[4].innerHTML;
+						var priceB = itemB.cells[4].innerHTML;
+						return priceA - priceB;
+					})
+					arr.forEach(function(item) {
+						oTbody.appendChild(item);
+					})
+				}
+				var oNum = document.querySelectorAll("#jsList td span");
+				var oAdd = document.querySelectorAll(".add");
+				var plue = []
+
+				oAdd.forEach(function(item) {
+					plue.push(item);
+
+				})
+				//加
+				for (var i = 0; i < plue.length; i++) {
+					plue[i].setAttribute("id", i);
+					var oNum = document.querySelectorAll("#jsList td span");
+					oAdd[i].onclick = function() {
+						var oSubtotal = document.querySelectorAll("#jsList .subtotal");
+						var oPrice = document.querySelectorAll("#jsList .price");
+						var oGoodsNum = document.querySelector(".goods_num");
+						var oPricetal = document.querySelector(".pricetal");
+						var index = this.getAttribute("id");
+						x = parseFloat(oNum[index].innerText);
+						y = parseFloat(oPrice[index].innerText);
+						z = parseFloat(oGoodsNum.innerText);
+						m = parseFloat(oPricetal.innerText);
+						n = parseFloat(oSubtotal[index].innerText);
+						oNum[index].innerText = x + 1;
+						oSubtotal[index].innerText = ((x + 1) * y).toFixed(2);
+						oGoodsNum.innerText = z + 1;
+						oPricetal.innerText = (m + (x + 1) * y).toFixed(2);
+					}
+				}
+				var subtract = []
+
+				oMinus.forEach(function(item) {
+					subtract.push(item);
+
+				})
+				for (var i = 0; i < subtract.length; i++) {
+					subtract[i].setAttribute("id", i);
+					var oNum = document.querySelectorAll("#jsList td span");
+					oMinus[i].onclick = function() {
+						var oNum = document.querySelectorAll("#jsList td span");
+						var oNum = document.querySelectorAll("#jsList td span");
+						var oSubtotal = document.querySelectorAll("#jsList .subtotal");
+						var oPrice = document.querySelectorAll("#jsList .price");
+						var oGoodsNum = document.querySelector(".goods_num");
+						var oPricetal = document.querySelector(".pricetal");
+						var index = this.getAttribute("id");
+						x = parseFloat(oNum[index].innerText);
+						y = parseFloat(oPrice[index].innerText);
+						z = parseFloat(oGoodsNum.innerText);
+						m = parseFloat(oPricetal.innerText);
+						n = parseFloat(oSubtotal[index].innerText);
+						if (oNum[index].innerText == 0) {
+							oNum[index].innerText = 0;
+							return;
+						}
+						oNum[index].innerText = x - 1;
+						oSubtotal[index].innerText = ((x - 1) * y).toFixed(2);
+						oGoodsNum.innerText = z - 1;
+						oPricetal.innerText = (m - (x * y)).toFixed(2);
+					}
+				}
+
+			}
+		</script>
+	</body>
+</html>

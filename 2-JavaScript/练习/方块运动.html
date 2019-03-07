@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#main {
+				position: absolute;
+				top: 0;
+				left: 0;
+				cursor: pointer;
+			}
+
+			#img {
+				width: 50px;
+				height: 50px;
+				background: rgb(0, 0, 0);
+				/* background: pink; */
+			}
+		</style>
+	</head>
+	<body>
+		<div id="main" class="box">
+			<div id="img" class="box"></div>
+		</div>
+		<script type="text/javascript">
+			window.onload = function() {
+				var oMain = document.getElementById("main");
+				var oImg = document.getElementById("img");
+
+				var sobj;
+
+				sy = 0;
+				speedy = 2;
+				sx = 0;
+				speedx = 2;
+
+				imgh = 60;
+				imgw = 60;
+
+				var MaxHeight = window.innerHeight;
+				var MaxWidth = window.innerWidth;
+
+				var opacity = 10;
+
+				function start() {
+					sobj = setInterval(function() {
+						sy += speedy;
+						sx += speedx;
+						var i = Math.floor(Math.random() * 10 + 1);
+						var c = Math.floor(Math.random() * 255 + 1);
+						var o = Math.floor(Math.random() * 255 + 1);
+						var l = Math.floor(Math.random() * 255 + 1);
+						//y轴运动
+						if (sy <= 0) {
+							speedy = -speedy;
+							oImg.style.opacity = opacity / i;
+							oImg.style.backgroundColor = "rgb(" + c + "," + o + "," + l + ")";
+						}
+						if (sy >= MaxHeight - imgh) {
+							speedy = -speedy;
+							sy = MaxHeight - imgh;
+							oImg.style.opacity = opacity * i;
+							oImg.style.backgroundColor = "rgb(" + c + "," + o + "," + l + ")";
+
+						}
+						//x轴运动
+						if (sx <= 0) {
+							speedx = -speedx;
+							oImg.style.opacity = opacity / i;
+							oImg.style.backgroundColor = "rgb(" + c + "," + o + "," + l + ")";
+						}
+						if (sx >= MaxWidth - imgw) {
+							speedx = -speedx;
+							sx = MaxWidth - imgw;
+							oImg.style.opacity = opacity * i;
+							oImg.style.backgroundColor = "rgb(" + c + "," + o + "," + l + ")";
+						}
+						
+						oMain.style.top = sy + 'px';
+						oMain.style.left = sx + 'px';
+
+					}, 10)
+				}
+				
+				start();
+				
+				oMain.onmouseover = function() {
+					clearInterval(sobj);
+				}
+				oMain.onmouseout = function() {
+					start();
+				}
+			}
+		</script>
+
+	</body>
+</html>

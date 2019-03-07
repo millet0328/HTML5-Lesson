@@ -102,8 +102,6 @@
     <script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-        //
-        var $row = $("tbody tr");
         //添加数据
         $("#add_btn").click(function() {
             var name = $("#name_input").val();
@@ -162,19 +160,16 @@
             //去除两端空格
             keyword = $.trim(keyword);
             //模糊查询
-            $row.css("background-color", "");
-            $("tbody tr td:nth-child(2)")
-                .filter(":contains('" + keyword + "')")
-                .parent()
-                .css("background-color", "yellow");
+            $("tbody tr").css("background-color", "");
+            $("tbody tr:contains('" + keyword + "')").css("background-color", "yellow");
         });
         //年龄排序
         $("#sort_btn").click(function() {
             //转化成数组
             // var arr = $.makeArray($row);
             var arr = [];
-            $("tbody tr").each(function(i, item) {
-                arr.push(item);
+            $("tbody tr").each(function(i) {
+                arr.push($(this));
             })
             //数组排序
             arr.sort(function(a, b) {

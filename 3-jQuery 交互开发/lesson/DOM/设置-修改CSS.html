@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="btn" type="button">按钮</button>
+		<div class="title">
+			Hello World!
+		</div>
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$("#btn").click(function() {
+				// 获取
+				var width = $("#btn").width();
+				var height = $("#btn").height();
+				var size = $(".title").css("font-size");
+				size = parseFloat(size);
+				size++;
+				width += 10;
+				height += 10;
+				// 设置
+				$(".title").css("font-size", size);
+				$("#btn").width(width);
+				$("#btn").height(height);
+			});
+		</script>
+	</body>
+</html>

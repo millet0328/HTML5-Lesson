@@ -107,24 +107,25 @@ window.onload = function() {
     var oWrap = document.getElementById("tab1");
     var oTitle = oWrap.querySelectorAll(".tab-title li");
     var oContent = oWrap.querySelectorAll(".tab-content li");
-    //绑定事件
+    // 绑定事件
     for (var i = 0; i < oTitle.length; i++) {
-        //存下标
-        oTitle[i].index = i;
-        // oTitle[i].title = i;
+        // 设置属性
+        oTitle[i].setAttribute("id", i);
         oTitle[i].onclick = function() {
-            //移除所有的active
+            var index = this.getAttribute("id");
+            // 切换标题
             for (var i = 0; i < oTitle.length; i++) {
                 oTitle[i].className = "";
             }
             this.className = "active";
-            //隐藏所有的content
+            // 切换内容
             for (var i = 0; i < oContent.length; i++) {
                 oContent[i].style.display = "none";
             }
-            oContent[this.index].style.display = "block";
+            oContent[index].style.display = "block";
         }
     }
+
 }
 </script>
 

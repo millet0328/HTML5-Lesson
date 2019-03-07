@@ -113,31 +113,6 @@
 		</div>
 
 	</body>
-	<!--<script type="text/javascript">
-		window.onload = function() {
-			var oWrap = document.getElementById("tab1");
-			var oTitle = oWrap.querySelectorAll(".tab-title li");
-			var oContent = oWrap.querySelectorAll(".tab-content li");
-			//绑定事件
-			for(var i = 0; i < oTitle.length; i++) {
-				//存下标
-				oTitle[i].index = i;
-				//oTitle[i].title = i;
-				oTitle[i].onclick = function() {
-					//移除所有的active
-					for(var i = 0; i < oTitle.length; i++) {
-						oTitle[i].className = "";
-					}
-					this.className = "active";
-					//隐藏所有的content
-					for(var i = 0; i < oContent.length; i++) {
-						oContent[i].style.display = "none";
-					}
-					oContent[this.index].style.display = "block";
-				}
-			}
-		}
-	</script>-->
 	<script type="text/javascript">
 		//面向对象的选项卡
 		function tabs(id, current, eveName) {
