@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div>
+			<label for="">
+				账号：
+			</label>
+			<input type="text" readonly name="username" placeholder="请输入邮箱" value="上岛咖啡">
+		</div>
+		<div>
+			<label for="">
+				密码：
+			</label>
+			<input type="password" name="password" value="">
+		</div>
+		<div>
+			<label for="">
+				<input type="radio" name="sex" checked>男
+			</label>
+			<label for="">
+				<input name="sex" type="radio">女
+			</label>
+		</div>
+		<div>
+			<label for="">学历：</label>
+			<select name="" id="">
+				<option value="">小学</option>
+				<option value="">初中</option>
+				<option value="">高中</option>
+				<option value="">专科</option>
+				<option selected value="">本科</option>
+			</select>
+		</div>
+		<div>
+			<label for="">
+				爱好：
+			</label>
+			<div class="fav">
+				<label for="">
+					<input type="checkbox"> 唱歌
+				</label>
+				<label for="">
+					<input type="checkbox"> 跳舞
+				</label>
+				<label for="">
+					<input type="checkbox"> 画画
+				</label>
+				<label for="">
+					<input type="checkbox"> 钢琴
+				</label>
+			</div>
+			<label for="">
+				<input id="checkAll" type="checkbox"> 全选
+			</label>
+		</div>
+		<div>
+			<label for="">自我介绍：</label>
+			<br>
+			<textarea name="" id="" placeholder="介绍自己的所在地,爱好,交友宣言" cols="30" rows="10"></textarea>
+		</div>
+		<div>
+			<label for="agree">
+				<input id="agree" type="checkbox">我同意用户协议
+			</label>
+		</div>
+		<button disabled id="reg" type="button">注册</button>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$("#agree").click(function() {
+					var checked = $(this).prop("checked");
+					$("#reg").prop("disabled", !checked);
+				});
+				// 全选
+				$("#checkAll").click(function() {
+					var checked = $(this).prop("checked");
+					console.log(checked);
+					$(".fav input:checkbox").prop("checked", checked);
+				});
+				$(".fav input:checkbox").click(function() {
+					// 总共多少个checkbox
+					var total = $(".fav input:checkbox").length;
+					// 选中的checkbox
+					var chked = $(".fav input:checked").length;
+					// 判断
+					if (chked == total) {
+						$("#checkAll").prop("checked", true)
+					} else {
+						$("#checkAll").prop("checked", false)
+					}
+					// $("#checkAll").prop("checked", chked == total);
+				});
+
+			});
+		</script>
+	</body>
+</html>
