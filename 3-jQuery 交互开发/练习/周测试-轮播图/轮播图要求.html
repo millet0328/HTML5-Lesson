@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>轮播图</title>
+</head>
+<body>
+	<img src="slider.png">
+	<h3>轮播图思路要求：</h3>
+	<ol>
+		<li>css布局页面</li>
+		<li>写一个function, 将第x张图片的fadeIn,其余的fadeOut</li>
+		<li>写一个定时器，每隔500ms运行上面的function</li>
+		<li>鼠标移入轮播图范围的时候，清除定时器，显示左右箭头</li>
+		<li>鼠标移开轮播图范围的时候，重启定时器，隐藏左右箭头</li>
+		<li>生成指示器（圆点），根据轮播图片的数量来生成</li>
+		<li>给每一个圆点绑定hover事件，参照第4、5条</li>
+		<li>左右箭头，绑定click事件，点左箭头切换到上一张，点右箭头切换到下一张</li>
+		<li>注意：click事件会影响定时器的运行，记得测试</li>
+		<li>附加题：在一个页面上放置2个轮播图，要求2个轮播各自独立运行，互不干涉，提示：参照选项卡的面向对象编程</li>
+	</ol>
+</body>
+</html>
