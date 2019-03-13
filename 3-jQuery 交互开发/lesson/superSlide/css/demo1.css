@@ -1,92 +1,46 @@
-.txtScroll-left {
-	width: 180px;
-	position: relative;
-	border: 1px solid #ccc;
-}
-
-.txtScroll-left .hd {
-	overflow: hidden;
-	height: 30px;
-	background: #f4f4f4;
-	padding: 0 10px;
-}
-
-.txtScroll-left .hd .prev,
-.txtScroll-left .hd .next {
-	display: block;
-	float: right;
-	margin-right: 5px;
-	margin-top: 3px;
-	overflow: hidden;
-	cursor: pointer;
-	width: 14px;
-	height: 14px;
-	text-align: center;
-	background: #b3b3b3;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	line-height: 14px;
-	color: #FFFFFF;
-}
-
-.hd .prev.disabled,
-.hd .next.disabled {
-	cursor: not-allowed;
-	background-color: #CCC;
-}
-
-.txtScroll-left .hd .next {}
-
-.txtScroll-left .hd .prevStop {
-	background-position: -60px 0;
-}
-
-.txtScroll-left .hd .nextStop {
-	background-position: -60px -50px;
-}
-
-.txtScroll-left .hd ul {
-	float: right;
-	overflow: hidden;
-	zoom: 1;
-	margin-top: 10px;
-}
-
-.txtScroll-left .hd ul li {
-	float: left;
-	width: 9px;
-	height: 9px;
-	overflow: hidden;
-	margin-right: 5px;
-	text-indent: -999px;
-	cursor: pointer;
-	background: url("../images/icoCircle.gif") 0 -9px no-repeat;
-}
-
-.txtScroll-left .hd ul li.on {
-	background-position: 0 0;
-}
-
-.txtScroll-left .bd {
-	padding: 10px;
-	width: 157px;
-	overflow: hidden;
-}
-
-.txtScroll-left .bd ul {
-	overflow: hidden;
-	zoom: 1;
-}
-
-.txtScroll-left .bd ul li {
-	margin-right: 20px;
-	float: left;
-	line-height: 24px;
+.slideTxtBox {
+	width: 390px;
 	text-align: left;
-	_display: inline;
 }
 
-.txtScroll-left .bd ul li span {
+.slideTxtBox .hd {
+	height: 30px;
+	line-height: 30px;
+	background: #f4f4f4;
+	padding: 0 10px 0 20px;
+	position: relative;
+}
+
+.slideTxtBox .hd ul {
+	float: left;
+	position: absolute;
+	left: 20px;
+	top: -1px;
+	height: 32px;
+}
+
+.slideTxtBox .hd ul li {
+	float: left;
+	padding: 0 15px;
+	cursor: pointer;
+}
+
+.slideTxtBox .hd ul li.on {
+	height: 30px;
+	color: red;
+}
+
+.slideTxtBox .bd ul {
+	padding: 15px;
+	zoom: 1;
+}
+
+.slideTxtBox .bd li {
+	height: 24px;
+	line-height: 24px;
+}
+
+.slideTxtBox .bd li .date {
+	float: right;
 	color: #999;
 }

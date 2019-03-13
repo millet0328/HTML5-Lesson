@@ -1,94 +1,91 @@
-.multipleColumn {
+.slideBox {
+	width: 800px;
+	height: 275px;
 	overflow: hidden;
 	position: relative;
-	width: 870px;
-	border: 1px solid #ccc;
+	border: 1px solid #ddd;
+	margin: 20px auto;
 }
 
-.multipleColumn .hd {
-	overflow: hidden;
-	height: 30px;
-	background: #f4f4f4;
-	padding: 0 10px;
-}
-
-.multipleColumn .hd .prev,
-.multipleColumn .hd .next {
-	display: block;
-	width: 5px;
-	height: 9px;
-	float: right;
-	margin-right: 5px;
-	margin-top: 10px;
-	overflow: hidden;
-	cursor: pointer;
-	background: url("../images/icoLeft.gif") no-repeat;
-}
-
-.multipleColumn .hd .next {
-	background: url("../images/icoRight.gif") no-repeat;
-}
-
-.multipleColumn .hd ul {
-	float: right;
+.slideBox .bd ul {
 	overflow: hidden;
 	zoom: 1;
-	margin-top: 10px;
-	zoom: 1;
 }
 
-.multipleColumn .hd ul li {
-	float: left;
-	width: 9px;
-	height: 9px;
-	overflow: hidden;
-	margin-right: 5px;
-	text-indent: -999px;
-	cursor: pointer;
-	background: url("../images/icoCircle.gif") 0 -9px no-repeat;
-}
-
-.multipleColumn .hd ul li.on {
-	background-position: 0 0;
-}
-
-.multipleColumn .bd {
-	padding: 10px;
-	overflow: hidden;
-}
-
-.multipleColumn .bd ul {
-	overflow: hidden;
-	zoom: 1;
-	width: 870px;
-	float: left;
-	_display: inline;
-}
-
-.multipleColumn .bd ul li {
-	margin: 0 8px;
+.slideBox .bd ul li {
 	float: left;
 	_display: inline;
 	overflow: hidden;
 	text-align: center;
+	width: 169px;
+	height: 220px;
+	border-right: 1px solid #eee;
+	padding: 15px;
+	padding-top: 40px;
 }
 
-.multipleColumn .bd ul li .pic {
+.slideBox .bd ul li .pic {
 	text-align: center;
 }
 
-.multipleColumn .bd ul li .pic img {
-	width: 120px;
-	height: 90px;
+.slideBox .bd .pic img {
+	width: 140px;
+	height: 140px;
+}
+
+.slideBox .bd .name {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	padding: 15px 0;
+}
+
+.slideBox .bd .price-box {
+	border: 1px solid #e6382f;
+}
+
+.price-box .price,
+.price-box .market {
+	width: 50%;
+	height: 20px;
+	line-height: 20px;
+}
+
+.price-box .price {
+	background-color: #e33333;
+	color: white;
+}
+/* 下面是前/后按钮代码，如果不需要删除即可 */
+.slideBox .prev,
+.slideBox .next {
+	position: absolute;
+	left: 0%;
+	top: 50%;
+	margin-top: -25px;
 	display: block;
-	padding: 2px;
-	border: 1px solid #ccc;
+	width: 32px;
+	height: 40px;
+	background: #000 url(../images/slider-arrow.png) -110px 5px no-repeat;
+	filter: alpha(opacity=50);
+	opacity: 0.3;
 }
 
-.multipleColumn .bd ul li .pic a:hover img {
-	border-color: #999;
+.slideBox .next {
+	left: auto;
+	right: 0%;
+	background-position: 8px 5px;
 }
 
-.multipleColumn .bd ul li .title {
-	line-height: 24px;
+.slideBox .prev:hover,
+.slideBox .next:hover {
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+
+.slideBox .prevStop {
+	display: none;
+}
+
+.slideBox .nextStop {
+	display: none;
 }

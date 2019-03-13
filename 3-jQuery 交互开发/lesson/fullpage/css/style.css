@@ -1,20 +1,48 @@
-.section {
-	background-color: #000000;
-	color: #FFFFFF;
+.page1.section {
+	text-align: center;
+	font: 50px "Microsoft Yahei";
+	color: #fff;
 }
 
-.iphone img {
-	width: 300px;
+.page1 {
+	background: url(../images/bg.png) top center;
 }
 
-.iphone_red {
+.bg img {
+	max-width: 100%;
+}
+
+.bg {
 	position: relative;
-	transform: translateX(-100%) scale(0.7) rotate(0deg);
-	opacity: 0;
-	transition: all 1s;
 }
 
-.active .iphone_red {
-	transform: translateX(50%) scale(1) rotate(360deg);
-	opacity: 1;
+.page1 .content {
+	position: absolute;
+	top: 200px;
+	left: 0;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.page2 .content {
+	width: 920px;
+	height: 590px;
+	margin: 0 auto;
+	position: relative;
+	background-color: rgba(110, 223, 220, 0.8);
+}
+
+.page2 .topRight {
+	position: absolute;
+	right: 20px;
+	top: -35px;
+	width: 135px;
+}
+
+.page2 .bottom {
+	width: 920px;
+	position: absolute;
+	bottom: -100px;
+	left: 0;
+	opacity: 0;
 }
