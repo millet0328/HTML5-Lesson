@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="lib/swiper-4.5.0/css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/deom2.css" />
+	</head>
+
+	<body>
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<div style="background-image: url(img/bg_shoulei.jpg);">
+						<div class="photo1">
+							<img src="img/txt_1.png" />
+							<img class="w1" src="img/txt_3.png" />
+							<!--<div class="text1">
+								站长素材9.9
+							</div>-->
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div style="background-image: url(img/bg_xnet.jpg);">
+						<div class="photo2">
+							<img src="img/txt_2.png" />
+
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div style="background-image: url(img/bg_member.jpg);">
+						<div class="photo3">
+							<img src="img/txt_3.png" />
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div style="background-image: url(img/bg_xav.jpg);">
+						<div class="photo4">
+							<img src="img/txt_5.png" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Add Pagination -->
+			<div class="swiper-pagination"></div>
+			<div class="swiper-scrollbar"></div>
+		</div>
+
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/swiper-4.5.0/js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var swiper = new Swiper('.swiper-container', {
+				pagination: {
+					el: '.swiper-pagination',
+					clickable: true, //点击打开
+				},
+				// autoplay: {
+				// 	delay: 600, //1秒切换一次
+				// 	disableOnInteraction: false
+				// },
+				scrollbar: {
+					el: '.swiper-scrollbar',
+					dragSize:70
+				},
+
+				///
+				on: {
+					init: function() {
+						if(this.activeIndex == 0) {
+							$(this.slides).eq(this.activeIndex).find(".photo1").animate({
+								top: "-480px",
+								opacity: 1
+							})
+						}
+					},
+					transitionEnd: function() {
+						if(this.activeIndex == 0) {
+							$(this.slides).eq(this.activeIndex).find(".photo1").animate({
+								top: "-480px",
+								opacity: 1
+							}, 600)
+							/*$(this.slides).eq(this.activeIndex).find(".text1").animate({
+								opacity: 1
+							}).delay(600).fadeIn("slow")*/
+						};
+
+						if(this.activeIndex == 1) {
+							$(this.slides).eq(this.activeIndex).find(".photo2").animate({
+								top: "-500px",
+								opacity: 1
+							}, 600)
+						};
+						if(this.activeIndex == 2) {
+							$(this.slides).eq(this.activeIndex).find(".photo3").animate({
+								top: "130px",
+								opacity: 1
+							}, 600)
+						};
+						if(this.activeIndex == 3) {
+							$(this.slides).eq(this.activeIndex).find(".photo4").animate({
+								top: "40px",
+								opacity: 1,
+							}, 600)
+						};
+					},
+					slideChangeTransitionEnd: function() {
+						if(this.activeIndex != 0) {
+							$(this.slides).eq(0).find(".photo1").css({
+								top: "-500px",
+								opacity: 0,
+							});
+						};
+						if(this.activeIndex != 1) {
+							$(this.slides).eq(1).find(".photo2").css({
+								top: "-900px",
+								opacity: 0
+							})
+						};
+						if(this.activeIndex != 2) {
+							$(this.slides).eq(2).find(".photo3").css({
+								top: "110px",
+								opacity: 0
+							})
+						};
+						if(this.activeIndex != 3) {
+							$(this.slides).eq(3).find(".photo4").css({
+								top: "-20px",
+								opacity: 0,
+							})
+						}
+					}
+				},
+
+			});
+		</script>
+	</body>
+
+</html>

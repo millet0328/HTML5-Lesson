@@ -1,0 +1,133 @@
+body {
+	background-color: #898989;
+}
+
+.box {
+	padding: 40px 0 20px 0;
+}
+
+/* 音键按触相应色块高度变化窗口 */
+.show {
+	width: 680px;
+	height: 350px;
+	margin: 0 5px 0 5px;
+	background-color: #535353;
+	border: 5px solid #313131;
+	border-radius: 15px;
+}
+
+.position {
+	position: absolute;
+	top: 330px;
+	left: 97px;
+}
+
+.show .column {
+	width: 40px;
+	height: 40px;
+	position: relative;
+	margin: 0 2px 0 2px;
+	background-color: #c9c9c9;
+	border-left: 2px solid #7d7d7d;
+	border-right: 2px solid #7d7d7d;
+	border-bottom: 2px solid #7d7d7d;
+}
+
+.show .column span {
+	width: 40px;
+	height: 40px;
+	display: inline-block;
+	position: absolute;
+	background-color: #c9c9c9;
+}
+
+/* 曲调编辑录入区窗口 */
+.tune {
+	width: 380px;
+	height: 350px;
+	margin: 0 5px 0 5px;
+	background-color: #535353;
+	border: 5px solid #313131;
+	border-radius: 15px;
+	text-align: center;
+	position: relative;
+}
+
+.tune textarea {
+	width: 300px;
+	height: 286px;
+	margin-top: 26px;
+	background-color: #c9c9c9;
+	color: #313131;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+/* 功能区窗口 */
+.more {
+	width: 80px;
+	height: 350px;
+	margin: 0 5px 0 5px;
+	background-color: #535353;
+	border: 5px solid #313131;
+	border-radius: 15px;
+	text-align: center;
+}
+
+.more button {
+	width: 50px;
+	height: 50px;
+	margin: 30px 0 30px 0;
+	background-color: #c9c9c9;
+	border: 2px solid #7d7d7d;
+	border-radius: 3px;
+	font-size: 16px;
+	font-weight: bold;
+	color: #313131;
+	outline: none;
+}
+
+/* 内存歌曲 */
+.content {
+	width: 250px;
+	border: 2px solid #000000;
+	position: absolute;
+	top: 50px;
+	left: 60px;
+	display: none;
+}
+
+.content div {
+	padding: 10px 8px;
+	color: #e5e5e5;
+	background-color: #a0a0a0;
+}
+
+.content div:hover {
+	padding: 10px 8px;
+	color: #ffffff;
+	background-color: #434343;
+}
+
+/* 按键样式 */
+.key {
+	height: 130px;
+	line-height: 130px;
+	text-align: center;
+	border: 5px solid #313131;
+	border-radius: 20px;
+	background-color: #535353;
+	margin-bottom: 30px;
+}
+
+.key button {
+	width: 75px;
+	height: 75px;
+	border: 3px solid #7d7d7d;
+	border-radius: 6px;
+	background-color: #c9c9c9;
+	color: #313131;
+	font-size: 22px;
+	font-weight: bold;
+	outline: none;
+}

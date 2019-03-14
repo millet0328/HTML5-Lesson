@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			html{
+				height: 100%;
+			}
+			body {
+				margin: 0;
+				padding: 0;
+				background: url(img/bg.jpg);
+				height: 100%;
+				cursor: url(img/cursor.png),auto;
+			}
+			.contaner {
+				position: absolute;
+                left: 50%;
+				top: 50%;
+				margin-left: -460px;
+				margin-top: -174px;
+				text-align: center;
+			}
+			.list {
+				display: inline-block;
+				margin: 0 auto;
+			}
+			.item {
+				float: left;
+				position: relative;
+				background:url(img/hole.png);
+				width: 262px;
+				height: 90px;
+				margin:0 20px 20px 20px;
+			}
+			.item img {
+				position: absolute;
+				top: -64px;
+				left: 50px;
+			}
+			.list::after {
+				content: "";
+				display: block;
+				width: 0;
+				clear: both;
+			}
+			.score-section {
+				display: inline-block;
+				padding: 10px 20px 10px 10px;
+				background-color: #FF0000;
+				font-size: 20px;
+				font-weight: bold;
+				border-top-right-radius: 20px;
+				border-bottom-right-radius: 20px;
+				color: #ffffff;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="score-section">
+			得分为: <span class="score"> 0 </span>分
+		</div>
+		<div class="contaner">
+			<div class="list">
+				<div class="item">
+					
+				</div>
+			    <div class="item">
+					
+				</div>
+			    <div class="item">
+					
+				</div>
+			</div>
+			<div class="list">
+				<div class="item">
+					<!-- <img src="img/mouse.png" oncontextmenu="return false;" onselectstart="return false" > -->
+				</div>
+			    <div class="item">
+					
+				</div>
+			</div>
+			<div class="list">
+				<div class="item">
+					
+				</div>
+			    <div class="item">
+					
+				</div>
+			    <div class="item">
+					
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-1.12.4.min.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//分数
+			var score=0;
+			var oContaner = document.querySelector(".contaner");
+			oContaner.onmousedown=function(e){
+				var oBody = document.querySelector("body");
+				var oSpan = document.querySelector(".score");
+				oBody.style.cursor="url(img/cursor-down.png),auto";
+				if(e.target.tagName=="IMG"){
+					score+=5;
+					//得分
+					oSpan.innerText=score;
+					e.target.parentNode.removeChild(e.target);
+				}else {
+					alert("gameover")
+				}
+			}
+			
+			oContaner.onmouseup = function(){
+				var oBody = document.querySelector("body");
+				oBody.style.cursor="url(img/cursor.png),auto";
+			}
+			
+			
+			//小松鼠定时出现
+			  setInterval(function(){
+				var oItem = document.querySelectorAll(".item");
+				var oNum = parseInt(Math.random()*8);
+				var oImg = document.createElement("img");
+				oImg.setAttribute("src","img/mouse.png");
+				oImg.setAttribute("oncontextmenu","return false;");
+				oImg.setAttribute("onselectstart","return false;");
+			    for(var i=0;i<oItem.length;i++){
+					if(oItem[i].childElementCount==1){
+						var child =oItem[i].firstElementChild
+						oItem[i].removeChild(child);
+					}
+				}
+				oItem[oNum].appendChild(oImg);
+			    },1000);
+			
+		</script>
+	</body>
+</html>
