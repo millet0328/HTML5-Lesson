@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				margin: 0;
+			}
+
+			.bg {
+				position: relative;
+				transition: all 20s;
+				transform: translateX(-8416px);
+			}
+
+			.front {
+				position: fixed;
+				left: 0;
+				top: 0;
+				transition: all 15s;
+				transform: translateX(0px);
+			}
+
+			.bg.active {
+				transform: translateX(0px);
+			}
+
+			.front.active {
+				transform: translateX(-12416px);
+			}
+		</style>
+	</head>
+	<body>
+		<img class="bg" src="img/3.jpg" alt="">
+		<img class="front" src="img/1.png" alt="">
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$("html").click(function() {
+				$(".bg,.front").toggleClass("active");
+			});
+		</script>
+	</body>
+</html>
