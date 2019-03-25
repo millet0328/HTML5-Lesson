@@ -1,0 +1,141 @@
+html,
+body {
+	height: 100%;
+}
+
+.form-box {
+	font-size: 14px;
+	padding: 20px;
+	border: 2px solid #eee;
+	margin: 6px;
+	position: relative;
+	z-index: 10;
+}
+
+.form-control {
+	padding: 14px 0;
+}
+
+.form-control label {
+	font-weight: bold;
+	color: #000000;
+	vertical-align: top;
+	line-height: 25px;
+}
+
+.form-control .name {
+	padding: 2px 4px;
+	width: 244px;
+}
+
+.form-control .content {
+	padding: 4px;
+	width: 246px;
+}
+
+.form-control .color {
+	width: 256px;
+	padding: 4px;
+}
+
+.form-box .submit {
+	padding: 8px 16px;
+	background-color: #0066EE;
+	border: 0;
+	color: white;
+	outline: 0;
+}
+
+.wish-box {
+	padding-left: 375px;
+	height: 100%;
+}
+
+.card {
+	width: 237px;
+	position: absolute;
+}
+
+.card .header {
+	height: 18px;
+	padding: 50px 6px 0 25px;
+}
+
+.card .timestamp {
+	padding: 0 10px;
+}
+
+.card .content {
+	min-height: 100px;
+	background-position: -1px 0;
+	padding: 20px 8px 20px 24px;
+}
+
+.card .footer {
+	padding: 12px 10px 0 25px;
+	height: 60px;
+}
+
+.card .footer .name {
+	line-height: 32px;
+}
+
+.blue.card .header {
+	background: url(../img/a5_1.gif) no-repeat top center;
+}
+
+.blue.card .content {
+	background-image: url(../img/a5_2.gif);
+}
+
+.blue.card .footer {
+	background: url(../img/a5_3.gif) no-repeat top center;
+}
+
+.yellow.card .header {
+	background: url(../img/a6_1.gif) no-repeat top center;
+}
+
+.yellow.card .content {
+	background-image: url(../img/a6_2.gif);
+}
+
+.yellow.card .footer {
+	background: url(../img/a6_3.gif) no-repeat top center;
+}
+
+.orange.card .header {
+	background: url(../img/a3_1.gif) no-repeat top center;
+}
+
+.orange.card .content {
+	background-image: url(../img/a3_2.gif);
+}
+
+.orange.card .footer {
+	background: url(../img/a3_3.gif) no-repeat top center;
+}
+
+.pink.card .header {
+	background: url(../img/a4_1.gif) no-repeat top center;
+}
+
+.pink.card .content {
+	background-image: url(../img/a4_2.gif);
+}
+
+.pink.card .footer {
+	background: url(../img/a4_3.gif) no-repeat top center;
+}
+
+.purple.card .header {
+	background: url(../img/a7_1.gif) no-repeat top center;
+}
+
+.purple.card .content {
+	background-image: url(../img/a7_2.gif);
+}
+
+.purple.card .footer {
+	background: url(../img/a7_3.gif) no-repeat top center;
+}
