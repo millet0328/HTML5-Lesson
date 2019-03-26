@@ -7,8 +7,8 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 	</head>
 	<body>
-		<div class="clearfix">
-			<div class="form-box fl">
+		<div class="wrap clearfix">
+			<div class="form-box fr">
 				<form>
 					<div class="form-control">
 						<label for="">许愿留名：</label>
@@ -21,83 +21,174 @@
 					<div class="form-control">
 						<label for="">许愿图标：</label>
 						<label>
-							<input name="icon" class="vertical-mid" type="radio"> <img class="vertical-mid" height="25" src="img/bpic_11.gif">
+							<input name="icon" value="11" class="vertical-mid" type="radio"> <img class="vertical-mid" height="25" src="img/bpic_11.gif">
 						</label>
 						<label>
-							<input name="icon" class="vertical-mid" type="radio"> <img class="vertical-mid" height="25" src="img/bpic_13.gif">
+							<input name="icon" value="13" class="vertical-mid" type="radio"> <img class="vertical-mid" height="25" src="img/bpic_13.gif">
 						</label>
 						<label>
-							<input name="icon" class="vertical-mid" type="radio"> <img class="vertical-mid" width="30" src="img/bpic_25.gif">
+							<input name="icon" value="25" class="vertical-mid" type="radio"> <img class="vertical-mid" width="30" src="img/bpic_25.gif">
 						</label>
 					</div>
 					<div class="form-control">
 						<label for="">许愿颜色：</label>
 						<select class="vertical-mid color" name="">
-							<option value="">淡蓝色</option>
-							<option value="">淡黄色</option>
-							<option value="">淡橙色</option>
-							<option value="">淡粉色</option>
-							<option value="">淡紫色</option>
+							<option value="blue">淡蓝色</option>
+							<option value="yellow">淡黄色</option>
+							<option value="orange">淡橙色</option>
+							<option value="pink">淡粉色</option>
+							<option value="purple">淡紫色</option>
 						</select>
 					</div>
 					<button class="submit" type="button">许 愿</button>
+					<button class="arrange" type="button">整 理</button>
 				</form>
 			</div>
 			<div class="wish-box relative">
-				<div class="blue card">
-					<div class="header clearfix">
-						<div class="fl">
-							第[001]条
-						</div>
-						<div class=" timestamp fl">
-							2019-03-25 21:49
-						</div>
-						<div class="fr">
-							×
-						</div>
-					</div>
-					<div class="content">
-						扭扭捏捏扭扭捏捏扭扭捏捏扭扭捏捏扭扭捏捏扭扭捏捏扭扭捏捏扭扭捏捏扭扭捏捏扭扭捏捏扭扭捏捏扭扭捏捏扭扭捏捏扭扭捏捏
-					</div>
-					<div class="footer clearfix">
-						<div class="fl">
-							<img src="img/bpic_11.gif">
-						</div>
-						<div class="name fr">
-							黄小米
-						</div>
-					</div>
-				</div>
-				<div class="purple card">
-					<div class="header clearfix">
-						<div class="fl">
-							第[001]条
-						</div>
-						<div class=" timestamp fl">
-							2019-03-25 21:49
-						</div>
-						<div class="fr">
-							×
-						</div>
-					</div>
-					<div class="content">
-						扭扭捏捏扭扭捏捏扭扭捏捏扭扭捏捏扭扭捏捏扭扭捏捏扭扭捏捏扭扭捏捏扭扭捏捏扭扭捏捏扭扭捏捏扭扭捏捏扭扭捏捏扭扭捏捏
-					</div>
-					<div class="footer clearfix">
-						<div class="fl">
-							<img src="img/bpic_11.gif">
-						</div>
-						<div class="name fr">
-							黄小米
-						</div>
-					</div>
-				</div>
+
 			</div>
 		</div>
 
 		<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-
+			// 缓存变量
+			var $wishBox = $(".wish-box");
+			// 许愿编号
+			var i = 0;
+			// 许愿框的宽度/高度
+			var w = $wishBox.width();
+			var h = $wishBox.height();
+			// 许愿卡片的宽度237,高度280
+			// 添加许愿条
+			$(".submit").click(function() {
+				// 获取表单value
+				var name = $('.name').val();
+				var content = $('.content').val();
+				var icon = $('input[name="icon"]:checked').val();
+				var color = $('.color').val();
+				// 生成编号 timestamp
+				i++;
+				var num = toThreeNumber(i);
+				var timestamp = convertTime();
+				// 生成元素
+				$card = $('<div class="' + color +
+					' card"><div class="header clearfix"><div class="fl">第[' + num + ']条</div><div class=" timestamp fl">' +
+					timestamp + '</div><div class="fr">×</div></div><div class="content">' +
+					content + '</div><div class="footer clearfix"><div class="fl"><img src="img/bpic_' + icon +
+					'.gif"></div><div class="name fr">' + name + '</div></div></div>');
+				// 位置随机,限定在许愿框中
+				var left = Math.random() * (w - 237);
+				var top = Math.random() * (h - 280);
+				$card.css({
+					left: left,
+					top: top,
+					"z-index": i
+				});
+				$wishBox.append($card);
+			});
+			// 拖拽事件
+			$wishBox.on("selectstart dragstart", function(e) {
+				e.preventDefault();
+			});
+			$wishBox.on("mousedown", ".card", function(e) {
+				// 缓存移动的卡片
+				var $card = $(this);
+				// 获取鼠标起点坐标
+				var sx = e.pageX;
+				var sy = e.pageY;
+				// 获取卡片left/top值
+				var left = $(this).position().left;
+				var top = $(this).position().top;
+				$(document).on("mousemove", function(e) {
+					// 获取鼠标终点坐标
+					var dx = e.pageX;
+					var dy = e.pageY;
+					// 计算新的left/top值
+					var newLeft = left + (dx - sx);
+					var newTop = top + (dy - sy);
+					$card.css({
+						left: newLeft,
+						top: newTop
+					});
+				});
+			});
+			// 移除事件
+			$(document).on("mouseup", function() {
+				$(document).off("mousemove");
+			});
+			// 点击许愿帖,前置显示
+			var z = 0;
+			$wishBox.on("click", ".card", function() {
+				z++;
+				$(this).css("z-index", i + z);
+			});
+			// 分类整理
+			$(".arrange").click(function() {
+				// 查找所有相同颜色的卡片
+				$(".blue.card").each(function(index) {
+					var top = index * 30;
+					$(this).css({
+						left: 0,
+						top: top
+					});
+				});
+				$(".yellow.card").each(function(index) {
+					var top = index * 30;
+					$(this).css({
+						left: 240,
+						top: top
+					});
+				});
+				$(".orange.card").each(function(index) {
+					var top = index * 30;
+					$(this).css({
+						left: 475,
+						top: top
+					});
+				});
+				$(".pink.card").each(function(index) {
+					var top = index * 30;
+					$(this).css({
+						left: 711,
+						top: top
+					});
+				});
+				$(".purple.card").each(function(index) {
+					var top = index * 30;
+					$(this).css({
+						left: 948,
+						top: top
+					});
+				});
+			});
+			// 转化当前时间为时间戳
+			function convertTime() {
+				var now = new Date();
+				var year = now.getFullYear();
+				var month = now.getMonth() + 1;
+				var day = now.getDate();
+				var hour = now.getHours();
+				var min = now.getMinutes();
+				var sec = now.getSeconds();
+				// 组合字符串
+				var result = year + '-' + convertNumber(month) + '-' + convertNumber(day) + ' ' + convertNumber(hour) + ':' +
+					convertNumber(min) + ':' + convertNumber(sec);
+				return result;
+			}
+			// 转化个位数为2位数字
+			function convertNumber(x) {
+				return x < 10 ? ('0' + x) : x;
+			}
+			// 转化数字为3位数字
+			function toThreeNumber(x) {
+				if (x < 10) {
+					return '00' + x;
+				}
+				if (x < 100) {
+					return '0' + x;
+				}
+				return x;
+			}
 		</script>
 	</body>
 </html>

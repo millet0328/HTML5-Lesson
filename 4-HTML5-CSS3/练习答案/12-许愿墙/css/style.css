@@ -3,6 +3,10 @@ body {
 	height: 100%;
 }
 
+.wrap {
+	height: 100%;
+}
+
 .form-box {
 	font-size: 14px;
 	padding: 20px;
@@ -38,7 +42,8 @@ body {
 	padding: 4px;
 }
 
-.form-box .submit {
+.form-box .submit,
+.form-box .arrange {
 	padding: 8px 16px;
 	background-color: #0066EE;
 	border: 0;
@@ -47,7 +52,7 @@ body {
 }
 
 .wish-box {
-	padding-left: 375px;
+	padding-right: 375px;
 	height: 100%;
 }
 
