@@ -59,6 +59,7 @@ body {
 .card {
 	width: 237px;
 	position: absolute;
+	transition:all 0.3s;
 }
 
 .card .header {
