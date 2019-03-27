@@ -21,7 +21,8 @@
 					<div class="form-control">
 						<label for="">许愿图标：</label>
 						<label>
-							<input name="icon" value="11" class="vertical-mid" type="radio"> <img class="vertical-mid" height="25" src="img/bpic_11.gif">
+							<input name="icon" checked value="11" class="vertical-mid" type="radio">
+							<img class="vertical-mid" height="25" src="img/bpic_11.gif">
 						</label>
 						<label>
 							<input name="icon" value="13" class="vertical-mid" type="radio"> <img class="vertical-mid" height="25" src="img/bpic_13.gif">
@@ -99,6 +100,7 @@
 				// 获取卡片left/top值
 				var left = $(this).position().left;
 				var top = $(this).position().top;
+				$card.css("transition","none");
 				$(document).on("mousemove", function(e) {
 					// 获取鼠标终点坐标
 					var dx = e.pageX;

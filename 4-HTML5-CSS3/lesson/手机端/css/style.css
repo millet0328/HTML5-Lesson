@@ -6,45 +6,67 @@
 	text-align: center;
 	background-color: #fafafa;
 	position: relative;
-	padding: 24px 38px;
-	border-bottom: 1px solid #cecece;
+	padding: 3.33vw 5.2vw;
+}
+
+.icon {
+	background: url(../img/sprite.png) no-repeat;
+	background-size: 227px 170px;
+	display: inline-block;
+}
+
+.arrow-left {
+	width: 10px;
+	height: 17.5px;
+	background-position: -1.5px -1.5px;
+}
+
+.header::after {
+	content: "";
+	position: absolute;
+	height: 1px;
+	background-color: #cecece;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	transform: scaleY(0.5);
 }
 
 .header .back {
 	position: absolute;
-	left: 38px;
-	width: 20px;
-	height: 35px;
+	left: 5.2vw;
+	width: 2.67vw;
+	height: 4.67vw;
 	top: 50%;
-	margin-top: -17px;
+	margin-top: -1.33vw;
 }
 
 .header .title {
-	font-size: 32px;
+	font-size: 4.27vw;
 	color: #555;
 }
 
 /* 地址 */
 .address-card {
-	padding: 28px 21px;
+	padding: 5.47vw 2.8vw;
 	background-color: white;
 	color: #555;
-	font-size: 24px;
+	font-size: 3.2vw;
 }
 
 .address-card .tip {
-	font-size: 28px;
+	font-size: 3.73vw;
 }
 
 .address-card .user-box {
 	display: flex;
 	align-items: center;
-	padding-top: 24px;
-	padding-bottom: 20px;
+	padding-top: 3.07vw;
+	padding-bottom: 2.8vw;
 }
 
 .address-card .user-box .name {
-	padding-right: 32px;
+	padding-right: 4.27vw;
 }
 
 .address-card .address-box {
@@ -55,32 +77,37 @@
 .address-box .default {
 	color: #c55a5c;
 	border: 1px solid #c55a5c;
-	padding: 4px 15px;
+	padding: 0.67vw 2vw;
 	border-radius: 6px;
-	margin-right: 32px;
-	font-size: 20px;
+	margin-right: 4.67vw;
+	font-size: 2.67vw;
 }
 
 /* 商品 */
 .goods-card {
 	display: flex;
 	justify-content: space-between;
-	padding: 28px 21px;
+	padding: 3.73vw 2.93vw;
 	background-color: white;
-	margin: 20px 0;
-	font-size: 26px;
+	margin: 4.67vw 0;
+	font-size: 3.47vw;
 	color: #555555;
+}
+
+.goods-card .photo img {
+	width: 21.33vw;
+	height: 21.33vw;
 }
 
 .goods-card .info {
 	flex: 1;
-	margin-left: 20px;
+	margin-left: 2.67vw;
 }
 
 .goods-card .info .spec {
-	font-size: 24px;
+	font-size: 3.2vw;
 	color: #999999;
-	padding: 16px 0 60px 0;
+	padding: 2vw 0 7.87vw 0;
 }
 
 /* 运费信息 */
@@ -90,8 +117,8 @@
 }
 
 .info-card .item {
-	font-size: 26px;
-	padding: 21px 35px;
+	font-size: 3.47vw;
+	padding: 4.67vw 2.93vw;
 	border-bottom: 1px solid #cecece;
 	display: flex;
 	align-items: center;
@@ -106,19 +133,19 @@
 	border: 0;
 	border-bottom: 1px solid #cecece;
 	flex: 1;
-	margin-left: 42px;
-	padding: 15px;
+	margin-left: 6.13vw;
+	padding: 2vw;
 	outline: 0;
 }
 
 .info-card .tickets {
 	flex: 1;
-	margin-left: 18px;
+	margin-left: 2.4vw;
 	border: 0;
 	border-bottom: 1px solid #cecece;
 }
 
 .info-card .ticket-count {
 	color: #999999;
-	margin-left: 20px;
+	margin-left: 2.67vw;
 }
