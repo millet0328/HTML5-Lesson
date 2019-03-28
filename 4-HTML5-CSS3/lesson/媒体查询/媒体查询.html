@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style>
+			.box {
+				padding: 20px;
+				background-color: blue;
+				color: white;
+				font-size: 2.67vw;
+			}
+
+			/* 屏幕--ipad */
+			@media screen and (min-width:768px) and (max-width:1024px) {
+				.box {
+					background-color: red;
+				}
+			}
+
+			/* 手机 */
+			@media screen and (min-width:320px) and (max-width:768px) {
+				.box {
+					background-color: black;
+				}
+			}
+
+			/* PC */
+			@media screen and (min-width:1024px) {
+				.box {
+					background-color: black;
+					font-size: 16px;
+					margin: 20px;
+				}
+			}
+
+			/* 打印预览 */
+			@media print {
+				.banner img {
+					display: none;
+				}
+
+				.box {
+					color: #333;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="banner">
+			<img src="img/winter-hat.jpg" alt="">
+		</div>
+		<div class="box">
+			开放老大哥狂龙飞击就改改厉害了降落降落了一样发过来开放老大哥狂龙飞击就改改厉害了降落降落了一样发过来开放老大哥狂龙飞击就改改厉害了降落降落了一样发过来开放老大哥狂龙飞击就改改厉害了降落降落了一样发过来开放老大哥狂龙飞击就改改厉害了降落降落了一样发过来开放老大哥狂龙飞击就改改厉害了降落降落了一样发过来开放老大哥狂龙飞击就改改厉害了降落降落了一样发过来
+		</div>
+	</body>
+</html>

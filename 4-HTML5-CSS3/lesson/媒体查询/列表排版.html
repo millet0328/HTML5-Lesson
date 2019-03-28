@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<style>
+			.list {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				display: flex;
+				flex-wrap: wrap;
+			}
+
+			.list li {
+				width: 24.6%;
+				height: auto;
+				background-color: blue;
+				font-size: 18px;
+				color: white;
+				margin: 0.2%;
+				border: 1px solid #000;
+				box-sizing: border-box;
+			}
+
+			.list li img {
+				width: 100%;
+			}
+
+			/* iPad */
+			@media screen and (min-width:768px) and (max-width:1024px) {
+				.list li {
+					width: 32.933%;
+				}
+			}
+
+			/* 手机端 */
+			@media screen and (min-width:320px) and (max-width:768px) {
+				.list li {
+					width: 99.6%;
+					display: flex;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<ul class="list">
+			<li>
+				<img class="photo" src="img/TIM图片20190328114039.png" alt="">
+				<img class="info" src="img/TIM图片20190328114215.png" alt="">
+			</li>
+			<li>
+				<img class="photo" src="img/TIM图片20190328114039.png" alt="">
+				<img class="info" src="img/TIM图片20190328114215.png" alt="">
+			</li>
+			<li>
+				<img class="photo" src="img/TIM图片20190328114039.png" alt="">
+				<img class="info" src="img/TIM图片20190328114215.png" alt="">
+			</li>
+			<li>
+				<img class="photo" src="img/TIM图片20190328114039.png" alt="">
+				<img class="info" src="img/TIM图片20190328114215.png" alt="">
+			</li>
+			<li>
+				<img class="photo" src="img/TIM图片20190328114039.png" alt="">
+				<img class="info" src="img/TIM图片20190328114215.png" alt="">
+			</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+		</ul>
+	</body>
+</html>
