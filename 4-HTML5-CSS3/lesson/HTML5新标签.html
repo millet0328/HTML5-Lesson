@@ -4,41 +4,58 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style type="text/css">
+			.form-control {
+				padding: 20px 0;
+			}
+		</style>
 	</head>
 
 	<body>
-		<meter min="10" value="60" max="100"></meter>
-		<progress min="10" value="60" max="100"></progress>
-		<ul contenteditable="true">
-			<li>操作系统</li>
-			<li>网络基础</li>
-			<li>数据结构</li>
-			<li>SQL数据库</li>
-		</ul>
-		<div draggable="true">
-			规格的也会听听头哦哦哦
-			规格的也会听听头哦哦哦
-			规格的也会听听头哦哦哦
-			规格的也会听听头哦哦哦
-			规格的也会听听头哦哦哦
-			规格的也会听听头哦哦哦
-			规格的也会听听头哦哦哦
+		<div class="form-control">
+			<input type="tel" name="" id="" required="required" placeholder="tel类型" />
 		</div>
-		<!--电话号码，手机端默认打开数字键盘，配合js限制只能输入数字-->
-		<input type="tel" pattern="^\d{8}$" name="" id="" value="" />
-		<!--数字，配合正则-->
-		<input type="number" name="" id="" value="" />
-		<!--range-->
-		<input type="range" min="10" max="100" step="5" name="" id="" value="" />
-		<!---->
-		<select data-name="moz" data-city="深圳" multiple="multiple" name="">
-			<option value="">北京</option>
-			<option value="">上海</option>
-			<option value="">深圳</option>
-			<option value="">广州</option>
-		</select>
-		
-		<input type="file" multiple="multiple" name="" id="" value="" />
-	</body>
 
+		<div class="form-control">
+			<input type="number" name="" id="" placeholder="number类型" />
+		</div>
+
+		<div class="form-control">
+			<input type="date" name="" id="" placeholder="date类型" />
+		</div>
+		<div class="form-control">
+			<input type="range" name="" id="" placeholder="date类型" />
+		</div>
+		<div class="form-control">
+			<input type="color" name="" id="" placeholder="date类型" />
+		</div>
+
+		<button type="button" id="edit">编辑</button>
+		<button type="button" id="save">保存</button>
+		<ol id="list" contenteditable="false">
+			<li>西红柿 6个</li>
+			<li>胡萝卜 5个</li>
+			<li>大白菜 2个</li>
+			<li>西蓝花 5个</li>
+			<li>金针菇 2捆</li>
+		</ol>
+
+
+
+
+
+		<script type="text/javascript">
+			// 查找元素
+			var oEdit = document.getElementById("edit");
+			var oList = document.getElementById("list");
+			// 绑定事件
+			oEdit.onclick = function() {
+				oList.setAttribute("contenteditable", "true");
+			}
+		</script>
+	</body>
+	<script>
+
+	</script>
 </html>

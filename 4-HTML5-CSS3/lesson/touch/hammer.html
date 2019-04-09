@@ -8,33 +8,59 @@
 		<style type="text/css">
 			.box {
 				position: absolute;
-				left: 0;
-				top: 0;
+				left: 40px;
+				top: 40px;
 				width: 200px;
 				height: 200px;
 				background-color: #00ACFF;
+				/* transition: all 0.5s; */
 			}
 		</style>
 	</head>
 
 	<body>
 		<div id="box" class="box"></div>
-		<script src="js/hammer.min.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
+		<script src="js/hammer.min.js"></script>
+		<script>
 			var oBox = document.getElementById("box");
-			var hammer = new Hammer(oBox);
-			hammer.get('pan').set({
-				direction: Hammer.DIRECTION_ALL
+			var mc = new Hammer(oBox);
+			// 开启事件
+			mc.get('pinch').set({ enable: true });
+			mc.get('rotate').set({ enable: true });
+			// 放大缩小
+			// 			mc.on("pinch", function(e) {
+			// 				oBox.innerText = JSON.stringify(e.scale);
+			// 				oBox.style.transform = 'scale(' + e.scale + ')';
+			// 			});
+			// 旋转
+			mc.on("rotatestart", function(e) {
+				oBox.style.transform = "rotate(0deg)";
+				oBox.innerText = e.rotation;
 			});
-
-			hammer.on("panstart", function(e) {
-				var left = oBox.offsetLeft;
-				var top = oBox.offsetTop;
-				hammer.on("panmove", function(e) {
-					//touch对象
-					oBox.style.left = left + e.deltaX + 'px';
-					oBox.style.top = top + e.deltaY + 'px';
-				});
+			mc.on("rotatemove", function(e) {
+				oBox.innerText = e.rotation;
+				setTimeout(function() {
+					oBox.style.transform = 'rotate(' + e.rotation + 'deg)';
+				}, 100);
+			});
+			// 右滑动--结果
+			// 			mc.on("panright", function(e) {
+			// 				if (e.distance > 50) {
+			// 					oBox.style.transform = "translateX(1000px)";
+			// 				}
+			// 			});
+			// 左滑动--结果
+			mc.on("panleft", function(e) {
+				if (e.distance > 50) {
+					oBox.style.transform = "translateX(0px)";
+				}
+			});
+			// 滑动过程
+			mc.on("panmove", function(e) {
+				oBox.style.opacity = 0.5;
+			});
+			mc.on("panend", function(e) {
+				oBox.style.opacity = 1;
 			});
 		</script>
 	</body>

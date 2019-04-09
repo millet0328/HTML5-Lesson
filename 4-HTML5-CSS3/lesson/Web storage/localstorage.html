@@ -8,46 +8,44 @@
 
 	<body>
 		<div>
-			<input type="button" name="save" id="save" value="存储" />
-			<input type="button" name="show" id="show" value="显示" />
+			<button id="add" type="button">添加</button>
+			<button id="delete" type="button">删除</button>
+			<button id="change" type="button">修改</button>
+			<button id="get" type="button">查询</button>
 		</div>
-		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-		<script type="text/javascript">
-			var oSave = document.getElementById("save");
-			localStorage.cart = JSON.stringify([]);
-
-			oSave.onclick = function() {
-				//增
-				localStorage.name = "moz";
-				localStorage.age = 30;
-				var phone = {
-					id: 1, //唯一
-					name: "荣耀10",
-					price: '￥2399.00',
-					color: "幻影蓝",
-					version: "全网通6G+64GB",
-					num: 1
-				}
-				phone = JSON.stringify(phone);
-				localStorage.phone = phone;
-				//已经存储的购物车数据
-				var cart = localStorage.cart;
-				//字符串=>数组
-				cart = JSON.parse(cart);
-				cart.push(phone);
-				//存储新的购物车数据
-				//数组=>字符串
-				var newCart = JSON.stringify(cart);
-				localStorage.cart = newCart;
+		<script>
+			var oAdd = document.getElementById("add");
+			var oDel = document.getElementById("delete");
+			var oChange = document.getElementById("change");
+			var oGet = document.getElementById("get");
+			// 添加
+			oAdd.onclick = function() {
+				localStorage.username = "黄小米";
+				sessionStorage.age = 30;
+				// 存储对象/数组
+				var job = {
+					salary: "6k",
+					location: "杭州"
+				};
+				localStorage.job = JSON.stringify(job);
+				localStorage.children = JSON.stringify(["小黄", "小黑"]);
+			};
+			// 删除
+			oDel.onclick = function() {
+				sessionStorage.removeItem("age");
+			};
+			// 修改
+			oChange.onclick = function() {
+				localStorage.username = "刘亦菲";
 			}
-			//取
-			$("#show").click(function() {
-				var name = localStorage.name;
-				var phone = localStorage.phone;
-				phone = JSON.parse(phone);
-				console.log(phone);
-			})
+			// 查询
+			oGet.onclick = function() {
+				var job = JSON.parse(localStorage.job);
+				var children = JSON.parse(localStorage.children);
+				console.log(children);
+			}
 		</script>
+
 	</body>
 
 </html>

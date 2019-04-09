@@ -7,12 +7,12 @@
 		<title></title>
 		<style type="text/css">
 			.box {
-				position: absolute;
+				position: fixed;
 				left: 0;
 				top: 0;
-				width: 200px;
-				height: 200px;
-				background-color: #00ACFF;
+				width: 100px;
+				height: 100px;
+				background-color: blue;
 			}
 		</style>
 	</head>
@@ -21,46 +21,21 @@
 		<div id="box" class="box"></div>
 	</body>
 	<script type="text/javascript">
-		window.onload = function() {
-			var oBox = document.getElementById("box");
-			//开始触摸
-			oBox.addEventListener("touchstart", function(e) {
-				var sx = e.targetTouches[0].clientX;
-				var sy = e.targetTouches[0].clientY;
+		var oBox = document.getElementById("box");
+		oBox.addEventListener("touchstart", function(e) {
+			console.log(e);
+			var sx = e.targetTouches[0].pageX;
+			var sy = e.targetTouches[0].pageY;
+			var left = e.target.offsetLeft;
+			var top = e.target.offsetTop;
 
-				var left = e.target.offsetLeft;
-				var top = e.target.offsetTop;
-				//触摸移动
-				oBox.addEventListener("touchmove", function(e) {
-					e.preventDefault();
-					var dx = e.targetTouches[0].clientX;
-					var dy = e.targetTouches[0].clientY;
-
-					var lenX = dx - sx;
-					var lenY = dy - sy;
-
-					e.target.style.left = left + lenX + "px";
-					e.target.style.top = top + lenY + "px";
-
-				});
-
-				//触摸结束
-				oBox.addEventListener("touchend", function(e) {
-					var fX = e.changedTouches[0].clientX;
-					var fY = e.changedTouches[0].clientY;
-
-					var flenX = fX - sx;
-					var flenY = fY - sy;
-					//最终样式
-					if(flenX > 20) {
-						e.target.style.left = "40px";
-					}
-
-				});
-
+			oBox.addEventListener("touchmove", function(e) {
+				var ex = e.targetTouches[0].pageX;
+				var ey = e.targetTouches[0].pageY;
+				oBox.style.left = (ex - sx) + left + 'px';
+				oBox.style.top = (ey - sy) + top + 'px';
 			});
-
-		}
+		});
 	</script>
 
 </html>

@@ -8,15 +8,20 @@
 	</head>
 
 	<body>
-		<div class="" id="position">
-			{}
+		<div class="position">
+
 		</div>
 	</body>
 	<script type="text/javascript">
-		var oPos = document.getElementById("position");
-		navigator.geolocation.getCurrentPosition(function(position) {
-			oPos.innerHTML = JSON.stringify(position);
-		});
+		var oPos = document.querySelector(".position");
+		console.log(navigator)
+		navigator.geolocation.getCurrentPosition(
+			function(position) {
+				oPos.innerText = JSON.stringify(navigator);
+			},
+			function(error) {
+				console.log(error);
+			});
 	</script>
 
 </html>
