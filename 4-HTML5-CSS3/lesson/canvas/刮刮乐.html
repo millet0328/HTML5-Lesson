@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			canvas{
+				position: absolute;
+				top: 0;
+				left: 0;
+				/* background: #eee; */
+			}
+			.ticket-box{
+				position: relative;
+				width: 400px;
+				height: 300px;
+				text-align: center;
+				line-height: 300px;
+				font-size: 60px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="ticket-box">
+			<canvas id="canvas" width="400" height="300"></canvas>
+			<div class="result">一等奖</div>
+		</div>
+
+		<script type="text/javascript">
+			var oCanvas = document.getElementById("canvas");
+			var context = oCanvas.getContext("2d");
+			// 矩形
+			context.fillStyle = "#eee";
+			context.fillRect(0, 0, 400, 300);
+			
+			// 组合图形
+			oCanvas.onmousedown = function(e) {
+				context.globalCompositeOperation = "destination-out";
+				context.fillStyle = "#eee";
+				context.beginPath();
+				context.arc(e.offsetX, e.offsetY, 20, 0, 2 * Math.PI);
+				context.closePath();
+				context.fill();
+				document.onmousemove = function(e) {
+					context.fillStyle = "blue";
+					context.beginPath();
+					context.arc(e.offsetX, e.offsetY, 20, 0, 2 * Math.PI);
+					context.closePath();
+					context.fill();
+				}
+			}
+			document.onmouseup = function() {
+				document.onmousemove = null;
+			}
+		</script>
+	</body>
+</html>

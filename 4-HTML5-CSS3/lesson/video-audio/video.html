@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<video controls="controls" id="video">
+			<source src="assets/video/larva.mp4" type="video/mp4">
+			</source>
+			当前浏览器不支持 video直接播放，点击这里下载视频： <a href="myvideo.webm">下载视频</a>
+		</video>
+		<div class="control-bar">
+			<button type="button" id="play">播放</button>
+			<button type="button" id="pause">暂停</button>
+			<button type="button" id="muted">静音</button>
+			<button type="button" id="volume">音量50%</button>
+			<button type="button" id="speedUp">x2</button>
+		</div>
+		<script type="text/javascript">
+			window.onload = function() {
+				// 查找元素
+				var oVideo = document.getElementById("video");
+				var oPlay = document.getElementById("play");
+				var oPause = document.getElementById("pause");
+				var oMuted = document.getElementById("muted");
+				var oVolume = document.getElementById("volume");
+				var oSpeedUp = document.getElementById("speedUp");
+				// 播放
+				oPlay.onclick = function() {
+					oVideo.play();
+				}
+				// 暂停
+				oPause.onclick = function() {
+					oVideo.pause();
+				}
+				// 静音
+				oMuted.onclick = function() {
+					oVideo.muted = true;
+				}
+				// 设置音量
+				oVolume.onclick = function() {
+					oVideo.volume = 0.5;
+				}
+				// 加速播放
+				oSpeedUp.onclick = function() {
+					oVideo.playbackRate = 2.0;
+				}
+				// 视频总长度，秒
+				console.log(oVideo.duration);
+				// 获取正在播放的位置，秒
+				oVideo.addEventListener("timeupdate", function() {
+					console.log(oVideo.currentTime);
+				});
+
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="canvas" width="1200" height="600"></canvas>
+		<script type="text/javascript">
+			var oCanvas = document.getElementById("canvas");
+			var context = oCanvas.getContext("2d");
+			// 矩形
+			context.fillStyle = "#eeeeee";
+			context.fillRect(0, 0, oCanvas.width, oCanvas.height);
+			context.lineWidth = 5;
+			context.lineCap = "round";
+			context.lineJoin = "round";
+			// 鼠标坐标
+			oCanvas.onmousedown = function(e) {
+				var sx = e.offsetX;
+				var sy = e.offsetY;
+				context.beginPath();
+				context.moveTo(sx, sy);
+				document.onmousemove = function(e) {
+					var ex = e.offsetX;
+					var ey = e.offsetY;
+					context.lineTo(ex, ey);
+					context.stroke();
+				};
+			};
+			document.onmouseup = function() {
+				document.onmousemove = null;
+			}
+		</script>
+	</body>
+</html>
