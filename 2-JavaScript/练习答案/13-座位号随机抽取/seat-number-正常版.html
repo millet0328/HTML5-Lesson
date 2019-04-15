@@ -16,7 +16,9 @@
         background-color: #3EAFE0;
         color: #FFF;
         font-size: 14px;
-        padding: 4px 6px;
+        padding: 5px 6px;
+        min-width: 120px;
+        height: 30px;
     }
 
     .result {
@@ -64,7 +66,7 @@
         <div class="result">
             <span class="" id="result">0</span>
         </div>
-        <input class="maxBox" type="text" id="txt" placeholder="请在里面输入号码最大值！">
+        <input class="maxBox" type="text" id="txt" value="49" placeholder="请在里面输入号码最大值！">
         <input class="clickBtn" type="button" id="btn" value="抽号">
         <div class="exist">
             <div>已抽取：</div>
@@ -88,8 +90,12 @@
         var oRes = document.getElementById("result");
         var oExt = document.getElementById("exist");
         var arr = [];
-        var max = 0
+        var max = 0;
+        var timer;
+        var tick = 5;
         oBtn.onclick = function() {
+            oBtn.value = tick;
+            oBtn.disabled = true;
             max = parseInt(oTxt.value);
             //如果不是数字，终止
             if (isNaN(max)) {
@@ -104,10 +110,20 @@
             }
             //前面情况不存在，正常执行
             getRandomNum();
-            //					generateResult()
+            //generateResult()
             oRes.innerHTML = arr[arr.length - 1];
             //生成已抽取的号码结果
             generateExist();
+            timer = setInterval(function() {
+                tick--;
+                oBtn.value = tick;
+                if (tick == 0) {
+                    clearInterval(timer);
+                    oBtn.value = "抽号";
+                    tick = 5;
+                    oBtn.disabled = false;
+                }
+            }, 1000);
         }
 
         //生成随机数
