@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			body {
+				background:url(img/timg.jpg) no-repeat;
+				background-size: cover;
+			}
+			
+			span {
+				position: absolute;
+				width: 60px;
+				height: 60px;
+				background: url(img/90sheji_linggan_13066894.png) no-repeat;
+				background-size: 100% 100%;
+				transition: all 1s;
+				animation: cartoon 2s infinite;
+			}
+			
+			@keyframes cartoon {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			span:hover{
+				transform: scale(3.2) rotate(180deg) !important;
+			}
+		</style>
+	</head>
+
+	<body>
+		<span></span>
+		<script type="text/javascript">
+			window.onload = function() {
+				var browserw = window.innerWidth;
+				var browsery = window.innerHeight;
+				for(var i = 0; i < 150; i++) {
+					//生成
+					var oSpan = document.createElement("span");
+					document.body.appendChild(oSpan);
+
+					//随机坐标
+					var w = parseInt(Math.random() * browserw);
+					var y = parseInt(Math.random() * browsery);
+					oSpan.style.left = w + "px";
+					oSpan.style.top = y + "px";
+					//随机缩放
+					var oSacl = Math.random() * 1.6;
+					oSpan.style.transform = 'scale(' + oSacl + ',' + oSacl + ')';
+					//随机频率
+					var oRate = Math.random() * 1.5;
+					oSpan.style.animationDelay =oRate+ "s";
+				
+				}
+			}
+		</script>
+	</body>
+
+</html>
