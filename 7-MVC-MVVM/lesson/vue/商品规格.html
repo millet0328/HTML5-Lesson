@@ -6,22 +6,26 @@
 		<title></title>
 
 		<style type="text/css">
+			.app {
+				display: flex;
+				align-items: center;
+			}
+
 			.size-box {
 				list-style: none;
-				padding: 0;
 				margin: 0;
 			}
-			
+
 			.size-box li {
-				float: left;
 				padding: 6px;
 				min-width: 20px;
 				border: 1px solid #E0E0E0;
 				margin-right: 8px;
 				text-align: center;
 				cursor: pointer;
+				display: inline-block;
 			}
-			
+
 			.size-box li.checked {
 				border: 2px solid #C7254E;
 				padding: 5px;
@@ -30,11 +34,15 @@
 	</head>
 
 	<body>
-		<ul id="app" class="size-box">
-			<li v-for="(item, index) in size" v-bind:class="{checked:item.isChecked}" @click="choose(index)">
-				{{item.label}}
-			</li>
-		</ul>
+		<div class="app" id="app">
+			<div class="label">尺码：</div>
+			<ul class="size-box">
+				<li v-for="(item, index) in size" v-bind:class="{checked:item.isChecked}" @click="choose(index)">
+					{{item.label}}
+				</li>
+			</ul>
+		</div>
+
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var app = new Vue({
@@ -53,11 +61,14 @@
 				},
 				methods: {
 					choose: function(index) {
-						console.log(index);
-						for(var i = 0; i < this.size.length; i++) {
-							this.size[i].isChecked = false;
-						}
-						this.size[index].isChecked = true;
+						var flag = this.size[index].isChecked;
+
+						this.size = this.size.map(function(item, index) {
+							item.isChecked = false;
+							return item;
+						});
+
+						this.size[index].isChecked = !flag;
 					}
 				}
 			});

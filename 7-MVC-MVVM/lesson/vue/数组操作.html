@@ -4,67 +4,115 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<style type="text/css">
+			[v-cloak] {
+				display: none
+			}
+		</style>
 	</head>
 
 	<body>
 		<div id="app">
-			<input type="text" v-model="newTodo" name="" id="" @keyup.enter="addTodo" />
+			<!-- form -->
+			<form action="">
+				<p>
+					<label>作者：</label>
+					<input v-model="book.author" type="text">
+				</p>
+				<p>
+					<label>书名：</label>
+					<input v-model="book.name" type="text">
+				</p>
+				<p>
+					<label>价格：</label>
+					<input v-model="book.price" type="text">
+				</p>
+				<p>
+					<button @click="appendHandle" type="button">添加</button>
+				</p>
+			</form>
+			<!-- 表格 -->
+			<table cellpadding="20" border="1">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>作者</th>
+						<th>书名</th>
+						<th>价格</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(book,index) in books" :key="book.id">
+						<td>{{book.id}}</td>
+						<td>{{book.author}}</td>
+						<td>{{book.name}}</td>
+						<td>{{book.price}}</td>
+						<td>
+							<button @click="deleteHandle(index)" type="button">删除</button>
+							<button @click="addHandle(index)" type="button">+</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 			<ul>
-				<li v-for="(item,index) in todos">
-					{{item.title}}
-					<button @click="remove(index)">X</button>
+				<li v-for="(item,index) in arr">
+					{{item}}
+					<button @click="changeHandle(index)" type="button">修改</button>
 				</li>
 			</ul>
-			<button @click="sortUp">排序</button>
 		</div>
+
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var app = new Vue({
-				el: "#app",
+				el: '#app',
 				data: {
-					newTodo: '',
-					todos: [{
-							id: 1,
-							title: 'Do the dishes',
-						},
-						{
-							id: 2,
-							title: 'Take out the trash',
-						},
-						{
-							id: 3,
-							title: 'Mow the lawn'
-						}
-					],
+					book: {
+						author: "",
+						name: "",
+						price: 0,
+					},
+					arr: [12, 45, 56],
+					books: [{
+						id: 1,
+						author: '曹雪芹',
+						name: '红楼梦',
+						price: 32.0
+					}, {
+						id: 2,
+						author: '施耐庵',
+						name: '水浒传',
+						price: 30.0
+					}, {
+						id: 3,
+						author: '罗贯中',
+						name: '三国演义',
+						price: 24.0
+					}, {
+						id: 4,
+						author: '吴承恩',
+						name: '西游记',
+						price: 20.0
+					}]
 				},
 				methods: {
-					remove: function(i) {
-						//数组方法
-						this.todos.splice(i, 1);
+					deleteHandle: function(i) {
+						this.books.splice(i, 1);
 					},
-					sortUp: function() {
-						this.todos.sort(function(a, b) {
-							var val1 = a.title[0];
-							var val2 = b.title[0];
-							if(val1 > val2) {
-								return -1;
-							} else {
-								return 1;
-							}
-						});
+					addHandle: function(i) {
+						this.books[i].price++;
 					},
-					addTodo: function() {
-						//数组方法
-						this.todos.push({
-							id: this.todos.length + 1,
-							title: this.newTodo
-						});
-						this.newTodo = "";
+					changeHandle: function(i) {
+						this.$set(this.arr, i, this.arr[i] + 1);
+					},
+					appendHandle: function() {
+						this.book.id = 66;
+						this.books.push({ ...this.book });
 					}
 				}
-			})
+			});
 		</script>
-
 	</body>
 
 </html>

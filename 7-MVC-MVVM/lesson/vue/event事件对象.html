@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.box {
+				width: 200px;
+				height: 200px;
+				background-color: #0000FF;
+				color: white;
+				position: absolute;
+			}
+
+			.app {
+				height: 3000px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="app" id="app">
+			<div :style="{left:left+'px',top:top+'px'}" @mousedown="downHandle" @mousemove.stop="moveHandle" @mouseup="upHandle"
+			 class="box">
+				sx:{{sx}}
+				sy:{{sy}}
+				ex:{{ex}}
+				ey:{{ey}}
+				dx:{{ex-sx}}
+				dy:{{ey-sy}}
+			</div>
+			
+			
+			
+		</div>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					sx: 0,
+					sy: 0,
+					ex: 0,
+					ey: 0,
+					left: 0,
+					top: 0,
+					startLeft: 0,
+					startTop: 0,
+					isMove: false,
+				},
+				methods: {
+					downHandle: function(e) {
+						
+						// 记录鼠标x,y轴
+						this.sx = e.pageX;
+						this.sy = e.pageY;
+						this.isMove = true;
+						// 存储初始的left,top
+						this.startLeft = this.left;
+						this.startTop = this.top;
+					},
+					moveHandle: function(e) {
+						if (!this.isMove) {
+							return;
+						}
+						// 记录鼠标x,y轴
+						this.ex = e.pageX;
+						this.ey = e.pageY;
+						// 计算距离
+						var dx = this.ex - this.sx;
+						var dy = this.ey - this.sy;
+						// 赋值
+						this.left = this.startLeft + dx;
+						this.top = this.startTop + dy;
+						document.onmousemove = this.moveHandle;
+					},
+					upHandle: function(e) {
+						this.isMove = false;
+						document.onmousemove = null;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

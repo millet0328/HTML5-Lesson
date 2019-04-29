@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<h1>
+				Hello {{name}}!
+				<button @click="clickHandle" type="button">按钮</button>
+			</h1>
+			<h3>性别:
+				<span v-if="sex==0">女</span>
+				<span v-else-if="sex==1">男</span>
+				<span v-else>保密</span>
+			</h3>
+			<h3>职业：{{job}}</h3>
+			<div>手机：
+				<span v-show="isPay">{{tel}}</span>
+				<button @click="buyHandle" type="button">购买</button>
+			</div>
+			<div v-html="content"></div>
+		</div>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			var app = new Vue({
+				el: "#app",
+				data: {
+					name: "黄小米",
+					sex: 0,
+					job: "演员",
+					tel: "15863008280",
+					isPay: false,
+					content: '<p>you are <span style="color:blue">23</span> years old</p>'
+				},
+				// 事件处理程序
+				methods: {
+					clickHandle: function() {
+						this.sex = 1;
+						this.job = "歌手";
+						console.log('Hello ' + this.name + ' !');
+					},
+					buyHandle: function() {
+						this.isPay = true;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

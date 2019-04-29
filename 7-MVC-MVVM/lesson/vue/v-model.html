@@ -8,8 +8,8 @@
 
 	<body>
 		<div id="app">
-			<input type="text" @input="inputHandle" :value="message" />
-			<p>Message:{{message}}</p>
+			<input type="text" name="" @input="inputHandle" :value="username" />
+			<h3>{{username}}</h3>
 		</div>
 
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
@@ -17,14 +17,14 @@
 			var app = new Vue({
 				el: "#app",
 				data: {
-					message: "交话费"
+					username: "orz"
 				},
 				methods: {
-					inputHandle: function(event) {
-						this.message = event.target.value;
+					inputHandle: function(e) {
+						this.username = e.target.value;
 					}
 				}
-			})
+			});
 		</script>
 	</body>
 

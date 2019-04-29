@@ -28,7 +28,7 @@
 	</head>
 
 	<body>
-		<div id="app" class="">
+		<div id="app" class="app">
 			<div class="box" @click="move" :class="{active:isActive}"></div>
 			<!--拖拽-->
 			<div class="cube" :style="{left:left+'px',top:top+'px'}" @mousedown="downHandle" @mousemove="moveHandle" @mouseup="upHandle"></div>
@@ -53,19 +53,20 @@
 					},
 					//down
 					downHandle: function(event) {
-						this.downX = event.offsetX;
-						this.downY = event.offsetY;
+						this.downX = event.pageX;
+						this.downY = event.pageY;
 						this.isMove = true;
 					},
 					moveHandle: function(event) {
 						if(!this.isMove) {
 							return false;
 						}
-						this.endX = event.offsetX;
-						this.endY = event.offsetY;
+						this.endX = event.pageX;
+						this.endY = event.pageY;
 						//X轴、Y轴移动距离
 						let distanceX = this.endX - this.downX;
 						let distanceY = this.endY - this.downY;
+						console.log(this.downX,this.downY);
 						//赋值 left/top
 						this.left = this.left + distanceX;
 						this.top = this.top + distanceY;
