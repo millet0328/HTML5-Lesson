@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div id="app">
+			<textarea v-model.trim="text" rows="8" cols="30"></textarea>
+			<div>您还可以输入
+				<span>{{restText}}</span>字
+			</div>
+		</div>
+		<hr />
+		
+		<form id="form" action="">
+			<legend>计算属性的setter/getter</legend>
+			<p>firstName:{{firstName}}</p>
+			<p>lastName:{{lastName}}</p>
+			<p>fullName:
+				<input type="text" v-model="fullName" />
+			</p>
+		</form>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var form = new Vue({
+				el: "#form",
+				data: {
+					firstName: 'Tom',
+					lastName: 'Smith'
+				},
+				computed: {
+					fullName: {
+						get: function() {
+							return this.firstName + ' ' + this.lastName;
+						},
+						set: function(newValue) {
+							var names = newValue.split(' ')
+							this.firstName = names[0]
+							this.lastName = names[names.length - 1]
+						}
+					}
+				}
+			});
+		</script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					text: ''
+				},
+				computed: {
+					restText: function() {
+						return 300 - this.text.length;
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

@@ -11,43 +11,65 @@
 				background-color: blue;
 				margin: 10px;
 			}
-			
-			.bounce-enter-active {
-				animation: bounce-in .5s;
+
+			.slide-right-enter {
+				transform: translateX(400px);
 			}
-			
-			.bounce-leave-active {
-				animation: bounce-in .5s reverse;
+
+			.slide-right-enter-to {
+				transform: translateX(0px);
 			}
-			
-			@keyframes bounce-in {
-				0% {
-					transform: scale(0);
-				}
-				50% {
-					transform: scale(1.5);
-				}
-				100% {
-					transform: scale(1);
-				}
+
+			.slide-right-enter-active {
+				transition: all 0.5s;
+			}
+
+			.slide-left-leave {
+				transform: translateX(0) rotate(0);
+				opacity: 1;
+			}
+
+			.slide-left-leave-to {
+				transform: translateX(400px) rotate(360deg);
+				opacity: 0;
+			}
+
+			.slide-left-leave-active {
+				transition: all 0.5s;
 			}
 		</style>
 	</head>
 
 	<body>
-		<div id="example-2">
-			<button @click="show = !show">Toggle show</button>
-			<transition name="bounce">
-				<p class="box" v-if="show">示例文字示例文字示例文字示例文字示例文字示例文字</p>
+		<div id="app">
+			<button @click="clickHandle" type="button">开始</button>
+			<transition name="slide-right">
+				<div v-show="isActive" class="box">
+				</div>
+			</transition>
+
+			<button @click="leaveHandle" type="button">离开</button>
+			<transition name="slide-left">
+				<div v-show="isShow" class="box">
+				</div>
 			</transition>
 		</div>
 
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			new Vue({
-				el: '#example-2',
+			var app = new Vue({
+				el: "#app",
 				data: {
-					show: true
+					isActive: false,
+					isShow: true,
+				},
+				methods: {
+					clickHandle: function() {
+						this.isActive = true;
+					},
+					leaveHandle: function() {
+						this.isMove = false;
+					}
 				}
 			})
 		</script>

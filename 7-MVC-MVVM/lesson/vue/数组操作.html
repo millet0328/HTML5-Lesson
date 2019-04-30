@@ -53,6 +53,14 @@
 							<button @click="addHandle(index)" type="button">+</button>
 						</td>
 					</tr>
+					<!-- 总价 -->
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>总价：</td>
+						<td>均价：</td>
+					</tr>
 				</tbody>
 			</table>
 			<ul>
@@ -110,6 +118,10 @@
 						this.book.id = 66;
 						this.books.push({ ...this.book });
 					}
+				},
+				// 计算属性
+				computed: {
+
 				}
 			});
 		</script>

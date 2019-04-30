@@ -11,40 +11,40 @@
 				background-color: blue;
 				margin: 10px;
 			}
-			
-			.slideUp-enter {
-				opacity: 0;
-				transform: translateY(200px);
+
+			.bounce-in-enter-active,
+			.bounce-in-leave-active {
+				animation: bounce 1.5s;
 			}
-			
-			.slideUp-enter-to {
-				opacity: 1;
-				transform: translateY(0px);
-			}
-			
-			.slideUp-enter-active {
-				transition: all 0.5s;
-			}
-			
-			.slideUp-leave {
-				opacity: 1;
-			}
-			
-			.slideUp-leave-to {
-				opacity: 0;
-				transform: translateX(500px);
-			}
-			
-			.slideUp-leave-active {
-				transition: all 0.5s;
+
+			@keyframes bounce {
+				0% {
+					transform: translateY(0px) translateX(0px) scale(1);
+				}
+
+				25% {
+					transform: translateY(300px) translateX(60px) scale(0.9);
+				}
+
+				50% {
+					transform: translateY(400px) translateX(400px) scale(0.7);
+				}
+
+				75% {
+					transform: translateY(300px) translateX(740px) scale(0.9);
+				}
+
+				100% {
+					transform: translateY(0px) translateX(800px) scale(1);
+				}
 			}
 		</style>
 	</head>
 
 	<body>
 		<div id="app">
-			<button type="button" @click="show=!show">显示/enter</button>
-			<transition name="slideUp">
+			<button type="button" @click="clickHandle">动画过渡</button>
+			<transition name="bounce-in">
 				<div class="box" v-show="show"></div>
 			</transition>
 		</div>
@@ -54,6 +54,11 @@
 				el: '#app',
 				data: {
 					show: false
+				},
+				methods: {
+					clickHandle: function() {
+						this.show = !this.show;
+					}
 				}
 			});
 		</script>

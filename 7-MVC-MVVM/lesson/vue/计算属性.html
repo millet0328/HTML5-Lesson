@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			[v-cloak] {
+				display: none
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+			<!-- form -->
+			<form action="">
+				<p>
+					<label>作者：</label>
+					<input v-model="book.author" type="text">
+				</p>
+				<p>
+					<label>书名：</label>
+					<input v-model="book.name" type="text">
+				</p>
+				<p>
+					<label>价格：</label>
+					<input v-model.number="book.price" type="text">
+				</p>
+				<p>
+					<button @click="appendHandle" type="button">添加</button>
+				</p>
+			</form>
+			<!-- 表格 -->
+			<table cellpadding="20" border="1">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>作者</th>
+						<th>书名</th>
+						<th>价格</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(book,index) in books" :key="book.id">
+						<td>{{book.id}}</td>
+						<td>{{book.author}}</td>
+						<td>{{book.name}}</td>
+						<td>{{book.price}}</td>
+						<td>
+							<button @click="deleteHandle(index)" type="button">删除</button>
+							<button @click="addHandle(index)" type="button">+</button>
+						</td>
+					</tr>
+					<!-- 总价 -->
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>总价：{{totalPrice}}</td>
+						<td>均价：{{AvgPrice}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: '#app',
+				data: {
+					book: {
+						author: "",
+						name: "",
+						price: 0,
+					},
+					books: [{
+						id: 1,
+						author: '曹雪芹',
+						name: '红楼梦',
+						price: 32.0
+					}, {
+						id: 2,
+						author: '施耐庵',
+						name: '水浒传',
+						price: 30.0
+					}, {
+						id: 3,
+						author: '罗贯中',
+						name: '三国演义',
+						price: 24.0
+					}, {
+						id: 4,
+						author: '吴承恩',
+						name: '西游记',
+						price: 20.0
+					}]
+				},
+				methods: {
+					deleteHandle: function(i) {
+						this.books.splice(i, 1);
+					},
+					addHandle: function(i) {
+						this.books[i].price++;
+					},
+					changeHandle: function(i) {
+						this.$set(this.arr, i, this.arr[i] + 1);
+					},
+					appendHandle: function() {
+						this.book.id = 66;
+						this.books.push({ ...this.book });
+					}
+				},
+				// 计算属性
+				computed: {
+					totalPrice: function() {
+						var result = this.books.reduce(function(total, item, index) {
+							return total + item.price;
+						}, 0);
+						return result;
+					},
+					AvgPrice: function() {
+						return this.totalPrice / this.books.length;
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>
