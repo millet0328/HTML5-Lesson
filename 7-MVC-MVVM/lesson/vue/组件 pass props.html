@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/blog-post.css" />
+	</head>
+
+	<body>
+		<div id="app">
+			<div :style="{fontSize:fontSize+'px'}">
+				<blog-post @large-text="Enlarge" v-for="blog in blogs" :photo="blog.img" :title="blog.title" :summary="blog.content"></blog-post>
+			</div>
+		</div>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/blog-post.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					fontSize: 16,
+					blogs: [{
+							id: 1,
+							img: "img/0.jpg",
+							title: 'Vue从入门到精通',
+							content: '<small class="content">这是My journey with Vue博客内容</small>'
+						},
+						{
+							id: 2,
+							img: "img/plus.jpg",
+							title: 'React 基础教程',
+							content: '<small class="content">这是Blogging with Vue博客内容</small>'
+						},
+						{
+							id: 3,
+							img: "img/0.jpg",
+							title: 'Webpack 配置教程',
+							content: '<small class="content">这是Why Vue is so fun博客内容</small>'
+						}
+					]
+				},
+				methods: {
+					// 放大字体
+					Enlarge: function() {
+						this.fontSize += 1;
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

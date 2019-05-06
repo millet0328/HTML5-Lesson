@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+	<style type="text/css">
+		.modal.in {
+			display: block;
+			background-color: rgba(0, 0, 0, 0.5);
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<button @click="showModal = true">弹出confirm</button>
+		<confirm-modal :open="showModal" title="提交记录" @close="showModal = false" @confirm="submitHandle">
+			<h4>测试测试测试测试测试</h4>
+			<button type="button" class="btn btn-primary">按钮呢</button>
+		</confirm-modal>
+	</div>
+	<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/modal.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		Vue.component('submit-form', {
+			template: `
+				<form>
+					<div class="form-group">
+						<label for="recipient-name" class="control-label">Recipient:</label>
+						<input type="text" class="form-control" id="recipient-name">
+					</div>
+					<div class="form-group">
+						<label for="message-text" class="control-label">Message:</label>
+						<textarea class="form-control" id="message-text"></textarea>
+					</div>
+				</form>`
+		});
+		//vue实例
+		var app = new Vue({
+			el: '#app',
+			data: {
+				showModal: false,
+			},
+			methods: {
+				submitHandle: function () {
+					alert("提交了数据！");
+					this.showModal = false;
+				}
+			}
+		});
+	</script>
+</body>
+
+</html>

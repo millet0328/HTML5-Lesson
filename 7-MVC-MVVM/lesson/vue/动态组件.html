@@ -47,10 +47,14 @@
 						count: 0
 					}
 				},
-				template: `<div>详情-----内容 {{count}} <button @click="count++" type="button">+</button></div>`
+				template: `
+				<div>
+					<p>详情-----内容</p>	
+					{{count}} <button @click="count++" type="button">+</button>
+				</div>`
 			});
 			Vue.component('comment-tab', {
-				template: `<div><tab></tab></div>`
+				template: `<div>评论------内容</div>`
 			});
 			Vue.component('more-tab', {
 				template: `<div>更多-----内容</div>`
@@ -75,7 +79,6 @@
 								tabName = 'more';
 								break;
 						}
-
 						return tabName + '-tab';
 					}
 				}

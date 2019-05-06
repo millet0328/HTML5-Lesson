@@ -1,6 +1,6 @@
 //注册组件
 Vue.component('confirm-modal', {
-	props: ['open','title'],
+	props: ['open','title','content'],
 	template: `
 	<div class="modal fade" :class="{in:open}">
 		<div class="modal-dialog" role="document">

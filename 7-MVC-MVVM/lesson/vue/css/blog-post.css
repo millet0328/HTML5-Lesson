@@ -1,0 +1,19 @@
+.blog {
+	border-bottom: 1px solid #EEEEEE;
+	padding: 20px 8px;
+	display: flex;
+	align-items: center;
+}
+
+.blog .photo {
+	margin-right: 10px;
+}
+
+.blog h4 {
+	margin-top: 0;
+}
+
+.blog .summary {
+	font-size: 12px;
+	color: #888888;
+}

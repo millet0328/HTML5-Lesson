@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<style type="text/css">
+			.modal.in {
+				display: block;
+				background-color: rgba(0, 0, 0, 0.5);
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+			<button @click="showModal = true">删除confirm</button>
+			<div>
+				<confirm-modal :open="showModal" title="删除记录" content="您确定要删除这条记录吗？" @confirm="delHandle" @close="showModal = false">
+				</confirm-modal>
+			</div>
+		</div>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/modal.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//vue实例
+			var app = new Vue({
+				el: '#app',
+				data: {
+					showModal: false
+				},
+				methods: {
+					delHandle: function() {
+						alert("删除成功！");
+						this.showModal = false;
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

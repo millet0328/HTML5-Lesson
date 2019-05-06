@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>组件式选项卡</title>
+		<style type="text/css">
+			.tab {
+				width: 600px;
+				margin: 0 auto;
+				font-family: "微软雅黑";
+				color: #657180;
+			}
+			
+			.tab-title,
+			.tab-content {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			
+			.tab-content {
+				border: 1px solid #d7dde4;
+			}
+			
+			.clear::after {
+				clear: both;
+				content: "";
+				display: block;
+			}
+			
+			.tab-title li {
+				float: left;
+				text-align: center;
+				padding: 5px 16px 4px;
+				margin-right: 6px;
+				background-color: #f5f7f9;
+				border: 1px solid #d7dde4;
+				border-bottom: none;
+				cursor: pointer;
+				position: relative;
+				font-size: 14px;
+			}
+			
+			.tab-title li:hover {
+				color: #39f;
+			}
+			
+			.tab-title li.active {
+				background-color: #FFF;
+			}
+			
+			.tab-title li.active::after {
+				content: "";
+				border-bottom: 1px solid #FFFFFF;
+				position: absolute;
+				width: 100%;
+				bottom: -1px;
+				left: 0;
+			}
+			
+			.tab-content li {
+				width: 578px;
+				height: 300px;
+				background-color: #FFF;
+				padding: 10px;
+				font-size: 12px;
+			}
+			
+			.tab-content li:first-child {
+				display: block;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="app" class="list">
+			<!--商品列表-->
+			<Tabs :label="title" :content="content">
+			</Tabs>
+		</div>
+
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script id="Tabs-tmpl" type="text/x-template">
+			<div class="tab">
+				<ul class="tab-title clear">
+					<li v-for="(item,index) in label" @click="toggle(index)" :class="{active:index==num}">{{item}}</li>
+				</ul>
+				<ul class="tab-content">
+					<li v-for="(item,index) in content" v-show="index == num">{{item}}</li>
+				</ul>
+			</div>
+		</script>
+
+		<script type="text/javascript">
+			Vue.component('Tabs', {
+				template: "#Tabs-tmpl",
+				props: ["activeKey", "label", "content"],
+				data: function() {
+					return {
+						num: 0
+					}
+				},
+				methods: {
+					toggle: function(index) {
+						this.num = index;
+					}
+				}
+			});
+			new Vue({
+				el: "#app",
+				data: {
+					title: ['详情', '评价', '问答', '推荐'],
+					content: ["第一页", "第二页", "第三页", "五星推荐"]
+				}
+			});
+		</script>
+
+	</body>
+
+</html>
