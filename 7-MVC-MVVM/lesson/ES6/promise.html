@@ -1,65 +1,34 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="utf-8" />
-		<title></title>
-	</head>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
 
-	<body>
-		<div id="box">
+<body>
+    <div id="box">
 
-		</div>
-		<script type="text/javascript">
-			function loadImageAsync(url) {
-				return new Promise(function(resolve, reject) {
-					const image = new Image();
-					image.src = url;
-
-					image.onload = function() {
-						resolve(image);
-					};
-
-					image.onerror = function() {
-						reject(new Error('Could not load image at ' + url));
-					};
-				});
-			}
-			//调用
-			loadImageAsync('./img/0.jpg')
-				.then(function(data) {
-					console.log(data);
-					return loadImageAsync('./img/1.png')
-				})
-				.then(function(data) {
-					console.log(data);
-					return loadImageAsync('./img/2.png')
-				})
-				.then(function(data) {
-					console.log(data);
-				})
-				.catch(function(error) {
-
-				});
-		</script>
-		<script type="text/javascript">
-			(function() {
-				setTimeout(function() {
-					console.log(4);
-				}, 0);
-				var count = 0;
-				new Promise(function(resolve, reject) {
-					console.log(1);
-					for(let i = 0; i < 2; i++) {
-						count += i;
-					};
-					resolve(console.log(2));
-				}).then(function(data) {
-					console.log(3);
-				});
-				console.log(5);
-			})();
-		</script>
-	</body>
+    </div>
+    <script type="text/javascript">
+        let random = new Promise(function(resolve, reject) {
+            var x = Math.random();
+            if (x < 0.5) {
+                resolve('成功 ' + x);
+            } else {
+                reject('失败 ' + x);
+            }
+        });
+        random
+            .then(function(result) {
+                // 成功状态
+                console.log("result:" + result);
+            })
+            .catch(function(error) {
+                // 失败状态
+                console.log("error:" + error);
+            });
+    </script>
+</body>
 
 </html>

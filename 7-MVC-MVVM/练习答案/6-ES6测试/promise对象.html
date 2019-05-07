@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        var output = (i) => new Promise((resolve) => {
+            setTimeout(() => {
+                console.log(i)
+                resolve(i)
+            }, 1000 * i)
+        })
+        for (let i = 2; i <= 100; i += 2) {
+            output(i)
+        }
+    </script>
+    <script>
+        function tick() {
+            let promise = new Promise(function(resolve, reject) {
+                setTimeout(() => {
+                    resolve();
+                }, 2000);
+            });
+            return promise;
+        }
+
+        async function counter() {
+            for (let i = 2; i <= 100; i += 2) {
+                await tick();
+                console.log(i)
+            }
+        }
+        // counter();
+    </script>
+</body>
+
+</html>

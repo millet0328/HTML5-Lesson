@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <script>
+        const getJSON = function(url) {
+            const promise = new Promise(function(resolve, reject) {
+                const handler = function() {
+                    if (this.readyState !== 4) {
+                        return;
+                    }
+                    if (this.status === 200) {
+                        resolve(this.response);
+                    } else {
+                        reject(new Error(this.statusText));
+                    }
+                };
+                const client = new XMLHttpRequest();
+                client.open("GET", url);
+                client.onreadystatechange = handler;
+                client.responseType = "json";
+                client.setRequestHeader("Accept", "application/json");
+                client.send();
+            });
+            return promise;
+        };
+        // 1.获取分类
+        getJSON("/catergory/list");
+        // 2.获取分类详情
+        getJSON("/catergory/detail?id=2");
+
+        getJSON("/catergory/list")
+            .then(function(list) {
+                // 在select显示分类列表....
+                return getJSON("/catergory/detail?id=2")
+            }).then(function(detail) {
+                // 显示分类详情...
+                return getJSON("/user/info");
+            }).then(function(info) {
+                // 处理用户信息
+            });
+    </script> -->
+    <script>
+        const ajax1 = () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    try {
+                        Math.random() < 0.5 ? resolve("ajax1 成功！") : reject("ajax1 失败！");
+                    } catch (error) {
+                        throw error;
+                    }
+                }, 200);
+            })
+        }
+        const ajax2 = () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve("ajax2 成功！");
+                    // reject("ajax2 失败！");
+                }, 200)
+            })
+        }
+        // 串行执行
+        const doSerial = () => {
+            ajax1()
+                .then((res) => {
+                    if (res == "ajax1 成功！") {
+                        console.log(res)
+                        return ajax2();
+                    }
+                })
+                .then((res) => {
+                    if (res == "ajax2 成功！") {
+                        console.log(res);
+                        alert("success");
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                    alert("fail");
+                })
+        }
+        doSerial();
+        // 并行执行
+        const doParallel = () => {
+
+        }
+    </script>
+</body>
+
+</html>
