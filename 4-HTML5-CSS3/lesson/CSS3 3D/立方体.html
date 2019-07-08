@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				/*视角*/
+				perspective: 2000px;
+			}
+			
+			.box {
+				width: 500px;
+				margin: 50px auto;
+				/*3D*/
+				transform-style: preserve-3d;
+				/*中心*/
+				transform-origin: bottom center;
+				transition: all 1s;
+			}
+			
+			.box:hover {
+				transform: rotateX(70deg);
+			}
+			
+			.box img {
+				display: block;
+			}
+			
+			.space {
+				background-image: url(img/winter-hat.jpg);
+				background-position: bottom center;
+				background-size: cover;
+				height: 50px;
+				transform-origin: top center;
+				transform: rotateX(-90deg);
+			}
+			/*伪元素*/
+			
+			.box::after {
+				content: '';
+				display: block;
+				width: 500px;
+				height: 50px;
+				/*渐变色*/
+				background: radial-gradient(circle, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1) 100%);
+				border-radius: 100%;
+				opacity: 0.5;
+				transform: rotateX(80deg);
+				box-shadow: 0px 0px 20px 0 rgba(0, 0, 0, 0.2);
+			}
+			
+			.cube {
+				width: 200px;
+				height: 200px;
+				margin: 300px auto;
+				list-style: none;
+				padding: 0;
+				transform-style: preserve-3d;
+				animation: circle 6s linear infinite;
+			}
+			
+			@keyframes circle {
+				from {
+					transform: rotateX(0deg) rotateY(0deg);
+				}
+				to {
+					transform: rotateX(360deg) rotateY(360deg);
+				}
+			}
+			
+			.cube li {
+				position: absolute;
+				width: 200px;
+				height: 200px;
+				line-height: 200px;
+				text-align: center;
+				color: white;
+				font-size: 28px;
+				transition: all 0.5s;
+			}
+			
+			.cube:hover li:nth-child(1) {
+				transform: translateZ(210px);
+				background-color: rgba(237, 28, 36, 0.7);
+			}
+			
+			.cube:hover li:nth-child(2) {
+				transform: rotateY(90deg) translateZ(210px);
+				background-color: rgba(255, 127, 39, 0.7);
+			}
+			
+			.cube:hover li:nth-child(3) {
+				transform: rotateY(180deg) translateZ(210px);
+				background-color: rgba(255, 242, 0, 0.7);
+			}
+			
+			.cube:hover li:nth-child(4) {
+				transform: rotateY(270deg) translateZ(210px);
+				background-color: rgba(34, 177, 76, 0.7);
+			}
+			
+			.cube:hover li:nth-child(5) {
+				transform: rotateX(90deg) translateZ(210px);
+				background-color: rgba(0, 162, 232, 0.7);
+			}
+			
+			.cube:hover li:nth-child(6) {
+				transform: rotateX(-90deg) translateZ(210px);
+				background-color: rgba(163, 73, 164, 0.7);
+			}
+			
+			.cube li:nth-child(1) {
+				transform: translateZ(100px);
+				background-color: rgba(237, 28, 36, 0.7);
+			}
+			
+			.cube li:nth-child(2) {
+				transform: rotateY(90deg) translateZ(100px);
+				background-color: rgba(255, 127, 39, 0.7);
+			}
+			
+			.cube li:nth-child(3) {
+				transform: rotateY(180deg) translateZ(100px);
+				background-color: rgba(255, 242, 0, 0.7);
+			}
+			
+			.cube li:nth-child(4) {
+				transform: rotateY(270deg) translateZ(100px);
+				background-color: rgba(34, 177, 76, 0.7);
+			}
+			
+			.cube li:nth-child(5) {
+				transform: rotateX(90deg) translateZ(100px);
+				background-color: rgba(0, 162, 232, 0.7);
+			}
+			
+			.cube li:nth-child(6) {
+				transform: rotateX(-90deg) translateZ(100px);
+				background-color: rgba(163, 73, 164, 0.7);
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<img src="img/winter-hat.jpg" />
+			<div class="space"></div>
+		</div>
+		<!--立方体-->
+		<ul class="cube">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+		</ul>
+
+	</body>
+
+</html>
