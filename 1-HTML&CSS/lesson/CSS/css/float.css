@@ -1,0 +1,27 @@
+/* 公共类 */
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.clear {
+	clear: both;
+}
+
+.box {
+	width: 200px;
+	height: 200px;
+	border: 1px solid #000;
+}
+
+.wrap {
+	background-color: #0000FF;
+}
+
+.test {
+	background-color: red;
+	height: 40px;
+}
