@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var person = {
+				name: "黄小米",
+				birthday: 1995,
+				sex: "女",
+				move: function() {
+					console.log('moving.....')
+				}
+			}
+			// 访问属性
+			var age = 2019 - person['birthday'];
+			// 修改属性
+			person.name = '黄晓明';
+			// 增加属性
+			person.job = 'actor';
+			// 删除属性
+			delete person.job
+			// 访问方法
+			person.move();
+			// 修改方法
+			person.move = function () {
+				console.log("mmmmm");
+			}			
+			// 题目:
+			var obj1 = {
+				name: "黄小米",
+				age: 25
+			}
+			var obj2 = obj1;
+			obj2.age = 30;
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var arr = [36, 68, 45, 98, 47, 65];
+			// 求和
+			var sum = 0;
+			for (var i = 0; i < arr.length; i++) {
+				// arr[i] => 数组的每一个元素
+				// sum += arr[i];
+				sum = sum + arr[i];
+			}
+			// forEach
+			arr.forEach(function(item, index) {
+				sum += item;
+			});
+			var arr2 = [{
+					name: '黄磊',
+					age: 50
+				},
+				{
+					name: '黄渤',
+					age: 38
+				},
+				{
+					name: '张艺兴',
+					age: 30
+				},
+				{
+					name: '罗志祥',
+					age: 46
+				},
+				{
+					name: '孙红雷',
+					age: 46
+				},
+			]
+			var sum = 0;
+			arr2.forEach(function(item, index) {
+				sum += item.age;
+			});
+			var avg = sum / arr2.length;
+			console.log(avg)
+			// 数组元素个数
+			// console.log(arr.length);
+			// 查
+			arr[0];
+			arr[4];
+			// 获取数组的最后一个元素
+			arr[arr.length - 1]
+			// 增
+			arr[6] = 100;
+			// 改
+			arr[0] = 72;
+			// 删
+		</script>
+	</body>
+</html>

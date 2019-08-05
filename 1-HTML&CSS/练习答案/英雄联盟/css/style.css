@@ -1,0 +1,823 @@
+/* 公共类 */
+.relative {
+    position: relative;
+}
+
+.vertical-mid {
+    vertical-align: middle;
+}
+
+.icon {
+    background: url(../img/index.png);
+    display: inline-block;
+    font-style: normal;
+}
+
+.icon-logo {
+    width: 241px;
+    height: 116px;
+    background-position: -33px -5px;
+}
+
+.icon-download {
+    width: 1239px;
+    height: 116px;
+    background-position: 0 -190px;
+}
+
+.icon-ban1 {
+    width: 29px;
+    height: 26px;
+    background-position: -24px -144px;
+}
+
+.icon-ban2 {
+    width: 24px;
+    height: 26px;
+    background-position: -70px -144px;
+}
+
+.icon-ban3 {
+    width: 31px;
+    height: 24px;
+    background-position: -116px -144px;
+}
+
+.icon-ban4 {
+    width: 31px;
+    height: 29px;
+    background-position: -164px -144px;
+}
+
+.icon-ban5 {
+    width: 21px;
+    height: 33px;
+    background-position: -214px -144px;
+}
+
+.icon-login {
+    width: 82px;
+    height: 82px;
+    background-position: -293px -13px;
+}
+
+.icon-video-1 {
+    width: 25px;
+    height: 27px;
+    background-position: -417px -21px;
+}
+
+.icon-video-2 {
+    width: 18px;
+    height: 14px;
+    background-position: -301px -112px;
+}
+
+.icoan-news {
+    width: 30px;
+    height: 27px;
+    background-position: -455px -21px;
+}
+
+.icon-phone {
+    width: 28px;
+    height: 28px;
+    background-position: -497px -21px;
+}
+
+.icon-right1 {
+    width: 21px;
+    height: 31px;
+    background-position: -417px -63px;
+}
+
+.icon-right2 {
+    width: 27px;
+    height: 27px;
+    background-position: -455px -63px;
+}
+
+.icon-right3 {
+    width: 22px;
+    height: 29px;
+    background-position: -497px -63px;
+}
+
+.icon-in {
+    width: 181px;
+    height: 40px;
+    background-position: -289px -141px;
+
+}
+
+.icon-fast1 {
+    width: 27px;
+    height: 27px;
+    background-position: -566px -21px;
+}
+
+.icon-fast2 {
+    width: 31px;
+    height: 27px;
+    background-position: -605px -21px;
+}
+
+.icon-fast3 {
+    width: 30px;
+    height: 29px;
+    background-position: -654px -21px;
+}
+
+.icon-fast4 {
+    width: 31px;
+    height: 29px;
+    background-position: -700px -21px;
+}
+
+.icon-fast5 {
+    width: 33px;
+    height: 27px;
+    background-position: -566px -63px;
+}
+
+.icon-fast6 {
+    width: 29px;
+    height: 32px;
+    background-position: -605px -63px;
+}
+
+.icon-fast7 {
+    width: 34px;
+    height: 32px;
+    background-position: -654px -63px;
+}
+
+.icon-fast8 {
+    width: 28px;
+    height: 29px;
+    background-position: -700px -63px;
+}
+
+.icon-card {
+    width: 66px;
+    height: 66px;
+    background-position: -753px -119px;
+}
+
+.icon-company {
+    width: 237px;
+    height: 50px;
+    background-position: -491px -131px;
+}
+
+.icon-min-company {
+    width: 11px;
+    height: 11px;
+    background-position: -753px -21px;
+}
+
+body {
+    background-color: #f7f8f8;
+}
+
+
+/* header */
+.header {
+    background-color: #000000;
+}
+
+.header .nav a {
+    display: block;
+}
+
+.header .nav .logo {
+    position: absolute;
+    top: 0;
+    left: 30px;
+}
+
+.header .nav ul {
+    padding-left: 275px;
+}
+
+.header .nav li {
+    padding: 18px 25px;
+    text-align: center;
+}
+
+.header .nav a {
+    display: block;
+}
+
+.header .nav a:hover .name {
+    color: #36AB87;
+}
+
+.header .nav a .name {
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.header .nav a .e-name {
+    padding-top: 6px;
+    color: #3a3924;
+}
+
+/* banner */
+.banner {
+    height: 611px;
+
+    background: #000000 url(../img/banner.jpg) no-repeat top center;
+}
+
+.banner .container {
+    height: 100%;
+}
+
+.banner .left {
+    width: 234px;
+    text-align: center;
+    padding-top: 245px;
+    padding-bottom: 60px;
+
+}
+
+.banner .left button {
+    color: #00ffce;
+    font-size: 13px;
+    padding: 12px 53px;
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid #00ffce;
+}
+
+.banner .left button:hover {
+    color: #FFFFFF;
+    font-size: 13px;
+    padding: 12px 53px;
+    margin-top: 20px;
+    background-color: rgba(0, 255, 206, 0.8);
+    border: 2px solid #00ffce;
+}
+
+.banner .nav {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -619.5px;
+}
+
+.banner .nav ul {
+    padding-left: 220px;
+    text-align: center;
+}
+
+.banner .nav li {
+    width: 112px;
+    padding-top: 20px;
+}
+
+.banner .nav li a {
+    display: block;
+}
+
+.banner .nav .min-icon {
+    height: 33px;
+}
+
+.banner .nav .title {
+    color: #e9eaef;
+    font-size: 16px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.banner .nav .login {
+    padding-top: 18px;
+    padding-left: 18px;
+}
+
+.banner .nav .login .text {
+    width: 330px;
+    padding-left: 18px;
+    padding-top: 2px;
+}
+
+.banner .nav .login .text .greet {
+    color: #fafafa;
+    font-size: 16px;
+    padding-bottom: 14px;
+}
+
+.banner .nav .login .text .greet a {
+
+    color: #00ffad;
+}
+
+.banner .nav .login .text .des {
+    padding-top: 8px;
+    color: #ffffff;
+}
+
+/* main */
+.main {
+    padding-top: 35px;
+}
+
+/* left */
+.left {
+    width: 782px;
+}
+
+/*  任务源计划 */
+.left .min-banner a {
+    display: block;
+}
+
+.left .min-banner .photo img {
+    display: block;
+}
+
+.left .min-banner .nav li {
+    width: 20%;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 13px;
+    background-color: #e6e6e6;
+    color: #000000;
+}
+
+.left .min-banner .nav li:hover {
+    background-color: #36ab87;
+    color: #FFFFFF;
+}
+
+/* 视频中心 */
+/* 公共类 */
+.common {
+    padding-top: 55px;
+}
+
+/* title */
+.common .title .logo {
+    color: #2a2a2a;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.common .title .button {
+    margin-left: 10px;
+    width: 106px;
+    padding: 10px 0;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 25px;
+    background-color: #E6E6E6;
+}
+
+/* nav */
+.common .nav {
+    padding-top: 30px;
+    color: #000000;
+}
+
+.common .nav li {
+    /* padding: 10px 30px; */
+    font-size: 16px;
+    width: 130px;
+    text-align: center;
+    padding-bottom: 16px;
+    border-bottom: 4px solid #E6E6E6;
+}
+
+.common .nav li:hover {
+    color: #36ab87;
+    border-bottom: 4px solid #36ab87;
+}
+
+/* .left .video .nav li:hover::after{
+	content: '';
+	width: 120px;
+	height: 4px;
+	background-color: #36ab87;
+	position: absolute;
+	bottom: -4px;
+	left: 0;
+} */
+/* list */
+.left .video .list {
+    padding-top: 27px;
+    width: 800px;
+}
+
+.left .video .list .photo {
+    margin-right: 19px;
+    padding-bottom: 18px;
+    font-size: 14px;
+}
+
+.left .video .list .photo img {
+    display: block;
+}
+
+.left .video .list .photo a {
+    display: block;
+}
+
+.left .video .list .photo .cover {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 178px;
+    /* height: 20px; */
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: right;
+    color: #c5c5c5;
+    padding: 2px 2px 2px 0;
+    font-size: 13px;
+}
+
+.left .video .list .photo .des {
+    padding-top: 5px;
+    width: 180px;
+    color: #000000;
+    line-height: 24px;
+}
+
+.left .video .list .photo .des:hover {
+    color: #36ab87;
+}
+
+/* more */
+.left .video .more {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    color: #303030;
+    background-color: #E6E6E6;
+}
+
+.left .video .more span {
+    color: #36AB87;
+}
+
+
+
+/* 赛事中心 */
+.left .game-center .news {
+    padding-top: 20px;
+    color: #000000;
+}
+
+.left .game-center .news .photo a {
+    display: block;
+}
+
+.left .game-center .news .photo .btn {
+    margin-top: 10px;
+    font-size: 15px;
+    color: #09473b;
+    text-align: center;
+}
+
+.left .game-center .news .photo .btn {
+    padding-top: 10px;
+}
+
+.left .game-center .news .text .title {
+    padding-bottom: 18px;
+    border-bottom: 2px solid #E6E6E6;
+}
+
+.left .game-center .news .text .title .name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #36ab87;
+}
+
+.left .game-center .news .text .title .time {
+    padding-top: 10px;
+    font-size: 15px;
+}
+
+.left .game-center .news .text .n-list li {
+    padding: 5px 0;
+    font-size: 15px;
+}
+
+.left .game-center .news .text .n-list .news-name {
+    width: 536px;
+    display: inline-block;
+}
+
+
+/* 客服专区 */
+.service .title .btn .omit {
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight: bold;
+    padding-left: 20px;
+}
+
+.service .nav .little li {
+    padding-top: 3px;
+    font-size: 13px;
+}
+
+.service .nav .cover {
+    position: absolute;
+    left: 260px;
+    bottom: 0;
+    background-color: #E6E6E6;
+    height: 4px;
+    width: 132px;
+}
+
+.service .list {
+    padding-top: 27px;
+    padding-bottom: 85px;
+}
+
+.service .list .left {
+    width: 300px;
+    font-size: 13px;
+}
+
+.service .list .left div {
+    padding-top: 8px;
+}
+
+.service .list .left a {
+    color: #424141;
+}
+
+.service .list .left a:hover {
+    color: #36AB87;
+}
+
+/* right */
+.right {
+    width: 410px;
+}
+
+.right .announcement .nav li {
+    color: #000000;
+    font-size: 16px;
+    padding: 8px 30px;
+    border-bottom: 4px solid #E6E6E6;
+}
+
+.right .announcement .nav li:hover {
+    color: #36ab87;
+    border-bottom: 4px solid #36ab87;
+    /* border-bottom: 4px solid #36ab87; */
+}
+
+.right .announcement .nav .last {
+    padding: 8px 15px;
+}
+
+.right .announcement .title {
+    color: #36ab87;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.right .announcement .list li {
+    font-size: 13px;
+    padding-bottom: 5px;
+}
+
+.right .announcement .list .btn {
+    padding: 5px 12px;
+    border-radius: 25px;
+    background-color: #E6E6E6;
+}
+
+.right .announcement .list .news {
+    padding-top: 5px;
+    padding-left: 16px;
+}
+
+.right .announcement .list .news .des {
+    display: inline-block;
+    width: 285px;
+}
+
+.right .announcement .survery {
+    background-color: #E6E6E6;
+    color: #4b4949;
+    font-size: 14px;
+    padding: 8px 60px;
+    margin-top: 10px;
+}
+
+.right .hero .nav li {
+    color: #000000;
+    font-size: 16px;
+    padding: 8px 0;
+    width: 33%;
+    border-bottom: 4px solid #E6E6E6;
+}
+
+.right .hero .nav li:hover {
+    color: #36ab87;
+    border-bottom: 4px solid #36ab87;
+    /* border-bottom: 4px solid #36ab87; */
+}
+
+.right .hero .photo {
+    padding-top: 13px;
+    width: 420px;
+}
+
+.right .hero li {
+    padding-right: 8px;
+}
+
+.right .hero .photo img {
+    display: block;
+}
+
+
+
+.right .fast .list {
+    padding-top: 20px;
+    width: 412px;
+}
+
+.right .fast .list .photo {
+    width: 90px;
+    height: 58px;
+    padding-top: 8px;
+    margin: 0 5px 8px 0;
+    background-color: #FFFFFF;
+    text-align: center;
+    font-size: 13px;
+    color: #232323;
+    border: 2px solid #E9E9E9;
+}
+
+.right .fast .list .photo img {
+    display: block;
+}
+
+.right .fast .list .photo .min-icon {
+    width: 90px;
+    height: 35px;
+}
+
+.right .fast .list .photo .des {
+    padding-bottom: 6px;
+}
+
+
+/* 活动中心 */
+.right .active {}
+
+.right .active .box {
+    padding-top: 20px;
+    font-size: 12px;
+}
+
+.right .active .box .list {
+    padding-left: 25px;
+}
+
+.right .active .box .list li {
+    padding-bottom: 5px;
+}
+
+.right .active .box .list .des {
+    width: 150px;
+    padding-right: 25px;
+    padding-top: 3px;
+    color: #1b1b1b;
+}
+
+.right .active .box .list .btn {
+    border-radius: 25px;
+    padding: 3px 10px;
+}
+
+.bg-greet {
+    color: #FFFFFF;
+    background-color: #36AB87;
+}
+
+.bg-gray {
+    color: #888878;
+    background-color: #ebebeb;
+}
+
+.right .qt {
+    padding-top: 60px;
+}
+
+.right .qt img .footer {
+    background-color: #e4e3e3;
+}
+
+.footer .download {
+    padding: 33px 0 32px 0;
+    border-bottom: 4px solid #c6c6c6;
+}
+
+.footer .download .text {
+    padding-left: 22px;
+}
+
+.footer .download .title {
+    color: #1e1e1e;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.footer .download .des {
+    padding-top: 7px;
+    line-height: 20px;
+}
+
+.footer .download .text .des {
+    width: 170px;
+}
+
+.footer .download .center {
+    padding-left: 162px;
+}
+
+.footer .download .center .des {
+    width: 388px;
+}
+
+.footer .download .input {
+    width: 254px;
+    height: 25px;
+    font-size: 13px;
+    color: #414141;
+    padding-top: 8px;
+    padding-left: 20px;
+    background-color: #f1efef;
+    border: 4px solid #D4D4D4;
+}
+
+.footer .download .input .left {
+    width: 180px;
+}
+
+.footer .download .input .right {
+    width: 18px;
+    height: 21px;
+    padding-left: 8px;
+    border-left: 1px solid #d9d8d8;
+}
+
+.footer .download .input .cover {
+    position: absolute;
+    top: 35px;
+    left: -4px;
+    width: 254px;
+    height: 25px;
+    font-size: 13px;
+    color: #414141;
+    padding-top: 8px;
+    padding-left: 20px;
+    background-color: #f1efef;
+    border: 4px solid #D4D4D4;
+    border-top: 0;
+    display: none;
+}
+
+.footer .download .input .right:hover .cover {
+    display: block;
+}
+
+.footer .company {
+    padding: 30px 0 40px 10px;
+
+}
+
+.footer .company .list {
+    width: 650px;
+    padding-top: 10px;
+    color: #383838;
+}
+
+.footer .company .list li {
+    padding: 0 5px;
+    border-right: 1px solid #b9b9b9;
+}
+
+.footer .company .list .last {
+    border: 0;
+}
+
+.footer .company .list .item {
+    padding: 5px 5px 0 5px;
+}
+
+.footer .company .list .item3 {
+    padding-top: 5px;
+}

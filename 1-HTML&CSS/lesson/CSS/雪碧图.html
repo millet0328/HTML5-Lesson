@@ -3,13 +3,34 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="css/sprite.css"/>
 		<style type="text/css">
-			/*内部样式表*/
+			/* 公共类 */
+			.icon {
+				background: url(img/sprite-test.png) no-repeat;
+				display: inline-block;
+				font-style: normal;
+			}
+
+			/* Ctrl + T */
+			.icon-sina {
+				width: 33px;
+				height: 27px;
+				background-position: -178px -69px;
+			}
+
+			.icon-key {
+				width: 30px;
+				height: 29px;
+				background-position: -136px -67px;
+			}
+
+			.vertical-mid {
+				vertical-align: middle;
+			}
 		</style>
 	</head>
 	<body>
-		<i style="color: red;" class="icon icon-sina"></i>
-		<i class="icon icon-qq"></i>
+		<i class="icon icon-sina vertical-mid"></i>
+		<i class="icon icon-key"></i>
 	</body>
 </html>

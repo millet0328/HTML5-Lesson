@@ -5,133 +5,95 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<style type="text/css">
-			.btn {
-				width: 200px;
-				padding: 16px 0;
-				background-color: crimson;
-				color: white;
-				font-size: 18px;
-				border: 1px solid red;
-				outline: 0;
-				border-radius: 5px;
-			}
-
-			.username {
+			.input-control {
+				width: 300px;
 				padding: 6px;
-				width: 300px;
-				margin: 20px 0;
-				font-size: 16px;
-				color: blue;
-				border: 1px solid red;
-				background-color: #ddd;
-				border-radius: 4px;
+				font-size: 24px;
 				outline: 0;
 			}
 
-			.province {
-				padding: 6px 8px;
-				width: 300px;
-				font-size: 16px;
-				position: relative;
+			.label {
+				font-size: 21px;
 			}
 
-			.province::after {
-				content: "^";
-				position: absolute;
-				right: 0;
-				top: 0;
-				width: 60px;
-				height: 60px;
-				display: block;
+			.radio-control {
+				width: 20px;
+				height: 20px;
+			}
+
+			.checkbox-control {
+				width: 30px;
+				height: 30px;
+				background-color: #0066EE;
+			}
+
+			.select-control {
+				width: 300px;
+				padding: 4px;
+				font-size: 18px;
+			}
+
+			.textarea-control {
+				vertical-align: top;
+				padding: 10px;
+				width: 300px;
+			}
+
+			.btn-control {
+				padding: 8px 12px;
+				color: #0000FF;
+				background-color: lightblue;
+				border: 1px solid #0000FF;
+				outline: 0;
+			}
+
+			.btn-control:hover {
 				background-color: #0000FF;
 				color: white;
-				font-size: 18px;
-				z-index: 100;
-			}
-
-			.sex {
-				width: 60px;
-				height: 60px;
-			}
-
-			.fav {
-				width: 40px;
-				height: 40px;
-			}
-
-			.table th {
-				background-color: #0DA4D3;
-			}
-
-			.table td {
-				border: 1px solid #ddd;
-				margin: 10px 4px 20px 0;
 			}
 		</style>
 	</head>
 
 	<body>
-		<!-- 按钮 -->
-		<input class="btn" type="button" name="" id="" value="input按钮" />
-		<button class="btn" type="button">button按钮</button>
-
-		<form action="" method="">
-			<!-- 文本框 -->
-			<input class="username" type="text">
-			<br>
-			<!-- select -->
-			<select class="province" name="">
-				<option value="">山东</option>
-				<option value="">河北</option>
-				<option value="">河南</option>
-				<option value="">广东</option>
-			</select>
-			<br>
-			<!-- 单选框/复选框 -->
-			<label for="">
-				<input class="sex" type="radio" name="" id="" value="" /> 男
-			</label>
-			<label for="">
-				<input class="sex" type="radio" name="" id="" value="" /> 女
-			</label>
-			<label for="">
-				<input class="fav" type="checkbox" name="" id="" value="" /> 唱歌
-			</label>
-			<label for="">
-				<input class="fav" type="checkbox" name="" id="" value="" /> 街舞
-			</label>
+		<form action="">
+			<label class="label" for="">账户</label>
+			<input class="input-control" type="text">
+			<div>
+				<label for="">性别</label>
+				<label>
+					<input class="radio-control" name="sex" type="radio"> 男
+				</label>
+				<label>
+					<input class="radio-control" name="sex" type="radio"> 女
+				</label>
+			</div>
+			<div>
+				<label for="">爱好</label>
+				<label>
+					<input class="checkbox-control" type="checkbox"> 绘画
+				</label>
+				<label>
+					<input class="checkbox-control" type="checkbox"> 钢琴
+				</label>
+				<label>
+					<input class="checkbox-control" type="checkbox"> 唱歌
+				</label>
+			</div>
+			<div>
+				<label for="">省份</label>
+				<select class="select-control" name="" id="">
+					<option value="">山东</option>
+					<option value="">河北</option>
+					<option value="">湖南</option>
+					<option value="">湖北</option>
+				</select>
+			</div>
+			<div>
+				<label for="">评论</label>
+				<textarea class="textarea-control" cols="30" rows="10"></textarea>
+			</div>
+			<button class="btn-control" type="button">提交按钮</button>
 		</form>
-		<!-- 表格 -->
-		<table class="table" border="0" cellpadding="20">
-			<thead>
-				<tr>
-					<th>Header</th>
-					<th>Header</th>
-					<th>Header</th>
-					<th>Header</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Data</td>
-					<td>Data</td>
-					<td>Data</td>
-					<td>Data</td>
-				</tr>
-				<tr>
-					<td>Data</td>
-					<td>Data</td>
-					<td>Data</td>
-					<td>Data</td>
-				</tr>
-				<tr>
-					<td>Data</td>
-					<td>Data</td>
-					<td>Data</td>
-					<td>Data</td>
-				</tr>
-			</tbody>
-		</table>
 	</body>
 
 </html>

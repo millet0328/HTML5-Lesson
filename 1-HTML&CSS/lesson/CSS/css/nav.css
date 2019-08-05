@@ -1,7 +1,4 @@
-@charset "utf-8";
-
-/*公共类*/
-
+/* 公共类 */
 .container {
 	width: 960px;
 	margin: 0 auto;
@@ -17,22 +14,4 @@
 
 .clear {
 	clear: both;
-}
-
-body {
-	/*background-color: #000000;*/
-}
-
-.bg1 {
-	background-color: #1CEFC4;
-	height: 100px;
-}
-
-.box {
-	background-color: #A29EFD;
-	width: 216px;
-	height: 180px;
-	text-align: center;
-	padding: 10px 8px;
-	margin: 4px;
 }

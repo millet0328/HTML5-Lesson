@@ -4,80 +4,110 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<link rel="stylesheet" href="css/reset.css">
 		<!--demo-->
 		<style type="text/css">
-			.vertical-mid {
-				vertical-align: middle;
+			.back-top {
+				position: fixed;
+				right: 20px;
+				bottom: 20px;
+				background-color: blue;
+				color: white;
+				padding: 10px 20px;
 			}
 
-			.read-tip {
-				position: absolute;
-				bottom: 0;
-				right: 0;
-				background-color: #0da4d3;
-				color: #FFFFFF;
-				padding: 4px 6px;
+			.logo span {
+				position: relative;
+				bottom: 10px;
 			}
 
+			.photo {
+				width: 400px;
+				overflow: hidden;
+			}
+
+			/* 公共类 */
+			/* 让某一个元素成为参照物 */
 			.relative {
 				position: relative;
 			}
 
-			.article {
-				width: 520px;
+			.cover {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				/* 兼容性>=IE9 */
+				background-color: rgba(0, 0, 0, 0);
+				/* 兼容性>=IE9 */
+				/* opacity: 0.5; */
+				transition: all 0.5s;
 			}
 
-			.article img {
+
+
+			.photo img {
 				display: block;
 			}
 
-			.backTop {
-				position: fixed;
-				bottom: 10px;
-				right: 10px;
+			.icon-search {
+				position: absolute;
+				left: 200px;
+				top: -40px;
 				width: 40px;
 				height: 40px;
+				background-color: pink;
+				z-index: 10;
+				transition: all 0.5s;
+			}
+
+			.news-list li {
+				border: 1px solid #0DA4D3;
+				width: 400px;
 				text-align: center;
-				line-height: 40px;
-				color: white;
-				background-color: blue;
 			}
 
-			.text {
-				position: relative;
-				bottom: 30px;
-				left: 15px;
+			.news-list li .title {
+				padding: 20px;
+				transition: all 0.5s;
 			}
 
-			.more {
-				position: absolute;
-				right: 0;
-				bottom: 0;
-				background-color: #0DA4D3;
+			.news-list li:hover .title {
+				background-color: green;
 				color: white;
-				font-size: 12px;
-				padding: 4px 12px;
+			}
+
+			.news-list li:hover .cover {
+				background-color: rgba(0, 0, 0, 0.4);
+			}
+
+			.news-list li:hover .icon-search {
+				top: 40px;
 			}
 		</style>
 	</head>
 
 	<body>
-		<div style="height: 2000px;">
-			<!--相对定位-->
-			<img class="" src="img/psd15897_03.jpg" />
-			<span class="text">标题标题标题标题</span>
-			<!--绝对定位-->
-			<div class="article relative">
-				<img src="img/top-5-hot-graphic-design-2018.jpg" alt="">
-				<div class="more">
-					Read Article →
-				</div>
-			</div>
+		<ul class="news-list">
+			<li>
+				<a href="">
+					<div class="photo relative">
+						<img width="400" src="img/1525490815187.jpg" alt="">
+						<div class="icon-search"></div>
+						<div class="cover"></div>
+					</div>
+					<div class="title">标题标题标题标题标题标题</div>
+				</a>
+			</li>
+		</ul>
+
+		<div class="logo">
+			<img width="32" src="img/95742.png" alt="">
+			<span>花瓣</span>
 		</div>
-		<!-- 固定定位 -->
-		<div class="backTop">
-			↑
-		</div>
+		<div class="back-top">↑</div>
+		<div style="height: 1000px;background-color: pink;"></div>
 	</body>
 
 </html>

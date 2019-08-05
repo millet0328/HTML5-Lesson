@@ -9,6 +9,34 @@
 .clear {
 	clear: both;
 }
+
+.container {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.quality-box .title h1 {
+	margin-top: 0;
+	margin-bottom: 11px;
+	font-size: 27px;
+}
+
+.quality-box .title .des {
+	color: #6B6B6B;
+	font-size: 12px;
+	line-height: 24px;
+}
+
+.quality-box .title {
+	border-left: 6px solid #d30000;
+	padding-left: 21px;
+	margin-bottom: 40px;
+}
+
+.quality-box .list {
+	width: 1036px;
+}
+
 /* 标签（元素）选择器 */
 .quality-box .photo img {
 	width: 221px;
@@ -16,12 +44,15 @@
 
 .quality-box .item {
 	width: 221px;
+	margin-right: 38px;
 }
 
 .quality-box .cn {
 	font-size: 14px;
 	color: #6b6b6b;
 	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 8px;
 }
 
 .quality-box .en {

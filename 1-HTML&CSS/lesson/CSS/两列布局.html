@@ -6,64 +6,30 @@
 		<title></title>
 		<style type="text/css">
 			.main {
+				overflow: hidden;
 				color: #FFFFFF;
-				position: relative;
 			}
-			
+
 			.left {
-				position: absolute;
-				left: 0;
-				top: 0;
-				bottom: 0;
+				float: left;
 				width: 300px;
-				background-color: #F00;
-			}
-			
-			.right {
 				height: 200px;
-				margin-left: 300px;
-				background-color: #000;
+				background: #F00;
 			}
-			
-			.box {
-				background: rgba(0, 0, 0, 0.5);
-				width: 400px;
-				height: 300px;
-				position: absolute;
-				left: 50%;
-				margin-left: -200px;
-				top: 50%;
-				margin-top: -150px;
-			}
-			
-			.box2 {
-				width: 400px;
-				height: 300px;
-				position: fixed;
-				left: 0;
-				right: 0;
-				top: 0;
-				bottom: 0;
-				margin: auto;
-				background-color: red;
+
+			.right {
+				margin-left: -300px;
+				padding-bottom: 9999px;
+				margin-bottom: -9999px;
+				background: #000000;
 			}
 		</style>
 	</head>
 
 	<body>
 		<div class="main">
-			<div class="left">
-				左侧
-			</div>
-			<div class="right">
-				右侧
-			</div>
-		</div>
-		<div class="box">
-			垂直居中
-		</div>
-		<div class="box2">
-			box2
+			<div class="left">left</div>
+			<div class="right">right</div>
 		</div>
 	</body>
 

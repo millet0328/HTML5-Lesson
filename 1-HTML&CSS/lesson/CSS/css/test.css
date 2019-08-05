@@ -1,33 +1,24 @@
-/*公共类*/
-
 html,
 body {
-	color: #898989;
-	background: #FFF;
-	font-family: "Microsoft YaHei UI", "Microsoft YaHei UI Light", "微软雅黑", "宋体", Helvetica-Black-SemiBold, Tahoma, Arial, sans-serif;
-	font-size: 12px;
+	font-family: '微软雅黑', '仿宋体', "Times New Roman", Times, serif;
 }
 
-.price .old {
-	color: #999;
-	text-decoration: none;
+.fl {
+	float: left;
 }
 
-p {
-	text-indent: 2em;
+.clear {
+	clear: both;
 }
 
-.code {
-	text-transform: uppercase;
+.text {
+	display: inline-block;
 }
 
-.website img {
+.vertical-mid {
 	vertical-align: middle;
 }
 
-.website span {
-	vertical-align: middle;
-	font-size: 36px;
-	font-weight: bold;
+.title {
+	font-weight: normal;
 }
-

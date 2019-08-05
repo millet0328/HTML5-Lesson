@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<button id="btn" type="button">按钮</button>
+		<script>
+			// 查找元素
+			var oBtn = document.getElementById('btn');
+			// 原始数据类型
+			var str = 'Hello World';
+			var num = 3.1415926;
+			var flag = true;
+			var a = null;
+			var b = undefined;
+			// 引用类型
+			var person = {
+				name: "黄小米",
+				age: 22,
+				sex: "女",
+				isMarry: false,
+				friend: {
+					name: "黄渤"
+				}
+			}
+			var obj = new Object({
+				username: "moz",
+				password: '123'
+			});
+			// 数组 => 特殊化的对象
+			var arr = [87, 96, 85, 74, 60];
+			var arr = ['黄磊', '黄渤', '张艺兴', '罗志祥', '孙红雷', '王迅'];
+			var arr = {
+				0:'黄磊',
+				1:'黄渤',
+				2:'张艺兴',
+				3:'罗志祥',
+			}
+			var arr2 = [{
+					name: '黄磊',
+					age: 50
+				},
+				{
+					name: '黄渤',
+					age: 38
+				},
+				{
+					name: '张艺兴',
+					age: 30
+				},
+				{
+					name: '罗志祥',
+					age: 46
+				},
+				{
+					name: '孙红雷',
+					age: 46
+				},
+			]
+			// 绑定click事件
+			oBtn.onclick = function() {
+				console.log(arr[1]);
+			}
+		</script>
+	</body>
+
+</html>

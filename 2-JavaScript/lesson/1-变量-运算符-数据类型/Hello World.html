@@ -8,13 +8,13 @@
 
 	<body>
 		<button id="btn" type="button">按钮</button>
-		<script type="text/javascript">
-
-		</script>
-		<script src="js/test.js" type="text/javascript" charset="utf-8"></script>
-		<!-- 错误示例 -->
-		<script src="js/test.js" type="text/javascript" charset="utf-8">
-			alert("我是错的！");
+		<script>
+			// 查找元素
+			var oBtn = document.getElementById('btn');
+			// 绑定click事件
+			oBtn.onclick = function() {
+				console.log("HELLO WORLD!");
+			}
 		</script>
 	</body>
 
