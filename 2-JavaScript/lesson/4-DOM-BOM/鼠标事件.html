@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			.box {
+				width: 100px;
+				height: 100px;
+				border: 1px solid #ADFF2F;
+			}
+
+			.ball {
+				position: absolute;
+				width: 30px;
+				height: 30px;
+				border-radius: 50%;
+				background-color: pink;
+				color: white;
+				text-align: center;
+				line-height: 30px;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div class="box"></div>
+
+		<script type="text/javascript">
+
+		</script>
+		<script>
+			window.onload = function() {
+				for (var i = 0; i < 50; i++) {
+					var oBall = document.createElement("div");
+					oBall.className = "ball";
+					oBall.innerText = i;
+					document.body.appendChild(oBall);
+				}
+				var Balls = document.querySelectorAll(".ball");
+				// 鼠标移动
+				document.onmousemove = function(e) {
+					// 倒序赋值,将以前的数值传递给前一个
+					for (var j = Balls.length - 1; j > 0; j--) {
+						Balls[j].style.left = Balls[j - 1].style.left;
+						Balls[j].style.top = Balls[j - 1].style.top;
+					}
+					Balls[0].style.left = e.pageX + 'px';
+					Balls[0].style.top = e.pageY + 'px';
+				}
+				// 查找元素
+				var oBox = document.querySelector(".box");
+				// 双击
+				oBox.ondblclick = function() {
+					this.style.backgroundColor = "blue";
+				}
+				// 鼠标移入
+				oBox.onmouseover = function() {
+					this.style.width = '200px';
+				}
+				// 鼠标移出
+				oBox.onmouseout = function() {
+					this.style.width = '100px';
+				}
+
+				//鼠标up
+				document.onmouseup = function(e) {
+					console.log(e.button);
+				}
+				//鼠标down
+				document.onmousedown = function(e) {
+					console.log(e.button);
+				}
+
+
+			}
+		</script>
+	</body>
+
+</html>

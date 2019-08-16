@@ -8,20 +8,34 @@
 		<script type="text/javascript">
 			// 数学成绩
 			var arr = [67, 65, 78, 95, 78, 68];
-			console.log(arr.length);
-			// 总成绩
-			var sum = 0;
-			for (var i = 0; i < arr.length; i++) {
-				sum = sum + arr[i];
-				// sum += arr[i];
+			// // 总成绩
+			// var sum = 0;
+			// for (var i = 0; i < arr.length; i++) {
+			// 	sum = sum + arr[i];
+			// 	// sum += arr[i];
+			// }
+			// // 平均成绩
+			// var avg = sum / arr.length;
+			// m+...+n求和
+
+			function sum(m, n, x, y, z) {
+				var total = 0;
+				for (var i = m; i <= n; i++) {
+					total = total + i;
+				}
+				return total;
 			}
-			// 平均成绩
-			var avg = sum / arr.length;
-			// 1+...+100求和
-			var total = 0;
-			for (var i = 0; i <= 100; i++) {
-				total = total + i;
+			console.log(sum(10, 20))
+			var res = sum(10, 20);
+			console.log(res);
+			var avg = sum(10, 20) / (20 - 10 + 1);
+			sum(1, 10);
+
+			function sayHello() {
+				console.log("Hello World!")
 			}
+
+
 			// 1~1024之间,能被7整除的数,总共有多少个
 			var num = 0;
 			for (var i = 1; i <= 1024; i++) {
@@ -29,7 +43,6 @@
 					num++;
 				}
 			}
-			console.log("被7整除的数总共" + num + "个");
 		</script>
 	</body>
 </html>

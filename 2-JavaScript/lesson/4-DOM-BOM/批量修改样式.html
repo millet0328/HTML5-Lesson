@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
@@ -37,17 +36,10 @@
 				background-color: #CCCCCC;
 				margin-bottom: 20px;
 			}
-
-			/*.btn:hover {
-            color: #FFFFFF;
-            background-color: #0000FF;
-        }*/
 		</style>
 	</head>
 
 	<body>
-		<!--鼠标移出移出事件-->
-		<button class="btn" type="button">放鼠标</button>
 		<!--批量修改样式-->
 		<div class="change_box">
 			<input type="button" id="btn" value="批量修改样式" />
@@ -68,18 +60,18 @@
 			</div>
 		</div>
 		<script type="text/javascript">
+			// 查找元素
 			var oBtn = document.getElementById("btn");
-			var oCube = document.querySelectorAll(".cube");
-
+			var aCube = document.querySelectorAll(".cube");
+			// 批量修改样式
 			oBtn.onclick = function() {
-				// 批量修改样式
-				for (var i = 0; i < oCube.length; i++) {
-					oCube[i].style.backgroundColor = "yellow";
+				for (var i = 0; i < aCube.length; i++) {
+					aCube[i].style.backgroundColor = "pink";
 				}
 			}
-			// 批量绑定事件
-			for (var i = 0; i < oCube.length; i++) {
-				oCube[i].onclick = function() {
+			// 批量绑定事件 0 1 2 3  i==4
+			for (var i = 0; i < aCube.length; i++) {
+				aCube[i].onclick = function() {
 					this.style.backgroundColor = "yellow";
 				}
 			}

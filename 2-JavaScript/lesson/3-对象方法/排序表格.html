@@ -54,6 +54,7 @@
 		</style>
 	</head>
 	<body>
+		<h2>点击"price"表头，将价格从小到大排序</h2>
 		<table>
 			<thead id="jsHeader">
 				<tr>
@@ -64,70 +65,70 @@
 			</thead>
 			<tbody id="jsList">
 				<tr>
-					<td>1</td>
-					<td>10.0</td>
+					<td>大衣</td>
+					<td>110.0</td>
 					<td>800</td>
 				</tr>
 				<tr>
-					<td>2</td>
-					<td>30.0</td>
+					<td>裙子</td>
+					<td>630.0</td>
 					<td>300</td>
 				</tr>
 				<tr>
-					<td>3</td>
+					<td>裤子</td>
 					<td>20.5</td>
 					<td>100</td>
 				</tr>
 				<tr>
-					<td>4</td>
-					<td>40.5</td>
+					<td>靴子</td>
+					<td>240.5</td>
 					<td>200</td>
 				</tr>
 				<tr>
-					<td>5</td>
-					<td>60.5</td>
+					<td>帽子</td>
+					<td>600.5</td>
 					<td>600</td>
 				</tr>
 				<tr>
-					<td>6</td>
+					<td>袜子</td>
 					<td>50.0</td>
 					<td>400</td>
 				</tr>
 				<tr>
-					<td>7</td>
+					<td>手袋</td>
 					<td>70.0</td>
 					<td>700</td>
 				</tr>
 				<tr>
-					<td>8</td>
+					<td>毛衣</td>
 					<td>80.5</td>
 					<td>500</td>
 				</tr>
 			</tbody>
 		</table>
 		<script type="text/javascript">
+			// DOM元素排序
 			window.onload = function() {
 				// 查找元素
-				var oTitle = document.querySelectorAll("#jsHeader th");
+				var oPrice = document.querySelectorAll("#jsHeader th")[1];
 				var oTbody = document.getElementById("jsList");
-
-				oTitle[1].onclick = function() {
-					// NodeList
-					var oTr = oTbody.querySelectorAll("tr");
-					console.dir(oTr);
-					// 构建一个新数组
+				// 排序
+				oPrice.onclick = function() {
+					//NodeList 伪数组
+					var oTr = oTbody.rows;
+					// 转化成真数组
 					var arr = [];
-					oTr.forEach(function(item) {
-						arr.push(item);
-					});
+					for (var i = 0; i < oTr.length; i++) {
+						arr.push(oTr[i]);
+					}
+					// 排序
 					arr.sort(function(itemA, itemB) {
-						console.dir(itemA);
 						var priceA = itemA.cells[1].innerText;
 						var priceB = itemB.cells[1].innerText;
 						return priceA - priceB;
 					});
-					// 显示结果
-					arr.forEach(function(item) {
+					// 插入到页面
+					arr.forEach(function(item, index) {
 						oTbody.appendChild(item);
 					});
 				}

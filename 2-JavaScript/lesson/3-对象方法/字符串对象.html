@@ -8,101 +8,71 @@
 	</head>
 
 	<body>
-		<input type="text" id="txt" placeholder="请输入手机号码!" />
-		<button type="button" id="btn">点击</button>
 		<div class="box">
 			<input type="text" id="content" placeholder="请输入聊天内容!" />
 			<button type="button" id="send">发送</button>
+			<div class="chat-box">
+				<p>我说：分开发</p>
+			</div>
 		</div>
+		<!-- 手机号码重新格式化 -->
+		<p>
+			<input type="text" id="tel" placeholder="请输入手机号码">
+			<button id="convert" type="button">格式化</button>
+		</p>
+
 		<script type="text/javascript">
 			window.onload = function() {
 				// 查找元素
-				var oBtn = document.getElementById("btn");
-				var oTxt = document.getElementById("txt");
-				var oContent = document.getElementById("content");
 				var oSend = document.getElementById("send");
-				var query = 'name=moz&age=30&sex=1&job=actor';
-				// 字符串=>数组 split
-				var arr = query.split("&");
-				console.log(arr);
-				/*
-				 for
-				 split
-				 obj["name"]="moz"
-				 */
-				var obj = {
-					name: "moz",
-					age: 30,
-					sex: 1,
-					job: "actor"
+				var oContent = document.getElementById("content");
+				var oChatBox = document.querySelector(".chat-box");
+				var oTel = document.getElementById("tel");
+				var oConvert = document.getElementById("convert");
+				// 手机号码
+				oConvert.onclick = function() {
+					var tel = oTel.value;
+					var res = tel.substr(0, 3) + ' ' + tel.substr(3, 4) + ' ' + tel.substr(7, 4);
+					oTel.value = res;
 				}
 
+				// 发送
 				oSend.onclick = function() {
-					var content = oContent.value;
-					// 存在违禁词
-					if (content.indexOf("智障") > -1) {
-						content = content.replace("智障", "**");
+					var txt = oContent.value;
+					// 检索字符
+					var i = txt.indexOf('狗');
+					if (i >= 0) {
+						var str = txt.replace(/狗/g, ' * ');
+					} else {
+						var str = txt;
 					}
-					console.log(content);
-				}
-
-				oBtn.onclick = function() {
-					var txt = oTxt.value;
-					if (txt.length != 11) {
-						alert("请输入11位手机号码！")
-					}
-				}
-				oTxt.onchange = function() {
-					var txt = oTxt.value;
-					oTxt.value = txt.slice(0, 3) + ' ' + txt.slice(3, 7) + ' ' + txt.slice(7, 11)
+					// 创建标签
+					var oP = document.createElement("p");
+					// 修饰标签
+					oP.innerHTML = '我说：' + str;
+					// 插入标签
+					oChatBox.appendChild(oP);
 				}
 			}
 		</script>
-		<!-- <script type="text/javascript">
-			window.onload = function() {
-				var oTxt = document.getElementById("txt");
-				var oBtn = document.getElementById("btn");
-				var oPhone = document.getElementById("phone");
-				//手机号处理
-				oPhone.onchange = function() {
-					var tel = oPhone.value;
-					//位数检测
-					if(tel.length != 11) {
-						alert("请输入正确的手机号！");
-						this.value = '';
-						return false;
-					}
-					/* 15863008280
-					 * 158 6300 8280
-					 */
-					var res;
-					res = tel.slice(0, 3) + ' ' + tel.slice(3, 7) + ' ' + tel.slice(7);
-					this.value = res;
-				}
+		<script>
+			// 字符串 => 数组
+			var tel = 'name=moz&age=26&job=actor';
+			var arr = tel.split('&');
+			var obj = {};
+			var n = 'name';
+			obj[n] = '黄熊猫';
 
-				oBtn.onclick = function() {
-					var str = oTxt.value;
-					//检索字符串
-					var flag = str.indexOf("智障");
-					if(flag > -1) {
-						//有违禁词
-						str = str.replace("智障", "**");
-					}
-					console.log(str);
-				}
+			arr.forEach(function(item, index) {
+				var temp = item.split('=');
+				obj[temp[0]] = temp[1];
+			})
 
-				var query = 'name=moz&age=30&sex=1&job=actor';
-				var arr1 = query.split("&");
-				console.log(arr1);
-				obj = {
-					name: "moz",
-					age: 30,
-					aex: 1,
-					job: "actor"
-				}
-				console.log(obj);
-			}
-		</script> -->
+			console.log(obj);
+			var stu = '36-45-89-97-98-36';
+			
+		</script>
+
 	</body>
 
 </html>

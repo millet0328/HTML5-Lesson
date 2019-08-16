@@ -62,19 +62,19 @@
             return;
         }
         //当内容不为空的时候
-        if (type == "92#") {
+        if (type == "92") {
             if (amount <= 20) {
-                alert(price(amount, 6));
+                alert(price(amount, 6) + '元');
             } else {
-                alert(price(amount, 5));
+                alert(price(amount, 5) + '元');
             }
             return;
         }
-        if (type == "97#") {
+        if (type == "97") {
             if (amount <= 30) {
-                alert(price(amount, 7));
+                alert(price(amount, 7) + '元');
             } else {
-                alert(price(amount, 5.5));
+                alert(price(amount, 5.5) + '元');
             }
         }
     }

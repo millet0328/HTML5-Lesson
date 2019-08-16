@@ -10,7 +10,7 @@
     <input type="text" name="" id="txt1" value="" />
     <input type="text" name="" id="txt2" value="" />
     <input type="text" name="" id="txt3" value="" />
-    <button id="btn" class="button">按钮</button>
+    <button id="btn" class="button">计算最大值</button>
     <script type="text/javascript">
     var oBtn = document.getElementById("btn");
     var oTxt1 = document.getElementById("txt1");
@@ -25,7 +25,7 @@
         num3 = parseInt(num3);
         var bigger = (num1 > num2) ? num1 : num2;
         var biggest = (bigger > num3) ? bigger : num3;
-        alert(biggest);
+        alert('最大值:' + biggest);
     }
     </script>
 </body>

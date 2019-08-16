@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.result{
+				width: 300px;
+				text-align: center;
+				border: 2px solid #000000;
+				padding: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<button id="btn" type="button">抽 奖</button>
+		<p class="result"></p>
+		<script>
+			// 随机数 0~1
+			var num = Math.random();
+			// 随机数范围 0-100  >=99.5
+			var num = Math.random() * 100;
+			// 随机数范围 25-100
+			var num = Math.random() * 75 + 25;
+			// 一等奖概率5%  二等奖概率10%  三等奖概率20%  谢谢惠顾 65%
+			// 查找元素
+			var oBtn = document.getElementById("btn");
+			var oResult = document.querySelector(".result");
+
+			oBtn.onclick = function() {
+				var x = Math.random() * 100;
+				if (x >= 95) {
+					oResult.innerText = "一等奖：500万";
+				}
+				if (x >= 85 && x < 95) {
+					oResult.innerText = "二等奖：100万";
+				}
+				if (x >= 65 && x < 85) {
+					oResult.innerText = "三等奖：1万";
+				}
+				if (x < 65) {
+					oResult.innerText = "谢谢惠顾";
+				}
+			}
+		</script>
+	</body>
+</html>

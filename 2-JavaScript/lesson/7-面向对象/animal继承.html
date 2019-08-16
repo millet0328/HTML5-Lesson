@@ -10,7 +10,8 @@
 	<body>
 		<script type="text/javascript">
 			//动物类 
-			function Animal() {
+			function Animal(name) {
+				this.name = name;
 				this.species = "动物";
 			}
 			Animal.prototype = {
@@ -18,25 +19,23 @@
 				eat: function() {
 					console.log("em......")
 				},
-				sleep:function () {
-					console.log("hu......")
+				sleep: function() {
+					console.log("zzzzzzzz")
 				}
 			}
-			//猫 
-			function Cat(name, color) {
-				this.name = name;
+			// 继承Animal的所有方法/属性
+			function Cat(type, color) {
+				this.type = type;
 				this.color = color;
 			}
-			// 原型继承
-			Cat.prototype = new Animal();
+			Cat.prototype = new Animal('猫科动物');
+			// 强制改变构造函数
 			Cat.prototype.constructor = Cat;
-			// 自有方法
+			// 猫科自有的原型方法
 			Cat.prototype.speak = function() {
-				console.log("miao");
+				console.log('miao.......')
 			}
-			var cat = new Cat('Tom', 'black');
-			cat.speak();
-			console.log(cat)
+			var miniBai = new Cat('加菲', '灰白');
 		</script>
 	</body>
 

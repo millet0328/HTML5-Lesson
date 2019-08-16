@@ -21,36 +21,23 @@
 			var oNum2 = document.getElementById("num2");
 			// 绑定事件
 			oBtn.onclick = function() {
-				// 提取数字
-				var num1 = parseInt(oNum1.value);
-				var num2 = parseFloat(oNum2.value);
-				if (isNaN(num1)) {
-					alert(oNum1.value + "不是有效数字！");
+				var txt1 = oNum1.value;
+				var txt2 = oNum2.value;
+				// 判断是不是数字
+				var flag1 = isNaN(txt1);
+				var flag2 = isNaN(txt2);
+				if (flag1) {
+					alert(txt1 + '不是数字，请重新输入！');
+					return;
 				}
-				if (isNaN(num2)) {
-					alert(oNum2.value + "不是有效数字！");
+				if (flag2) {
+					alert(txt2 + '不是数字，请重新输入！');
+					return;
 				}
-				if (!isNaN(num1) && !isNaN(num2)) {
-					console.log(num1 + '+' + num2 + "=" + (num1 + num2));
-				}
+				var num1 = parseFloat(txt1);
+				var num2 = parseFloat(txt2);
+				console.log(num1 + num2);
 			}
-			// isNaN
-			console.log(isNaN(34653.124))
-			// 加法符号
-			// 			console.log(10 + 30);
-			// 			console.log(10 + '30');
-			// 			console.log('10' + '30');
-			// 			console.log("10+30的结果是：" + (10 + 30));
-			// 减号
-			// 			console.log(100 - 20);
-			// 			console.log(100 * '20');
-			// 			console.log('100' / '20');
-			// 各种数据类型
-			// 			console.log("黄小米");
-			// 			console.log(3.14);
-			// 			console.log(true);
-			// 			console.log(["12", "45", 63]);
-			// 			console.log({ name: "黄渤", age: 30 });
 		</script>
 	</body>
 

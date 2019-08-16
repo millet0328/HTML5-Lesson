@@ -18,12 +18,12 @@
     <script type="text/javascript">
     var oRes = document.getElementById('result');
     for (var i = 0; i < 10; i++) {
-        var btn = document.createElement("input");
+        var btn = document.createElement("button");
         btn.type = "button";
-        btn.value = (i + 1);
+        btn.innerText = (i + 1);
         // 绑定事件
         btn.onclick = function() {
-            alert(this.value);
+            alert(this.innerText);
         }
         oRes.appendChild(btn);
     }

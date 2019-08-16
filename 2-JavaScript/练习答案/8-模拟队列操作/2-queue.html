@@ -1,198 +1,188 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<link rel="stylesheet" type="text/css" href="css/reset.css" />
-		<style type="text/css">
-			.main {
-				padding: 20px;
-			}
-			
-			.txt_center {
-				text-align: center;
-			}
-			
-			.txt_left {
-				text-align: left;
-			}
-			
-			.number {
-				padding: 4px 6px;
-				color: #3EAFE0;
-				font-size: 14px;
-				font-weight: bold;
-			}
-			
-			.requestList li {
-				list-style: decimal;
-				padding: 8px 0;
-			}
-			
-			.question,
-			.requestList {
-				font-size: 14px;
-				padding-bottom: 10px;
-			}
-			
-			.button {
-				padding: 4px 12px;
-				font-size: 14px;
-			}
-			
-			.queue {
-				min-height: 60px;
-				padding: 30px 0;
-			}
-			
-			.queue span {
-				width: 18px;
-				display: inline-block;
-				background-color: #00A2E8;
-				margin: 2px;
-				-webkit-transition: all 2s ease-in;
-				-moz-transition: all 2s ease-in;
-				-ms-transition: all 2s ease-in;
-				-o-transition: all 2s ease-in;
-				transition: all 2s ease-in;
-			}
-		</style>
-	</head>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <style type="text/css">
+    .main {
+        padding: 20px;
+    }
 
-	<body>
-		<div class="container txt_center">
-			<div class="main">
-				<input type="text" id="txt" class="number" placeholder="在此输入数字！" name="" id="" value="" />
-				<input type="button" class="button" name="" id="sortBtn" value="从小到大排序" />
-				<!--队列-->
-				<div class="clearfix">
-					<div class="fl">
-						<input type="button" class="button" name="" id="lAddBtn" value="左侧入" />
-					</div>
-					<div class="fr">
-						<input type="button" class="button" name="" id="rAddBtn" value="右侧入" />
-					</div>
-				</div>
-				<div class="queue">
-					<!--初始为空-->
-				</div>
-				<div class="clearfix">
-					<div class="fl">
-						<input type="button" class="button" name="" id="lDelBtn" value="左侧出" />
-					</div>
-					<div class="fr">
-						<input type="button" class="button" name="" id="rDelBtn" value="右侧出" />
-					</div>
-				</div>
+    .txt_center {
+        text-align: center;
+    }
 
-			</div>
-			<img src="img/task_2.jpg" alt="">
-			<div class="question txt_left">
-				题目2： 基于上一个任务，添加如下功能：
-			</div>
-			<ol class="requestList txt_left">
-				<li>限制输入的数字在10-100</li>
-				<li>队列元素数量最多限制为20个，当超过20个时，添加元素时alert出提示</li>
-				<li>队列展现方式变化如图，直接用高度表示数字大小</li>
-				<li>实现一个简单的排序功能，如冒泡排序（不限制具体算法）</li>
-				<li><b>附加题：将排序完整过程，用可视化的方法表达出来，参考CSS3动画与排序算法</b></li>
-			</ol>
-		</div>
+    .txt_left {
+        text-align: left;
+    }
 
-		<script type="text/javascript">
-			//查找元素
-			var lAddBtn = document.getElementById("lAddBtn");
-			var rAddBtn = document.getElementById("rAddBtn");
-			var lDelBtn = document.getElementById("lDelBtn");
-			var rDelBtn = document.getElementById("rDelBtn");
-			var oTxt = document.getElementById("txt");
-			var oQueue = document.querySelectorAll(".queue")[0];
-			var oSortBtn = document.getElementById("sortBtn");
-			//绑定事件
-			//右边加
-			rAddBtn.onclick = function() {
-				var oSpan = document.createElement("span");
-				oSpan.style.height = 2 * oTxt.value + "px";
-				oSpan.title = oTxt.value;
-				oQueue.appendChild(oSpan);
-			}
-			//左边加
-			lAddBtn.onclick = function() {
-				if(getChild() > 20) {
-					alert("已达到最大值！");
-					return;
-				}
-				var oSpan = document.createElement("span");
-				oSpan.style.height = 2 * oTxt.value + "px";
-				oSpan.title = oTxt.value;
-				oQueue.insertBefore(oSpan, oQueue.firstChild);
-			}
-			//左边减
-			lDelBtn.onclick = function() {
-				oQueue.removeChild(oQueue.firstChild);
-			}
-			//右边减
-			rDelBtn.onclick = function() {
-				oQueue.removeChild(oQueue.lastChild)
-			}
-			//事件委托
-			oQueue.onclick = function(event) {
-				if(event.target.tagName == "SPAN") {
-					this.removeChild(event.target);
-				}
-			}
-			//nodeList 排序
-			oSortBtn.onclick = function() {
-				//1-数组排序
-				//				var arr = [];
-				//				var oChild = oQueue.querySelectorAll("span");
-				//				for(var i = 0; i < oChild.length; i++) {
-				//					arr.push(oChild[i].title);
-				//				}
-				//				arr.sort(function(a, b) {
-				//					return a - b;
-				//				})
-				//				oQueue.innerHTML = "";
-				//				for(var i = 0; i < arr.length; i++) {
-				//					var oSpan = document.createElement("span");
-				//					oSpan.style.height = 2 * arr[i] + "px";
-				//					oSpan.title = arr[i];
-				//					oQueue.appendChild(oSpan);
-				//				}
-				//2-冒泡排序
-				var timer = null;
-				var oChild = oQueue.querySelectorAll("span");
-				clearInterval(timer);
-				timer = setInterval(sortFun, 250);
+    .number {
+        padding: 4px 6px;
+        color: #3EAFE0;
+        font-size: 14px;
+        font-weight: bold;
+    }
 
-				function sortFun() {
-					var temp_h;
-					var temp_t;
-					for(var i = 0; i < oChild.length; i++) {
-						for(var j = 0; j < oChild.length - i; j++) {
-							if(oChild[i].title > oChild[i + 1].title) {
-								temp_h = 2 * oChild[i + 1].title + "px";
-								temp_t = oChild[i + 1].title;
-								oChild[i + 1].style.height = 2 * oChild[i].title + "px"
-								oChild[i + 1].title = oChild[i].title;
-								oChild[i].style.height = temp_h;
-								oChild[i].title = temp_t;
-							}
-						}
-						if(i == oChild.length - 1) {
-							clearInterval(timer);
-						}
-					}
+    .requestList li {
+        list-style: decimal;
+        padding: 8px 0;
+    }
 
-				}
-			}
-			//检查有多少个子元素
-			function getChild() {
-				var child = oQueue.querySelectorAll("span").length;
-				return child;
-			}
-		</script>
-	</body>
+    .question,
+    .requestList {
+        font-size: 14px;
+        padding-bottom: 10px;
+    }
+
+    .button {
+        padding: 4px 12px;
+        font-size: 14px;
+    }
+
+    .queue {
+        min-height: 60px;
+        padding: 30px 0;
+    }
+
+    .queue span {
+        width: 18px;
+        display: inline-block;
+        background-color: #00A2E8;
+        margin: 2px;
+        -webkit-transition: all 2s ease-in;
+        -moz-transition: all 2s ease-in;
+        -ms-transition: all 2s ease-in;
+        -o-transition: all 2s ease-in;
+        transition: all 2s ease-in;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container txt_center">
+        <div class="main">
+            <input type="text" id="txt" class="number" placeholder="在此输入数字！" name="" id="" value="" />
+            <input type="button" class="button" name="" id="sortBtn" value="从小到大排序" />
+            <!--队列-->
+            <div class="clearfix">
+                <div class="fl">
+                    <input type="button" class="button" name="" id="lAddBtn" value="左侧入" />
+                </div>
+                <div class="fr">
+                    <input type="button" class="button" name="" id="rAddBtn" value="右侧入" />
+                </div>
+            </div>
+            <div class="queue">
+                <!--初始为空-->
+            </div>
+            <div class="clearfix">
+                <div class="fl">
+                    <input type="button" class="button" name="" id="lDelBtn" value="左侧出" />
+                </div>
+                <div class="fr">
+                    <input type="button" class="button" name="" id="rDelBtn" value="右侧出" />
+                </div>
+            </div>
+        </div>
+        <img src="img/task_2.jpg" alt="">
+        <div class="question txt_left">
+            题目2： 基于上一个任务，添加如下功能：
+        </div>
+        <ol class="requestList txt_left">
+            <li>限制输入的数字在10-100</li>
+            <li>队列元素数量最多限制为20个，当超过20个时，添加元素时alert出提示</li>
+            <li>队列展现方式变化如图，直接用高度表示数字大小</li>
+            <li>实现一个简单的排序功能，如冒泡排序（不限制具体算法）</li>
+            <li><b>附加题：将排序完整过程，用可视化的方法表达出来，参考CSS3动画与排序算法</b></li>
+        </ol>
+    </div>
+    <script type="text/javascript">
+    //查找元素
+    var lAddBtn = document.getElementById("lAddBtn");
+    var rAddBtn = document.getElementById("rAddBtn");
+    var lDelBtn = document.getElementById("lDelBtn");
+    var rDelBtn = document.getElementById("rDelBtn");
+    var oTxt = document.getElementById("txt");
+    var oQueue = document.querySelectorAll(".queue")[0];
+    var oSortBtn = document.getElementById("sortBtn");
+    //绑定事件
+    //右边加
+    rAddBtn.onclick = function() {
+        var oSpan = document.createElement("span");
+        oSpan.style.height = 2 * oTxt.value + "px";
+        oSpan.title = oTxt.value;
+        oQueue.appendChild(oSpan);
+    }
+    //左边加
+    lAddBtn.onclick = function() {
+        if (getChild() > 20) {
+            alert("已达到最大值！");
+            return;
+        }
+        var oSpan = document.createElement("span");
+        oSpan.style.height = 2 * oTxt.value + "px";
+        oSpan.title = oTxt.value;
+        oQueue.insertBefore(oSpan, oQueue.firstChild);
+    }
+    //左边减
+    lDelBtn.onclick = function() {
+        oQueue.removeChild(oQueue.firstChild);
+    }
+    //右边减
+    rDelBtn.onclick = function() {
+        oQueue.removeChild(oQueue.lastChild)
+    }
+    //事件委托
+    oQueue.onclick = function(event) {
+        if (event.target.tagName == "SPAN") {
+            this.removeChild(event.target);
+        }
+    }
+    //nodeList 排序
+    oSortBtn.onclick = function() {
+        //1-数组排序
+        //				var arr = [];
+        //				var oChild = oQueue.querySelectorAll("span");
+        //				for(var i = 0; i < oChild.length; i++) {
+        //					arr.push(oChild[i].title);
+        //				}
+        //				arr.sort(function(a, b) {
+        //					return a - b;
+        //				})
+        //				oQueue.innerHTML = "";
+        //				for(var i = 0; i < arr.length; i++) {
+        //					var oSpan = document.createElement("span");
+        //					oSpan.style.height = 2 * arr[i] + "px";
+        //					oSpan.title = arr[i];
+        //					oQueue.appendChild(oSpan);
+        //				}
+        //2-冒泡排序
+        var oChild = oQueue.querySelectorAll("span");
+        var temp_h;
+        var temp_t;
+        for (var i = 0; i < oChild.length; i++) {
+            for (var j = 0; j < oChild.length - i - 1; j++) {
+                if (oChild[j].title > oChild[j + 1].title) {
+                    temp_h = 2 * oChild[j + 1].title + "px";
+                    temp_t = oChild[j + 1].title;
+                    oChild[j + 1].style.height = 2 * oChild[j].title + "px"
+                    oChild[j + 1].title = oChild[j].title;
+                    oChild[j].style.height = temp_h;
+                    oChild[j].title = temp_t;
+                }
+            }
+
+        }
+
+    }
+    //检查有多少个子元素
+    function getChild() {
+        var child = oQueue.querySelectorAll("span").length;
+        return child;
+    }
+    </script>
+</body>
 
 </html>

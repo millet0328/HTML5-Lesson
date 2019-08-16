@@ -8,18 +8,33 @@
 
 	<body>
 		<script type="text/javascript">
-			//声明函数
-			var x = 1024;
-			var y = 768;
+			// 全局变量
+			var data = 1024;
 
-			function sum(i, j) {
-				alert(i + j);
+			isEven(26224);
+			<!-- 如果两个数字m,n 都是奇数相减，都是偶数相加，一奇一偶不作任何运算 -->
+			function cal(m, n) {
+				var flag_M = isEven(m);
+				var flag_N = isEven(n);
+				if (flag_M && flag_N) {
+					return m + n;
+				}
+				if (flag_M == false && flag_N == false) {
+					return m - n;
+				}
+				//is偶数函数
+				function isEven(x) {
+					if (x % 2 == 0) {
+						return true;
+					} else {
+						return false;
+					}
+				}
 			}
-			//调用函数
-			sum(100,300);
-			
+			cal(656, 89);
+
+			console.log(carname)
 		</script>
-		
 	</body>
 
 </html>

@@ -7,8 +7,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<style type="text/css">
 			.cube {
-				width: 100px;
-				height: 100px;
+				width: 40px;
+				height: 40px;
 				background-color: #FF1493;
 				position: absolute;
 				left: 0px;
@@ -20,34 +20,54 @@
 	<body>
 		<!--方块-->
 		<div class="cube" id="cube"></div>
+		<script>
+			// 查找元素
+			var oCube = document.getElementById('cube');
+			var timer;
+			// 窗口宽度/高度
+			var MaxHeight = window.innerHeight;
+			var MaxWidth = window.innerWidth;
+			var width = oCube.offsetWidth;
+			var height = oCube.offsetHeight;
+			oCube.onclick = function() {
+				clearInterval(timer);
+				timer = setInterval(move, 1);
+			}
+			var speedX = 1;
+			var speedY = 1;
+
+			function move() {
+				// 获取left,top
+				var top = oCube.offsetTop;
+				var left = oCube.offsetLeft;
+				// 自增
+				left += speedX;
+				top += speedY;
+				if (left > MaxWidth - width || left <= 0) {
+					speedX = -speedX;
+				}
+				if (top > MaxHeight - height || top <= 0) {
+					speedY = -speedY;
+				}
+				// 赋值
+				oCube.style.top = top + 'px';
+				oCube.style.left = left + 'px';
+			}
+		</script>
 
 		<script type="text/javascript">
-			window.onload = function() {
-				//查找元素
-				var oCube = document.getElementById('cube');
-				var MaxHeight = window.innerHeight;
-				var height = oCube.offsetHeight;
-				var timer;
-				oCube.onclick = function() {
-					clearInterval(timer);
-					timer = setInterval(function() {
-						move();
-					}, 50);
-				}
-
-				function move() {
-					// 获取当前的top值
-					var top = oCube.offsetTop;
-					if (top >= (MaxHeight - height)) {
-						document.body.removeChild(oCube);
-						return;
-					}
-					// 自增5
-					top += 5;
-					// 赋值
-					oCube.style.top = top + "px";
-				}
-			}
+			// 延迟执行
+			setTimeout(function() {
+				console.log("Hello World!");
+			}, 3000);
+			// 考察执行顺序
+			console.log(1); //同步
+			// 异步 等待
+			setTimeout(function() {
+				console.log(2)
+			}, 0);
+			console.log(3);
+			
 		</script>
 	</body>
 

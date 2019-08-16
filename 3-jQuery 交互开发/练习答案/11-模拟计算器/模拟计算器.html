@@ -47,50 +47,39 @@
 </head>
 
 <body>
-    <input class="text" name="textfield" readonly type="text" id="txt" size="30" />
-    <br />
-    <button class="btn control" type="button" id="setMemory" name="control">存储</button>
-    <button class="btn control" type="button" id="getMemory" name="control">取存</button>
-    <button class="btn control" type="button" id="backspace" name="control">退格</button>
-    <button class="btn control" type="button" id="clear" name="control">清屏</button>
-    <br />
-    <input class="btn num" type="button" name="button" id="" value="7" />
-    <input class="btn num" type="button" name="button" id="" value="8" />
-    <input class="btn num" type="button" name="button" id="" value="9" />
-    <button class="btn math" type="button" name="math" value="/">÷</button>
-    <br />
-    <input class="btn num" type="button" name="button" id="" value="4" />
-    <input class="btn num" type="button" name="button" id="" value="5" />
-    <input class="btn num" type="button" name="button" id="" value="6" />
-    <button class="btn math" type="button" name="math" value="*">×</button>
-    <br />
-    <input class="btn num" type="button" name="button" id="" value="1" />
-    <input class="btn num" type="button" name="button" id="" value="2" />
-    <input class="btn num" type="button" name="button" id="" value="3" />
-    <button class="btn math" type="button" name="math" value="+">＋</button>
-    <br />
-    <input class="btn num" type="button" name="button" id="" value="0" />
-    <input class="btn num" type="button" name="button" id="" value="." />
-    <button class="btn equal" type="button" id="equal" name="math" value="=">＝</button>
-    <button class="btn math" type="button" name="math" value="-">－</button>
+    <div class="computer">
+        <input class="text" name="textfield" readonly type="text" id="txt" size="30" />
+        <br />
+        <button class="btn control" type="button" id="setMemory" name="control">存储</button>
+        <button class="btn control" type="button" id="getMemory" name="control">取存</button>
+        <button class="btn control" type="button" id="backspace" name="control">退格</button>
+        <button class="btn control" type="button" id="clear" name="control">清屏</button>
+        <br />
+        <input class="btn num" type="button" name="button" id="" value="7" />
+        <input class="btn num" type="button" name="button" id="" value="8" />
+        <input class="btn num" type="button" name="button" id="" value="9" />
+        <button class="btn math" type="button" name="math" value="/">÷</button>
+        <br />
+        <input class="btn num" type="button" name="button" id="" value="4" />
+        <input class="btn num" type="button" name="button" id="" value="5" />
+        <input class="btn num" type="button" name="button" id="" value="6" />
+        <button class="btn math" type="button" name="math" value="*">×</button>
+        <br />
+        <input class="btn num" type="button" name="button" id="" value="1" />
+        <input class="btn num" type="button" name="button" id="" value="2" />
+        <input class="btn num" type="button" name="button" id="" value="3" />
+        <button class="btn math" type="button" name="math" value="+">＋</button>
+        <br />
+        <input class="btn num" type="button" name="button" id="" value="0" />
+        <input class="btn num" type="button" name="button" id="" value="." />
+        <button class="btn equal" type="button" id="equal" name="math" value="=">＝</button>
+        <button class="btn math" type="button" name="math" value="-">－</button>
+    </div>
+    <script src="js/jquery-3.4.1.min.js" type="text/javascript"></script>
     <script language="javascript" type="text/javascript">
     window.onload = function() {
         //显示框
-        var oTxt = document.getElementById("txt");
-        //数字键
-        var oBtn = document.querySelectorAll(".num");
-        //运算键
-        var oMath = document.querySelectorAll(".math");
-        //等号键
-        var oEqual = document.getElementById("equal");
-        //退格键
-        var oBackspace = document.getElementById("backspace");
-        //清屏键
-        var oClear = document.getElementById("clear");
-        //存储键
-        var oSet = document.getElementById("setMemory");
-        //取存键
-        var oGet = document.getElementById("getMemory");
+        var $Text = $("#txt");
         //运算过程中储存对象
         var obj = {
             num1: 0,
@@ -99,66 +88,70 @@
             result: 0,
             isDone: false
         }
-        for (var i = 0; i < oBtn.length; i++) {
-            oBtn[i].onclick = function() {
-                // 根据obj.isDone判断是否进行下一步运算
-                if (obj.isDone) {
-                    oTxt.value = '';
-                    obj.isDone = false;
-                }
-                //如果开始小数点，则自动填充0
-                if (this.value == "." && oTxt.value == "") {
-                    oTxt.value = "0.";
-                    return false;
-                }
-                //如果已经有小数点，则不再添加小数点
-                if (this.value == "." && oTxt.value.indexOf(".") != -1) {
-                    return false;
-                }
-                //如果第一个数字为0
-                if (oTxt.value == "0" && this.value != ".") {
-                    oTxt.value = this.value;
-                    return false;
-                }
-                // 默认
-                oTxt.value += this.value;
+        $('.num').click(function() {
+            var num = $(this).val();
+            var text = $Text.val();
+            // 根据obj.isDone判断是否进行下一步运算
+            if (obj.isDone) {
+                $Text.val('');
+                obj.isDone = false;
             }
-        }
+            //如果开始小数点，则自动填充0
+            if (num == "." && text == "") {
+                $Text.val("0.");
+                return false;
+            }
+            //如果已经有小数点，则不再添加小数点
+            if (num == "." && text.indexOf(".") != -1) {
+                return false;
+            }
+            //如果第一个数字为0
+            if (text == "0" && num != ".") {
+                $Text.val(num);
+                return false;
+            }
+            // 默认
+            $Text.val(text + num);
+        })
+
         //退格
-        oBackspace.onclick = function() {
-            oTxt.value = oTxt.value.substr(0, oTxt.value.length - 1);
-        }
+        $("#backspace").click(function() {
+            var text = $Text.val();
+            $Text.val(text.slice(0, -1));
+        });
         //清屏
-        oClear.onclick = function() {
-            oTxt.value = "";
+        $('#clear').click(function() {
+            $Text.val('');
             // 重置
             resetObj();
             obj.isDone = false;
-        }
+        })
         //运算过程，暂时只能运算一个运算符
-        for (var i = 0; i < oMath.length; i++) {
-            oMath[i].onclick = function() {
-                obj.isDone = false;
-                obj.num1 = oTxt.value;
-                obj.sign = this.innerText;
-                oTxt.value += this.innerText;
-            }
-        }
+        $('.math').click(function() {
+            // 获取符号
+            var sign = $(this).text();
+            var text = $Text.val();
+
+            obj.isDone = false;
+            obj.num1 = text;
+            obj.sign = sign;
+            $Text.val(text + sign);
+        })
         //等号计算
-        oEqual.onclick = function() {
+        $("#equal").click(function() {
+            var text = $Text.val();
             //计算运算符的位置，切割出第二个数字
-            var index = oTxt.value.indexOf(obj.sign);
+            var index = text.indexOf(obj.sign);
             // 如果没有运算符，return,不作处理
             if (!index) {
                 return false;
             }
-            obj.num2 = oTxt.value.slice(index + 1);
+            obj.num2 = text.slice(index + 1);
             // 如果运算符之后第二个数字没有，不做运算
             if (!obj.num2) {
                 obj.num2 = 0;
                 return false;
             }
-
             switch (obj.sign) {
                 case "÷":
                     obj.result = obj.num1 / obj.num2;
@@ -175,32 +168,34 @@
                 default:
                     break;
             }
-            oTxt.value = obj.result;
+            $Text.val(obj.result);
             obj.isDone = true;
             // 重置
             resetObj();
-        }
+        });
         // 储存数字至localStorage,只存第一个数字或者计算之后的结果
-        oSet.onclick = function() {
+        $('#setMemory').click(function() {
             if (!obj.sign) {
-                localStorage.memory = oTxt.value;
+                localStorage.memory = $Text.val();
             }
-        }
+        });
         /*
         取出localStorage里面的数字，
         如果是第一个数字/计算结果直接替换，
         如果是第二个数字+=至运算符后面
         */
-        oGet.onclick = function() {
+        $('#getMemory').click(function() {
+            var text = $Text.val();
             if (obj.sign) {
                 // 如果是第二个数字，替换掉原先的数字，+=至运算符后面
-                var index = oTxt.value.indexOf(obj.sign);
-                oTxt.value = oTxt.value.substr(0, index + 1);
-                oTxt.value += localStorage.memory;
+                var index = text.indexOf(obj.sign);
+                $Text.val(text.substr(0, index + 1));
+                text += localStorage.memory;
+                $Text.val(text);
             } else {
-                oTxt.value = localStorage.memory;
+                $Text.val(localStorage.memory);
             }
-        }
+        })
         /*
         重置运算过程中储存对象
         */

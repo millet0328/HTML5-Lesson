@@ -6,70 +6,107 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<style type="text/css">
-			.cate-box li {
-				display: inline-block;
-				padding: 6px 12px;
-				border: 1px solid #999999;
+			.table td,
+			.table th {
+				border: 1px solid #eee;
+				text-align: center;
 			}
-			
-			.cate-box li.active {
-				padding: 5px 11px;
-				border: 2px solid red;
-			}
-			
-			.price {
-				color: blue;
+
+			.box {
+				width: 100px;
+				height: 100px;
+				background-color: blue;
 			}
 		</style>
 	</head>
 
 	<body>
-		<ul class="cate-box">
-			<li class="item">红色</li>
-			<li class="item">黄色</li>
-			<li class="item">蓝色</li>
-			<li class="item">绿色</li>
-			<li class="item">灰色</li>
-		</ul>
-		<div>选中：
-			<span class="color">红色</span>
-			￥
-			<span class="price">10</span>元
-		</div>
+		<button id="btn" type="button">toggle</button>
+		<div class="box"></div>
+
+		<table width="100%" class="table">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>姓名</th>
+					<th>年龄</th>
+					<th>地区</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>黄小米</td>
+					<td>22</td>
+					<td>山东潍坊</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>黄渤</td>
+					<td>45</td>
+					<td>山东青岛</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>黄磊</td>
+					<td>45</td>
+					<td>山东青岛</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>张艺兴</td>
+					<td>45</td>
+					<td>山东青岛</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>罗志祥</td>
+					<td>45</td>
+					<td>山东青岛</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>王迅</td>
+					<td>45</td>
+					<td>山东青岛</td>
+				</tr>
+			</tbody>
+		</table>
+		<p>
+			<input type="text" name="" id="keyword" value="" />
+			<button id="search" type="button">搜索</button>
+		</p>
 		<!--jQuery-->
 		<script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			$(document).ready(function() {
-				var width = $(window).width();
-				
-				$(".cate-box li").click(function() {
-					$(".cate-box li").removeClass("active");
-					$(this).addClass("active");
-
-					var cate = $(this).text();
-					var price = 0;
-					switch(cate) {
-						case "红色":
-							price = 10;
-							break;
-						case "黄色":
-							price = 20;
-							break;
-						case "蓝色":
-							price = 30;
-							break;
-						case "绿色":
-							price = 40;
-							break;
-						default:
-							price = 50;
-							break;
-					}
-					//设置文本
-					$(".color").text(cate);
-					$(".price").text(price);
-				});
-
+			// 类选择
+			$(".table tr").click(function() {
+				$(".table tbody tr:nth-child(3n)").css("backgroundColor", "red");
+			});
+			// toggle事件
+			// var flag = true; //box的状态
+			// $('#btn').click(function() {
+			// 	if (flag) {
+			// 		$('.box').css("display", "none");
+			// 		flag = false;
+			// 	} else {
+			// 		$('.box').css("display", "block");
+			// 		flag = true;
+			// 	}
+			// });
+			$("#btn").click(function() {
+				// 检查一下box的状态
+				var flag = $(".box").is(':visible');
+				if (flag) {
+					$('.box').css("display", "none");
+				} else {
+					$('.box').css("display", "block");
+				}
+			});
+			// 搜索
+			$("#search").click(function() {
+				var keyword = $('#keyword').val();
+				$('.table tbody tr:contains(' + keyword + ')').css('backgroundColor', 'yellow');
 			});
 		</script>
 	</body>

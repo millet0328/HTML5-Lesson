@@ -8,94 +8,76 @@
 	</head>
 
 	<body>
-		<div id="box">
+		<div id="clock">
+			当前时间：<span class="date-time"></span>
 		</div>
-		<button type="button" id="stop">停止</button>
-		<button type="button" id="start">开始</button>
-		<!--  -->
-		<div>
-			距离21:00还剩：
-		</div>
-		<div class="countDown">
+		<p>
+			<button type="button" id="stop">停止</button>
+			<button type="button" id="start">开始</button>
+		</p>
+		<p class="tick">
 
-		</div>
-		<input type="text">
-		<script type="text/javascript">
-			// 闹钟设置
-			var now = new Date();
-			var ring = new Date();
-			ring.setHours(10);
-			ring.setMinutes(30);
-		</script>
-		<script type="text/javascript">
-			// 过去时间
-			var Qing = new Date(1860, 0, 1);
-			// 时间戳
-			new Date().valueOf();
-			new Date().getTime();
-		</script>
-		<script type="text/javascript">
+		</p>
+		<script>
 			// 查找元素
-			var oCountdown = document.querySelector(".countDown");
-
-			function CountDown() {
-				// 设置未来的时间
-				var MaxTime = new Date(2019, 1, 20, 21, 0, 0);
-				var now = new Date();
-				// date对象减法运算,结果是毫秒数
-				var rest = MaxTime - now;
-				var msec = parseInt(rest % 1000);
-				var sec = parseInt(rest / 1000 % 60);
-				var min = parseInt(rest / (1000 * 60) % 60);
-				var hour = parseInt(rest / (1000 * 60 * 60) % 24);
-				oCountdown.innerText = hour + ":" + min + ":" + sec + ":" + msec;
-			}
-			CountDown();
+			var oStart = document.getElementById('start');
+			var oStop = document.getElementById('stop');
 			var timer;
-			timer = setInterval(function() {
-				CountDown();
-			}, 1)
-		</script>
-		<script type="text/javascript">
-			window.onload = function() {
-				// 获取元素
-				var oBox = document.getElementById("box");
-				var oStart = document.getElementById("start");
-				var oStop = document.getElementById("stop");
-				var timer;
-				// 开始
-				oStart.onclick = function() {
-					// 清空定时器
-					clearInterval(timer);
-					// 添加定时器
-					timer = setInterval(function() {
-						clock();
-					}, 1);
-				}
-				// 暂停
-				oStop.onclick = function() {
-					clearInterval(timer);
-				}
-				// 打开页面就显示当前时间
-				clock();
-
-				function clock() {
-					// 获取当前时间
-					var now = new Date();
-					// 获取某一个单位
-					var year = now.getFullYear();
-					var month = now.getMonth();
-					var date = now.getDate();
-					var hour = now.getHours();
-					var min = now.getMinutes();
-					var sec = now.getSeconds();
-					var msec = now.getMilliseconds();
-					oBox.innerText = "当前时间：" +
-						year + "-" + (month + 1) + "-" + date + " " +
-						hour + ":" + min + ":" + sec + ":" + msec;
-				}
-
+			// 开始
+			oStart.onclick = function() {
+				// 防止重复绑定定时器
+				clearInterval(timer);
+				timer = setInterval(clock, 1);
 			}
+			// 停止
+			oStop.onclick = function() {
+				clearInterval(timer);
+			}
+
+			function clock() {
+				// 查找元素
+				var oSpan = document.querySelector('#clock .date-time');
+				// 当前时间
+				var now = new Date();
+				// 获取年/月/日 小时:分钟:秒
+				var year = now.getFullYear();
+				var month = now.getMonth() + 1;
+				var day = now.getDate();
+				var week = now.getDay();
+				var hour = now.getHours();
+				var min = now.getMinutes();
+				var sec = now.getSeconds();
+				var msec = now.getMilliseconds();
+				oSpan.innerText = year + '-' + month + '-' + day + ' ' + hour + ':' + min + ':' + sec + ':' + msec
+			}
+			clock();
+		</script>
+		<script>
+			// 查找元素
+			var oTick = document.querySelector('.tick');
+
+			function tick() {
+				var now = new Date();
+				var timestamp = now.getTime();
+				// 2小时之后
+				// var hour = now.getHours();
+				// now.setHours(hour + 2);
+				// 过去时间
+				var past = new Date(1988, 4, 17);
+				// 时间之差 == 毫秒数
+				var time = now - past;
+				var msec = parseInt(time % 1000);
+				var sec = parseInt(time / 1000 % 60);
+				var min = parseInt(time / (1000 * 60) % 60);
+				var hour = parseInt(time / (1000 * 60 * 60) % 24);
+				var day = parseInt(time / (1000 * 60 * 60 * 24) % 30);
+				// 月份有31天,30天
+				var month = parseInt(time / (1000 * 60 * 60 * 24 * 30) % 12);
+				var year = parseInt(time / (1000 * 60 * 60 * 24 * 365));
+				oTick.innerText = year + '年' + month + '月' + day + '日 ' + hour + ':' + min + ':' + sec + ':' + msec
+			}
+			var ticker;
+			ticker = setInterval(tick, 1);
 		</script>
 	</body>
 

@@ -19,15 +19,9 @@
 			var y = 326561;
 			var z = 325689;
 			var max;
-			if (x >= y) {
-				max = x;
-			} else {
-				max = y;
-			}
-			if (max <= z) {
-				max = z;
-			}
-			console.log(max);
+			let max = x >= y ? x : y;
+			let max = max <= z ? z : max;
+			
 			var m = [];
 			if (m) {
 				console.log("true")

@@ -10,16 +10,16 @@
 		<script type="text/javascript">
 			//求和运算
 			var sum = 0;
-			for(var i = 0; i <= 100; i++) {
+			for (var i = 0; i <= 100; i++) {
 				sum = sum + i;
 				// sum += i; 缩写
 			}
 			//			console.log(sum);
 			//计数运算  0-1024偶数个数
 			var num = 0;
-			for(var i = 0; i <= 1024; i++) {
+			for (var i = 0; i <= 1024; i++) {
 				//判断偶数
-				if(i % 2 == 0) {
+				if (i % 2 == 0) {
 					//偶数
 					num++;
 				}
@@ -32,11 +32,11 @@
 			var min = score[0];
 			var max = score[0];
 			var total = 0;
-			for(var i = 0; i < score.length; i++) {
-				if(min > score[i]) {
+			for (var i = 0; i < score.length; i++) {
+				if (min > score[i]) {
 					min = score[i];
 				}
-				if(max < score[i]) {
+				if (max < score[i]) {
 					max = score[i];
 				}
 				total = total + score[i];
@@ -55,7 +55,7 @@
 
 			function cal(m, n) {
 				var sum = 0;
-				for(var i = m; i <= n; i++) {
+				for (var i = m; i <= n; i++) {
 					sum = sum + i;
 					// sum += i; 缩写
 				}
@@ -77,13 +77,13 @@
 			});
 			//for in 循环
 			var person = {
-				name: "黄渤",
-				age: 45,
-				job: 'actor',
-				sex: "男"
+				name: "黄小米",
+				age: 30,
+				sex: 0,
+				birthday: '1988-03-28'
 			}
-			for(x in person) {
-				console.log(person[x]);
+			for (key in person) {
+				console.log(key + '：' + person[key])
 			}
 		</script>
 	</body>

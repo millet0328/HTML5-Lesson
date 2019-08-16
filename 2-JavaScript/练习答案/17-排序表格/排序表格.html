@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <style type="text/css">
+        body,
+        html {
+            padding: 0;
+            margin: 0;
+            font-size: 14px;
+            color: #000000;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        thead {
+            background: #3d444c;
+            color: #ffffff;
+        }
+
+        td,
+        th {
+            border: 1px solid #e1e1e1;
+            padding: 0;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+        }
+
+        .sort-asc::after,
+        .sort-desc::after {
+            content: ' ';
+            display: inline-block;
+            margin-left: 5px;
+            vertical-align: middle;
+
+        }
+
+        .sort-asc::after {
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-bottom: 4px solid #eee;
+        }
+
+        .sort-desc::after {
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 4px solid #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead id="jsHeader">
+            <tr>
+                <th onclick="sortData('product', 'asc')">product</th>
+                <th onclick="sortData('price', 'asc')">price</th>
+                <th onclick="sortData('sales', 'asc')">sales</th>
+            </tr>
+        </thead>
+        <tbody id="jsList">
+            <tr>
+                <td>1</td>
+                <td>10.0</td>
+                <td>800</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>30.0</td>
+                <td>300</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>20.5</td>
+                <td>100</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>40.5</td>
+                <td>200</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>60.5</td>
+                <td>600</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>50.0</td>
+                <td>400</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>70.0</td>
+                <td>700</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>80.5</td>
+                <td>500</td>
+            </tr>
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        /**
+         *  请完成 sortData 函数，根据参数的要求对表格所有行进行重新排序。
+         *  1、type为product、price或者sales，分别对应第1 ~ 3列
+         *  2、order为asc或者desc，asc表示升序，desc为降序
+         *  3、例如 sortData('price', 'asc') 表示按照price列从低到高排序
+         *  4、在th对应标签上添加排序的class类，升序--'sort-asc',降序--'sort-desc'
+         *  5、所有表格内容均为数字，每一列数字均不会重复
+         *  6、不要使用第三方插件
+         */
+        function sortData(type, order) {
+            //查找元素
+            var oTh = document.querySelectorAll('#jsHeader th');
+            var oTbody = document.getElementById("jsList");
+            var oTr = oTbody.querySelectorAll('#jsList tr');
+            // 伪数组=>数组
+            var arr = [];
+            oTr.forEach(function(item, index) {
+                arr.push(item);
+            });
+            // 转换type
+            var i;
+            switch (type) {
+                case 'product':
+                    i = 0;
+                    break;
+                case 'price':
+                    i = 1;
+                    break;
+                case 'sales':
+                    i = 2;
+                    break;
+                default:
+                    break;
+            }
+            // 转换order
+            var flag = (order == 'desc') ? -1 : 1;
+            // th添加对应的class
+            for (let j = 0; j < oTh.length; j++) {
+                oTh[j].className = '';
+                oTh[i].className = 'sort-' + order;
+            }
+            // 数组排序
+            arr.sort(function(a, b) {
+                var valA = parseFloat(a.cells[i].innerText);
+                var valB = parseFloat(b.cells[i].innerText);
+                if (valA > valB) {
+                    return flag;
+                } else {
+                    return -flag;
+                }
+            });
+            // 将数组插入页面显示
+            arr.forEach(function(item, index) {
+                oTbody.appendChild(item);
+            });
+
+        }
+        sortData('price', 'asc');
+    </script>
+</body>
+
+</html>

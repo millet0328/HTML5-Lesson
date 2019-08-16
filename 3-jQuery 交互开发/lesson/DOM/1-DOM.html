@@ -95,20 +95,23 @@
 				</p>
 			</div>
 		</div>
-		<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-			// 保障页面全部加载完成
-			$(document).ready(function() {
-				$("#title").click(function() {
-					var flag = $("#content img").is(":visible");
-					if (flag) {
-						$("#content img").hide(4000, "linear", function() {
-							$("#title").css("color", "blue");
-						});
-					} else {
-						$("#content img").show("slow");
-					}
-				});
+		<script src="./js/jquery-3.4.1.min.js"></script>
+		<script>
+			$('#btn').click(function() {
+				var txt = $("#txt").val();
+				// 生成元素
+				var $p = $('<p>' + txt + '<b>X</b></p>');
+				// 插入
+				$('#result').prepend($p);
+			});
+			// 删除评论
+			// $('#result b').click(function () {
+			// 	$(this).parent('p').remove();
+			// });
+			// 事件委托
+			$('#result').on('click', 'b', function() {
+				// 内部偷偷的将this指向于'b'
+				$(this).parent('p').remove();
 			});
 		</script>
 	</body>

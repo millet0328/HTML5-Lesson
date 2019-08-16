@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<form action="">
+			<input id="txt" type="text">
+			<button id="btn" type="button">计算</button>
+			<div class="box"></div>
+		</form>
+		<script>
+			// 查找元素
+			var oBtn = document.getElementById("btn");
+			var oTxt = document.getElementById("txt");
+			var oBox = document.querySelector(".box");
+			oBtn.onclick = function() {
+				// 获取input的value
+				var num = oTxt.value;
+				if (num % 2 == 0) {
+					oBox.innerText = num + '是偶数';
+				} else {
+					oBox.innerText = num + '是奇数';
+				}
+			}
+		</script>
+	</body>
+</html>

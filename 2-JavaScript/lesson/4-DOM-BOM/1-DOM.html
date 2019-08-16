@@ -68,13 +68,17 @@
 				background-color: pink;
 				display: none;
 			}
+
+			.title {
+				color: red;
+			}
 		</style>
 	</head>
 
 	<body>
 		<input type="button" id="open" value="打开Modal" />
 		<input type="button" id="add" value="添加事件" />
-		<div id="">
+		<div>
 			<h1 id="title" class="title">一对"CP"</h1>
 		</div>
 		<div class="face" id="content">
@@ -95,6 +99,7 @@
 				<p>撒娇的<b>x</b></p>
 				<p>要删除的评论<b>x</b></p>
 				<p>新的评论<b>x</b></p>
+
 			</div>
 		</div>
 		<!-- 弹窗 -->
@@ -106,60 +111,53 @@
 		</div>
 		<script type="text/javascript">
 			// 查找元素
-			var oTitle = document.getElementById("title");
-			var oOpen = document.getElementById("open");
-			var oModal = document.querySelector(".modal");
-			var oClose = document.getElementById("close");
+			var oTitle = document.querySelector(".title");
 			var oBtn = document.getElementById("btn");
 			var oTxt = document.getElementById("txt");
-			var oResult = document.getElementById("result");
-			var oDel = document.querySelectorAll(".result p b");
-
-			// 			for (var i = 0; i < oDel.length; i++) {
-			// 				oDel[i].onclick = function() {
-			// 					oResult.removeChild(this.parentNode);
-			// 				}
-			// 			}
-			// 事件委托
-			oResult.onclick = function(event) {
-				// 事件对象
-				// 实际点击的元素
-				if (event.target.tagName == "B") {
-					this.removeChild(event.target.parentNode);
+			var oResult = document.getElementById('result');
+			// 删除评论--事件委托
+			oResult.onclick = function(e) {
+				// 判断是否点击的是删除标签
+				if (e.target.tagName == "B") {
+					this.removeChild(e.target.parentNode);
 				}
-			}
-			
+			};
+			// 评论
 			oBtn.onclick = function() {
 				var txt = oTxt.value;
-				//检测是否为空
+				// 判断是否为空
 				if (!txt) {
-					alert("请输入有效评论！");
+					alert("请填写评论内容！");
 					return;
 				}
-				// 创建标签
+				// 生成元素
 				var oP = document.createElement("p");
 				// 修饰元素
-				oP.innerHTML = txt + "<b>x</b>";
+				oP.innerHTML = txt + '<b>x</b>';
 				// 插入元素
 				// oResult.appendChild(oP);
 				oResult.insertBefore(oP, oResult.firstChild);
-				// 清空文本框
-				oTxt.value = "";
+				// 清空input
+				oTxt.value = '';
 			}
 
+			// 获取原来颜色
+			var color = getComputedStyle(oTitle).color;
 
 			oTitle.onclick = function() {
-				oTitle.innerText = "胡歌霍建华冰天雪地";
-				// oTitle.innerHTML = "胡歌<small style='color:red'>霍建华</small>冰天雪地";
-				oTitle.style.color = "white";
-				oTitle.style.backgroundColor = "blue";
-				oTitle.style.padding = "10px";
-			}
-			oOpen.onclick = function() {
-				oModal.style.display = "block";
-			}
-			oClose.onclick = function() {
-				oModal.style.display = "none";
+				// 当前颜色
+				var currentColor = getComputedStyle(oTitle).color;
+				// 当前字号
+				var currentSize = getComputedStyle(oTitle).fontSize;
+				currentSize = parseFloat(currentSize);
+
+				if (currentColor == color) {
+					oTitle.style.color = "#33CCCC";
+				} else {
+					oTitle.style.color = color;
+				}
+				currentSize++;
+				oTitle.style.fontSize = currentSize + 'px';
 			}
 		</script>
 	</body>

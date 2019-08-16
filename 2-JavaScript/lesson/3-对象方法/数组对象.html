@@ -10,11 +10,8 @@
 	<body>
 		<script type="text/javascript">
 			var arr = [1, 2, 3, 4];
-			// unshift
-			arr.unshift(-2, -1, 0);
-			// push *****
-			arr.push(5, 6, 7);
-			// 构建一个新数组
+			arr.push(5);
+			// push主要是构建一个新数组
 			// 求0-100之间能被7整除的数,将结果放在数组中
 			var res = [];
 			for (var i = 0; i <= 100; i++) {
@@ -24,109 +21,56 @@
 			}
 			console.log(res);
 			// shift
-			arr.shift();
+			var item_1st = arr.shift();
 			// pop
-			arr.pop();
+			var item_last = arr.pop();
 			// splice
-			arr.splice(3, 2, 12, 13);
-			//join
-			var students = ["B王小米", "C李渤", "R黄磊", "Z张艺兴"];
-			var str = students.join("☀");
-			// 简单数字数组排序，sort
-			var test = [12, 65, 32, 445, 698, 325, 475];
+			var score = [20, 30, 40, 50, 60];
+			score.splice(2, 0, 70, 80, 90, 100);
+			// 数组合并
+			var arr1 = [2, 4, 6];
+			var arr2 = [1, 3, 5];
+			var all = arr2.concat(arr1);
+			console.log(all);
+			// 字符串 => 数组 split
+
+			// 数组 => 字符串 join
+			var students = ["王小米", "李渤", "黄磊", "张艺兴"];
+			var str = students.join('-');
+			// 数组排序 sort
+			var test = [12, 32, 245, 312, 87];
 			test.sort(function(a, b) {
-				return a - b;
+				return b - a;
 			});
-			// 对象数组排序
-			var run = [
-				{ name: "邓超", age: 40 },
-				{ name: "李晨", age: 36 },
-				{ name: "郑凯", age: 34 },
-				{ name: "陈赫", age: 30 },
-				{ name: "王祖蓝", age: 32 },
-				{ name: "鹿晗", age: 28 },
-				{ name: "杨颖", age: 27 },
-			]
-			run.sort(function(itemA, itemB) {
-				return itemA.age - itemB.age;
-			});
-			console.log(run);
-		</script>
-		<!-- <script type="text/javascript">
-			var arr = [12, 49, 87, 95, 148, 49, 178, 65];
-			var str = arr.join("-");
-			console.log(str);
-
-			//冒泡排序
-			function bubbleSort(arr) {
-				var len = arr.length;
-				for(var i = 0; i < len - 1; i++) {
-					for(var j = 0; j < len - 1 - i; j++) {
-						if(arr[j] > arr[j + 1]) { // 相邻元素两两对比
-							var temp = arr[j + 1]; // 元素交换
-							arr[j + 1] = arr[j];
-							arr[j] = temp;
-						}
-					}
-				}
-				return arr;
-			}
-
-			arr.sort(function(a, b) {
-				return a - b;
-			});
-			//push方法构建新数组
-			// 偶数单独成一个数组
-			var even = [];
-			for(var i = 0; i < arr.length; i++) {
-				if(arr[i] % 2 == 0) {
-					even.push(arr[i]);
-				}
-			}
-			//对象排序 
-			var student = [{
-				name: '黄渤',
-				age: 38
+			var students = [{
+				name: "黄渤",
+				age: 46,
+				sex: "男"
 			}, {
-				name: '黄磊',
-				age: 42
+				name: "黄磊",
+				age: 50,
+				sex: "男"
 			}, {
-				name: '孙红雷',
-				age: 45
+				name: "罗志祥",
+				age: 43,
+				sex: "女"
 			}, {
-				name: '罗志祥',
-				age: 42
-			}, {
-				name: '张艺兴',
-				age: 28
-			}, {
-				name: '王迅',
-				age: 46
-			}]
-			//排序
-			student.sort(function(a, b) {
-				if(a.age > b.age) {
+				name: "张艺兴",
+				age: 29,
+				sex: "女"
+			}];
+			students.sort(function(a, b) {
+				if (a.sex == "男" && b.sex == "女") {
 					return 1;
-				} else {
+				}
+				if (a.sex == "女" && b.sex == "男") {
 					return -1;
 				}
 			});
-			var obj = {
-				6: 23,
-				1: 5,
-				4: 6,
-				8: 9
-			}
-			var tickArray = [];
-			for(key in obj) {
-				var temp = {
-					name: key,
-					time: obj[key]
-				}
-				tickArray.push(temp);
-			}
-			console.log(tickArray);
-		</script> -->
+			console.log(students);
+			// 排序算法 冒泡 快速 二分法
+		</script>
+
 	</body>
 
 </html>

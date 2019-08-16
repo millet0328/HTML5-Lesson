@@ -3,27 +3,51 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
+		<style type="text/css">
+			.title {
+				width: 400px;
+				padding: 20px;
+				border: 2px solid blue;
+			}
+
+			.color.active {
+				border: 1px solid red;
+				background-color: red;
+				color: white;
+			}
+		</style>
 	</head>
 	<body>
 		<button id="btn" type="button">按钮</button>
-		<div class="title">
+		<p class="title">
 			Hello World!
-		</div>
-		<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+		</p>
+		<button class="color" type="button">蓝色</button>
+		<button class="color" type="button">黄色</button>
+		<button class="color" type="button">绿色</button>
+
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$('.color').click(function() {
+				var flag = $(this).hasClass("active");
+				if (flag) {
+					$(this).removeClass('active');
+				} else {
+					$(this).addClass("active");
+				}
+				$(this).siblings('.color').removeClass("active");
+			});
+		</script>
 		<script type="text/javascript">
 			$("#btn").click(function() {
-				// 获取
-				var width = $("#btn").width();
-				var height = $("#btn").height();
+				// 获取字号
 				var size = $(".title").css("font-size");
+				var width = $(".title").width();
 				size = parseFloat(size);
 				size++;
-				width += 10;
-				height += 10;
-				// 设置
+				width += 5;
 				$(".title").css("font-size", size);
-				$("#btn").width(width);
-				$("#btn").height(height);
+				$(".title").width(width);
 			});
 		</script>
 	</body>
