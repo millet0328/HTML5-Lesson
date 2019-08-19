@@ -63,22 +63,22 @@
 	display: none;
 }
 
-.main .tab table {
-	width: 1319px;
+.main .table {
+	width: 100%;
 	font-size: 9px;
 	text-align: left;
 	border: 1px solid #c0d1d7;
 }
 
-.tab thead th {
+.table thead th {
 	border-bottom: 1px solid #CCCCCC;
 }
 
-.main .tab img {
+.table img {
 	margin: 0 5px;
 }
 
-.main .tab td {
+.table td {
 	padding: 6px 0;
 }
 
@@ -86,15 +86,15 @@
 	border-bottom: 2px solid #c0d1d7;
 }
 
-.main .tab th {
+.main .table th {
 	padding: 6px;
 }
 
-.main .tab td {
+.main .table td {
 	padding: 6px;
 	border-left: 1px dashed #c0d1d7;
 }
 
-.main .tab td:first-child {
+.main .table td:first-child {
 	border-left: none;
 }

@@ -51,6 +51,11 @@
 				border-right: 4px solid transparent;
 				border-top: 4px solid #eee;
 			}
+
+			.income-box {
+				text-align: right;
+				padding: 0 20px;
+			}
 		</style>
 	</head>
 	<body>
@@ -106,6 +111,11 @@
 				</tr>
 			</tbody>
 		</table>
+		<p class="income-box">
+			<button type="button">计算收入</button>
+			<span>总收入：<b>0.0</b></span>
+		</p>
+		<script src="js/jquery-3.4.1.min.js"></script>
 		<script type="text/javascript">
 			// DOM元素排序
 			window.onload = function() {
@@ -133,6 +143,18 @@
 					});
 				}
 			}
+		</script>
+		<script type="text/javascript">
+			$('.income-box button').click(function() {
+				var total = 0;
+				// each
+				$('#jsList tr').each(function(index) {
+					var price = $(this).find('td').eq(1).text();
+					var sale = $(this).find('td').eq(2).text();
+					total += price * sale;
+				});
+				$('.income-box b').text(total);
+			});
 		</script>
 	</body>
 </html>

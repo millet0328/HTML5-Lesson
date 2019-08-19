@@ -16,11 +16,12 @@
 		<div class="box">
 
 		</div>
-		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/jquery-3.4.1.min.js"></script>
 		<script>
-			$(".btn").click(function() {
+			$('.btn').click(function() {
+				console.log(1);
 				var $btn = $(this).clone(true);
-				$(".box").append($btn);
+				$('.box').append($btn);
 			});
 		</script>
 	</body>

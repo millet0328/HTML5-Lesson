@@ -414,91 +414,26 @@
 			});
 		</script>
 		<script type="text/javascript">
-			$(document).ready(function() {
-				// 新闻资讯
-				$(".news_box li").mouseenter(function() {
-					$(this).find(".news_date").stop(true).fadeOut("slow");
-				});
-				$(".news_box li").mouseleave(function() {
-					$(this).find(".news_date").stop(true).fadeIn("slow");
-				});
-				// 导航
-				$(".navbar li").mouseenter(function() {
-					$(this).find("dl").stop(true).slideDown("slow");
-				})
-				$(".navbar li").mouseleave(function() {
-					$(this).find("dl").stop(true).slideUp("slow");
-				})
-				// 作品展示
-				$(".works_box .item").hover(function() {
-					$(this).find(".cover").stop(true).animate({
-						top: "0%"
-					}, 1000)
-				}, function() {
-					$(this).find(".cover").stop(true).animate({
-						top: "100%"
-					})
-				})
-				// 场景展示
-				$(".theme_box li").mouseenter(function() {
-					$(this).siblings().find("img").stop(true).animate({
-						opacity: 0.3
-					});
-				});
-				$(".theme_box li").mouseleave(function() {
-					$(this).siblings().find("img").stop(true).animate({
-						opacity: 1
-					});
-				});
-				// 回到顶部
-				$("#backTop").click(function() {
-					$("html,body").animate({
-						scrollTop: 0
-					}, 1000);
-				});
+			$('.title_box .title_cn').click(function() {
+				var flag = $(this).siblings('.title_en').is(":visible");
+				if (flag) {
+					$(this).siblings('.title_en').hide(2000);
+				} else {
+					$(this).siblings('.title_en').show(2000);
+				}
+			});
+			$('.news_box li').mouseenter(function() {
+				$(this).find('.news_date').stop(true).fadeOut();
+			});
+			$('.news_box li').mouseleave(function() {
+				$(this).find('.news_date').stop(true).fadeIn();
+			});
 
-				// 滚动
-				$(window).scroll(function() {
-					// 获取滚动值
-					var scrollTop = $(this).scrollTop();
-					// 回到顶部按钮的显示/隐藏
-					if (scrollTop > 400) {
-						$("#backTop").stop(true).fadeIn();
-					} else {
-						$("#backTop").stop(true).fadeOut();
-					}
-
-					if (scrollTop > 0) {
-						$(".nav").css({
-							"position": "fixed",
-							"background-color": "rgba(0,0,0,0.7)"
-						});
-						$(".nav").find("dd").css({
-							"background-color": "rgba(0,0,0,0.7)"
-						});
-
-						$(".nav").find(".logo").stop(true).fadeOut(function() {
-							$(".nav").find(".navbar").stop(true).animate({
-								"padding-left": "0px"
-							});
-						});
-					} else {
-						$(".nav").css({
-							"position": "absolute",
-							"background-color": "rgba(0,0,0,0.3)"
-						});
-						$(".nav").find("dd").css({
-							"background-color": "rgba(0,0,0,0.3)"
-						});
-						$(".nav").find(".navbar").stop(true).animate({
-							"padding-left": "175px"
-						}, 600);
-						$(".nav").find(".logo").stop(true).delay(600).fadeIn();
-
-					}
-
-				});
-
+			$('.navbar li').mouseenter(function() {
+				$(this).find('dl').stop(true).slideDown();
+			});
+			$('.navbar li').mouseleave(function() {
+				$(this).find('dl').stop(true).slideUp();
 			});
 		</script>
 	</body>

@@ -8,8 +8,11 @@
 		<style type="text/css">
 			.box {
 				border: 1px solid #0000FF;
-				width: 300px;
-				height: 300px;
+				width: 200px;
+				height: 200px;
+				position: absolute;
+				left: 0;
+				top: 0;
 			}
 
 			.cube {
@@ -24,6 +27,7 @@
 				text-align: center;
 				padding: 20px;
 				border: 2px solid #ddd;
+				margin: 20px 0;
 			}
 
 			.slider::after {
@@ -39,63 +43,73 @@
 			.right {
 				float: right;
 			}
+
+			.wrap {
+				position: relative;
+				height: 500px;
+				border: 2px solid red;
+			}
 		</style>
 	</head>
 
 	<body>
-		<div class="box"></div>
-		<button id="start" type="button">开启移入变色</button>
-		<button id="close" type="button">关闭移入变色</button>
+		<div style="height: 800px;"></div>
+		<div class="wrap">
+			<div class="box"></div>
+		</div>
+
 		<div class="slider">
 			<button class="left" type="button">左</button>
 			<div class="cube"></div>
 			<button class="right" type="button">右</button>
 		</div>
 
-		<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
-				$("#start").click(function() {
-					// 绑定事件
-					$(".box").on("mouseenter", function() {
-						$(this).css("background-color", "green");
-					});
-					$(".box").on("mouseleave", function() {
-						$(this).css("background-color", "white");
-					});
-				});
-
-				$("#close").click(function() {
-					// 移除事件
-					$(".box").off("mouseenter");
-					$(".box").off("mouseleave");
-				});
-
 				$(".right").click(function() {
 					// 获取left
-					var left = parseFloat($(".cube").css("left"));
-					// var left = $(".cube").position().left;
+					var left = parseFloat($('.cube').css('left'));
 					left += 10;
-					$(".cube").css("left", left);
+					$('.cube').css('left', left);
 				});
-				setInterval(function() {
-					$(".right").trigger("click");
-				}, 500);
-				// 				//移入事件
-				// 				$(".box").mouseenter(function() {
-				// 					$(this).css("background-color", "green");
-				// 				});
-				// 				// 移出事件
-				// 				$(".box").mouseleave(function() {
-				// 					$(this).css("background-color", "white");
-				// 				});
-				// 				// hover事件
-				// 				$(".box").hover(function() {
-				// 					$(this).css("background-color", "green");
-				// 				}, function() {
-				// 					$(this).css("background-color", "white");
-				// 				});
+				setInterval(function(){
+					$('.right').trigger('click');
+				},500);
+			});
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('.box').hover(function() {
+					$(this).css("background-color", "yellow");
+				}, function() {
+					$(this).css("background-color", "white");
+				});
 
+				$('.box').mousedown(function(e) {
+					var sx = e.pageX;
+					var sy = e.pageY;
+					// 获取left,top
+					var left = $(this).position().left;
+					var top = $(this).position().top;
+
+					$(document).mousemove(function(e) {
+						var dx = e.pageX;
+						var dy = e.pageY;
+						// 计算移动距离
+						var distanceX = dx - sx;
+						var distanceY = dy - sy;
+						// 修改box的left,top
+		 				$(".box").css({
+							left: left + distanceX,
+							top: top + distanceY
+						});
+					});
+				});
+				// 移除事件
+				$(document).mouseup(function() {
+					$(document).off('mousemove');
+				});
 			});
 		</script>
 	</body>

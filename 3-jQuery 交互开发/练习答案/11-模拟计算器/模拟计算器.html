@@ -89,31 +89,43 @@
             isDone: false
         }
         $('.num').click(function() {
-            var num = $(this).val();
+            var x = $(this).val();
             var text = $Text.val();
+            var output;
+            // 是否有运算符
+            if (obj.sign) {
+                //查找运算符的位置，切割出第二个数字
+                var index = text.indexOf(obj.sign);
+                var num = text.slice(index + 1);
+                output = NumberInputFix(x, num);
+                $Text.val(obj.num1 + obj.sign + output);
+            } else {
+                output = NumberInputFix(x, text);
+                $Text.val(output);
+            }
+        })
+        // 修正数字输入
+        function NumberInputFix(input, num) {
             // 根据obj.isDone判断是否进行下一步运算
             if (obj.isDone) {
-                $Text.val('');
                 obj.isDone = false;
+                return '';
             }
             //如果开始小数点，则自动填充0
-            if (num == "." && text == "") {
-                $Text.val("0.");
-                return false;
+            if (input == "." && num == "") {
+                return '0.';
             }
             //如果已经有小数点，则不再添加小数点
-            if (num == "." && text.indexOf(".") != -1) {
-                return false;
+            if (input == "." && num.indexOf(".") != -1) {
+                return num;
             }
             //如果第一个数字为0
-            if (text == "0" && num != ".") {
-                $Text.val(num);
-                return false;
+            if (input != "." && num == "0") {
+                return input;
             }
             // 默认
-            $Text.val(text + num);
-        })
-
+            return num + input;
+        }
         //退格
         $("#backspace").click(function() {
             var text = $Text.val();
@@ -140,7 +152,7 @@
         //等号计算
         $("#equal").click(function() {
             var text = $Text.val();
-            //计算运算符的位置，切割出第二个数字
+            //查找运算符的位置，切割出第二个数字
             var index = text.indexOf(obj.sign);
             // 如果没有运算符，return,不作处理
             if (!index) {
@@ -168,7 +180,7 @@
                 default:
                     break;
             }
-            $Text.val(obj.result);
+            $Text.val(text + '=' + obj.result);
             obj.isDone = true;
             // 重置
             resetObj();
