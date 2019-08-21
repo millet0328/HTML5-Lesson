@@ -35,38 +35,25 @@
 	</body>
 	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function() {
-			// 移入事件
-			$('.ssale_list li').mouseenter(function() {
-				$(this).find('.band_box').animate({
-					'bottom': '0px'
-				}, function() {
-					// 回调函数
-					$(this).find('.title').animate({
-						'top': '0px'
-					});
-					$(this).find('.sologan').animate({
-						'top': '0px'
-					});
+		$('.ssale_list li').mouseenter(function() {
+			// 回调函数
+			$(this).find('.band_box').stop(true).animate({
+				bottom: 0
+			}, function() {
+				$(this).find('.title,.sologan').animate({
+					top: 0
 				});
 			});
-
-			// 移出事件
-			$('.ssale_list li').mouseleave(function() {
-				$(this).find('.title').animate({
-					'top': '40px'
-				}, 600);
-				$(this).find('.sologan').stop(true).animate({
-					'top': '40px'
-				}, 600);
-				// delay延迟
-				$(this).find('.band_box').stop(true).delay(600).animate({
-					'bottom': '-60px'
-				});
-
+		});
+		$('.ssale_list li').mouseleave(function() {
+			// dalay
+			$(this).find(".title,.sologan").animate({
+				top: 40
+			},300);
+			$(this).find('.band_box').delay(300).animate({
+				bottom:'-60px'
 			});
-
-		})
+		});
 	</script>
 
 </html>

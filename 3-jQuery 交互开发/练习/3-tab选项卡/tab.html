@@ -4,45 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <!--自己的css-->
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 
 <body>
-    <pre>
-            原生jQ编写一套选项卡，当前页状态要突出显示
-            参考网址：http://amazeui.org/javascript/tabs
-        </pre>
-    <!--选项卡1-->
-    <div class="tab" id="tab1">
-        <ul class="tab-title clear">
-            <li class="active">详情</li>
-            <li>评价</li>
-            <li>活动</li>
-            <li>问答</li>
-        </ul>
-        <ul class="tab-content">
-            <li>第一个</li>
-            <li>第二个</li>
-            <li>第三个</li>
-            <li>第四个</li>
-        </ul>
-    </div>
-    <!-- 第二个 -->
-    <div class="tab" id="tab2">
-        <ul class="tab-title clear">
-            <li class="active">详情</li>
-            <li>评价</li>
-            <li>活动</li>
-            <li>问答</li>
-        </ul>
-        <ul class="tab-content">
-            <li>第一个</li>
-            <li>第二个</li>
-            <li>第三个</li>
-            <li>第四个</li>
-        </ul>
-    </div>
+    <h6>jQ编写一套选项卡，当前页状态要突出显示</h6>
+    <h6>参考网址：
+    	<a target="_blank" href="http://amazeui.org/javascript/tabs">http://amazeui.org/javascript/tabs</a>
+    </h6>
+    <img src="img/tab.png">
+    <h5>附加题：采用面向对象的方式，原生js/jq编写一套选项卡:</h5>
+    <ol>
+    	<li>在一个页面中，生成两个选项卡实例，各自独立运行，互不干扰</li>
+    	<li>当前选择的选项卡要突出显示</li>
+    	<li>通过设置参数，默认显示第几个选项卡</li>
+    	<li>通过设置参数，定义触发切换的事件类型，例如："click","hover"</li>
+    	<li>不传参，有默认参数，选项卡正常运行</li>
+    	<li>通过class来找元素，不通过id来找,根据class="tab"来启动选项卡，保证所有选项卡正常运行；</li>
+    	<li>参考网址：<a target="_blank" href="http://amazeui.org/javascript/tabs">http://amazeui.org/javascript/tabs</a></li>
+    </ol>
 </body>
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <script type="text/javascript">

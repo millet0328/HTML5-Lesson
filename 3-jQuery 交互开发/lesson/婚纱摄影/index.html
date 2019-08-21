@@ -389,6 +389,12 @@
 		<!--返回顶部-->
 		<div class="backTop" id="backTop">
 		</div>
+		<!-- 楼层导航 -->
+		<div class="floor-box">
+			<div class="item">作品展示</div>
+			<div class="item">场景展示</div>
+			<div class="item">新闻资讯</div>
+		</div>
 		<script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/superslide.2.1.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
@@ -434,6 +440,54 @@
 			});
 			$('.navbar li').mouseleave(function() {
 				$(this).find('dl').stop(true).slideUp();
+			});
+			// 作品展示
+			$('.works_box .item').mouseenter(function() {
+				$(this).find('.cover').stop(true).animate({
+					top: 0
+				});
+			});
+			$('.works_box .item').mouseleave(function() {
+				$(this).find('.cover').stop(true).animate({
+					top: '100%'
+				});
+			});
+			// 主题选择
+			$('.theme_box li').mouseenter(function() {
+				$(this).siblings('li').find('img').stop(true).animate({
+					opacity: 0.3
+				});
+			});
+			$('.theme_box li').mouseleave(function() {
+				$(this).siblings('li').find('img').stop(true).animate({
+					opacity: 1
+				});
+			});
+			// 滚动
+			$(window).scroll(function() {
+				var top = $(this).scrollTop();
+				if (top > 200) {
+					$('#backTop').fadeIn();
+				} else {
+					$('#backTop').fadeOut();
+				}
+			});
+			// 回到顶部
+			$('#backTop').click(function() {
+				$('html,body').animate({
+					scrollTop: 0
+				});
+			});
+			// 楼层跳转
+			$('.floor-box .item').click(function () {
+				// 获取下标
+				var i = $(this).index();
+				// 获取对应标题的top
+				var top = $('.title_box').eq(i).offset().top;
+				// 滚动到对应的scrollTop
+				$('html,body').animate({
+					scrollTop: top
+				});
 			});
 		</script>
 	</body>

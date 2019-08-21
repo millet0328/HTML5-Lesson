@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="main relative">
+				<form action="" method="post">
+					<div class="left fl">
+						<div class="box">
+							<label class="name" for="">供应商名称</label>
+							<input class="input" type="text" name="" id="name" value="" />
+						</div>
+						<div class="box">
+							<label class="name" for="">供应商编号</label>
+							<input class="input" type="text" name="" id="num" value="" />
+						</div>
+						<div class="box">
+							<label class="name" for="">邮箱</label>
+							<input class="input" type="text" name="" id="email" value="" />
+						</div>
+						<div class="box">
+							<label class="name" for="">法人代表</label>
+							<input class="input" type="text" name="" id="person" value="" />
+						</div>
+					</div>
+					<div class="right fl">
+						<div class="box">
+							<label class="name" for="">公司资质</label>
+							<input class="input" type="text" name="" id="company" value="" />
+						</div>
+						<div class="box">
+							<label class="name" for="">经营期限</label>
+							<input class="input" type="text" name="" id="uptime" value="" />
+						</div>
+						<div class="box">
+							<label class="name" for="">所属行业</label>
+							<input class="input" type="text" name="" id="industry" value="" />
+						</div>
+						<div class="box">
+							<input class="btn" type="button" name="btn" id="add" value="添加供应商" />
+							<input class="btn hide" type="button" name="btn" id="save" value="保存修改" />
+						</div>
+					</div>
+					<div class="clear"></div>
+				</form>
+				<table class="table" border="0" cellspacing="" cellpadding="">
+					<thead>
+						<tr>
+							<th>
+								<input id="checkAll" type="checkbox">
+							</th>
+							<th>供应商名称</th>
+							<th>供应商编号</th>
+							<th>邮箱</th>
+							<th>法人代表</th>
+							<th>公司资质</th>
+							<th>经营期限</th>
+							<th>所属行业</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<input type="checkbox">
+							</td>
+							<td>广州创汇科技有限公司</td>
+							<td>20130908</td>
+							<td>admin@163.com</td>
+							<td>王青云</td>
+							<td>品牌潜力</td>
+							<td>2013-09-09 15:05</td>
+							<td>高清技术行业</td>
+							<td>
+								<img class="del" src="img/icon1 (1).png" />
+								<img class="edit" src="img/icon1 (2).png" />
+								<img class="hide" src="img/icon1 (3).png" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="checkbox">
+							</td>
+							<td>江苏天益网络信息有限公司</td>
+							<td>20130907</td>
+							<td>uimaker@1sc.com</td>
+							<td>笑三千</td>
+							<td>未来的发展</td>
+							<td>2013-09-08 14:02</td>
+							<td>网站空间空间</td>
+							<td>
+								<img class="del" src="img/icon1 (1).png" />
+								<img class="edit" src="img/icon1 (2).png" />
+								<img class="hide" src="img/icon1 (3).png" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="checkbox">
+							</td>
+							<td>广州市晖来计算机科技有限公司</td>
+							<td>20130906</td>
+							<td>user@1sc-china.com</td>
+							<td>江无锡</td>
+							<td>搜索引擎</td>
+							<td>2013-09-06 13:11</td>
+							<td>智能家居</td>
+							<td>
+								<img class="del" src="img/icon1 (1).png" />
+								<img class="edit" src="img/icon1 (2).png" />
+								<img class="hide" src="img/icon1 (3).png" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="checkbox">
+							</td>
+							<td>青海兰金电子科技有限公司</td>
+							<td>20130905</td>
+							<td>admine@china.com</td>
+							<td>邱京市</td>
+							<td>检查它的独特性</td>
+							<td>2013-09-06 10:36</td>
+							<td>银行风险管控</td>
+							<td>
+								<img class="del" src="img/icon1 (1).png" />
+								<img class="edit" src="img/icon1 (2).png" />
+								<img class="hide" src="img/icon1 (3).png" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="lib/layer/layer.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var rowIndex;
+				var $inputGroup = $(".box input:text");
+				var $tbody = $(".table tbody");
+				// 是否删除tr
+				var flag = true;
+				// 全选checkbox
+				$("#checkAll").click(function() {
+					var isChecked = $(this).prop("checked");
+					$tbody.find("input:checkbox").prop("checked", isChecked);
+				});
+				// tbody中的checkbox
+				$tbody.on("click", "input:checkbox", function() {
+					var total = $tbody.find("input:checkbox").length;
+					var checked = $("#tab tbody input:checked").length;
+					$("#checkAll").prop("checked", checked == total);
+				});
+				// 添加供应商
+				$('#add').click(function() {
+					var $tr = $('<tr><td><input type="checkbox"></td></tr>');
+					$inputGroup.each(function() {
+						var value = $(this).val();
+						var $td = $('<td></td>');
+						$td.text(value);
+						$tr.append($td);
+					});
+					$tr.append(
+						'<td><img class="del" src="img/icon1 (1).png" /><img class="edit" src="img/icon1 (2).png" /><img class="hide" src="img/icon1 (3).png" /></td>'
+					);
+					$tbody.append($tr);
+				});
+				// 编辑
+				$tbody.on("click", ".edit", function() {
+					// 不可删除
+					flag = false;
+					// 获取tr索引
+					rowIndex = $(this).parents("tr").index();
+					var $td = $(this).parents("tr").find("td");
+					// 遍历td，赋值至表单中
+					$td.each(function(index) {
+						if (index > 0) {
+							$inputGroup.eq(index - 1).val($(this).text());
+						}
+					});
+					$("#add").hide().siblings("#save").show();
+				});
+				// 隐藏
+				$tbody.on("click", ".hide", function() {
+					var $td = $(this).parent().siblings('td').eq(3);
+					// 获取email地址
+					var email = $td.text();
+					// 判断是否有title
+					if ($td.data('email')) {
+						$td.text($td.data('email'));
+						$td.removeData('email');
+					} else {
+						$td.data('email', email);
+						var text = email.replace(/\w/g, '*');
+						$td.text(text);
+					}
+				});
+				// 删除
+				$tbody.on("click", ".del", function() {
+					var $self = $(this);
+					// 弹出confirm
+					layer.confirm("确定要删除此供应商吗？", function(index) {
+						if (flag) {
+							$self.parents('tr').remove();
+							layer.close(index);
+						}
+					});
+				});
+				// 保存修改
+				$("#save").click(function() {
+					// 根据rowIndex赋值
+					var $td = $("#tab tbody tr").eq(rowIndex).children();
+					// 赋值
+					$inputGroup.each(function(index) {
+						$td.eq(index + 1).text($(this).val())
+					})
+					// 切换按钮
+					$("#save").hide().siblings("#add").show();
+					// 清空value
+					$inputGroup.val("");
+				});
+
+			});
+		</script>
+	</body>
+
+</html>

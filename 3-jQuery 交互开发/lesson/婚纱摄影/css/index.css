@@ -1,4 +1,5 @@
 @charset "utf-8";
+
 .relative {
 	position: relative;
 }
@@ -570,4 +571,18 @@
 
 .contact-Box a:hover p {
 	color: #666
+}
+
+/* 楼层导航 */
+.floor-box {
+	position: fixed;
+	right: 20px;
+	bottom: 60px;
+	background-color: #0066EE;
+	color: white;
+}
+
+.floor-box .item {
+	padding: 10px 20px;
+	cursor: pointer;
 }

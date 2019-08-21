@@ -5,96 +5,135 @@
 		<title></title>
 	</head>
 	<body>
-		<div>
-			<label for="">
-				账号：
-			</label>
-			<input type="text" readonly name="username" placeholder="请输入邮箱" value="上岛咖啡">
-		</div>
-		<div>
-			<label for="">
-				密码：
-			</label>
-			<input type="password" name="password" value="">
-		</div>
-		<div>
-			<label for="">
-				<input type="radio" name="sex" checked>男
-			</label>
-			<label for="">
-				<input name="sex" type="radio">女
-			</label>
-		</div>
-		<div>
-			<label for="">学历：</label>
-			<select name="" id="">
-				<option value="">小学</option>
-				<option value="">初中</option>
-				<option value="">高中</option>
-				<option value="">专科</option>
-				<option selected value="">本科</option>
-			</select>
-		</div>
-		<div>
-			<label for="">
-				爱好：
-			</label>
-			<div class="fav">
-				<label for="">
-					<input type="checkbox"> 唱歌
+		<form>
+			<p>
+				<label>账号：</label>
+				<input placeholder="请输入至少6位用户名" class="username" type="text">
+			</p>
+			<p>
+				<label>密码：</label>
+				<input placeholder="请输入至少6位数字" class="password" type="password">
+				<b class="eye">👀</b>
+			</p>
+			<p>
+				<label>推荐：</label>
+				<input type="text" readonly value="XPOS">
+			</p>
+			<p>
+				<label>性别：</label>
+				<label>
+					<input type="radio" checked name="sex" value="1" /> 男
 				</label>
-				<label for="">
-					<input type="checkbox"> 跳舞
+				<label>
+					<input type="radio" name="sex" value="0" /> 女
 				</label>
-				<label for="">
-					<input type="checkbox"> 画画
+			</p>
+			<p>
+				<label>爱好：</label>
+				<label>
+					<input type="checkbox" name="hobby" value="电影"> 电影
 				</label>
-				<label for="">
-					<input type="checkbox"> 钢琴
+				<label>
+					<input name="hobby" value="旅游" type="checkbox"> 旅游
 				</label>
-			</div>
-			<label for="">
-				<input id="checkAll" type="checkbox"> 全选
-			</label>
-		</div>
-		<div>
-			<label for="">自我介绍：</label>
-			<br>
-			<textarea name="" id="" placeholder="介绍自己的所在地,爱好,交友宣言" cols="30" rows="10"></textarea>
-		</div>
-		<div>
-			<label for="agree">
-				<input id="agree" type="checkbox">我同意用户协议
-			</label>
-		</div>
-		<button disabled id="reg" type="button">注册</button>
+				<label>
+					<input name="hobby" value="摄影" type="checkbox"> 摄影
+				</label>
+				<label>
+					<input name="hobby" value="绘画" type="checkbox"> 绘画
+				</label>
+				<label>
+					<input id="chkAll" type="checkbox"> 全选
+				</label>
+			</p>
+			<p>
+				<label>学历：</label>
+				<select class="degree">
+					<option value="高中">高中</option>
+					<option value="专科">专科</option>
+					<option selected value="本科">本科</option>
+					<option value="研究生">研究生</option>
+					<option value="博士">博士</option>
+				</select>
+			</p>
+			<p>
+				<label>介绍：</label>
+				<textarea class="info" placeholder="请输入至少100字的自我介绍" rows="10" cols="30"></textarea>
+				<small></small>
+			</p>
+			<p>
+				<label class="lisence"><input checked type="checkbox" />我已阅读网站的用户协议</label>
+			</p>
+			<p>
+				<button id="register" type="button">注 册</button>
+			</p>
+		</form>
 		<script src="js/jquery-3.3.1.min.js"></script>
-		<script>
-			$(document).ready(function() {
-				$("#agree").click(function() {
-					var checked = $(this).prop("checked");
-					$("#reg").prop("disabled", !checked);
+		<script type="text/javascript">
+			// disabled
+			$('.lisence').click(function() {
+				var status = $(this).find('input[type=checkbox]').prop('checked');
+				$('#register').prop('disabled', !status);
+			});
+			// change事件
+			$('.username').change(function() {
+				// 获取val
+				var text = $(this).val();
+				var reg = /^\w{6,}$/;
+				var flag = reg.test(text);
+				if (flag) {
+					$(this).css('border', '1px solid green');
+				} else {
+					$(this).css('border', '1px solid red');
+				}
+			});
+			$('.eye').click(function() {
+				// 获取type
+				var type = $('.password').prop('type');
+				// 设置type
+				if (type == 'password') {
+					$('.password').prop('type', 'text');
+				} else {
+					$('.password').prop('type', 'password');
+				}
+			});
+			// 获取性别sex的值
+			$('#register').click(function() {
+				var sex = $('input[name=sex]:checked').val();
+				// 获取checkbox
+				var hobby = [];
+				$('input[name=hobby]:checked').each(function() {
+					var val = $(this).val();
+					hobby.push(val);
 				});
-				// 全选
-				$("#checkAll").click(function() {
-					var checked = $(this).prop("checked");
-					console.log(checked);
-					$(".fav input:checkbox").prop("checked", checked);
-				});
-				$(".fav input:checkbox").click(function() {
-					// 总共多少个checkbox
-					var total = $(".fav input:checkbox").length;
-					// 选中的checkbox
-					var chked = $(".fav input:checked").length;
-					// 判断
-					if (chked == total) {
-						$("#checkAll").prop("checked", true)
-					} else {
-						$("#checkAll").prop("checked", false)
-					}
-					// $("#checkAll").prop("checked", chked == total);
-				});
+				// 获取select
+				var degree = $('.degree').val();
+				// 获取textarea
+				var info = $('.info').val();
+			});
+			// 全选
+			$('#chkAll').click(function() {
+				// 获取全选chk的当前状态
+				var status = $(this).prop('checked');
+				// 将状态赋值给hobby
+				$('input[name=hobby]').prop('checked', status);
+			});
+			$('input[name=hobby]').click(function() {
+				// 总数
+				var total = $('input[name=hobby]').length;
+				// 已选中的数量 
+				var chkNum = $('input[name=hobby]:checked').length;
 
+				if (chkNum == total) {
+					$('#chkAll').prop('checked', true);
+				} else {
+					$('#chkAll').prop('checked', false);
+				}
+			});
+			// 监听输入
+			$('.info').on('input', function() {
+				var txt = $(this).val();
+				$(this).siblings('small').text('剩余' + (100 - txt.length) + '字');
 			});
 		</script>
 	</body>

@@ -5,36 +5,23 @@
 		<title></title>
 	</head>
 	<body>
-		<button id="btn-1" type="button">按钮1</button>
-		<button id="btn-2" type="button">alert弹出</button>
-		<button id="btn-3" type="button">confirm弹出</button>
-		<script src="lib/jQuery/jquery-3.3.1.min.js"></script>
-		<script src="lib/layer/layer.js"></script>
-		<script>
-			$("#btn-1").click(function() {
-				layer.msg("Hello World!");
+		<button id="btn-1" type="button">弹出Hello World!</button>
+		<button id="btn-2" type="button">询问层</button>
+		<script src="lib/jQuery/jquery-1.12.4.min.js"></script>
+		<script src="./lib/layer/layer.js"></script>
+		<script type="text/javascript">
+			$('#btn-1').click(function () {
+				layer.msg('Hello World!');
 			});
-			// alert
-			$("#btn-2").click(function() {
-				layer.alert("上传成功！");
+			$('#btn-2').click(function () {
+				layer.confirm('确定要删除吗？',function () {
+					// 确定
+					layer.msg("删除中......");
+				},function () {
+					// 取消
+					layer.msg('取消成功！');
+				});
 			});
-			// confirm
-			$("#btn-3").click(function() {
-				layer.confirm(
-					"有一个订单正在进行，是否进入？", { btn: ["进入", "不进入"] },
-					function(index) {
-						// 关闭弹窗
-						layer.close(index);
-						// 确定
-						location.href = "https://www.baidu.com/";
-					},
-					function() {
-						// 取消
-						layer.msg("稍后在'我的订单'中查看！");
-					}
-				);
-			});
-			
 		</script>
 	</body>
 </html>

@@ -130,6 +130,12 @@
         $("#backspace").click(function() {
             var text = $Text.val();
             $Text.val(text.slice(0, -1));
+            // 删除操作？？？？？
+            if (obj.sign) {
+                //查找运算符的位置
+                var index = text.indexOf(obj.sign);
+
+            }
         });
         //清屏
         $('#clear').click(function() {
@@ -180,7 +186,7 @@
                 default:
                     break;
             }
-            $Text.val(text + '=' + obj.result);
+            $Text.val(obj.result);
             obj.isDone = true;
             // 重置
             resetObj();
