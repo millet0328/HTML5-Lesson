@@ -4,28 +4,18 @@
 		<meta charset="utf-8">
 		<title></title>
 		<style type="text/css">
-			.box {
-				width: 1200px;
-				margin: 20px auto;
-				padding: 30px;
-				background-color: blue;
-				font-size: 100px;
+			.out-box {
+				font-size: 20px;
 			}
-
-			.innerBox {
-				font-size: 2em;
-				width: 2em;
-				height: 200px;
-				background-color: yellow;
+			.inner-box{
+				font-size: 1em;
 			}
 		</style>
 	</head>
 	<body>
-		<div class="box">
-			父级元素
-			<div class="innerBox">
-				子元素
-			</div>
+		<div class="out-box">
+			<p>外部文字</p>
+			<div class="inner-box">内部文字</div>
 		</div>
 	</body>
 </html>

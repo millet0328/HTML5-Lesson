@@ -4,59 +4,43 @@
 		<meta charset="utf-8">
 		<title>transition</title>
 		<style>
-			button{
-				padding: 10px 20px;
-				border: 0;
-				font-size: 21px;
-				margin: 20px;
-			}
 			.box{
 				width: 200px;
 				height: 200px;
-				background-color: #0000FF;
-				line-height: 200px;
-				text-align: center;
-				color: white;
-				position: relative;
-				transition: all 1.5s;
-			}
-			.box.active{
-				/* transform:scale(1.2) translate(300px,300px) rotate(720deg); */
-				/* transform: rotate(120deg); */
-				transform: skew(-30deg) translateX(600px);
-				transform-origin: bottom right;
-				background-color: red;
-			}
-			.box:hover{
-				transform: scale(0.9);
-			}
-			.cube{
-				width: 200px;
-				height: 200px;
-				border: 2px solid #ddd;
-				margin: 20px;
+				margin: 20px 0;
+				background-color: pink;
 				transition: all 0.5s;
 			}
-			.cube:hover{
-				box-shadow: 0 0 10px 0 rgba(0,0,0,0.3) inset;
+			.box.active{
+				transform: translateX(1000px) rotate(360deg) scale(0.2);
+			}
+			.center{
+				border: 1px solid blue;
+				position: fixed;
+				left: 50%;
+				top: 50%;
+				-ms-transform: translateX(-50%) translateY(-50%);
+				transform: translateX(-50%) translateY(-50%);
 			}
 		</style>
 	</head>
 	<body>
-		<button id="btn" type="button">按钮1</button>
-		<div class="box">
-			Hello World
-		</div>
-		<div class="cube">
-
-		</div>
+		<button class="button" id="start" type="button">开始</button>
+		<button class="button" id="reset" type="button">复位</button>
+		<p>
+			<div class="box">参照物</div>
+			<div class="box"></div>
+		</p>
+		<!--<div class="center">
+			<img src="../CSS3%203D/img/winter-hat.jpg" >
+		</div> -->
 		<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			$("#btn").click(function() {
-				$(".box").addClass("active");
+			$('#start').click(function() {
+				$('.box').eq(1).addClass("active");
 			});
-			$(".box").click(function() {
-				$(this).removeClass("active");
+			$('#reset').click(function() {
+				$('.box').removeClass("active");
 			})
 		</script>
 	</body>

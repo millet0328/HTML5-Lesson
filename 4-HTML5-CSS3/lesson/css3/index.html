@@ -5,56 +5,41 @@
 		<meta charset="utf-8" />
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="lib/iconfont/iconfont.css"/>
 		<style type="text/css">
 			html,
 			body {
 				background-color: #eee;
-				height: 100%;
 			}
 
-			.box {
-				background-color: white;
-				margin: 12px;
-				width: 263px;
+			/* 自定义字体 */
+			@font-face {
+				font-family: "华康少女体";
+				src: url(./fonts/DFPShaoNvW5-GB.ttf) format('truetype');
 			}
 
-			.box .name {
-				padding: 12px;
-				font-size: 16px;
-				color: #898989;
-				text-align: center;
+			.title {
+				font-family: "华康少女体";
+				font-size: 32px;
+				text-shadow: 0 0 20px red;
 			}
 
-			.trans5 {
-				transition: all 0.5s;
+			.fa-edit {
+				color: green;
+				font-size: 72px;
 			}
 
-			.box:hover img {
-				transform: scale(1.1);
-			}
-
-			.box:hover .name {
-				background-color: blue;
-				color: white;
-			}
-
-			.box .photo {
-				height: 351px;
-				overflow: hidden;
+			.fa-edit:hover {
+				color: blue;
 			}
 		</style>
 	</head>
 
 	<body>
-		<div class="box">
-			<div class="photo">
-				<img class="trans5" src="img/photo05.jpg" alt="">
-			</div>
-			<div class="name trans5">
-				巴黎时尚大片
-			</div>
-		</div>
+		<p class="title">你好，北京！</p>
+		<i class="fa fa-edit"></i>
+		<span class="iconfont icon-feiji"></span>
 	</body>
 
 </html>

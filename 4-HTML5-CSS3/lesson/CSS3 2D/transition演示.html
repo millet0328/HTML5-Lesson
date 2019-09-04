@@ -4,44 +4,11 @@
 		<meta charset="utf-8">
 		<title>transition</title>
 		<style>
-			button{
-				padding: 10px 20px;
-				border: 0;
-				font-size: 21px;
-				margin: 20px;
-			}
-			.box{
-				width: 200px;
-				height: 200px;
-				background-color: #0000FF;
-				line-height: 200px;
-				text-align: center;
-				color: white;
-				position: relative;
-				left: 0;
-				transition: all 3.5s;
-			}
-			.box.active{
-				width: 120px;
-				height: 120px;
-				left: 1000px;
-				background-color: red;
-			}
+
 		</style>
 	</head>
 	<body>
-		<button id="btn" type="button">按钮1</button>
-		<div class="box">
-			Hello World
-		</div>
+		
 		<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-			$("#btn").click(function() {
-				$(".box").addClass("active");
-			});
-			$(".box").click(function() {
-				$(this).removeClass("active");
-			})
-		</script>
 	</body>
 </html>
