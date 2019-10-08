@@ -2,119 +2,173 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title></title>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css" />
 </head>
 
 <body>
-    <div id="app">
-        <p>用户名:
-            <input type="text" v-model="name" placeholder="用户名" @blur="checkname()">
-            <span>{{msgname}}</span>
-        </p>
-        <p>密码:
-            <input @keyup="checkpassword()" type="password" v-model="password" placeholder="密码">
-            <span>{{msgpassword}}</span>
-        </p>
-        <p>
-            <input type="button" v-model="btn" @click="codebtn()">
-            <input type="text" placeholder="验证码">
-            <span></span>
-        </p>
-        <p>
-            <input type="checkbox" v-model="check" @click="checkagree()">同意"服务条款"和"隐私权相关政策"
-            <span>{{msgagree}}</span>
-        </p>
-        <hr>
-        <p>
-            <input type="submit" value="注册" @click="register($event)">
-        </p>
-    </div>
-    <script src="js/vue.js" type="text/javascript"></script>
-    <script>
-    var vew = new Vue({
-        el: "#app",
-        data: {
-            name: "",
-            password: "",
-            msgname: "",
-            check: true,
-            msgpassword: "",
-            msgagree: "",
-            btn: "获取验证码",
-            disab: false,
-            c: 60
-        },
-        methods: {
-            checkname: function() {
-                if (this.name.length == 0) {
-                    this.msgname = "用户名不能为空";
-                } else if (this.name.length < 2) {
-                    this.msgname = "用户名至少2个字符";
-                } else {
-                    this.msgame = "";
-                }
-                return this.name > 2;
-            },
-            checkpassword: function() {
-                var word = this.password.trim();
-                if (word.length == 0)
-                    this.msgpassword = "密码不能为空";
-                var count = 0;
-                if (/[0-9]/.test(word)) {
-                    count++;
-                }
-                if (/[A-Za-z]/.test(word)) {
-                    count++;
-                }
-                if (/[^0-9A-Za-z]/.test(word)) {
-                    count++;
-                }
-                if (count == 3 && word.length >= 6) {
-                    this.msgpassword = "高强度";
-                } else if (count == 2 && word.length >= 6) {
-                    this.msgpassword = "中强度";
-                } else {
-                    this.msgpassword = "低强度";
-                }
-                return word >= 0;
-            },
-            codebtn: function() {
-                console.log(1);
-                this.disab = true;
-                setTimeout(this.enableCodeBtn, 1000);
-            },
-            enableCodeBtn: function() {
-                if (this.c > 0) {
-                    this.btn = this.c + "秒后重新获取";
-                    setTimeout(this.enableCodeBtn, 1000); // 1 秒后再次调用自己
-                    this.c--;
-                } else {
-                    this.disab = false;
-                    this.btn = "获取短信验证码";
-                    this.c = 60;
-                }
-            },
-            checkagree: function() {
-                if (!this.check) {
-                    this.msgagree = "";
-                } else {
-                    this.msgagree = "必须勾选";
-                }
-                return this.check;
-            },
-            register: function(event) {
-                if (this.checkname() & this.checkpassword() & this.checkagree()) {
-
-                } else {
-                    console.log(1);
-                    event.preventDefault();
-                }
-            }
-
-        }
-    })
-    </script>
+	<div id="app">
+		<div class="container">
+			<div class="panel panel-primary">
+				<div class="panel-heading">注册账户</div>
+				<div class="panel-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">用户名</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" v-model.trim="username" placeholder="长度至少2个字符">
+								<div v-if="!checkUsername && username" class="alert alert-warning" role="alert">
+									{{usernameError}}</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">密码</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" v-model.trim="password" placeholder="请输入密码">
+								<div v-if="checkPassword && password" class="alert alert-warning" role="alert">
+									密码强度：{{passwordError}}</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">手机号码</label>
+							<div class="col-sm-8">
+								<input type="text" v-model.trim="tel" class="form-control">
+								<div v-if="!checkTel && tel" class="alert alert-warning" role="alert">{{telError}}</div>
+							</div>
+							<div class="col-sm-2">
+								<button type="button" @click="fetchCode" :disabled="tick < 60 || !checkTel"
+									class="btn btn-default">{{tick==60?'获取验证码':tick+'秒后重新获取'}}</button>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">验证码</label>
+							<div class="col-sm-10">
+								<input type="text" v-model.trim="code" class="form-control">
+								<div v-if="!checkCode && code" class="alert alert-warning" role="alert">{{codeError}}
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" v-model="isAgree"> 同意"服务条款"和"隐私权相关政策"
+									</label>
+								</div>
+								<div v-if="!isAgree" class="alert alert-warning" role="alert">请仔细阅读服务条款，并勾选</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="button" :disabled="!validAll" @click="registerHandle"
+									class="btn btn-primary">注 册</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/vue.js" type="text/javascript"></script>
+	<script>
+		var vew = new Vue({
+			el: "#app",
+			data: {
+				username: "",
+				usernameError: '',
+				password: "",
+				passwordError: "",
+				tel: '',
+				telError: "",
+				code: '',
+				codeError: '',
+				timer: '',
+				tick: 60,
+				isAgree: true,
+			},
+			computed: {
+				checkUsername() {
+					let length = this.username.length;
+					if (length == 0) {
+						this.usernameError = "用户名不能为空";
+						return false;
+					}
+					if (length < 2) {
+						this.usernameError = "用户名至少2个字符";
+						return false;
+					}
+					return true;
+				},
+				checkPassword() {
+					let word = this.password;
+					if (!word) {
+						this.passwordError = "密码不能为空";
+						return false;
+					}
+					let count = 0;
+					if (/[0-9]/.test(word)) {
+						count++;
+					}
+					if (/[A-Za-z]/.test(word)) {
+						count++;
+					}
+					if (/[^0-9A-Za-z]/.test(word)) {
+						count++;
+					}
+					if (count == 3 && word.length >= 6) {
+						this.passwordError = "高强度";
+					} else if (count == 2 && word.length >= 6) {
+						this.passwordError = "中强度";
+					} else {
+						this.passwordError = "低强度";
+					}
+					return true;
+				},
+				checkTel() {
+					if (!this.tel) {
+						this.telError = "手机号码不能为空！"
+						return false;
+					}
+					var isValid = /^[1]([3-9])[0-9]{9}$/.test(this.tel);
+					if (!isValid) {
+						this.telError = "请输入11位正确的手机号码！"
+					}
+					return isValid;
+				},
+				checkCode() {
+					if (!this.code) {
+						this.codeError = "验证码不能为空！"
+						return false;
+					}
+					var isValid = /^[0-9]{4}$/.test(this.code);
+					if (!isValid) {
+						this.codeError = "请输入4位正确的数字验证码！"
+					}
+					return isValid;
+				},
+				// 校验整个表单数据
+				validAll() {
+					return this.checkUsername && this.checkPassword && this.checkTel && this.checkCode && this.isAgree
+				}
+			},
+			methods: {
+				fetchCode: function () {
+					clearInterval(this.timer);
+					this.timer = setInterval(() => {
+						this.tick--;
+						if (this.tick < 1) {
+							this.tick = 60;
+							clearInterval(this.timer);
+						}
+					}, 1000);
+				},
+				registerHandle: function () {
+					// 如何提取数据？
+				}
+			}
+		})
+	</script>
 </body>
 
 </html>

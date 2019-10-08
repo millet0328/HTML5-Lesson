@@ -4,31 +4,26 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="css/counter.css" />
+		<link rel="stylesheet" href="css/counter.css">
 	</head>
 
 	<body>
 		<div id="app">
-			<button-counter></button-counter>
-			<button-counter></button-counter>
-			<button-counter></button-counter>
+			<counter></counter>
+			<counter></counter>
 		</div>
 
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-			// 定义一个名为 button-counter 的新组件
-			Vue.component('button-counter', {
-				data: function() {
-					return {
-						count: 0
-					}
-				},
-				template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
-			})
+		
+		<script src="js/counter.js"></script>
 
-			// vue实例化
+		<script type="text/javascript">
+			// vue实例
 			var app = new Vue({
-				el: "#app"
+				el: '#app',
+				data: {
+					username: "moz"
+				}
 			});
 		</script>
 	</body>

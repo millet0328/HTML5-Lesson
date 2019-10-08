@@ -8,41 +8,45 @@
 
 	<body>
 		<div>
-			<button id="add" type="button">添加</button>
-			<button id="delete" type="button">删除</button>
-			<button id="change" type="button">修改</button>
-			<button id="get" type="button">查询</button>
+			<button id="add" type="button">增加</button>
+			<button id="remove" type="button">删除</button>
+			<button id="update" type="button">修改</button>
+			<button id="query" type="button">查询</button>
 		</div>
 		<script>
-			var oAdd = document.getElementById("add");
-			var oDel = document.getElementById("delete");
-			var oChange = document.getElementById("change");
-			var oGet = document.getElementById("get");
-			// 添加
+			// 查找元素
+			var oAdd = document.getElementById('add');
+			var oRemove = document.getElementById('remove');
+			var oUpdate = document.getElementById('update');
+			var oQuery = document.getElementById('query');
+			// 增
 			oAdd.onclick = function() {
-				localStorage.username = "黄小米";
-				sessionStorage.age = 30;
-				// 存储对象/数组
-				var job = {
-					salary: "6k",
-					location: "杭州"
-				};
-				localStorage.job = JSON.stringify(job);
-				localStorage.children = JSON.stringify(["小黄", "小黑"]);
-			};
-			// 删除
-			oDel.onclick = function() {
-				sessionStorage.removeItem("age");
-			};
-			// 修改
-			oChange.onclick = function() {
-				localStorage.username = "刘亦菲";
+				sessionStorage.setItem('uid', 10086);
+				localStorage.token = 'ik034121';
+				localStorage.sex = '男';
+				localStorage.age = '30';
+				// 存储对象
+				var person = { name: 'moz', age: 30 };
+				localStorage.person = JSON.stringify(person);
+				localStorage.score = JSON.stringify([12, 3.0, 35, 94]);
 			}
-			// 查询
-			oGet.onclick = function() {
-				var job = JSON.parse(localStorage.job);
-				var children = JSON.parse(localStorage.children);
-				console.log(children);
+			// 删
+			oRemove.onclick = function() {
+				sessionStorage.removeItem('uid');
+				localStorage.clear();
+			}
+			// 改
+			oUpdate.onclick = function() {
+				sessionStorage.uid = 10000;
+				localStorage.setItem('sex', '女');
+			}
+			// 查
+			oQuery.onclick = function() {
+				// 取出uid
+				var uid = sessionStorage.getItem('uid');
+				var score = localStorage.score;
+				console.log('uid:' + uid);
+				console.log(JSON.parse(score));
 			}
 		</script>
 

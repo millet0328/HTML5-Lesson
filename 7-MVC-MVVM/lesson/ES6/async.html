@@ -1,42 +1,31 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
 
-<body>
-    <script>
-        function random() {
-            let promise = new Promise(function(resolve, reject) {
-                setTimeout(() => {
-                    var x = Math.random();
-                    if (x < 0.5) {
-                        resolve(x);
-                    } else {
-                        reject('失败:' + x);
-                    }
-                }, 200)
-            });
-            return promise;
-        }
-        let gen = async function() {
-            let num1 = await random();
-            let num2 = await random();
-            console.log(num1);
-            console.log(num2);
-            return num1 + num2;
-        }
-        // 运行
-        gen()
-            .then((res) => {
-                console.log("两数字之和：" + res);
-            })
-            .catch((error) => {
-                console.log(error)
-            });
-    </script>
-</body>
+	<body>
+		<script>
+			let random = () => {
+				let promise = new Promise(function(resolve, reject) {
+					setTimeout(() => {
+						x = Math.random();
+						resolve(x);
+					}, 500);
+				})
+				return promise;
+			}
+
+			// 随机两个数字相乘
+			async function multiply() {
+				let m = await random();
+				let n = await random();
+				console.log(m * n);
+			}
+			multiply();
+		</script>
+	</body>
 
 </html>

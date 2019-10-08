@@ -1,0 +1,344 @@
+{
+  "data": [
+    {
+      "id": "5cbfd9aca86ae80ce64b3175",
+      "author_id": "4f447c2f0a8abae26e01b27d",
+      "tab": "share",
+      "content": "<div class=\"markdown-text\"><h2>前言</h2>\n<p>时隔一年，Node.js 12 如约而至，正式发布第一个 <a href=\"https://github.com/nodejs/Release\">Current</a> 版本。</p>\n<p>该版本带来了诸如：</p>\n<ul>\n<li>V8 更新带来好多不错的特性。</li>\n<li>HTTP 解析速度提升。</li>\n<li>启动速度大幅提升。</li>\n<li>更好的诊断报告和堆分析工具。</li>\n<li>ESM 模块更新。</li>\n</ul>\n<p>原文地址：<a href=\"https://medium.com/\">https://medium.com/</a><a href=\"/user/nodejs\">@nodejs</a>/introducing-node-js-12-76c41a1b3f3f\n语雀地址：<a href=\"https://www.yuque.com/egg/nodejs/nodejs-12\">https://www.yuque.com/egg/nodejs/nodejs-12</a></p>\n<h2>LTS vs Current</h2>\n<p><img src=\"https://cdn.nlark.com/yuque/0/2019/png/84182/1556074709431-35af45b8-ec7a-4a81-83d8-155eb519f04a.png#align=left&amp;display=inline&amp;height=389&amp;name=image.png&amp;originHeight=500&amp;originWidth=960&amp;size=58313&amp;status=done&amp;width=746\" alt=\"image.png\"></p>\n<p>如果你不了解 Node.js 的  Long Term Support 发布策略的话，一定要看看 <a href=\"https://github.com/nodejs/Release\">https://github.com/nodejs/Release</a> 。</p>\n<p>就目前而言，Node.js 6.x 和 8.x 将在 2019 年末结束 LTS 的支持，大家尽快升级到 10.x 吧。</p>\n<h2>快速体验</h2>\n<pre class=\"prettyprint language-bash\"><code>$ nvs add node&#x2F;12\n$ nvs use 12\n$ node -v\nv12.0.0\n</code></pre><p>具体参考这篇文章：<a href=\"https://zhuanlan.zhihu.com/p/63403762\">科普文：使用 nvs 管理本地 Node.js 版本</a></p>\n<h2>V8 更新到 7.4</h2>\n<blockquote>\n<p>大部分情况下，我们不用去考虑性能问题，坐等 V8 版本更新就好了。（大雾）</p>\n</blockquote>\n<p>本次版本更新，也带来了好几个不错的特性：</p>\n<ul>\n<li><a href=\"https://v8.dev/blog/v8-release-72#async-stack-traces\">异步堆栈跟踪</a></li>\n<li><a href=\"https://v8.dev/blog/v8-release-74#faster-calls-with-arguments-mismatch\">参数调用不匹配时的调用速度优化</a></li>\n<li><a href=\"https://v8.dev/blog/v8-release-73#faster-await\">更快的 await</a></li>\n<li><a href=\"https://v8.dev/blog/v8-release-72#javascript-parsing\">更快的 JavaScript 解析速度</a></li>\n</ul>\n<p><strong>同时，跑了下我们 Egg 的一些内部测试，发现序列化有 10~20% 的性能提升，恐怖如斯！</strong></p>\n<p>另，奇丑无比的 <a href=\"https://github.com/tc39/proposal-class-fields\">Private Class Fields</a> 也能用了：</p>\n<pre class=\"prettyprint language-javascript\"><code>class IncreasingCounter {\n  #count = 0;\n  \n  get value() {\n    console.log(&#x27;Getting the current value!&#x27;);\n    return this.#count;\n  }\n  increment() {\n    this.#count++;\n  }\n}\n</code></pre><h2>HTTP 解析速度提升</h2>\n<p>默认的 HTTP 解析器切换为 <a href=\"https://github.com/nodejs/llhttp\">llhttp</a> ，性能提升恐怖如斯：</p>\n<p><img src=\"https://cdn.nlark.com/yuque/0/2019/png/84182/1556072499637-686bb0e3-c75c-424c-851f-ad88aff183a2.png#align=left&amp;display=inline&amp;height=231&amp;name=image.png&amp;originHeight=404&amp;originWidth=1302&amp;size=88775&amp;status=done&amp;width=746\" alt=\"image.png\"></p>\n<blockquote>\n<p>点评：恐怖如斯。</p>\n</blockquote>\n<h2>启动速度提升</h2>\n<p>通过 <a href=\"https://v8.dev/blog/code-caching\">v8 code cache</a> 的支持，<a href=\"https://github.com/nodejs/node/pull/27161\">在构建时提前为内置库生成代码缓存</a>，从而提升 30% 的启动耗时。\n同时，通过<a href=\"https://github.com/nodejs/node/pull/24950\">重用主进程缓存</a>，Workers Threads 的启动速度提升了 60% 。</p>\n<blockquote>\n<p>点评：恐怖如斯。</p>\n</blockquote>\n<h2>Workers Threads</h2>\n<p>在 10.x 已经引入的 <a href=\"https://nodejs.org/api/worker_threads.html\">Workers Threads</a> 特性，在 12.x 里面默认启用，无需使用 <code>--experimental-worker</code> 开启。同时基于上一条的介绍，启动的速度也得到大幅提升。</p>\n<p>相关介绍：[<a href=\"https://medium.com/\">https://medium.com/</a><a href=\"/user/Trott\">@Trott</a>/using-worker-threads-in-node-js-80494136dbb6](<a href=\"https://medium.com/\">https://medium.com/</a><a href=\"/user/Trott\">@Trott</a>/using-worker-threads-in-node-js-80494136dbb6)</p>\n<h2>诊断报告</h2>\n<p>提供了新的实验性功能『诊断报告』，一个非常有用的特性。\n可用于帮助分析诸如：崩溃，性能问题，内存泄漏，高 CPU 占用等等问题。详见 <a href=\"https://medium.com/the-node-js-collection/easily-identify-problems-in-node-js-applications-with-diagnostic-report-dc82370d8029\">这篇文章</a>。</p>\n<blockquote>\n<p>点评：这也是 <a href=\"https://www.aliyun.com/product/nodejs\">AliNode</a> 之前的一个卖点之一。</p>\n</blockquote>\n<h2>Heap Dump</h2>\n<p>以前我们分析问题的时候，需要手动安装对应的类库或者使用 AliNode。</p>\n<p>在 12.x 里面内置了该功能，详见：</p>\n<ul>\n<li><a href=\"https://github.com/nodejs/node/pull/27133\">https://github.com/nodejs/node/pull/27133</a></li>\n<li><a href=\"https://github.com/nodejs/node/pull/26501\">https://github.com/nodejs/node/pull/26501</a></li>\n</ul>\n<blockquote>\n<p>点评：又一个 <a href=\"https://www.aliyun.com/product/nodejs\">AliNode</a> 的功能被内置了。但其实影响不大，AliNode 的核心在于分析平台，这块的采集能力，本来他们就打算开源回馈出去的。</p>\n</blockquote>\n<p>同时，由于上述提到的 V8 升级，现在可以按照可用内存动态调整堆大小了。</p>\n<h2>ESM 模块方案更新</h2>\n<p>ES6 模块仍然还在实验阶段，不过有了新的方式，具体参见<a href=\"https://medium.com/%5B@nodejs%5D(/user/nodejs)/announcing-a-new-experimental-modules-1be8d2d6c2ff\">这篇文章</a>。</p>\n<blockquote>\n<p>点评：让子弹再飞一会，该特性真的不是痛点，不急。</p>\n</blockquote>\n<h2>其他更新</h2>\n<ul>\n<li>更好的原生模块支持，<a href=\"https://nodejs.org/api/n-api.html#n_api_n_api\">N-API</a> 升级为版本 4，并 backport 到 Node.js 8.x 和 10.x。详细参见<a href=\"https://medium.com/the-node-js-collection/new-features-bring-native-add-ons-close-to-being-on-par-with-js-modules-cd4f9b8e4b4\">这篇文章</a>。</li>\n<li>TLS 升级为 1.3， <a href=\"https://developer.ibm.com/blogs/openssl-111-has-landed-in-nodejs-master-and-why-its-important-for-nodejs-lts-releases/\">增强安全功能</a>。</li>\n<li>随着 C++ 编译器的更新，现在要求 <code>GCC 6</code> 和 <code>glibc 2.17</code> ，对应的操作系统 Win7 和 macOS 10，详细参见<a href=\"https://github.com/nodejs/node/blob/v12.x/BUILDING.md#platform-list\">这篇文章</a>。</li>\n</ul>\n<p>不过目前 node-gyp 的一些原生模块会编译失败：</p>\n<pre class=\"prettyprint language-bash\"><code>nunjucks@3.2.0 › chokidar@2.1.5 › fsevents@^1.2.7 optional error: Error: Run &quot;sh -c node install&quot; error, exit code 1\n    at ChildProcess.&lt;anonymous&gt; (&#x2F;Users&#x2F;tz&#x2F;.npm-global&#x2F;lib&#x2F;node_modules&#x2F;tnpm&#x2F;node_modules&#x2F;_runscript@1.3.0@runscript&#x2F;index.js:74:21)\n    at ChildProcess.emit (events.js:196:13)\n    at maybeClose (internal&#x2F;child_process.js:1000:16)\n    at Process.ChildProcess._handle.onexit (internal&#x2F;child_process.js:267:5)\n</code></pre></div>",
+      "title": "Node 12 值得关注的新特性",
+      "last_reply_at": "2019-04-28T04:05:39.564Z",
+      "good": false,
+      "top": true,
+      "reply_count": 20,
+      "visit_count": 6884,
+      "create_at": "2019-04-24T03:36:12.582Z",
+      "author": {
+        "loginname": "atian25",
+        "avatar_url": "https://avatars2.githubusercontent.com/u/227713?v=4&s=120"
+      }
+    },
+    {
+      "id": "5bd4772a14e994202cd5bdb7",
+      "author_id": "504c28a2e2b845157708cb61",
+      "tab": "share",
+      "content": "<div class=\"markdown-text\"><p>2018年10月27日晚上，突然收到服务器不能访问的告警通知，拜托了狼叔 <a href=\"/user/i5ting\">@i5ting</a> 帮忙看看，结果登不上也ping不通。\n后来收到短信，发现是被ucloud封了，短信内容如下：</p>\n<blockquote>\n<p>【UCloud】尊敬的UCloud用户，您的IP：123.59.77.142  存在URL ：<a href=\"https://cnodejs.org/topic/57239bce5a26c4a841ecbf01\">https://cnodejs.org/topic/57239bce5a26c4a841ecbf01</a> （详细信息请查看邮箱）包含违禁内容（包括但不限于翻墙等），违反了国家有关法律法规。目前依主管单位要求，对您的IP予以封停，请您尽快处理违规内容。待处理完成后请联系技术支持重新开启业务。[4000188113]</p>\n</blockquote>\n<p>然后联系了ucloud的客服，一下就打通了，对方态度挺好处理问题也快。ucloud说是运营商那边封的，不是他们的检测机制。所以需要联系运营商解决。\n考虑到各位亲爱的网友们的行为我无法控制，那么一直跟越来越严格的审查系统对抗只会让自己疲惫，所以我就站点迁到国外。来到了aws jp。</p>\n<p>我大致测了测，电信和移动的访问速度非常快，100ms以内，联通会慢一点，400ms以内吧。</p>\n<p>建议翻墙访问。</p>\n</div>",
+      "title": "服务器迁移至 aws 日本机房",
+      "last_reply_at": "2019-04-22T12:39:07.911Z",
+      "good": false,
+      "top": true,
+      "reply_count": 188,
+      "visit_count": 36659,
+      "create_at": "2018-10-27T14:33:14.694Z",
+      "author": {
+        "loginname": "alsotang",
+        "avatar_url": "https://avatars1.githubusercontent.com/u/1147375?v=4&s=120"
+      }
+    },
+    {
+      "id": "5cc3ae1fa86ae80ce64b4904",
+      "author_id": "528a32b1d2b3893f2a6aceeb",
+      "tab": "ask",
+      "content": "<div class=\"markdown-text\"><p>RT</p>\n</div>",
+      "title": "Node 10.0 之后 express 也可以 async/await 了，那么koa2还有存在的意义吗",
+      "last_reply_at": "2019-04-29T04:51:42.110Z",
+      "good": false,
+      "top": false,
+      "reply_count": 6,
+      "visit_count": 596,
+      "create_at": "2019-04-27T01:19:27.789Z",
+      "author": {
+        "loginname": "Hanggi",
+        "avatar_url": "https://avatars2.githubusercontent.com/u/5997900?v=4&s=120"
+      }
+    },
+    {
+      "id": "5cc5c70a37faec0ce1d07c39",
+      "author_id": "5bf3cec8e6481c5709f5d871",
+      "tab": "ask",
+      "content": "<div class=\"markdown-text\"><p><img src=\"//static.cnodejs.org/Fupbpm2nJQFXTMVU9FK8dYVMPOFe\" alt=\"1.png\"><img src=\"//static.cnodejs.org/FmS8pA3EKJkqQjNZUnEb1iuxUL-G\" alt=\"2.png\"><img src=\"//static.cnodejs.org/Ft-SQYR6m5C61cq3ZkI5fLhBjBYr\" alt=\"WechatIMG116.png\"><img src=\"//static.cnodejs.org/FvYCjEfX667emIyE-hbclYFUVZlq\" alt=\"WechatIMG117.png\"></p>\n<h3>平时都好好的。未知下午出现这个情况。很头疼！严重影响开发。哪位大佬是否遇到过</h3>\n</div>",
+      "title": "vue.cli3.0代理后接口没有返回，浏览器内存攀升，页面卡死。请问这是什么情况，哪位大佬知道。",
+      "last_reply_at": "2019-04-29T04:33:33.808Z",
+      "good": false,
+      "top": false,
+      "reply_count": 3,
+      "visit_count": 125,
+      "create_at": "2019-04-28T15:30:18.914Z",
+      "author": {
+        "loginname": "tzbcf",
+        "avatar_url": "https://avatars1.githubusercontent.com/u/25059314?v=4&s=120"
+      }
+    },
+    {
+      "id": "5cc3ceb3a86ae80ce64b49bd",
+      "author_id": "5520a425ce156cc206687c5c",
+      "tab": "share",
+      "content": "<div class=\"markdown-text\"><p><a href=\"https://github.com/zhangkaiyulw/seedgoose\">Seedgoose</a> 支持自动id。</p>\n<p>不管用什么seed工具，seed数据的时候，关联是最让人头疼的。</p>\n<p>Seedgoose让关联没有烦恼。</p>\n<pre class=\"prettyprint language-json\"><code>{\n  &quot;_id&quot;: &quot;jack&quot;,\n  &quot;age&quot;: 20,\n  &quot;school&quot;: &quot;no1 middle school&quot;\n}\n</code></pre><pre class=\"prettyprint language-json\"><code>{\n  &quot;_id&quot;: &quot;no1 middle school&quot;,\n  &quot;name&quot;: &quot;No. 1 Middle School&quot;\n}\n</code></pre><pre class=\"prettyprint language-bash\"><code>seedgoose seed\n</code></pre><p>功能如你所想。</p>\n</div>",
+      "title": "mongoose最好用的seeder",
+      "last_reply_at": "2019-04-29T04:29:25.472Z",
+      "good": false,
+      "top": false,
+      "reply_count": 4,
+      "visit_count": 288,
+      "create_at": "2019-04-27T03:38:27.808Z",
+      "author": {
+        "loginname": "cheunghy",
+        "avatar_url": "https://avatars0.githubusercontent.com/u/3055936?v=4&s=120"
+      }
+    },
+    {
+      "id": "5cc3b7b737faec0ce1d072ff",
+      "author_id": "4efc278625fa69ac690004c5",
+      "tab": "share",
+      "content": "<div class=\"markdown-text\"><p>1290年了，使用TypeScript来代替Javascript来构建我们的前后端应用，已经在社区达成共识，去年在新浪移动大前端团队，也积极的投入到了TypeScript的学习和开发之中来。</p>\n<p>经过大概半年多的业务迭代，我们内部从一开始就计划开发一款拥有完整TypeScript开发体验的Nodejs Web框架。</p>\n<p>经过几个版本的迭代后，我们终于开源了团队的内部web框架，Daruk。</p>\n<p><a href=\"https://link.zhihu.com/?target=https%3A//github.com/daruk-framework/daruk\">Daruk</a></p>\n<blockquote>\n<p>Daruk是一款基于 Koa2，使用 typescript 开发的轻量级 web 框架。使用过 koa2 框架的朋友应该知道，koa2 属于比较原始和基础的 http server 实现，在日常的开发工作中，我们可能需要通过安装很多开源的中间件，自己完成复杂的项目配置，路由管理，以及和业务无关的工作：如日志，监控，性能等基础组件的定制。</p>\n</blockquote>\n<p>目前内部已经有大概10几个web项目在使用Daruk来构建了，比如下面这个c端的产品：</p>\n<p><a href=\"https://link.zhihu.com/?target=https%3A//photo.sina.cn/album_1_2841_368564.htm%3Fch%3D1%26from%3Dhot%26vt%3D4%26hd%3D1\">金正恩首会普京 双方握手 _新浪图片</a></p>\n<p>手机新浪网的高清图整站（目前落地页100% Daruk，使用TypeScript开发），频道首等其他页面还在灰度中（原来是PHP项目），流量一天1500-2000万，QPS峰值700多。</p>\n<p>Daruk自身的定位是Koa2的上层封装，所以团队中熟悉Koa开发和TS的都可以直接无门槛上手，基于约定的目录配置和周边的一些内部扩展（内部一些基础扩展还未全部开源），目前我们大前端团队已经开始承接手机新浪网的BFF层开发。</p>\n<p>回到框架本身，在一开始去年设计的时候我们还不知道有nestJs还有midwayjs这些优秀框架，今年了解到之后，我们后期也会借鉴和吸收他们的一些特性和优点进行改进。</p>\n<p>但是Daruk的Goal，从一开始的定位和之后的定位都不会变：轻巧的，易扩展的，面向对象式的MVC web框架，并拥有TS的完整开发体验。</p>\n<p>Daruk这个名字是我起的，当时沉迷塞尔达传说不能自拔，你看就是这个家伙：</p>\n<p><img src=\"//static.cnodejs.org/FjDivclyeB4Um_PiWNJwPYR-62I8\" alt=\"image.png\"></p>\n<p>当然，Daruk上手也非常简单，我们也提供了对应的脚手架工具，帮助不熟悉ts的同学可以快速玩起来：</p>\n<p>下面是一个常见的 Koa 服务代码:</p>\n<pre class=\"prettyprint language-js\"><code>&#x2F;&#x2F; index.js \nconst Koa = require(&quot;koa&quot;);\nconst app = new Koa();  \napp.use(async ctx =&gt; {   \n  ctx.body = &quot;Hello World&quot;;\n});  \napp.listen(3000);\n</code></pre><p>转换成 Daruk 编写的例子如下：</p>\n<pre class=\"prettyprint language-js\"><code>&#x2F;&#x2F; src&#x2F;index.ts\nimport { Daruk } from &quot;daruk&quot;;\n\nlet app = new Daruk(&quot;myapp&quot;, {\n  rootPath: __dirname, &#x2F;&#x2F; 指定 autoloader根目录\n  debug: true &#x2F;&#x2F; 开启调试模式\n});\n\napp.run(3000);\n</code></pre><p>controllers的定义：</p>\n<pre class=\"prettyprint language-js\"><code>&#x2F;&#x2F; src&#x2F;controllers&#x2F;index.ts\nimport { BaseController, Context, get } from &quot;daruk&quot;;\nexport default class Index extends BaseController {\n  @get(&quot;&#x2F;&quot;)\n  public async index(ctx: Context, next: Function) {\n    ctx.body = &quot;Hello world&quot;;\n  }\n}\n</code></pre><p>更多详细使用方法，可以参考文档：</p>\n<p><a href=\"https://link.zhihu.com/?target=https%3A//daruk-framework.github.io/daruk.org/tutorial/install.html%23%25E8%2584%259A%25E6%2589%258B%25E6%259E%25B6%25E5%25AE%2589%25E8%25A3%2585\">Daruk 安装文档</a></p>\n<p>最后，由于目前项目刚刚开源，网站的文档核心部分已经编写完成，但是后边的框架设计和最佳实践还没有全部完善，近期几周会以单独文章的形式投稿在我们自己的前端专栏，同时也希望喜欢TS的Nodejs开发者们多多支持，一起参与。</p>\n<p>：）</p>\n</div>",
+      "title": "使用Daruk和TypeScript构建你的Nodejs应用",
+      "last_reply_at": "2019-04-29T04:22:24.588Z",
+      "good": false,
+      "top": false,
+      "reply_count": 30,
+      "visit_count": 1103,
+      "create_at": "2019-04-27T02:00:23.894Z",
+      "author": {
+        "loginname": "xiaojue",
+        "avatar_url": "https://avatars3.githubusercontent.com/u/289225?v=4&s=120"
+      }
+    },
+    {
+      "id": "5cc182f937faec0ce1d06a78",
+      "author_id": "5a9ded34be0ec087668bcd0d",
+      "tab": "ask",
+      "content": "<div class=\"markdown-text\"><p>有的语言可以 <code>from 'package' import sth</code></p>\n<p>js则是 <code>import { sth} from 'package'</code> ,要有提示只能先把 package 码了,再移光标回前面.</p>\n<p>我用的 vscode,大家伙有啥办法解决这个蛋疼的问题吗?</p>\n</div>",
+      "title": "import from语法顺序很蛋疼,有什么办法解决吗?",
+      "last_reply_at": "2019-04-29T03:53:34.303Z",
+      "good": false,
+      "top": false,
+      "reply_count": 19,
+      "visit_count": 948,
+      "create_at": "2019-04-25T09:50:49.176Z",
+      "author": {
+        "loginname": "abiuDoIT",
+        "avatar_url": "https://avatars2.githubusercontent.com/u/30167501?v=4&s=120"
+      }
+    },
+    {
+      "id": "5cc12d4537faec0ce1d06706",
+      "author_id": "5875bd3d06fa6e2a4e4f730b",
+      "tab": "share",
+      "content": "<div class=\"markdown-text\"><p><img src=\"//static.cnodejs.org/FsJPVoGNLeApbuZx9lRwmcv4LCfm\" alt=\"image.png\">\n前一秒还在劝人学node，后一秒就被打脸了。。。羞愧难当。。。顿时找不到理由反驳。</p>\n</div>",
+      "title": "一位同学因别人说node只适合中小型，放弃node学go,大家怎么看。",
+      "last_reply_at": "2019-04-29T02:59:45.491Z",
+      "good": false,
+      "top": false,
+      "reply_count": 32,
+      "visit_count": 1861,
+      "create_at": "2019-04-25T03:45:09.872Z",
+      "author": {
+        "loginname": "zy445566",
+        "avatar_url": "https://avatars2.githubusercontent.com/u/14976489?v=4&s=120"
+      }
+    },
+    {
+      "id": "5b101b058a4f51e140d9440c",
+      "author_id": "5b094f5257137f22415c4685",
+      "tab": "ask",
+      "content": "<div class=\"markdown-text\"><h1>付费VPN推荐</h1>\n<p>更新：<a href=\"https://www.wallmama.com/best-vpn-china-2019/\">2019年便宜好用的翻墙VPN推荐</a></p>\n<h2>免费VPN服务最好不要用</h2>\n<p>用免费VPN服务，网络流量流经一个不可信的第三方，是件危险的事。你的流量里可能有没有充分加密保护的敏感信息：密码，银行账号，私密资料，访问历史等，流量劫持的潜在风险还不止这些。</p>\n<h2>破解的VPN软件更危险</h2>\n<p>这更危险，此类破解软件挂马带病毒是很常见的事，贪便宜从不明来源下载，很快让你的电脑裸奔；况且，破解软件不能更新，即使能用，也只能用极有限的时间。</p>\n<h2>国内的付费VPN服务想用也用不了</h2>\n<p>去年，GreenVPN被关。</p>\n<p>国内还剩多少可用的付费VPN服务，没统计过，越来越少吧，即使还有也离被关不远了。国内某些小众搜索引擎的结果页里偶尔还出现一些不入流（骗钱）的产品。</p>\n<p>也许存在传说中的“已注册“的服务，但国内政策风险太大，不建议购买。</p>\n<h2>国外的付费VPN服务能用的已经不多</h2>\n<p>绝大多数在这几年也陆续沦陷了，国内无法直接购买，买VPN要先上VPN，本身就很无奈。</p>\n<p>不是所有的付费VPN厂商都重视中国市场，只有一线大厂才可以，小厂商的财力、人力、技术能力都没大到能长期保证国内用户能持续使用服务的程度。</p>\n<h2>国外付费VPN推荐</h2>\n<p>下面推荐的服务商都</p>\n<ul>\n<li>\n<p>重视中国用户，国内还能直接支付宝购买</p>\n</li>\n<li>\n<p>全球服务器，好用的客户端</p>\n</li>\n<li>\n<p>提供额外加强服务，持续改进算法和服务质量</p>\n</li>\n<li>\n<p>支持无条件退款</p>\n</li>\n</ul>\n<p><strong>国内还能用支付宝买到</strong>的国外付费vpn推荐：</p>\n<h2>VPN推荐一：<a href=\"https://indx.cc/exp\">ExpressVPN</a></h2>\n<p>全球148+服务器所在地 / 无限流量 / 多协议，包括openVPN / 一键连接 / 同时3台设备 / 256-bit AES加密 / 支付宝支付 / 支持路由器连接 / 完全IP隐藏 / 零日志 / 全终端覆盖 / 30天无条件退款 / Split tunneling技术 + 浏览器插件，同时访问内外网 / <strong>推荐原因：速度相对最快</strong></p>\n<h2>VPN推荐二：<a href=\"https://indx.cc/veepn\">Veepn</a></h2>\n<p><strong>支持同时十个连接</strong>，支持支付宝付款 ，DNS隐私保护，无日志，全终端支持，高性价比。</p>\n<h2>VPN推荐三：<a href=\"https://indx.cc/vyr\">VyprVPN</a></h2>\n<p>70+自有服务器所在地，200,000+IP地址 / 无限流量 / 多协议，独家混淆协议 / 一键连接 / 同时5台设备 / 支持P2P / 变色龙加密，<strong>推荐原因：连接相对最稳定</strong> / 支付宝支付 / 支持路由器连接 / NAT安全机制 / DNS加密 / 全终端覆盖 / 2年款最大优惠 / 30天无条件退款 / 按程序控制网络技术，同时访问内外网</p>\n<h2>VPN推荐四：<a href=\"https://indx.cc/nrd\">Nord</a></h2>\n<p>3400+服务器 / 无限流量 / 支持Onion over vpn / 一键连接 / 同时6台设备 / 支持P2P / 双重加密 / 支付宝支付 / 支持路由器连接 / CyberSec安全技术 / 零日志 / 专业客户端 / 2年款最大优惠 / 随时退款 / 浏览器代理插件，同时访问内外网 / <strong>推荐原因：随时退款</strong></p>\n<h2>自建VPN方案</h2>\n<p>自建VPN是否成功，得靠运气，像<a href=\"https://www.vultr.com/?ref=6996621\">Vultr</a>这样的IP池比较大，但国内用户也特别多，准备好换IP吧，长远没有付费VPN靠谱。</p>\n<h2>付费VPN稳定性与速度</h2>\n<p>没有100%稳定的VPN服务，每年特殊时间段的连接质量都不好，容易断线。</p>\n<p>一年中大部分时间，日常使用Google，收发Gmail，使用Youtube还是稳定的。</p>\n<p>1080P的油管通常是不可能的，只在极少时间还算流畅，720P多数时候比较流畅。</p>\n<p>日常使用，偶尔断线，基本换服务器位置重连即可。</p>\n<p>即使是同一个服务，在一天不同时段，或在不同地域访问，服务质量也可能天差地别，没人知道具体原因，所以如果你在旅行途中，如果要保证最大限度的可连接性，可以考虑常备两个以上的服务，如果一个服务暂时出问题，另一个替上。</p>\n<h2>用好试用期</h2>\n<p>一线服务商都提供免费试用或至少7天的无条件退款，利用好试用期，充分检测服务质量，不满意及时退款，因为各服务在不同地域服务质量不同，所以一定要自己试一试。</p>\n</div>",
+      "title": "2019国外付费vpn推荐",
+      "last_reply_at": "2019-04-29T01:50:50.374Z",
+      "good": true,
+      "top": false,
+      "reply_count": 22,
+      "visit_count": 22251,
+      "create_at": "2018-05-31T15:55:49.256Z",
+      "author": {
+        "loginname": "wallmama",
+        "avatar_url": "https://avatars3.githubusercontent.com/u/39631585?v=4&s=120"
+      }
+    },
+    {
+      "id": "5a328967d92f2f5b185ace96",
+      "author_id": "54009f5ccd66f2eb37190485",
+      "tab": "share",
+      "content": "<div class=\"markdown-text\"><p>本来不想回复的，匿名的那哥们写的挺好的，虽然不懂他为什么要匿名。但看到某些回复，不得不说几句。乱解读，误人子弟的事，还是有必要澄清的，以免Node有无端被黑，相信这也是所有布道者都应该承担这种除魔卫道的责任。</p>\n<blockquote>\n<p>没有领袖，Node 之父用 Go，TJ 也用 Go，都跑了。</p>\n</blockquote>\n<ol>\n<li>语言不是因素，是他想做的事儿变了，但他的心依然还是爱着Koa</li>\n</ol>\n<p>TJ转做Go有很多原因</p>\n<ul>\n<li>人家做的基于aws Lambda的基础设施 <a href=\"https://github.com/apex/apex%EF%BC%8C%E9%80%89%E6%8B%A9Go%E6%97%A0%E5%8F%AF%E5%8E%9A%E9%9D%9E%EF%BC%8C%E4%BB%8E%E6%9E%B6%E6%9E%84%E8%A7%92%E5%BA%A6%EF%BC%8C%E6%88%91%E8%BF%98%E8%A6%81%E7%BB%99%E4%BB%96%E7%82%B9%E8%B5%9E%EF%BC%81\">https://github.com/apex/apex，选择Go无可厚非，从架构角度，我还要给他点赞！</a></li>\n<li>TJ对Node.js一直很关注，尤其对Koa框架，看他的Pinned repositories 就知道，另外给Koa提issue被他怼过，也可见他很在意Koa</li>\n</ul>\n<p>别乱解读，误人子弟</p>\n<ol>\n<li>Node.js之父在2012年就离开社区的，然而这5年发展的依然很好</li>\n</ol>\n<p>狼叔写过一篇文章 <a href=\"https://cnodejs.org/topic/59daf46f2543cb3368b1627e\">请别拿“死”人做文章</a>，\nNode.js之父Ryan Dahl在2012年就离开社区的，我们必须要承认他作为创始人的伟大创举，但不能标签化，ryan不代表node，从他离开社区后，对于社区而言，他就“死”在曾经的丰功伟绩上，未来与他无关！</p>\n<p>Node.js之父在2012年就离开社区的，然而这5年发展的依然很好，并无影响。这篇文章本来没什么问题，但有些人借位营销就恶心了。</p>\n<p>狼叔说：Node.js不是最好，也不是最差，是性价比比较高的，可惜node做后端一直不温不火，java，php利益相关，只有新项目用，微服务架构下，会更好一些。很多人node是用错的，不是用node就什么都用，分清场景。不误解，不传谣，合适自己的才是最好的\n但是总有些人想拿这事儿做文章过度解读，</p>\n<blockquote>\n<p>抽象程度不够高，对于做业务的人来说这很痛苦。使用者中小白太多，人员素质参差不齐，包的数量多，质量却呵呵。</p>\n</blockquote>\n<p>这完全是没逻辑的屁话，看起来没问题，却经不起推敲。</p>\n<p>抽象程度，所有语言都有这个问题，Go就没有么？Java、PHP这么多年小白少么？说人员素质参差不齐，哪个语言不一样？所以说，这完全是狗屁逻辑。我比较喜欢Ruby社区，是高手和低手两级分化最明显。Node.js从2009年到现在才8年，再成熟能成熟到哪里呢？不拿一个起点比较都是扯淡。</p>\n<p>最后说npm，黑的完全不到点上，目前超过60万个模块，绝对是社区第一。在众多包管理器上，我没见过质量都一样好的，按照8020原则，60万里至少有12万个模块是不错的吧，你工作中能用到的会超过三位数么？</p>\n<p>所以说质量好不好要看人怎么选，而不应该赖到npm上。长点心吧。</p>\n<blockquote>\n<p>用来做脚本倒是没啥问题，做商业开发就处处踩坑了。我没怎么用 Node做 Web，因为怕 hold 不住。</p>\n</blockquote>\n<p>没用过，就别瞎逼逼。</p>\n<p>国内国外的成功案例，眼瞎看不到么？我亲历的去哪儿和阿里都在大量使用，我亲耳听到的腾讯大量使用Node，对于李成银所在的360团队也是大量使用。</p>\n<p>如果说 Node hold 不住，其他语言就能 hold 住？呵呵</p>\n<p>如果说 人 hold 不住，那我相信，那是水平问题。</p>\n<blockquote>\n<p>目前 Node Web 框架依然是 koa 和 express 类似的架构，中间件没什么问题，但是如何组织它们，如何在 high level 层面把控他们却没有看到很好的最佳实践。</p>\n</blockquote>\n<p>没用Node还哔哔框架，不是打脸么？</p>\n<p>我们可以根据框架的特性进行分类</p>\n<table>\n<thead>\n<tr>\n<th>框架名称</th>\n<th>特性</th>\n<th>点评</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Express</td>\n<td>简单、实用，路由中间件等五脏俱全</td>\n<td>最著名的Web框架</td>\n</tr>\n<tr>\n<td>Derby.js &amp;&amp; Meteor</td>\n<td>同构</td>\n<td>前后端都放到一起，模糊了开发便捷，看上去更简单，实际上上对开发来说要求更高</td>\n</tr>\n<tr>\n<td>Sails、Total</td>\n<td>面向其他语言，Ruby、PHP等</td>\n<td>借鉴业界优秀实现，也是 Node.js 成熟的一个标志</td>\n</tr>\n<tr>\n<td>MEAN.js</td>\n<td>面向架构</td>\n<td>类似于脚手架，又期望同构，结果只是蹭了热点</td>\n</tr>\n<tr>\n<td>Hapi和Restfy</td>\n<td>面向Api &amp;&amp; 微服务</td>\n<td>移动互联网时代Api的作用被放大，故而独立分类。尤其是对于微服务开发更是利器</td>\n</tr>\n<tr>\n<td>ThinkJS</td>\n<td>面向新特性</td>\n<td>借鉴ThinkPHP，并慢慢走出自己的一条路，对于Async函数等新特性支持，无出其右，新版v3.0是基于Koa v2.0的作为内核的</td>\n</tr>\n<tr>\n<td>Koa</td>\n<td>专注于异步流程改进</td>\n<td>下一代Web框架</td>\n</tr>\n<tr>\n<td>Egg</td>\n<td>基于Koa，在开发上有极大便利</td>\n<td>企业级Web开发框架</td>\n</tr>\n</tbody>\n</table>\n<p>各种框架都经过大厂小厂实践，别的语言实现的我敢说Node都有了。还有什么所谓的更好实践，从2005年rails横空出世之后，大部分框架都是借鉴ROR，Node就算没有走到最前面，至少没有落后于最佳实践，否则，请给出，否则，请闭嘴，别瞎逼逼。</p>\n<blockquote>\n<p>大公司也是相继开发自己基于 koa 的框架。</p>\n</blockquote>\n<p>悖论，去哪儿的基于Express用的杠杠的，无任何问题。Node不缺Web框架，Koa虽好，但迁移各种还需要时间，未来是变化的，Koa能否一统天下还犹未可知。可以肯定的是Koa在异步流程控制做的改进，命名为Node下一个Web框架是不过分的。</p>\n<p>比如micro，比如fastify，非常多好东西。</p>\n<blockquote>\n<p>不过在我一个 Rails 使用者的眼里，这些框架还是不够 high level如果性能要求高，我的选择肯定是 Go 而不是 Node。</p>\n</blockquote>\n<p>用rails的人还考虑性能么？我不是黑ror的朋友们。rails这样的神器足够好，即使ruby以前性能那么不好，但不影响人家开发很多世界级应用啊。尽管后面有的被替换了，但又怎样呢？做ror的高手技能都非常全面，ruby和前端和运维都是极其的熟练。当然Node和go也有这样的人，但普遍偏弱，这不是人的问题，而是产生的时间较短，没背景的人就不能出现全栈牛逼的能力。</p>\n<p>如果真追求性能，我建议用rust写，如果还想牛逼，用c写，最好顺便把操作系统也写了。</p>\n<p>人还是要有自知之明，做应用软件和系统软件是不一样的思维。傻逼才只看性能呢。</p>\n<blockquote>\n<p>Node 除了亲 JS 好像对我没啥吸引力。但是如果公司非要用我也不反对，大不了自己摸爬滚打找出最佳实践即可。</p>\n</blockquote>\n<p>没用过，请绕过。我特别尊重苏千和朴灵，推动Node在阿里落地，比如苏千做的cnpm真是功德无量，比如Egg，能够统一全公司的资源去推动框架落地，可预见大公司阻力。朴灵的alinode解决了性能调优的问题，内部使用的经验沉淀，对外提供付费服务。</p>\n<p>这是人物。做的比说的多，低调如此，也不去惹是非。用德艺双馨形容不为过。</p>\n<blockquote>\n<p>Node 还有一个好处是 UI 做的好，比如 pm2，比如调试器，毕竟是前端，但这些都不是杀手级的卖点呀。我不是挑语言的开发者。</p>\n</blockquote>\n<p>Node 和 UI有关系么？呵呵呵</p>\n<blockquote>\n<p>Node 对我属于一个可用可不用位置。不过相信牛逼的你肯定可以玩转 Node。加油吧少年。我对Node新人的建议是玩一玩可以，</p>\n</blockquote>\n<p>没用过，就别瞎逼逼。</p>\n<p>js已经横跨3端，pc/h5，移动端（hybrid和组件化），pc client（nw.js和electron，atom和vscode体验还不错）</p>\n<p>Node补足了js服务端的补足，比如io，比如过于依赖浏览器。</p>\n<ul>\n<li>1）初衷，server端，不想成了前端开发的基础设施</li>\n<li>2）命令行辅助工具，甚至可以是运维</li>\n<li>3）移动端：cordova，pc端：nw.js和electron</li>\n<li>4）组件化，构建，代理</li>\n<li>5）架构，前后端分离、api proxy</li>\n<li>6）性能优化、反爬虫与爬虫</li>\n<li>\n<ol>\n<li>全栈最便捷之路</li>\n</ol>\n</li>\n</ul>\n<blockquote>\n<p>不过要早点转 Go，因为 Node 并没有什么突出的优势。</p>\n</blockquote>\n<p>Go在服务器端，并发模型上确实很好。做后端是极好的选型。但在前后端分离或者单体应用里，真的合适么？</p>\n<p>前面说了，性能并不是继续选型的唯一因素，不然ror那些牛人早转了。我一直的看法是前端离不开node，api层node有优势，io密集和脚本动态，做api组装聚合类的非常合适。对于后端服务，Node也是可以的，不过这时的node和go是一样的，尤其是上了微服务架构，服务是独立的，和语言无关，按照其特性选就好了，何必扯一些没用的。</p>\n<p>最后说一下Node全栈</p>\n<p>每次演讲我会都问大家是不是前端，回答“是”的人非常多，我会开玩笑的恭喜大家：“现在的前端就是钱端”，确实，现在前端发展异常的快，而且没有趋向于类比java里ssh框架的那种稳定，所以未来很长一段时间，还会增长，持续混乱，这对前端来说是把双刃剑，一方面有很强的压迫感，不学习就跟不上时代，另一方它也是机遇，能够带给更多机会，包括money。</p>\n<p>大家都疑惑的一个问题是如何在这样巨变的时代能够通过学习来应变，我可以很负责的告诉大家，没有捷径，但通过掌握 Node.js 能够让你降低这个学习曲线而已，毕竟Node.js是大前端的基础设施。大家可以看一下，前端的开发过程，模块化，构建，辅助工具，调优，架构调整，可以说Node.js是无处不在的。</p>\n<p>其实，辅助大前端开发只是Node.js的一个非常无心插柳的衍生功能，通过掌握Node.js能够让你能做的更多、获得的更多，甚至可以说有更多自我实现的快乐，在后面的章节会详细讲解Node.js的具体应用场景好处，这也是本书名字里“更了不起的”要去阐述的内容。</p>\n<p>综上种种，就是我一直提倡以 JavaScript 语言为中心的 <code>Node全栈</code> 概念的缘由，JavaScript 覆盖所有前端，Node.js 擅长做 I/O 密集型的后端，外加辅助开发的各种基础设施，无疑是工作、学习和成为快速掌握全栈技术最好的途径。你会的越多，你能做的就更多，你的人生也将会有不一样的精彩篇章。</p>\n<h1>补充</h1>\n<h2>没有领袖？</h2>\n<p>笑死了，根本就是外行，Node的接力棒是 TJ 和 sindresorhus ？ryan走了， Isaac Schlueter接✋的好么，然后是TJ Fontaine。之后闹出了iojs分裂问题，后来促使joyent不得不妥协，成立Node基金会。\n现在是纯社区玩法，背后是Node基金会。</p>\n<p>可以说，任何人离开都不会有特别大影响。铁打的营盘流水的兵，而已。</p>\n<p>TJ是想对Node改进的，但Node的负担太重了，现有体系和机制改变不是易事，而且也没有动力促使它改变。很多特性都是意淫的，根本不是Node设计的场景，所以说这些没意义。响马大哥的fibjs就是一个不错的实践，但为什么二者不融合呢？。。。。因为没法真的没法这样做。。。</p>\n<h2>拿 express 和 Rails 对比，是一样东西么？</h2>\n<blockquote>\n<p>我知道不能把 Node 跟 Rails 一起比，因为一个是平台，一个是框架。那我就详细拿 express 和Rails 比吧。express 可以说是提供了一个 RESTful API + MVC 的框架，本身既没有 orm 也没有提供各方面的脚手架（对比 Rails 的 scaffold）也没有提供任何主观性的集成（比如你需要自己搭建测试框架）</p>\n</blockquote>\n<p>进一步暴漏无知。express本身只是内核加了几个实用中间价的微型框架。Rails呢？是一个一站式的顶级Web框架。rails在2005年横空出世，node是2009年产生，exprss是2010年才有，这个比较客观么？</p>\n<p>谬误1:express 可以说是提供了一个 RESTful API + MVC 的框架</p>\n<p>a）谁说express是RESTful API了？</p>\n<p>明显要自己规约才能实现的，这也意淫到express上。。。sinatra呢，beego，Revel，Martini呢？</p>\n<p>express上实现rest可以，但不能这叫。</p>\n<pre class=\"prettyprint\"><code>var express = require(&#x27;express&#x27;);\nvar router = express.Router();\n\nvar $ = require(&#x27;..&#x2F;controllers&#x2F;users_controller&#x27;);\n\n&#x2F;&#x2F; -- custom\n\n&#x2F;**\n * Auto generate RESTful url routes.\n *\n * URL routes:\n *\n *  GET    &#x2F;users[&#x2F;]        =&gt; user.list()\n *  GET    &#x2F;users&#x2F;new       =&gt; user.new()\n *  GET    &#x2F;users&#x2F;:id       =&gt; user.show()\n *  GET    &#x2F;users&#x2F;:id&#x2F;edit  =&gt; user.edit()\n *  POST   &#x2F;users[&#x2F;]        =&gt; user.create()\n *  PATCH  &#x2F;users&#x2F;:id       =&gt; user.update()\n *  DELETE &#x2F;users&#x2F;:id       =&gt; user.destroy()\n *\n *&#x2F;\n\nrouter.get(&#x27;&#x2F;new&#x27;, $.new);  \nrouter.get(&#x27;&#x2F;:id&#x2F;edit&#x27;, $.edit);\n\nrouter.route(&#x27;&#x2F;&#x27;)\n  .get($.list)\n  .post($.create);\n\nrouter.route(&#x27;&#x2F;:id&#x27;)\n  .patch($.update)\n  .get($.show)\n  .delete($.destroy);\n\n\nmodule.exports = router;\n</code></pre><p>b）谁说express是MVC了？</p>\n<p>express目录有router和view就算mvc了？呵呵，看看rails，thinkjs，eggjs行么？</p>\n<pre class=\"prettyprint\"><code>├── app.js\n├── bin\n│   └── www\n├── package.json\n├── public\n│   ├── images\n│   ├── javascripts\n│   └── stylesheets\n│       └── style.css\n├── routes\n│   ├── index.js\n│   └── users.js\n└── views\n    ├── error.jade\n    ├── index.jade\n    └── layout.jade\n\n7 directories, 9 files\n</code></pre><p>c）谁说express是和rails一样的框架了？</p>\n<p>你可以这也理解express只是内核（插件机制） + 几个常用插件。是一个麻雀虽小，五脏俱全的微型框架。一个连基本约定，orm，脚手架，migrate都没有的框架也算框架？</p>\n<p>express不会直接使用的。大部分情况都是要自己封装的，如果说直接拿express-generator做事儿，做分析的，那真是用浅尝辄止形容不为过。</p>\n<p>d）说express不如rails</p>\n<p>确实不如，本来就不是一样的东西。ruby诞生自93年，rails诞生2005年，node和express呢？</p>\n<p>起点不一样，比较有意义么？</p>\n<h2>Node哲学 与 Left-pad事件始末，真了解？</h2>\n<blockquote>\n<p>Node 社区的哲学是可以把 left pad 作为一个包，这看起来真的很傻。</p>\n</blockquote>\n<p>明明不知道事件始末就乱发表意见，是否得当？是够傻的。</p>\n<p>2016年3月份，kik是Azer写的模块，但Kik同时是手机通信录的社交软件，所以这个社交软件上就无耻的直接说让Azer把kik名字给他们，Azer不同意，他们就拿律师函恐吓，并让npm妥协，所以npm就妥协了</p>\n<p>Azer一怒之下将自己在 npm 上的 273 个封包全部撤下，其中就包括 left-pad 封包。一石激起千层浪，依赖 left-pad 的上千个项目包括 babel 和 react-native 瞬间崩溃。大量开发者看着自己项目构建失败，顿时被吓尿。</p>\n<p>观点</p>\n<ul>\n<li>\n<p>1）就没见过这么傻逼的公司，一个红包就能解决的事儿，非要用强权，如果对方在改模块上耗费心血少的话，转给你也是可以商量的。</p>\n</li>\n<li>\n<p>2）11行代码要不要封装成一个包？</p>\n</li>\n</ul>\n<blockquote>\n<p>sindresorhus: Containing complexity is not about putting everything in one-line functions/modules.</p>\n</blockquote>\n<p>社区一致认可的结论：你的模块必须含有一定的复杂性，不然就没啥意义了。</p>\n<ul>\n<li>3）npm上那么多个模块，大多数都是无意义的吧？</li>\n</ul>\n<p>从我开始讲<a href=\"https://github.com/i5ting/nodejs-fullstack\">Node.js全栈</a>大约是3月份，那是npm上是25.6万个吧，截止到2017年3月是45万个，我想说的是那个包仓库都是有好有坏，按照80/20原则，数量是也是相当可观的。总比那些某些语言连包管理机制都不完善的要强太多了吧！</p>\n<ul>\n<li>4）<a href=\"http://blog.npmjs.org/post/141905368000/changes-to-npms-unpublish-policy\">迫使npm调整了撤销策略</a>，模块一旦发布，24小时之后就不让撤销了</li>\n</ul>\n<blockquote>\n<p>If the version is less than 24 hours old, you can unpublish it. The package will be completely removed from the registry.</p>\n</blockquote>\n<h2>这世界是完美的？</h2>\n<pre class=\"prettyprint\"><code>没用过别逼逼我不同意，我在做新的项目之前仔细对比了 Node Web 框架与其他框架，发现 Node 的上述问题，才使用了别的。\n我不认为我一定要用过之后再来逼逼。\n你也是做过项目的，知道如果一个项目做毁了会有多大损失，我不会为了来逼逼而去做毁一个项目。\n如果你技术一般，我建议你先别用 Node，因为会让你的技术更一般。\n如果你技术很牛，我不需要建议你什么，你牛你先说。\n</code></pre><p>没用过就是没用过，很多精髓的东西如果停留在表面，是不是太肤浅了？哪个框架是完美的？了解敏捷么？敏捷的基础认知是什么？</p>\n<p>从上面那express和rails比，从对express是rest+mvc的描述，暴漏对node了解太浅。如果说想黑node，我再帮你补二刀，早年robbin范凯，一直在黑node的回调地狱，可是又如何呢？该有多人用还是有多少人用</p>\n<p>有种你别装，装了就别瞎比比，既想当婊子，又想立牌坊吗？</p>\n<p>至于项目能否做成功，我并不认为是技术的问题。更多的是你对技术的熟练程度，哪个熟悉就用哪个，你哪个自己不熟悉的，做毁了，然后来骂框架，骂语言？这也是神逻辑啊。</p>\n<p>狼叔经常说：“少抱怨，多思考，未来更美好”，适用于所有人。</p>\n<h2>人员参差不齐要说人员参差不齐， Node 社区说第二，有哪个敢说第一？</h2>\n<pre class=\"prettyprint\"><code>PHP 好歹也是专注 Web 后台。Node 可笑的地方在于一群前端以为自己会后端就来写 Web 后台。我没有数据支持，但是我就是这么认为的。\nJava 后台的新人也是第一天就会专注于后台方面的学习。\n当然这并不能作为你不使用 Node 的原因，如果你是大神，你不会在乎这个社区有多少小白的。但是我前面也说了，我关注的大神都从 Node 社区走了啊。我为什么还要进 Node 社区……\n阿里的苏千我在阿里的时候也有向他请教 Node 方面的知识，我从未否认他们的贡献，不过我并不会因此捧 Node。\n</code></pre><p>PHP专注于Web 后台，我估计看了这话，鸟哥会哭的很伤心的。Node的人不是可笑，是有追求，慢慢写着写着就在成长。</p>\n<p>Java 后台的新人也是第一天就会专注于后台方面的学习？呵呵，没学Java么？去看看core java吧，上来学后台，没见过。</p>\n<p>关注的大神都从 Node 社区走了，这话更扯淡。哪个社区不是这样的？不同年龄，职位，人生阶段，关注点会不一样的。比如严清zensh就从node转了go，人家职位也不一样了。再有说话不要用“都”，我举个例子朴灵，<a href=\"https://cnodejs.org/user/JacksonTian%EF%BC%8C%E5%A4%A7%E5%AE%B6%E5%8E%BB%E7%9C%8B%E7%9C%8B%E4%BB%96%E7%9A%84%E6%9C%80%E8%BF%91%E5%8F%82%E4%B8%8E%E7%9A%84%E8%AF%9D%E9%A2%98%EF%BC%8C10%E5%A4%A9%E5%89%8D%E7%9A%84%E3%80%82https://cnodejs.org/topic/5a20be0a110a338547d6e371#5a24c72b9178b0a14ac01e1b\">https://cnodejs.org/user/JacksonTian，大家去看看他的最近参与的话题，10天前的。https://cnodejs.org/topic/5a20be0a110a338547d6e371#5a24c72b9178b0a14ac01e1b</a></p>\n<p>最后，再说一件事儿，别老贴金，进了阿里不代表什么，马云说了，三年以上才算阿里人，才有阿里味。向玉伯，寒冬，苏千，朴灵，天猪等大大们致敬。</p>\n<h2>Hold 不住？</h2>\n<blockquote>\n<p>Node 呢，请问我该用什么数据库？用什么 ORM？用什么模板语言？用什么做后台任务？如何监控内存？如何分析日志？如何做分布式？如何做安全？有些人看说用 Node 做业务速度快，Node 的框架就做那么点低层次的封装，能不快吗？你把各种中间件加完试试？每个领域都要自己去找最佳实践，然后自己集成起来。</p>\n</blockquote>\n<p>先不论对node和express等理解错误的问题。</p>\n<p>先看狼叔之前的回复 <a href=\"https://www.zhihu.com/question/263855387/answer/273769595\">https://www.zhihu.com/question/263855387/answer/273769595</a></p>\n<p>一般，后端开发指的是 <code>Web</code> 应用开发中和视图渲染无关的部分，但现在架构升级，<code>Node</code> 承担了前后端分离重任之后，有了更多玩法。从带视图的传统 <code>Web应用</code> 和 <code>面向Api接口应用</code>，到通过 <code>RPC</code> 调用封装对数据库的操作，到提供前端 <code>Api</code> 代理和网关，服务组装等，统称为后端开发，不再是以往只有和数据库打交道的部分才算后端，这样，就可以让前端工程师对开发过程可控，更好的进行调优和性能优化。</p>\n<p>对Node.js来说，一直没有在后端取得其合理的占有率。原因很简单</p>\n<ul>\n<li>\n<p>1）利益分配，已有实现大多是Java或者其他语言，基本是没法撼动的，重写的成本是巨大的，另外，如果用Node写了，那么那些写Java的人怎么办？抢人饭碗，这是要拼命的。</p>\n</li>\n<li>\n<p>2）Node相对年轻，大家对Node的理解不够，回调和异步流程控制略麻烦，很多架构师都不愿意花时间去学习。尽管在Web应用部分处理起来非常简单高效，但在遇到问题时并不容易排查定位，对开发者水平要求略高。</p>\n</li>\n<li>\n<p>3）开发者技能单一，很多是从前端转过来的，对数据库，架构方面知识欠缺，对系统设计也知之不多，这是很危险的，有种麻杆打狼两头害怕的感觉。</p>\n</li>\n<li>\n<p>4）Node在科普、培训、布道等方面做的并不好，国外使用的非常多，国内却很少人知道，不如某些语言做得好。</p>\n</li>\n</ul>\n<p>了不起是个不能随便说的词儿，对于 Node.js 来说，简化并发编程，用了不起来形容并不过分，在2009年横空出世时，确实是独一无二的。但在今天，已经8岁的 Node.js 有了更多、更为广泛的应用场景，它已经远远大于当初设计时的初衷了，我觉得用更了不起来形容已经不过分了！</p>\n<p>你这个问题，很明显暴漏了自己的问题就是上面的原因之3。</p>\n<blockquote>\n<p>开发者技能单一，很多是从前端转过来的，对数据库，架构方面知识欠缺，对系统设计也知之不多，这是很危险的，有种麻杆打狼两头害怕的感觉。</p>\n</blockquote>\n<p>不懂架构，不懂数据库，还没有明白人带，那你用啥框架，语言能好呢？</p>\n<ul>\n<li>1）复用已有基础设施，很明显比自己造轮子好。别动不动就java已死，xx已死的，冰冻三尺非一日之寒</li>\n<li>2）微服务架构下，你需要多复杂？</li>\n</ul>\n<p>不懂不可怕，别装懂。</p>\n<h2>UI 是 User Inferface，意思是 Node 社区做的工具的外观（UI）都很漂亮。</h2>\n<blockquote>\n<p>pm2 的 UI（命令行界面）我就很喜欢，Node 内容 Chrome 调试（界面）我也很喜欢，这是 UI，我不是说 GUI。程序员之间说 UI 难道不是既包括 GUI 又包括 CLI 吗？这只是对于术语的误解而已，不重要。</p>\n</blockquote>\n<p>各位看官自己判断这句话吧。</p>\n<h2>所以 NodeJS 社区很明智，多多模仿其他成熟框架是对的。但我直接去看你模仿的框架就好。？</h2>\n<p>举例，我想学日语，结果发现日语里有汉语的影子，于是我去学了汉语？是这逻辑么？</p>\n<p>水是原子组成的，干嘛喝水呢？去喝原子啊，反正有很多途径。。。</p>\n<h2>JS 全栈</h2>\n<blockquote>\n<p>我不知道这有什么意义？为了全栈而全栈？Java 二十年前也有一样的口号，然后呢？而且 JS 现在已经很奇怪了。</p>\n</blockquote>\n<p>目前看js是最容易实现全栈的途径，没有之一。我很喜欢ror，但同时学2种还是略难。其他就更不要说了。Java是跨平台，能和JS一样么？你真的了解从applet到awt到swing到他们衰亡的历史么？不见得吧，说话还是要有理有据的。</p>\n<p>全栈是信仰，是一种积极的人生态度。何谓为了全栈而全栈?我看到的更多的是大家积极的学习，努力的向提高成长。在技术变化如此快的今天，我们不是更该如此么？我尊重每一个有全栈信仰的人，我也祝福你们，未来是你们的。</p>\n<p>关于语言他回复的2个点</p>\n<ul>\n<li>我对Node新人的建议是玩一玩可以，不过要早点转 Go，因为 Node 并没有什么突出的优势。</li>\n<li>我宁愿用 Java 都不会用 Node.js，除非工资特别高</li>\n</ul>\n<p>一会扯go，一会扯java，难道对这门语言很熟悉的？还是纯粹为了挑起语言战争？还是为了培训机构站台？</p>\n<p>大家姑妄言之，姑妄笑之就好，别认真，认真你就输了</p>\n<p>朴大说过：“为什么非要尝试去说服傻逼”，可怜之人必有可恨之处，但不容许有人黑我大Node。</p>\n</div>",
+      "title": "狼叔回复的《Node相比传统服务端技术栈好在哪里？》",
+      "last_reply_at": "2019-04-29T01:45:12.311Z",
+      "good": true,
+      "top": false,
+      "reply_count": 29,
+      "visit_count": 10077,
+      "create_at": "2017-12-14T14:23:35.819Z",
+      "author": {
+        "loginname": "i5ting",
+        "avatar_url": "https://avatars3.githubusercontent.com/u/3118295?v=4&s=120"
+      }
+    },
+    {
+      "id": "5b7f8a2c944cb8340c27e335",
+      "author_id": "5b72f6727271129a2f32a97f",
+      "tab": "share",
+      "content": "<div class=\"markdown-text\"><p>2018年Nodejs Koa2 Typescript Eggjs Vue2最新教程资源网盘分享：\n<a href=\"https://pan.baidu.com/s/1O2C6TolDzYpMnKIfQaaqog\">Nodejs视频教程</a>\n<a href=\"https://pan.baidu.com/s/1KNaA97kGwNhavch5rP_G7w\">Koa2教程</a>\n<a href=\"https://pan.baidu.com/s/17jllW0igIOWjM3YCvWS-bg\">6月Typescript教程</a>\n<a href=\"https://pan.baidu.com/s/1a8-RY-aBm3YkH2ZqJKmztg\">8月Eggjs视频教程</a>\n需要更多学习资源可留下邮箱，有的就分享</p>\n</div>",
+      "title": "2018年Nodejs Koa2 Typescript Eggjs Vue2最新教程资源网盘分享",
+      "last_reply_at": "2019-04-29T01:29:19.426Z",
+      "good": false,
+      "top": false,
+      "reply_count": 42,
+      "visit_count": 7072,
+      "create_at": "2018-08-24T04:31:40.973Z",
+      "author": {
+        "loginname": "chengl123",
+        "avatar_url": "https://avatars3.githubusercontent.com/u/42384077?v=4&s=120"
+      }
+    },
+    {
+      "id": "5cc41656a86ae80ce64b4aef",
+      "author_id": "5cc414eea86ae80ce64b4ae1",
+      "tab": "share",
+      "content": "<div class=\"markdown-text\"><p>一个vue框架下的在线演示稿编辑器和阅读器, 使用非常的简单。\n在线demo:\n在线演示文稿地址：<a href=\"https://www.cxzweb.club/#/light-show/read\">https://www.cxzweb.club/#/light-show/read</a>\n编辑器地址： <a href=\"https://www.cxzweb.club/#/light-show/edit\">https://www.cxzweb.club/#/light-show/edit</a>\nGitHub地址：<a href=\"https://github.com/Cxz-web/light-show\">https://github.com/Cxz-web/light-show</a></p>\n<p>有小伙伴一起体验交流？ 后续会继续优化交互和完善更多的功能。</p>\n</div>",
+      "title": "一个在线演示文稿工具， O(∩_∩)O，体验一波？",
+      "last_reply_at": "2019-04-29T00:43:02.994Z",
+      "good": false,
+      "top": false,
+      "reply_count": 4,
+      "visit_count": 635,
+      "create_at": "2019-04-27T08:44:06.151Z",
+      "author": {
+        "loginname": "Cxz-web",
+        "avatar_url": "https://avatars1.githubusercontent.com/u/39953676?v=4&s=120"
+      }
+    },
+    {
+      "id": "5cc5c9ab37faec0ce1d07c49",
+      "author_id": "5cc5270637faec0ce1d0785c",
+      "tab": "share",
+      "content": "<div class=\"markdown-text\"><h1><a href=\"https://xorpay.com\">XorPay 支付平台介绍</a></h1>\n<blockquote>\n<p><a href=\"https://xorpay.com\">XorPay</a>  定位为个人 / 独立开发者 / 个体户 / 小微企业提供安全、简单、稳定、正规的收款服务。目前支持 支付宝当面付 和 微信 NATIVE / JSAPI / 收银台 / 小程序 等支付方式，资金由支付宝或微信官方T+1结算自动下发个人银行卡。(支付宝为即时到账)</p>\n</blockquote>\n<h3>为什么开发 XorPay 支付平台</h3>\n<blockquote>\n<p>我们知道作为独立开发者产品需要收款是多么麻烦，注册公司维护成本太高，市面上各种收款工具要么手续费太高，要么到账很慢，体验很不好。于是我们开发了<a href=\"https://xorpay.com\">「XorPay 支付平台」</a> 用来解决这个问题，希望可以帮助到每个默默前行的独立开发者。</p>\n</blockquote>\n<h3>支持接口</h3>\n<ul>\n<li><a href=\"https://xorpay.com/doc/sign.html\">签名算法</a></li>\n<li><a href=\"https://xorpay.com/doc/alipay.html\">支付宝当面付</a></li>\n<li><a href=\"https://xorpay.com/doc/native.html\">NATIVE 扫码支付</a></li>\n<li><a href=\"https://xorpay.com/doc/cashier.html\">收银台支付</a></li>\n<li><a href=\"https://xorpay.com/doc/mini.html\">小程序支付</a></li>\n<li><a href=\"https://xorpay.com/doc/jsapi.html\">JSAPI 网页支付</a></li>\n<li><a href=\"https://xorpay.com/doc/query.html\">订单状态查询</a></li>\n<li><a href=\"https://xorpay.com/doc/notify.html\">回调通知</a></li>\n<li><a href=\"https://xorpay.com/doc/openid.html\">获取 OPENID</a></li>\n</ul>\n<h3>链接</h3>\n<ul>\n<li><a href=\"https://xorpay.com\">XorPay 官网</a></li>\n<li><a href=\"https://xorpay.com/doc\">API 文档</a></li>\n<li><a href=\"https://github.com/xorpay\">Github 仓库</a></li>\n</ul>\n<p>欢迎提问交流</p>\n</div>",
+      "title": "XorPay 个人支付平台【支持个人微信支付和支付宝支付接口】",
+      "last_reply_at": "2019-04-28T15:41:31.251Z",
+      "good": false,
+      "top": false,
+      "reply_count": 0,
+      "visit_count": 144,
+      "create_at": "2019-04-28T15:41:31.251Z",
+      "author": {
+        "loginname": "xorpay",
+        "avatar_url": "https://avatars1.githubusercontent.com/u/48086955?v=4&s=120"
+      }
+    },
+    {
+      "id": "5cc3ab1ca86ae80ce64b48eb",
+      "author_id": "580339330bab808265185e45",
+      "tab": "share",
+      "content": "<div class=\"markdown-text\"><p>源码：<a href=\"https://github.com/wtfjun/js-coi\">git仓库</a> 欢迎star &amp; fork ～～</p>\n<p>做过校验需求的小伙伴们都知道，校验其实是个麻烦事。</p>\n<p>规则多，需要校验的字段多，都给我们前端带来巨大的工作量。</p>\n<p>一个不小心，代码里就出现了不少<code>if else</code>等不可维护的代码。</p>\n<p>因此，我觉得一个团队或者是一个项目，需要一个校验工具，简化我们的工作。</p>\n<p>首先，参考一下 Joi。只看这一小段代码：</p>\n<p><code>Joi.string().alphanum().min(3).max(30).required()</code></p>\n<p>我希望我的校验工具Coi也是链式调用，链式调用可以极大的简化代码。</p>\n<p>校验呢，其实主要就3个入参：需要校验的数据，提示的错误信息，校验规则。</p>\n<p>哎 直接把代码贴出来吧，反正就一百行，一目了然：</p>\n<pre class=\"prettyprint\"><code>export default class Coi {\n    constructor(prop) {\n        this.input = prop\n        this.errorMessage = &#x27;通过校验&#x27; &#x2F;&#x2F; 错误信息\n        this.pass = true &#x2F;&#x2F; 校验是否通过\n    }\n\n    &#x2F;&#x2F; 数据输入\n    data(input) {\n        if (!this.pass) return this\n\n        this.input = input\n        return this\n    }\n\n    &#x2F;&#x2F; 必填，不能为空\n    isRequired(message) {\n        if (!this.pass) return this\n\n        if (\n            &#x2F;^\\s*$&#x2F;g.test(this.input) ||\n            this.input === null ||\n            this.input === undefined\n        ) {\n            this.errorMessage = message\n            this.pass = false\n        }\n        return this\n    }\n\n    &#x2F;&#x2F; 最小长度\n    minLength(length, message) {\n        if (!this.pass) return this\n\n        if (this.input.length &lt; length) {\n            this.errorMessage = message\n            this.pass = false\n        }\n        return this\n    }\n\n    &#x2F;&#x2F; 最大长度\n    maxLength(length, message) {\n        if (!this.pass) return this\n\n        if (this.input.length &gt; length) {\n            this.errorMessage = message\n            this.pass = false\n        }\n        return this\n    }\n\n    &#x2F;&#x2F; 需要的格式 number: 数字, letter: 字母, chinese: 中文\n    requireFormat(formatArray, message) {\n        if (!this.pass) return this\n        let formatMap = {\n            number: 0,\n            letter: 0,\n            chinese: 0\n        }\n\n        Object.keys(formatMap).forEach(key =&gt; {\n            if (formatArray.includes(key)) formatMap[key] = 1\n        })\n\n        let formatReg = new RegExp(\n            &#96;^[${formatMap.number ? &#x27;0-9&#x27; : &#x27;&#x27;}${\n                formatMap.letter ? &#x27;a-zA-Z&#x27; : &#x27;&#x27;\n            }${formatMap.chinese ? &#x27;\\u4e00-\\u9fa5&#x27; : &#x27;&#x27;}]*$&#96;\n        )\n\n        if (!formatReg.test(this.input)) {\n            this.errorMessage = message\n            this.pass = false\n        }\n        return this\n    }\n\n    &#x2F;&#x2F; 邮箱校验\n    isEmail(message) {\n        if (!this.pass) return this\n\n        const emailReg = &#x2F;^[a-z0-9]+([._\\\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$&#x2F;\n        if (!emailReg.test(this.input)) {\n            this.errorMessage = message\n            this.pass = false\n        }\n        return this\n    }\n\n    &#x2F;&#x2F; ulr校验\n    isURL(message) {\n        if (!this.pass) return this\n\n        const urlReg = new RegExp(\n            &#x27;^(?!mailto:)(?:(?:http|https|ftp):&#x2F;&#x2F;|&#x2F;&#x2F;)(?:\\\\S+(?::\\\\S*)?@)?(?:(?:(?:[1-9]\\\\d?|1\\\\d\\\\d|2[01]\\\\d|22[0-3])(?:\\\\.(?:1?\\\\d{1,2}|2[0-4]\\\\d|25[0-5])){2}(?:\\\\.(?:[0-9]\\\\d?|1\\\\d\\\\d|2[0-4]\\\\d|25[0-4]))|(?:(?:[a-z\\\\u00a1-\\\\uffff0-9]+-?)*[a-z\\\\u00a1-\\\\uffff0-9]+)(?:\\\\.(?:[a-z\\\\u00a1-\\\\uffff0-9]+-?)*[a-z\\\\u00a1-\\\\uffff0-9]+)*(?:\\\\.(?:[a-z\\\\u00a1-\\\\uffff]{2,})))|localhost)(?::\\\\d{2,5})?(?:(&#x2F;|\\\\?|#)[^\\\\s]*)?$&#x27;,\n            &#x27;i&#x27;\n        )\n        if (!urlReg.test(this.input)) {\n            this.errorMessage = message\n            this.pass = false\n        }\n        return this\n    }\n\n    &#x2F;&#x2F; 自定义正则校验\n    requireRegexp(reg, message) {\n        if (!this.pass) return this\n\n        if (!reg.test(this.input)) {\n            this.errorMessage = message\n            this.pass = false\n        }\n        return this\n    }\n}\n</code></pre><p>使用姿势如下：</p>\n<pre class=\"prettyprint\"><code>import Coi from &#x27;js-coi&#x27;\n\nconst validCoi = new Coi()\nvalidCoi\n    .data(&#x27;1234&#x27;)\n    .isRequired(&#x27;id不能为空&#x27;)\n    .minLength(3, &#x27;id不能少于3位&#x27;)\n    .maxLength(5, &#x27;id不能多于5位&#x27;)\n\n    .data(&#x27;1234@qq.&#x27;)\n    .isRequired(&#x27;邮箱不能为空&#x27;)\n    .isEmail(&#x27;邮箱格式不正确&#x27;)\n\n    .data(&#x27;http:dwd&#x27;)\n    .isRequired(&#x27;url不能为空&#x27;)\n    .isUrl(&#x27;url格式不正确&#x27;)\n\nif (!validCoi.pass) {\n    this.$message.error(validCoi.errorMessage)\n    return\n}\n</code></pre><p>当然你只校验一个字段的话也可以这么使用：</p>\n<pre class=\"prettyprint\"><code>import Coi from &#x27;js-coi&#x27;\n\nconst idCoi = new Coi(&#x27;1234&#x27;)\nidCoi\n    .isRequired(&#x27;id不能为空&#x27;)\n    .minLength(3, &#x27;id不能少于3位&#x27;)\n    .maxLength(5, &#x27;id不能多于5位&#x27;)\n    .isEmail(&#x27;id邮箱格式不正确&#x27;)\n    .isUrl(&#x27;id格式不正确&#x27;)\n    .requireFormat([&#x27;number&#x27;, &#x27;letter&#x27;, &#x27;chinese&#x27;], &#x27;id格式不正确&#x27;)\n    .requireRegexp(&#x2F;012345&#x2F;, &#x27;id格式不正确&#x27;)\n\nif (!idCoi.pass) {\n    this.$message.error(idCoi.errorMessage)\n    return\n}\n</code></pre></div>",
+      "title": "一百行js代码实现一个校验工具",
+      "last_reply_at": "2019-04-28T15:01:31.717Z",
+      "good": false,
+      "top": false,
+      "reply_count": 2,
+      "visit_count": 307,
+      "create_at": "2019-04-27T01:06:36.289Z",
+      "author": {
+        "loginname": "wtfjun",
+        "avatar_url": "https://avatars1.githubusercontent.com/u/17716658?v=4&s=120"
+      }
+    },
+    {
+      "id": "5c1c9ab676c4964062a1c3e1",
+      "author_id": "5372465f3c72496d41009adc",
+      "tab": "share",
+      "content": "<div class=\"markdown-text\"><p>《Node.js开发实战》原书排名并发编程类榜首。有读者坐火车十小时一口气读完，欲罢不能！好不好，试读就知道。</p>\n<p><strong>62页试读下载</strong>：<a href=\"https://pan.baidu.com/s/1x3c35AmJV4rcEj_W3A1WGg\">https://pan.baidu.com/s/1x3c35AmJV4rcEj_W3A1WGg</a></p>\n<p><strong>读者热评</strong>：</p>\n<ul>\n<li>看的欲罢不能啊，火车上来回十个小时，把整体内容浏览了一遍，然后现在精读到第二张，发现学到了好多东西，好书。\n——京东读者 小***土</li>\n</ul>\n<ul>\n<li>粗略的看了一遍,准备细读一下,很多地方给详细讲了es6的新特性,包括let、const、还有class和promise,还讲解了async和await,反正不太需要有es6基础也能看得懂,不过都要2019了,其实这些应该是前端必备技能了吧.书写的很好,循序渐进,感觉前端在没搞懂node之前,其实并不需要去学py啊php啊之类的,语言毕竟只是工具,利用工具做事情的理念是想通的.(最后这句说给我自己的)\n——豆瓣读者 陈小土</li>\n</ul>\n<ul>\n<li>很不错的一本关于node的实战书！\n——京东读者 f***8</li>\n</ul>\n<ul>\n<li>内容由浅入深，引人入胜。\n——京东读者 d***t</li>\n</ul>\n<p><strong>京东有售</strong>：<a href=\"https://item.jd.com/12460185.html\">https://item.jd.com/12460185.html</a></p>\n<p><img src=\"//static.cnodejs.org/Finp2H7di-Equ_yMWsjJY6hxYGkh\" alt=\"WechatIMG148 copy.jpg\"></p>\n</div>",
+      "title": "新书《Node.js开发实战》抢鲜试读",
+      "last_reply_at": "2019-04-28T14:04:12.383Z",
+      "good": false,
+      "top": false,
+      "reply_count": 18,
+      "visit_count": 3606,
+      "create_at": "2018-12-21T07:48:06.079Z",
+      "author": {
+        "loginname": "meikidd",
+        "avatar_url": "https://avatars0.githubusercontent.com/u/376338?v=4&s=120"
+      }
+    },
+    {
+      "id": "5cc2a91ea86ae80ce64b4557",
+      "author_id": "580c1addc3fead57507172a9",
+      "tab": "ask",
+      "content": "<div class=\"markdown-text\"><p>对于微服务，go有etcd，node使用什么搭建微服务呢？在网上看到的文章都提到了seneca 大家一般使用什么呢？</p>\n</div>",
+      "title": "node微服务使用什么框架？",
+      "last_reply_at": "2019-04-28T11:12:54.932Z",
+      "good": false,
+      "top": false,
+      "reply_count": 18,
+      "visit_count": 1229,
+      "create_at": "2019-04-26T06:45:50.879Z",
+      "author": {
+        "loginname": "jowang2016",
+        "avatar_url": "https://avatars1.githubusercontent.com/u/18169317?v=4&s=120"
+      }
+    },
+    {
+      "id": "5cc584dba86ae80ce64b51ac",
+      "author_id": "59f007c928137001719a81e9",
+      "tab": "ask",
+      "content": "<div class=\"markdown-text\"><p><img src=\"//static.cnodejs.org/FokXQcwJAN6D5nQj0qyPVmlwo-dC\" alt=\"QQ图片20190428184631.png\"></p>\n<p>谷歌里面 查看 vue .webpack   ?为什么 看不到 html 内容 .只能看到  js部分  ??</p>\n<p>如图所示 .这是以前写的一个项目 源码丢了.现在要重写 ,突然发现 看不了html 的内容 .</p>\n<p>#@</p>\n</div>",
+      "title": "谷歌里面 查看 vue .webpack   ?为什么 看不到 html 内容 .只能看到  js部分?",
+      "last_reply_at": "2019-04-28T10:47:55.637Z",
+      "good": false,
+      "top": false,
+      "reply_count": 0,
+      "visit_count": 141,
+      "create_at": "2019-04-28T10:47:55.637Z",
+      "author": {
+        "loginname": "1016716110",
+        "avatar_url": "https://avatars2.githubusercontent.com/u/30174358?v=4&s=120"
+      }
+    },
+    {
+      "id": "5cc5036437faec0ce1d076e5",
+      "author_id": "5933d569bce3132e4bb4f8d5",
+      "tab": "ask",
+      "content": "<div class=\"markdown-text\"><p>RT</p>\n<pre class=\"prettyprint language-js\"><code>@Controller(&#x27;cats&#x27;)\nexport default class CatsController {\n\n  constructor(\n    private ctx: Context,\n    private app: Application,\n    private config: EggAppConfig,\n    private service: IService,\n  ) { }\n\n  @Get(&quot;&#x2F;test&quot;)\n  async foo() {\n    return this.service.test.sayHi(&quot;zjl&quot;);\n  }\n\n}\n</code></pre><p>如题，我想把 constructor 干掉</p>\n</div>",
+      "title": "ts 里面 class 不继承,不实现, 能否让 this 提示东西?",
+      "last_reply_at": "2019-04-28T10:19:59.441Z",
+      "good": false,
+      "top": false,
+      "reply_count": 4,
+      "visit_count": 318,
+      "create_at": "2019-04-28T01:35:32.056Z",
+      "author": {
+        "loginname": "yviscool",
+        "avatar_url": "https://avatars2.githubusercontent.com/u/20163909?v=4&s=120"
+      }
+    },
+    {
+      "id": "55d1bd159bdae50c477e6ea1",
+      "author_id": "54914b4161491ead0cc7bee1",
+      "tab": "ask",
+      "content": "<div class=\"markdown-text\"><pre class=\"prettyprint language-javascript\"><code>var mongoose = require(&#x27;mongoose&#x27;);\nvar db = mongoose.createConnection(&#x27;mongodb:&#x2F;&#x2F;xxxxxxxxxxxxxxxxx&#x2F;test&#x27;);\n\ndb.on(&#x27;error&#x27;, function(error) {\n    console.log(error);\n});\n\nvar downloadSchema = new mongoose.Schema({\n    assets :  {type: String},\n    body :  {type: String},\n    tag_name :  {type: String},\n    date :  {type: String},\n});\n\nvar mongooseModel = db.model(&#x27;download&#x27;, downloadSchema);\n\nmongooseModel.find(function(error,result){\n    if(error) {\n        console.log(err);\n    } else {\n        console.log(result); &#x2F;&#x2F; result 为空\n    }\n    db.close();\n});\n</code></pre><p>第一次用mogoose,搞了很久都没搞定,不知道原因出在哪里</p>\n</div>",
+      "title": "mongoose查询不出来数据?",
+      "last_reply_at": "2019-04-28T08:36:31.246Z",
+      "good": false,
+      "top": false,
+      "reply_count": 8,
+      "visit_count": 4400,
+      "create_at": "2015-08-17T10:53:09.960Z",
+      "author": {
+        "loginname": "w88975",
+        "avatar_url": "https://avatars.githubusercontent.com/u/5819351?v=3&s=120"
+      }
+    },
+    {
+      "id": "5cc2745c37faec0ce1d06e67",
+      "author_id": "5b03c9a7000332b81cf821a5",
+      "tab": "ask",
+      "content": "<div class=\"markdown-text\"><p>在V8的性能分析日志中有这个术语，但是这个术语是什么意思呢？</p>\n</div>",
+      "title": "V8，什么是lazy compile？",
+      "last_reply_at": "2019-04-28T08:04:12.256Z",
+      "good": false,
+      "top": false,
+      "reply_count": 1,
+      "visit_count": 494,
+      "create_at": "2019-04-26T03:00:44.346Z",
+      "author": {
+        "loginname": "linxiaoziruo",
+        "avatar_url": "https://avatars3.githubusercontent.com/u/6881273?v=4&s=120"
+      }
+    }
+  ]
+}

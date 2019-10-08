@@ -2,8 +2,13 @@ var firstName = 'Michael';
 var lastName = 'Jackson';
 var year = 1958;
 
+console.log(1);
+
 setTimeout(() => {
-    firstName = "Tom";
+	firstName = "Tom";
+	console.log(2);
 }, 10)
 
-export { firstName, lastName, year };
+console.log(3);
+
+export default { firstName, lastName, year };

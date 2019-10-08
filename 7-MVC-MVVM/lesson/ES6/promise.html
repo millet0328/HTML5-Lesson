@@ -1,34 +1,40 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
 
-<body>
-    <div id="box">
+	<body>
+		<div id="box">
 
-    </div>
-    <script type="text/javascript">
-        let random = new Promise(function(resolve, reject) {
-            var x = Math.random();
-            if (x < 0.5) {
-                resolve('成功 ' + x);
-            } else {
-                reject('失败 ' + x);
-            }
-        });
-        random
-            .then(function(result) {
-                // 成功状态
-                console.log("result:" + result);
-            })
-            .catch(function(error) {
-                // 失败状态
-                console.log("error:" + error);
-            });
-    </script>
-</body>
+		</div>
+		<script type="text/javascript">
+			let x = 0;
+			let random = () => {
+				let promise = new Promise(function(resolve, reject) {
+					setTimeout(() => {
+						x = Math.random();
+						resolve(x);
+					}, 500);
+				})
+				return promise;
+			}
+			random()
+				.then((i) => {
+					console.log('x=' + i);
+					// 计算旋转度数
+					let degree = i * 360;
+					return Promise.resolve(degree);
+					// return new Promise((resolve, reject) => { resolve(degree) })
+				})
+				.then((deg) => {
+					// 执行旋转
+					console.log('度数：' + deg)
+					// box.style.transform = rotate(deg)
+				});
+		</script>
+	</body>
 
 </html>

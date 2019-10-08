@@ -10,32 +10,36 @@
 				height: 200px;
 				background-color: blue;
 				margin: 10px;
+				transform: translate(1000px, 0px) rotate(360deg);
 			}
 
-			.bounce-in-enter-active,
-			.bounce-in-leave-active {
-				animation: bounce 1.5s;
+			.swing-enter-active {
+				animation: swing 5s;
 			}
 
-			@keyframes bounce {
+			.swing-leave-active {
+				animation: swing 5s reverse;
+			}
+
+			@keyframes swing {
 				0% {
-					transform: translateY(0px) translateX(0px) scale(1);
+					transform: translate(0, 0);
 				}
 
 				25% {
-					transform: translateY(300px) translateX(60px) scale(0.9);
+					transform: translate(200px, 400px) rotate(360deg);
 				}
 
 				50% {
-					transform: translateY(400px) translateX(400px) scale(0.7);
+					transform: translate(400px, 0px);
 				}
 
 				75% {
-					transform: translateY(300px) translateX(740px) scale(0.9);
+					transform: translate(600px, 400px) rotate(360deg);
 				}
 
 				100% {
-					transform: translateY(0px) translateX(800px) scale(1);
+					transform: translate(1000px, 0px) rotate(360deg);
 				}
 			}
 		</style>
@@ -43,9 +47,9 @@
 
 	<body>
 		<div id="app">
-			<button type="button" @click="clickHandle">动画过渡</button>
-			<transition name="bounce-in">
-				<div class="box" v-show="show"></div>
+			<button type="button" @click="isShow =!isShow">开始</button>
+			<transition name="swing">
+				<div class="box" v-show="isShow"></div>
 			</transition>
 		</div>
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
@@ -53,12 +57,7 @@
 			new Vue({
 				el: '#app',
 				data: {
-					show: false
-				},
-				methods: {
-					clickHandle: function() {
-						this.show = !this.show;
-					}
+					isShow: false
 				}
 			});
 		</script>

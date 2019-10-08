@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
 
-<body>
-    <script type="text/javascript">
-        function* helloWorldGenerator() {
-            yield 'hello';
-            yield 'world';
-            return 'ending';
-        }
+	<body>
+		<script type="text/javascript">
+			function* helloWorldGenerator() {
+				yield 'hello';
+				yield 'world';
+				return 'ending';
+			}
 
-        var hw = helloWorldGenerator();
-        hw.next()
-        // { value: 'hello', done: false }
+			var hw = helloWorldGenerator();
+			hw.next()
+			// { value: 'hello', done: false }
 
-        hw.next()
-        // { value: 'world', done: false }
+			hw.next()
+			// { value: 'world', done: false }
 
-        hw.next()
-        // { value: 'ending', done: true }
+			hw.next()
+			// { value: 'ending', done: true }
 
-        hw.next()
-        // { value: undefined, done: true }
-    </script>
-</body>
+			hw.next()
+			// { value: undefined, done: true }
+
+		</script>
+	</body>
 
 </html>

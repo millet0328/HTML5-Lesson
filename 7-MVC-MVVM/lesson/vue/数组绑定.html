@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<li v-for="(person,index) in group">
+					{{index+1}}.{{person}}
+					<button @click="editHandle(index)" type="button">修改</button>
+					<button @click="deleteHandle(index)" type="button">删除</button>
+				</li>
+			</ul>
+		</div>
+		<script src="js/vue.js"></script>
+		<script>
+			var app = new Vue({
+				el: "#app",
+				data: {
+					group: ['黄小米', '张艺兴', '鹿晗', '蔡徐坤'],
+				},
+				methods: {
+					deleteHandle: function(i) {
+						this.group.splice(i, 1);
+					},
+					editHandle: function(i) {
+						var val = this.group[i] + '-' + i;
+						this.$set(this.group, i, val);
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

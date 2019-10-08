@@ -12,65 +12,67 @@
 				margin: 10px;
 			}
 
-			.slide-right-enter {
-				transform: translateX(400px);
+			/* 起点状态 */
+			.slideIn-enter {
+				transform: translateX(900px);
 			}
 
-			.slide-right-enter-to {
+			.slideIn-enter-active {
+				transition: all 2s;
+			}
+
+			/* 终点状态 */
+			.slideIn-enter-to {
 				transform: translateX(0px);
 			}
 
-			.slide-right-enter-active {
-				transition: all 0.5s;
-			}
-
-			.slide-left-leave {
-				transform: translateX(0) rotate(0);
+			/* 离开-起点 */
+			.slideOut-leave {
+				transform: translateX(0px) scale(1.2);
 				opacity: 1;
 			}
 
-			.slide-left-leave-to {
-				transform: translateX(400px) rotate(360deg);
-				opacity: 0;
+			.slideOut-leave-active {
+				transition: all 2s;
 			}
 
-			.slide-left-leave-active {
-				transition: all 0.5s;
+			/* 离开-终点 */
+			.slideOut-leave-to {
+				transform: translateX(900px) rotate(360deg) scale(1);
+				opacity: 0;
 			}
 		</style>
 	</head>
 
 	<body>
 		<div id="app">
-			<button @click="clickHandle" type="button">开始</button>
-			<transition name="slide-right">
-				<div v-show="isActive" class="box">
-				</div>
-			</transition>
-
-			<button @click="leaveHandle" type="button">离开</button>
-			<transition name="slide-left">
-				<div v-show="isShow" class="box">
-				</div>
-			</transition>
+			<fieldset>
+				<legend>进入</legend>
+				<p>
+					<button @click="isEnter = !isEnter" type="button">开始</button>
+				</p>
+				<transition name="slideIn">
+					<div class="box" v-show="isEnter"></div>
+				</transition>
+			</fieldset>
+			<fieldset id="">
+				<legend>离开</legend>
+				<p>
+					<button @click="isLeave = !isLeave" type="button">关闭</button>
+				</p>
+				<transition name="slideOut">
+					<div class="box" v-show="isLeave"></div>
+				</transition>
+			</fieldset>
 		</div>
-
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var app = new Vue({
 				el: "#app",
 				data: {
-					isActive: false,
-					isShow: true,
+					isEnter: false,
+					isLeave: false,
 				},
-				methods: {
-					clickHandle: function() {
-						this.isActive = true;
-					},
-					leaveHandle: function() {
-						this.isMove = false;
-					}
-				}
 			})
 		</script>
 	</body>

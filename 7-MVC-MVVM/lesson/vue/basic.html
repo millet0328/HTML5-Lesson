@@ -8,11 +8,16 @@
 
 	<body>
 		<div id="app">
-			<h1 v-if="vip">金牌会员</h1>
-			<div v-if="sex==1">男</div>
-			<div v-else-if="sex==0">女</div>
-			<div v-else>非男非女</div>
-			<h1 v-if="age >= 25">Age: {{ age }}</h1>
+			<h1>等级：
+				<span v-if="vip">金牌会员</span>
+				<!-- <span v-else>普通会员</span> -->
+				<button @click="vip=!vip" type="button">成为会员</button>
+			</h1>
+			<h1>
+				手机：
+				<span v-show="isShow">15863008280</span>
+				<button @click="isShow=true" type="button">显示</button>
+			</h1>
 		</div>
 
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
@@ -20,9 +25,8 @@
 			var vm = new Vue({
 				el: '#app',
 				data: {
-					vip: true,
-					sex: 1,
-					age: 30,
+					vip: false,
+					isShow: false,
 				}
 			})
 		</script>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>作业要求</title>
+</head>
+
+<body>
+    <h3>参照cnode网站使用react做一个demo(尽量将网站内的通用部分组件化):</h3>
+    <h3>功能包括:</h3>
+    <ol>
+        <li>
+            主体的列表部分:(参照截图)
+            <ul>
+                <li>点击不同的tab可以对列表进行过滤</li>
+                <li>点击文章可以跳转到文章详情页面</li>
+            </ul>
+        </li>
+        <li>
+            详情页面 (详情页面不需要最底部的评论部分,参照截图)
+        </li>
+        <li>
+            demo所需数据提供在data.json文件中.数据注释如下
+            <pre>
+            {
+                "id": "文章id",
+                "author_id": "作者id",
+                "tab": "tab类型",
+                "content": "文章内容",
+                "title": "文章标题",
+                "last_reply_at": "最近一次留言的日期",
+                "good": '文章是否为精选',
+                "top": '文章是否置顶',
+                "reply_count": '回复数',
+                "visit_count": '浏览数',
+                "create_at": "文章创建日期",
+                "author": {
+                    "loginname": "作者用户名",
+                    "avatar_url": "作者头像地址"
+                }
+            }
+            </pre>
+        </li>
+    </ol>
+</body>
+
+</html>

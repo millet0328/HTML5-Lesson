@@ -1,191 +1,183 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 
-	<head>
-		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-		<title>表格操作</title>
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/index.css" />
-	</head>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title>表格操作</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+</head>
 
-	<body>
-		<div id="app" class="bg-grey pd20">
-			<div class="table_box pd20 bg-white">
-				<form class="form-inline" action="" method="">
-					<div class="form-group" :class="{'has-error': nameValid || name=='' ? false : true}">
-						<label for="">添加：</label>
-						<input type="text" class="form-control" name="name" v-model.trim="name" placeholder="姓名">
-					</div>
-					<div class="form-group" :class="{'has-error': ageValid || age=='' ? false : true}">
-						<input type="text" class="form-control" name="age" v-model.trim="age" placeholder="年龄">
-					</div>
-					<div class="form-group">
-						<button type="button" @click="addHandle" class="btn btn-info">添加</button>
-					</div>
-					<div class="form-group">
-						<label for="">变色：</label>
-						<button type="button" @click="toggleHandle" :class="{'btn-danger':toggleText=='关闭'}" class="btn btn-info">{{toggleText}}移入变色</button>
-					</div>
-				</form>
-				<br />
-				<!--表格-->
-				<table class="table table-bordered" :class="{'table-hover':toggleText=='关闭'}" id="chart">
-					<thead>
-						<tr>
-							<td>
-								<input type="checkbox" v-model="allChecked" value="" />
-							</td>
-							<td>ID</td>
-							<td>姓名</td>
-							<td>年龄</td>
-							<td>操作</td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr v-for="(item,index) in lists" :class="{info:item.highlight}">
-							<td>
-								<input type="checkbox" name="" v-model="item.checked" id="" value="" />
-							</td>
-							<td>{{item.id}}</td>
-							<td>{{item.name}}</td>
-							<td>{{item.age}}</td>
-							<td>
-								<a @click.prevent="delHandle(index)">删除</a>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<!--尾部操作-->
-				<form class="form-inline" action="" method="">
-					<div class="form-group">
-						<label for="">搜索：</label>
-						<input type="text" class="form-control" v-model.trim="keyword" placeholder="姓名">
-						<button type="button" class="btn btn-info" @click="searchHandle">搜索</button>
-					</div>
-					<div class="form-group">
-						<label for="">排序：</label>
-						<button type="button" class="btn btn-info" @click="sortHandle">年龄从小到大排序</button>
-					</div>
-				</form>
-			</div>
+<body>
+	<div id="app" class="bg-grey pd20">
+		<div class="table_box pd20 bg-white">
+			<form class="form-inline" action="" method="">
+				<div class="form-group" :class="{'has-error': nameValid || name=='' ? false : true}">
+					<label for="">添加：</label>
+					<input type="text" class="form-control" name="name" v-model.trim="name" placeholder="姓名">
+				</div>
+				<div class="form-group" :class="{'has-error': ageValid || age=='' ? false : true}">
+					<input type="text" class="form-control" name="age" v-model.trim="age" placeholder="年龄">
+				</div>
+				<div class="form-group">
+					<button type="button" @click="addHandle" class="btn btn-info">添加</button>
+				</div>
+				<div class="form-group">
+					<label for="">变色：</label>
+					<button type="button" @click="isOpen = ! isOpen" :class="{'btn-danger':isOpen}"
+						class="btn btn-info">{{isOpen?"关闭":"开启"}}移入变色</button>
+				</div>
+			</form>
+			<br />
+			<!--表格-->
+			<table class="table table-bordered" :class="{'table-hover':isOpen}" id="chart">
+				<thead>
+					<tr>
+						<td>
+							<input type="checkbox" v-model="allChecked" />
+						</td>
+						<td>ID</td>
+						<td>姓名</td>
+						<td>年龄</td>
+						<td>操作</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(item,index) in lists" :class="{info:item.highlight}">
+						<td>
+							<input type="checkbox" name="" v-model="item.checked" id="" value="" />
+						</td>
+						<td>{{item.id}}</td>
+						<td>{{item.name}}</td>
+						<td>{{item.age}}</td>
+						<td>
+							<a @click.prevent="delHandle(index)">删除</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!--尾部操作-->
+			<form class="form-inline" action="" method="">
+				<div class="form-group">
+					<label for="">搜索：</label>
+					<input type="text" class="form-control" v-model.trim="keyword" placeholder="姓名">
+					<button type="button" class="btn btn-info" @click="searchHandle">搜索</button>
+				</div>
+				<div class="form-group">
+					<label for="">排序：</label>
+					<button type="button" class="btn btn-info" @click="sortHandle">年龄从小到大排序</button>
+				</div>
+			</form>
 		</div>
-		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-			var data = [{
-				id: 1,
-				name: "张三",
-				age: 32
-			}, {
-				id: 2,
-				name: "王五",
-				age: 28
-			}, {
-				id: 3,
-				name: "赵四",
-				age: 26
-			}, {
-				id: 4,
-				name: "黄渤",
-				age: 45
-			}];
-			data.forEach(function(item, index) {
-				item.checked = false;
-				item.highlight = false;
-			});
-			var app = new Vue({
-				el: "#app",
-				data: {
-					lists: data,
-					//修饰
-					toggleText: "开启",
-					//表单
-					name: '',
-					age: '',
-					keyword: ''
+	</div>
+	<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var data = [{
+			id: 1,
+			name: "张三",
+			age: 32
+		}, {
+			id: 2,
+			name: "王五",
+			age: 28
+		}, {
+			id: 3,
+			name: "赵四",
+			age: 26
+		}, {
+			id: 4,
+			name: "黄渤",
+			age: 45
+		}];
+		// 添加修饰数据
+		data.forEach(function (item, index) {
+			// 复选框状态
+			item.checked = false;
+			// 搜索高亮
+			item.highlight = false;
+		});
+		var app = new Vue({
+			el: "#app",
+			data: {
+				lists: data,
+				//修饰
+				isOpen: false,
+				//表单
+				name: '',
+				age: '',
+				keyword: ''
+			},
+			//计算属性
+			computed: {
+				nameValid: function () {
+					return this.name ? true : false
 				},
-				//计算属性
-				computed: {
-					nameValid: function() {
-						return this.name ? true : false
+				ageValid: function () {
+					return this.age > 0 && this.age < 150 ? true : false;
+				},
+				//判断全选状态
+				allChecked: {
+					get: function () {
+						// 选中的checkbox数量
+						let checkedNum = this.lists.reduce(function (total, item) {
+							return total + item.checked;
+						}, 0);
+						return checkedNum == this.lists.length
 					},
-					ageValid: function() {
-						return this.age > 0 && this.age < 150 ? true : false;
-					},
-					//判断全选状态
-					allChecked: {
-						get: function() {
-							let i = 0
-							this.lists.forEach(function(item, index) {
-								if(item.checked) {
-									i++;
-								}
-							});
-							if(i == this.lists.length) {
-								return true;
-							} else {
-								return false;
-							}
-						},
-						set: function(newValue) {
-							this.lists.forEach(function(item, index) {
-								item.checked = newValue;
-							});
-						}
+					set: function (newValue) {
+						this.lists.forEach(function (item) {
+							item.checked = newValue;
+						});
 					}
 				},
-				methods: {
-					addHandle: function() {
-						if(this.nameValid == false || this.ageValid == false) {
-							alert("验证失败");
-							return false;
-						}
-						//新数据
-						var item = {
-							id: this.lists.length + 1,
-							name: this.name,
-							age: this.age,
-							checked: false
-						}
-						//添加数据
-						this.lists.push(item);
-						//清空表单
-						this.name = '';
-						this.age = '';
-					},
-					//删除数据
-					delHandle: function(i) {
-						this.lists.splice(i, 1);
-					},
-					//移入变色
-					toggleHandle: function() {
-						if(this.toggleText == "开启") {
-							this.toggleText = "关闭";
+			},
+			methods: {
+				addHandle: function () {
+					if (this.nameValid == false || this.ageValid == false) {
+						alert("验证失败");
+						return false;
+					}
+					//新数据
+					var item = {
+						id: this.lists.length + 1,
+						name: this.name,
+						age: this.age,
+						checked: false,
+						highlight: false,
+					}
+					//添加数据
+					this.lists.push(item);
+					//清空表单
+					this.name = '';
+					this.age = '';
+				},
+				//删除数据
+				delHandle: function (i) {
+					this.lists.splice(i, 1);
+				},
+				//排序
+				sortHandle: function () {
+					this.lists.sort(function (a, b) {
+						if (a.age > b.age) {
+							return 1;
 						} else {
-							this.toggleText = "开启";
+							return -1;
 						}
-					},
-					//排序
-					sortHandle: function() {
-						this.lists.sort(function(a, b) {
-							if(a.age > b.age) {
-								return 1;
-							} else {
-								return -1;
-							}
-						});
-					},
-					//搜索keyword
-					searchHandle: function() {
-						this.lists.forEach((item, index) => {
-							item.highlight = false;
-							if(item.name == this.keyword) {
-								item.highlight = true;
-							}
-						});
-					}
+					});
+				},
+				//搜索keyword
+				searchHandle: function () {
+					this.lists.forEach((item, index) => {
+						item.highlight = false;
+						if (item.name == this.keyword) {
+							item.highlight = true;
+						}
+					});
 				}
-			});
-		</script>
-	</body>
+			}
+		});
+	</script>
+</body>
 
 </html>

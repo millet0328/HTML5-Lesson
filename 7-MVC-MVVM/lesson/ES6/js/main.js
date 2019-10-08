@@ -1,7 +1,6 @@
-import { firstName, lastName } from './profile.js';
-console.log(2)
+console.log(4)
+import { firstName as nickname, lastName } from './test.js';
+import { year } from './test.js';
+console.log(5)
 
-function setName() {
-    console.log(firstName + ' ' + lastName);
-}
-setName();
+import util from './test.js';

@@ -7,14 +7,14 @@
 			.btn {
 				border: 1px solid #2AABD2;
 				padding: 10px 30px;
-				background-color: #1B6D85;
-				color: #FFFFFF;
 				outline: 0;
 				transition: all 0.5s;
 				margin: 10px;
+				background-color: white;
 			}
 
 			.btn.active {
+				color: white;
 				background-color: #D43F3A;
 				border: 1px solid #C9302C;
 			}
@@ -22,33 +22,42 @@
 	</head>
 	<body>
 		<div id="app">
-			<button v-for="(item,index) in colors" @click="clickHandle(index)" :class="{active:item.isOpen}" class="btn" type="button">{{item.text}}</button>
+			<button type="button" class="btn" :class="{active:isActive}" @click="isActive=!isActive">红色</button>
+			<br>
+			<button v-for="(item,index) in colors" class="btn" :class="{active:item.isChecked}" @click="checkHandle(index)" type="button">{{item.text}}</button>
 		</div>
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var app = new Vue({
 				el: "#app",
 				data: {
+					isActive: false,
 					colors: [{
 						text: "红色",
-						isOpen: false
+						isChecked: false,
 					}, {
 						text: "黄色",
-						isOpen: false
+						isChecked: false,
 					}, {
 						text: "蓝色",
-						isOpen: false
+						isChecked: false,
 					}, {
 						text: "绿色",
-						isOpen: false
+						isChecked: false,
 					}, {
 						text: "青色",
-						isOpen: false
+						isChecked: false,
 					}]
 				},
 				methods: {
-					clickHandle: function(i) {
-						this.colors[i].isOpen = !this.colors[i].isOpen;
+					checkHandle: function(i) {
+						this.colors.forEach(function(item, index) {
+							if (index == i) {
+								item.isChecked = !item.isChecked;
+							} else {
+								item.isChecked = false;
+							}
+						});
 					}
 				}
 			});

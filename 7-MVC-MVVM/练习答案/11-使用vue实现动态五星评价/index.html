@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title></title>
+		<style type="text/css">
+			.container {
+				width: 1200px;
+				margin: 0 auto;
+			}
+
+			.border-box {
+				border: 1px solid #CCCCCC;
+				padding: 60px;
+			}
+
+			.star-box {
+				position: relative;
+			}
+
+			.star-box i {
+				position: relative;
+				display: inline-block;
+				width: 24px;
+				height: 22px;
+				background: url(img/stars.png);
+				background-position: 0 0;
+				z-index: 2;
+			}
+
+			.star-box i.active {
+				background-position: 0 -25px;
+			}
+
+			.star-box .full-star {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 22px;
+				height: 22px;
+				background: url(img/stars.png);
+				background-position: 0 -25px;
+				z-index: 5;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="container">
+				<div class="border-box">
+					<div class="star-box">
+						<i v-for="(item,index) in comments" class="star" @mouseenter="enterHandle(index)" @mouseleave="leaveHandle(index)"
+						 @click="clickHandle(index)" :class="{active:num>=index}"></i>
+					</div>
+					<p>当前评价:{{commentText}}</p>
+				</div>
+			</div>
+		</div>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					num: -1,
+					checked: -1,
+					comments: ["非常差，回去再练练", "真的是差，都不忍心说你了", "一般，还过得去吧", "很好，是我想要的东西", "太完美了，此物只得天上有，人间哪得几回闻!"]
+				},
+				computed: {
+					commentText() {
+						return this.comments[this.num];
+					}
+				},
+				methods: {
+					clickHandle(i) {
+						this.checked = i;
+						this.num = i;
+					},
+					enterHandle(i) {
+						if (this.checked < i) {
+							this.num = i;
+						}
+					},
+					leaveHandle(i) {
+						if (this.checked < i) {
+							this.num = this.checked;
+						}
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

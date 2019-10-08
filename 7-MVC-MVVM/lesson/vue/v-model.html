@@ -8,8 +8,42 @@
 
 	<body>
 		<div id="app">
-			<input type="text" name="" @input="inputHandle" :value="username" />
-			<h3>{{username}}</h3>
+			<fieldset id="">
+				<legend>v-model 语法糖</legend>
+
+				<input type="text" :value="title" @input="inputHandle">
+
+			</fieldset>
+
+
+			<fieldset id="">
+				<legend>input表单</legend>
+				<form action="">
+					<p> <label>
+							账户：<input type="text" v-model="username">
+						</label>
+					</p>
+					<p>
+						<label>
+							密码：<input type="password" v-model="password">
+						</label>
+					</p>
+					<p>
+						<button @click="loginHandle" type="button">登录</button>
+					</p>
+				</form>
+
+			</fieldset>
+			<fieldset id="">
+				<legend>修饰符</legend>
+				<p>
+					<input type="text" v-model.number="age">
+				</p>
+				<p>
+					<textarea rows="" cols="" v-model.trim="introduce">
+				</p>
+				</textarea>
+			</fieldset>
 		</div>
 
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
@@ -17,12 +51,23 @@
 			var app = new Vue({
 				el: "#app",
 				data: {
-					username: "orz"
+					username: "orz",
+					password: '',
+					title: '黄小米',
+					age: 30,
+					introduce: ''
 				},
 				methods: {
 					inputHandle: function(e) {
-						this.username = e.target.value;
-					}
+						this.title = e.target.value
+					},
+					loginHandle: function() {
+						var data = {
+							username: this.username,
+							password: this.password
+						}
+						console.log(data);
+					},
 				}
 			});
 		</script>
