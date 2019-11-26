@@ -1,0 +1,105 @@
+	* {
+			margin: 0;
+			padding: 0;
+		}
+		
+		#div1 {
+			width: 40rem;
+			height: 80rem;
+			background: url(../img/背景1.jpg) no-repeat left top;
+			margin: 5rem auto;
+			position: relative;
+		}
+		#div{
+			width: 40rem;
+			height: 2rem;
+			background: url(../img/tou.jpg) no-repeat left top;
+		}
+		#div2 {
+			width: 6rem;
+			height:6rem;
+			border: 1px solid black;
+			border-radius: 50%;
+			position: absolute;
+			top: 13rem;
+			left: 8.5rem;
+			animation: zhuan 5s linear infinite;
+		}
+		
+		#div2 img {
+			width: 100%;
+			height: 100%;
+			border: 1px solid black;
+			border-radius: 50%;
+		}
+		
+		#div3 {
+			width: 4rem;
+			height: 4rem;
+			border: 1px solid black;
+			border-radius: 50%;
+			position: absolute;
+			top: 15rem;
+			left: 17rem;
+			animation: zhuan 5s linear infinite;
+		}
+		
+		#div3 img {
+			width: 100%;
+			height: 100%;
+			border: 1px solid black;
+			border-radius: 50%;
+		}
+		
+		#div4 {
+			width: 22rem;
+			position: absolute;
+			top: 22rem;
+			left: 3rem;
+			font: bold 1.7rem "微软雅黑";
+			text-align: center;
+		}
+		
+		#div5 {
+			width: 5rem;
+			height: 5rem;
+			position: absolute;
+			top: 47.5rem;
+			left: 12rem;
+			animation: dong 1s linear infinite;
+		}
+		#yin{
+			width: 3rem;
+			height: 3rem;
+			border: 2px solid sandybrown;
+			border-radius: 50%;
+			position: absolute;
+			left: 23rem;
+			text-align: center;
+		}
+		#yin img{
+			width: 1.5rem;
+			height: 1.5rem;
+			padding-top: 0.7rem;
+			transform-origin: center bottom;
+			animation: yin 3s linear infinite;
+		}
+		@keyframes yin{
+			from{transform: rotate(45deg);}
+			25%{transform: rotate(0);}
+			50%{transform: rotate(-45deg);}
+			75%{transform: rotate(0);}
+			to{transform: rotate(45deg);}
+		}
+		@keyframes zhuan {
+			from {
+				transform: rotate(0);
+			}
+			to {
+				transform: rotate(360deg);
+			}
+		}
+		@keyframes dong{
+			from{transform: translate(0,0);}
+			to{transform: translate(0,-30%);}
+		}

@@ -11,29 +11,25 @@
 
 		</div>
 		<script type="text/javascript">
-			let x = 0;
-			let random = () => {
-				let promise = new Promise(function(resolve, reject) {
-					setTimeout(() => {
-						x = Math.random();
-						resolve(x);
-					}, 500);
-				})
+			// 封装promise
+			function ajax(api) {
+				let promise = new Promise((resolve, reject) => {
+					wx.request({
+						url: api
+						success: function() {
+							resolve()
+						},
+						fail: function() {
+							reject()
+						}
+					});
+				});
 				return promise;
 			}
-			random()
-				.then((i) => {
-					console.log('x=' + i);
-					// 计算旋转度数
-					let degree = i * 360;
-					return Promise.resolve(degree);
-					// return new Promise((resolve, reject) => { resolve(degree) })
-				})
-				.then((deg) => {
-					// 执行旋转
-					console.log('度数：' + deg)
-					// box.style.transform = rotate(deg)
-				});
+			ajax("/user/list")
+			
+			"http://localhost:3000/user/list"
+			
 		</script>
 	</body>
 

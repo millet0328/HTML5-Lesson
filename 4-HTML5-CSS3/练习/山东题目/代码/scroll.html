@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0
+			}
+
+			body,
+			html {
+				height: 100%;
+				background-color: #000
+			}
+
+			.wrap {
+				width: 100%;
+				height: 100%;
+				overflow: hidden
+			}
+
+			.wrap2 {
+				width: 100%;
+				height: 1000%;
+				transition: .3s linear
+			}
+
+			.page {
+				width: 100%;
+				height: 10%;
+				background-color: #fdfdfd;
+				text-align: center;
+				font-weight: 700;
+				position: relative;
+			}
+
+			.circle {
+				position: absolute;
+				top: 28.4vw;
+				right: -50%;
+				width: 108.27vw;
+				height: 108.28vw;
+				border: 1px dashed #a6a082;
+				border-radius: 50%;
+				animation: circle linear 10s infinite;
+				z-index: 100;
+			}
+
+			.circle .box1 {
+				position: absolute;
+				left: 0vw;
+				top: 2.8vw;
+				width: 26.67vw;
+				height: 26.67vw;
+				animation: circle linear 5s infinite;
+			}
+
+			.circle .box2 {
+				position: absolute;
+				left: 0vw;
+				bottom: 2.8vw;
+				width: 26.67vw;
+				height: 26.67vw;
+				animation: circle linear 5s infinite;
+			}
+
+			@keyframes circle {
+				from {
+					transform: rotate(0deg);
+				}
+
+				to {
+					transform: rotate(360deg);
+				}
+			}
+
+			.meat {
+				position: absolute;
+				top: 40.67vw;
+				right: -22.13vw;
+			}
+
+			.meat img {
+				width: 76.53vw;
+			}
+
+			.radio {
+				position: fixed;
+				top: 20px;
+				right: 20px;
+				z-index: 100;
+				width: 6.67vw;
+				height: 6.67vw;
+			}
+
+			.loading {
+				position: fixed;
+				width: 100%;
+				height: 100%;
+				display: none;
+			}
+
+			.border {
+				position: absolute;
+				bottom: 10vw;
+				left: 10vw;
+				width: 100px;
+				height: 100px;
+				border: 1px solid #A6A082;
+				box-shadow: 0 0 10px 0 #eacf48;
+				transform: translateX(-100%);
+				opacity: 0;
+				transition: all 1s;
+			}
+		</style>
+	</head>
+	<body>
+		<audio id="voice" loop autoplay muted src="music/bgm.mp3">
+			当前浏览器不支持audio
+		</audio>
+		<div class="wrap" id="wrap">
+			<img class="radio" id="radio" src="./img/page2/music.png" alt="">
+			<div class="wrap2" id="wrap2">
+				<div class="page">
+					<div class="circle">
+						<img class="box1" src="img/page2/jiu.png" alt="">
+						<img class="box2" src="img/page2/cong.png" alt="">
+					</div>
+					<div class="meat">
+						<img src="img/page2/meat.png" alt="">
+					</div>
+				</div>
+				<div class="page">
+					<div id="test" class="border">
+
+					</div>
+				</div>
+				<div class="page" onclick="backward(2)">我是第三屏内容</div>
+				<div class="page">我是第四屏内容</div>
+				<div class="page">我是第五屏内容</div>
+				<div class="page">我是第六屏内容</div>
+			</div>
+		</div>
+		<div class="loading">
+			loading....
+		</div>
+
+		<script type="text/javascript">
+			var oVoice = document.getElementById('voice');
+			var oRadio = document.getElementById('radio');
+			window.onload = function() {
+				setInterval(function() {
+					oVoice.muted = false;
+					oVoice.play();
+				}, 500)
+			}
+			// 播放/暂停的切换
+			var isPlay = false;
+			oRadio.onclick = function() {
+				if (isPlay) {
+					oVoice.pause();
+					isPlay = false;
+				} else {
+					oVoice.play();
+					isPlay = true;
+				}
+			}
+		</script>
+
+		<script type="text/javascript">
+			var box1 = document.getElementById('wrap');
+			var box2 = document.getElementById('wrap2');
+			var len = box2.querySelectorAll('.page').length;
+			// 边框
+			var oTest = document.querySelector('#test');
+
+			var startY; //起点Y
+			var moveY; //位移Y
+			var winH; //屏幕高度
+			var page = 0 //第几页
+			// 获取屏幕高度
+			function winResize() {
+				winH = document.body.clientHeight;
+			}
+			winResize();
+			window.onresize = winResize;
+			// 监听touchstart
+			box1.addEventListener('touchstart', function(e) {
+				startY = e.touches[0].pageY;
+			});
+
+			box1.addEventListener('touchmove', function(e) {
+				moveY = event.touches[0].pageY - startY;
+			});
+
+			box1.addEventListener('touchend', function(e) {
+				if (moveY < -50) page++;
+				if (moveY > 50) page--;
+				// 最后&最前页控制;
+				if (page < 0) page = 0; //第一页
+				if (page > len - 1) page = len - 1; //最后一页
+				box2.style.transform = 'translateY(' + (-page * winH) + 'px)';
+				// 每一页的动画,判断page = ?
+				console.log(page);
+				if (page == 1) {
+					oTest.style.transform = 'translateX(100%)';
+					oTest.style.opacity = 1;
+				} else {
+					oTest.style.transform = 'translateX(-100%)';
+				}
+				
+			});
+
+			// 返回上一页,x=当前页面
+			function backward(x) {
+				x--;
+				page = x;
+				// 最后&最前页控制;
+				if (page < 0) page = 0; //第一页
+				if (page > len - 1) page = len - 1; //最后一页
+				box2.style.transform = 'translateY(' + (-page * winH) + 'px)';
+			}
+		</script>
+	</body>
+</html>

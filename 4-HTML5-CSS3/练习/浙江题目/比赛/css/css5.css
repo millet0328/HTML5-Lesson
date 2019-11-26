@@ -1,0 +1,93 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+#div1 {
+	width: 50rem;
+	height: 70rem;
+	background: url(../img/9.png) no-repeat left top;
+	margin: 10rem auto;
+	position: relative;
+}
+
+#div5 {
+	width: 50rem;
+	height: 70rem;
+	position: absolute;
+	top: 0;
+	display: none;
+	/*background: url(../img/良背景.png) no-repeat left top;*/
+}
+
+/*#div5 img{
+				position: absolute;
+				top: 45rem;
+				left: 15rem;
+			}*/
+#div2 {
+	width: 50rem;
+	height: 60rem;
+	position: relative;
+}
+
+.img1 {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 6rem;
+	left: 0;
+}
+
+#img2 {
+	width: 3rem;
+	height: 5rem;
+}
+
+#div3 {
+	width: 50rem;
+	height: 31rem;
+	position: absolute;
+	top: 7rem;
+	color: white;
+	font-size: 64px;
+}
+
+span {
+	color: white;
+	font: bold 5rem "宋体";
+	float: right;
+	margin-top: 3rem;
+}
+
+.img3 {
+	width: 22rem;
+	height: 7rem;
+	position: absolute;
+	top: 4rem;
+	left: 27rem;
+}
+
+#div4 {
+	width: 50rem;
+	height: 30rem;
+	position: absolute;
+	top: 19.5rem;
+}
+
+ul {
+	width: 100%;
+	height: 100%;
+}
+
+li {
+	float: left;
+	width: 12rem;
+	height: 12rem;
+	margin-top: 2rem;
+}
+
+li img {
+	width: 100%;
+	height: 100%;
+}
