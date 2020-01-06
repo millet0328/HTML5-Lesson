@@ -4,6 +4,10 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+
+		<!-- 重置样式表 -->
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<style type="text/css">
 			/* 查找到所有标签 */
 			* {
@@ -23,7 +27,7 @@
 				clear: both;
 			}
 
-			.firstMenu li {
+			.nav ul.firstMenu li {
 				float: left;
 				background-color: blue;
 				color: white;
@@ -49,23 +53,6 @@
 				display: block;
 			}
 
-			.blue-box,
-			.red-box {
-				width: 100px;
-				min-height: 100px;
-			}
-
-			.blue-box {
-				background-color: rgba(0, 0, 255, 1);
-				font-size: 12px;
-				color: white;
-			}
-
-			.red-box {
-				background-color: rgba(255, 0, 0, 0.5);
-				color: yellow;
-			}
-
 			.category {
 				position: relative;
 				padding: 20px 30px;
@@ -88,10 +75,40 @@
 			.category li {
 				background-color: #0DA4D3;
 			}
+
+			.box {
+				width: 100px;
+				height: 100px;
+				background-color: red;
+			}
+
+			div:hover {
+				background-color: yellow;
+			}
+
+			#content {
+				background-color: blue;
+			}
+
+			.blue_box {
+				background-color: blue;
+			}
+
+			.red_box {
+				background-color: red;
+			}
+
+			.red_box,
+			.blue_box {
+				width: 100px;
+				height: 100px;
+			}
 		</style>
 	</head>
 
 	<body>
+		<div id="content" class="box" style="background-color: green;"></div>
+
 		<div class="nav">
 			<ul class="firstMenu clearfix">
 				<li>
@@ -105,7 +122,6 @@
 						<li>全国新闻</li>
 						<li>全国新闻</li>
 						<li>全国新闻</li>
-
 					</ul>
 				</li>
 				<li>
@@ -130,7 +146,13 @@
 				<li>我们</li>
 			</ul>
 		</div>
-		<div class="search-box">
+		<div class="blue_box">
+
+		</div>
+		<div class="red_box">
+
+		</div>
+		<!-- 		<div class="search-box">
 			<div class="category">
 				全部分类
 				<ul>
@@ -145,7 +167,7 @@
 					<li>化妆品</li>
 				</ul>
 			</div>
-		</div>
+		</div> -->
 	</body>
 
 </html>

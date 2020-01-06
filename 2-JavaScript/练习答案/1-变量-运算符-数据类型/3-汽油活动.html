@@ -25,11 +25,11 @@
     <div class="container">
         <div class="form-control">
             <label>型号：</label>
-            <input type="text" name="" id="num" value="" />
+            <input type="text" id="type" />
         </div>
         <div class="form-control">
             <label>数量：</label>
-            <input type="text" name="" id="amount" value="" />
+            <input type="text" id="amount" />
         </div>
         <div class="form-control">
             <button type="button" id="btn">
@@ -39,42 +39,32 @@
     </div>
     <script type="text/javascript">
     //查找元素
-    var oNum = document.getElementById("num");
-    var oAmount = document.getElementById("amount");
-    var oBtn = document.getElementById("btn");
-
-    //定义函数用来计算总价格
-    function price(i, j) {
-        return i * j;
-    }
-
+    var oType = document.getElementById('type');
+    var oAmount = document.getElementById('amount');
+    var oBtn = document.getElementById('btn');
     //绑定事件
-
     oBtn.onclick = function() {
-        //获取元素
-        var type = oNum.value; //获取汽油的型号
-        var amount = oAmount.value; //获取添加汽油的数量
-
-        //绑定事件
-        //首先确保文本框中的内容不能为空
+        // 获取value值
+        var type = oType.value;
+        var amount = oAmount.value;
+        // 边界处理
         if (!type || !amount) {
-            alert("内容不能为空！");
+            alert("输入内容不能为空！");
             return;
         }
-        //当内容不为空的时候
-        if (type == "92") {
+        // 判断计算
+        if (type == "92#") {
             if (amount <= 20) {
-                alert(price(amount, 6) + '元');
+                alert("汽油总价：" + amount * 6);
             } else {
-                alert(price(amount, 5) + '元');
+                alert("汽油总价：" + amount * 5);
             }
-            return;
         }
-        if (type == "97") {
+        if (type == "97#") {
             if (amount <= 30) {
-                alert(price(amount, 7) + '元');
+                alert("汽油总价：" + amount * 7);
             } else {
-                alert(price(amount, 5.5) + '元');
+                alert("汽油总价：" + amount * 5.5);
             }
         }
     }

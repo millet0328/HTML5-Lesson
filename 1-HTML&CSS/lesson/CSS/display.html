@@ -5,34 +5,70 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<style type="text/css">
-			.nav {
-				background-color: #171b24;
-			}
-
-			.nav a {
-				color: #FFFFFF;
-				text-decoration: none;
+			.nav .link {
 				display: inline-block;
-				margin: 20px;
+				padding: 10px 30px;
+			}
+
+			.nav .link a {
+				color: #666666;
+				text-decoration: none;
+			}
+
+			.nav .link:hover {
+				background-color: yellow;
 			}
 
 			.nav {
-				display: block;
+				background-color: #eee;
 			}
 
-			.text {
+			.relative {
+				position: relative;
+			}
+
+			.submenu {
+				position: absolute;
+				left: 0;
+				top: 45px;
+				width: 200px;
+				border-top: 2px solid #333333;
+				background-color: white;
+				visibility: hidden;
+				opacity: 0;
+			}
+
+			.link:hover .submenu {
 				visibility: visible;
+				opacity: 1;
+			}
+
+			.transition {
+				transition: all 0.5s;
+			}
+
+			.submenu a {
+				display: block;
+				padding: 20px 10px;
 			}
 		</style>
 	</head>
 
 	<body>
-		<span class="text">靠发动机</span>
 		<div class="nav">
-			<a href="#">Home</a>
-			<a href="#">News</a>
-			<a href="#">Blog</a>
-			<a href="#">About</a>
+			<div class="link">
+				<a href="#">首页</a>
+			</div>
+			<div class="link relative">
+				<span>模板</span>
+				<div class="submenu transition">
+					<a href="#">网站模板</a>
+					<a href="#">小程序模板</a>
+				</div>
+			</div>
+			<div class="link">
+				<a href="#">案例</a>
+			</div>
 		</div>
 	</body>
 

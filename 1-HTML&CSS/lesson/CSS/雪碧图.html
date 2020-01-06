@@ -4,33 +4,43 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<style type="text/css">
-			/* 公共类 */
 			.icon {
-				background: url(img/sprite-test.png) no-repeat;
 				display: inline-block;
 				font-style: normal;
+				background: url(./img/sprite-1.png) no-repeat;
 			}
 
-			/* Ctrl + T */
-			.icon-sina {
-				width: 33px;
-				height: 27px;
-				background-position: -178px -69px;
+			.icon_LOL {
+				width: 214px;
+				height: 116px;
+				background-position: 0 0;
 			}
 
-			.icon-key {
-				width: 30px;
-				height: 29px;
-				background-position: -136px -67px;
+			.icon_gift {
+				width: 29px;
+				height: 26px;
+				background-position: -256px -16px;
 			}
 
-			.vertical-mid {
-				vertical-align: middle;
+			.bg_black {
+				height: 1000px;
+				background-color: black;
+			}
+
+			.icon_bg {
+				width: 181px;
+				height: 40px;
+				text-align: center;
+				line-height: 40px;
+				background-position: -256px -63px;
 			}
 		</style>
 	</head>
 	<body>
-		<i class="icon icon-sina vertical-mid"></i>
-		<i class="icon icon-key"></i>
+		<div class="bg_black">
+			<i class="icon icon_LOL"></i>
+			<i class="icon icon_gift"></i>
+			<a href="#" class="icon icon_bg">进入赛事页面</a>
+		</div>
 	</body>
 </html>

@@ -7,38 +7,37 @@
 	</head>
 
 	<body>
-		<!-- 数字1 -->
-		<input type="text" id="num1">
+		<input id="num1" type="text">
 		<span>+</span>
-		<!-- 数字2 -->
-		<input type="text" id="num2">
-		<!-- 求和按钮 -->
+		<input id="num2" type="text">
 		<button id="btn" type="button">计算</button>
-		<script>
+
+		<script type="text/javascript">
 			// 查找元素
 			var oBtn = document.getElementById("btn");
 			var oNum1 = document.getElementById("num1");
 			var oNum2 = document.getElementById("num2");
-			// 绑定事件
+			// 绑定click事件
 			oBtn.onclick = function() {
-				var txt1 = oNum1.value;
-				var txt2 = oNum2.value;
-				// 判断是不是数字
-				var flag1 = isNaN(txt1);
-				var flag2 = isNaN(txt2);
-				if (flag1) {
-					alert(txt1 + '不是数字，请重新输入！');
-					return;
+				// 获取input的value值
+				var num1 = oNum1.value;
+				var num2 = oNum2.value;
+				// 判断是否数字
+				var flag = isNaN(num1);
+				if (flag) {
+					alert(num1 + "不是合法的数字！");
+				} else {
+					num1 = parseFloat(num1);
 				}
-				if (flag2) {
-					alert(txt2 + '不是数字，请重新输入！');
-					return;
+				var bool = isNaN(num2);
+				if (bool) {
+					alert(num2 + "不是合法的数字！");
+				} else {
+					num2 = parseFloat(num2);
 				}
-				var num1 = parseFloat(txt1);
-				var num2 = parseFloat(txt2);
-				console.log(num1 + num2);
+				var sum = num1 + num2;
+				console.log("%f + %f = %f", num1, num2, sum);
 			}
 		</script>
 	</body>
-
 </html>

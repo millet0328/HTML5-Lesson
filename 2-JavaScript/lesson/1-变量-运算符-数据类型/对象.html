@@ -8,34 +8,31 @@
 		<script>
 			var person = {
 				name: "黄小米",
-				birthday: 1995,
+				age: 25,
 				sex: "女",
-				move: function() {
-					console.log('moving.....')
+				score: [120, 132, 98, 100],
+				sleep: function() {
+					console.log("zzz...")
+				},
+				boyfriend: {
+					name: '黄渤',
+					age: 45,
 				}
 			}
-			// 访问属性
-			var age = 2019 - person['birthday'];
-			// 修改属性
-			person.name = '黄晓明';
+			// 查询属性
+			var birthYear = 2020 - person.age;
+			person["boyfriend"];
 			// 增加属性
-			person.job = 'actor';
-			// 删除属性
-			delete person.job
-			// 访问方法
-			person.move();
-			// 修改方法
-			person.move = function () {
-				console.log("mmmmm");
-			}			
-			// 题目:
-			var obj1 = {
-				name: "黄小米",
-				age: 25
+			person.job = "actor";
+			// 修改属性
+			person.age = 26;
+			person.boyfriend = {
+				name: "张艺兴",
+				age: 32
 			}
-			var obj2 = obj1;
-			obj2.age = 30;
-			
+			// 删除属性
+			delete person.boyfriend;
+			console.log(person);
 		</script>
 	</body>
 </html>

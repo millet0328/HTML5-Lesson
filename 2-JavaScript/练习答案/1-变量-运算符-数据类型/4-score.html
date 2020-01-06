@@ -7,39 +7,47 @@
 </head>
 
 <body>
-    <input type="text" name="" id="grade" value="" />
+    <input type="text" id="score" value="" />
     <!--必须设置button标签的类型-->
-    <button type="button" id="btn">
-        等级评定
-    </button>
+    <button type="button" id="btn">等级评定</button>
     <script type="text/javascript">
     //获取元素
-    var Grade = document.getElementById("grade"); //获取文本框中的值
+    var oScore = document.getElementById("score");
     var oBtn = document.getElementById("btn");
 
     //绑定事件
     oBtn.onclick = function() {
-        //获取元素（首先获取文本框中的元素——score就是输入的数值）
-        var score = parseInt(Grade.value);
-        //进行等级判断
+        // 提取value值
+        var score = oScore.value;
+        // 判断是否为空
         if (!score) {
-            alert("成绩不能为空！");
+            alert("成绩不能为空值！");
             return;
         }
-        if (score >= 100 || score < 0) {
-            alert("输入格式错误，请重新输入数据！");
+        // 判断是否是数字
+        var isValid = isNaN(score);
+        if (isValid) {
+            alert("请输入有效的数字成绩！");
             return;
         }
-        if (score >= 90) {
-            alert("成绩优秀");
-        } else if (score >= 80 && score < 90) {
-            alert("成绩良好");
-        } else if (score >= 70 && score < 80) {
-            alert("成绩及格");
-        } else {
-            alert("成绩不及格");
+        // 判断边界值(0-100)
+        if (score > 100 || score < 0) {
+            alert("成绩应该在0至100之间！");
+            return;
         }
-
+        // 等级评定
+        if (score >= 90 && score <= 100) {
+            alert("成绩等级：优秀");
+        }
+        if (score >= 80 && score < 90) {
+            alert("成绩等级：良好");
+        }
+        if (score >= 70 && score < 80) {
+            alert("成绩等级：及格");
+        }
+        if (score >= 0 && score < 70) {
+            alert("成绩等级：不及格");
+        }
     }
     </script>
 </body>

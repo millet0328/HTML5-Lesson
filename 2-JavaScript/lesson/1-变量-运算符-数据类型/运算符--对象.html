@@ -7,26 +7,12 @@
 	</head>
 
 	<body>
-		<input type="text" name="" id="txt" value="" />
-		<button id="btn" type="button">按钮</button>
 		<script type="text/javascript">
-			//查找元素
-			var oBtn = document.getElementById("btn");
-			var oTxt = document.getElementById("txt");
-			//绑定事件
-			oBtn.onclick = function() {
-				//获取value值
-				var res = typeof oTxt.value;
-				console.log(res);
-				var x = oTxt.value + 7;
-				alert(x);
-			}
-			// 赋值运算
-			var x = 10;
-			var y = 5;
-			x += y
-			console.log(x);
-			console.log(y);
+			var m = 100;
+			var n = 3.14;
+			var sum = m + n;
+			console.log(m + "+" + n + "=" + sum);
+			console.log("%d + %f = %f", m, n, sum);
 		</script>
 	</body>
 

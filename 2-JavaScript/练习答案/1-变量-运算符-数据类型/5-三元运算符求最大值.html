@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <form>
+        <p>
+            <label for="">数字1：</label>
+            <input type="text" id="txt1" />
+        </p>
+        <p>
+            <label for="">数字2：</label>
+            <input type="text" id="txt2" />
+        </p>
+        <p>
+            <label for="">数字3：</label>
+            <input type="text" id="txt3" />
+        </p>
+        <button id="btn" type="button">计算最大值</button>
+    </form>
+    <script>
+    //查找元素
+    var oBtn = document.getElementById("btn");
+    var oTxt1 = document.getElementById("txt1");
+    var oTxt2 = document.getElementById("txt2");
+    var oTxt3 = document.getElementById("txt3");
+    // 绑定事件
+    oBtn.onclick = function() {
+    	// 判断是否为空
+    	// 判断是否数字
+        // 获取value
+        var num1 = parseFloat(oTxt1.value);
+        var num2 = parseFloat(oTxt2.value);
+        var num3 = parseFloat(oTxt3.value);
+        // 比较
+        var bigger = (num1 > num2) ? num1 : num2;
+        var max = bigger > num3 ? bigger : num3;
+        alert("最大值：" + max);
+    }
+    </script>
+</body>
+
+</html>

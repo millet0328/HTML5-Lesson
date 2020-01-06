@@ -9,31 +9,65 @@
 	<body>
 		<script type="text/javascript">
 			// 全局变量
-			var data = 1024;
+			// 函数定义
+			function sum(m, n) {
+				var total = 0;
+				for (var i = m; i <= n; i++) {
+					total += i;
+				}
+				return total;
+			}
 
-			isEven(26224);
-			<!-- 如果两个数字m,n 都是奇数相减，都是偶数相加，一奇一偶不作任何运算 -->
-			function cal(m, n) {
-				var flag_M = isEven(m);
-				var flag_N = isEven(n);
-				if (flag_M && flag_N) {
-					return m + n;
-				}
-				if (flag_M == false && flag_N == false) {
-					return m - n;
-				}
-				//is偶数函数
-				function isEven(x) {
-					if (x % 2 == 0) {
-						return true;
-					} else {
-						return false;
-					}
+			function isEven(x) {
+				if (x % 2 == 0) {
+					return true;
+				} else {
+					return false;
 				}
 			}
-			cal(656, 89);
+			// 调用函数
+			// 1024+...2048 总和是奇数？偶数？
+			// 1+...+1024 总和 *365/17 = ？
+			//判断一个数是不是偶数 isNaN
+			function isEven(x) {
+				if (x % 2 == 0) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+			// 嵌套作用域
+			function outerFun() {
+				var x = 0;
 
-			console.log(carname)
+				function innerFun() {
+					console.log(x); //x=0
+				}
+			}
+			// 闭包
+			function outerFun() {
+				var x = 0;
+
+				function innerFun() {
+					x++;
+					console.log(x);
+				}
+				return innerFun;
+			}
+			var fun1 = outerFun();
+			fun1(); //1
+			fun1(); //2
+
+			var fun2 = outerFun();
+			fun2(); //1
+			fun1(); //3
+			// 变量提升
+			function test() {
+				console.log(x);
+				var x = 3;
+				console.log(x);
+			}
+			test();
 		</script>
 	</body>
 

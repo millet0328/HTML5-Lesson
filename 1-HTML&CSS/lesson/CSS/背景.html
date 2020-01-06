@@ -5,26 +5,58 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<style>
-			body {
-				margin: 0;
+			/* banner图写法 */
+			.banner {
+				/* background-image: url(./img/banner.jpg); */
+				height: 1080px;
+				/* background-position: top center; */
+				background: url(./img/banner.jpg) top center;
 			}
 
-			.banner {
-				height: 1080px;
-				background: #02162F url(img/banner.jpg) top center no-repeat;
+			.background {
+				background: url(./img/bg.png);
+				background-repeat: repeat;
+				height: 400px;
+			}
+
+			.fixed_bg {
+				background: url(img/1525490815187.jpg) top center no-repeat;
+				height: 300px;
+				background-attachment: fixed;
 			}
 
 			.bg {
-				height: 1000px;
-				background-image: url(img/bg.png);
+				background: url(img/1525490815187.jpg);
+				padding: 60px 0;
+			}
+
+			.container {
+				width: 1200px;
+				margin: 0 auto;
+			}
+
+			.box {
+				width: 300px;
+				height: 400px;
+				background-color: rgba(0,0,255,0.5);
+				/* opacity: 0.5; */
+				color: white;
 			}
 		</style>
 	</head>
 
 	<body>
-		<img width="100%" src="img/banner.jpg" alt="">
+		<!-- 透明图层 -->
+		<div class="bg">
+			<div class="container">
+				<div class="box">付广告费恢复恢复付广告费恢复恢复付广告费恢复恢复付广告费恢复恢复</div>
+			</div>
+		</div>
+		<div class="background"></div>
+		<!-- 滚动背景 -->
+		<div class="fixed_bg"></div>
+		<!-- 视差滚动 -->
 		<div class="banner"></div>
-		<div class="bg"></div>
 	</body>
 
 </html>

@@ -7,51 +7,58 @@
 	<body>
 		<script type="text/javascript">
 			// 基本数据类型
-			// 字符串
 			var str = "黄小米";
-			var str = '3.14';
-			var str = '';
-			// 数字
-			var num = 3.1415926;
-			var num = 0
-			// 布尔 true / false
+			var num = 3.14;
 			var flag = true;
+			var none = null;
+			var x = undefined;
 
-			// 数组
-			var arr = [2.08, 1.88, 88, 20.19, 2019];
-			var arr = ["黄渤", "黄磊", "罗志祥", "王迅"];
-			var arr = [{ name: "黄小米", age: 26 }, { name: "黄渤", age: 36 }];
+			// 引用数据类型
+			// 对象  键：值 --- 键值对
+			var obj = {
+				name: "黄小米",
+				age: 25,
+				job: "actor",
+				isMarry: false,
+			}
+			// 空对象
+			var person = new Object();
+			var person = {};
+			// 数组 格式一样的一组数据
+			var score = [98, 36, 98, 45];
+			var team = ["黄磊", "罗志祥", "黄渤", "张艺兴", "王迅", "孙红雷"];
+			// 下标/索引
+			console.log(team[2]);
+			// 空数组
+			var arr = new Array();
 			var arr = [];
-			// 特殊化对象
-			var arr = {
-				0: "黄渤",
-				1: "黄磊",
-				2: "罗志祥",
-				3: "王迅"
+			// 数组--特殊化的对象
+			var team = {
+				0: "黄磊",
+				1: "罗志祥",
 			}
-			// 增加数组元素
-			arr[4] = "孙红雷";
-			// 删除元素--特殊方法
-			arr[2] = "";
-			// 修改元素
-			arr[3] = "张艺兴";
-			// 查找元素--下标index
-			arr[0]
-
-
-			// 对象--key:value 键值对
-			var person = {
-				name: "吴秀波",
+			// 对象数组
+			var team = [{
+				name: "黄磊",
 				age: 48,
-				marriage: true,
-				works: ["北京遇上西雅图", "军师联盟", "离婚律师"],
-				wife: {
-					name: "王慧",
-					age: 38
-				}
-			}
-			var obj = {};
+			}, {
+				name: "罗志祥",
+				age: 40
+			}, {
+				name: "黄渤",
+				age: 45,
+			}];
 
+			var res = typeof obj;
+			console.log(res);
+			// 如何判定数组这种数据类型
+			console.log("字符串");
+			console.log(3.14);
+			console.log(true);
+			console.log(null);
+			console.log(undefined);
+
+			console.log(obj);
 		</script>
 	</body>
 </html>

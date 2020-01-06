@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.box {
+				width: 100px;
+				height: 100px;
+				background-color: blue;
+				margin-top: 20px;
+				margin-bottom: 20px;
+				position: relative;
+				left: 0;
+				transition: all 0.5s;
+			}
+		</style>
+	</head>
+	<body>
+		<button id="btn">按钮</button>
+		<div class="box">
+
+		</div>
+		<p class="title">
+			<a href="#">Hello World!</a>
+		</p>
+
+		<ul class="list">
+			<li>黄磊</li>
+		</ul>
+		<script>
+			// 查找元素
+			// 单数 -- element对象
+			var oBtn = document.getElementById("btn");
+			// 复数 -- 类数组 NodeList
+			var oLi = document.querySelectorAll(".list li");
+			// 单数 -- 只选择满足条件的第一个element
+			var oTitle = document.querySelector(".title");
+
+			var oBox = document.querySelector(".box");
+			oBox.onclick = function() {
+				// 获取当前box的背景色
+				var color = getComputedStyle(oBox).backgroundColor;
+				// 修改背景色
+				if (color == "rgb(0, 0, 255)") {
+					oBox.style.backgroundColor = "yellow";
+				} else {
+					oBox.style.backgroundColor = "blue";
+				}
+			}
+
+			oTitle.onclick = function() {
+				oTitle.innerHTML = "<span>更换标签</span>";
+			}
+			// 获取/修改 元素文字
+			oBtn.onclick = function() {
+				//获取当前的文字
+				var txt = oBtn.innerText;
+				// 判断
+				if (txt == "开启") {
+					oBtn.innerText = "关闭";
+					oBtn.style.color = "#ddd";
+					oBox.style.left = "0px";
+				} else {
+					oBtn.innerText = "开启";
+					oBtn.style.color = "green";
+					oBox.style.left = "600px";
+				}
+			}
+		</script>
+	</body>
+</html>

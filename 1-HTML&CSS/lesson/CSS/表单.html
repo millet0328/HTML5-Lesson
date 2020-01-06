@@ -51,11 +51,26 @@
 				background-color: #0000FF;
 				color: white;
 			}
+
+			.search_btn {
+				background-color: red;
+				border: 1px solid blue;
+				outline: 0;
+				padding: 16px 30px;
+				color: white;
+			}
 		</style>
 	</head>
 
 	<body>
-		<form action="">
+		<select class="search_cate">
+			<option value="">综合搜索</option>
+			<option value="">公司名</option>
+			<option value="">产品名</option>
+		</select>
+		<input class="search_txt" type="text">
+		<button class="search_btn" type="button">搜索</button>
+		<!--<form action="">
 			<label class="label" for="">账户</label>
 			<input class="input-control" type="text">
 			<div>
@@ -93,7 +108,7 @@
 				<textarea class="textarea-control" cols="30" rows="10"></textarea>
 			</div>
 			<button class="btn-control" type="button">提交按钮</button>
-		</form>
+		</form> -->
 	</body>
 
 </html>

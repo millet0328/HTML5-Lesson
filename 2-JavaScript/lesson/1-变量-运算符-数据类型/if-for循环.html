@@ -8,45 +8,27 @@
 		<!-- 如果两个数字m,n 都是奇数相减，都是偶数相加，一奇一偶不作任何运算 -->
 		<script>
 			// 判断一个数字是不是偶数
-			var x = 165986;
-			if (x % 2 == 0) {
-				console.log(x + '为偶数');
-			} else {
-				console.log(x + '为奇数');
-			}
 			//判断3个数字最大值
-			var x = 233256;
-			var y = 326561;
-			var z = 325689;
-			var max;
-			let max = x >= y ? x : y;
-			let max = max <= z ? z : max;
-			
-			var m = [];
-			if (m) {
-				console.log("true")
-			} else {
-				console.log("false")
-			}
 			// 枚举判断
-			var sex = 2
+			var sex = 0;
 			switch (sex) {
 				case 0:
-					console.log("女");
-					break;
+					console.log("性别：女");
+					// break;
 				case 1:
-					console.log("男");
-					break;
-				case -1:
-					console.log("保密");
-					break;
+					console.log("性别：男");
+					// break;
 				case 2:
-					console.log("双性恋");
+					console.log("性别：双性恋");
+					break;
+				case 3:
+					console.log("性别：同性恋");
 					break;
 				default:
-					console.log("其他");
+					console.log("性别：未知");
 					break;
 			}
+			// for in 循环
 		</script>
 	</body>
 </html>

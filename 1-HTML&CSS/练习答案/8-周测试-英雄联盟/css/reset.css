@@ -45,7 +45,6 @@ table {
 fieldset {
 	border: solid 1px #666;
 }
-
 /*取消img蓝框*/
 img {
 	border: 0;
@@ -145,7 +144,6 @@ strong {
 em {
 	font-style: italic;
 }
-
 /*取消链接下横线*/
 a {
 	color: #666;
@@ -166,14 +164,6 @@ a:focus {
 a:hover,
 a:active {
 	outline: 0;
-}
-
-.vertical-mid {
-	vertical-align: middle;
-}
-
-.relative {
-	position: relative;
 }
 
 .fl {
@@ -204,7 +194,7 @@ a:active {
 }
 
 .container {
-	width: 1200px;
+	width: 1240px;
 	margin-right: auto;
 	margin-left: auto;
 	*zoom: 1;
