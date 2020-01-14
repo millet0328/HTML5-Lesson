@@ -3,4 +3,5 @@
 3、点击移入变色按钮开启变色，再点击一次，关闭变色
 4、搜索具体的姓名，实现搜索功能，高亮显示结果
 5、点击排序按钮实现年龄排序
-tips:参考效果：http://www.mhero.com/javascript/js005/js009.html
+6、点击删除，删除整行数据，删除之后序号不需要考虑重新排序
+tips:参考效果：http://js.7vnet.com/javascript/js005/js009.html

@@ -1,26 +1,189 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <title></title>
-</head>
+	<head>
+		<title></title>
+		<style>
+			body {
+				background-color: #041317;
+				color: white;
+			}
+			.txt_center{
+				text-align: center;
+			}
+			.clock-box {
+				padding: 160px 0;
+			}
 
-<body>
-    <h3>使用JS实现一个模拟时钟，效果示例如下：</h3>
-    <img src="模拟时钟.png">
-    <h3>该模拟时钟至少应当包括以下功能点：</h3>
-    <ol>
-        <li>独立可区分的小时、分钟和秒</li>
-        <li>显示日期，星期几</li>
-        <li>默认以当前时间为初始时间</li>
-        <li>数字小于10的时候，前面自动补齐0，如<b>07</b></li>
-    </ol>
-    <h3>选做题：难度*****</h3>
-    <ol>
-    	<li>12小时进制，分别显示AM/PM</li>
-    	<li>可设置闹钟，当时钟走到预设的时间点时，弹出提示框（注意区分上下午）</li>
-    	<li>时、分、秒均可手动调节,注意时间进位</li>
-    </ol>
-</body>
+			.clock-box .date {
+				margin-right: 18px;
+			}
+
+			.clock-box .time {
+				font-size: 60px;
+			}
+			.clock-box .time i {
+				font-size: 14px;
+				font-style: normal;
+			}
+			.alarm-box input{
+				padding:3px 5px;
+				width: 100px;
+				vertical-align: middle;
+			}
+			.alarm-box button{
+				vertical-align: middle;
+			}
+			.alarm-box select{
+				vertical-align: middle;
+				height: 26px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<fieldset id="">
+			<legend>数字时钟</legend>
+			<div class="clock-box txt_center">
+				<p>
+					<span class="date">2020-01-23</span>
+					<span class="weekday">星期二</span>
+				</p>
+				<p>
+					<b class="time">09 : 23 : 06</b>
+				</p>
+			</div>
+		</fieldset>
+		<fieldset id="">
+			<legend>闹钟</legend>
+			<form class="alarm-box txt_center">
+				<p>
+					<input type="text" class="hour" placeholder="小时">
+					<input type="text" class="min" placeholder="分钟">
+					<input type="text" class="sec" placeholder="秒">
+					<select class="symbol">
+						<option value="am">AM</option>
+						<option value="pm">PM</option>
+					</select>
+					<button id="setBtn" type="button">设置闹钟</button>
+				</p>
+			</form>
+		</fieldset>
+		<script type="text/javascript">
+			// 查找元素
+			var oDate = document.querySelector(".date");
+			var oWeekday = document.querySelector(".weekday");
+			var oTime = document.querySelector(".time");
+			var timer;
+
+			function clock() {
+				var now = new Date();
+				var year = now.getFullYear();
+				var month = now.getMonth() + 1;
+				var day = now.getDate();
+				var weekday = now.getDay();
+				var hour = now.getHours();
+				var min = now.getMinutes();
+				var sec = now.getSeconds();
+				var week = ["日", "一", "二", "三", "四", "五", "六"]
+				// 显示日期、星期
+				oDate.innerText = year + "-" + fix(month) + "-" + fix(day);
+				oWeekday.innerText = "星期" + week[weekday];
+				// 显示时间
+				oTime.innerHTML = fixHour(hour) + " : " + fix(min) + " : " + fix(sec) + " <i>" + format(hour) + "</i>";
+			}
+			// 开启定时器
+			clock()
+			timer = setInterval(clock, 1000);
+			// 修正小于10的数字
+			function fix(x) {
+				if (x < 10) {
+					return "0" + x;
+				} else {
+					return x;
+				}
+			}
+			// 12小时制转换AM/PM
+			function format(x) {
+				if (x > 12) {
+					return "PM";
+				} else {
+					return "AM";
+				}
+			}
+			// 12小时制转换小时
+			function fixHour(x) {
+				if (x > 12) {
+					return fix(x - 12);
+				} else {
+					return fix(x);
+				}
+			}
+		</script>
+		<script type="text/javascript">
+			// 查找元素
+			var oSetBtn = document.getElementById("setBtn");
+			var oHour = document.querySelector(".hour");
+			var oMin = document.querySelector(".min");
+			var oSec = document.querySelector(".sec");
+			var oSymbol = document.querySelector(".symbol");
+			// 设置闹钟
+			oSetBtn.onclick = function() {
+				// 获取value
+				var hour = oHour.value;
+				var min = oMin.value;
+				var sec = oSec.value;
+				var symbol = oSymbol.value;
+				// 判断是否有效数值
+				if (!isHourValid(hour) || !isMinValid(min) || !isMinValid(sec)) {
+					alert("请输入合法的数值");
+					return;
+				}
+				// 闹钟
+
+			}
+			// 判断是否有效数值
+			function isHourValid(val) {
+				if (!val) {
+					return false;
+				}
+				if (isNaN(val)) {
+					return false;
+				}
+				val = parseInt(val);
+				if (val < 0 || val > 12) {
+					return false;
+				}
+				return true;
+			}
+
+			function isMinValid(val) {
+				if (!val) {
+					return false;
+				}
+				if (isNaN(val)) {
+					return false;
+				}
+				val = parseInt(val);
+				if (val < 0 || val > 60) {
+					return false;
+				}
+				return true;
+			}
+		</script>
+		<h3>该模拟时钟至少应当包括以下功能点：</h3>
+		<ol>
+			<li>独立可区分的小时、分钟和秒</li>
+			<li>显示日期，星期几</li>
+			<li>默认以当前时间为初始时间</li>
+			<li>数字小于10的时候，前面自动补齐0，如<b>07</b></li>
+		</ol>
+		<h3>选做题：难度*****</h3>
+		<ol>
+			<li>12小时进制，分别显示AM/PM</li>
+			<li>可设置闹钟，当时钟走到预设的时间点时，弹出提示框（注意区分上下午）</li>
+			<li>时、分、秒均可手动调节,注意时间进位</li>
+		</ol>
+	</body>
 
 </html>
