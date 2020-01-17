@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.box {
+				position: absolute;
+				width: 100px;
+				height: 100px;
+				border: 1px solid #0000FF;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box"></div>
+		<script>
+			// 查找元素
+			var oBox = document.querySelector(".box");
+			// 绑定事件 -- 覆盖
+			oBox.onclick = function() {
+				console.log(1);
+			}
+			oBox.onclick = function() {
+				console.log(2);
+			}
+			// 匿名函数 == 回调函数
+			oBox.addEventListener("click", function () {
+				console.log(1);
+			});
+			oBox.addEventListener("click", function () {
+				console.log(2);
+			});
+		</script>
+	</body>
+</html>

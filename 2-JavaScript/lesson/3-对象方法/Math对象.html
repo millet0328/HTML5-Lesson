@@ -8,42 +8,87 @@
 	</head>
 
 	<body>
-		<script type="text/javascript">
-			window.onload = function() {
-				var deg = Math.PI / 2;
-				var res = Math.sin(deg);
-				// 绝对值
-				Math.abs(-2)
-				//上舍入
-				var num = 1.26;
-				console.log(Math.ceil(num)); //2
-				//下舍入
-				console.log(Math.floor(num)); //1
-				//四舍五入
-				console.log(Math.round(num)); //1
+		<button type="button" id="btn">抽奖</button>
+		<p id="result">
 
-				//随机数 0`1
-				var m = Math.random();
-				if (m >= 0.95) {
-					console.log("一等奖:" + m);
+		</p>
+		<fieldset id="">
+			<legend>抽号</legend>
+			<button id="extract" type="button">抽取座号</button>
+			<p class="seat">
+
+			</p>
+		</fieldset>
+		<script>
+			// 查找元素
+			var oExtract = document.getElementById("extract");
+			// 抽取座号：[1，25]
+			var arr = [];
+			oExtract.onclick = function() {
+				if (arr.length >= 25) {
+					return;
 				}
-				if (m < 0.95 && m >= 0.8) {
-					console.log("二等奖:" + m);
+				var x = getRandomNum();
+				// 放入arr
+				arr.push(x);
+			}
+			// 递归函数
+			function getRandomNum() {
+				var num = Math.floor(Math.random() * 25 + 1);
+				for (var i = 0; i < arr.length; i++) {
+					if (num == arr[i]) {
+						// 重新生成
+						return getRandomNum();
+					}
 				}
-				if (m < 0.8 && m >= 0.6) {
-					console.log("三等奖:" + m);
-				}
-				if (m < 0.6) {
-					console.log("谢谢惠顾:" + m);
-				}
-				//随机数 360~720(包含) floor
-				var x = Math.floor(Math.random() * 361 + 360);
-				// 随机数 1~1200
-				var y = Math.floor(Math.random() * 1200 + 1);
-				console.log(y)
+				return num;
 			}
 		</script>
-		
+		<script type="text/javascript">
+			var oBtn = document.getElementById("btn");
+			var oResult = document.getElementById("result");
+			var Pi = Math.PI;
+			// 圆的周长，面积
+			// 角度 Pi/180
+			// random [0-1)
+			oBtn.onclick = function() {
+				var x = Math.random();
+				// x>0.95 一等奖
+				// 0.8<x<=0.95 二等奖
+				// 0.6<x<=0.8 三等奖
+				// x<=0.6 谢谢惠顾
+				if (x > 0.9995) {
+					oResult.innerText = "一等奖";
+					return;
+				}
+				if (x > 0.8 && x <= 0.95) {
+					oResult.innerText = "二等奖";
+					return;
+				}
+				if (x > 0.6 && x <= 0.8) {
+					oResult.innerText = "三等奖";
+					return;
+				}
+				if (x <= 0.6) {
+					oResult.innerText = "谢谢惠顾";
+					return;
+				}
+			}
+			// 产生随机数 [10,50) 
+			var m = Math.random() * 40 + 10;
+			// 产生随机整数 [10,50)
+			var n = Math.floor(Math.random() * 40 + 10);
+			//阶乘 1*2*3*4*5
+			function f(n) {
+				if (n == 0 || n == 1) {
+					return n;
+				}
+				return f(n - 1) * n;
+			}
+			console.log(f(4));
+			// 菲波那切数列 F(1)=1，F(2)=1 f(n) = f(n - 1) + f(n - 2) (n>=3)
+		</script>
+
 	</body>
 
 </html>

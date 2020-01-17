@@ -100,8 +100,55 @@
         </div>
     </div>
     <script type="text/javascript">
-    <!-- 查找元素 -->
+    //查找元素
+    var oNameTxt = document.getElementById("name_input");
+    var oAgeTxt = document.getElementById("age_input");
     var oAddBtn = document.getElementById("add_btn");
+    var oHoverBtn = document.getElementById("hover_btn");
+    var oSearchTxt = document.getElementById("search_txt");
+    var oSearchBtn = document.getElementById("search_btn");
+    var oSortBtn = document.getElementById("sort_btn");
+    var oTable = document.getElementById('chart');
+    var oTbody = oTable.querySelector('tbody');
+    // 搜索
+    oSearchBtn.onclick = function() {
+        var txt = oSearchTxt.value.trim();
+        // 空值
+        if (!txt) {
+            alert("请输入搜索的姓名！");
+            return;
+        }
+        // 获取所有tr
+        var oTr = oTbody.querySelectorAll("tr");
+        for (var i = 0; i < oTr.length; i++) {
+            oTr[i].style.backgroundColor = "white";
+            var name = oTr[i].cells[1].innerText;
+            if (name == txt) {
+                oTr[i].style.backgroundColor = "yellow";
+            }
+        }
+    }
+    // 排序
+    oSortBtn.onclick = function() {
+        // 获取所有tr
+        var oTr = oTbody.querySelectorAll("tr");
+        // 转化为数组
+        var arr = [];
+        for (var i = 0; i < oTr.length; i++) {
+            arr.push(oTr[i]);
+        }
+        // 数组排序
+        // 排序
+        arr.sort(function(itemA, itemB) {
+            var ageA = parseFloat(itemA.cells[2].innerText);
+            var ageB = parseFloat(itemB.cells[2].innerText);
+            return ageA - ageB;
+        });
+        // 插入tbody
+        arr.forEach(function(item, index) {
+            oTbody.appendChild(item);
+        });
+    }
     </script>
 </body>
 

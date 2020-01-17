@@ -6,13 +6,43 @@
 	</head>
 	<body>
 		<h1>读取cookie</h1>
+		<fieldset id="">
+			<legend>购物车</legend>
+			<table width="100%" border="1">
+				<thead>
+					<tr>
+						<th>商品</th>
+						<th>数量</th>
+						<th>价格</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody align="center">
+
+				</tbody>
+			</table>
+		</fieldset>
+
 		<script type="text/javascript">
-			function setCookie(cname, cvalue, exdays) {
-				var d = new Date();
-				d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-				var expires = "expires=" + d.toGMTString();
-				document.cookie = cname + "=" + cvalue + "; " + expires;
+			var oTbody = document.querySelector("table tbody");
+			// 读取cookie
+			var cart = getCookie("cart");
+			// JSON => 数组
+			if (cart) {
+				cart = JSON.parse(cart);
+			} else {
+				cart = [];
 			}
+			
+			cart.forEach(function(item, index) {
+				var oTr = document.createElement("tr");
+				oTr.innerHTML =
+					"<td>" + item.name + "</td>" +
+					"<td>" + item.num + "</td>" +
+					"<td>" + item.price + "</td>" +
+					"<td></td>";
+				oTbody.appendChild(oTr);
+			});
 
 			function getCookie(cname) {
 				var name = cname + "=";
@@ -26,7 +56,6 @@
 				}
 				return "";
 			}
-			console.log(getCookie("nickname"))
 		</script>
 	</body>
 </html>

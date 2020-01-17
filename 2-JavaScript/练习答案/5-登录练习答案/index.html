@@ -3,9 +3,9 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-    <title>Document</title>
+    <title>登录</title>
     <style type="text/css">
-    .bg {
+    .shadow {
         position: fixed;
         top: 0;
         left: 0;
@@ -19,10 +19,10 @@
     .dialog {
         position: fixed;
         margin: auto;
-        top: 50%;
-        left: 50%;
-        margin-left: -150px;
-        margin-top: -75px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
         width: 300px;
         height: 150px;
         border: 4px solid #616479;
@@ -46,18 +46,16 @@
 </head>
 
 <body>
-    <div class="dj">
-        <input type="button" value="点击登录" class="" />
-    </div>
-    <div class="bg" id="bg">
+    <button id="btn" type="button">点击登录</button>
+    <div class="shadow">
         <div class="dialog">
             <div class="am-padding-top-md">
                 <label>账号：</label>
-                <input type="text" value="" name="userName" id="userName" />
+                <input type="text" id="userName" />
             </div>
             <div class="am-padding-top-md">
                 <label>密码：</label>
-                <input type="password" value="" name="password" id="password" />
+                <input type="password" id="password" />
             </div>
             <div class="am-padding-top-lg">
                 <input type="button" value="登录" id="login" />
@@ -66,33 +64,60 @@
         </div>
     </div>
     <script type="text/javascript">
-    var oDj = document.querySelector(".dj");
-    var oBg = document.getElementById("bg");
-    var oWin = oBg.querySelector(".dialog");
+    //查找元素
+    var oBtn = document.querySelector("#btn");
+    var oShadow = document.querySelector(".shadow");
+    var oDialog = oShadow.querySelector('.dialog');
+
     var oName = document.getElementById("userName");
     var oPassword = document.getElementById("password");
     var oLogin = document.getElementById("login");
     var oClose = document.getElementById("close");
-
-    oDj.onclick = function() {
-        oBg.style.display = "block";
+    // 打开模态框
+    oBtn.onclick = function() {
+        oShadow.style.display = "block";
     }
 
     oLogin.onclick = function() {
         var name = oName.value;
         var code = oPassword.value;
-        // var reg = /^([0-9]|[A-z])\w{0,7}$/;
-        // var flag = reg.test(name);
         if (name.length < 8 && code == "123") {
-            oBg.style.display = "none";
+            oShadow.style.display = "none";
         } else {
             alert("用户名或密码错误");
         }
     };
 
     oClose.onclick = function() {
-        oBg.style.display = "none";
+        oShadow.style.display = "none";
     };
+    // 附加题：拖拽效果
+    oDialog.onmousedown = function(e) {
+        // 记录起点的坐标
+        var sx = e.pageX;
+        var sy = e.pageY;
+        // 获取当前的left/top值
+        var left = this.offsetLeft;
+        var top = this.offsetTop;
+        // mousemove事件
+        document.onmousemove = function(e) {
+            // 记录终点的坐标
+            var dx = e.pageX;
+            var dy = e.pageY;
+            // 计算移动距离
+            var moveX = dx - sx;
+            var moveY = dy - sy;
+            // 新位置
+            oDialog.style.margin = 0;
+            oDialog.style.left = left + moveX + "px";
+            oDialog.style.top = top + moveY + "px";
+        }
+    }
+
+    // mouseup事件--移除mousemove事件
+    document.onmouseup = function() {
+        document.onmousemove = null;
+    }
     </script>
 </body>
 

@@ -8,76 +8,81 @@
 	</head>
 
 	<body>
-		<div id="clock">
-			当前时间：<span class="date-time"></span>
-		</div>
-		<p>
-			<button type="button" id="stop">停止</button>
+		<div class="clock">
+			当前时间：<span class="time"></span>
 			<button type="button" id="start">开始</button>
-		</p>
-		<p class="tick">
+			<button type="button" id="stop">暂停</button>
+		</div>
+		<div class="tick">
 
-		</p>
+		</div>
 		<script>
-			// 查找元素
-			var oStart = document.getElementById('start');
-			var oStop = document.getElementById('stop');
+			var oStop = document.getElementById("stop");
+			var oStart = document.getElementById("start");
 			var timer;
-			// 开始
-			oStart.onclick = function() {
-				// 防止重复绑定定时器
-				clearInterval(timer);
-				timer = setInterval(clock, 1);
-			}
-			// 停止
+			// 清空定时器
 			oStop.onclick = function() {
 				clearInterval(timer);
+			}
+			// 设置定时器
+			oStart.onclick = function() {
+				// 清空定时器
+				clearInterval(timer);
+				// 新定时器
+				timer = setInterval(clock, 1000)
 			}
 
 			function clock() {
 				// 查找元素
-				var oSpan = document.querySelector('#clock .date-time');
-				// 当前时间
+				var oTime = document.querySelector(".time");
+				// 获取当前时间
 				var now = new Date();
-				// 获取年/月/日 小时:分钟:秒
 				var year = now.getFullYear();
 				var month = now.getMonth() + 1;
 				var day = now.getDate();
-				var week = now.getDay();
+				var weekday = now.getDay();
 				var hour = now.getHours();
 				var min = now.getMinutes();
 				var sec = now.getSeconds();
-				var msec = now.getMilliseconds();
-				oSpan.innerText = year + '-' + month + '-' + day + ' ' + hour + ':' + min + ':' + sec + ':' + msec
+				// 2020-1-13 11:51:47
+				var time = year + "-" + fix(month) + "-" + fix(day) + " " + fix(hour) + ":" + fix(min) + ":" + fix(sec);
+				// 修正10以内的数字
+				function fix(x) {
+					if (x < 10) {
+						return "0" + x;
+					} else {
+						return x;
+					}
+				}
+				oTime.innerText = time;
 			}
 			clock();
 		</script>
 		<script>
-			// 查找元素
-			var oTick = document.querySelector('.tick');
-
 			function tick() {
+				var oTick = document.querySelector(".tick");
+				// 倒计时写法
+				// 2020-1-18 17:30
+				var future = new Date(2020, 0, 18, 17, 30);
+				var past = new Date(1840, 0, 1);
 				var now = new Date();
-				var timestamp = now.getTime();
-				// 2小时之后
-				// var hour = now.getHours();
-				// now.setHours(hour + 2);
-				// 过去时间
-				var past = new Date(1988, 4, 17);
-				// 时间之差 == 毫秒数
-				var time = now - past;
-				var msec = parseInt(time % 1000);
+				// date对象之差
+				var time = future - now;
+				// 毫秒
+				var msc = time % 1000;
 				var sec = parseInt(time / 1000 % 60);
 				var min = parseInt(time / (1000 * 60) % 60);
 				var hour = parseInt(time / (1000 * 60 * 60) % 24);
-				var day = parseInt(time / (1000 * 60 * 60 * 24) % 30);
-				// 月份有31天,30天
-				var month = parseInt(time / (1000 * 60 * 60 * 24 * 30) % 12);
-				var year = parseInt(time / (1000 * 60 * 60 * 24 * 365));
-				oTick.innerText = year + '年' + month + '月' + day + '日 ' + hour + ':' + min + ':' + sec + ':' + msec
+				var day = parseInt(time / (1000 * 60 * 60 * 24));
+				var str = "倒计时：" + day + "天" + hour + "时" + min + "分" + sec + "秒" + msc + "毫秒";
+				oTick.innerHTML = str;
 			}
-			var ticker;
-			ticker = setInterval(tick, 1);
+			setInterval(tick, 1);
+		</script>
+		<script>
+			// 2个小时之后
+			var ring = new Date().setHours(new Date().getHours() + 2);
+			console.log(ring);
 		</script>
 	</body>
 

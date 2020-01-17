@@ -5,6 +5,13 @@
 		<meta charset="utf-8" />
 		<title></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style type="text/css">
+			.chat-box {
+				padding: 10px;
+				border: 2px solid blue;
+				margin-top: 10px;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -24,53 +31,51 @@
 		<script type="text/javascript">
 			window.onload = function() {
 				// 查找元素
-				var oSend = document.getElementById("send");
+				var oSendBtn = document.getElementById("send");
 				var oContent = document.getElementById("content");
 				var oChatBox = document.querySelector(".chat-box");
-				var oTel = document.getElementById("tel");
 				var oConvert = document.getElementById("convert");
-				// 手机号码
+				var oTel = document.getElementById("tel");
+				// 
 				oConvert.onclick = function() {
+					// 获取value
 					var tel = oTel.value;
-					var res = tel.substr(0, 3) + ' ' + tel.substr(3, 4) + ' ' + tel.substr(7, 4);
-					oTel.value = res;
+					if (tel.length != 11) {
+						return;
+					}
+					// 截去字符串
+					// oTel.value = tel.slice(0, 3) + " " + tel.slice(3, 7) + " " + tel.slice(7, 11);
+					oTel.value = tel.substr(0, 3) + " " + tel.substr(3, 4) + " " + tel.substr(7, 4);
 				}
 
-				// 发送
-				oSend.onclick = function() {
+				oSendBtn.onclick = function() {
+					// 获取value
 					var txt = oContent.value;
-					// 检索字符
-					var i = txt.indexOf('狗');
-					if (i >= 0) {
-						var str = txt.replace(/狗/g, ' * ');
-					} else {
-						var str = txt;
+					// 空值、空格
+
+					// 检索字符串 MDZZ
+					var isValid = txt.indexOf("MDZZ");
+					// 处理违禁词
+					if (isValid >= 0) {
+						txt = txt.replace(/MDZZ/g, "****");
 					}
-					// 创建标签
 					var oP = document.createElement("p");
-					// 修饰标签
-					oP.innerHTML = '我说：' + str;
-					// 插入标签
+					oP.innerText = "我说：" + txt;
 					oChatBox.appendChild(oP);
 				}
+
 			}
 		</script>
 		<script>
 			// 字符串 => 数组
-			var tel = 'name=moz&age=26&job=actor';
-			var arr = tel.split('&');
-			var obj = {};
-			var n = 'name';
-			obj[n] = '黄熊猫';
-
-			arr.forEach(function(item, index) {
-				var temp = item.split('=');
-				obj[temp[0]] = temp[1];
-			})
-
-			console.log(obj);
-			var stu = '36-45-89-97-98-36';
-			
+			var str = "name=moz&age=32&sex=1&job=actor";
+			var arr = str.split("&");
+			obj = {
+				name: "moz",
+				age: "32",
+				sex: "1",
+				job: "actor"
+			}
 		</script>
 
 	</body>

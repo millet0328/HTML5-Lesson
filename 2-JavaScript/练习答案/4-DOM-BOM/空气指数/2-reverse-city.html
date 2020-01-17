@@ -30,14 +30,36 @@
         -->
     </ul>
     <script type="text/javascript">
-        
     function getCity() {
 
         /*
         在注释下方编写代码
         遍历读取aqiData中各个城市的数据
         */
-
+        // 查找元素
+        var oSourceData = document.querySelectorAll("#source li");
+        var oResortList = document.querySelector("#resort");
+        // 提取空气质量
+        var sourceData = [];
+        for (var i = 0; i < oSourceData.length; i++) {
+            var city = oSourceData[i].innerText.slice(0, 2);
+            var num = oSourceData[i].querySelector('b').innerText;
+            var obj = {
+                city: city,
+                index: num
+            };
+            sourceData.push(obj);
+        }
+        // 升序排序
+        sourceData.sort(function(itemA, itemB) {
+            return itemA.index - itemB.index;
+        });
+        // 插入DOM
+        sourceData.forEach(function(item, index) {
+            var oLi = document.createElement("li");
+            oLi.innerHTML = "第" + (index + 1) + "名：" + item.city + "空气质量：<b>" + item.index + "</b>";
+            oResortList.appendChild(oLi);
+        });
     };
     getCity();
     </script>

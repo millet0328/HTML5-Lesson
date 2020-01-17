@@ -101,28 +101,43 @@
         }
         for (var i = 0; i < oBtn.length; i++) {
             oBtn[i].onclick = function() {
-                // 根据obj.isDone判断是否进行下一步运算
-                if (obj.isDone) {
-                    oTxt.value = '';
-                    obj.isDone = false;
+                var x = this.value;
+                var text = oTxt.value;
+                var output;
+                // 是否有运算符
+                if (obj.sign) {
+                    //查找运算符的位置，切割出第二个数字
+                    var index = text.indexOf(obj.sign);
+                    var num = text.slice(index + 1);
+                    output = NumberInputFix(x, num);
+                    oTxt.value = obj.num1 + obj.sign + output;
+                } else {
+                    output = NumberInputFix(x, text);
+                    oTxt.value = output;
                 }
-                //如果开始小数点，则自动填充0
-                if (this.value == "." && oTxt.value == "") {
-                    oTxt.value = "0.";
-                    return false;
-                }
-                //如果已经有小数点，则不再添加小数点
-                if (this.value == "." && oTxt.value.indexOf(".") != -1) {
-                    return false;
-                }
-                //如果第一个数字为0
-                if (oTxt.value == "0" && this.value != ".") {
-                    oTxt.value = this.value;
-                    return false;
-                }
-                // 默认
-                oTxt.value += this.value;
             }
+        }
+        // 修正数字输入
+        function NumberInputFix(input, num) {
+            // 根据obj.isDone判断是否进行下一步运算
+            if (obj.isDone) {
+                obj.isDone = false;
+                return input;
+            }
+            //如果开始小数点，则自动填充0
+            if (input == "." && num == "") {
+                return '0.';
+            }
+            //如果已经有小数点，则不再添加小数点
+            if (input == "." && num.indexOf(".") != -1) {
+                return num;
+            }
+            //如果第一个数字为0
+            if (input != "." && num == "0") {
+                return input;
+            }
+            // 默认
+            return num + input;
         }
         //退格
         oBackspace.onclick = function() {

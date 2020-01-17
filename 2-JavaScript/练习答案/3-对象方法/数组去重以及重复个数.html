@@ -8,7 +8,7 @@
 
 <body>
     <pre>
-		var arr = [1,2,3,4,5,6,2,3,3,3,3,4,4,4,4,5,5,5,23,2,2,3,4,6,1,5,8,7,9,7,6,1,2,2,5,7,8,4,9]
+		var arr = [1, 42, 65, 46, 28, 65, 53, 1, 32, 7, 65, 46, 1, 53, 6, 46, 65, 32, 28, 39, 65, 32, 1, 23, 65, 32, 39, 65, 46, 53, 46, 53, 65, 32, 53, 28, 65, 1, 53, 65, 23, 32, 7, 65, 32, 46, 6, 1, 53, 46, 7, 53, 9, 23, 46, 7, 53, 6, 1, 65, 28, 7, 28, 32, 65, 23, 46, 7, 53, 9]
 		1、将数组重复的数字去除
 		2、求出现频率最高的十个数字
 		3、将其打印至有序列表result中
@@ -17,42 +17,23 @@
     </ol>
     <script type="text/javascript">
     window.onload = function() {
-        var arr = [1, 2, 3, 4, 5, 6, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 23, 2, 2, 3, 4, 6, 1, 5, 8, 7, 9, 7, 6, 1, 2, 2, 5, 7, 8, 4, 9];
+        var arr = [1, 42, 65, 46, 28, 65, 53, 1, 32, 7, 65, 46, 1, 53, 6, 46, 65, 32, 28, 39, 65, 32, 1, 23, 65, 32, 39, 65, 46, 53, 46, 53, 65, 32, 53, 28, 65, 1, 53, 65, 23, 32, 7, 65, 32, 46, 6, 1, 53, 46, 7, 53, 9, 23, 46, 7, 53, 6, 1, 65, 28, 7, 28, 32, 65, 23, 46, 7, 53, 9];
+        // 频率
         var obj = {};
+        // 去重之后的数组
         var pureArray = [];
-        var tickArray = [];
-        var oRes = document.getElementById("result");
-
-        for (var i = 0; i < arr.length; i++) {
-            if (obj[arr[i]]) {
-                obj[arr[i]]++;
+        arr.forEach(function(item, index) {
+            if (obj[item]) {
+                // 在obj中存在
+                obj[item] = obj[item] + 1;
             } else {
-                obj[arr[i]] = 1;
-                pureArray.push(arr[i]);
-            }
-        }
-        
-        for (key in obj) {
-            var temp = {
-                name: key,
-                time: obj[key]
-            }
-            tickArray.push(temp);
-        }
-
-        tickArray.sort(function(a, b) {
-            if (a.time > b.time) {
-                return -1;
-            } else {
-                return 1;
+                // 在obj中不存在
+                obj[item] = 1;
+                pureArray.push(item);
             }
         });
-
-        tickArray.forEach(function(item, index) {
-            var oLi = document.createElement("li");
-            oLi.innerHTML = '数字' + item.name + ':' + item.time + '次';
-            oRes.appendChild(oLi);
-        });
+        console.log(obj);
+        console.log(pureArray);
     }
     </script>
 </body>

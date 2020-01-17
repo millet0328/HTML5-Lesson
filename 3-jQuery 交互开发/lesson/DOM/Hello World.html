@@ -5,12 +5,14 @@
 		<title></title>
 	</head>
 	<body>
-		<button id="btn" type="button">按钮</button>
-		<!-- jQuery排在第一位 -->
-		<script src="./js/jquery-3.4.1.min.js"></script>
-		<script>
-			$('#btn').click(function() {
-				console.log('Hello World!');
+		<button class="btn" type="button">按钮</button>
+
+		<script src="js/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript">
+			var x = 1;
+			$(".btn").click(function() {
+				x++;
+				console.log(x);
 			});
 		</script>
 	</body>

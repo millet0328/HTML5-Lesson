@@ -99,65 +99,43 @@
 				<p>撒娇的<b>x</b></p>
 				<p>要删除的评论<b>x</b></p>
 				<p>新的评论<b>x</b></p>
-
-			</div>
-		</div>
-		<!-- 弹窗 -->
-		<div class="modal">
-			modal框
-			<div class="footer">
-				<button id="close" type="button">关闭</button>
 			</div>
 		</div>
 		<script type="text/javascript">
 			// 查找元素
-			var oTitle = document.querySelector(".title");
 			var oBtn = document.getElementById("btn");
 			var oTxt = document.getElementById("txt");
-			var oResult = document.getElementById('result');
-			// 删除评论--事件委托
-			oResult.onclick = function(e) {
-				// 判断是否点击的是删除标签
-				if (e.target.tagName == "B") {
-					this.removeChild(e.target.parentNode);
-				}
-			};
+			var oResult = document.querySelector(".result");
+
 			// 评论
 			oBtn.onclick = function() {
+				// 获取value
 				var txt = oTxt.value;
-				// 判断是否为空
+				// 去除空格
+				txt = txt.trim();
+				// 空评论
 				if (!txt) {
-					alert("请填写评论内容！");
+					alert("请输入评论内容！");
 					return;
 				}
-				// 生成元素
+				// 创建元素
 				var oP = document.createElement("p");
 				// 修饰元素
-				oP.innerHTML = txt + '<b>x</b>';
+				oP.setAttribute("title", txt);
+				oP.innerHTML = txt + "<b>x</b>";
 				// 插入元素
 				// oResult.appendChild(oP);
 				oResult.insertBefore(oP, oResult.firstChild);
-				// 清空input
-				oTxt.value = '';
+				// 清空内容
+				oTxt.value = "";
 			}
-
-			// 获取原来颜色
-			var color = getComputedStyle(oTitle).color;
-
-			oTitle.onclick = function() {
-				// 当前颜色
-				var currentColor = getComputedStyle(oTitle).color;
-				// 当前字号
-				var currentSize = getComputedStyle(oTitle).fontSize;
-				currentSize = parseFloat(currentSize);
-
-				if (currentColor == color) {
-					oTitle.style.color = "#33CCCC";
-				} else {
-					oTitle.style.color = color;
+			// 删除评论 -- 事件委托
+			oResult.onclick = function(event) {
+				// 事件对象event判断是否删除
+				var tag = event.target.tagName;
+				if (tag == "B") {
+					oResult.removeChild(event.target.parentNode);
 				}
-				currentSize++;
-				oTitle.style.fontSize = currentSize + 'px';
 			}
 		</script>
 	</body>

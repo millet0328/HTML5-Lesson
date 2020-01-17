@@ -10,67 +10,70 @@
 	<body>
 		<script type="text/javascript">
 			var arr = [1, 2, 3, 4];
+			// unshift
+			arr.unshift(0);
+			// push
 			arr.push(5);
-			// push主要是构建一个新数组
-			// 求0-100之间能被7整除的数,将结果放在数组中
-			var res = [];
+			// shift
+			arr.shift();
+			// pop
+			arr.pop();
+			// splice 删除+增加
+			arr.splice(1, 0, 5, 6, 7);
+			// 构建一个新数组,求0-100之间能被7整除的数,将结果放在数组中
+			var result = [];
 			for (var i = 0; i <= 100; i++) {
 				if (i % 7 == 0) {
-					res.push(i);
+					result.push(i);
 				}
 			}
-			console.log(res);
-			// shift
-			var item_1st = arr.shift();
-			// pop
-			var item_last = arr.pop();
-			// splice
-			var score = [20, 30, 40, 50, 60];
-			score.splice(2, 0, 70, 80, 90, 100);
 			// 数组合并
-			var arr1 = [2, 4, 6];
-			var arr2 = [1, 3, 5];
-			var all = arr2.concat(arr1);
-			console.log(all);
+			var arr1 = [1, 2];
+			var arr2 = [3, 4, 5, 6, 7];
+			var arr3 = arr1.concat(arr2);
 			// 字符串 => 数组 split
-
 			// 数组 => 字符串 join
-			var students = ["王小米", "李渤", "黄磊", "张艺兴"];
-			var str = students.join('-');
+			var str3 = arr3.join(" ");
 			// 数组排序 sort
-			var test = [12, 32, 245, 312, 87];
-			test.sort(function(a, b) {
+			var unsort = [1, 42, 65, 46, 28, 65, 53, 1, 32, 7, 65, 46, 1, 53, 6, 46, 65, 32, 28, 39, 65, 32, 1, 23, 65, 32, 39,
+				65,
+				46, 53, 46, 53, 65, 32, 53, 28, 65, 1, 53, 65, 23, 32, 7, 65, 32, 46, 6, 1, 53, 46, 7, 53, 9, 23, 46, 7, 53, 6, 1,
+				65, 28, 7, 28, 32, 65, 23, 46, 7, 53, 9
+			];
+			unsort.sort(function(a, b) {
 				return b - a;
 			});
-			var students = [{
+			// 对象数组排序
+			var team = [{
+				name: "黄磊",
+				age: 48,
+			}, {
 				name: "黄渤",
 				age: 46,
-				sex: "男"
 			}, {
-				name: "黄磊",
-				age: 50,
-				sex: "男"
+				name: "张艺兴",
+				age: 28,
+			}, {
+				name: "王迅",
+				age: 42,
 			}, {
 				name: "罗志祥",
 				age: 43,
-				sex: "女"
 			}, {
-				name: "张艺兴",
-				age: 29,
-				sex: "女"
-			}];
-			students.sort(function(a, b) {
-				if (a.sex == "男" && b.sex == "女") {
+				name: "孙红雷",
+				age: 47,
+			}]
+			// a,b代表数组一个元素
+			team.sort(function(a, b) {
+				if (a.age > b.age) {
 					return 1;
-				}
-				if (a.sex == "女" && b.sex == "男") {
+				} else {
 					return -1;
 				}
+				return a.age - b.age;
 			});
-			console.log(students);
 			// 排序算法 冒泡 快速 二分法
 		</script>
-
 	</body>
 
 </html>

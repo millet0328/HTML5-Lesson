@@ -37,13 +37,18 @@
 				margin-bottom: 20px;
 			}
 		</style>
+		<script type="text/javascript">
+			window.onload = function() {
+				var oBtn = document.getElementById("btn");
+				console.log(oBtn);
+			}
+		</script>
 	</head>
 
 	<body>
 		<!--批量修改样式-->
 		<div class="change_box">
 			<input type="button" id="btn" value="批量修改样式" />
-			<input type="button" id="reload" value="重新加载" />
 			<div class="clearfix">
 				<div class="cube fl">
 					1
@@ -62,17 +67,18 @@
 		<script type="text/javascript">
 			// 查找元素
 			var oBtn = document.getElementById("btn");
-			var aCube = document.querySelectorAll(".cube");
+			// NodeList 类数组 [el,el,el]
+			var oCube = document.querySelectorAll(".cube");
 			// 批量修改样式
 			oBtn.onclick = function() {
-				for (var i = 0; i < aCube.length; i++) {
-					aCube[i].style.backgroundColor = "pink";
+				for (var i = 0; i < oCube.length; i++) {
+					oCube[i].style.backgroundColor = "yellow";
 				}
 			}
-			// 批量绑定事件 0 1 2 3  i==4
-			for (var i = 0; i < aCube.length; i++) {
-				aCube[i].onclick = function() {
-					this.style.backgroundColor = "yellow";
+			// 批量绑定事件,逐个绑定事件
+			for (var i = 0; i < oCube.length; i++) {
+				oCube[i].onclick = function() {
+					this.style.backgroundColor = "pink";
 				}
 			}
 		</script>

@@ -17,29 +17,37 @@
 	</head>
 
 	<body>
-		<img src="img/1.jpg" width="" height="" id="photo" />
-		<div class="">
-			<h1 id="goBack">后退</h1>
-			<input type="button" name="btn" id="btn" value="点击" />
-			<a href="http://www.jd.com/" id="link">京东</a>
-		</div>
-		<button id="log">点击</button>
+		<a class="link" href="http://www.baidu.com">百度</a>
 		<script type="text/javascript">
-			// this指向window
-			var x = 10;
-			setTimeout(function() {
-				var x = 20;
-				console.log(this.x);
-			}, 10);
-			// 历史记录
-			var oBack = document.getElementById("goBack");
-			oBack.onclick = function() {
-				history.back();
+			var oLink = document.querySelector(".link");
+			// 默认事件
+			/*  图片，文字可以拖出来 
+				a标签可以进行跳转
+				右键是菜单
+				submit可以进行提交
+			 */
+			oLink.onclick = function(e) {
+				e.preventDefault();
+				location.href = "https://www.jd.com/";
 			}
-			// cookie增加
-			document.cookie = "username=黄小米";
-			document.cookie = "uid=12;expires=" + new Date(2087, 1, 1);
-			console.log(document.cookie);
+			// 右键菜单
+			document.oncontextmenu = function(e) {
+				e.preventDefault();
+			}
+			// 延迟执行
+			setTimeout(function() {
+				document.body.style.backgroundColor = "red";
+			}, 2000);
+			
+			var a = 100;
+			function add() {
+				console.log("add函数")
+				console.log(this);
+			}
+			// setInterval(function() {
+			// 	console.log(this);
+			// 	location.reload();
+			// }, 1000);
 		</script>
 	</body>
 

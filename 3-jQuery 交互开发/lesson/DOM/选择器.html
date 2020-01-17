@@ -16,6 +16,7 @@
 				width: 100px;
 				height: 100px;
 				background-color: blue;
+				margin: 10px 0;
 			}
 		</style>
 	</head>
@@ -77,36 +78,16 @@
 			<button id="search" type="button">搜索</button>
 		</p>
 		<!--jQuery-->
-		<script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			// 类选择
-			$(".table tr").click(function() {
-				$(".table tbody tr:nth-child(3n)").css("backgroundColor", "red");
-			});
-			// toggle事件
-			// var flag = true; //box的状态
-			// $('#btn').click(function() {
-			// 	if (flag) {
-			// 		$('.box').css("display", "none");
-			// 		flag = false;
-			// 	} else {
-			// 		$('.box').css("display", "block");
-			// 		flag = true;
-			// 	}
-			// });
 			$("#btn").click(function() {
-				// 检查一下box的状态
-				var flag = $(".box").is(':visible');
+				// 获取当前的状态
+				var flag = $('.box').is(":visible");
 				if (flag) {
-					$('.box').css("display", "none");
+					$('.box').css('display', 'none');
 				} else {
-					$('.box').css("display", "block");
+					$('.box').css('display', 'block');
 				}
-			});
-			// 搜索
-			$("#search").click(function() {
-				var keyword = $('#keyword').val();
-				$('.table tbody tr:contains(' + keyword + ')').css('backgroundColor', 'yellow');
 			});
 		</script>
 	</body>

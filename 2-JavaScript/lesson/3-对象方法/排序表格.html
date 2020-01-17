@@ -108,30 +108,25 @@
 		</table>
 		<script type="text/javascript">
 			// DOM元素排序
-			window.onload = function() {
-				// 查找元素
-				var oPrice = document.querySelectorAll("#jsHeader th")[1];
-				var oTbody = document.getElementById("jsList");
-				// 排序
-				oPrice.onclick = function() {
-					//NodeList 伪数组
-					var oTr = oTbody.rows;
-					// 转化成真数组
-					var arr = [];
-					for (var i = 0; i < oTr.length; i++) {
-						arr.push(oTr[i]);
-					}
-					// 排序
-					arr.sort(function(itemA, itemB) {
-						var priceA = itemA.cells[1].innerText;
-						var priceB = itemB.cells[1].innerText;
-						return priceA - priceB;
-					});
-					// 插入到页面
-					arr.forEach(function(item, index) {
-						oTbody.appendChild(item);
-					});
+			var oPrice = document.querySelectorAll("#jsHeader th")[1];
+			var oList = document.querySelector("#jsList");
+			var oTr = oList.querySelectorAll("tr");
+			oPrice.onclick = function() {
+				// 构建一个新数组
+				var arr = [];
+				for (var i = 0; i < oTr.length; i++) {
+					arr.push(oTr[i]);
 				}
+				// 排序
+				arr.sort(function(itemA, itemB) {
+					var priceA = parseFloat(itemA.cells[1].innerText);
+					var priceB = parseFloat(itemB.cells[1].innerText);
+					return priceA - priceB;
+				});
+				// 插入tbody
+				arr.forEach(function(item, index) {
+					oList.appendChild(item);
+				});
 			}
 		</script>
 	</body>
