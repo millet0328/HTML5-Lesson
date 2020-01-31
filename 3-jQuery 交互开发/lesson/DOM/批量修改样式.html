@@ -37,11 +37,6 @@
 				background-color: #CCCCCC;
 				margin-bottom: 20px;
 			}
-
-			/*.btn:hover {
-            color: #FFFFFF;
-            background-color: #0000FF;
-        }*/
 		</style>
 	</head>
 
@@ -67,10 +62,21 @@
 		</div>
 		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
+			// 隐式迭代（隐式循环）
+			// 批量修改样式
+			$("#btn").click(function() {
+				$('.cube').css('background-color', "yellow");
+			});
+			// 批量绑定事件
+			$('.cube').click(function() {
+				$(this).css('background-color', "pink")
+			})
+		</script>
+		<script type="text/javascript">
 			//			//查找元素
 			//			var oBtn = document.getElementById("btn");
 			//			var oCube = document.querySelectorAll(".cube"); //Nodelist
-			//			//绑定事件
+			//			//绑定修改样式
 			//			oBtn.onclick = function() {
 			//				for(var i = 0; i < oCube.length; i++) {
 			//					oCube[i].style.backgroundColor = "#FFFF00";
@@ -83,17 +89,7 @@
 			//				}
 			//			}
 		</script>
-		<script type="text/javascript">
-			$("#btn").click(function() {
-				// 将是所有的颜色更改
-				$(".cube").css("background-color", "red");
-			});
-			
-			$(".cube").click(function() {
-				$(this).parents(".change_box").css("border",'1px solid blue');
-				$(this).css("background-color", "blue");
-			});
-		</script>
+
 	</body>
 
 </html>
