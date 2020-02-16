@@ -38,7 +38,13 @@
 			</div>
 			<ul>
 				<li class="active">
-					均码
+					M码
+				</li>
+				<li>
+					L码
+				</li>
+				<li>
+					XL码
 				</li>
 			</ul>
 		</div>
@@ -62,38 +68,12 @@
 			</ul>
 		</div>
 	</body>
-	<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
-		// 隐式迭代
-		$(".type li").click(function() {
-			// 判断是否有active
-			var flag = $(this).hasClass("active");
-			// 移除所有active
-			$(".type li").removeClass("active");
-			if (flag) {
-				$(this).removeClass("active");
-			} else {
-				$(this).addClass("active");
-			}
-			// 获取下标index
-			var i = $(this).index();
-			$(".type li").css("background-color", "white");
-			switch (i) {
-				case 0:
-					$(this).css("background-color", "pink");
-					break;
-				case 1:
-					$(this).css("background-color", "blue");
-					break;
-				case 2:
-					$(this).css("background-color", "red");
-					break;
-				case 3:
-					$(this).css("background-color", "gold");
-					break;
-				default:
-					break;
-			}
+		// 批量绑定事件
+		$('.type li').click(function() {
+			$(this).siblings('li').removeClass('active');
+			$(this).addClass('active');
 		});
 	</script>
 </html>

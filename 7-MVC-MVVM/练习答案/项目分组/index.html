@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+
+	<body>
+		<div id="app" class="container clearfix">
+			<h1 class="title">Vue随机项目分组</h1>
+			<div class="group-box">
+				<div class="left">
+					<fieldset class="relative">
+						<legend>1.抽取顺序</legend>
+						<!-- 随机排序按钮 -->
+						<button @click="resortHandle" class="btn resort" type="button">生成顺序</button>
+						<!-- 学生列表 -->
+						<transition-group class="data" name="flip-list" tag="ol">
+							<li v-for="item in students" :key="item.name">
+								<span>{{item.name}}</span>
+							</li>
+						</transition-group>
+					</fieldset>
+				</div>
+				<div class="middle">
+					<fieldset class="relative">
+						<legend>2.分组设置</legend>
+						<!-- 分组按钮组 -->
+						<div class="switch-button" :class="{active:isAuto}" @click="isAuto=!isAuto">
+							<span class="text">{{isAuto?"自动":"手动"}}</span>
+							<i class="point"></i>
+						</div>
+						<form class="txt_center">
+							<div class="form-control">
+								<label>小组人数：</label>
+								<input type="number" v-model="num" @focus="num=''" @change="initTeams" placeholder="请输入平均一个小组人数" class="group-num">
+							</div>
+							<div class="form-control auto" v-if="isAuto">
+								<button class="btn" :disabled="isDone" @click="autoHandle" type="button">自动分组</button>
+							</div>
+							<div class="form-control manual" v-else>
+								<div class="name">{{toRandom.length && current < toRandom.length ? toRandom[current].name :'下一位'}}</div>
+								<button class="btn" :disabled="tick > 0" @click="manualHandle" type="button">{{tick > 0 ? tick:"抽号分组"}}</button>
+							</div>
+						</form>
+						<!-- 待分配学生 -->
+						<section v-if="toDistribute.length">
+							<h3>待分配学生：</h3>
+							<transition-group class="data" name="flip-list" tag="ol">
+								<li v-for="item in toDistribute" :key="item.name">
+									<span>{{item.name}}</span>
+								</li>
+							</transition-group>
+						</section>
+					</fieldset>
+				</div>
+				<div class="right fr">
+					<fieldset class="relative">
+						<legend>2.分组情况</legend>
+						<!-- 项目分组 -->
+						<section v-if="teams.length">
+							<transition-group class="data" name="flip-list" tag="ol">
+								<li v-for="(team,index) in teams" :key="index">
+									<span v-for="person in team">{{person.name}}</span>
+								</li>
+							</transition-group>
+						</section>
+					</fieldset>
+				</div>
+			</div>
+		</div>
+		<!--练习说明-->
+		<ol class="info">
+			<li></li>
+		</ol>
+		<script src="js/vue.js"></script>
+		<script src="js/lodash.js"></script>
+		<script type="text/javascript">
+			var vue = new Vue({
+				el: '#app',
+				data: {
+					// 学生数据
+					students: [
+						{ name: "李建波", rate: 6 },
+						{ name: "宋青峄", rate: 9 },
+						{ name: "张玥", rate: 8 },
+						{ name: "李诚甲", rate: 7 },
+						{ name: "任宇杰", rate: 10 },
+						{ name: "王昊", rate: 5 },
+						{ name: "吕正龙", rate: 7 },
+						{ name: "王启帆", rate: 7 },
+						{ name: "曲继鹏", rate: 7 },
+						{ name: "张瀚宁", rate: 7 },
+						{ name: "蒋金凤", rate: 7 },
+						{ name: "迟瑞涛", rate: 7 },
+						{ name: "杨林明", rate: 7 },
+						{ name: "高凡", rate: 7 },
+						{ name: "刁梦菡", rate: 7 },
+						{ name: "姜兴杰", rate: 7 },
+						{ name: "翟大川", rate: 7 },
+						{ name: "范占魁", rate: 7 },
+						{ name: "王静", rate: 7 },
+						{ name: "高明亮", rate: 7 },
+						{ name: "王龙霞", rate: 7 },
+						{ name: "马文浩", rate: 7 },
+						{ name: "宋思雨", rate: 7 },
+						{ name: "王汝阳", rate: 7 },
+						{ name: "董金敏", rate: 7 },
+					],
+					// 每组人数
+					num: '',
+					// 待分配学生：如果不能均分，随机抽取学生，放入未分配人员数组
+					toDistribute: [],
+					// 待随机学生组，储存抽取顺序
+					toRandom: [],
+					// 随机排序之后的学生组
+					randomed: [],
+					// 完成分配的项目组
+					teams: [],
+					// 分组是否结束
+					isDone: false,
+					// 分组类型
+					isAuto: false,
+					// 当前学生索引
+					current: 0,
+					// 计数器，防止重复点击
+					tick: 0,
+					// 定时器变量
+					timer: '',
+				},
+				computed: {
+					// 小组数量
+					account() {
+						return Math.floor(this.students.length / this.num)
+					}
+				},
+				methods: {
+					// 生成随机抽取顺序
+					resortHandle() {
+						this.students = _.shuffle(this.students);
+					},
+					// 根据小组人数，初始化teams数组，确定待分配学生
+					initTeams() {
+						// 重新开始分组
+						this.isDone = false;
+						// 重新当前学生
+						this.current = 0;
+						// 学生总数
+						var total = this.students.length;
+						// 计算小组数量,生成小组数组
+						this.teams = new Array(this.account);
+						for (var i = 0; i < this.teams.length; i++) {
+							this.$set(this.teams, i, [])
+						}
+						// 平均分配，计算余数
+						var remainder = total % this.num;
+						this.toDistribute = [];
+						// 平均分配
+						if (remainder == 0) {
+							alert('本次分组，平均分配');
+							this.toRandom = this.students;
+							return;
+						}
+						// 有余数，随机抽取学生，由老师安排项目组
+						for (var i = 0; i < remainder; i++) {
+							var x = _.random(0, total - 1 - i);
+							this.toDistribute.push(this.students[x]);
+							this.toRandom = this.students.filter((item, index) => index != x);
+						}
+						// 确定小组人数之后，立刻随机分组
+						this.randomed = _.shuffle(this.toRandom);
+					},
+					// 自动分组
+					autoHandle() {
+						// 根据学生序号求余，分配项目组
+						this.randomed.forEach((item, index) => {
+							var tmp = index % this.account;
+							this.teams[tmp].push(item);
+						});
+						// 结束分组
+						this.isDone = true
+					},
+					// 按照顺序，点击按钮，手动分组
+					manualHandle() {
+						if (this.current > this.toRandom.length - 1) {
+							return;
+						}
+						// 根据抽取顺序，获取当前学生的索引
+						var curStudent = this.toRandom[this.current];
+						var index = this.randomed.findIndex((item, index) => item == curStudent);
+						// 根据索引计算出他在哪个小组
+						var groupIndex = index % this.account;
+						this.teams[groupIndex].push(curStudent);
+						this.current++;
+						// 启动倒计时
+						this.countdown();
+					},
+					// 倒计时
+					countdown() {
+						this.tick = 3;
+						clearInterval(this.timer);
+						this.timer = setInterval(() => {
+							this.tick--;
+							if (this.tick == 0) {
+								clearInterval(this.timer);
+							}
+						}, 1000)
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

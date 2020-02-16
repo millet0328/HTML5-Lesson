@@ -1,4 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 
 <head>
@@ -101,92 +102,81 @@
     </div>
     <script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
-    $(document).ready(function() {
-        //添加数据
-        $("#add_btn").click(function() {
-            var name = $("#name_input").val();
-            var age = $("#age_input").val();
+        $(document).ready(function () {
+            //添加数据
+            $("#add_btn").click(function () {
+                var name = $("#name_input").val();
+                var age = $("#age_input").val();
 
-            //DOM操作--添加
-            //计算序号
-            var index = $("tbody tr").length + 1;
-            //创建元素+修饰元素
-            var $tr = $('<tr><td>' + index + '</td><td>' + name + '</td><td>' + age + '</td><td><a href="javascript:;">删除</a></td></tr>')
-            //插入元素
-            $("tbody").append($tr);
-        });
-        //删除数据
-        $("#chart").on("click", "a", function() {
-            //偷偷把this指向了实际点击的元素
-            $(this).parents("tr").remove();
-        });
-        //开启移入变色
-        //开启标志
-        var flag = false;
-        $("#hover_btn").click(function() {
-            if (flag) {
-                $(this).removeClass("btn-danger").addClass("btn-info");
-                $(this).text("开启移入变色");
-                flag = false;
-                //关闭变色
-                // $("#chart").removeClass("table-hover");
-
-                $("tbody tr").off("mouseenter");
-                $("tbody tr").off("mouseleave");
-
-            } else {
-                $(this).removeClass("btn-info").addClass("btn-danger");
-                $(this).text("关闭移入变色");
-                flag = true;
-                //开启变色
-                // $("#chart").addClass("table-hover");
-
-                $("tbody tr").on("mouseenter", enter);
-                $("tbody tr").on("mouseleave", leave);
-
-            }
-        });
-
-        function enter() {
-            $(this).css("background-color", "#EEEEEE");
-        }
-
-        function leave() {
-            $(this).css("background-color", "");
-        }
-        //搜索
-        $("#search_btn").click(function() {
-            var keyword = $("#search_txt").val();
-            //去除两端空格
-            keyword = $.trim(keyword);
-            //模糊查询
-            $("tbody tr").css("background-color", "");
-            $("tbody tr:contains('" + keyword + "')").css("background-color", "yellow");
-        });
-        //年龄排序
-        $("#sort_btn").click(function() {
-            //转化成数组
-            // var arr = $.makeArray($row);
-            var arr = [];
-            $("tbody tr").each(function(i) {
-                arr.push($(this));
-            })
-            //数组排序
-            arr.sort(function(a, b) {
-                var age_a = parseInt($(a).children("td").eq(2).text());
-                var age_b = parseInt($(b).children("td").eq(2).text());
-                return age_a - age_b;
+                //DOM操作--添加
+                //计算序号
+                var index = $("tbody tr").length + 1;
+                //创建元素+修饰元素
+                var $tr = $('<tr><td>' + index + '</td><td>' + name + '</td><td>' + age +
+                    '</td><td><a href="javascript:;">删除</a></td></tr>')
+                //插入元素
+                $("tbody").append($tr);
             });
-            //插入DOM
-            // $("tbody").html(arr);
+            //删除数据
+            $("#chart").on("click", "a", function () {
+                //偷偷把this指向了实际点击的元素
+                $(this).parents("tr").remove();
+            });
+            //开启移入变色
+            $('#hover_btn').click(function () {
+                // 获取文字
+                var txt = $(this).text();
+                // 切换
+                if (txt == '开启移入变色') {
+                    $(this).text('关闭移入变色');
+                    $(this).removeClass('btn-info').addClass('btn-danger');
+                    // 绑定事件--事件委托
+                    $('#chart tbody').on('mouseenter', 'tr', function () {
+                        $(this).css('background-color', '#e8e8e8');
+                    });
+                    $('#chart tbody').on('mouseleave', 'tr', function () {
+                        $(this).css('background-color', 'white');
+                    });
+                } else {
+                    $(this).text('开启移入变色');
+                    $(this).removeClass('btn-danger').addClass('btn-info');
+                    // 移除事件
+                    $('#chart tbody').off('mouseenter').off('mouseleave');
+                }
+            });
+            //搜索
+            $("#search_btn").click(function () {
+                var keyword = $("#search_txt").val();
+                //去除两端空格
+                keyword = $.trim(keyword);
+                //模糊查询
+                $("tbody tr").css("background-color", "");
+                $("tbody tr:contains('" + keyword + "')").addClass('').css("background-color", "yellow");
+            });
+            //年龄排序
+            $("#sort_btn").click(function () {
+                //转化成数组
+                // var arr = $.makeArray($row);
+                var arr = [];
+                $("tbody tr").each(function (i) {
+                    arr.push($(this));
+                })
+                //数组排序
+                arr.sort(function (a, b) {
+                    var age_a = parseInt($(a).children("td").eq(2).text());
+                    var age_b = parseInt($(b).children("td").eq(2).text());
+                    return age_a - age_b;
+                });
+                //插入DOM
+                // $("tbody").html(arr);
 
-            // 清空==>插入排序之后的数组元素
-            $("tbody").html('');
-            $.each(arr, function(index, item) {
-                $('tbody').append(item);
-            })
+                // 清空==>插入排序之后的数组元素
+                $("tbody").html('');
+                $.each(arr, function (index, item) {
+                    $('tbody').append(item);
+                })
+            });
         });
-    });
     </script>
 </body>
 

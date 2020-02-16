@@ -5,16 +5,21 @@
 		<title></title>
 	</head>
 	<body>
-		<pre>
-			1、今天以前的日期不能选择
-			2、显示：时-分-秒
-			3、起始日期、截止日期
-		</pre>
-		<label for="">起始日期：</label>
-		<input type="text" id="startDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'%y-%M-%d-%H-%m',maxDate:'#F{$dp.$D(\'endDate\')}'})"
-		 placeholder="今天以前的日期不能选择">
-		<label for="">截止日期：</label>
-		<input type="text" id="endDate" onclick="WdatePicker({minDate:'#F{$dp.$D(\'startDate\')}',dateFmt:'yyyy-MM-dd HH:mm:ss'})" placeholder="只能选择起始日期之后的日期">
+		<h3>火车票、飞机票预定</h3>
+		<ol>
+			<li>显示：时-分-秒，日期格式：2020-02-13 09:52:19</li>
+			<li>起始日期：今天以前的日期不能选择</li>
+			<li>截止日期：起始日期之前的日期不能选择</li>
+		</ol>
+		<form action="">
+			<label for="">起始日期：</label>
+			<input type="text" id="startDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'%y-%M-%d-%H-%m',maxDate:'#F{$dp.$D(\'endDate\')}'})"
+			 placeholder="今天以前的日期不能选择">
+			<label for="">截止日期：</label>
+			<input type="text" id="endDate" onclick="WdatePicker({minDate:'#F{$dp.$D(\'startDate\')}',dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+			 placeholder="只能选择起始日期之后的日期">
+		</form>
+
 		<script src="lib/My97DatePicker/WdatePicker.js"></script>
 	</body>
 </html>

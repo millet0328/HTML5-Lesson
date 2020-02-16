@@ -9,19 +9,25 @@
 				padding: 20px;
 				margin: 30px;
 			}
+			.btn{
+				border: 2px solid orange;
+				outline: 0;
+				padding: 10px 20px;
+				background-color: white;
+			}
 		</style>
 	</head>
 	<body>
-		<button class="btn" type="button">克隆按钮</button>
+		<button class="btn" type="button">本体按钮</button>
 		<div class="box">
 
 		</div>
 		<script src="js/jquery-3.4.1.min.js"></script>
 		<script>
 			$('.btn').click(function() {
-				console.log(1);
-				var $btn = $(this).clone(true);
-				$('.box').append($btn);
+				var $copy = $(this).clone(true);
+				$copy.text("克隆体");
+				$('.box').append($copy);
 			});
 		</script>
 	</body>

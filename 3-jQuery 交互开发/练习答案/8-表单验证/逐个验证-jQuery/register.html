@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<div class="container">
+		<div class="bg">
+			<div class="header">
+				<div class="head">
+					<p>shareLink</p>
+				</div>
+				<div class="head-des">
+					<p>Link the word,Share the world.</p>
+				</div>
+			</div>
+			<form class="form">
+				<div class="form-group">
+					<input type="text" id="username" placeholder="您的用户名" />
+					<div class="null-tip">必须填写用户名</div>
+					<div class="error-tip">用户名至少6个字符</div>
+				</div>
+				<div class="form-group">
+					<input type="password" id="password" placeholder="输入密码" />
+					<div class="null-tip">必须填写密码</div>
+					<div class="error-tip">密码至少6位数字</div>
+				</div>
+				<div class="form-group">
+					<input type="password" id="recheck" placeholder="再次输入密码" />
+					<div class="null-tip">请再次输入密码</div>
+					<div class="error-tip">密码输入不一致</div>
+				</div>
+				<div class="form-group">
+					<input type="tel" id="tel" placeholder="输入手机号" />
+					<div class="null-tip">必须输入手机号码</div>
+					<div class="error-tip">请输入合格的手机号码！</div>
+				</div>
+				<div class="form-group">
+					<input type="text" id="email" placeholder="输入邮箱地址" />
+					<div class="null-tip">必须输入邮箱地址</div>
+					<div class="error-tip">请输入合格的邮箱地址！</div>
+				</div>
+				<div class="form-group">
+					<button type="button" class="login">注册</button>
+				</div>
+				<div class="form-group">
+					<a href="login.html" class="link">已经有账号？</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<script>
+		// 用户名
+		$('#username').change(function () {
+			var username = $(this).val().trim();
+			$(this).siblings().hide();
+			// 空值
+			if (!username) {
+				$(this).siblings('.null-tip').fadeIn();
+				return;
+			}
+			// 表单验证
+			var isValid = /\w{6,}/.test(username);
+			if (!isValid) {
+				$(this).siblings('.error-tip').fadeIn();
+			}
+		});
+		// 密码
+		$('#password').change(function () {
+			var password = $(this).val().trim();
+			$(this).siblings().hide();
+			// 空值
+			if (!password) {
+				$(this).siblings('.null-tip').fadeIn();
+				return;
+			}
+			// 表单验证
+			var isValid = /\d{6,}/.test(password);
+			if (!isValid) {
+				$(this).siblings('.error-tip').fadeIn();
+			}
+		});
+		// 校验密码
+		$('#recheck').change(function () {
+			var recheck = $(this).val().trim();
+			var password = $('#password').val().trim();
+			$(this).siblings().hide();
+			// 空值
+			if (!recheck) {
+				$(this).siblings('.null-tip').fadeIn();
+				return;
+			}
+			// 表单验证
+			if (recheck != password) {
+				$(this).siblings('.error-tip').fadeIn();
+			}
+		});
+		// 手机号码
+		$('#tel').change(function () {
+			var tel = $(this).val().trim();
+			$(this).siblings().hide();
+			// 空值
+			if (!tel) {
+				$(this).siblings('.null-tip').fadeIn();
+				return;
+			}
+			// 表单验证
+			var isValid = /^1[3-9]\d{9}$/.test(tel);
+			if (!isValid) {
+				$(this).siblings('.error-tip').fadeIn();
+			}
+		});
+		// 邮箱
+		$('#email').change(function () {
+			var email = $(this).val().trim();
+			$(this).siblings().hide();
+			// 空值
+			if (!email) {
+				$(this).siblings('.null-tip').fadeIn();
+				return;
+			}
+			// 表单验证
+			var isValid = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(
+				email);
+			if (!isValid) {
+				$(this).siblings('.error-tip').fadeIn();
+			}
+		});
+	</script>
+</body>
+
+</html>

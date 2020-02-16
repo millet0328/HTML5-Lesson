@@ -6,15 +6,6 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<style type="text/css">
-			.box {
-				border: 1px solid #0000FF;
-				width: 200px;
-				height: 200px;
-				position: absolute;
-				left: 0;
-				top: 0;
-			}
-
 			.cube {
 				width: 100px;
 				height: 100px;
@@ -49,15 +40,23 @@
 				height: 500px;
 				border: 2px solid red;
 			}
+
+			.box {
+				border: 1px solid #0000FF;
+				width: 200px;
+				height: 200px;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
 		</style>
 	</head>
 
 	<body>
-		<div style="height: 800px;"></div>
-		<div class="wrap">
-			<div class="box"></div>
-		</div>
-
+		<p>
+			<button id="bind" type="button">绑定事件</button>
+			<button id="unbind" type="button">移除事件</button>
+		</p>
 		<div class="slider">
 			<button class="left" type="button">左</button>
 			<div class="cube"></div>
@@ -65,52 +64,40 @@
 		</div>
 
 		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$(".right").click(function() {
-					// 获取left
-					var left = parseFloat($('.cube').css('left'));
-					left += 10;
-					$('.cube').css('left', left);
-				});
-				setInterval(function(){
-					$('.right').trigger('click');
-				},500);
+		<script>
+			// 移入事件
+			// $('.box').mouseenter(function() {
+			// 	$(this).css('background-color', 'pink');
+			// });
+			// 移出事件
+			// $('.box').mouseleave(function() {
+			// 	$(this).css('background-color', 'white');
+			// });
+			// hover事件
+			$('.box').hover(function() {
+				$(this).css('background-color', 'pink');
+			}, function() {
+				$(this).css('background-color', 'white');
+			})
+			// 绑定事件
+			$('#bind').on('click', function() {
+				// 产生随机颜色
+				var red = Math.floor(Math.random() * 256);
+				var green = Math.floor(Math.random() * 256);
+				var blue = Math.floor(Math.random() * 256);
+				// rgb(25,36,162)
+				var color = 'rgb(' + red + ',' + green + ',' + blue + ')'
+				$('body').css('background-color', color);
 			});
-		</script>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('.box').hover(function() {
-					$(this).css("background-color", "yellow");
-				}, function() {
-					$(this).css("background-color", "white");
-				});
+			// 移除事件
+			$('#unbind').click(function() {
+				$('#bind').off('click');
+			})
 
-				$('.box').mousedown(function(e) {
-					var sx = e.pageX;
-					var sy = e.pageY;
-					// 获取left,top
-					var left = $(this).position().left;
-					var top = $(this).position().top;
-
-					$(document).mousemove(function(e) {
-						var dx = e.pageX;
-						var dy = e.pageY;
-						// 计算移动距离
-						var distanceX = dx - sx;
-						var distanceY = dy - sy;
-						// 修改box的left,top
-		 				$(".box").css({
-							left: left + distanceX,
-							top: top + distanceY
-						});
-					});
-				});
-				// 移除事件
-				$(document).mouseup(function() {
-					$(document).off('mousemove');
-				});
-			});
+			// trigger事件,前提条件：元素必须已经绑定了click事件
+			setInterval(function() {
+				// $('#bind').trigger('click');
+			}, 1000);
 		</script>
 	</body>
 

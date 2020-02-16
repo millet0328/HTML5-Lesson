@@ -121,7 +121,7 @@
 			<div class="container">
 				<div class="title_box">
 					<div class="title_cn">
-						风尚堂摄影作品展示
+						作品展示
 					</div>
 					<div class="title_en">
 						WORKS APPLICATION
@@ -420,74 +420,86 @@
 			});
 		</script>
 		<script type="text/javascript">
-			$('.title_box .title_cn').click(function() {
-				var flag = $(this).siblings('.title_en').is(":visible");
-				if (flag) {
-					$(this).siblings('.title_en').hide(2000);
+			// 显示、隐藏
+			$('.title_cn').click(function() {
+				var isShow = $(this).siblings('.title_en').is(':visible');
+				if (isShow) {
+					$(this).siblings('.title_en').hide(600, 'linear');
 				} else {
-					$(this).siblings('.title_en').show(2000);
+					$(this).siblings('.title_en').show('slow');
 				}
 			});
+			// fadeIn/fadeOut  动画主体
 			$('.news_box li').mouseenter(function() {
-				$(this).find('.news_date').stop(true).fadeOut();
+				$(this).find('.news_date').stop(true).fadeOut('slow');
 			});
 			$('.news_box li').mouseleave(function() {
-				$(this).find('.news_date').stop(true).fadeIn();
+				$(this).find('.news_date').stop(true).fadeIn(600);
 			});
-
-			$('.navbar li').mouseenter(function() {
+			// slideUp/slideDown 动画主体
+			$('.navbar ul li').hover(function() {
+				// 移入事件
 				$(this).find('dl').stop(true).slideDown();
-			});
-			$('.navbar li').mouseleave(function() {
+			}, function() {
+				// 移出事件
 				$(this).find('dl').stop(true).slideUp();
+			})
+
+			// animate自定义动画
+			$('.works_box .item').hover(function() {
+				$(this).find('.cover').stop(true).animate({ top: 0 });
+			}, function() {
+				$(this).find('.cover').stop(true).animate({ top: '100%' });
 			});
-			// 作品展示
-			$('.works_box .item').mouseenter(function() {
-				$(this).find('.cover').stop(true).animate({
-					top: 0
-				});
-			});
-			$('.works_box .item').mouseleave(function() {
-				$(this).find('.cover').stop(true).animate({
-					top: '100%'
-				});
-			});
-			// 主题选择
+			// animate
 			$('.theme_box li').mouseenter(function() {
-				$(this).siblings('li').find('img').stop(true).animate({
-					opacity: 0.3
-				});
+				$(this).siblings('li').find('img').stop(true).animate({ opacity: 0.4 });
 			});
 			$('.theme_box li').mouseleave(function() {
-				$(this).siblings('li').find('img').stop(true).animate({
-					opacity: 1
-				});
-			});
-			// 滚动
+				$(this).siblings('li').find('img').stop(true).animate({ opacity: 1 });
+			})
+
+			// scrollTop == 滚动的距离
 			$(window).scroll(function() {
-				var top = $(this).scrollTop();
-				if (top > 200) {
-					$('#backTop').fadeIn();
+				// 获取scrollTop
+				var scrollTop = $(this).scrollTop();
+				if (scrollTop > 300) {
+					$('#backTop').stop(true).fadeIn();
 				} else {
-					$('#backTop').fadeOut();
+					$('#backTop').stop(true).fadeOut();
 				}
+				// 导航动画
+				if (scrollTop > 0) {
+					$('.logo').stop(true).fadeOut(400);
+					$('#nav').css({
+						position: 'fixed',
+						'background-color': 'rgba(0,0,0,0.7)'
+					});
+					$('.navbar dl dd').css('background-color', 'rgba(0,0,0,0.7)');
+					$('.navbar').stop(true, true).delay(400).animate({ paddingLeft: 0 });
+				} else {
+					$('.navbar').stop(true, true).animate({ paddingLeft: '175px' }, 600);
+					$('#nav').css({
+						position: 'absolute',
+						'background-color': 'rgba(0,0,0,0.3)'
+					});
+					$('.navbar dl dd').css('background-color', 'rgba(0,0,0,0.3)');
+					$('.logo').stop(true).delay(600).fadeIn();
+				}
+
 			});
 			// 回到顶部
 			$('#backTop').click(function() {
-				$('html,body').animate({
-					scrollTop: 0
-				});
+				$('html,body').animate({ scrollTop: 0 });
 			});
 			// 楼层跳转
-			$('.floor-box .item').click(function () {
-				// 获取下标
+			$('.floor-box .item').click(function() {
+				// 获取索引
 				var i = $(this).index();
-				// 获取对应标题的top
+				// 获取楼层的scrollTop值
 				var top = $('.title_box').eq(i).offset().top;
-				// 滚动到对应的scrollTop
-				$('html,body').animate({
-					scrollTop: top
-				});
+				// 滚动
+				$('html,body').animate({ scrollTop: top });
 			});
 		</script>
 	</body>

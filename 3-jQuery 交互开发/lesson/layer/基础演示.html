@@ -5,22 +5,35 @@
 		<title></title>
 	</head>
 	<body>
-		<button id="btn-1" type="button">弹出Hello World!</button>
-		<button id="btn-2" type="button">询问层</button>
-		<script src="lib/jQuery/jquery-1.12.4.min.js"></script>
-		<script src="./lib/layer/layer.js"></script>
-		<script type="text/javascript">
-			$('#btn-1').click(function () {
-				layer.msg('Hello World!');
+		<button id="test1" type="button">Hello World</button>
+
+		<button id="test2" type="button">Alert框</button>
+
+		<button id="test3" type="button">confirm框</button>
+
+		<script src="js/jquery-3.4.1.min.js"></script>
+		<script src="lib/layer/layer.js"></script>
+		<script>
+			// msg
+			$('#test1').click(function() {
+				layer.msg('Hello World!')
 			});
-			$('#btn-2').click(function () {
-				layer.confirm('确定要删除吗？',function () {
-					// 确定
-					layer.msg("删除中......");
-				},function () {
-					// 取消
-					layer.msg('取消成功！');
-				});
+			// alert -- 通知
+			$('#test2').click(function() {
+				layer.alert('Alert框！');
+			});
+			// confirm -- 确认框
+			$('#test3').click(function() {
+				layer.confirm('确定要报名吗？',
+					function() {
+						// 确定--处理函数
+						// 报名中...
+						layer.msg('报名成功！');
+					},
+					function() {
+						// 取消--处理函数
+						layer.msg('取消成功！')
+					});
 			});
 		</script>
 	</body>

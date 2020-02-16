@@ -5,17 +5,27 @@
 		<title></title>
 	</head>
 	<body>
-		<h1 data-id="12" data-person="{name:'moz',age:30}" data-index="2">Hello World!</h1>
-		<script src="../婚纱摄影/js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<!-- 自定义属性 data-*** 将数据保存至标签上 -->
+		<h1 data-name="黄小米" data-person="{name:'黄小米',sex:1,age:30}">Hello World!</h1>
+
+		<button type="button" id="fetch">获取data数据</button>
+		<button type="button" id="save">存储data数据</button>
+
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			// 获取data属性
-			var id = $('h1').data('id');
-			// 设置data属性
-			$('h1').data('age', [30,12,35,65]);
-			var age = $('h1').data('age');
-			// 对象、数组
-			var person = $('h1').data('person');
-			console.log(person);
+			// 获取data数据
+			$('#fetch').click(function() {
+				var val = $('h1').data('student');
+				console.log(val);
+			});
+			// 存储data数据
+			$('#save').click(function() {
+				var obj = {
+					name: "黄渤",
+					age: 45
+				}
+				$('h1').data('student', obj);
+			});
 		</script>
 	</body>
 </html>

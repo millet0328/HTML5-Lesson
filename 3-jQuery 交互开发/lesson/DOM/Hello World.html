@@ -5,14 +5,16 @@
 		<title></title>
 	</head>
 	<body>
-		<button class="btn" type="button">按钮</button>
-
-		<script src="js/jquery-3.4.1.min.js"></script>
+		<button id="btn" type="button">按钮</button>
+		<!-- 引入jQuery -->
+		<script src="./js/jquery-3.4.1.min.js"></script>
 		<script type="text/javascript">
-			var x = 1;
-			$(".btn").click(function() {
-				x++;
-				console.log(x);
+			// 查找元素 绑定事件 回调函数
+			$("#btn").click(function() {
+				var x = 100;
+				var result = x * 365 / 65;
+				alert("结果：" + result);
+				// DOM操作尽量使用jQuery方法，不要使用javascript方法
 			});
 		</script>
 	</body>

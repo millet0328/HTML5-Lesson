@@ -1,0 +1,155 @@
+.title {
+	margin: 30px;
+	text-align: center;
+	font-weight: bold;
+	color: black;
+	font-size: 36px;
+}
+
+.group-box {
+	display: flex;
+}
+
+.left,
+.middle,
+.right {
+	flex: 1;
+}
+
+fieldset {
+	min-height: 600px;
+	padding: 20px 10px 10px 10px;
+}
+
+.left .resort,
+.middle .switch-button {
+	position: absolute;
+	right: 10px;
+	top: 20px;
+}
+
+fieldset .btn {
+	border: 0;
+	background-color: #00B050;
+	color: #FFF;
+	font-size: 14px;
+	padding: 8px 20px;
+	border-radius: 3px;
+	outline: 0;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.left .data {
+	column-count: 2;
+}
+
+.data {
+	background-color: #C8EBFA;
+	padding: 10px 40px;
+	border-radius: 4px;
+	margin: 24px 0 0 0;
+}
+
+.right .data {
+	margin: 0;
+}
+
+.data li {
+	margin: 6px 0;
+}
+
+.data span {
+	display: inline-block;
+	padding: 6px 10px;
+	margin: 4px;
+	border-radius: 3px;
+	background-color: #0070C0;
+	color: #FFFFFF;
+	font-size: 14px;
+	transition: all 0.5s;
+}
+
+.data span:hover {
+	background-color: #232B99;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.flip-list-move {
+	transition: all 0.5s;
+}
+
+.group-num {
+	padding: 5px 10px;
+	border: 1px solid #138535;
+	width: 200px;
+	outline: 0;
+}
+
+.middle .form-control {
+	padding: 20px 0;
+}
+
+.middle .auto {
+	padding: 40px 0 60px 0;
+}
+
+.middle .manual .btn {
+	background-color: #0070C0;
+	color: white;
+}
+
+.middle .manual .name {
+	margin: 30px 0;
+	font-size: 40px;
+	color: #0070C0;
+	font-weight: bold;
+}
+
+/* 分组类型switch效果 */
+.switch-button {
+	position: relative;
+	display: inline-block;
+	width: 50px;
+	padding: 6px 14px;
+	line-height: 15.5px;
+	border-radius: 16px;
+	overflow: hidden;
+	box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2) inset;
+	background-color: #eee;
+	border: 1px solid #ccc;
+	transition: all 1s;
+}
+
+.switch-button .text {
+	position: relative;
+	left: 25px;
+	font-size: 12px;
+	color: #333;
+	transition: all 1s;
+}
+
+.switch-button .point {
+	position: absolute;
+	top: 0px;
+	right: 50px;
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
+	background-color: white;
+	box-shadow: 0 0 0.25em rgba(0, 0, 0, .3);
+	transition: all 1s;
+}
+
+.switch-button.active {
+	border: 1px solid #138535;
+	background-color: #00B050;
+}
+
+.switch-button.active .point {
+	right: 0;
+}
+
+.switch-button.active .text {
+	left: 0;
+	color: white;
+}

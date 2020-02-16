@@ -63,13 +63,13 @@
 	</head>
 
 	<body>
-		<input type="button" name="" id="remove" value="移除" />
-		<input type="button" name="" id="add" value="添加" />
+		<input type="button" name="" id="inc" value="增加" />
+		<input type="button" name="" id="dec" value="减少" />
 		<div id="">
 			<h1 id="title" class="title">一对"CP"</h1>
 		</div>
 		<div class="face" id="content">
-			<img src="http://www.wanbt.cn/data/attachment/portal/201604/27/120045g1eplnbpbz4fluz0.jpeg" />
+			<img src="img/2.jpeg">
 			<p>
 				<span></span>爱朔州网2月23日消息，此前曾报道胡歌、霍建华两位男神赴北海道拍大片，这组大片将在《时尚芭莎》3月下封面大片亮相。</p>
 			<p>大片中两位男神CP雪地嬉戏基情满满。</p>
@@ -78,8 +78,8 @@
 			</p>
 		</div>
 		<div class="comment">
-			<input type="text" name="" id="txt" value="" />
-			<input type="button" name="" id="btn" value="评论" />
+			<input type="text" id="txt" value="" />
+			<input type="button" id="btn" value="评论" />
 			<div class="result" id="result">
 				<p>基情满满
 					<b>X</b>
@@ -97,21 +97,64 @@
 		</div>
 		<script src="./js/jquery-3.4.1.min.js"></script>
 		<script>
+			// 评论
 			$('#btn').click(function() {
-				var txt = $("#txt").val();
-				// 生成元素
+				// 获取value
+				var txt = $('#txt').val();
+				txt = txt.trim();
+				// 判断空值
+				if (!txt) {
+					alert('请输入评论内容！');
+					return;
+				}
+				// 生成元素+修饰元素
 				var $p = $('<p>' + txt + '<b>X</b></p>');
-				// 插入
-				$('#result').prepend($p);
+				// 插入元素
+				$('.result').prepend($p);
+				// 清空value
+				$('#txt').val('');
 			});
-			// 删除评论
-			// $('#result b').click(function () {
-			// 	$(this).parent('p').remove();
-			// });
-			// 事件委托
-			$('#result').on('click', 'b', function() {
-				// 内部偷偷的将this指向于'b'
-				$(this).parent('p').remove();
+
+			// 删除评论 -- 事件委托
+			$('.result').on('click', 'b', function() {
+				// 内部转化this
+				$(this).parent().remove();
+			});
+
+			$('#inc').click(function() {
+				// 获取当前的字体大小
+				var size = $('#title').css('font-size');
+				size = parseFloat(size);
+				size += 3;
+				// 设置字体
+				$('#title').css('font-size', size);
+			});
+			
+			
+			$('#dec').click(function() {
+				// 获取当前的字体大小
+				var size = $('#title').css('font-size');
+				size = parseFloat(size);
+				size -= 3;
+				// 设置字体
+				$('#title').css('font-size', size);
+			});
+
+			$('#title').click(function() {
+				// 链式编程
+				$(this)
+					.parents('div')
+					.siblings('.face')
+					.find('a')
+					.css('background-color', 'yellow')
+				// 获取当前src属性
+				var url = $('#content img').attr('src');
+
+				if (url == 'img/2.jpeg') {
+					$('#content img').attr('src', './img/1.jpg');
+				} else {
+					$('#content img').attr('src', 'img/2.jpeg');
+				}
 			});
 		</script>
 	</body>

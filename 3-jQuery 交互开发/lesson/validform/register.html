@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<!-- 插件css -->
+		<link rel="stylesheet" type="text/css" href="lib/Validform_v5.3.2/css/style.css" />
+		<!-- 自定义css -->
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="bg">
+				<div class="header">
+					<div class="head">
+						<p>shareLink</p>
+					</div>
+					<div class="head-des">
+						<p>Link the word,Share the world.</p>
+					</div>
+				</div>
+				<form class="form">
+					<div class="form-group">
+						<input type="text" datatype="*6-16" nullmsg="必须填写用户名" errormsg="用户名至少6个字符" id="username" placeholder="您的用户名" />
+						<div class="error-tip"></div>
+					</div>
+					<div class="form-group">
+						<input type="password" name="password" datatype="n6-16" nullmsg="必须填写密码" errormsg="密码至少6位数字" placeholder="输入密码" />
+						<div class="error-tip"></div>
+					</div>
+					<div class="form-group">
+						<input type="password" datatype="*" recheck="password" nullmsg="请再次输入密码" errormsg="密码输入不一致" placeholder="再次输入密码" />
+						<div class="error-tip"></div>
+					</div>
+					<div class="form-group">
+						<input type="tel" datatype="/^[1]([3-9])[0-9]{9}$/" nullmsg="必须输入手机号码" errormsg="请输入合格的手机号码！" placeholder="输入手机号" />
+						<div class="error-tip"></div>
+					</div>
+					<div class="form-group">
+						<input type="text" datatype="e" nullmsg="必须输入邮箱地址" errormsg="请输入合格的邮箱地址！" placeholder="输入邮箱地址" />
+						<div class="error-tip"></div>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="login">注册</button>
+					</div>
+					<div class="form-group">
+						<a href="login.html" class="link">已经有账号？</a>
+					</div>
+				</form>
+			</div>
+		</div>
+		<script src="js/jquery-3.4.1.min.js"></script>
+		<script src="lib/Validform_v5.3.2/js/Validform_v5.3.2_min.js"></script>
+		<script type="text/javascript">
+			// 初始化，必须是form
+			$('.form').Validform({
+				tiptype: function(msg, o, cssctl) {
+					// 错误信息提示对象
+					var $tip = o.obj.next('.error-tip');
+					// 内置的提示信息样式控制函数
+					// cssctl($tip, o.type);
+					// 修改提示信息
+					$tip.text(msg);
+					// tip显示隐藏
+					if (o.type == 3) {
+						$tip.fadeIn();
+					} else {
+						$tip.fadeOut();
+					}
+				},
+			});
+		</script>
+	</body>
+
+</html>

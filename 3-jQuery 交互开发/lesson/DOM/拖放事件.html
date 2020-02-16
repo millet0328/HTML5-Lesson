@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery版拖拽事件</title>
+		<style type="text/css">
+			.box {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 200px;
+				height: 200px;
+				border: 2px solid blue;
+				transition: background-color 0.5s;
+			}
+
+			.wrap {
+				position: relative;
+				min-height: 600px;
+				border: 2px solid yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<div style="height: 600px;">模拟前置内容</div>
+		<div class="wrap">
+			<div class="box"></div>
+		</div>
+		<script src="js/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript">
+			// 边界值
+			var maxLeft = $('.wrap').innerWidth() - $('.box').outerWidth();
+			var maxTop = $('.wrap').innerHeight() - $('.box').outerHeight();
+			// mousedown事件
+			$('.box').on('mousedown', function(e) {
+				// 开始坐标
+				var sx = e.pageX;
+				var sy = e.pageY;
+				// 计算left/top值
+				var left = $(this).position().left;
+				var top = $(this).position().top;
+				// mousemove事件
+				$(document).on('mousemove', function(e) {
+					// 结束坐标
+					var dx = e.pageX;
+					var dy = e.pageY;
+					// 计算移动距离
+					var moveX = dx - sx;
+					var moveY = dy - sy;
+					// 新位置
+					var new_left = left + moveX;
+					var new_top = top + moveY;
+					// 边界值
+					if (new_left < 0) {
+						new_left = 0;
+						$('.box').css('background-color', randomColor());
+					}
+					if (new_top < 0) {
+						new_top = 0;
+						$('.box').css('background-color', randomColor());
+					}
+					if (new_left >= maxLeft) {
+						new_left = maxLeft;
+						$('.box').css('background-color', randomColor());
+					}
+					if (new_top >= maxTop) {
+						new_top = maxTop;
+						$('.box').css('background-color', randomColor());
+					}
+					$('.box').css('left', new_left);
+					$('.box').css('top', new_top);
+				});
+			});
+			// 移除事件
+			$('.box').on('mouseup', function() {
+				$(document).off('mousemove');
+			});
+			// 产生随机颜色rgb
+			function randomColor() {
+				var red = Math.floor(Math.random() * 256);
+				var green = Math.floor(Math.random() * 256);
+				var blue = Math.floor(Math.random() * 256);
+				var color = 'rgb(' + red + ',' + green + ',' + blue + ')'
+				return color;
+			}
+			// 小练习
+			/*
+			 1、蓝色框无法超出去上、下、左、右四条边界
+			 2、每次蓝色框碰到边界线，随机改变背景色
+			 */
+		</script>
+	</body>
+</html>

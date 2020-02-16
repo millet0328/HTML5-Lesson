@@ -4,51 +4,54 @@
 		<meta charset="utf-8">
 		<title></title>
 		<style type="text/css">
-			.title {
-				width: 400px;
-				padding: 20px;
-				border: 2px solid blue;
+			.box {
+				position: relative;
+				left: 0;
+				width: 200px;
+				height: 200px;
+				border: 4px solid blue;
+				transition: all 0.5s;
+				margin: 6px 0;
 			}
 
-			.color.active {
-				border: 1px solid red;
-				background-color: red;
-				color: white;
+			.box.active {
+				left: 800px;
 			}
 		</style>
 	</head>
 	<body>
-		<button id="btn" type="button">按钮</button>
-		<p class="title">
-			Hello World!
-		</p>
-		<button class="color" type="button">蓝色</button>
-		<button class="color" type="button">黄色</button>
-		<button class="color" type="button">绿色</button>
+		<button id="btn" type="button">移动</button>
+		<button id="remove" type="button">返回</button>
+
+		<button id="toggle" type="button">toggle</button>
+
+		<div class="box"></div>
+		<div class="box"></div>
+		<div class="box"></div>
 
 		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			$('.color').click(function() {
-				var flag = $(this).hasClass("active");
+			// 批量绑定事件
+			$('.box').click(function() {
+				$(this).removeClass('active');
+			});
+			$('#btn').click(function() {
+				$('.box').addClass('active');
+			});
+			$('#remove').click(function() {
+				$('.box').removeClass('active');
+			});
+
+			$('#toggle').click(function() {
+				// 判断box是否有active
+				var flag = $('.box').hasClass('active');
 				if (flag) {
-					$(this).removeClass('active');
+					$('.box').removeClass('active');
 				} else {
-					$(this).addClass("active");
+					$('.box').addClass('active');
 				}
-				$(this).siblings('.color').removeClass("active");
 			});
 		</script>
-		<script type="text/javascript">
-			$("#btn").click(function() {
-				// 获取字号
-				var size = $(".title").css("font-size");
-				var width = $(".title").width();
-				size = parseFloat(size);
-				size++;
-				width += 5;
-				$(".title").css("font-size", size);
-				$(".title").width(width);
-			});
-		</script>
+
 	</body>
 </html>
