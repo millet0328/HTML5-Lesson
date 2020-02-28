@@ -10,17 +10,11 @@
 				margin: 20px 0;
 				background-color: pink;
 				transition: all 0.5s;
+				/* 变换原点 */
+				transform-origin: right bottom;
 			}
 			.box.active{
-				transform: translateX(1000px) rotate(360deg) scale(0.2);
-			}
-			.center{
-				border: 1px solid blue;
-				position: fixed;
-				left: 50%;
-				top: 50%;
-				-ms-transform: translateX(-50%) translateY(-50%);
-				transform: translateX(-50%) translateY(-50%);
+				transform:translateX(300px);
 			}
 		</style>
 	</head>
@@ -31,17 +25,15 @@
 			<div class="box">参照物</div>
 			<div class="box"></div>
 		</p>
-		<!--<div class="center">
-			<img src="../CSS3%203D/img/winter-hat.jpg" >
-		</div> -->
-		<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript">
 			$('#start').click(function() {
-				$('.box').eq(1).addClass("active");
+				$('.box').eq(1).addClass('active');
 			});
+
 			$('#reset').click(function() {
-				$('.box').removeClass("active");
-			})
+				$('.box').eq(1).removeClass('active');
+			});
 		</script>
 	</body>
 </html>

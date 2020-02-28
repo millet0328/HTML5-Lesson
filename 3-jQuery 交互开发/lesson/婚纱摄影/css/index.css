@@ -586,3 +586,7 @@
 	padding: 10px 20px;
 	cursor: pointer;
 }
+
+.floor-box .item.active {
+	background-color: black;
+}

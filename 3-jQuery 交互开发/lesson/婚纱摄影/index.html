@@ -486,6 +486,14 @@
 					$('.navbar dl dd').css('background-color', 'rgba(0,0,0,0.3)');
 					$('.logo').stop(true).delay(600).fadeIn();
 				}
+				// 滚动过程中，相应楼层高亮显示
+				$('.title_box').each(function(index) {
+					// 获取元素距离窗口顶部的距离
+					var top = $(this).offset().top - scrollTop;
+					if (top < 0) {
+						$('.floor-box .item').removeClass('active').eq(index).addClass('active');
+					}
+				});
 
 			});
 			// 回到顶部

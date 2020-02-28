@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				margin: 0;
+			}
+
+			/* 替换float */
+			.list {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				justify-content: space-between;
+			}
+
+			.list .item {
+				width: 300px;
+				height: 300px;
+				border: 2px solid red;
+				background-color: #0000FF;
+				color: white;
+				box-sizing: border-box;
+			}
+
+			.list .item:nth-child(1) {
+				height: 200px;
+			}
+
+			.list .item:nth-child(2) {
+				height: 350px;
+			}
+
+			.list .item:nth-child(3) {
+				height: 100px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="list">
+			<div class="item">item1</div>
+			<div class="item">item2</div>
+			<div class="item">item3</div>
+		</div>
+	</body>
+
+</html>

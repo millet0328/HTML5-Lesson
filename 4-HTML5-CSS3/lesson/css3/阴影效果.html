@@ -4,50 +4,24 @@
 		<meta charset="utf-8">
 		<title></title>
 		<style>
-			body {
-				background-color: #EEEEEE;
-			}
-
 			.box {
-				width: 200px;
-				position: relative;
-				transition: all 0.5s;
-				border: 1px solid blue;
+				width: 500px;
+				padding: 20px;
+				border: 1px solid #e8e8e8;
+				border-radius: 6px;
 				overflow: hidden;
-			}
-
-			.box img {
-				display: block;
-				transition: all 0.5s;
-				filter: grayscale(100%);
-			}
-
-			.box:hover img {
-				filter: grayscale(0%);
-				transform: scale(1.05);
-			}
-
-			.box::after {
-				content: '';
-				position: absolute;
-				left: 0;
-				top: 0;
-				width: 100%;
-				height: 100%;
 				transition: all 0.5s;
 			}
 
-			.box:hover::after {
-				-webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5) inset;
-				-moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5) inset;
-				box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5) inset;
+			.box:hover {
+				box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
 			}
 		</style>
 	</head>
 	<body>
 		<p>
 			<div class="box">
-				<img width="200" src="img/winter-hat.jpg">
+				<img src="img/winter-hat.jpg">
 			</div>
 		</p>
 

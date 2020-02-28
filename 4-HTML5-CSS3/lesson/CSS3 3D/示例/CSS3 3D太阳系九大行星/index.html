@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>太阳系九大行星</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			body{
+				background: black;
+			}
+			/* 太阳系 轮廓 */
+			.galaxy{
+				width: 1300px;
+				height: 1300px;
+				position: relative;
+				margin: 0 auto;
+			}
+			/* 里面所有的div都是绝对定位 */
+			.galaxy div{
+			    position: absolute;
+			}
+			/* 给所有的轨道添加一个样式 */
+			div[class*=track]{
+			    border: 1px solid #555;
+			    margin-left: -3px;
+			    margin-top: -3px;
+			}
+			/* 
+			 * 太阳位于div galaxy的中间，让其它行星位于太阳的右边排成一条线。
+			 * 设置galaxy的width和height都为1300px。
+			 * sun图片的大小为100px*100px，
+			 * 所以sun的left值和top值都为(1300 - 100) / 2 = 600px，
+			 * 这样sun就位于中间位置。 
+			 * 
+			 *  */
+			.sun{
+			    background: url(img/sun.png) 0 0 no-repeat;
+			    width: 100px;
+			    height: 100px;
+			    left: 600px;
+			    top: 600px;
+			}
+			.mercury{
+			    background: url(img/2.png) 0 0 no-repeat;
+			    width: 50px;
+			    height: 50px;
+			    left: 700px;
+			    top: 625px;
+			    transform-origin: -50px 25px;
+			    animation: rotation 2.4s linear infinite;
+			}
+			.mercury-track{
+			    width: 150px;
+			    height: 150px;
+			    left: 575px;
+			    top: 575px; 
+			    border-radius: 75px;
+			}
+			.venus{
+			    background: url(img/3.png) 0 0 no-repeat;
+			    width: 60px;
+			    height: 60px;
+			    left: 750px;
+			    top: 620px;
+			    animation: rotation 6.16s linear infinite;
+			    transform-origin: -100px 30px;
+			}
+			
+			.venus-track{
+			    width: 260px;
+			    height: 260px;
+			    left: 520px;
+			    top: 520px;
+			    border-radius: 130px;
+			}
+			.earth{
+			    background: url(img/4.png) 0 0 no-repeat;
+			    width: 60px;
+			    height: 60px;
+			    top: 620px;
+			    left: 805px;
+			    animation: rotation 10s linear infinite;
+			    transform-origin: -155px 30px;
+			}
+			
+			.earth-track{
+			    width: 370px;
+			    height: 370px;
+			    border-radius: 185px;
+			    left: 465px;
+			    top: 465px;
+			}
+			
+			.mars{
+			    background: url(img/5.png) 0 0 no-repeat;
+			    width: 50px;
+			    height: 50px;
+			    top: 625px;
+			    left: 865px;
+			    animation: rotation 19s linear infinite;
+			    transform-origin: -215px 25px;
+			}
+			
+			.mars-track{
+			    width: 480px;
+			    height: 480px;
+			    border-radius: 240px;
+			    left: 410px;
+			    top: 410px;
+			}
+			
+			.jupiter{
+			    background: url(img/6.png) 0 0 no-repeat;
+			    width: 80px;
+			    height: 80px;
+			    top: 610px;
+			    left: 920px;
+			    animation: rotation 118s linear infinite;
+			    transform-origin: -270px 40px;
+			}
+			
+			.jupiter-track{
+			    border-radius: 310px;
+			    width: 620px;
+			    height: 620px;
+			    left: 340px;
+			    top: 340px;
+			}
+			
+			.saturn{
+			    background: url(img/7.png) 0 0 no-repeat;
+			    width: 120px;
+			    height: 80px;
+			    top: 610px;
+			    left: 1000px;
+			    animation: rotation 295s linear infinite;
+			    transform-origin: -350px 40px;
+			}
+			
+			.saturn-track{
+			    border-radius: 410px;
+			    width: 820px;
+			    height: 820px;
+			    left: 240px;
+			    top: 240px;
+			}
+			
+			.uranus{
+			    background: url(img/8.png) 0 0 no-repeat;
+			    width: 80px;
+			    height: 80px;
+			    top: 610px;
+			    left: 1120px;
+			    animation: rotation 840s linear infinite;
+			    transform-origin: -470px 40px;
+			}
+			
+			.uranus-track{
+			    border-radius: 510px;
+			    width: 1020px;
+			    height: 1020px;
+			    top: 140px;
+			    left: 140px;
+			}
+			
+			.pluto{
+			    background: url(img/9.png) 0 0 no-repeat;
+			    width: 70px;
+			    height: 70px;
+			    top: 615px;
+			    left: 1210px;
+			    animation: rotation 1648s linear infinite;
+			    transform-origin: -560px 35px;
+			}
+			
+			.pluto-track{
+			    border-radius: 595px;
+			    width: 1190px;
+			    height: 1190px;
+			    left: 55px;
+			    top: 55px;
+			}
+			@keyframes rotation{
+			    to{
+			        transform: rotate(360deg);
+			    }
+			}
+		</style>
+	</head>
+	<body>
+		<div class="galaxy">
+			<div class='sun'></div>
+			<!--  第一颗 -->
+			<div class='mercury-track'></div>
+        	<div class='mercury'></div>
+        	<div class='venus-track'></div>
+	        <div class='venus'></div>
+	        <div class='earth-track'></div>
+	        <div class='earth'></div>
+	        <div class='mars-track'></div>
+	        <div class='mars'></div>
+	        <div class='jupiter-track'></div>
+	        <div class='jupiter'></div>
+	        <div class='saturn-track'></div>
+	        <div class='saturn'></div>
+	        <div class='uranus-track'></div>
+	        <div class='uranus'></div>
+	        <div class='pluto-track'></div>
+	        <div class='pluto'></div>
+		</div>
+	</body>
+</html>

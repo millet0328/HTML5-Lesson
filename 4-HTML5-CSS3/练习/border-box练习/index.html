@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <style type="text/css">
+        .box {
+            margin: 100px auto;
+            padding-left: 1%;
+        }
+        
+        .box .inner_box {
+            overflow: hidden;
+            box-sizing: border-box;
+            width: 24%;
+            margin-right: 1%;
+            border: 1px solid #e5e5e5;
+            position: relative;
+            transition: all 0.5s;
+            padding-bottom: 30px;
+        }
+        
+        .box .inner_box img {
+            display: block;
+            width: 100%;
+        }
+        
+        .inner_box .img_box {
+            padding: 20px;
+            overflow: hidden;
+        }
+        
+        .inner_box p {
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .inner_box .title {
+            margin-top: 20px;
+            font-size: 16px;
+            transition: all 0.5s;
+        }
+        
+        .inner_box .arrow {
+            position: absolute;
+            font-size: 16px;
+            bottom: 74px;
+            right: 0px;
+            color: #999;
+            opacity: 0;
+            transition: all 0.5s;
+        }
+        
+        .inner_box:hover .arrow {
+            right: 18px;
+            opacity: 1;
+        }
+        
+        .inner_box::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: #deb36f;
+            transition: all 0.5s;
+        }
+        
+        .inner_box:hover {
+            box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.2);
+        }
+        
+        .inner_box:hover .title {
+            color: #deb36f;
+        }
+        
+        .inner_box:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box clearfix">
+        <div class="inner_box fl">
+            <div class="img_box">
+                <img src="img/ia_200000116.png">
+                <p class="title">罗布麻茶的功效</p>
+                <p class="text">携带方便 物美价廉 可以做餐点</p>
+            </div>
+            <div class="arrow">——></div>
+        </div>
+        <div class="inner_box fl">
+            <div class="img_box">
+                <img src="img/ia_200000117.png">
+                <p class="title">罗布麻茶的功效</p>
+                <p class="text">携带方便 物美价廉 可以做餐点</p>
+            </div>
+            <div class="arrow">——></div>
+        </div>
+        <div class="inner_box fl">
+            <div class="img_box">
+                <img src="img/ia_200000118.png">
+                <p class="title">罗布麻茶的功效</p>
+                <p class="text">携带方便 物美价廉 可以做餐点</p>
+            </div>
+            <div class="arrow">——></div>
+        </div>
+        <div class="inner_box fl">
+            <div class="img_box">
+                <img src="img/ia_200000119.png">
+                <p class="title">罗布麻茶的功效</p>
+                <p class="text">携带方便 物美价廉 可以做餐点</p>
+            </div>
+            <div class="arrow">——></div>
+        </div>
+    </div>
+</body>
+
+</html>

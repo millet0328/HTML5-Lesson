@@ -6,40 +6,53 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link rel="stylesheet" type="text/css" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" />
-		<link rel="stylesheet" type="text/css" href="lib/iconfont/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="lib/iconfont/iconfont.css" />
 		<style type="text/css">
 			html,
 			body {
 				background-color: #eee;
 			}
 
-			/* 自定义字体 */
+			.list li:first-child {
+				background-color: red;
+			}
+
+			.list li:last-child {
+				background-color: green;
+			}
+
+			.list li:nth-child(odd) {
+				background-color: gray;
+			}
+
+			.list li:nth-child(even) {
+				background-color: lightblue;
+			}
+
+			/* 创建字体 */
 			@font-face {
-				font-family: "华康少女体";
-				src: url(./fonts/DFPShaoNvW5-GB.ttf) format('truetype');
+				font-family: 'myFont';
+				src: url(./fonts/庞门正道标题体.ttf) format('truetype');
 			}
 
+			/* 使用字体 */
 			.title {
-				font-family: "华康少女体";
-				font-size: 32px;
-				text-shadow: 0 0 20px red;
-			}
-
-			.fa-edit {
-				color: green;
-				font-size: 72px;
-			}
-
-			.fa-edit:hover {
-				color: blue;
+				text-shadow: 1px -1px 10px #048fb9;
+				font-family: 'myFont';
 			}
 		</style>
 	</head>
 
 	<body>
-		<p class="title">你好，北京！</p>
-		<i class="fa fa-edit"></i>
-		<span class="iconfont icon-feiji"></span>
+		<h1 class="title">Hello World，世界你好！</h1>
+		<ul class="list clearfix">
+			<li>黄磊</li>
+			<li>黄渤</li>
+			<li>王迅</li>
+			<li>张艺兴</li>
+			<li>孙红雷</li>
+			<li>罗志祥</li>
+		</ul>
 	</body>
 
 </html>

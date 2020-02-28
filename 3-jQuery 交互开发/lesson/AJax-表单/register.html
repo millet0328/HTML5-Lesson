@@ -8,14 +8,14 @@
 		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 		<title>注册</title>
 		<!-- Bootstrap -->
-		<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link href="./lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
 		<!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
 		<!--[if lt IE 9]>
       <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="./lib/validform/css/index.css" />
 	</head>
 
 	<body>
@@ -25,13 +25,15 @@
 				<div class="form-group">
 					<label for="inputEmail" class="col-sm-2 control-label">邮箱</label>
 					<div class="col-sm-10">
-						<input name="email" type="email" datatype="e" class="form-control" id="inputEmail" nullmsg="请输入您的邮箱！" errormsg="错误的邮箱格式！" placeholder="请输入邮箱">
+						<input name="email" type="email" datatype="e" class="form-control" id="inputEmail" nullmsg="请输入您的邮箱！" errormsg="错误的邮箱格式！"
+						 placeholder="请输入邮箱">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="inputPassword" class="col-sm-2 control-label">密码</label>
 					<div class="col-sm-10">
-						<input type="password" name="password" datatype="password" errormsg="至少5个字符,最多16个字符！" class="form-control" id="inputPassword" placeholder="至少5个字符,最多16个字符,必须包含数字、字母！">
+						<input type="password" name="password" datatype="password" errormsg="至少5个字符,最多16个字符！" class="form-control" id="inputPassword"
+						 placeholder="至少5个字符,最多16个字符,必须包含数字、字母！">
 					</div>
 				</div>
 				<div class="form-group">
@@ -116,50 +118,19 @@
 			</form>
 		</div>
 		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-		<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+		<script src="./lib/jQuery/jquery-1.12.4.min.js"></script>
 		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-		<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script src="js/mock.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/mock-json.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/Validform_v5.3.2_min.js" type="text/javascript" charset="utf-8"></script>
-
+		<script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+		<script src="./lib/mock/mock.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./js/mock-json.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./lib/validform/js/Validform_v5.3.2_min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			//prop 设置
-			//			$("input[name=fav]").eq(1).prop("checked", true);
-			//			$("input[name=fav]").eq(2).prop("checked", true);
-			//			$("select[name=province] option").eq(3).prop("selected", false);
-			//			$('#inputEmail').prop("disabled", true);
-			//			$("#inputPassword").prop("readonly", true);
-			//获取value
-			//			$("#regBtn").click(function() {
-			//				var email = $("#inputEmail").val();
-			//				var password = $("#inputPassword").val();
-			//				var introduce = $("#introduce").val();
-			//				var province = $("#province").val();
-			//				//单选
-			//				var sex = $("input[name=sex]:checked").val();
-			//				//复选
-			//				var fav = [];
-			//				$("input[name=fav]:checked").each(function(index) {
-			//					fav.push($(this).val());
-			//				});
-			//				//正则表达式，逐个验证
-			//				var reg = /\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/;
-			//				var flag = reg.test(email);
-			//				if(flag) {
-			//					$("#inputEmail").css("border", "1px solid green");
-			//				} else {
-			//					$("#inputEmail").css("border", "1px solid red");
-			//				}
-			//			});
-		</script>
-		<script type="text/javascript">
-			//			$("form").Validform({
-			//				tiptype: 3,
-			//				datatype: {
-			//					'password': /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{5,16}$/
-			//				}
-			//			});
+			$("form").Validform({
+				tiptype: 3,
+				datatype: {
+					'password': /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{5,16}$/
+				}
+			});
 		</script>
 		<script type="text/javascript">
 			$('#regBtn').click(function() {
@@ -167,13 +138,12 @@
 				var data = $('form').serialize();
 				//post
 				$.post('/register', data, function(result) {
-					if(result.status) {
+					if (result.status) {
 						alert(result.msg);
 						//跳转页面
 						location.href = "login.html";
 					}
 				}, 'json');
-
 			});
 		</script>
 	</body>

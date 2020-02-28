@@ -5,10 +5,15 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<style type="text/css">
-			.bg {
-				background: linear-gradient(60deg, rgb(25, 236, 225), rgb(48, 132, 229) 100%);
+			.linear {
+				background: linear-gradient(60deg, rgb(0, 255, 0), rgb(255, 85, 0));
 				height: 120px;
 				width: 300px;
+				transition: all 1s;
+			}
+
+			.linear:hover {
+				background: linear-gradient(60deg, rgb(25, 236, 225), rgb(48, 132, 229));
 			}
 
 			.circle {
@@ -16,13 +21,14 @@
 				height: 200px;
 				border-radius: 50%;
 				margin: 20px;
+				box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 				background: radial-gradient(circle at top left, rgb(148, 72, 229), rgb(25, 236, 225));
 			}
 		</style>
 	</head>
 
 	<body>
-		<div class="bg"></div>
+		<div class="linear"></div>
 		<div class="circle"></div>
 	</body>
 

@@ -3,29 +3,45 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
-		<style>
+		<style type="text/css">
 			.stage {
-				/* IE11 开启3D */
+				/*IE11 开启 3D 对子元素有效*/
 				transform-style: preserve-3d;
+				perspective: 2000px;
+				animation: viewIn 3s;
 			}
 
-			.cube {
-				width: 200px;
-				height: 200px;
-				margin: 200px auto;
-				border: 1px solid blue;
-				transform-style: preserve-3d;
-				padding: 0;
-				animation: circle 5s linear infinite;
-			}
-			
-			@keyframes circle {
+			/* 拉远视角 */
+			@keyframes viewIn {
 				from {
-					transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+					perspective: 1px;
 				}
 
 				to {
-					transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+					perspective: 1000px;
+				}
+			}
+
+			.cube {
+				position: relative;
+				width: 200px;
+				height: 200px;
+				border: 1px solid blue;
+				padding: 0;
+				list-style: none;
+				margin: 200px auto;
+				transform-style: preserve-3d;
+				animation: circle 4s 3s linear infinite;
+			}
+
+			/* 旋转动画 */
+			@keyframes circle {
+				from {
+					transform: rotateX(0deg) rotateY(0deg);
+				}
+
+				to {
+					transform: rotateX(360deg) rotateY(360deg);
 				}
 			}
 
@@ -33,60 +49,59 @@
 				position: absolute;
 				width: 200px;
 				height: 200px;
-				list-style: none;
 				text-align: center;
 				line-height: 200px;
-				transition: all 0.5s;
+				transition: all 1s;
 			}
 
 			.cube li:nth-child(1) {
+				background-color: rgba(255, 0, 0, 0.6);
 				transform: translateZ(100px);
-				background-color: rgba(237, 28, 36, 0.7);
-			}
-
-			.cube li:nth-child(2) {
-				transform: rotateY(90deg) translateZ(100px);
-				background-color: rgba(255, 127, 39, 0.7);
-			}
-
-			.cube li:nth-child(3) {
-				transform: rotateY(180deg) translateZ(100px);
-				background-color: rgba(255, 242, 0, 0.7);
-			}
-
-			.cube li:nth-child(4) {
-				transform: rotateY(270deg) translateZ(100px);
-				background-color: rgba(34, 177, 76, 0.7);
-			}
-
-			.cube li:nth-child(5) {
-				transform: rotateX(90deg) translateZ(100px);
-				background-color: rgba(0, 162, 232, 0.7);
-			}
-
-			.cube li:nth-child(6) {
-				transform: rotateX(-90deg) translateZ(100px);
-				background-color: rgba(163, 73, 164, 0.7);
 			}
 
 			.cube:hover li:nth-child(1) {
 				transform: translateZ(200px);
 			}
 
+			.cube li:nth-child(2) {
+				background-color: rgba(255, 192, 0, 0.6);
+				transform: rotateY(90deg) translateZ(100px);
+			}
+
 			.cube:hover li:nth-child(2) {
 				transform: rotateY(90deg) translateZ(200px);
+			}
+
+			.cube li:nth-child(3) {
+				background-color: rgba(255, 255, 0, 0.6);
+				transform: rotateY(180deg) translateZ(100px);
 			}
 
 			.cube:hover li:nth-child(3) {
 				transform: rotateY(180deg) translateZ(200px);
 			}
 
+			.cube li:nth-child(4) {
+				background-color: rgba(146, 208, 80, 0.6);
+				transform: rotateY(270deg) translateZ(100px);
+			}
+
 			.cube:hover li:nth-child(4) {
 				transform: rotateY(270deg) translateZ(200px);
 			}
 
+			.cube li:nth-child(5) {
+				background-color: rgba(0, 176, 80, 0.6);
+				transform: rotateX(90deg) translateZ(100px);
+			}
+
 			.cube:hover li:nth-child(5) {
 				transform: rotateX(90deg) translateZ(200px);
+			}
+
+			.cube li:nth-child(6) {
+				background-color: rgba(0, 176, 240, 0.6);
+				transform: rotateX(-90deg) translateZ(100px);
 			}
 
 			.cube:hover li:nth-child(6) {
