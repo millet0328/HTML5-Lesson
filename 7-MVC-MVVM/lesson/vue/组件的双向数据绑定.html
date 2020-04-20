@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+
+		<div id="app">
+			<custom-input v-model="searchText"></custom-input>
+		</div>
+		<script src="js/vue.js"></script>
+		<script>
+			Vue.component('custom-input', {
+				props: ['value'],
+				template: `
+			    <input
+			      v-bind:value="value"
+			      v-on:input="$emit('input', $event.target.value)"
+			    >
+			  `
+			})
+			let app = new Vue({
+				el: '#app',
+				data: {
+					searchText: '关键词'
+				}
+			})
+		</script>
+	</body>
+
+</html>

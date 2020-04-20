@@ -1,20 +1,32 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
 
-<body>
-    <script type="text/javascript">
-        let person = {
-            name: "moz",
-            age: 30
-        }
-        let { name, age } = person;
-        console.log(age)
-    </script>
-</body>
+	<body>
+		<script type="text/javascript">
+			let bird = 'ken'
+			let dog = 'lili'
+			let zoo = { bird, dog }
+
+			let person = {
+				name: '黄小米',
+				age: 26,
+				salary: 6000
+			}
+			let { age, salary } = person;
+			// 相当于
+			// let age = person.age;
+			// let salary = person.salary;
+			
+			// 计算出生年份
+			2020 - age;
+			// 计算年薪=？
+			salary * 12
+		</script>
+	</body>
 
 </html>

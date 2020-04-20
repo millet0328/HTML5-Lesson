@@ -1,82 +1,73 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<style type="text/css">
-			.box {
-				width: 200px;
-				height: 200px;
-				background-color: blueviolet;
-				margin: 20px;
-				transition: all 2s;
-			}
-			
-			.box.active {
-				transform: translateX(1000px) rotate(360deg);
-				background-color: yellow;
-			}
-			
-			.cube {
-				width: 200px;
-				height: 200px;
-				position: absolute;
-				background-color: #D58512;
-			}
-		</style>
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		.cube {
+			width: 200px;
+			height: 200px;
+			position: absolute;
+			background-color: #D58512;
+		}
+	</style>
+</head>
 
-	<body>
-		<div id="app" class="app">
-			<div class="box" @click="move" :class="{active:isActive}"></div>
-			<!--拖拽-->
-			<div class="cube" :style="{left:left+'px',top:top+'px'}" @mousedown="downHandle" @mousemove="moveHandle" @mouseup="upHandle"></div>
-		</div>
-		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-			var app = new Vue({
-				el: "#app",
-				data: {
-					isActive: false,
-					isMove: false,
-					left: 0,
-					top: 300,
-					downX: '',
-					downY: '',
-					endX: '',
-					endY: '',
+<body>
+	<div id="app" class="app">
+		<!--拖拽-->
+		<div class="cube" @mousedown="downHandle" @mousemove="moveHandle"></div>
+	</div>
+	<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: {
+				isMove: false,
+				left: 0,
+				top: 0,
+				downX: '',
+				downY: '',
+				endX: '',
+				endY: '',
+			},
+			created() {
+				document.onmouseup = this.upHandle;
+			},
+			methods: {
+				move: function () {
+					this.isActive = !this.isActive;
 				},
-				methods: {
-					move: function() {
-						this.isActive = !this.isActive;
-					},
-					//down
-					downHandle: function(event) {
-						this.downX = event.pageX;
-						this.downY = event.pageY;
-						this.isMove = true;
-					},
-					moveHandle: function(event) {
-						if(!this.isMove) {
-							return false;
-						}
-						this.endX = event.pageX;
-						this.endY = event.pageY;
-						//X轴、Y轴移动距离
-						let distanceX = this.endX - this.downX;
-						let distanceY = this.endY - this.downY;
-						console.log(this.downX,this.downY);
-						//赋值 left/top
-						this.left = this.left + distanceX;
-						this.top = this.top + distanceY;
-					},
-					upHandle: function(event) {
-						this.isMove = false;
+				//down
+				downHandle: function (event) {
+					this.downX = event.pageX;
+					this.downY = event.pageY;
+					this.isMove = true;
+				},
+				moveHandle: function (event) {
+					var $el = event.target;
+					if (!this.isMove) {
+						return false;
 					}
+					this.endX = event.pageX;
+					this.endY = event.pageY;
+					//X轴、Y轴移动距离
+					let distanceX = this.endX - this.downX;
+					let distanceY = this.endY - this.downY;
+					//赋值 left/top
+					$el.style.left = this.left + distanceX + 'px';
+					$el.style.top = this.top + distanceY + 'px';
+					// this.left = this.left + distanceX;
+					// this.top = this.top + distanceY;
+
+				},
+				upHandle: function (event) {
+					this.isMove = false;
 				}
-			})
-		</script>
-	</body>
+			}
+		})
+	</script>
+</body>
 
 </html>

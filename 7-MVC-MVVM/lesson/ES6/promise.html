@@ -7,29 +7,127 @@
 	</head>
 
 	<body>
-		<div id="box">
-
-		</div>
 		<script type="text/javascript">
-			// 封装promise
-			function ajax(api) {
-				let promise = new Promise((resolve, reject) => {
-					wx.request({
-						url: api
-						success: function() {
-							resolve()
-						},
-						fail: function() {
-							reject()
+			// promise实例
+			var promise = new Promise(function(resolve, reject) {
+				var x = Math.random();
+				if (x >= 0.5) {
+					// 调用内部的函数，状态=>fulfilled
+					resolve('成功：' + x);
+
+				} else {
+					// 调用内部的函数，状态=>rejected
+					reject('失败：' + x);
+				}
+			});
+			// 捕获传递的值
+			promise.then(function(data) {
+				// 成功时传递的值
+				console.log(data);
+			}, function(error) {
+				// 失败时传递的值
+				console.log(error);
+			});
+
+			promise
+				// 捕获成功时传递的值
+				.then(function(data) {
+					console.log(data);
+				})
+				// 捕获失败时传递的值
+				.catch(function(error) {
+					console.log(error);
+				})
+		</script>
+		<script type="text/javascript">
+			// 利用Promise封装ajax的方法,GET、POST
+			function getJSON(url) {
+				// 生成一个实例
+				let promise = new Promise(function(resolve, reject) {
+					// 发送ajax
+					var ajax = new XMLHttpRequest();
+					ajax.open('GET', url, true);
+					ajax.send();
+					// 监听返回的JSON
+					ajax.onreadystatechange = function() {
+						if (this.readyState == 4 && this.status == 200) {
+							// 成功返回
+							let json = JSON.parse(this.responseText);
+							resolve(json);
 						}
-					});
+						if (this.status != 200 || this.status != 304) {
+							// 失败
+							reject(this.status + ':' + this.statusText);
+						}
+					}
 				});
 				return promise;
 			}
-			ajax("/user/list")
-			
-			"http://localhost:3000/user/list"
-			
+
+			// Promise使用方法,解决了回调函数不断嵌套，改成链式编程
+			getJSON('/tag/list')
+				.then((res1) => {
+					// 捕获成功返回的JSON
+					console.log(res1);
+					return getJSON('/article/detail');
+				})
+				.then((res2) => {
+					// 捕获第二次返回的结果
+					console.log(res2);
+					return getJSON('/category/list');
+				})
+				.then((res3) => {
+					// 捕获第三次返回的结果
+					console.log(res3);
+				})
+
+			// 回调地狱
+			$.getJSON('/tag/list', function() {
+				for (var i = 0; i < Things.length; i++) {
+					Things[i]
+				}
+				$.getJSON('/article/detail', function() {
+					for (var i = 0; i < Things.length; i++) {
+						Things[i]
+					}
+					$.getJSON('/category/list', function() {
+						for (var i = 0; i < Things.length; i++) {
+							Things[i]
+						}
+					});
+				})
+			});
+		</script>
+
+		<script type="text/javascript">
+			// 自动执行
+			(function() {
+				setTimeout(function() {
+					console.log(4);
+				}, 0);
+				var count = 0;
+				new Promise(function(resolve, reject) {
+					console.log(1);
+					for (let i = 0; i < 2; i++) {
+						count += i;
+					};
+					resolve(console.log(2));
+				}).then(function(data) {
+					console.log(3);
+				});
+				console.log(5);
+			})();
+			// 1 2 5 3 4
+		</script>
+		<script type="text/javascript">
+			(function() {
+				console.log('自动执行')
+			})();
+			// 相当于
+			function sum () {
+				console.log('自动执行');
+			}
+			sum ();
 		</script>
 	</body>
 

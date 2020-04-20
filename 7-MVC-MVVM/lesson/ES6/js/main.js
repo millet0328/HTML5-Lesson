@@ -1,6 +1,4 @@
-console.log(4)
-import { firstName as nickname, lastName } from './test.js';
-import { year } from './test.js';
-console.log(5)
-
-import util from './test.js';
+import { firstName, talk } from './profile.js';
+// import user from './profile.js';
+// let { say } = user;
+talk();

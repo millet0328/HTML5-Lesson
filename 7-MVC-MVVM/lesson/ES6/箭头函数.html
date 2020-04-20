@@ -2,24 +2,52 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title></title>
 </head>
 
 <body>
-    <script>
-        // 箭头函数
-        let cal = (m = 1, n = 100) => {
-            let res = 0;
-            for (let i = m; i < n; i++) {
-                res += i;
-            }
-            console.log(res);
-        }
-        cal();
-    </script>
+	<script>
+		// 箭头函数 有return;
+		var sum = x => x + 1;
+		var sum = () => 10 + 1;
+		var sum = (x, y) => x + y;
+		// 箭头函数，多条语句/无return
+		var sum = (x, y) => { x++; y--; }
+		// 总结格式
+		var sum = (x, y) => { x++; y--; return x + y };
+	</script>
+
+	<script>
+		var a = 3.14;
+		setTimeout(function () {
+			console.log(this);
+		}, 1000);
+
+
+		// ES5版本
+		var person = {
+			name: '黄小米',
+			talk: function () {
+				setTimeout(function () {
+					console.log('我是' + self.name);
+				}.bind(this), 1000);
+			}
+		}
+		person.talk();
+		// ES6箭头函数
+		var person = {
+			name: '黄小米',
+			talk: function () {
+				setTimeout(() => {
+					console.log('我是' + this.name);
+				}, 1000);
+			}
+		}
+		person.talk();
+	</script>
 </body>
 
 </html>

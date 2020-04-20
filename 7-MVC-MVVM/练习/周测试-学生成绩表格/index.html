@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>bootstrap4--学生成绩表</title>
+	<!-- bootstrap 4 -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body>
+	<div id="app" class="container">
+		<div class="card mb-3">
+			<div class="card-header bg-dark text-white">
+				作业要求
+			</div>
+			<div class="card-body">
+				<ol>
+					<li>渲染表格的数据，并显示每一个学生的总分，<b class="text-danger">PS</b>:并不需要添加总分这一字段。</li>
+					<li>在表单中填写数据，点击录入按钮，插入新的学生成绩。</li>
+					<li>点击表格的表头【数学、语文、英语】，对应的数据按照从大到小排序，<b class="text-danger">再次点击</b>从小到大排序。</li>
+					<li>选择班级，填入学生姓名，点击搜索按钮，<b class="text-danger">高亮</b>显示符合条件的学生</li>
+					<li>选择科目，填入分数最小值，最大值，验证两个数值大小顺序，点击筛选按钮，<b class="text-danger">高亮</b>符合条件的学生</li>
+					<li><b class="text-danger">附加题</b>：选择科目，填入分数最小值，最大值，验证两个数值大小顺序，点击筛选按钮，<b
+							class="text-danger">只显示</b>符合条件的学生</li>
+				</ol>
+			</div>
+		</div>
+		<div class="card mb-3">
+			<div class="card-header text-white bg-dark">
+				录入成绩
+			</div>
+			<div class="card-body">
+				<form>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">姓名：</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" v-model="formData.name" placeholder="请输入学生姓名">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">班级：</label>
+						<div class="col-sm-10">
+							<select class="form-control">
+								<option value="三年级1班">三年级1班</option>
+								<option value="三年级1班">三年级2班</option>
+								<option value="三年级1班">三年级3班</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">数学：</label>
+						<div class="col-sm-10">
+							<input type="number" class="form-control" v-model="formData.Math" placeholder="请输入数学成绩">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">语文：</label>
+						<div class="col-sm-10">
+							<input type="number" class="form-control" v-model="formData.Chinese" placeholder="请输入语文成绩">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">英语：</label>
+						<div class="col-sm-10">
+							<input type="number" class="form-control" v-model="formData.English" placeholder="请输入英语成绩">
+						</div>
+					</div>
+					<div class="form-group">
+						<button @click="insertHandle" type="button" class="btn btn-primary">录入</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="card mb-3">
+			<div class="card-header text-white bg-dark">
+				筛选搜索
+			</div>
+			<div class="card-body">
+				<form>
+					<div class="form-group row">
+						<label class="col-sm-1 col-form-label">搜索</label>
+						<div class="input-group col-sm-5">
+							<select class="form-control">
+								<option value="三年级1班">三年级1班</option>
+								<option value="三年级2班">三年级2班</option>
+								<option value="三年级3班">三年级3班</option>
+							</select>
+						</div>
+						<div class="input-group col-sm-6">
+							<input type="text" class="form-control" placeholder="请输入学生姓名">
+							<div class="input-group-append">
+								<button class="btn btn-primary" type="button">搜索</button>
+							</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-1 col-form-label">筛选</label>
+						<div class="input-group col-sm-5">
+							<div class="input-group-prepend">
+								<select class="form-control">
+									<option>数学</option>
+									<option>语文</option>
+									<option>英语</option>
+								</select>
+							</div>
+							<input type="text" class="form-control" placeholder="分数最小值">
+						</div>
+						<div class="col-sm-1 text-center">——</div>
+						<div class="input-group col-sm-5">
+							<input type="text" class="form-control" placeholder="分数最大值">
+							<div class="input-group-append">
+								<button class="btn btn-primary" type="button">筛选</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<table class="table table-bordered">
+			<thead class="thead-dark">
+				<tr>
+					<th>#</th>
+					<th>班级</th>
+					<th>姓名</th>
+					<th>数学</th>
+					<th>语文</th>
+					<th>英语</th>
+					<th>总分</th>
+				</tr>
+			</thead>
+			<tbody>
+
+			</tbody>
+		</table>
+
+	</div>
+	<script src="js/vue.js"></script>
+	<script>
+		var scores = [
+			{ name: 'Bob', class: '三年级2班', Math: 97, Chinese: 89, English: 67 },
+			{ name: 'Tom', class: '三年级1班', Math: 67, Chinese: 52, English: 98 },
+			{ name: 'Jerry', class: '三年级2班', Math: 72, Chinese: 87, English: 89 },
+			{ name: 'Ben', class: '三年级1班', Math: 92, Chinese: 87, English: 59 },
+			{ name: 'Chan', class: '三年级3班', Math: 47, Chinese: 85, English: 92 },
+		]
+	</script>
+</body>
+
+</html>

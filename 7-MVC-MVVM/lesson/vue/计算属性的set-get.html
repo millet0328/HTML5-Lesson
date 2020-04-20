@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性的set/get</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>firstname:{{firstname}}</p>
+        <p>lastname:{{lastname}}</p>
+        <p>fullname: <input type="text" v-model="fullname"></p>
+    </div>
+
+    <script src="js/vue.js"></script>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                firstname: 'Tom',
+                lastname: 'Smith',
+            },
+            computed: {
+                fullname: {
+                    set: function (newValue) {
+                        let arr = newValue.split(' ');
+                        this.firstname = arr[0];
+                        this.lastname = arr[arr.length - 1];
+                    },
+                    get: function () {
+                        return this.firstname + ' ' + this.lastname;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

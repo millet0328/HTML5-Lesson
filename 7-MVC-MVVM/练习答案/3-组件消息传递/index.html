@@ -1,131 +1,139 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-		<style type="text/css">
-			.container {
-				width: 800px;
-				margin: 0 auto;
-				display: flex;
-				justify-content: space-between;
-			}
 
-			.container h3 {
-				text-align: center;
-			}
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		.container {
+			width: 800px;
+			margin: 0 auto;
+			display: flex;
+			justify-content: space-between;
+		}
 
-			.list .item {
-				padding: 20px;
-				width: 500px;
-				color: white;
-				display: flex;
-				justify-content: space-between;
-				box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-			}
+		.container h3 {
+			text-align: center;
+		}
 
-			.bg-blue {
-				background-color: #35A9CE;
-			}
+		.list .item {
+			padding: 20px;
+			width: 500px;
+			color: white;
+			display: flex;
+			justify-content: space-between;
+			box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+		}
 
-			.bg-pink {
-				background-color: #F05AA1;
-			}
+		.bg-blue {
+			background-color: #35A9CE;
+		}
 
-			.bg-black {
-				background-color: #333333;
-			}
+		.bg-pink {
+			background-color: #F05AA1;
+		}
 
-			.button-box p {
-				margin-bottom: 40px;
-			}
+		.bg-black {
+			background-color: #333333;
+		}
 
-			.button-box button {
-				width: 100px;
-				padding: 14px 0;
-				font-size: 14px;
-				border: 0;
-				outline: 0;
-				color: white;
-				border-radius: 4px;
-				box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-			}
-		</style>
-	</head>
-	<body>
-		<div id="app">
-			<div class="container">
-				<div class="list">
-					<h3>列表</h3>
-					<template v-for="(item,index) in list">
-						<component-a v-if="index %2==1" :count="item"></component-a>
-						<component-b v-if="index %2==0" :count="item"></component-b>
-					</template>
-				</div>
-				<div class="button-box">
-					<h3>按钮组</h3>
-					<p>
-						<button @click="addHandle" class="bg-blue" type="button">A[+]</button>
-					</p>
-					<p>
-						<button @click="removeHandle" class="bg-black" type="button">B[-]</button>
-					</p>
-					<p>
-						<button @click="oddHandle" class="bg-blue" type="button">C[+1]</button>
-					</p>
-					<p>
-						<button @click="evenHandle" class="bg-black" type="button">D[-1]</button>
-					</p>
-				</div>
+		.button-box p {
+			margin-bottom: 40px;
+		}
+
+		.button-box button {
+			width: 100px;
+			padding: 14px 0;
+			font-size: 14px;
+			border: 0;
+			outline: 0;
+			color: white;
+			border-radius: 4px;
+			box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<div class="container">
+			<div class="list">
+				<h3>列表</h3>
+				<template v-for="(item,index) in list">
+					<component-a v-if="index %2==1" :count="item"></component-a>
+					<component-b v-if="index %2==0" :count="item"></component-b>
+				</template>
+			</div>
+			<div class="button-box">
+				<h3>按钮组</h3>
+				<p>
+					<button @click="addHandle" class="bg-blue" type="button">A[+]</button>
+				</p>
+				<p>
+					<button @click="removeHandle" class="bg-black" type="button">B[-]</button>
+				</p>
+				<p>
+					<button @click="oddHandle" class="bg-blue" type="button">C[+1]</button>
+				</p>
+				<p>
+					<button @click="evenHandle" class="bg-black" type="button">D[-1]</button>
+				</p>
 			</div>
 		</div>
-		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-			Vue.component("componentA", {
-				props: ['count'],
-				template: `
+	</div>
+	<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		Vue.component("componentA", {
+			props: ['count'],
+			template: `
 				<p class="item bg-blue">
 					ComponentA
 					<span>{{count}}</span>
 				</p>`
-			});
-			Vue.component("componentB", {
-				props: ['count'],
-				template: `
+		});
+		Vue.component("componentB", {
+			props: ['count'],
+			template: `
 				<p class="item bg-pink">
 					ComponentB
 					<span>{{count}}</span>
 				</p>`
-			});
-			// 实例化Vue
-			var app = new Vue({
-				el: '#app',
-				data: {
-					list: [36, 15, 35, 12]
+		});
+		// 实例化Vue
+		let list = new Array(4);
+		for (let i = 0; i < list.length; i++) {
+			list[i] = Math.floor(Math.random() * 100);
+		}
+		var app = new Vue({
+			el: '#app',
+			data: {
+				list
+			},
+			methods: {
+				addHandle: function () {
+					let x = Math.floor(Math.random() * 100)
+					this.list.unshift(x);
 				},
-				methods: {
-					addHandle: function() {
-						this.list.unshift(0);
-					},
-					removeHandle: function() {
-						this.list.pop();
-					},
-					oddHandle: function() {
-						this.list.forEach(function(item, index) {
-							if (index % 2 == 1) {
-								app.$set(app.list, index, item + 1);
-							}
-						});
-					},
-					evenHandle: function() {
-						this.list.forEach(function(item, index) {
-							if (index % 2 == 0) {
-								app.$set(app.list, index, item + 1);
-							}
-						});
-					}
+				removeHandle: function () {
+					this.list.pop();
+				},
+				oddHandle: function () {
+					this.list.forEach((item, index) => {
+						if (index % 2 == 1) {
+							this.$set(this.list, index, item + 1);
+						}
+					});
+				},
+				evenHandle: function () {
+					this.list.forEach((item, index) => {
+						if (index % 2 == 0) {
+							this.$set(this.list, index, item - 1);
+						}
+					});
 				}
-			})
-		</script>
-	</body>
+			}
+		})
+	</script>
+</body>
+
 </html>

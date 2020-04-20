@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 继承 原型链
+			var ajax = new XMLHttpRequest();
+
+			// 王者荣耀中的英雄
+			function Hero(name, hp, attack, speed) {
+				this.name = name;
+				this.hp = hp;
+				this.attack = attack;
+				this.speed = speed;
+			}
+			Hero.prototype = {
+				constructor: Hero,
+				move: function() {
+					console.log('移动')
+				},
+				attack: function() {
+					console.log('攻击');
+				},
+			};
+
+			var Cao = new Hero('曹操', 550, 65, 30);
+
+			var YaSe = new Hero('亚瑟', 600, 60, 32);
+			YaSe.mp = 0;
+
+			var XiaoQiao = new Hero('小乔', 400, 45, 35);
+
+			// 王者荣耀中装备
+			function Item(name, price) {
+				this.name = name;
+				this.price = price;
+				this.type = '';
+			}
+			Item.prototype = {
+				constructor: Item,
+				use: function() {
+					console.log('使用中...')
+				}
+			}
+
+			// 物理攻击 继承 Item
+			function PhysicsWeapon(name, price, attack) {
+				// 继承自Item的属性
+				Item.call(this, name, price);
+				// 自身属性
+				this.physicsAttack = attack;
+				this.skill = '主动技能';
+				this.buffer = '被动效果';
+			}
+			// 修改原型
+			PhysicsWeapon.prototype = Object.create(Item.prototype);
+			// 重新申明构造函数
+			PhysicsWeapon.prototype.constructor = PhysicsWeapon;
+
+			var knife = new PhysicsWeapon('剃刀', 100, 5);
+
+			// 法术攻击
+			function MagicWeapon(name, price) {
+				// 继承自Item的属性
+				Item.call(this, name, price);
+			}
+			// 修改原型
+			MagicWeapon.prototype = Object.create(Item.prototype);
+			// 重新申明构造函数
+			MagicWeapon.prototype.constructor = MagicWeapon;
+			// 重写use方法
+			MagicWeapon.prototype.use = function() {
+				console.log('使用魔法...')
+			}
+			// 物理防御
+			// 法术防御
+			// 移动
+			// 辅助
+		</script>
+
+		<script type="text/javascript">
+			// 动物类
+			function Animal(sex) {
+				this.sex = sex;
+				this.species = '动物';
+			}
+			Animal.prototype = {
+				constructor: Animal,
+				eat: function() {
+					console.log('吃饭中...');
+				}
+			}
+			// 猫科 继承上面Animal的属性，方法
+			function Cat(sex, type) {
+				Animal.call(this, sex);
+				this.type = type;
+			}
+			// 继承Animal原型的方法
+			Cat.prototype = Object.create(Animal.prototype);
+			// 重新申明构造函数
+			Cat.prototype.constructor = Cat;
+			
+			var tom = new Cat('母', '英短');
+		</script>
+		<script type="text/javascript">
+			/*
+			 1.看
+			 2.改
+			 3.写
+			 4.给别人用，组件：面向对象
+			 */
+		</script>
+	</body>
+</html>

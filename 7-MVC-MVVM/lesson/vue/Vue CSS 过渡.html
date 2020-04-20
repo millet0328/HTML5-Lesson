@@ -9,37 +9,39 @@
 				width: 200px;
 				height: 200px;
 				background-color: blue;
-				margin: 10px;
-				transform: translate(1000px, 0px) rotate(360deg);
 			}
 
 			.swing-enter-active {
-				animation: swing 5s;
+				animation: swing 2s;
 			}
 
 			.swing-leave-active {
-				animation: swing 5s reverse;
+				animation: swing 2s reverse;
 			}
 
 			@keyframes swing {
 				0% {
-					transform: translate(0, 0);
+					background-color: blue;
 				}
 
 				25% {
-					transform: translate(200px, 400px) rotate(360deg);
+					transform: translateY(300px);
+					background-color: yellow;
 				}
 
 				50% {
-					transform: translate(400px, 0px);
+					transform: translate(200px, 0px) rotate(180deg);
+					background-color: green;
 				}
 
 				75% {
-					transform: translate(600px, 400px) rotate(360deg);
+					transform: translate(400px, 300px) rotate(360deg);
+					background-color: pink;
 				}
 
 				100% {
-					transform: translate(1000px, 0px) rotate(360deg);
+					transform: translate(600px, 0px) rotate(360deg);
+					background-color: black;
 				}
 			}
 		</style>
@@ -47,17 +49,18 @@
 
 	<body>
 		<div id="app">
-			<button type="button" @click="isShow =!isShow">开始</button>
+			<button type="button" @click="show = !show">开始</button>
+
 			<transition name="swing">
-				<div class="box" v-show="isShow"></div>
+				<div class="box" v-show="show"></div>
 			</transition>
 		</div>
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			new Vue({
+			let app = new Vue({
 				el: '#app',
 				data: {
-					isShow: false
+					show: false
 				}
 			});
 		</script>

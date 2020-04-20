@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div id="app">
+			<h3>
+				会员等级：<span v-if="vip">金牌会员</span>
+				<button @click="vip=true" type="button">成为会员</button>
+			</h3>
+			<h3>
+				手机号码：
+				<span v-show="isShow">15863008280</span>
+				<button @click="isShow = !isShow" type="button">{{ isShow?'隐藏':'显示' }}</button>
+			</h3>
+		</div>
+
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					vip: false,
+					isShow: false,
+				},
+			})
+		</script>
+	</body>
+
+</html>

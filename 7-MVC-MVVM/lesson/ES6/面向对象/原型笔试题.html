@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function A() {
+            this.name = 'a'
+            this.color = ['green', 'yellow']
+        }
+        function B() {
+
+        }
+        B.prototype = new A()
+        var b1 = new B()
+        var b2 = new B()
+
+        b1.name = 'change'
+        b1.color.push('black')
+		
+        console.log('b1', b1);
+        console.log('b2', b2);
+		
+        console.log(b1.name); // change
+        console.log(b2.name); // a
+        console.log(b1.color); // ['green', 'yellow', 'black']
+        console.log(b2.color); // ['green', 'yellow', 'black']
+    </script>
+</body>
+
+</html>

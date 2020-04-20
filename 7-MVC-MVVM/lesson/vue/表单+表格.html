@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表格</title>
+    <link rel="stylesheet" href="lib/boostrap/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="app" class="container">
+        <div class="panel panel-success">
+            <div class="panel-heading">表单</div>
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">姓名：</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="formData.name" placeholder="请输入学生姓名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">数学：</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" v-model="formData.Math" placeholder="请输入数学成绩">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">语文：</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" v-model="formData.Chinese" placeholder="请输入语文成绩">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">英语：</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" v-model="formData.English" placeholder="请输入英语成绩">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button @click="insertHandle" type="button" class="btn btn-success">录入</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">搜索</div>
+            <div class="panel-body">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <input type="text" v-model.trim="keyword" class="form-control" placeholder="请输入学生姓名">
+                    </div>
+                    <button @click="searchHandle" type="button" class="btn btn-success">搜索</button>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">成绩表</div>
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>姓名</th>
+                        <th>数学</th>
+                        <th>语文</th>
+                        <th>英语</th>
+                        <th>总分</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item,index) in scores" :class="{warning:item.active}" :key="index">
+                        <td>{{index}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.Math}}</td>
+                        <td>{{item.Chinese}}</td>
+                        <td>{{item.English}}</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="lib/vue/vue.js"></script>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                scores: [
+                    { name: 'Bob', Math: 97, Chinese: 89, English: 67, active: false },
+                    { name: 'Tom', Math: 67, Chinese: 52, English: 98, active: false },
+                ],
+                formData: {
+                    name: '',
+                    Math: '',
+                    Chinese: '',
+                    English: '',
+                },
+                keyword: '',
+            },
+            methods: {
+                insertHandle() {
+                    // 扩展运算符，生成一个干净的纯对象
+                    this.scores.push({ ...this.formData });
+                },
+                // 搜索
+                searchHandle() {
+                    this.scores.forEach((item) => {
+                        if (item.name == this.keyword) {
+                            item.active = true;
+                        } else {
+                            item.active = false;
+                        }
+                    });
+                }
+                // bug:新生成的学生，没有active
+            }
+        })
+    </script>
+</body>
+
+</html>

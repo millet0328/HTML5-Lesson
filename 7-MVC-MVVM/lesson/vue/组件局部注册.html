@@ -3,53 +3,50 @@
 	<head>
 		<meta charset="utf-8">
 		<title>组件局部注册</title>
-
 	</head>
 	<body>
 		<div id="app">
 			<component-a>
-				<component-b>
-					<component-c></component-c>
-				</component-b>
+				
 			</component-a>
 		</div>
 
 		<script src="js/vue.js"></script>
 		<script type="text/javascript">
-			var componentC = {
+			// 局部注册
+			let componentC = {
 				template: `
-				<fieldset>
+				<fieldset id="">
 					<legend>组件C</legend>
-					Component C
-					<slot></slot>
-				</fieldset>`
+				</fieldset>
+				`
 			}
-			var componentA = {
-				components: {
-					componentC
+			let componentA = {
+				components:{
+					'component-c':componentC
 				},
 				template: `
-				<fieldset>
+				<fieldset id="">
 					<legend>组件A</legend>
-					Component A
+					<component-c></component-c>
 					<slot></slot>
-				</fieldset>`
+				</fieldset>
+				`
 			}
-
-			var componentB = {
+			let componentB = {
+				props:['data'],
 				template: `
-				<fieldset>
+				<fieldset id="">
 					<legend>组件B</legend>
-					Component B
-					<slot></slot>
-				</fieldset>`
+				</fieldset>
+				`
 			}
 
-			var app = new Vue({
+			let app = new Vue({
 				el: '#app',
 				components: {
-					componentA,
-					componentB,
+					'component-a': componentA,
+					'component-b': componentB,
 				}
 			});
 		</script>

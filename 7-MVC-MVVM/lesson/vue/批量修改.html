@@ -22,8 +22,6 @@
 	</head>
 	<body>
 		<div id="app">
-			<button type="button" class="btn" :class="{active:isActive}" @click="isActive=!isActive">红色</button>
-			<br>
 			<button v-for="(item,index) in colors" class="btn" :class="{active:item.isChecked}" @click="checkHandle(index)" type="button">{{item.text}}</button>
 		</div>
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>

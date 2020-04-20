@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<ul>
+			<li v-for="(item,index) in list">
+				{{item}}
+				<button @click="increaseHandle(index)" type="button">+</button>
+			</li>
+		</ul>
+		<button @click="list.push(1)" type="button">push</button>
+		<button @click="list.pop()" type="button">pop</button>
+	</div>
+	<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		let app = new Vue({
+			el: '#app',
+			data: {
+				list: [35, 65, 98, 45, 78, 95]
+			},
+			methods: {
+				increaseHandle(i) {
+					// 可以更新数组，但无法更新view视图
+					// this.list[i] = this.list[i] + 1;
+					// 借用$set,更新数组、视图
+					// this.$set(数组名称，更新索引，新的数值);
+					this.$set(this.list, i, this.list[i] + 1);
+				}
+			}
+
+		});
+	</script>
+</body>
+
+</html>

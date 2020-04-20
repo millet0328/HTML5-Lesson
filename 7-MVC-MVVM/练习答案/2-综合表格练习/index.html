@@ -12,13 +12,13 @@
 <body>
 	<div id="app" class="bg-grey pd20">
 		<div class="table_box pd20 bg-white">
-			<form class="form-inline" action="" method="">
-				<div class="form-group" :class="{'has-error': nameValid || name=='' ? false : true}">
+			<form class="form-inline">
+				<div class="form-group">
 					<label for="">添加：</label>
-					<input type="text" class="form-control" name="name" v-model.trim="name" placeholder="姓名">
+					<input type="text" class="form-control" v-model.trim="formData.name" placeholder="姓名">
 				</div>
-				<div class="form-group" :class="{'has-error': ageValid || age=='' ? false : true}">
-					<input type="text" class="form-control" name="age" v-model.trim="age" placeholder="年龄">
+				<div class="form-group">
+					<input type="number" class="form-control" v-model.trim="formData.age" placeholder="年龄">
 				</div>
 				<div class="form-group">
 					<button type="button" @click="addHandle" class="btn btn-info">添加</button>
@@ -31,11 +31,11 @@
 			</form>
 			<br />
 			<!--表格-->
-			<table class="table table-bordered" :class="{'table-hover':isOpen}" id="chart">
+			<table class="table table-bordered" :class="{'table-hover':isOpen}">
 				<thead>
 					<tr>
 						<td>
-							<input type="checkbox" v-model="allChecked" />
+							<input type="checkbox" v-model="checkAll" /> {{checkAll}}
 						</td>
 						<td>ID</td>
 						<td>姓名</td>
@@ -46,9 +46,9 @@
 				<tbody>
 					<tr v-for="(item,index) in lists" :class="{info:item.highlight}">
 						<td>
-							<input type="checkbox" name="" v-model="item.checked" id="" value="" />
+							<input type="checkbox" v-model="item.checked" />
 						</td>
-						<td>{{item.id}}</td>
+						<td>{{index + 1}}</td>
 						<td>{{item.name}}</td>
 						<td>{{item.age}}</td>
 						<td>
@@ -104,50 +104,32 @@
 				//修饰
 				isOpen: false,
 				//表单
-				name: '',
-				age: '',
+				formData: {
+					name: '',
+					age: '',
+					highlight: false,
+					checked: false,
+				},
 				keyword: ''
 			},
-			//计算属性
 			computed: {
-				nameValid: function () {
-					return this.name ? true : false
-				},
-				ageValid: function () {
-					return this.age > 0 && this.age < 150 ? true : false;
-				},
-				//判断全选状态
-				allChecked: {
-					get: function () {
-						// 选中的checkbox数量
-						let checkedNum = this.lists.reduce(function (total, item) {
-							return total + item.checked;
-						}, 0);
-						return checkedNum == this.lists.length
+				checkAll: {
+					// 写/设置
+					set(newValue) {
+						// tr的复选框与newValue保持一致
+						this.lists.forEach((item) => { item.checked = newValue });
 					},
-					set: function (newValue) {
-						this.lists.forEach(function (item) {
-							item.checked = newValue;
-						});
+					// 读/获取
+					get() {
+						// 检测tr的选中状态
+						return this.lists.every((item) => item.checked);
 					}
-				},
+				}
 			},
 			methods: {
 				addHandle: function () {
-					if (this.nameValid == false || this.ageValid == false) {
-						alert("验证失败");
-						return false;
-					}
-					//新数据
-					var item = {
-						id: this.lists.length + 1,
-						name: this.name,
-						age: this.age,
-						checked: false,
-						highlight: false,
-					}
 					//添加数据
-					this.lists.push(item);
+					this.lists.push({ ...this.formData });
 					//清空表单
 					this.name = '';
 					this.age = '';
@@ -158,13 +140,7 @@
 				},
 				//排序
 				sortHandle: function () {
-					this.lists.sort(function (a, b) {
-						if (a.age > b.age) {
-							return 1;
-						} else {
-							return -1;
-						}
-					});
+					this.lists.sort((a, b) => a.age - b.age);
 				},
 				//搜索keyword
 				searchHandle: function () {

@@ -47,7 +47,7 @@
 </body>
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <script>
-function tabs(id, current, eveName) {
+function Tab(id, current, eveName) {
     this.oWrap = $("#" + id);
     //默认显示第几个
     this.current = current;
@@ -58,8 +58,8 @@ function tabs(id, current, eveName) {
     //自动初始化
     this.init();
 }
-tabs.prototype = {
-    constructor: tabs,
+Tab.prototype = {
+    constructor: Tab,
     setActive: function(x) {
         //移除所有的active
         this.oTitle.removeClass();
@@ -97,8 +97,8 @@ tabs.prototype = {
 
     }
 }
-new tabs("tab1", 1, "click");
-new tabs("tab2", 2, "hover");
+new Tab("tab1", 1, "click");
+new Tab("tab2", 2, "hover");
 </script>
 
 </html>

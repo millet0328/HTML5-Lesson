@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-	<meta charset="UTF-8">
-	<title></title>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
 
-<body>
-	<script type="text/javascript">
-		const obj = {
-			name: "黄小米",
-			age: 30
-		};
-		obj.age = 28;
-		console.log(obj);
-	</script>
-</body>
+	<body>
+		<script type="text/javascript">
+			// const原理，如何保证只读
+			let x = 10;
+			const person = {
+				name: "黄小米",
+				age: 26
+			}
+			person.name = '黄渤';
+			console.log(person.name);
+		</script>
+	</body>
 
 </html>

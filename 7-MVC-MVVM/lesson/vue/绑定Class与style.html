@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		.btn {
+			background-color: darkblue;
+			color: white;
+			font-size: 21px;
+			border: 0;
+			outline: 0;
+			padding: 10px 30px;
+			transition: all 0.5s;
+		}
+
+		.btn.active {
+			background-color: tomato;
+			color: black;
+		}
+
+		.box {
+			width: 200px;
+			height: 200px;
+			background-color: crimson;
+			color: white;
+			text-align: center;
+			line-height: 200px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<!-- 开关 -->
+		<button class="btn" :class='{active:isOpen}' @click="isOpen = !isOpen">{{isOpen?'关闭':'开启'}}</button>
+		<!-- 字体大小 -->
+		<div class="box" :style="{fontSize : font + 'px'}" @click="font++">{{font}}px</div>
+		<input type="text" @keyup.up="font++">
+	</div>
+	<script src=" js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		let app = new Vue({
+			el: '#app',
+			data: {
+				isOpen: false,
+				font: 14,
+			}
+		})
+	</script>
+</body>
+
+</html>

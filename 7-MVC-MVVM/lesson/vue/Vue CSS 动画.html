@@ -5,75 +5,54 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<style type="text/css">
-			.box {
-				width: 200px;
-				height: 200px;
-				background-color: blue;
-				margin: 10px;
+			/* 离开--过程 */
+			.switch-leave-active {
+				transition:  all 0.5s;
 			}
-
-			/* 起点状态 */
-			.slideIn-enter {
-				transform: translateX(900px);
+			/* 离开--终点 */
+			.switch-leave-to{
+				color: red;
+				opacity: 0;
+				transform: translateX(200px);
 			}
-
-			.slideIn-enter-active {
-				transition: all 2s;
-			}
-
-			/* 终点状态 */
-			.slideIn-enter-to {
-				transform: translateX(0px);
-			}
-
-			/* 离开-起点 */
-			.slideOut-leave {
-				transform: translateX(0px) scale(1.2);
+			/* 离开--起点 */
+			.switch-leave{
+				color: blue;
 				opacity: 1;
 			}
-
-			.slideOut-leave-active {
-				transition: all 2s;
+			/* 进入--过程 */
+			.switch-enter-active{
+				transition:  all 0.5s;
 			}
-
-			/* 离开-终点 */
-			.slideOut-leave-to {
-				transform: translateX(900px) rotate(360deg) scale(1);
-				opacity: 0;
+			/* 进入--起点 */
+			.switch-enter{
+				color: yellow;
+				opacity: 0.3;
+			}
+			/* 进入--终点 */
+			.switch-enter-to{
+				color: green;
+				opacity: 1;
 			}
 		</style>
 	</head>
 
 	<body>
 		<div id="app">
-			<fieldset>
-				<legend>进入</legend>
-				<p>
-					<button @click="isEnter = !isEnter" type="button">开始</button>
-				</p>
-				<transition name="slideIn">
-					<div class="box" v-show="isEnter"></div>
-				</transition>
-			</fieldset>
-			<fieldset id="">
-				<legend>离开</legend>
-				<p>
-					<button @click="isLeave = !isLeave" type="button">关闭</button>
-				</p>
-				<transition name="slideOut">
-					<div class="box" v-show="isLeave"></div>
-				</transition>
-			</fieldset>
+			<button @click="show = !show" type="button">开关</button>
+			
+			<transition name="switch">
+				<p v-show="show">Hello World!</p>
+			</transition>
 		</div>
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			var app = new Vue({
-				el: "#app",
-				data: {
-					isEnter: false,
-					isLeave: false,
-				},
-			})
+			let app = new Vue({
+				el:'#app',
+				data:{
+					show:true
+				}
+			});
 		</script>
 	</body>
 

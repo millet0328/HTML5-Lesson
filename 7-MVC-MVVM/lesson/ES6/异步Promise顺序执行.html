@@ -9,44 +9,6 @@
 </head>
 
 <body>
-    <!-- <script>
-        const getJSON = function(url) {
-            const promise = new Promise(function(resolve, reject) {
-                const handler = function() {
-                    if (this.readyState !== 4) {
-                        return;
-                    }
-                    if (this.status === 200) {
-                        resolve(this.response);
-                    } else {
-                        reject(new Error(this.statusText));
-                    }
-                };
-                const client = new XMLHttpRequest();
-                client.open("GET", url);
-                client.onreadystatechange = handler;
-                client.responseType = "json";
-                client.setRequestHeader("Accept", "application/json");
-                client.send();
-            });
-            return promise;
-        };
-        // 1.获取分类
-        getJSON("/catergory/list");
-        // 2.获取分类详情
-        getJSON("/catergory/detail?id=2");
-
-        getJSON("/catergory/list")
-            .then(function(list) {
-                // 在select显示分类列表....
-                return getJSON("/catergory/detail?id=2")
-            }).then(function(detail) {
-                // 显示分类详情...
-                return getJSON("/user/info");
-            }).then(function(info) {
-                // 处理用户信息
-            });
-    </script> -->
     <script>
         const ajax1 = () => {
             return new Promise((resolve, reject) => {

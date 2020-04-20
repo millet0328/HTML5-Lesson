@@ -4,28 +4,42 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<link rel="stylesheet" href="css/counter.css">
 	</head>
 
 	<body>
 		<div id="app">
-			<counter></counter>
-			<counter></counter>
+			<button-counter></button-counter>
+			<button-counter></button-counter>
 		</div>
 
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="js/counter.js"></script>
 
-		<script type="text/javascript">
-			// vue实例
-			var app = new Vue({
+		<script>
+			// 禁止使用HTML5常用标签名，如header footer section nav
+			// 全局注册
+			Vue.component('button-counter', {
+				data() {
+					return {
+						count: 0,
+					}
+				},
+				template: `<button @click="increaseHandle" type="button">你点击了{{count}}次</button>`,
+				methods: {
+					increaseHandle() {
+						this.count += 1;
+					}
+				},
+				computed: {},
+			});
+
+			let app = new Vue({
 				el: '#app',
-				data: {
-					username: "moz"
-				}
+				data: {},
+				methods: {},
+				computed: {}
 			});
 		</script>
+
 	</body>
 
 </html>
