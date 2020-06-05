@@ -1,41 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>计算属性的set/get</title>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>计算属性的set/get</title>
+	</head>
 
-<body>
-    <div id="app">
-        <p>firstname:{{firstname}}</p>
-        <p>lastname:{{lastname}}</p>
-        <p>fullname: <input type="text" v-model="fullname"></p>
-    </div>
+	<body>
+		<div id="app">
+			<fieldset>
+				<legend>计算属性的get/set</legend>
+				<p>firstname:{{firstname}}</p>
+				<p>lastname:{{lastname}}</p>
+				<p>fullname: <input type="text" v-model="fullname"></p>
+			</fieldset>
 
-    <script src="js/vue.js"></script>
-    <script>
-        let app = new Vue({
-            el: '#app',
-            data: {
-                firstname: 'Tom',
-                lastname: 'Smith',
-            },
-            computed: {
-                fullname: {
-                    set: function (newValue) {
-                        let arr = newValue.split(' ');
-                        this.firstname = arr[0];
-                        this.lastname = arr[arr.length - 1];
-                    },
-                    get: function () {
-                        return this.firstname + ' ' + this.lastname;
-                    }
-                }
-            }
-        })
-    </script>
-</body>
+			<fieldset>
+				<legend>表单复选框全选功能</legend>
+				<p>v-model在某些条件下，并不能带来便利，可以抛弃v-model指令，自己实现相关的事件</p>
+				<form action="">
+					<label for="">爱好：</label>
+					<label v-for="item in favor">
+						<input type="checkbox" :checked="item.isCheck" @click="handleCheck(item)" :value="item.name" /> {{item.name}}
+					</label>
+					<!-- 全选 -->
+					<label><input type="checkbox" v-model="checkAll" /> 全选</label>
+				</form>
+			</fieldset>
+		</div>
+
+		<script src="js/vue.js"></script>
+		<script>
+			let app = new Vue({
+				el: '#app',
+				data: {
+					firstname: 'Tom',
+					lastname: 'Smith',
+					favor: [
+						{ name: "漫画", isCheck: false },
+						{ name: "摄影", isCheck: true },
+						{ name: "唱歌", isCheck: false },
+						{ name: "体育", isCheck: false },
+					],
+				},
+				methods: {
+					handleCheck(item) {
+						item.isCheck = !item.isCheck;
+					}
+				},
+				computed: {
+					checkAll: {
+						get() {
+							// 判断favor数组每一个选项是否选中
+							return this.favor.every((item) => item.isCheck);
+						},
+						set(newValue) {
+							// newValue是checkbox最新的状态值
+							this.favor.forEach((item) => item.isCheck = newValue);
+						}
+					},
+					fullname: {
+						set: function(newValue) {
+							let arr = newValue.split(' ');
+							this.firstname = arr[0];
+							this.lastname = arr[arr.length - 1];
+						},
+						get: function() {
+							return this.firstname + ' ' + this.lastname;
+						}
+					}
+				}
+			})
+		</script>
+	</body>
 
 </html>

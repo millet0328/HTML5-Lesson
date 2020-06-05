@@ -1,64 +1,52 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
 
-	<body>
-		<script>
-			// 1. Promise封装好的方法
-			function Random() {
-				let promise = new Promise(function(resolve, reject) {
-					setTimeout(function() {
-						var x = Math.random();
-						if (x >= 0.5) {
-							resolve(x);
-						} else {
-							reject('失败：x = ' + x);
-							// reject(new Error('x：生成失败'));
-						}
-					}, 2000)
-				});
-				return promise
-			}
-			// 2. await + Promise函数
-			// 3. 封装成async函数
+<body>
+	<script>
+		// 1. Promise封装好的方法
+		function Random() {
+			let promise = new Promise(function (resolve, reject) {
+				setTimeout(function () {
+					var x = Math.random();
+					if (x >= 0.5) {
+						resolve(x);
+					} else {
+						reject('失败：x = ' + x);
+						// reject(new Error('x：生成失败'));
+					}
+				}, 2000)
+			});
+			return promise
+		}
+		// 1. async函数将异步操作，按照同步代码的方式书写,更容易理解；
+		// 2. await: 捕获Promise函数resolve的值
+		async function cal() {
+			let m = await Random();
+			console.log(m);
+		}
+		cal();
+		// 3. 封装成async函数
 
-			// 计算两个随机数的平均数
-			async function avg() {
-				//捕获reject时的返回值
-				try {
-					// 第一个随机数
-					let m = await Random();
-					// 第二个随机数
-					let n = await Random();
+	</script>
 
-					let avg = (m + n) / 2;
-					console.log('平均数：' + avg)
-				} catch (e) {
-					// 如果出现异常，提示异常的数字
-					console.log(e);
-				}
-			}
-			// 调用async函数
-			avg();
-		</script>
-
-		<script type="text/javascript">
-			async function cal(x) {
-				return x;
-				// 等价于
-				return Promise.resolve(x);
-				// 再等价于
-				return new Promise(function(resolve, reject) {
-					resolve(x)
-				});
-			}
-			var y = cal(100);
-			console.log(y);
-		</script>
-	</body>
+	<script type="text/javascript">
+		async function sum(x) {
+			await 3.14;
+			// 自动转换
+			return x;
+			// 等价于
+			return Promise.resolve(x);
+			// 再等价于
+			return new Promise(function (resolve, reject) {
+				resolve(x)
+			});
+		}
+	</script>
+</body>
 
 </html>

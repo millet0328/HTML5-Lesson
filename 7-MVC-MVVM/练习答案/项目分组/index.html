@@ -161,9 +161,11 @@
 						// 平均分配
 						if (remainder == 0) {
 							alert('本次分组，平均分配');
-							this.toRandom = this.students;
+							// 确定小组人数之后，立刻随机分组
+							this.randomed = _.shuffle(this.students);
 							return;
 						}
+						
 						// 有余数，随机抽取学生，由老师安排项目组
 						for (var i = 0; i < remainder; i++) {
 							var x = _.random(0, total - 1 - i);
