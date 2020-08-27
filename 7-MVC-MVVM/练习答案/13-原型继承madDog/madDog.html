@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			function Dog() {
+				this.wow = function() {
+					alert('Wow');
+				}
+				this.yelp = function() {
+					this.wow();
+				}
+			}
+
+			function MadDog() {
+				// 1.继承原有属性
+				Dog.call(this);
+				// 自有方法
+				this.yelp = function() {
+					setInterval(() => { this.wow() }, 500);
+				}
+			}
+			// 2.原型继承
+			MadDog.prototype = Object.create(Dog.prototype);
+			// 3.重新申明构造函数
+			MadDog.prototype.constructor = MadDog;
+			
+			//输入以下测试代码，小芒会不停地叫
+			var dog = new Dog();
+			// dog.yelp();
+			var madDog = new MadDog();
+			// madDog.yelp();
+		</script>
+	</body>
+
+</html>

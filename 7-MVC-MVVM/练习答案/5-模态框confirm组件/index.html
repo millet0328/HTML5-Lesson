@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="component/Modal/confirm.css">
+	</head>
+	<body>
+		<div id="app">
+			<button @click="isShow=true" class="btn btn-default" type="button">删除Confirm</button>
+			<!-- 模态框 -->
+			<confirm :show="isShow" @cancel="handleCancel" @confirm="handleConfirm">
+				<table width="100%" border="1" cellspacing="" cellpadding="20">
+					<tr>
+						<th>Header</th>
+						<th>Header</th>
+						<th>Header</th>
+					</tr>
+					<tr>
+						<td>Data</td>
+						<td>Data</td>
+						<td>Data</td>
+					</tr>
+					<tr>
+						<td>Data</td>
+						<td>Data</td>
+						<td>Data</td>
+					</tr>
+				</table>
+			</confirm>
+		</div>
+		<script src="lib/vue/vue.js"></script>
+		<script src="component/Modal/confirm.js"></script>
+
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					isShow: false,
+				},
+				methods: {
+					handleCancel: function() {
+						this.isShow = false;
+					},
+					handleConfirm: function() {
+						alert("删除成功！")
+						this.isShow = false;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

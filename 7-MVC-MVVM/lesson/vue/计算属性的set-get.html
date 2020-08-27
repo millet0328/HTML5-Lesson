@@ -9,69 +9,86 @@
 
 	<body>
 		<div id="app">
-			<fieldset>
-				<legend>计算属性的get/set</legend>
-				<p>firstname:{{firstname}}</p>
-				<p>lastname:{{lastname}}</p>
-				<p>fullname: <input type="text" v-model="fullname"></p>
+			<fieldset id="">
+				<legend>计算属性的set/get</legend>
+				<p>
+					firstName: {{firstName}}
+				</p>
+				<p>
+					lastName: {{lastName}}
+				</p>
+				<p>
+					fullName: <input type="text" v-model="fullName" />
+				</p>
 			</fieldset>
 
 			<fieldset>
-				<legend>表单复选框全选功能</legend>
-				<p>v-model在某些条件下，并不能带来便利，可以抛弃v-model指令，自己实现相关的事件</p>
-				<form action="">
-					<label for="">爱好：</label>
-					<label v-for="item in favor">
-						<input type="checkbox" :checked="item.isCheck" @click="handleCheck(item)" :value="item.name" /> {{item.name}}
-					</label>
-					<!-- 全选 -->
-					<label><input type="checkbox" v-model="checkAll" /> 全选</label>
-				</form>
+				<legend>全选功能</legend>
+				<table style="text-align: center;" width="100%" border="1" cellspacing="4" cellpadding="20">
+					<thead>
+						<tr>
+							<th>
+								<input type="checkbox" v-model="checkedAll">
+							</th>
+							<th>姓名</th>
+							<th>年龄</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="item in students">
+							<td>
+								<input type="checkbox" v-model="item.checked" />
+							</td>
+							<td>{{item.name}}</td>
+							<td>{{item.age}}</td>
+						</tr>
+					</tbody>
+				</table>
 			</fieldset>
 		</div>
 
-		<script src="js/vue.js"></script>
+		<script src="lib/vue/vue.js"></script>
 		<script>
-			let app = new Vue({
-				el: '#app',
+			var app = new Vue({
+				el: "#app",
 				data: {
-					firstname: 'Tom',
-					lastname: 'Smith',
-					favor: [
-						{ name: "漫画", isCheck: false },
-						{ name: "摄影", isCheck: true },
-						{ name: "唱歌", isCheck: false },
-						{ name: "体育", isCheck: false },
-					],
-				},
-				methods: {
-					handleCheck(item) {
-						item.isCheck = !item.isCheck;
-					}
+					firstName: "Tom",
+					lastName: "Smith",
+					students: [
+						{ name: "黄小米", age: 25, checked: false },
+						{ name: "黄磊", age: 45, checked: false },
+						{ name: "张艺兴", age: 30, checked: false }
+					]
 				},
 				computed: {
-					checkAll: {
-						get() {
-							// 判断favor数组每一个选项是否选中
-							return this.favor.every((item) => item.isCheck);
-						},
-						set(newValue) {
-							// newValue是checkbox最新的状态值
-							this.favor.forEach((item) => item.isCheck = newValue);
-						}
-					},
-					fullname: {
+					checkedAll: {
 						set: function(newValue) {
-							let arr = newValue.split(' ');
-							this.firstname = arr[0];
-							this.lastname = arr[arr.length - 1];
+							this.students.forEach(function(item) {
+								item.checked = newValue;
+							});
 						},
 						get: function() {
-							return this.firstname + ' ' + this.lastname;
+							var num = 0;
+							this.students.forEach(function(item, index) {
+								if (item.checked) {
+									num++;
+								}
+							});
+							return num == this.students.length;
+						}
+					},
+					fullName: {
+						get: function() {
+							return this.firstName + " " + this.lastName;
+						},
+						set: function(newValue) {
+							var arr = newValue.split(' ');
+							this.firstName = arr[0];
+							this.lastName = arr[arr.length - 1];
 						}
 					}
 				}
-			})
+			});
 		</script>
 	</body>
 

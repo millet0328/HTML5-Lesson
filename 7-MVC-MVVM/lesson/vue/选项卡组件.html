@@ -76,11 +76,10 @@
 	<body>
 		<div id="app" class="list">
 			<!--商品列表-->
-			<Tabs :label="title" :content="content">
-			</Tabs>
+			<Tabs :label="title" :content="content"></Tabs>
 		</div>
 
-		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/vue/vue.js" type="text/javascript" charset="utf-8"></script>
 		<script id="Tabs-tmpl" type="text/x-template">
 			<div class="tab">
 				<ul class="tab-title clear">
@@ -98,7 +97,7 @@
 				props: ["activeKey", "label", "content"],
 				data: function() {
 					return {
-						num: 0
+						num: 0 //当前激活的索引
 					}
 				},
 				methods: {

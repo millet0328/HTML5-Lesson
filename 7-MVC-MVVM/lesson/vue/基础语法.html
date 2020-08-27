@@ -8,26 +8,34 @@
 
 	<body>
 		<div id="app">
-			<h3>
-				会员等级：<span v-if="vip">金牌会员</span>
-				<button @click="vip=true" type="button">成为会员</button>
-			</h3>
-			<h3>
-				手机号码：
-				<span v-show="isShow">15863008280</span>
-				<button @click="isShow = !isShow" type="button">{{ isShow?'隐藏':'显示' }}</button>
-			</h3>
+			<h4>
+				昵称：黄小米
+			</h4>
+			<h4>
+				会员：<span v-if="isVip">金牌会员</span>
+				<button @click="isVip=true" type="button">成为会员</button>
+			</h4>
+			<h4>
+				手机：<span v-show="isShow">15863008280</span>
+				<button @click="isShow=!isShow" type="button">{{ isShow?'隐藏':'显示' }}</button>
+			</h4>
+			<h4>
+				简介：
+				<p v-html="info"></p>
+			</h4>
 		</div>
 
-		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/vue/vue.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			var vm = new Vue({
-				el: '#app',
+			var app = new Vue({
+				el: "#app",
 				data: {
-					vip: false,
+					isVip: false,
 					isShow: false,
-				},
-			})
+					info: '<span style="color:pink">猫控</span> <span style="color:blue">摄影</span>'
+				}
+			});
+			
 		</script>
 	</body>
 

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="icon/iconfont.css" />
+		<link rel="stylesheet" href="component/Modal/confirm.css">
+		<link rel="stylesheet" type="text/css" href="component/Title/index.css" />
+		<link rel="stylesheet" type="text/css" href="component/Item/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/noteBook.css" />
+
+	</head>
+	<body>
+		<div id="app" class="app">
+			<header class="clearfix header">
+				Note Book
+				<span class="iconfont icon-zhuye fr"></span>
+			</header>
+			<section>
+				<!-- 表单 -->
+				<form>
+					<input v-model="form.text" type="text" class="input-control" name="text" placeholder="计划内容" />
+					<input @click="handleAdd" type="button" class="btn submit" value="提交" />
+				</form>
+				<!-- 列表 -->
+				<list-title text="未完成"></list-title>
+				<item v-for="(item,index) in unFinish" @check="handleCheck(item,index,$event)" :data="item"></item>
+				<list-title text="已完成"></list-title>
+				<item v-for="(item,index) in finished" @check="handleCheck(item,index,$event)" :data="item"></item>
+				<list-title text="已取消"></list-title>
+				<item v-for="(item,index) in canceled" @check="handleCheck(item,index,$event)" :data="item"></item>
+			</section>
+			<!-- 模态框 -->
+			<confirm :show="isShow" @cancel="handleCancel" @confirm="handleConfirm">
+				确定要删除此条计划吗？
+			</confirm>
+		</div>
+		<script src="lib/vue/vue.js"></script>
+
+		<script src="component/Modal/confirm.js"></script>
+		<script src="component/Title/index.js"></script>
+		<script src="component/Item/index.js"></script>
+
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					isShow: false,
+					// 表单
+					form: {
+						isCheck: false,
+						text: '',
+						status: 1,
+						timestamp: ''
+					},
+					// 未完成
+					unFinish: [],
+					// 已完成
+					finished: [],
+					// 已取消
+					canceled: [],
+				},
+				methods: {
+					// 添加计划
+					handleAdd: function() {
+						this.form.timestamp = this._nowTime();
+						this.unFinish.unshift({ ...this.form });
+						// 清空
+						this.form = {
+							isCheck: false,
+							text: '',
+							status: 1,
+							timestamp: ''
+						}
+					},
+					// 复选框事件
+					handleCheck: function(item, i, isCheck) {
+						if (isCheck) {
+							// 完成计划
+							item.isCheck = isCheck;
+							item.status = 2;
+							this.finished.push(item);
+							this.unFinish.splice(i, 1);
+						} else {
+							// 取消计划
+							item.isCheck = isCheck;
+							item.status = 1;
+							this.finished.splice(i, 1);
+							this.unFinish.push(item);
+						}
+					},
+					// 删除计划
+
+					// 当前时间
+					_nowTime: function() {
+						var now = new Date();
+						var year = now.getFullYear(); //得到年份
+						var month = now.getMonth() + 1; //得到月份
+						var day = now.getDate(); //得到日期
+						var hour = now.getHours(); //得到小时数
+						var min = now.getMinutes(); //得到分钟数
+						var sec = now.getSeconds(); //得到秒数
+						// 修正小于10的数字
+						function fix(x) {
+							return x < 10 ? ("0" + x) : x;
+						}
+						return time = year + "-" + fix(month) + "-" + fix(day) + ' ' + fix(hour) + ':' + fix(min) + ':' + fix(sec);
+					},
+					handleCancel: function() {
+						this.isShow = false;
+					},
+					handleConfirm: function() {
+						alert("删除成功！")
+						this.isShow = false;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

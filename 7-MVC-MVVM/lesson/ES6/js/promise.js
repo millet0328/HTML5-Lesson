@@ -1,4 +1,5 @@
-// 自己手写一个Promise
+// 自己使用javascript手写一个Promise类
+
 // ES5实现方法
 function Promise(fn) {
 	// 状态
@@ -40,6 +41,7 @@ Promise.prototype.catch = function(failed) {
 	}
 	return this;
 };
+
 // ES6实现方法
 class Promise {
 	constructor(fn) {

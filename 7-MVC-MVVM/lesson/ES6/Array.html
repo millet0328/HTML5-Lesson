@@ -1,67 +1,57 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-	<meta charset="utf-8">
-	<title></title>
-</head>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
 
-<body>
-	<script>
-		var student = [
-			{ name: '黄小米' },
-			{ name: '黄磊' },
-			{ name: '张艺兴' },
-			{ name: '孙红雷' }
-		]
-		var score = [45, 65, 87, 98, 56, 78];
-		// concat
-		var plus = student.concat(score);
-		// every
-		var isValid = score.every((item, index) => {
-			return item >= 60;
-		});
-		var isValid = score.every((item, index) => item >= 60);
-		// student数组人名是否都姓黄？
-		var flag = student.every((item, index) => {
-			// if (item.name.indexOf('黄') >= 0) {
-			// 	return true;
-			// } else {
-			// 	return false;
-			// }
-			return item.name.indexOf('黄') >= 0;
-		});
-		// 筛选出分数>=60 的元素
-		var pass = score.filter((item) => item >= 60);
-		// includes 简单数组
-		var isHave = score.includes(56);
-		// keys
-		// forEach 改变原始数组
-		student.forEach((item, index, array) => {
-			item.age = Math.random() * 100;
-		});
-		// map 简单数组，不改变原始数组
-		var newScore = score.map((item) => {
-			return item * 1.2;
-		});
-		// map 复杂数组，如何不改变原始数组？
-		var newStudent = student.map((item) => {
-			// 利用扩展运算符，克隆一个与原始对象无联系的对象
-			var copy = { ...item };
-			copy.salary = Math.random() * 5000
-			return copy;
-		});
-		console.log(student);
-		console.log(newStudent);
-		// reduce，简单数组求和
-		var sum = score.reduce((total, item, index) => total += item);
-		// reduce，复杂数组求和
-		var totalAge = student.reduce((total, item) => total += item.age, 0);
-		// reverse
-		var rev = [1, 2, 3, 4, 5].reverse();
-		// some 是否有一个90分以上的元素
-		var isExcellent = score.some((item) => item >= 90);
-	</script>
-</body>
+	<body>
+		<script>
+			var student = [
+				{ name: '黄小米' },
+				{ name: '黄磊' },
+				{ name: '张艺兴' },
+				{ name: '孙红雷' }
+			]
+			var score = [45, 65, 87, 98, 56, 78];
+			// concat return一个新数组
+			var group = student.concat(score);
+			// every
+			var isValid = score.every((item, index) => item >= 60);
+			// student数组人名是否都姓黄？
+			var flag = student.every((item, index) => {
+				return item.name.indexOf('黄') == 0;
+			});
+			// 筛选出分数>=60 的元素，return一个新数组
+			var pass = score.filter((item) => item >= 60);
+			// 查找数组,return 符合条件的第一个元素
+			var person = student.find((item, index) => item.name == '黄磊');
+			// includes 简单数组
+			var isHave = score.includes(56);
+			// keys
+			// forEach 改变原始数组
+			student.forEach((item, index, array) => {
+				item.age = Math.random() * 100;
+			});
+			// map 简单数组，return一个新数组，不改变原始数组
+			var newScore = score.map((item) => item * 1.2);
+			// map 复杂数组，return一个新数组，如何不改变原始数组？
+			var newStudent = student.map((item) => {
+				// 利用扩展运算符，克隆一个与原始对象无联系的对象
+				var copy = { ...item };
+				copy.salary = Math.random() * 5000
+				return copy;
+			});
+			// reduce，简单数组求和
+			var sum = score.reduce((total, item, index) => total += item);
+			// reduce，复杂数组求和
+			var totalAge = student.reduce((total, item) => total += item.age, 0);
+			// reverse
+			var rev = [1, 2, 3, 4, 5].reverse();
+			// some 是否有一个90分以上的元素
+			var isExcellent = score.some((item, index) => item >= 90);
+		</script>
+	</body>
 
 </html>

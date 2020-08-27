@@ -8,14 +8,23 @@
 
 	<body>
 		<script type="text/javascript">
-			// const原理，如何保证只读
-			let x = 10;
+			for (let i = 0; i < 5; i++) {
+				console.log(1)
+			}
+			if (true) {
+				let i = 10086;
+				console.log(i)
+			}
+			// console.log(i);
+
+			const m = 9.8;
+			
 			const person = {
 				name: "黄小米",
-				age: 26
+				age: 25,
 			}
-			person.name = '黄渤';
-			console.log(person.name);
+			
+			person.age = 30;
 		</script>
 	</body>
 

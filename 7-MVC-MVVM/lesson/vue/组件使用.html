@@ -3,37 +3,29 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="component/alert/alert.css" />
+		<link rel="stylesheet" type="text/css" href="component/counter/counter.css" />
 	</head>
 	<body>
+		
 		<div id="app">
-			<button @click="isShow = true" type="button">保 存</button>
-			<alert :show="isShow" @close="closeAlert">
-				<template v-slot:title>
-					<h3>alert标题</h3>
-				</template>
-				
-				<template v-slot:content>
-					<ul>
-						<li>黄小米</li>
-						<li>张艺兴</li>
-						<li>黄渤</li>
-						<li>黄磊</li>
-					</ul>
-				</template>
-			</alert>
+			<counter :value="num" min="1" max="10" @up="handleUp" @down="handleDown"></counter>
 		</div>
-		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
-		<script src="component/alert/alert.js"></script>
+		
+		<script src="lib/vue/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="component/counter/counter.js"></script>
+		
 		<script type="text/javascript">
 			var app = new Vue({
-				el: '#app',
+				el: "#app",
 				data: {
-					isShow: false
+					num: 2
 				},
 				methods: {
-					closeAlert: function() {
-						this.isShow = false;
+					handleUp: function() {
+						this.num++;
+					},
+					handleDown: function() {
+						this.num--;
 					}
 				}
 			});

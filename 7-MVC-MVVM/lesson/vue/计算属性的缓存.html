@@ -1,38 +1,32 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-	<meta charset="UTF-8">
-	<title></title>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
 
-<body>
-	<div id="app">
-		<textarea cols="60" v-model="text" rows="10"></textarea>
-		<p>已输入{{text.length}}字,您还可以输入{{restText}}字,{{restfun()}}字</p>
-	</div>
-	<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
-	<script>
-		let app = new Vue({
-			el: '#app',
-			data: {
-				text: ''
-			},
-			methods: {
-				restfun() {
-					console.log(2);
-					return 300 - this.text.length;
+	<body>
+		<div id="app">
+			<textarea cols="60" v-model.trim="text" rows="10"></textarea>
+			<p>
+				您还可以输入 <b>{{restText}}</b> 字
+			</p>
+		</div>
+		<script src="lib/vue/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			var app = new Vue({
+				el: "#app",
+				data: {
+					text: ""
+				},
+				computed: {
+					restText: function() {
+						return 300 - this.text.length;
+					}
 				}
-			},
-			computed: {
-				restText() {
-					console.log(1);
-					return 300 - this.text.length;
-				}
-			}
-		})
-	</script>
-
-</body>
+			})
+		</script>
+	</body>
 
 </html>

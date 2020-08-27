@@ -8,51 +8,49 @@
 
 	<body>
 		<script type="text/javascript">
+			// 类的定义
 			class Point {
 				constructor(x, y) {
 					this.x = x;
 					this.y = y;
 				}
-				// 原型上的属性
-				job = 'actor'
-				// 原型上的方法
-				toString() {
-					console.log('(' + this.x + ', ' + this.y + ')');
-				}
-			}
-			var p1 = new Point(10, 30);
-			p1.toString();
 
+				toString() {
+					return `(${this.x},${this.y})`;
+				};
+			}
+			// 原型上定义属性
+			Point.prototype.zero = { x: 0, y: 0 }
+
+			var p1 = new Point(1, 1);
+			var p2 = new Point(2, 2);
 			// class类的继承 extends
+
 			class ColorPoint extends Point {
 				constructor(x, y, color) {
-					// 继承父级的属性
 					super(x, y);
-					// 等价于
-					// this.x = x;
-					// this.y = y;
-					// 自身的属性
 					this.color = color;
 				}
-				// 自身的方法
-				showColor() {
-					console.log(`x:${this.x},y:${this.y},color:${this.color}`);
-				}
-			}
-			var p2 = new ColorPoint(50, 50, 'red');
 
+				// 自有方法
+				showColor() {
+					console.log('color:' + this.color);
+				}
+				// 改写父类的方法
+				toString() {
+					return this.color + ' ' + super.toString();
+				}
+
+			}
+
+			var p3 = new ColorPoint(3, 3, 'blue');
 
 			// 父类constructor没有参数
 			class Animal {
 				constructor() {
-					this.specics = '动物类';
-				}
-
-				eat() {
-					console.log('eating...')
+					this.species = "动物类"
 				}
 			}
-
 			class Cat extends Animal {
 				constructor(type, color) {
 					super();
@@ -60,15 +58,19 @@
 					this.color = color;
 				}
 			}
-			var tom = new Cat('加菲', '黑色');
-			console.log(tom);
-
-			// constructor可以省的情况
+			// constructor可以省略情况
 			class Dog extends Animal {
-				// constructor() {
-				// 	super();
-				// }
+				// 父类constructor没有参数，子类没有自有属性
+
+				// 自动补充省略的代码
+				/* 
+				constructor() {
+					super()
+				}
+				*/
 			}
+
+			var puppy = new Dog();
 
 			/**
 			 * super的功能

@@ -1,0 +1,44 @@
+.app {
+	width: 375px;
+	min-height: 100vh;
+	margin: 0 auto;
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.header {
+	color: white;
+	padding: 20px;
+	background-color: #B0D6EE;
+	text-align: center;
+	font-size: 18px;
+}
+
+.app section {
+	padding: 10px;
+}
+
+.app form {
+	display: flex;
+	align-items: center;
+}
+
+.input-control {
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	font-size: 16px;
+	flex: 1;
+}
+
+.btn {
+	background-color: #B0D6EE;
+	border: 0;
+	outline: 0;
+	border-radius: 3px;
+	color: white;
+}
+
+.submit {
+	padding: 13px 20px;
+	margin-left: 10px;
+}

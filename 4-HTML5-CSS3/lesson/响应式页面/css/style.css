@@ -1,0 +1,115 @@
+.products-box {
+	padding-top: 50px;
+}
+
+.products-box .title {
+	color: rgb(27, 169, 135);
+	font-size: 32px;
+}
+
+.products-list {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.products-list li {
+	width: 31.3333%;
+	margin: 1%;
+	border: 1px solid #EEEEEE;
+	box-sizing: border-box;
+}
+
+.products-list .photo img {
+	max-width: 100%;
+}
+
+.products-box .title {
+	font-size: 0.34rem;
+}
+
+.products-list .info {
+	padding: 0.40rem;
+	background-color: #008000;
+	color: white;
+}
+
+.products-list .info .name {
+	font-size: 0.32rem;
+}
+
+.products-list .info .serial {
+	font-size: 0.26rem;
+	padding: 0.3rem 0;
+}
+
+.products-list .info .summary {
+	font-size: 0.24rem;
+}
+
+/* PC */
+@media screen and (min-width:1024px) {
+	html {
+		font-size: 54px;
+	}
+
+	.pc-header {
+		display: block;
+	}
+
+	.ipad-header {
+		display: none;
+	}
+}
+
+/* iPad */
+@media screen and (min-width:768px) and (max-width:1024px) {
+	html {
+		/* 字号相当于100px */
+		font-size: 13.333333vw;
+	}
+	.container {
+		width: 100%;
+	}
+
+	.pc-header {
+		display: none;
+	}
+
+	.ipad-header {
+		display: block;
+	}
+
+	.products-list li {
+		width: 48%;
+	}
+}
+
+/* 手机端 */
+@media screen and (min-width:320px) and (max-width:768px) {
+	html {
+		/* 字号相当于100px */
+		font-size: 13.333333vw;
+	}
+
+	.container {
+		width: 100%;
+	}
+
+	.pc-header {
+		display: none;
+	}
+
+	.ipad-header {
+		display: block;
+	}
+
+	.products-list li {
+		width: 98%;
+	}
+
+	.products-list .keywords {
+		display: none;
+	}
+
+
+}

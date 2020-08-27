@@ -1,8 +1,11 @@
-.goods-list .item {
-	padding-bottom: 20px;
+.bg-blue {
+	background-color: blue;
+	border-color: darkblue;
 }
 
-.icon-leaf {
-	color: greenyellow;
-	font-size: 36px;
+.bg-blue.navbar-inverse .navbar-nav>.open>a,
+.bg-blue.navbar-inverse .navbar-nav>.open>a:focus,
+.bg-blue.navbar-inverse .navbar-nav>.open>a:hover {
+	color: #fff;
+	background-color: darkblue;
 }

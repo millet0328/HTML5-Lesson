@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<style type="text/css">
+			.products-box {
+				padding-top: 50px;
+			}
+			
+			.products-box .title {
+				color: rgb(27, 169, 135);
+				font-size: 32px;
+			}
+			
+			.products-list {
+				display: flex;
+				flex-wrap: wrap;
+			}
+			
+			.products-list li {
+				width: 31.3333%;
+				margin: 1%;
+				border: 1px solid #EEEEEE;
+				box-sizing: border-box;
+			}
+			
+			.products-list .photo img {
+				max-width: 100%;
+			}
+			
+			/* PC */
+			@media screen and (min-width:1024px) {
+				html {
+					font-size: 54px;
+				}
+			
+				.pc-header {
+					display: block;
+				}
+			
+				.ipad-header {
+					display: none;
+				}
+			}
+			
+			/* iPad */
+			@media screen and (min-width:768px) and (max-width:1024px) {
+				html {
+					/* 字号相当于100px */
+					font-size: 13.333333vw;
+				}
+				.container {
+					width: 100%;
+				}
+			
+				.pc-header {
+					display: none;
+				}
+			
+				.ipad-header {
+					display: block;
+				}
+			
+				.products-list li {
+					width: 48%;
+				}
+			}
+			
+			/* 手机端 */
+			@media screen and (min-width:320px) and (max-width:768px) {
+				html {
+					/* 字号相当于100px */
+					font-size: 13.333333vw;
+				}
+			
+				.container {
+					width: 100%;
+				}
+			
+				.pc-header {
+					display: none;
+				}
+			
+				.ipad-header {
+					display: block;
+				}
+			
+				.products-list li {
+					width: 98%;
+				}
+			
+				.products-list .keywords {
+					display: none;
+				}
+			
+			}
+			
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="container">
+				<!-- PC -->
+				<div class="pc-header">
+					<img width="100%" src="./img/pc.png" alt="">
+				</div>
+				<!-- ipad -->
+				<div class="ipad-header">
+					<img width="100%" src="./img/ipad.png" alt="">
+				</div>
+			</div>
+		</header>
+		<!-- 产品列表 -->
+		<div class="products-box container">
+			<div class="title">
+				产品
+			</div>
+			<ul class="products-list">
+				<li>
+					<div class="photo">
+						<img src="img/155730142437.jpg">
+					</div>
+					<div class="info">
+						<img width="100%" src="./img/QQ截图20200612102211.png" alt="">
+					</div>
+					<div class="keywords">
+						<img width="100%" src="img/QQ截图20200612102249.png">
+					</div>
+				</li>
+				<li>
+					<div class="photo">
+						<img src="img/155730142437.jpg">
+					</div>
+					<div class="info">
+						<img width="100%" src="./img/QQ截图20200612102211.png" alt="">
+					</div>
+					<div class="keywords">
+						<img width="100%" src="img/QQ截图20200612102249.png">
+					</div>
+				</li>
+				<li>
+					<div class="photo">
+						<img src="img/155730142437.jpg">
+					</div>
+					<div class="info">
+						<img width="100%" src="./img/QQ截图20200612102211.png" alt="">
+					</div>
+					<div class="keywords">
+						<img width="100%" src="img/QQ截图20200612102249.png">
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

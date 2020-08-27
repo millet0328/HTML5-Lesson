@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-	<meta charset="utf-8">
-	<title></title>
-</head>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
 
-<body>
-	<script>
-		function log(x, y) {
-			y = y || 'World';
-			console.log(x, y);
-		}
-		log('Hello', '');
-	</script>
-</body>
+	<body>
+		<script>
+			function sum(x = 0, y = 100) {
+				let result = 0;
+				for (var i = x; i < y; i++) {
+					result += i;
+				}
+				console.log(result)
+			}
+			sum();
+		</script>
+	</body>
 
 </html>

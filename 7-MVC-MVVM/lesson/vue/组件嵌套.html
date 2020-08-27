@@ -3,48 +3,59 @@
 	<head>
 		<meta charset="utf-8">
 		<title>组件嵌套--slot</title>
+		<style type="text/css">
+			.content {
+				display: flex;
+			}
 
+			.content fieldset {
+				flex: 1;
+				margin: 0 10px;
+			}
+		</style>
 	</head>
 	<body>
 		<div id="app">
 			<component-a>
-				<template v-slot:after>
-					<component-c></component-c>
-				</template>
-				<component-d></component-d>
-				<template v-slot:before>
+				<template v-slot:left>
 					<component-b></component-b>
+				</template>
+				<template v-slot:right>
+					<component-c></component-c>
 				</template>
 			</component-a>
 		</div>
 
-		<script src="js/vue.js"></script>
+		<script src="lib/vue/vue.js"></script>
 		<script type="text/javascript">
-			Vue.component('component-a', {
+			Vue.component("component-a", {
+				template: `	
+				<fieldset>
+					<legend>A组件</legend>
+					组件内容---AAA
+					<div class="content">
+						<slot name="left"></slot>
+						<slot name="right"></slot>
+					</div>
+				</fieldset>`
+			});
+
+			Vue.component("component-b", {
 				template: `
-				<div>
-					<slot name="before"></slot>
-					<p>组件A</p>
-					<slot></slot>
-					<slot name="after"></slot>
-				</div>	
-				`
+				<fieldset>
+					<legend>B组件</legend>
+					组件内容---BBB
+				</fieldset>`
 			});
-
-			Vue.component('component-b', {
-				template: `<p>组件B</p>`
+			Vue.component("component-c", {
+				template: `
+				<fieldset>
+					<legend>C组件</legend>
+					组件内容---CCC
+				</fieldset>`
 			});
-
-			Vue.component('component-c', {
-				template: `<p>组件C</p>`
-			});
-
-			Vue.component('component-d', {
-				template: `<p>组件D</p>`
-			});
-
-			let app = new Vue({
-				el: '#app'
+			var app = new Vue({
+				el: "#app",
 			});
 		</script>
 	</body>

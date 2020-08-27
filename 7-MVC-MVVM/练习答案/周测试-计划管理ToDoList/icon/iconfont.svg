@@ -1,0 +1,38 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!--
+2013-9-30: Created.
+-->
+<svg>
+<metadata>
+Created by iconfont
+</metadata>
+<defs>
+
+<font id="iconfont" horiz-adv-x="1024" >
+  <font-face
+    font-family="iconfont"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="1024"
+    ascent="896"
+    descent="-128"
+  />
+    <missing-glyph />
+    
+    <glyph glyph-name="zhuye" unicode="&#58938;" d="M-3.414016-40.912128M156.437504 261.437184 156.437504-148.229376 402.612224-148.229376 402.612224 128.5312 618.62912 128.5312 618.62912-148.229376 865.261568-148.229376 865.261568 261.437184 1002.271744 261.437184 510.849024 745.555712 18.970624 261.437184ZM1024.651264-40.912128"  horiz-adv-x="1024" />
+
+    
+    <glyph glyph-name="wenjianjia" unicode="&#58955;" d="M861.9 52.5c0-31.1-25.2-56.2-56.2-56.2H103.5l98.3 454.2c0 31 25 56.2 56.1 56.2h646.2c31 0 56.1-25.2 56.1-56.2l-98.3-398zM215.8 548.9h632v55.2c0 31-25.2 56.2-56.2 56.2h-337v50.9c0 31-25.2 56.2-56.2 56.2H117.6c-31 0-56.2-25.2-56.2-56.2v-658.6l98.2 440.2c0 30.9 25.2 56.1 56.2 56.1z m0 0"  horiz-adv-x="1024" />
+
+    
+    <glyph glyph-name="liebiaoye-fuxuankuang-weixuanze" unicode="&#58919;" d="M995.555556-99.555556H28.444444V867.555556h967.111112v-967.111112z m-910.222223 56.888889h853.333334v853.333334h-853.333334v-853.333334z"  horiz-adv-x="1024" />
+
+    
+    <glyph glyph-name="liebiaoye-fuxuankuang-yixuanze" unicode="&#58920;" d="M995.555556-99.555556H28.444444V867.555556h967.111112v-967.111112z m-910.222223 56.888889h853.333334v853.333334h-853.333334v-853.333334zM455.111111 173.511111L204.8 418.133333l45.511111 45.511111L455.111111 253.155556l318.577778 324.266666 45.511111-45.511111z"  horiz-adv-x="1024" />
+
+    
+
+
+  </font>
+</defs></svg>

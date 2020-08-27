@@ -1,17 +1,24 @@
 Vue.component('counter', {
-	props: ['num'],
-	template: `
-	<div class="counter-box">
-		<button class="btn left" :disabled="num==1" @click="handleDecreass" type="button">-</button>
-		<input class="num" type="text" v-model="num">
-		<button class="btn right" @click="handleIncreass" type="button">+</button>
-	</div>`,
+	// props：外部数据
+	props: ['value', 'min', 'max', 'step'],
 	methods: {
-		handleIncreass() {
-			this.$emit('update:num', this.num + 1)
+		handleIncrease: function() {
+			if (this.value >= this.max) {
+				return;
+			}
+			this.$emit('up');
 		},
-		handleDecreass() {
-			this.$emit('update:num', this.num - 1)
+		handleDecrease: function() {
+			if (this.value <= this.min) {
+				return;
+			}
+			this.$emit('down');
 		}
-	}
+	},
+	template: `
+			<div class="counter">
+				<button @click="handleDecrease" class="decrease" type="button">-</button>
+				<span class="number">{{value}}</span>
+				<button @click="handleIncrease" class="increase" type="button">+</button>
+			</div>`
 });

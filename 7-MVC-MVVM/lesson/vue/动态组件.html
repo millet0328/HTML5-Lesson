@@ -14,45 +14,40 @@
 
 	<body>
 		<div id="app">
-			<button type="button" @click="current = item" :class="{active: current == item}" v-for="(item,index) in tabs">{{item}}</button>
+			<button v-for="tab in tabs" :key="tab" :class="{ active: currentTab === tab }" @click="currentTab = tab">{{ tab }}</button>
 			<keep-alive>
-				<component :is="currentComponent"></component>
+				<component :is="currentTabComponent" class="tab-content"></component>
 			</keep-alive>
 		</div>
-		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/vue/vue.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			Vue.component('home-content', {
-				template: `<p>Home 内容</p>`
-			});
-
-			Vue.component('posts-content', {
-				// 组件外部的数据
-				props: [],
-				// 组件内部的数据
-				data() {
+			Vue.component('tab-home', {
+				template: '<div>Home component</div>'
+			})
+			Vue.component('tab-posts', {
+				data: function() {
 					return {
-						highlight: false
+						count: 1
 					}
 				},
-				template: `<p @click="highlight = !highlight" :style="{color:highlight?'red':''}">Posts 内容</p>`
-			});
+				template: '<div><button @click="count++" type="button">次数：{{count}}</button></div>'
+			})
+			Vue.component('tab-archive', {
+				template: '<div>Archive component</div>'
+			})
 
-			Vue.component('archive-content', {
-				template: `<p>Archive 内容</p>`
-			});
-
-			let app = new Vue({
+			new Vue({
 				el: '#app',
 				data: {
-					current: 'Home',
+					currentTab: 'Home',
 					tabs: ['Home', 'Posts', 'Archive']
 				},
 				computed: {
-					currentComponent() {
-						return this.current.toLowerCase() + '-content';
+					currentTabComponent: function() {
+						return 'tab-' + this.currentTab.toLowerCase()
 					}
 				}
-			});
+			})
 		</script>
 	</body>
 

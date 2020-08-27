@@ -1,26 +1,31 @@
-.num {
-	max-width: 40px;
-	text-align: center;
-	outline: 0;
-	border: 1px solid #999;
-}
-
-.counter-box {
+.counter {
 	display: flex;
+	align-items: center;
+	width: 200px;
 }
 
-.counter-box .btn {
-	background-color: white;
-	border: 1px solid #999;
-	outline: 0;
-	width: 40px;
+.counter .decrease,
+.counter .increase {
+	padding: 6px 20px;
+	border: 1px solid #999999;
+	border-radius: 3px;
+	font-size: 18px;
 }
 
-.counter-box .left {
-	border-right: 0;
-
+.counter .decrease {
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
 }
 
-.counter-box .right {
-	border-left: 0;
+.counter .increase {
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+.counter .number {
+	padding: 6px;
+	text-align: center;
+	min-width: 100px;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
 }

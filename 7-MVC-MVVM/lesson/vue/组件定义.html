@@ -10,33 +10,26 @@
 		<div id="app">
 			<button-counter></button-counter>
 			<button-counter></button-counter>
+			<button-counter></button-counter>
 		</div>
-
-		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/vue/vue.js" type="text/javascript" charset="utf-8"></script>
 
 		<script>
 			// 禁止使用HTML5常用标签名，如header footer section nav
 			// 全局注册
-			Vue.component('button-counter', {
-				data() {
+			Vue.component("button-counter",{
+				// option
+				// data:组件内部的数据
+				data:function () {
 					return {
-						count: 0,
+						count:1
 					}
 				},
-				template: `<button @click="increaseHandle" type="button">你点击了{{count}}次</button>`,
-				methods: {
-					increaseHandle() {
-						this.count += 1;
-					}
-				},
-				computed: {},
+				template:`<button @click="count++" type="button">点击次数：{{count}}</button>`
 			});
-
-			let app = new Vue({
-				el: '#app',
-				data: {},
-				methods: {},
-				computed: {}
+			
+			var app = new Vue({
+				el:"#app",
 			});
 		</script>
 

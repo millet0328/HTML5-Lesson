@@ -13,62 +13,37 @@
 				flex-wrap: wrap;
 			}
 
+			/* 
+			Element空间宽度:25% = content Width (24%) + margin(2*0.5%) (Width包含了元素内容宽度、边框宽度、内距宽度) 
+			Width: (24%) = content宽度(?) + padding (2*20px) + border (2*4px)
+			 */
 			.list li {
-				width: 24.6%;
-				height: auto;
+				width: 24%;
+				margin: 0.5%;
+				border: 4px solid red;
+				padding: 20px;
+				height: 400px;
 				background-color: blue;
-				font-size: 18px;
 				color: white;
-				margin: 0.2%;
-				border: 1px solid #000;
 				box-sizing: border-box;
 			}
 
-			.list li img {
-				width: 100%;
-			}
-
-			/* iPad */
-			@media screen and (min-width:768px) and (max-width:1024px) {
-				.list li {
-					width: 32.933%;
-				}
-			}
-
-			/* 手机端 */
-			@media screen and (min-width:320px) and (max-width:768px) {
-				.list li {
-					width: 99.6%;
-					display: flex;
-				}
-			}
 		</style>
 	</head>
 	<body>
 		<ul class="list">
 			<li>
-				<img class="photo" src="img/TIM图片20190328114039.png" alt="">
-				<img class="info" src="img/TIM图片20190328114215.png" alt="">
+				1
 			</li>
 			<li>
-				<img class="photo" src="img/TIM图片20190328114039.png" alt="">
-				<img class="info" src="img/TIM图片20190328114215.png" alt="">
+				2
 			</li>
 			<li>
-				<img class="photo" src="img/TIM图片20190328114039.png" alt="">
-				<img class="info" src="img/TIM图片20190328114215.png" alt="">
+				3
 			</li>
 			<li>
-				<img class="photo" src="img/TIM图片20190328114039.png" alt="">
-				<img class="info" src="img/TIM图片20190328114215.png" alt="">
+				4
 			</li>
-			<li>
-				<img class="photo" src="img/TIM图片20190328114039.png" alt="">
-				<img class="info" src="img/TIM图片20190328114215.png" alt="">
-			</li>
-			<li>4</li>
-			<li>5</li>
-			<li>6</li>
 		</ul>
 	</body>
 </html>

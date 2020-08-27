@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<!-- 重置样式表 -->
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<style>
+			html,
+			body {
+				background-color: #f9f9f9;
+			}
+
+			header {
+				padding: 2.13vw 3.73vw;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				background-color: white;
+			}
+
+			header .title {
+				font-size: 4.53vw;
+				color: #000;
+			}
+
+			header .more {
+				font-size: 4.2vw;
+				color: #000;
+			}
+
+			.content {
+				padding: 2.8vw 3.2vw;
+			}
+
+			.balance-box {
+				background-color: white;
+				border: 0.13vw solid #EEEEEE;
+				display: flex;
+				justify-content: space-between;
+				padding: 2.67vw 3.33vw;
+				font-size: 3.47vw;
+			}
+
+			.balance-box .label {
+				color: #7e7e7e;
+			}
+
+			.balance-box .balance {
+				color: #000000;
+			}
+
+			.score-list {
+				margin-top: 1.87vw;
+				background-color: white;
+				border: 1px solid #EEEEEE;
+			}
+
+			.score-list th {
+				text-align: center;
+				padding: 3.6vw 0;
+				font-size: 3.47vw;
+				color: black;
+			}
+
+			.score-list thead {
+				border-bottom: 1px solid #EEEEEE;
+			}
+
+			.score-list th:nth-child(1) {
+				width: 25.6vw;
+			}
+
+			.score-list th:nth-child(2) {
+				width: 46.4vw;
+			}
+
+			.score-list th:nth-child(3) {
+				width: 19.2vw;
+			}
+
+			.score-list tbody tr>td {
+				padding: 3.1vw 0;
+				font-size: 3.47vw;
+			}
+
+			.score-list tbody .time {
+				font-size: 2.67vw;
+			}
+
+			.score-list tbody tr>td:nth-child(1) {
+				padding-right: 7.0vw;
+				text-align: right;
+			}
+
+			.score-list tbody tr>td:nth-child(3) {
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- header -->
+		<header>
+			<div class="title">我的积分</div>
+			<div class="more">…</div>
+		</header>
+		<!-- 内容 -->
+		<div class="content">
+			<!-- 余额 -->
+			<div class="balance-box">
+				<div class="label">当前积分余额</div>
+				<div class="balance">1532</div>
+			</div>
+			<!-- 积分列表 -->
+			<table class="score-list">
+				<thead>
+					<tr>
+						<th>消费日期</th>
+						<th>消费产品</th>
+						<th>积分抵扣</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<div class="date">2018.11.10</div>
+							<div class="time">12:03</div>
+						</td>
+						<td>
+							产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称
+						</td>
+						<td>
+							+35
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="date">2018.11.10</div>
+							<div class="time">12:03</div>
+						</td>
+						<td>
+							产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称
+						</td>
+						<td>
+							+35
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>
