@@ -5,9 +5,11 @@
 		<title></title>
 		<style>
 			.box{
-				border: 1px solid #ddd;
+				width: 1000px;
 				padding: 20px;
-				margin: 30px;
+				margin: 20px auto;
+				border: 2px solid #ddd;
+				min-height: 200px;
 			}
 			.btn{
 				border: 2px solid orange;
@@ -15,18 +17,22 @@
 				padding: 10px 20px;
 				background-color: white;
 			}
+			.box .btn{
+				margin: 10px;
+			}
 		</style>
 	</head>
 	<body>
 		<button class="btn" type="button">本体按钮</button>
-		<div class="box">
 
-		</div>
+		<div class="box"></div>
+
 		<script src="js/jquery-3.4.1.min.js"></script>
 		<script>
 			$('.btn').click(function() {
+				// 克隆一个副本
 				var $copy = $(this).clone(true);
-				$copy.text("克隆体");
+				$copy.text('克隆体');
 				$('.box').append($copy);
 			});
 		</script>

@@ -1,67 +1,54 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css"/>
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css" />
 	</head>
 	<body>
-		<div class="container">
-			<button class="btn btn-primary" id="test1" type="button">自定义HTML</button>
-			<button class="btn btn-primary" id="test2" type="button">嵌入表单</button>
+		<button id="add" type="button">添加收货地址</button>
+
+		<!-- 表单 -->
+		<div style="display: none;padding-top: 20px;" id="modal-content" class="container-fluid">
+			<form id="form" class="form-horizontal">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">邮箱：</label>
+					<div class="col-sm-10">
+						<input type="email" id="email" datatype="e" class="form-control" placeholder="请输入邮箱">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">年龄：</label>
+					<div class="col-sm-10">
+						<input type="text" id="age" datatype="n" class="form-control" placeholder="请输入年龄">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-default">添 加</button>
+					</div>
+				</div>
+			</form>
 		</div>
-
-		<script src="js/jquery-3.4.1.min.js"></script>
-
+		<script src="lib/jQuery/jquery-3.4.1.min.js"></script>
 		<script src="lib/layer/layer.js"></script>
-
 		<script type="text/javascript">
-			// 自定义HTML
-			$('#test1').click(function() {
-				layer.open({
-					type: 1,
-					area: ['420px', '240px'],
-					content: '自定义文本或简单的HTML' //这里content是一个普通的String
-				});
-			});
-			// 嵌入表单
-			$('#test2').click(function() {
-				layer.open({
+			// 弹层索引
+			var index;
+
+			$('#add').click(function() {
+				index = layer.open({
 					type: 1,
 					area: '600px',
-					content: $('#form') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+					title: "添加收货地址",
+					content: $('#modal-content')
 				});
+			});
+			
+			$('#cancel').click(function() {
+				layer.close(index);
 			});
 		</script>
 	</body>
 </html>
-<div style="display: none;" id="form" class="container-fluid">
-	<form class="form-horizontal">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">邮箱：</label>
-			<div class="col-sm-10">
-				<input type="email" name="email" class="form-control" placeholder="Email">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-2 control-label">密码：</label>
-			<div class="col-sm-10">
-				<input type="password" name="password" class="form-control" placeholder="Password">
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<div class="checkbox">
-					<label>
-						<input type="checkbox"> 记住我
-					</label>
-				</div>
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<button type="button" class="btn btn-default">登 录</button>
-			</div>
-		</div>
-	</form>
-</div>

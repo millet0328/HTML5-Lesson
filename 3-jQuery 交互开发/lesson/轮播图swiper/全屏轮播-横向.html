@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="lib/swiper/swiper-bundle.min.css" />
+		<style type="text/css">
+			.swiper-container {
+				height: 480px;
+			}
+
+			.banner {
+				display: block;
+				height: 480px;
+				background-position: top center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<a href="http://www.baidu.com/" class="banner" style="background-image: url(./img/20200831143752.jpg);"></a>
+				</div>
+				<div class="swiper-slide">
+					<a href="http://www.baidu.com/" class="banner" style="background-image: url(img/20200821163554.jpg);"></a>
+				</div>
+			</div>
+			<!-- 如果需要分页器 -->
+			<div class="swiper-pagination"></div>
+		</div>
+
+		<script src="lib/swiper/swiper-bundle.min.js"></script>
+		<script type="text/javascript">
+			var mySwiper = new Swiper('.swiper-container', {
+				// 如果需要分页器
+				pagination: {
+					el: '.swiper-pagination',
+				},
+			})
+		</script>
+	</body>
+</html>

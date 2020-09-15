@@ -1,0 +1,71 @@
+@charset "utf-8";
+
+.form {
+	width: 430px;
+	margin: 50px auto;
+	padding: 60px;
+	border: 1px solid #ddd;
+}
+
+.form label {
+	display: inline-block;
+	width: 65px;
+	height: 42px;
+	line-height: 42px;
+	margin-right: 10px;
+	text-align: right;
+	font-size: 14px;
+	color: #666;
+	font-weight: 700;
+}
+
+.form .form-control {
+	position: relative;
+	margin: 35px 0;
+}
+
+.form .input-control {
+	display: inline-block;
+	width: 328px;
+	height: 19px;
+	border: 1px solid #DDDDDD;
+	font-size: 16px;
+	padding: 11px 10px;
+}
+
+.login {
+	border: none;
+	width: 350px;
+	background-color: #4490f7;
+	font-size: 16px;
+	height: 50px;
+	font-weight: 700;
+	cursor: pointer;
+	color: #fff;
+	background-image: none;
+	margin-left: 75px;
+	border-radius: 5px;
+}
+
+.error-tip {
+	position: absolute;
+	right: 0;
+	top: -35px;
+	min-width: 150px;
+	height: 20px;
+	padding: 4px;
+	line-height: 20px;
+	border: 1px solid orange;
+	background-color: orange;
+	font-size: 12px;
+	color: white;
+	display: none;
+}
+
+.error .input-control {
+	border-color: red;
+}
+
+.error .error-tip {
+	display: block;
+}

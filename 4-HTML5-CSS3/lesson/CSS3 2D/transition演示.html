@@ -4,11 +4,97 @@
 		<meta charset="utf-8">
 		<title>transition</title>
 		<style>
+			/*team*/
 
+			.team-box {
+				background-color: #FFFFFF;
+			}
+
+			.team-box li {
+				float: left;
+				width: 275px;
+				margin: 20px 12px;
+				border: 3px solid #FFFFFF;
+				overflow: hidden;
+				transition: all 0.5s;
+			}
+
+			.team-box li:hover {
+				border: 3px solid #383838;
+			}
+
+			.team-box li:hover .info {
+				background-color: #383838;
+				color: white;
+			}
+
+			.team-box .photo>img {
+				width: 275px;
+				display: block;
+			}
+
+			.team-box .info {
+				color: #474747;
+				padding: 33px 20px;
+				background-color: #FFFFFF;
+				transition: all 0.5s;
+			}
+
+			.info .name {
+				font-size: 20px;
+			}
+
+			.info .position {
+				font-size: 12px;
+				margin-top: 6px;
+			}
+
+			.info .des {
+				font-size: 13px;
+				color: #898989;
+				margin-top: 20px;
+				height: 0;
+				overflow: hidden;
+			}
 		</style>
 	</head>
 	<body>
-		
-		<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<!--团队-->
+		<div class="team-box">
+			<div class="container">
+				<ul>
+					<li class="wow fadeInUp">
+						<div class="photo">
+							<img src="img/1521689354217.jpg" alt="">
+						</div>
+						<div class="info">
+							<div class="name">乔纳森 / Joseph</div>
+							<div class="position">设计总监</div>
+							<div class="des">设计界的“设计鬼才”从题材到表现方式都引起了极大的福布斯中国最具潜力 ...</div>
+						</div>
+					</li>
+					<li data-wow-delay="0.8s" class="wow fadeInUp">
+						<div class="photo">
+							<img src="img/1521689428555.jpg" alt="">
+						</div>
+						<div class="info">
+							<div class="name">乔纳森 / Joseph</div>
+							<div class="position">设计总监</div>
+							<div class="des">设计界的“设计鬼才”从题材到表现方式都引起了极大的福布斯中国最具潜力 ...</div>
+						</div>
+					</li>
+					<li data-wow-delay="1.2s" class="wow fadeInUp">
+						<div class="photo">
+							<img src="img/1521689354217.jpg" alt="">
+						</div>
+						<div class="info">
+							<div class="name">乔纳森 / Joseph</div>
+							<div class="position">设计总监</div>
+							<div class="des">设计界的“设计鬼才”从题材到表现方式都引起了极大的福布斯中国最具潜力 ...</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</body>
 </html>

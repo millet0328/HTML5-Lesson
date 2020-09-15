@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" href="./lib/Validform/css/style.css">
+	</head>
+
+	<body>
+		<form class="form" id="form">
+			<p class="form-control">
+				<label>用户名</label>
+				<input class="input-control" type="text" name="name" placeholder="请设置用户名：" />
+				<span class="error-tip">错误提示</span>
+			</p>
+			<p class="form-control">
+				<label>手机号</label>
+				<input datatype="m" errormsg="请输入11位的手机号码!" class="input-control" type="text" name="tel" placeholder="可用于登录找回密码" />
+				<span class="error-tip">错误提示</span>
+			</p>
+			<p class="form-control">
+				<label>密码</label>
+				<input class="input-control" type="password" name="password" placeholder="请输入登录密码" />
+			</p>
+			<p class="form-control">
+				<label>验证码</label>
+				<input class="input-control" type="text" name="code" placeholder="请输入验证码" />
+			</p>
+			<p>
+				<input class="login btn" type="button" value="注册" />
+			</p>
+		</form>
+		<script src="lib/jQuery/jquery-3.5.1.min.js"></script>
+		<script src="lib/Validform/js/Validform_v5.3.2_min.js"></script>
+		<script type="text/javascript">
+			$('.form').Validform({
+				tiptype: function(msg, o, cssctl) {
+					// 验证成功
+					if (o.type == 2) {
+						$(o.obj).parents('.form-control').removeClass('error');
+					}
+					// 验证失败
+					if (o.type == 3) {
+						$(o.obj).siblings('.error-tip').text(msg);
+						$(o.obj).parents('.form-control').addClass('error');
+					}
+				},
+			});
+		</script>
+	</body>
+
+</html>

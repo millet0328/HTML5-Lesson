@@ -8,40 +8,34 @@
 
 	<body>
 		<div>
-			<button id="add" type="button">增加</button>
+			<button id="create" type="button">增加</button>
 			<button id="remove" type="button">删除</button>
 			<button id="update" type="button">修改</button>
 			<button id="query" type="button">查询</button>
 		</div>
 		<script>
 			// 查找元素
-			var oAdd = document.getElementById('add');
-			var oRemove = document.getElementById('remove');
-			var oUpdate = document.getElementById('update');
-			var oQuery = document.getElementById('query');
+			var oCreate = document.querySelector('#create');
+			var oRemove = document.querySelector('#remove');
+			var oUpdate = document.querySelector('#update');
+			var oQuery = document.querySelector('#query');
 
-			// 增
-			oAdd.onclick = function() {
-				localStorage.username = 'moz';
-				localStorage.age = 30;
-				var person = {
-					name: '黄渤',
-					age: 30,
-				};
-				localStorage.person = JSON.stringify(person);
+			// 增加
+			oCreate.onclick = function() {
+				sessionStorage.setItem('person', '刘备');
+				localStorage.wife = '孙尚香';
 			}
-			// 删
+			// 删除
 			oRemove.onclick = function() {
-				localStorage.removeItem('age');
+				localStorage.removeItem('wife');
 			}
-			// 改
+			// 修改
 			oUpdate.onclick = function() {
-				localStorage.username = "黄小米";
+				sessionStorage.person = '刘禅';
 			}
-			// 查
+			// 查询
 			oQuery.onclick = function() {
-				var name = localStorage.username;
-				alert('用户名：' + name);
+				console.log(sessionStorage.person);
 			}
 		</script>
 

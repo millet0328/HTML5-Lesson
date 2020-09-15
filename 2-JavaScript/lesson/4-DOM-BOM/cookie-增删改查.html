@@ -12,36 +12,14 @@
 		<button id="delete" type="button">删cookie</button>
 		<button id="update" type="button">改cookie</button>
 		<button id="read" type="button">查cookie</button>
-		<!-- 商品列表 -->
-		<fieldset id="">
-			<legend>商品列表</legend>
-			<ul>
-				<li>
-					<span class="name">手机</span>
-					<span class="price">999</span>
-					<button class="add" type="button">加入购物车</button>
-				</li>
-				<li>
-					<span class="name">外套</span>
-					<span class="price">199</span>
-					<button class="add" type="button">加入购物车</button>
-				</li>
-				<li>
-					<span class="name">鞋子</span>
-					<span class="price">268</span>
-					<button class="add" type="button">加入购物车</button>
-				</li>
-				<li>
-					<span class="name">假发</span>
-					<span class="price">600</span>
-					<button class="add" type="button">加入购物车</button>
-				</li>
-			</ul>
-			<p>
-				<a href="cookie-读取.html">购物车结算</a>
-			</p>
-		</fieldset>
 		<script type="text/javascript">
+			function setCookie(cname, cvalue, exdays) {
+				var d = new Date();
+				d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+				var expires = "expires=" + d.toGMTString();
+				document.cookie = cname + "=" + cvalue + "; " + expires;
+			}
+
 			function getCookie(cname) {
 				var name = cname + "=";
 				var ca = document.cookie.split(';');
@@ -57,72 +35,42 @@
 		</script>
 		<script type="text/javascript">
 			// 查找元素
-			var oAddBtn = document.querySelectorAll(".add");
-			// 读取cookie
-			var cart = getCookie("cart");
-			if (cart) {
-				cart = JSON.parse(cart);
-			} else {
-				cart = []
-			}
-			for (var i = 0; i < oAddBtn.length; i++) {
-				oAddBtn[i].onclick = function() {
-					// 获取名称，价格
-					var price = this.previousElementSibling.innerText;
-					var name = this.previousElementSibling.previousElementSibling.innerText;
-					var goods = {
-						name: name,
-						price: price,
-						num: 1,
-					}
-					for (var i = 0; i < cart.length; i++) {
-						if (cart[i].name == name) {
-							cart[i].num++;
-							document.cookie = "cart=" + JSON.stringify(cart);
-							return;
-						}
-					}
-					cart.push(goods);
-					document.cookie = "cart=" + JSON.stringify(cart);
-				}
-			}
-		</script>
-		<script type="text/javascript">
-			// 查找元素
 			var oCreate = document.getElementById("create");
 			var oDelete = document.getElementById("delete");
 			var oUpdate = document.getElementById("update");
 			var oRead = document.getElementById("read");
-
-			// 增加
+			// 添加数据
 			oCreate.onclick = function() {
-				// 会话状态，关闭浏览器消失
-				document.cookie = "username=刘备";
 				// 有效期
-				var date = new Date(2020, 11, 1, 12);
-				document.cookie = "nickname=诸葛亮;expires=" + date;
-				// 存储对象或者数组
-				var person = {
-					name: "黄小米",
-					age: 30,
-				}
-				document.cookie = "person=" + JSON.stringify(person);
+				var time = new Date();
+				time.setFullYear(time.getFullYear() + 1);
+				document.cookie = "brother=张飞;expires=" + time.toString();
+				// 对象
+				var person = { name: "刘备", age: 1000 };
+				var json = JSON.stringify(person);
+				document.cookie = 'user=' + json;
+				// 数组
+				var team = ['刘备', '关羽', '张飞'];
+				team = JSON.stringify(team);
+				setCookie('team', team, 720);
 			}
-			// 删除
+			// 删除cookie
 			oDelete.onclick = function() {
-				document.cookie = "nickname=";
+				document.cookie = "brother=";
 			}
-			// 修改
+			// 修改cookie
 			oUpdate.onclick = function() {
-				var date = new Date(2020, 11, 1, 12);
-				document.cookie = "nickname=司马懿;expires=" + date;
+				document.cookie = "username=关羽";
 			}
-			// 查询
+			// 获取cookie
 			oRead.onclick = function() {
-				var name = getCookie("nickname");
-				// 取出对象或者数组
-				var person = getCookie("person");
+				// 获取对象
+				var person = getCookie('user');
 				person = JSON.parse(person);
+				// 获取数组
+				var team = getCookie('team');
+				team = JSON.parse(team);
+				console.log(team);
 			}
 		</script>
 	</body>

@@ -8,22 +8,22 @@
 	</head>
 
 	<body>
-		<div class="position">
+		<p class="position">
 
-		</div>
-		<div class="error">
+		</p>
+		<p class="error">
 
-		</div>
+		</p>
 	</body>
 	<script type="text/javascript">
 		// 获取地理位置
 		navigator.geolocation.getCurrentPosition(function(position) {
-
+			// 定位成功
 			document.querySelector('.position').innerText = JSON.stringify(position);
-
 		}, function(error) {
-			document.querySelector('.error').innerText = JSON.stringify(error);
-		})
+			// 定位失败
+			document.querySelector(".error").innerText = JSON.stringify(error)
+		});
 	</script>
 
 </html>

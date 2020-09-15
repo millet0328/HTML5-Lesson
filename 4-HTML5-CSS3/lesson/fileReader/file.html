@@ -8,27 +8,28 @@
 	</head>
 
 	<body>
-		<div class="form-control">
+		<p>
 			<label for="">文件：</label>
 			<input type="file" id="file">
-		</div>
-		<div class="preview"></div>
+		</p>
+		<p class="preview"></p>
 		<script>
-			var oFile = document.getElementById("file");
-			var oPreview = document.querySelector(".preview");
-			var fr = new FileReader();
+			// 查找元素
+			var oFile = document.getElementById('file');
+			var oPreview = document.querySelector('.preview');
 
-			oFile.onchange = function() {
+			oFile.addEventListener('change', function() {
 				// 获取file对象
 				var file = this.files[0];
-				// 读取
-				fr.readAsDataURL(file);
-				fr.onload = function() {
-					var img = new Image();
-					img.src = fr.result;
-					oPreview.appendChild(img);
+				// 实例化fileReader
+				var reader = new FileReader();
+				reader.readAsDataURL(file);
+				reader.onload = function() {
+					var oImg = document.createElement('img');
+					oImg.src = reader.result;
+					oPreview.appendChild(oImg);
 				}
-			};
+			});
 		</script>
 	</body>
 </html>

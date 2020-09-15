@@ -5,35 +5,23 @@
 		<title></title>
 	</head>
 	<body>
-		<button id="test1" type="button">Hello World</button>
+		<button id="alert" type="button">alert弹窗</button>
+		<button id="confirm" type="button">confirm弹窗</button>
+		<button id="toast" type="button">toast弹窗</button>
 
-		<button id="test2" type="button">Alert框</button>
-
-		<button id="test3" type="button">confirm框</button>
-
-		<script src="js/jquery-3.4.1.min.js"></script>
+		<script src="lib/jQuery/jquery-3.4.1.min.js"></script>
 		<script src="lib/layer/layer.js"></script>
-		<script>
-			// msg
-			$('#test1').click(function() {
-				layer.msg('Hello World!')
+		<script type="text/javascript">
+			$('#alert').click(function() {
+				layer.alert('添加成功！');
 			});
-			// alert -- 通知
-			$('#test2').click(function() {
-				layer.alert('Alert框！');
+
+			$('#confirm').click(function() {
+				layer.confirm('您确定要删除此供应商吗？');
 			});
-			// confirm -- 确认框
-			$('#test3').click(function() {
-				layer.confirm('确定要报名吗？',
-					function() {
-						// 确定--处理函数
-						// 报名中...
-						layer.msg('报名成功！');
-					},
-					function() {
-						// 取消--处理函数
-						layer.msg('取消成功！')
-					});
+			
+			$('#toast').click(function () {
+				layer.msg('我是一条可有可无的提示！');
 			});
 		</script>
 	</body>

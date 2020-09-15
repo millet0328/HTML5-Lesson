@@ -4,57 +4,51 @@
 		<meta charset="utf-8">
 		<title></title>
 		<style type="text/css">
-			.round-btn {
-				padding: 10px 20px;
-				border: 1px solid blue;
+			.search-btn {
+				padding: 10px 30px;
+				font-size: 21px;
+				background-color: orange;
+				border: 0;
+				color: white;
+				outline: 0;
+				border-top-right-radius: 6px;
+				border-bottom-right-radius: 6px;
+			}
+
+			.search-text {
+				padding: 14px 6px;
+				border: 2px solid orange;
 				border-top-left-radius: 6px;
 				border-bottom-left-radius: 6px;
 			}
 
-			.round {
-				width: 200px;
-				height: 200px;
-				background-color: blue;
+			.fl {
+				float: left;
+			}
+
+			.clearfix::after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+
+			.avatar img {
+				width: 160px;
+				height: 160px;
 				border-radius: 50%;
 				overflow: hidden;
-			}
-
-			.eclipse {
-				width: 400px;
-				height: 200px;
-				border-radius: 50%;
-				background-color: green;
-			}
-
-			.pill {
-				width: 400px;
-				height: 200px;
-				border-radius: 120px;
-				background-color: blue;
+				border: 2px solid black;
 			}
 		</style>
 	</head>
 	<body>
-		<p>
-			<button class="round-btn" type="button">按 钮 圆 角</button>
-		</p>
-		<!-- 正圆 -->
-		<p>
-			<div class="round">
-				<img width="200" src="./img/winter-hat.jpg" alt="">
-			</div>
-		</p>
-		<!-- 椭圆 -->
-		<p>
-			<div class="eclipse">
+		<div class="clearfix">
+			<input class="search-text fl" type="text">
+			<button class="search-btn fl">搜 索</button>
+		</div>
 
-			</div>
-		</p>
-		<!-- 胶囊 -->
-		<p>
-			<div class="pill">
-
-			</div>
-		</p>
+		<div class="avatar">
+			<img width="160" src="img/winter-hat.jpg" alt="">
+		</div>
 	</body>
 </html>

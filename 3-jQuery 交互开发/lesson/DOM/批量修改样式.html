@@ -47,16 +47,16 @@
 			<input type="button" name="reload" id="reload" value="重新加载" />
 			<div class="clearfix">
 				<div class="cube fl">
-					45
+					1
 				</div>
 				<div class="cube fl">
-					565
+					2
 				</div>
 				<div class="cube fl">
-					456
+					3
 				</div>
 				<div class="cube fl">
-					111
+					4
 				</div>
 			</div>
 		</div>
@@ -73,21 +73,21 @@
 			})
 		</script>
 		<script type="text/javascript">
-			//			//查找元素
-			//			var oBtn = document.getElementById("btn");
-			//			var oCube = document.querySelectorAll(".cube"); //Nodelist
-			//			//绑定修改样式
-			// oBtn.onclick = function() {
-			// 	for(var i = 0; i < oCube.length; i++) {
-			// 		oCube[i].style.backgroundColor = "#FFFF00";
-			// 	}
-			// }
-			//			//批量绑定事件--this==>绑定事件的主体
-			// for (var i = 0; i < oCube.length; i++) {
-			// 	oCube[i].onclick = function() {
-			// 		this.style.backgroundColor = "#FFF";
-			// 	}
-			// }
+			//查找元素
+			var oBtn = document.getElementById("btn");
+			var oCube = document.querySelectorAll(".cube"); //Nodelist
+			//绑定修改样式
+			oBtn.onclick = function() {
+				for (var i = 0; i < oCube.length; i++) {
+					oCube[i].style.backgroundColor = "#FFFF00";
+				}
+			}
+			//批量绑定事件--this==>绑定事件的主体
+			for (var i = 0; i < oCube.length; i++) {
+				oCube[i].onclick = function() {
+					this.style.backgroundColor = "#FFF";
+				}
+			}
 		</script>
 
 	</body>

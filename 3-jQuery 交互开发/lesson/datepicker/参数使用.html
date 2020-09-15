@@ -12,12 +12,14 @@
 			<li>截止日期：起始日期之前的日期不能选择</li>
 		</ol>
 		<form action="">
-			<label for="">起始日期：</label>
-			<input type="text" id="startDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'%y-%M-%d-%H-%m',maxDate:'#F{$dp.$D(\'endDate\')}'})"
-			 placeholder="今天以前的日期不能选择">
-			<label for="">截止日期：</label>
-			<input type="text" id="endDate" onclick="WdatePicker({minDate:'#F{$dp.$D(\'startDate\')}',dateFmt:'yyyy-MM-dd HH:mm:ss'})"
-			 placeholder="只能选择起始日期之后的日期">
+			<p>
+				<label for="">起始日期：</label>
+				<input id="start" type="text" onclick="WdatePicker({minDate:'%y-%M-%d',maxDate:'#F{$dp.$D(\'end\'),dateFmt:'yyyy-MM-dd HH:mm:ss'})">
+			</p>
+			<p>
+				<label for="">截止日期：</label>
+				<input id="end" type="text" onclick="WdatePicker({minDate:'#F{$dp.$D(\'start\')}',dateFmt:'yyyy-MM-dd HH:mm:ss'})">
+			</p>
 		</form>
 
 		<script src="lib/My97DatePicker/WdatePicker.js"></script>

@@ -81,80 +81,34 @@
 			<input type="text" id="txt" value="" />
 			<input type="button" id="btn" value="评论" />
 			<div class="result" id="result">
-				<p>基情满满
-					<b>X</b>
-				</p>
-				<p>是胡不是霍
-					<b>X</b>
-				</p>
-				<p>撒娇的
-					<b>X</b>
-				</p>
-				<p>要删除的评论
-					<b>X</b>
-				</p>
+				<p>基情满满<b>x</b></p>
+				<p>是胡不是霍<b>x</b></p>
+				<p>撒娇的<b>x</b></p>
+				<p>要删除的评论<b>x</b></p>
 			</div>
 		</div>
 		<script src="./js/jquery-3.4.1.min.js"></script>
 		<script>
-			// 评论
+			// 添加评论
 			$('#btn').click(function() {
-				// 获取value
+				// 获取评论内容
 				var txt = $('#txt').val();
-				txt = txt.trim();
-				// 判断空值
+				// 判断是否为空
 				if (!txt) {
 					alert('请输入评论内容！');
 					return;
 				}
-				// 生成元素+修饰元素
-				var $p = $('<p>' + txt + '<b>X</b></p>');
-				// 插入元素
-				$('.result').prepend($p);
-				// 清空value
+				// 生成一个DOM元素
+				var $P = $('<p>' + txt + '<b>x</b></p>');
+				// 插入
+				$('#result').prepend($P);
+				// 清空输入框
 				$('#txt').val('');
 			});
 
-			// 删除评论 -- 事件委托
+			// 删除评论 -- 事件委托，内部修改this的指向
 			$('.result').on('click', 'b', function() {
-				// 内部转化this
 				$(this).parent().remove();
-			});
-
-			$('#inc').click(function() {
-				// 获取当前的字体大小
-				var size = $('#title').css('font-size');
-				size = parseFloat(size);
-				size += 3;
-				// 设置字体
-				$('#title').css('font-size', size);
-			});
-			
-			
-			$('#dec').click(function() {
-				// 获取当前的字体大小
-				var size = $('#title').css('font-size');
-				size = parseFloat(size);
-				size -= 3;
-				// 设置字体
-				$('#title').css('font-size', size);
-			});
-
-			$('#title').click(function() {
-				// 链式编程
-				$(this)
-					.parents('div')
-					.siblings('.face')
-					.find('a')
-					.css('background-color', 'yellow')
-				// 获取当前src属性
-				var url = $('#content img').attr('src');
-
-				if (url == 'img/2.jpeg') {
-					$('#content img').attr('src', './img/1.jpg');
-				} else {
-					$('#content img').attr('src', 'img/2.jpeg');
-				}
 			});
 		</script>
 	</body>

@@ -43,8 +43,8 @@
                         <input class="input" type="text" name="" id="industry" value="" />
                     </div>
                     <div class="box">
-						<button class="btn" id="add" type="button">添加供应商</button>
-						<button class="btn hide" id="save" type="button">保存修改</button>
+                        <button class="btn" id="add" type="button">添加供应商</button>
+                        <button class="btn hide" id="save" type="button">保存修改</button>
                     </div>
                 </div>
                 <div class="clear"></div>
@@ -145,7 +145,7 @@
         var $inputGroup = $(".box input:text");
         var $tbody = $(".table tbody");
         // 是否删除tr
-        var flag = true;
+        var isEdit = false;
         // 全选checkbox
         $("#checkAll").click(function() {
             var isChecked = $(this).prop("checked");
@@ -172,7 +172,7 @@
         // 编辑
         $tbody.on("click", ".edit", function() {
             // 不可删除
-            flag = false;
+            isEdit = true;
             // 获取tr索引
             rowIndex = $(this).parents("tr").index();
             var $td = $(this).parents("tr").find("td");
@@ -184,19 +184,21 @@
             });
             $("#add").hide().siblings("#save").show();
         });
-		// 保存修改
-		$("#save").click(function() {
-		    // 根据rowIndex赋值
-		    var $td = $(".table tbody tr").eq(rowIndex).children();
-		    // 赋值
-		    $inputGroup.each(function(index) {
-		        $td.eq(index + 1).text($(this).val())
-		    })
-		    // 切换按钮
-		    $("#save").hide().siblings("#add").show();
-		    // 清空value
-		    $inputGroup.val("");
-		});
+        // 保存修改
+        $("#save").click(function() {
+            // 根据rowIndex赋值
+            var $td = $(".table tbody tr").eq(rowIndex).children();
+            // 赋值
+            $inputGroup.each(function(index) {
+                $td.eq(index + 1).text($(this).val())
+            })
+            // 切换按钮
+            $("#save").hide().siblings("#add").show();
+            // 清空value
+            $inputGroup.val("");
+            // 恢复删除
+            isEdit = false;
+        });
         // 隐藏
         $tbody.on("click", ".hide", function() {
             var $td = $(this).parent().siblings('td').eq(3);
@@ -214,7 +216,7 @@
         });
         // 删除
         $tbody.on("click", ".del", function() {
-            if (flag) {
+            if (isEdit) {
                 $(this).parents('tr').remove();
             }
         });

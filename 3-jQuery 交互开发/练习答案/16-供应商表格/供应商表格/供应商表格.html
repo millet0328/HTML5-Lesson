@@ -143,8 +143,8 @@
 			$(document).ready(function() {
 				var rowIndex;
 				var $tbody = $(".table tbody");
-				// 是否删除tr
-				var flag = true;
+				// tr是否正在编辑中
+				var isEdit = false;
 				// 全选checkbox
 				$("#checkAll").click(function() {
 					var isChecked = $(this).prop("checked");
@@ -176,14 +176,14 @@
 				});
 				// 删除
 				$tbody.on("click", ".del", function() {
-					if (flag) {
+					if (!isEdit) {
 						$(this).parents('tr').remove();
 					}
 				});
 				// 编辑
 				$tbody.on("click", ".edit", function() {
 					// 不可删除
-					flag = false;
+					isEdit = true;
 					// 获取tr索引
 					rowIndex = $(this).parents("tr").index();
 					var $td = $(this).parents("tr").find("td");
@@ -213,6 +213,8 @@
 					$("#save").hide().siblings("#add").show();
 					// 清空value
 					$('.box input').val("");
+					// 恢复删除
+					isEdit = false;
 				});
 				// 隐藏
 				$tbody.on("click", ".hide", function() {

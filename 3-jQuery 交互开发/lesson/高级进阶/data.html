@@ -6,25 +6,25 @@
 	</head>
 	<body>
 		<!-- 自定义属性 data-*** 将数据保存至标签上 -->
-		<h1 data-name="黄小米" data-person="{name:'黄小米',sex:1,age:30}">Hello World!</h1>
+		<h1 data-name="黄小米" data-age="26">Hello World!</h1>
 
-		<button type="button" id="fetch">获取data数据</button>
-		<button type="button" id="save">存储data数据</button>
+		<button id="fetch" type="button">获取data数据</button>
+		<button id="save" type="button">存储data数据</button>
 
 		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			// 获取data数据
 			$('#fetch').click(function() {
-				var val = $('h1').data('student');
-				console.log(val);
+				// 获取
+				var name = $('h1').data('name');
+				var age = $('h1').data('age');
+				console.log(name);
+				console.log(age);
 			});
-			// 存储data数据
+
 			$('#save').click(function() {
-				var obj = {
-					name: "黄渤",
-					age: 45
-				}
-				$('h1').data('student', obj);
+				// 存储
+				$('h1').data('age', 32);
+				$('h1').data('person', { name: '黄小米', age: 30, sex: '女' });
 			});
 		</script>
 	</body>

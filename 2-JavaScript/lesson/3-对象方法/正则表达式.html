@@ -8,21 +8,24 @@
 	</head>
 
 	<body>
-		<input type="text" placeholder="请输入手机号码" id="txt" />
-		<button id="btn" type="button">验证</button>
+		<input type="text" id="tel" placeholder="请输入手机号码!">
+		<button id="btn" type="button">校验</button>
 		<script type="text/javascript">
-			// 查找元素
-			var oBtn = document.getElementById("btn");
-			var oTxt = document.getElementById("txt");
-			var reg = /^[1]([3-9])[0-9]{9}$/;
-			oBtn.addEventListener("click", function() {
-				// 获取value
-				var txt = oTxt.value;
-				var isValid = reg.test(txt);
+			var oTel = document.getElementById('tel');
+			var oBtn = document.getElementById('btn');
+
+			oBtn.addEventListener('click', function() {
+				// 获取手机号码
+				var tel = oTel.value;
+				// 正则表达式
+				var reg = /^1((3|5|8|7){1}\d{1})\d{8}$/;
+				var isValid = reg.test(tel);
 				if (isValid) {
-					oTxt.style.borderColor = "green";
+					// 校验成功
+					oTel.style.border = "2px solid green"
 				} else {
-					oTxt.style.borderColor = "red";
+					// 校验失败
+					oTel.style.border = "2px solid red";
 				}
 			});
 		</script>
