@@ -5,51 +5,33 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<style type="text/css">
-			body {
-				background-color: #EEEEEE;
-			}
-
 			.box {
 				width: 100px;
 				height: 100px;
-				border: 1px solid blue;
-				/* 应用动画 */
-				animation: move 8s 2s infinite;
-			}
-
-			.box.reverse {
-				animation-direction: reverse;
+				border: 2px solid black;
+				animation: run 6s linear infinite;
 			}
 
 			.box:hover {
 				animation-play-state: paused;
 			}
 
-			/* 定义动画 */
-			@keyframes move {
-				from {
-					transform: translateX(0px);
-					background-color: red;
-				}
+			.box.reverse {
+				background-color: orange;
+				animation-direction: reverse;
+			}
 
-				25% {
-					transform: translateX(800px);
-					background-color: yellow;
+			@keyframes run {
+				from {
+					transform: translateX(0px) translateY(0px);
 				}
 
 				50% {
-					transform: translate(800px, 600px);
-					background-color: green;
-				}
-
-				75% {
-					transform: translate(0px, 600px);
-					background-color: blue;
+					transform: translateX(900px) translateY(0px);
 				}
 
 				to {
-					transform: translate(0);
-					background-color: red;
+					transform: translateX(900px) translateY(500px);
 				}
 			}
 		</style>
@@ -57,12 +39,11 @@
 
 	<body>
 		<div class="box"></div>
-
 		<script src="js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript">
 			$('.box').click(function() {
 				$(this).toggleClass('reverse');
-			});
+			})
 		</script>
 	</body>
 

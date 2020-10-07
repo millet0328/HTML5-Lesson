@@ -8,50 +8,45 @@
 		<link rel="stylesheet" type="text/css" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" />
 		<link rel="stylesheet" type="text/css" href="lib/iconfont/iconfont.css" />
 		<style type="text/css">
-			html,
-			body {
-				background-color: #eee;
+			.clearfix::after {
+				display: block;
+				content: "";
+				clear: both;
 			}
 
-			.list li:first-child {
-				background-color: red;
+			ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
 			}
 
-			.list li:last-child {
-				background-color: green;
+			.list li {
+				width: 100px;
+				height: 300px;
+				margin: 10px;
+				background-color: blue;
+				float: left;
 			}
 
-			.list li:nth-child(odd) {
-				background-color: gray;
-			}
-
-			.list li:nth-child(even) {
-				background-color: lightblue;
-			}
-
-			/* 创建字体 */
-			@font-face {
-				font-family: 'myFont';
-				src: url(./fonts/庞门正道标题体.ttf) format('truetype');
-			}
-
-			/* 使用字体 */
-			.title {
-				text-shadow: 1px -1px 10px #048fb9;
-				font-family: 'myFont';
+			.list li:nth-child(3n+1) {
+				background-color: orange;
 			}
 		</style>
 	</head>
 
 	<body>
-		<h1 class="title">Hello World，世界你好！</h1>
 		<ul class="list clearfix">
-			<li>黄磊</li>
-			<li>黄渤</li>
-			<li>王迅</li>
-			<li>张艺兴</li>
-			<li>孙红雷</li>
-			<li>罗志祥</li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
 		</ul>
 	</body>
 

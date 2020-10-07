@@ -6,36 +6,53 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<style type="text/css">
 			.box {
-				padding: 40px;
-				background-color: blue;
 				color: white;
-				font-size: 16px;
+				padding: 20px;
 			}
 
-			/* 媒体查询 在屏幕1000-1200之间*/
-			@media only screen and (min-width:1000px) and (max-width:1200px) {
+			/* 手机端 */
+			@media screen and (min-width:320px) and (max-width:640px) {
 				.box {
-					background-color: green;
+					background-color: #000000;
+					border: 1px solid deeppink;
 				}
 			}
 
-			/* 在屏幕768以内 */
-			@media only screen and (max-width:768px) {
+			/* ipad端 */
+			@media screen and (min-width:640px) and (max-width:1100px) {
 				.box {
-					background-color: red;
-					font-size: 2.56vw;
-					padding: 4vw;
+					background-color: orange;
+					border: 3px solid black;
 				}
+			}
 
-				body {
-					border: 2px solid #0000FF;
+			/* PC端 */
+			@media screen and (min-width:1100px) {
+				.box {
+					border: 2px solid orangered;
+					background-color: lightcoral;
 				}
 			}
 		</style>
 	</head>
 	<body>
 		<div class="box">
-			【公告】 尊敬的卡萨帝权益商城小伙伴:受部分地区快递暂停影响,自2月15号起权益商城将陆续恢复物流发货,部分区域,部分商品或无法保证发货时效性,兑换期间如有问题可..
+			很多人会过于追求新的技能、软件等等，但我认为，把自己现有的技术利用好，并解决一些实际问题，等真的吃透现有技术后，再去拓展，才是比较稳妥的成长路径。
+
+			今天就来分享下前一阵子腾讯动漫App引导小动画的制作，过程中就是利用自己现有的一些技能，用动画叙述了一件很简单的事情。
+
+			项目背景
+			腾讯动漫把之前的社区改名圈子，圈子这个概念就不多说，很多产品都在做，就是相同爱好者互相交流。
+
+			圈子的图标之前有讲过，效果如下：
+
+			用腾讯动漫的案例，聊聊我是如何用简单技法搞定需求的
+
+			此次本来想做一个和平时一样的静态引导页，告诉用户圈子这个概念，就像以前的这种：
+
+			用腾讯动漫的案例，聊聊我是如何用简单技法搞定需求的
+
+			但是静态的做了很多次了，而且产品也想稍微做的更吸引眼球一点，所以就产生了做动画的想法。
 		</div>
 	</body>
 </html>

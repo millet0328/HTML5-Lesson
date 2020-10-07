@@ -5,24 +5,40 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<link rel="stylesheet" type="text/css" href="css/reset.css" />
 		<style type="text/css">
+			html,
+			body {
+				margin: 0;
+			}
+
+			ul,
+			li {
+				padding: 0;
+				list-style: none;
+			}
+
+			.clearfix::after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+
 			.list li {
 				float: left;
-				width: 24%;
-				text-align: center;
-				border: 1px solid #0078FF;
-				padding: 6px;
+				/* 修改盒模型 */
 				box-sizing: border-box;
+				width: 24%;
+				padding: 0.5%;
+				border: 2px solid orange;
 				margin: 0.5%;
 			}
 
 			.list li img {
 				width: 100%;
+				display: block;
 			}
 		</style>
 	</head>
-
 	<body>
 		<ul class="list clearfix">
 			<li>

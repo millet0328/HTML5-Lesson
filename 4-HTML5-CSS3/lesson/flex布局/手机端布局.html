@@ -1,147 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 	<head>
-		<meta charset="utf-8">
-		<title></title>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<style type="text/css">
+		<title></title>
+		<style>
 			body {
-				background-color: #E8E8E8;
+				margin: 0;
+				background-color: #ededed;
 			}
 
-			.list .book {
-				display: flex;
-				align-items: center;
-				padding: 16px;
+			.header {
+				padding: 4.17vw;
 				background-color: white;
+				text-align: center;
+				font-size: 4.17vw;
+				color: #424242;
 			}
 
-			.book .img {
-				border: 1px solid #ddd;
-				margin-right: 30px;
+			.header .left {
+				position: absolute;
+				left: 4.17vw;
+				top: 4.17vw;
+				background-color: blue;
 			}
 
-			.book img {
+			.header .left img {
+				width: 5vw;
+				height: 5vw;
+			}
+
+			ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.favor-list {
+				padding: 2.78vw;
+			}
+
+			.favor-list li {
+				background-color: white;
+				margin-bottom: 2.78vw;
+				padding: 3.19vw 5.28vw 7.5vw 5.28vw;
+				display: flex;
+			}
+
+			.favor-list .left {
 				width: 27.92vw;
 				height: 28.19vw;
+				margin-right: 4.86vw;
 			}
 
-			.book .name {
+			.favor-list .left img {
+				width: 100%;
+			}
+
+			.favor-list .right .name {
 				font-size: 3.89vw;
 				color: #444;
-				padding-bottom: 1.81vw;
+				margin-bottom: 1.81vw;
 			}
-
-			.book .des {
-				color: #666666;
+			.favor-list .right .summary {
 				font-size: 3.33vw;
-				padding-bottom: 5.14vw;
-			}
-
-			.book .price {
-				color: #AA0000;
-				font-size: 3.61vw;
-			}
-
-			.book .price .market {
 				color: #666;
-				font-size: 3.06vw;
-				text-decoration: line-through;
-			}
-
-			.list .address {
-				padding: 5.28vw 6.11vw 4.58vw 6.11vw;
-				background-color: white;
-				margin-top: 10px;
-			}
-
-
-			.list .address .top {
-				display: flex;
-				flex-wrap: wrap;
-				justify-content: space-between;
-				align-items: center;
-				margin-bottom: 4.03vw;
-			}
-
-			.address .name {
-				width: 16.94vw;
-				font-size: 3.61vw;
-				text-align: center;
-			}
-
-			.address .tel {
-				width: 60.56vw;
-				font-size: 3.33vw;
-				color: #aa0000;
-			}
-
-			.address .edit {
-				width: 5.28vw;
-				height: 5.28vw;
-				text-align: right;
-			}
-
-			.address .bottom {
-				width: 100%;
-				display: flex;
-				align-items: center;
-			}
-
-			.address .tag {
-				width: 16.94vw;
-				text-align: center;
-			}
-
-			.address .tag span {
-				display: inline-block;
-				font-size: 2.78vw;
-				border: 1px solid #E8E8E8;
-				padding: 0.3vw 1vw;
-				border-radius: 0.24vw;
-			}
-
-			.address .content {
-				width: 60.56vw;
-				font-size: 3.33vw;
-				color: #555555;
+				margin-bottom: 5.14vw;
 			}
 		</style>
 	</head>
 	<body>
-		<div class="list">
-			<div class="book">
-				<div class="img">
-					<img src="img/book.png">
+		<header class="header">
+			<div class="left">
+				<img src="" alt="">
+			</div>
+			<span class="title">我的收藏</span>
+		</header>
+		<!-- 收藏列表 -->
+		<ul class="favor-list">
+			<li>
+				<div class="left">
+					<img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=878763610,4209647182&fm=173&app=49&f=JPEG?w=312&h=208&s=F8A301D1545347D2508CB4BB0300C011"
+					 alt="">
 				</div>
-				<div class="content">
+				<div class="right">
 					<div class="name">解忧杂货店</div>
-					<div class="des">
-						<<白夜行>>之后东野圭吾备受欢迎的作品，不是推理小说，却扣人心弦。</<>
-					</div>
-					<div class="price">￥27.30 <span class="market">￥39.50</span></div>
-				</div>
-			</div>
-		</div>
-		<!-- 地址管理 -->
-		<div class="list">
-			<div class="address">
-				<div class="top">
-					<div class="name">黄小米</div>
-					<div class="tel">15863008280</div>
-					<img class="edit" src="img/edit.png">
-				</div>
-				<div class="bottom">
-					<div class="tag">
-						<span>默认</span>
-					</div>
-					<div class="content">
-						<div class="city">山东省青岛市城阳区</div>
-						<div class="street">春阳路160号国际中心5-302</div>
+					<div class="summary">描述描述描述描述描述</div>
+					<div class="price">
+						<span class="new">￥27.80</span>
+						<span class="old">￥39.50</span>
 					</div>
 				</div>
-			</div>
-		</div>
-
+			</li>
+		</ul>
 	</body>
 </html>
