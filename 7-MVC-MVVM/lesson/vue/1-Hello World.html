@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<h3>{{ message }}</h3>
+			<p>姓名：{{person.name}}</p>
+			<p>
+				年龄：{{person.age}}
+				<button v-on:click="handleIncrease" type="button">+</button>
+			</p>
+			<p>性别：{{person.sex ? "男":"女"}}</p>
+			<p>
+				<button v-on:click="handleCheck" type="button">查询年龄</button>
+			</p>
+		</div>
+		<script src="lib/vue/vue.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app", //范围
+				data: { //视图的状态
+					message: "Hello Vue!",
+					person: {
+						name: "黄小米",
+						age: 25,
+						sex: 0,
+					}
+				},
+				methods: { //视图的行为
+					handleCheck: function() {
+						// 获取data里面的数据
+						console.log(this.person.age);
+					},
+					handleIncrease: function() {
+						// data中的数据变化，自动引起View视图的变化
+						this.person.age = this.person.age + 1;
+					},
+				}
+			})
+		</script>
+	</body>
+</html>

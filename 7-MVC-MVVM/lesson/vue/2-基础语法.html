@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div id="app">
+			<fieldset id="">
+				<legend>v-html</legend>
+				<p>v-text:{{detail}}</p>
+				<p>
+					v-html: <span v-html="detail"></span>
+				</p>
+			</fieldset>
+			<fieldset id="">
+				<legend>v-if</legend>
+				<p>
+					会员等级：
+					<span v-if="isVip">金牌会员</span>
+					<span v-else>普通会员</span>
+					<button v-on:click="isVip = true" type="button">成为会员</button>
+				</p>
+			</fieldset>
+			<fieldset id="">
+				<legend>v-show</legend>
+				<p>
+					手机号码：
+					<span v-show="isVisible">15863008280</span>
+					<button v-on:click="isVisible = !isVisible" type="button">{{isVisible?"隐藏":"显示"}}</button>
+				</p>
+			</fieldset>
+		</div>
+
+		<script src="lib/vue/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					detail: '<b>颜色：</b> <span style="color:blue">蓝色</span>',
+					isVip: false,
+					isVisible: false,
+				}
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<fieldset id="">
+				<legend>事件传参</legend>
+				<p>
+					<button v-on:click="handleClick('红色')" type="button">红色</button>
+					<button v-on:click="handleClick('蓝色')" type="button">蓝色</button>
+				</p>
+			</fieldset>
+		</div>
+		<script src="lib/vue/vue.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				methods: {
+					handleClick: function(color) {
+						console.log(color);
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
