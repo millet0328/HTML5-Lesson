@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title></title>
+	<style>
+		body,
+		html {
+			padding: 0;
+			margin: 0;
+			font-size: 14px;
+			color: #000000;
+		}
+
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			table-layout: fixed;
+		}
+
+		thead {
+			background: #3d444c;
+			color: #ffffff;
+		}
+
+		td,
+		th {
+			border: 1px solid #e1e1e1;
+			padding: 0;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+		}
+
+		.sort-asc::after,
+		.sort-desc::after {
+			content: ' ';
+			display: inline-block;
+			margin-left: 5px;
+			vertical-align: middle;
+
+		}
+
+		.sort-asc::after {
+			border-left: 4px solid transparent;
+			border-right: 4px solid transparent;
+			border-bottom: 4px solid #eee;
+		}
+
+		.sort-desc::after {
+			border-left: 4px solid transparent;
+			border-right: 4px solid transparent;
+			border-top: 4px solid #eee;
+		}
+	</style>
+</head>
+
+<body>
+	<fieldset id="">
+		<legend>作业要求</legend>
+		<ol>
+			<li>根据现有数据goods,渲染至如下图的表格中</li>
+			<li>type为id、price或者sales，分别对应第1、3、4列</li>
+			<li>order为asc或者desc，asc表示升序，desc为降序</li>
+			<li>点击"#"、"价格"、"销量"3个表头，分别实现对应的排序，第一次点击升序，第二次降序</li>
+			<li>点击"×"按钮，删除本条数据</li>
+		</ol>
+	</fieldset>
+	<div id="app">
+		<table>
+			<thead>
+				<tr>
+					<th v-on:click="handleSort('id')">#</th>
+					<th>商品</th>
+					<th v-on:click="handleSort('price')">价格</th>
+					<th v-on:click="handleSort('sales')">销量</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="(item,index) in goods">
+					<td>{{item.id}}</td>
+					<td>{{item.name}}</td>
+					<td>{{item.price}}</td>
+					<td>{{item.sales}}</td>
+					<td>
+						<button type="button">×</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<script src="lib/vue/vue.js"></script>
+	<script type="text/javascript">
+		// 商品数据
+		var goods = [{
+			id: 1,
+			name: "水杯",
+			price: 10.0,
+			sales: 800,
+		},
+		{
+			id: 2,
+			name: "鼠标",
+			price: 30.0,
+			sales: 300,
+		}, {
+			id: 3,
+			name: "纸巾",
+			price: 20.5,
+			sales: 1800,
+		}, {
+			id: 4,
+			name: "数据线",
+			price: 40.5,
+			sales: 200,
+		}, {
+			id: 5,
+			name: "键盘",
+			price: 69.9,
+			sales: 600,
+		}, {
+			id: 6,
+			name: "儿童玩具",
+			price: 50.0,
+			sales: 400,
+		}, {
+			id: 7,
+			name: "相框",
+			price: 70.0,
+			sales: 700,
+		}, {
+			id: 8,
+			name: "外套",
+			price: 80.0,
+			sales: 500,
+		}]
+		var app = new Vue({
+			el: "#app",
+			data: {
+				goods: goods,
+				idOrder: 1,
+				priceOrder: 1,
+				salesOrder: 1,
+			},
+			methods: {
+				handleSort: function (key) {
+					this[key + 'Order'] = -this[key + 'Order'];
+					var self = this;
+					this.goods.sort(function (itemA, itemB) {
+						if (itemA[key] < itemB[key]) {
+							//升序
+							return self[key + 'Order'];
+						} else {
+							return -self[key + 'Order'];
+						}
+					});
+				},
+			}
+		})
+	</script>
+</body>
+
+</html>

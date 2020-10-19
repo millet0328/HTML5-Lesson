@@ -40,7 +40,9 @@
 			},
 			methods: {
 				sortHandle() {
-					this.aqiData.sort((a, b) => a[1] - b[1]);
+					this.aqiData.sort(function (a, b) {
+						return a[1] - b[1];
+					});
 				}
 			}
 		})
