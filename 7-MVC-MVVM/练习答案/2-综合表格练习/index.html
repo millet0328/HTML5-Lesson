@@ -51,7 +51,7 @@
 							<td>{{item.name}}</td>
 							<td>{{item.age}}</td>
 							<td>
-								<a @click.prevent="delHandle(index)">删除</a>
+								<a @click.prevent="handleDel(index)">删除</a>
 							</td>
 						</tr>
 					</tbody>
@@ -61,7 +61,7 @@
 					<div class="form-group">
 						<label for="">搜索：</label>
 						<input type="text" class="form-control" v-model.trim="keyword" placeholder="姓名">
-						<button type="button" class="btn btn-info" @click="searchHandle">搜索</button>
+						<button type="button" class="btn btn-info" @click="handleSearch">搜索</button>
 					</div>
 					<div class="form-group">
 						<label for="">排序：</label>
@@ -130,15 +130,29 @@
 				methods: {
 					handleAdd: function() {
 						// 表单验证
-
+						var name = this.formData.name;
+						if (name.length < 2) {
+							alert('姓名至少2个字符！');
+							return;
+						}
+						var age = this.formData.age;
+						var isAgeValid = /^([1-9]\d?|1[01]\d|120)$/.test(age);
+						if (!isAgeValid) {
+							alert('请输入合法的年龄！');
+							return;
+						}
 						// 添加数据
 						this.lists.push({ ...this.formData });
 						// 清空表单
-						this.name = '';
-						this.age = '';
+						this.formData = {
+							name: '',
+							age: '',
+							highlight: false,
+							checked: false,
+						}
 					},
 					//删除数据
-					delHandle: function(i) {
+					handleDel: function(i) {
 						this.lists.splice(i, 1);
 					},
 					//排序
@@ -154,7 +168,7 @@
 						this.isASC = -this.isASC;
 					},
 					//搜索keyword
-					searchHandle: function() {
+					handleSearch: function() {
 						var self = this;
 						this.lists.forEach(function(item, index) {
 							item.highlight = false;

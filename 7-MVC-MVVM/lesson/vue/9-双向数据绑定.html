@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div id="app">
+			<fieldset>
+				<legend>基本双向数据绑定</legend>
+				<p>
+					<input type="text" v-model="username">
+				</p>
+				<p>
+					{{username}}
+				</p>
+			</fieldset>
+
+			<fieldset>
+				<legend>v-model语法糖</legend>
+				<p>
+					<input type="text" :value="username" @input="username = $event.target.value" />
+				</p>
+			</fieldset>
+
+			<fieldset>
+				<legend>表单双向数据绑定</legend>
+				<p>
+					<form action="" method="post">
+						<p>
+							<label>账户：</label>
+							<input type="text" v-model="username" />
+						</p>
+						<p>
+							<label>密码：</label>
+							<input type="password" v-model="password" />
+						</p>
+						<p>
+							<label>性别：</label>
+							<label>
+								<input v-model="sex" value="男" type="radio" name="sex"> 男
+							</label>
+							<label>
+								<input v-model="sex" value="女" type="radio" name="sex"> 女
+							</label>
+						</p>
+						<p>
+							<label>爱好：</label>
+							<label>
+								<input v-model="favor" value="漫画" type="checkbox"> 漫画
+							</label>
+							<label>
+								<input v-model="favor" value="摄影" type="checkbox"> 摄影
+							</label>
+							<label>
+								<input v-model="favor" value="唱歌" type="checkbox"> 唱歌
+							</label>
+						</p>
+						<p>
+							<label>学历：</label>
+							<select v-model="degree">
+								<option value="高中">高中</option>
+								<option value="专科">专科</option>
+								<option value="本科">本科</option>
+								<option value="研究生">研究生</option>
+								<option value="博士">博士</option>
+							</select>
+						</p>
+					</form>
+				</p>
+			</fieldset>
+		</div>
+
+		<script src="lib/vue/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			let app = new Vue({
+				el: '#app',
+				data: {
+					username: "黄小米",
+					password: "",
+					sex: "男",
+					favor: ['唱歌'],
+					degree: "专科",
+				},
+			});
+		</script>
+	</body>
+
+</html>

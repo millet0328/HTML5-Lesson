@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title></title>
+	</head>
+
+	<body>
+		<div id="app">
+			<ul>
+				<li v-for="(item,index) in scores">
+					{{item}}分
+					<button v-on:click="handleIncrease(index)" type="button">+1</button>
+				</li>
+			</ul>
+		</div>
+		<script src="lib/vue/vue.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					scores: [65, 38, 94, 78, 65, 89]
+				},
+				methods: {
+					handleIncrease: function(i) {
+						// 第一种解决方案：新数组替换旧数组
+						/* 
+						this.scores[i] += 1;
+						var copy = this.scores.slice(0); //克隆
+						this.scores = copy;
+						 */
+						// 第二种解决方案：$set
+						this.$set(this.scores, i, this.scores[i] + 1);
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html

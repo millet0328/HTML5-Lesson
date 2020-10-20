@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box {
+				width: 200px;
+				height: 200px;
+				background-color: pink;
+			}
+
+			/* enter :起点 */
+			.switch-enter {
+				background-color: orange;
+				transform: translateY(200px) rotate(360deg);
+			}
+
+			/* enter: 过程 */
+			.switch-enter-active {
+				transition: all 1s;
+			}
+
+			.switch-enter-to {
+				background-color: pink;
+				transform: translateY(0px) rotate(0deg);
+			}
+
+			/* leave:起点 */
+			.switch-leave {
+				transform: translateX(0px);
+				opacity: 1;
+			}
+
+			/* leave:终点 */
+			.switch-leave-to {
+				transform: translateX(400px);
+				opacity: 0;
+			}
+
+			/* leave:过程 */
+			.switch-leave-active {
+				transition: all 1s;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+			<fieldset id="">
+				<legend>CSS动画</legend>
+				<p>
+					<button @click="show = !show" type="button">开关</button>
+				</p>
+				<transition name="switch">
+					<div class="box" v-show="show"></div>
+				</transition>
+			</fieldset>
+		</div>
+		<script src="lib/vue/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			let app = new Vue({
+				el: '#app',
+				data: {
+					show: true
+				}
+			});
+		</script>
+	</body>
+
+</html>

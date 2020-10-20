@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.outer-box {
+				padding: 60px;
+				background-color: lightgreen;
+			}
+
+			.inner-box {
+				padding: 40px;
+				background-color: orange;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div @click="handleOuter" class="outer-box">
+				外部
+				<div @click.stop="handleInner" class="inner-box">
+					<a @click.prevent="handleLink" href="http://www.baidu.com/">百度一下</a>
+					内部
+				</div>
+			</div>
+		</div>
+		<script src="lib/vue/vue.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				methods: {
+					handleInner: function(event) {
+						// 阻止冒泡
+						console.log("内部");
+					},
+					handleOuter: function() {
+						console.log("外部");
+					},
+					handleLink: function(event) {
+						// 阻止默认事件
+						location.href = "http://www.jd.com/"
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

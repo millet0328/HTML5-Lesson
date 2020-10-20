@@ -20,7 +20,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for="(book,index) in books">
+					<tr v-for="(book,index) in books" v-bind:key="book.id">
 						<td>{{book.id}}</td>
 						<td>{{book.name}}</td>
 						<td>{{book.author}}</td>
@@ -77,7 +77,7 @@
 						book.num -= 1;
 						//等价于 book.num = book.num - 1;
 					},
-					// 删除操作
+					// 删除操作q
 					handleRemove: function(i) {
 						this.books.splice(i, 1);
 					}

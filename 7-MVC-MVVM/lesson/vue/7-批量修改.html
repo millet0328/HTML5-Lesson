@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.btn {
+				padding: 8px 30px;
+				border: 1px solid black;
+				margin-right: 20px;
+			}
+
+			.btn.active {
+				background-color: blue;
+				color: white;
+				border-color: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<fieldset id="">
+				<legend>批量修改</legend>
+				<p>
+					<button v-for="item in group" @click="handleCheck(item)" :class="{active:item.isActive}" class="btn" type="button">{{item.color}}</button>
+				</p>
+			</fieldset>
+		</div>
+		<script src="lib/vue/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					group: [{
+						color: "红色",
+						isActive: false,
+					}, {
+						color: "黄色",
+						isActive: false,
+					}, {
+						color: "蓝色",
+						isActive: false,
+					}, {
+						color: "绿色",
+						isActive: false,
+					}, {
+						color: "粉色",
+						isActive: false,
+					}, ]
+				},
+				methods: {
+					handleCheck: function(item) {
+						this.group.forEach(function(el) {
+							if (el == item) {
+								item.isActive = !item.isActive;
+							} else {
+								el.isActive = false;
+							}
+						});
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
