@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.input-box {
+				display: inline-block;
+				position: relative;
+			}
+
+			.input-box input {
+				width: 180px;
+				padding: 4px;
+				border: 1px solid #bbb;
+				border-radius: 4px;
+				outline: 0;
+			}
+
+			.input-box i {
+				position: absolute;
+				top: 50%;
+				right: 8px;
+				transform: translateY(-50%);
+				display: inline-block;
+				width: 18px;
+				height: 18px;
+				line-height: 18px;
+				border-radius: 50%;
+				background-color: #ccc;
+				color: black;
+				font-style: normal;
+				text-align: center;
+				font-size: 12px;
+				transition: all 0.5s;
+				opacity: 0;
+			}
+
+			.input-box:hover i {
+				opacity: 1;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<clear-input v-model="text"></clear-input>
+		</div>
+		<script src="lib/vue/vue.js"></script>
+		<script id="tmpl-input" type="x-template">
+			<div class="input-box">
+				<input type="text" :value="value" @input="_handleInput">
+				<i>×</i>
+			</div>
+		</script>
+		<script>
+			Vue.component('clear-input', {
+				props: ['value'],
+				methods: {
+					_handleInput: function($event) {
+						this.$emit('input', $event.target.value)
+					}
+				},
+				template: '#tmpl-input',
+			});
+		</script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					text: "黄小米"
+				},
+				methods: {
+					// handleInput: function(data) {
+					// 	this.text = data;
+					// }
+				}
+			});
+		</script>
+	</body>
+
+</html>

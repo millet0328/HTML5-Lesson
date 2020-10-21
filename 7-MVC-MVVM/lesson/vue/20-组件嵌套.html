@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>组件嵌套--slot</title>
+		<style type="text/css">
+
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<component-a>
+				<template v-slot:part-b>
+					<component-b></component-b>
+				</template>
+				<template v-slot:part-c>
+					<component-c></component-c>
+				</template>
+			</component-a>
+		</div>
+
+		<script src="lib/vue/vue.js"></script>
+
+		<script id="tmpl-a" type="x-template">
+			<fieldset id="">
+				<legend>组件A</legend>
+				<p>
+					<slot name="part-b"></slot>
+				</p>
+				<p>内容A</p>
+				<p>
+					<slot name="part-c"></slot>
+				</p>
+			</fieldset>
+		</script>
+		<script id="tmpl-b" type="x-template">
+			<fieldset id="">
+				<legend>组件B</legend>
+				<p>内容B</p>
+			</fieldset>
+		</script>
+		<script id="tmpl-c" type="x-template">
+			<fieldset id="">
+				<legend>组件C</legend>
+				<p>内容C</p>
+			</fieldset>
+		</script>
+		<script type="text/javascript">
+			// 组件A
+			Vue.component('component-a', {
+				template: '#tmpl-a',
+			});
+			// 组件B
+			Vue.component('component-b', {
+				template: '#tmpl-b',
+			});
+			// 组件C
+			Vue.component('component-c', {
+				template: '#tmpl-c',
+			});
+			var app = new Vue({
+				el: "#app",
+			});
+		</script>
+	</body>
+</html>

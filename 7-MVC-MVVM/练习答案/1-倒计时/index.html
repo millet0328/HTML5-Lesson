@@ -30,7 +30,7 @@
 			data: {
 				total: 0,
 				tick: 0,
-				clock: ''
+				clock: '',
 			},
 			methods: {
 				start: function () {
@@ -40,12 +40,13 @@
 						return false;
 					}
 					this.tick = this.total;
+					var self = this;
 					this.clock = setInterval(function () {
-						if (app.tick > 1) {
-							app.tick--;
+						if (self.tick > 1) {
+							self.tick--;
 						} else {
-							app.tick = 0;
-							clearInterval(app.clock);
+							self.tick = 0;
+							clearInterval(self.clock);
 						}
 					}, 1000);
 				}

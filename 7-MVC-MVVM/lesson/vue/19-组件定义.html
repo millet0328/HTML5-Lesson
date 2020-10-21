@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<style type="text/css">
+			.counter button {
+				padding: 6px 20px;
+				border: 1px solid #999999;
+				background-color: #EEEEEE;
+				outline: 0;
+				font-size: 18px;
+			}
+
+			.counter span {
+				color: blue;
+				font-weight: bold;
+				margin: 0 10px;
+				display: inline-block;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+			<counter></counter>
+			<counter></counter>
+			<counter></counter>
+			<counter></counter>
+			<counter></counter>
+		</div>
+		<script src="lib/vue/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script id="tmpl" type="x-template">
+			<div class="counter">
+				<button @click="handleDecrease" type="button">-</button>
+				<span>{{count}}</span>
+				<button @click="count++" type="button">+</button>
+			</div>
+		</script>
+		<script>
+			// 禁止跟HTML5标签重名，如header/footer/nav禁止使用
+			Vue.component('counter', {
+				// option
+				data: function() {
+					return {
+						count: 0
+					}
+				},
+				methods: {
+					handleDecrease: function() {
+						if (this.count <= 0) {
+							return;
+						}
+						this.count--;
+					},
+				},
+				computed: {},
+				template: '#tmpl',
+			});
+
+			var app = new Vue({
+				el: "#app",
+			});
+		</script>
+	</body>
+
+</html>
