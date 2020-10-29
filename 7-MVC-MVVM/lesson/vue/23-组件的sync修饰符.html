@@ -4,37 +4,75 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="/component/counter/counter.css" />
+		<style type="text/css">
+			.switch {
+				display: inline-block;
+				width: 100px;
+				padding: 4px;
+				height: 30px;
+				box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2) inset;
+				border-radius: 20px;
+				transition: all 0.5s;
+			}
+
+			.switch .point {
+				width: 30px;
+				height: 30px;
+				border-radius: 50%;
+				display: inline-block;
+				box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+				background-color: white;
+				transition: all 0.5s;
+			}
+
+			.switch.active {
+				background-color: lightgreen;
+			}
+
+			.switch.active .point {
+				transform: translateX(70px);
+			}
+		</style>
 	</head>
 
 	<body>
 		<div id="app">
-			<ul>
-				<li v-for="(item,index) in goods" :key="item.id">
-					商品：{{item.name}}
-					<counter :num.sync="item.num"></counter>
+			<fieldset id="">
+				<legend>sync修饰符</legend>
+				<p>
+					<switch-button :checked.sync="isActive"></switch-button>
 					<!-- 等价于 -->
-					<!-- <counter :num="item.num" @update:num="item.num = $event"></counter> -->
-				</li>
-			</ul>
+					<!-- <switch-button @update:checked="handleSwitch($event)" :checked="isActive"></switch-button> -->
+				</p>
+			</fieldset>
 		</div>
 		<script src="lib/vue/vue.js" type="text/javascript" charset="utf-8"></script>
-		<script src="component/counter/counter.js"></script>
+		<script id="tmpl-switch" type="x-template">
+			<div class="switch" :class="{active:checked}" @click="_handleSwitch">
+				<i class="point"></i>
+			</div>
+		</script>
 		<script type="text/javascript">
-			//外层
+			Vue.component('switch-button', {
+				props: ['checked'],
+				template: '#tmpl-switch',
+				methods: {
+					_handleSwitch: function() {
+						this.$emit('update:checked',!this.checked);
+					}
+				}
+			});
+
 			var app = new Vue({
 				el: "#app",
 				data: {
-					goods: [{
-						id: 1,
-						name: "苹果",
-						num: 3
-					}, {
-						id: 2,
-						name: "香蕉",
-						num: 2
-					}]
+					isActive: false,
 				},
+				methods: {
+					// handleSwitch: function($event) {
+					// 	this.isActive = $event;
+					// }
+				}
 			});
 		</script>
 	</body>

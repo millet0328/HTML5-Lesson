@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// 1、有一个封装好的promise函数
+			function random() {
+				return new Promise(function(resolve, reject) {
+					// 模拟异步请求
+					setTimeout(function() {
+						var x = Math.random(); // [0,1)
+						if (x >= 0.1) {
+							// 成功
+							resolve(x);
+						} else {
+							// 失败
+							reject(x);
+						}
+					}, 500);
+				});
+			}
+			// 2、async函数使用
+			/**
+			 * 随机生成两个数字，计算两个数字相差多少？ 
+			 */
+			async function subtract() {
+				let x = await random();
+				console.log('x=%f', x);
+				let y = await random();
+				console.log('y=%f',y);
+				if (x > y) {
+					return x - y;
+				} else {
+					return y - x;
+				}
+			}
+			subtract().then((data) => {
+				console.log('x-y=%f', data);
+			});
+		</script>
+	</body>
+</html>

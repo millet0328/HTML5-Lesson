@@ -9,7 +9,7 @@
 		<div id="app">
 			<button @click="isShow=true" class="btn btn-default" type="button">删除Confirm</button>
 			<!-- 模态框 -->
-			<confirm :show="isShow" @cancel="handleCancel" @confirm="handleConfirm">
+			<confirm :show.sync="isShow" title="我是自定义标题" @cancel="handleCancel" @confirm="handleConfirm">
 				<table width="100%" border="1" cellspacing="" cellpadding="20">
 					<tr>
 						<th>Header</th>
@@ -39,12 +39,12 @@
 					isShow: false,
 				},
 				methods: {
-					handleCancel: function() {
-						this.isShow = false;
+					handleCancel: function(data) {
+						alert('取消成功！')
 					},
-					handleConfirm: function() {
-						alert("删除成功！")
+					handleConfirm: function(data) {
 						this.isShow = false;
+						alert('删除成功！');
 					}
 				}
 			});

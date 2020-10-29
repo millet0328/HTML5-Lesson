@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title></title>
+	</head>
+
+	<body>
+		<h1>Hello World!</h1>
+		<script type="text/javascript">
+			document.body.onclick = function() {
+				console.log(this)
+			}
+			
+			setTimeout(function() {
+				console.log(this.x);
+			}, 1000);
+		</script>
+		<script>
+			// ES5版本
+			var person = {
+				name: '黄小米',
+				talk: function() {
+					let self = this;
+					setTimeout(function() {
+						console.log('我是' + self.name);
+					}, 1000);
+				}
+			}
+			// ES6箭头函数
+			var person = {
+				name: '黄小米',
+				talk: function() {
+					setTimeout(() => {
+						console.log('我是' + this.name);
+					}, 1000);
+				}
+			}
+			person.talk();
+		</script>
+		<script>
+			// 箭头函数 单条语句，有return;
+			var sum = x => x + 1;
+			var sum = () => 10 + 1;
+			var sum = (x, y) => x + y;
+			// 箭头函数，多条语句/无return
+			var sum = (x, y) => {
+				x++;
+				y--;
+			}
+			// 总结格式
+			var sum = (x, y) => {
+				x++;
+				y--;
+				return x + y
+			};
+		</script>
+	</body>
+
+</html>

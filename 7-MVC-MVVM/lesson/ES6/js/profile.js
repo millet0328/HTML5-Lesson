@@ -2,11 +2,13 @@ var firstName = 'Michael';
 var lastName = 'Jackson';
 var year = 1958;
 
-function talk() {
-	console.log("我的名字：" + firstName)
+function fullName() {
+	return firstName + ' ' + lastName
 }
 
 export {
+	firstName,
+	lastName,
 	year,
-	talk,
-}
+	fullName,
+};

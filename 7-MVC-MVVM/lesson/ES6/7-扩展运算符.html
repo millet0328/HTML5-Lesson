@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>扩展运算符</title>
+	</head>
+
+	<body>
+		<script>
+			// 扩展运算符 -- 对象
+			var obj1 = { a: 1, b: 2 };
+			var obj2 = { b: 4, c: 3 };
+			var point = { pos: { x: 0, y: 0 }, color: "black" };
+			// var obj3 = Object.assign({}, obj1, obj2);
+			// 合并对象
+			var obj3 = { ...obj1, ...obj2 };
+			// 浅拷贝
+			var obj3 = { ...obj1, ...obj2, ...point };
+			obj3.pos.x = 1;
+			// 深拷贝
+			var obj4 = JSON.parse(JSON.stringify(obj3));
+			obj4.pos.x = 2;
+			// 扩展运算符 -- 数组
+			var arr1 = [1, 2];
+			var arr2 = [3, 4];
+			var arr3 = [...arr1, ...arr2];
+			// 引用数据类型 错误的复制
+			var person1 = { name: "黄小米" };
+			var person2 = person1;  //错误
+		</script>
+	</body>
+
+</html>

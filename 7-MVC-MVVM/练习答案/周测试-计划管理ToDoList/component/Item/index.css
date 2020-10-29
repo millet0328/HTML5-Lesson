@@ -11,6 +11,20 @@
 	height: 14px;
 	border: 1px solid #999999;
 	border-radius: 3px;
+	position: relative;
+	text-align: center;
+}
+
+.item .checkbox.checked::after {
+	position: absolute;
+	top: -2px;
+	left: 0;
+	content: "√";
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	color: blue;
+	font-size: 20px;
 }
 
 .item .text {

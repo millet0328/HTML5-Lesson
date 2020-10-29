@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 同步
+			for (var i = 0; i < 5; i++) {
+				console.log(i)
+			}
+			console.log('x');
+			// 异步
+			setTimeout(function() {
+				console.log(1)
+			}, 0);
+			console.log(2);
+		</script>
+		<script type="text/javascript">
+			// 异步 ajax
+			// 1.嵌套回调函数，缺点：回调地狱
+			// 1.股票名称 
+			$.getJSON('/stock/name', function(res) {
+				let { name } = res;
+				// 2.股票代码
+				$.getJSON('/stock/code', { name }, function(res) {
+					let { code } = res;
+					// 3.股票价格
+					$.getJSON('/stock/price', { code }, function(res) {
+						let { price } = res;
+						console.log("股票价格：" + price);
+					});
+				});
+			});
+			// 2.强制同步，缺点：等待数据响应，界面会卡死
+			$.ajax({
+				url: '/stockCode',
+				data: { name: "股票名称" },
+				async: false, //同步
+			});
+			$.ajax({
+				url: '/stockPrice',
+				data: { code: '3321' },
+				async: false, //同步
+			});
+		</script>
+		<script type="text/javascript">
+			// Promise使用方法,解决了回调函数不断嵌套，改成链式编程
+			getJSON('/stock/name')
+				.then((res1) => {
+					// 捕获成功返回的JSON
+					console.log(res1);
+					return getJSON('/stock/code');
+				})
+				.then((res2) => {
+					// 捕获第二次返回的结果
+					console.log(res2);
+					return getJSON('/stock/price');
+				})
+				.then((res3) => {
+					// 捕获第三次返回的结果
+					console.log(res3);
+				})
+		</script>
+	</body>
+</html>

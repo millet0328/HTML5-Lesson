@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			// promise实例
+			let promise = new Promise(function(resolve, reject) {
+				// 模拟异步请求
+				setTimeout(function() {
+					var x = Math.random(); // [0,1)
+					if (x >= 0.5) {
+						// 成功
+						resolve(x);
+					} else {
+						// 失败
+						reject(x);
+					}
+				}, 500);
+			});
+			// 捕获结果
+			// then 捕获成功
+			promise.then(function(value) {
+				// 成功
+				console.log('成功：x=%s', value);
+			});
+			// catch 捕获失败
+			promise.catch(function(err) {
+				// 失败
+				console.log('失败：x=%s', err);
+			})
+			// 实例
+			console.log(promise);
+		</script>
+
+	</body>
+
+</html>

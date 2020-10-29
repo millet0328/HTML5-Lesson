@@ -5,13 +5,13 @@ Vue.component('item', {
 	},
 	props: ['checked', 'data'],
 	methods: {
-		handleChange: function() {
+		_handleChange: function() {
 			this.$emit('check', !this.data.isCheck);
 		}
 	},
 	template: `
 	<div class="item">
-		<div class="checkbox"></div>
+		<div class="checkbox checked" @click="_handleChange"></div>
 		<div class="text">{{data.text}}</div>
 		<div class="timestamp">{{data.timestamp}}</div>
 		<button v-if="data.status==1" class="btn action" type="button">取消</button>

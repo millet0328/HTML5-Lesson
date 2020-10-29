@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script>
+			var student = [
+				{ name: '黄小米' },
+				{ name: '黄磊' },
+				{ name: '张艺兴' },
+				{ name: '孙红雷' }
+			]
+			var score = [45, 65, 87, 98, 56, 78];
+			// concat:return一个新数组
+			var total = student.concat(score);
+			// every:student数组人名是否都姓黄？
+			var isValid = student.every((item, index) => {
+				return item.name.indexOf('黄') == 0
+			});
+			// filter:筛选出分数>=60 的元素，return一个新数组
+			var filtered = score.filter((item, index) => item >= 60);
+			// find:查找数组,return 符合条件的第一个元素
+			var firstFiltered = score.find((item, index) => item >= 60);
+			// findIndex:return 符合条件的第一个元素的索引
+			var firstIndex = score.findIndex((item, index) => item >= 60);
+			// includes:适用于简单数组
+
+			// forEach 改变原始数组
+
+			// map：简单数组，return一个新数组，不改变原始数组
+			var newScore = score.map((item, index) => item + 10);
+			// map：复杂数组，return一个新数组，会改变原始数组,如何不改变原始数组？
+			var newStudent = student.map((item, index) => {
+				var copy = JSON.parse(JSON.stringify(item));
+				copy.age = Math.floor(Math.random() * 100)
+				return copy;
+			});
+			// reduce，简单数组求和
+			var sum = score.reduce((total, item, index) => total += item);
+			// reduce，复杂数组求和
+			var year = newStudent.reduce((total, item, index) => total += item.age, 0);
+			// reverse
+			// some 是否有一个90分以上的元素
+			var isGreat = score.some((item, index) => item > 90);
+		</script>
+	</body>
+
+</html>

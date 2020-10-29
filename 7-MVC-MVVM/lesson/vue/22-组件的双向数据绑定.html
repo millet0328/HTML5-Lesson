@@ -43,13 +43,15 @@
 	</head>
 	<body>
 		<div id="app">
-			<clear-input v-model="text"></clear-input>
+			<clear-input v-model="text" ></clear-input>
+			<!-- 等价于 -->
+			<!-- <clear-input :value="text" @input="handleInput($event)" ></clear-input> -->
 		</div>
 		<script src="lib/vue/vue.js"></script>
 		<script id="tmpl-input" type="x-template">
 			<div class="input-box">
 				<input type="text" :value="value" @input="_handleInput">
-				<i>×</i>
+				<i @click="_handleClear">×</i>
 			</div>
 		</script>
 		<script>
@@ -58,6 +60,9 @@
 				methods: {
 					_handleInput: function($event) {
 						this.$emit('input', $event.target.value)
+					},
+					_handleClear:function () {
+						this.$emit('input', '')
 					}
 				},
 				template: '#tmpl-input',
