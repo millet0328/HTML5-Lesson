@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			// 类的定义
+			class Point {
+				constructor(x, y) {
+					this.x = x;
+					this.y = y;
+				}
+
+				toString() {
+					return `(${this.x},${this.y})`;
+				};
+			}
+			// 原型上定义属性
+			Point.prototype.zero = { x: 0, y: 0 }
+			var p1 = new Point(1, 1);
+			var p2 = new Point(2, 2);
+
+			// class类的继承 extends
+			class ColorPoint extends Point {
+
+				constructor(x, y, color) {
+					// Point.call(this,x,y)
+					super(x, y);
+					// 自身属性
+					this.color = color;
+				}
+
+				// 覆盖父类的方法
+				toString() {
+					return `(${this.x},${this.y},${this.color})`
+				}
+
+				showColor() {
+					return this.color;
+				}
+
+			}
+
+			let cp1 = new ColorPoint(4, 5, 'black');
+
+
+			// 父类constructor没有参数
+			class Animal {
+				constructor() {
+					this.species = "动物类"
+				}
+			}
+			class Cat extends Animal {
+				constructor(type, color) {
+					super();
+					this.type = type;
+					this.color = color;
+				}
+			}
+			// constructor可以省略情况
+			class Dog extends Animal {
+				// 父类constructor没有参数，子类没有自有属性
+				constructor() {
+					super()
+				}
+				// 上面这种情况，可以不写，它自动生成相应的代码
+				
+			}
+
+			/**
+			 * super的功能
+			 * 1.super()代表父类的构造函数,生成父类的属性;
+			 * 2.super作为对象时，在普通方法中，指向父类的原型对象；在静态方法中，指向父类。
+			 */
+		</script>
+	</body>
+
+</html>

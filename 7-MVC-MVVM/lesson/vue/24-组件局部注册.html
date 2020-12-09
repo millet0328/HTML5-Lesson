@@ -6,29 +6,30 @@
 	</head>
 	<body>
 		<div id="app">
-			<user-card></user-card>
-			<component-b></component-b>
+			<component-a></component-a>
 		</div>
 		<script src="lib/vue/vue.js"></script>
 		<script type="text/javascript">
 			// 局部组件
-			var avatar = {
+			var ComponentB = {
 				props: [],
 				methods: {},
 				template: `
 				<fieldset id="">
-					<legend>avatar</legend>
+					<legend>ComponentB</legend>
+					<p>组件B--内容</p>
 				</fieldset>`
 			};
-			var userCard = {
+			var ComponentA = {
 				props: [],
 				components: {
-					avatar
+					ComponentB
 				},
 				template: `
 				<fieldset id="">
 					<legend>ComponentA</legend>
-					<avatar></avatar>
+					<p>组件A--内容</p>
+					<component-b></component-b>
 				</fieldset>
 				`
 			}
@@ -36,7 +37,7 @@
 			var app = new Vue({
 				el: "#app",
 				components: {
-					userCard
+					ComponentA
 				}
 			});
 		</script>

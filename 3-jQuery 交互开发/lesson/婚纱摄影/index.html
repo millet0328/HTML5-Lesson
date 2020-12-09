@@ -502,23 +502,26 @@
 			$('.floor-box .item').click(function() {
 				// 获取索引值
 				var i = $(this).index();
+				// 高亮显示
+				$('.floor-box .item').removeClass('active');
+				$(this).addClass('active');
 				// 计算楼层相对于document顶部的top值
 				var top = $('.title_box').eq(i).offset().top;
 				// 滚动窗口
 				$('html,body').stop(true).animate({ scrollTop: top });
 			});
 			// 滚动过程中，相应楼层高亮显示
-			$(window).scroll(function() {
-				// scrollTop
-				var scrollTop = $(document).scrollTop();
-				$('.title_box').each(function(index) {
-					var top = $(this).offset().top;
-					var short = top - scrollTop;
-					if (short < 0) {
-						$('.floor-box .item').removeClass('active').eq(index).addClass('active');
-					}
-				});
-			});
+			// $(window).scroll(function() {
+			// 	// scrollTop
+			// 	var scrollTop = $(document).scrollTop();
+			// 	$('.title_box').each(function(index) {
+			// 		var top = $(this).offset().top;
+			// 		var short = top - scrollTop;
+			// 		if (short <= 0) {
+			// 			$('.floor-box .item').removeClass('active').eq(index).addClass('active');
+			// 		}
+			// 	});
+			// });
 		</script>
 	</body>
 

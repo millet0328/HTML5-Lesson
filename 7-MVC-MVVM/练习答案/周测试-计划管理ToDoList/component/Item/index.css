@@ -16,15 +16,16 @@
 }
 
 .item .checkbox.checked::after {
-	position: absolute;
-	top: -2px;
-	left: 0;
-	content: "√";
-	display: inline-block;
-	width: 16px;
-	height: 16px;
-	color: blue;
-	font-size: 20px;
+    position: absolute;
+    top: -10px;
+    left: -5px;
+    content: "√";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    color: blue;
+    font-size: 24px;
+    font-family: "黑体";
 }
 
 .item .text {

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 王者荣耀中的英雄
+			function Hero(name, hp, attack, speed) {
+				this.name = name;
+				this.hp = hp;
+				this.attack = attack;
+				this.speed = speed;
+			}
+
+			Hero.prototype = {
+				constructor: Hero,
+				move: function() {
+					console.log('移动')
+				},
+				attack: function() {
+					console.log('攻击');
+				},
+				eat: function() {
+					console.log('嗑药');
+				}
+			};
+
+			var Cao = new Hero('曹操', 550, 65, 30);
+
+			var YaSe = new Hero('亚瑟', 600, 60, 32);
+
+			var XiaoQiao = new Hero('小乔', 400, 45, 35);
+
+			// 王者荣耀中的装备
+			function Item(name, price) {
+				this.name = name;
+				this.price = price;
+			}
+
+			Item.prototype = {
+				constructor: Item,
+				buy: function() {
+					console.log('购买')
+				},
+				sell: function() {
+					console.log('售卖')
+				},
+			}
+			// 物理攻击装备 继承自 Item
+			function PhysicsWeapon(name, price, attack, buffer) {
+				// 继承父级的属性：调用Item构造函数，生成Item对应的属性
+				Item.call(this, name, price);
+				// 自身属性
+				this.physicsAttack = attack;
+				this.buffer = buffer;
+			}
+			// 继承父级原型的方法
+			PhysicsWeapon.prototype = Object.create(Item.prototype);
+			PhysicsWeapon.prototype.constructor = PhysicsWeapon;
+			// 定义自身的方法
+			PhysicsWeapon.prototype.use = function() {
+				console.log('对方HP减少' + this.physicsAttack);
+			}
+
+			var knife = new PhysicsWeapon('匕首', 100, 50, '每次攻击附带10%魔法伤害');
+			var sword = new PhysicsWeapon('大剑', 1200, 200, '减速10%');
+			// 法术攻击装备
+
+			// 物理防御
+
+			// 法术防御
+
+			// 移动
+
+			// 辅助
+		</script>
+	</body>
+</html>

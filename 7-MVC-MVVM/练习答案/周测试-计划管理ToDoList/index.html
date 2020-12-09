@@ -25,11 +25,14 @@
 				</form>
 				<!-- 列表 -->
 				<list-title text="未完成"></list-title>
-				<item v-for="(item,index) in unFinish" @check="handleCheck(item,index,$event)" :data="item"></item>
+				<item v-for="(item,index) in unFinish" @check="handleCheck(item,index,$event)" @revoke="handleRevoke(item,index)"
+				 :data="item" :key="item.timestamp"></item>
 				<list-title text="已完成"></list-title>
-				<item v-for="(item,index) in finished" @check="handleCheck(item,index,$event)" :data="item"></item>
+				<item v-for="(item,index) in finished" @check="handleCheck(item,index,$event)" @remove="handleRemove(index)" :data="item"
+				 :key="item.timestamp"></item>
 				<list-title text="已取消"></list-title>
-				<item v-for="(item,index) in canceled" @check="handleCheck(item,index,$event)" :data="item"></item>
+				<item v-for="(item,index) in canceled" @check="handleCheck(item,index,$event)" @resume="handleResume(item,index)"
+				 :data="item" :key="item.timestamp"></item>
 			</section>
 			<!-- 模态框 -->
 			<confirm :show="isShow" @cancel="handleCancel" @confirm="handleConfirm">
@@ -46,12 +49,15 @@
 			var app = new Vue({
 				el: "#app",
 				data: {
+					// 模态框
 					isShow: false,
+					// 当前item的索引
+					current: '',
 					// 表单
 					form: {
 						isCheck: false,
 						text: '',
-						status: 1,
+						status: 'UNFINISH',
 						timestamp: ''
 					},
 					// 未完成
@@ -70,7 +76,7 @@
 						this.form = {
 							isCheck: false,
 							text: '',
-							status: 1,
+							status: 'UNFINISH',
 							timestamp: ''
 						}
 					},
@@ -79,19 +85,34 @@
 						if (isCheck) {
 							// 完成计划
 							item.isCheck = isCheck;
-							item.status = 2;
+							item.status = 'FINISHED';
 							this.finished.push(item);
 							this.unFinish.splice(i, 1);
 						} else {
-							// 取消计划
+							// 未完成计划
 							item.isCheck = isCheck;
-							item.status = 1;
+							item.status = 'UNFINISH';
 							this.finished.splice(i, 1);
 							this.unFinish.push(item);
 						}
 					},
 					// 删除计划
-
+					handleRemove: function(i) {
+						this.isShow = true;
+						this.current = i;
+					},
+					// 取消计划
+					handleRevoke: function(item, i) {
+						item.status = 'CANCELED';
+						this.unFinish.splice(i, 1);
+						this.canceled.push(item);
+					},
+					// 恢复计划
+					handleResume: function(item, i) {
+						item.status = 'UNFINISH';
+						this.canceled.splice(i, 1);
+						this.unFinish.push(item);
+					},
 					// 当前时间
 					_nowTime: function() {
 						var now = new Date();
@@ -111,8 +132,9 @@
 						this.isShow = false;
 					},
 					handleConfirm: function() {
-						alert("删除成功！")
+						this.finished.splice(this.current, 1);
 						this.isShow = false;
+						alert("删除成功！")
 					}
 				}
 			});

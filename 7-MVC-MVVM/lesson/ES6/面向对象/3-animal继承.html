@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			//动物类 
+			function Animal(sex) {
+				this.sex = sex;
+				this.species = "动物";
+			}
+			Animal.prototype = {
+				constructor: Animal,
+				eat: function() {
+					console.log("em......")
+				},
+				sleep: function() {
+					console.log("zzzzzzzz")
+				}
+			}
+
+			// Cat猫科动物：继承Animal的所有属性、方法
+			function Cat(sex, type, color) {
+				// 继承父级的属性
+				Animal.call(this, sex);
+				// 自身的属性
+				this.type = type;
+				this.color = color;
+			}
+			// 继承父类原型的方法
+			Cat.prototype = Object.create(Animal.prototype);
+			Cat.prototype.constructor = Cat;
+
+			// 猫科动物自有的原型方法
+			Cat.prototype.speak = function() {
+				console.log('miao.......')
+			}
+
+			var xiaoBai = new Cat('公', '加菲', 'white');
+			
+		</script>
+	</body>
+
+</html>
