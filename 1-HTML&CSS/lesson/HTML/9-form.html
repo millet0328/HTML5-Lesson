@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>表单</legend>
+
+			<form action="">
+				<p>
+					<label>账户：</label>
+					<input type="text">
+				</p>
+				<p>
+					<label>手机：</label>
+					<input type="text">
+				</p>
+				<p>
+					<label>密码：</label>
+					<input type="password">
+				</p>
+				<p>
+					<label>性别：</label>
+					<label>
+						<input name="sex" type="radio"> 男
+					</label>
+					<label>
+						<input name="sex" type="radio"> 女
+					</label>
+				</p>
+				<p>
+					<label>爱好：</label>
+					<label>
+						<input type="checkbox"> 摄影
+					</label>
+					<label>
+						<input type="checkbox"> 绘画
+					</label>
+					<label>
+						<input type="checkbox"> 唱歌
+					</label>
+				</p>
+				<p>
+					<label>学历：</label>
+					<select>
+						<option value="">高中</option>
+						<option value="">大专</option>
+						<option value="">本科</option>
+						<option value="">研究生</option>
+						<option value="">博士</option>
+					</select>
+				</p>
+				<p>
+					<label>简介：</label>
+					<textarea cols="30" rows="5"></textarea>
+				</p>
+				<p>
+					<!-- 按钮写法1 -->
+					<input type="button" value="input按钮">
+					<!-- 按钮写法2 内部可以放其他元素-->
+					<button type="button">button 普通按钮</button>
+					<!-- 提交按钮：自动触发form的提交行为 -->
+					<button type="submit">提交按钮</button>
+					<!-- 重置按钮 -->
+					<button type="reset">重置按钮</button>
+					<!-- 如果不写type属性，默认是submit按钮 -->
+					<button>type省略</button>
+				</p>
+			</form>
+		</fieldset>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<fieldset>
+			<legend>绝对路径 跳转外部地址</legend>
+			<p>
+				<a target="_blank" href="https://www.baidu.com">百度一下</a>
+			</p>
+		</fieldset>
+		<!-- 相对路径 跳转本地文件 -->
+		<fieldset id="">
+			<legend>相对路径 跳转本地文件</legend>
+			<p>
+				<!-- 当前目录查找： ./ -->
+				<a href="./2-标签.html">标签</a>
+				<!-- 省略情况 -->
+				<a href="1-Hello World.html">Hello World</a>
+			</p>
+		</fieldset>
+		<!-- 图片链接 -->
+		<fieldset id="">
+			<legend>链接嵌套标签</legend>
+			<p>
+				<a href="http://weibo.com/">
+					<img width="200" src="./img/0.jpg" alt="给我来个小和尚" />
+				</a>
+			</p>
+			<p>
+				<a href="http://www.jd.com">
+					外层
+					<a href="http://www.baidu.com">内层</a>
+				</a>
+			</p>
+		</fieldset>
+	</body>
+</html>
