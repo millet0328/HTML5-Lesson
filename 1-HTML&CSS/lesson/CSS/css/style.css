@@ -1,3 +1,8 @@
+.container {
+	width: 1000px;
+	margin: 0 auto;
+}
+
 .fl {
 	float: left;
 }
@@ -10,54 +15,43 @@
 	clear: both;
 }
 
-.container {
-	width: 1000px;
-	margin: 0 auto;
-}
-
-.quality-box .title h1 {
-	margin-top: 0;
-	margin-bottom: 11px;
-	font-size: 27px;
-}
-
-.quality-box .title .des {
-	color: #6B6B6B;
-	font-size: 12px;
-	line-height: 24px;
-}
-
-.quality-box .title {
+.title-box {
 	border-left: 6px solid #d30000;
 	padding-left: 21px;
-	margin-bottom: 40px;
 }
 
-.quality-box .list {
-	width: 1036px;
+.title-box .title {
+	font-size: 27px;
+	color: #000000;
+	margin-bottom: 11px;
 }
 
-/* 标签（元素）选择器 */
-.quality-box .photo img {
-	width: 221px;
+.title-box .subtitle {
+	font-size: 12px;
+	color: #6B6B6B;
+	width: 462px;
 }
 
-.quality-box .item {
-	width: 221px;
-	margin-right: 38px;
-}
-
-.quality-box .cn {
+.quality-box .name {
+	margin-top: 21px;
 	font-size: 14px;
 	color: #6b6b6b;
-	text-align: center;
-	padding-top: 20px;
-	padding-bottom: 8px;
 }
 
 .quality-box .en {
 	font-size: 12px;
 	color: #6b6b6b;
+	margin-top: 9px;
+}
+
+.quality-box .item {
+	width: 221px;
+	margin-right: 38px;
 	text-align: center;
 }
 
+.quality-box .content {
+	padding-top: 40px;
+	padding-bottom: 84px;
+	width: 1038px;
+}

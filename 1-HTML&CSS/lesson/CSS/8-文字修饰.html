@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.fl {
+				float: left;
+			}
+
+			.fr {
+				float: right;
+			}
+
+			.clear {
+				clear: both;
+			}
+
+			.nav {
+				background-color: orange;
+			}
+
+			.nav .link {
+				padding: 10px 20px;
+			}
+
+			.nav .link a {
+				color: white;
+				text-decoration: none;
+			}
+
+			p {
+				text-indent: 2em;
+			}
+
+			.price-old {
+				text-decoration: line-through;
+			}
+
+			/* 内联元素垂直居中 */
+			.vertical-mid {
+				vertical-align: middle;
+			}
+
+			.font {
+				font-family: "时尚中黑简体","微软雅黑", "宋体";
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<fieldset id="">
+			<legend>段落样式</legend>
+			<p>
+				深入贯彻习近平强军思想，深入贯彻新时代军事教育方针，围绕培养德才兼备的高素质、专业化新型军事人才，着眼构建形成时时学、处处学、人人学、终身学的格局，坚持正确政治方向，坚持紧贴使命任务、岗位履职、职业发展，完善网络化、开放式、全覆盖军事职业教育体系，从宏观上建立军事职业教育制度机制，对于推动军事职业教育建设发展、构建新型军事人才培养体系，具有重要意义。
+			</p>
+		</fieldset>
+		<fieldset id="">
+			<legend>链接样式:必须指定到a标签才能生效！</legend>
+
+			<a href="#">百度一下</a>
+			<div class="nav">
+				<div class="link fl">
+					首页
+				</div>
+				<div class="link fl">
+					<a href="#">新闻</a>
+				</div>
+				<div class="link fl">
+					<a href="#">视频</a>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<p>
+				原价：<del>￥120.00元</del>
+			</p>
+			<p>
+				原价：<span class="price-old">￥120.00元</span>
+			</p>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>图片 + 文字 垂直居中</legend>
+
+			<p>
+				<img class="vertical-mid" src="https://a1.jikexueyuan.com/home/201707/04/5f32/595b876537116.png">
+				<span class="vertical-mid">测试文字</span>
+			</p>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>字体样式</legend>
+
+			<p class="font">字体段落样式，字体段落样式，字体段落样式，字体段落样式，字体段落样式</p>
+		</fieldset>
+	</body>
+
+</html>

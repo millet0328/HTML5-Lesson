@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box-1 {
+				border: 2px solid orange;
+				display: inline;
+			}
+
+			.box-2 {
+				border: 2px solid orange;
+				display: block;
+			}
+
+			.box-3 {
+				width: 100px;
+				height: 100px;
+				background-color: orange;
+				display: none;
+				display: block;
+			}
+
+			.box-4 {
+				width: 100px;
+				height: 100px;
+				background-color: orange;
+				visibility: hidden;
+			}
+			.box-5 {
+				width: 100px;
+				height: 100px;
+				background-color: orange;
+				opacity: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<fieldset id="">
+			<legend>块级元素：block vs 内联元素：inline</legend>
+
+			<div class="box-1">块级元素 -> 内联元素</div>
+			<span class="box-2">内联元素 -> 块级元素</span>
+		</fieldset>
+		<fieldset id="">
+			<legend>完全隐藏：display：none</legend>
+			<p>隐藏之后，<b>不</b>占据以前的空间</p>
+			<div class="box-3"></div>
+		</fieldset>
+		<fieldset id="">
+			<legend>非完全隐藏：visibility：hidden</legend>
+			<p>隐藏之后，占据以前的空间</p>
+			<div class="box-4"></div>
+		</fieldset>
+		<fieldset id="">
+			<legend>opacity隐藏：opacity：0</legend>
+			<p>opacity数值范围：[0,1]</p>
+			<p>隐藏之后，占据以前的空间</p>
+			<p>缺陷：所有子元素都会透明</p>
+			<div class="box-5"></div>
+		</fieldset>
+	</body>
+
+</html>

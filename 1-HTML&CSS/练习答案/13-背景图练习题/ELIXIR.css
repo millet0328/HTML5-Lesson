@@ -1,0 +1,419 @@
+ /*0.初始化 */
+ 
+ .vertical-mid {
+     vertical-align: middle;
+ }
+ 
+ body {
+     font-family: Ubuntu-Light;
+ }
+ /* 1.登录模块 start  */
+ 
+ .login-box {
+     background-color: #eff3f4;
+     color: #7b8a97;
+ }
+ 
+ .login-box ul {
+     padding: 15px 0 12px;
+ }
+ 
+ .login-box .contact span {
+     padding: 0 20px 0 7px;
+ }
+ 
+ .login-box .loginbar img {
+     padding-right: 15px;
+ }
+ 
+ .login-box .loginbar span {
+     padding: 0 5px 20px;
+ }
+ /* 2.nav模块 */
+ 
+ .nav .logo {
+     padding: 48px 0 57px;
+ }
+ 
+ .nav .menu {
+     padding: 58px 0 57px;
+ }
+ 
+ .nav .menu li {
+     padding-left: 45px;
+ }
+ 
+ .nav .menu li a {
+     color: #7b8a97;
+     font-size: 14px;
+ }
+ 
+ .nav .menu li a:hover {
+     color: #33b2c5;
+ }
+ /* 3.banner模块 */
+ 
+ .banner {
+     height: 655px;
+     background: url(./img/banner.jpg) no-repeat top center;
+ }
+ /* 4. quote  */
+ 
+ .quote {
+     padding: 61px 0 50px;
+     text-align: center;
+     background-color: #6ad6e2;
+ }
+ 
+ .quote .p {
+     padding-bottom: 30px;
+     font-size: 23px;
+     line-height: 42px;
+     color: #fff;
+ }
+ 
+ .quote a {
+     display: inline-block;
+     padding: 20px 52px 15px;
+     background-color: #fff;
+     color: #1cbdcf;
+     font-size: 18px;
+ }
+ /* 5. services 模块 */
+ 
+ .services ul {
+     width: 1254px;
+ }
+ 
+ .services li {
+     padding: 75px 55px 60px 0;
+ }
+ 
+ .services li .pic {
+     width: 37px;
+     padding-right: 29px;
+ }
+ 
+ .services li .title {
+     font-size: 23px;
+     color: #6a7884;
+ }
+ 
+ .services li .txt {
+     width: 297px;
+     line-height: 23px;
+ }
+ /* 6.tutorials模块 */
+ 
+ .tutorials {
+     background-color: #505d62;
+     text-align: center;
+ }
+ 
+ .tutorials .title {
+     padding: 61px 0 36px;
+     font-family: Vollkorn-Regular;
+     font-size: 38px;
+     color: #ffffff;
+ }
+ 
+ .tutorials .sub-title {
+     font-family: Vollkorn-Regular;
+     font-size: 18px;
+     color: #ff7979;
+ }
+ 
+ .tutorials .content {
+     padding: 58px 0 60px;
+     font-size: 18px;
+     line-height: 34px;
+     color: #ffffff;
+ }
+ 
+ .tutorials .button {
+     width: 500px;
+     padding-bottom: 60px;
+     margin: 0 auto;
+ }
+ 
+ .tutorials .button .see a,
+ .tutorials .button .more a {
+     display: block;
+     width: 235px;
+     padding: 20px 0;
+     font-size: 18px;
+     color: #ffffff;
+ }
+ 
+ .tutorials .button .see {
+     background-color: #71e0ec;
+ }
+ 
+ .tutorials .button .more {
+     background-color: #ff7979;
+ }
+ /* 7. user模块 */
+ 
+ .user {
+     text-align: center;
+ }
+ 
+ .user .pic {
+     padding: 71px 0 54px;
+ }
+ 
+ .user .content {
+     width: 807px;
+     margin: 0 auto 42px;
+     line-height: 42px;
+     font-family: Vollkorn-Regular;
+     font-size: 20px;
+     color: #6a7884;
+ }
+ 
+ .user li {
+     width: 390px;
+     padding-bottom: 60px;
+ }
+ 
+ .user li div {
+     padding-top: 15px;
+     font-size: 16px;
+     color: #7b8a97;
+ }
+ /* 8. data 模块 */
+ 
+ .data {
+     height: 354px;
+     text-align: center;
+     background: url(./img/data-bg.jpg) no-repeat top center;
+ }
+ 
+ .data li {
+     width: 292.5px;
+     font-family: Vollkorn-Regular;
+     font-size: 28px;
+     color: #ffffff;
+ }
+ 
+ .data li .number {
+     padding: 67px 0 55px;
+ }
+ 
+ .data li .des {
+     padding: 49px 0 27px;
+ }
+ 
+ .data li img {
+     height: 75px;
+ }
+ /* 9.blog 模块 */
+ 
+ .blog {
+     background-color: rgb(246, 248, 249);
+ }
+ 
+ .blog .main-title {
+     padding: 50px 0;
+     text-align: center;
+     font-family: Vollkorn-Regular;
+     font-size: 38px;
+     color: #6a7884;
+ }
+ 
+ .blog ul {
+     width: 1200px;
+ }
+ 
+ .blog li {
+     padding-right: 30px;
+ }
+ 
+ .blog .middle {
+     padding-left: 14px;
+     background-color: #fff;
+ }
+ 
+ .blog .date {
+     padding: 18px 0;
+     font-size: 12px;
+ }
+ 
+ .blog .date span {
+     color: #46b7c7;
+ }
+ 
+ .blog .title {
+     width: 307px;
+     font-family: Vollkorn-Regular;
+     font-size: 23px;
+     color: #6a7884;
+ }
+ 
+ .blog .content,
+ .blog .about a {
+     padding: 20px 0;
+     width: 332px;
+ }
+ 
+ .blog .about a {
+     display: block;
+     padding-bottom: 20px;
+     color: #46b7c7;
+ }
+ 
+ .blog .info {
+     padding: 16px 0 13px;
+     background-color: rgb(235, 238, 240);
+     border-bottom: 1px solid rgb(222, 226, 229);
+ }
+ 
+ .blog .info img {
+     padding: 0 6px 0 16px;
+ }
+ 
+ .blog .arrow {
+     width: 108px;
+     margin: 0 auto;
+     padding: 21px 0 36px;
+ }
+ 
+ .footer {
+     background-color: #282e3b;
+     padding-top: 40px;
+ }
+ /* introduce  */
+ 
+ .introduce {
+     padding-right: 52px;
+ }
+ /* introduce，post 的 p 统一设置  */
+ 
+ .introduce .p,
+ .post .p,
+ .introduce .more {
+     font-family: Ubuntu-Light;
+     font-size: 14px;
+     color: #b2bacf;
+ }
+ 
+ .introduce .more {
+     color: #33b2c5;
+ }
+ 
+ .introduce .p {
+     width: 234px;
+     padding-bottom: 26px;
+ }
+ 
+ .introduce .logo {
+     padding: 18px 0 29px;
+ }
+ /* 注释：post，tag，photo 的 title 统一设置*/
+ 
+ .post .title,
+ .tag .title,
+ .photo .title {
+     padding-bottom: 30px;
+     font-family: Vollkorn-Regular;
+     font-size: 23px;
+     color: #fff;
+ }
+ 
+ .post .title img,
+ .tag .title img,
+ .photo .title img {
+     padding-right: 14px;
+ }
+ /* post  */
+ 
+ .post {
+     padding-right: 37px;
+ }
+ 
+ .post a {
+     display: block;
+     font-family: Ubuntu-Light;
+     font-size: 12px;
+     color: #b2bacf;
+ }
+ 
+ .post .p {
+     width: 193px;
+     line-height: 21px;
+ }
+ 
+ .post .content {
+     padding-bottom: 20px;
+ }
+ 
+ .post .pic {
+     padding: 5px 10px 0 0;
+ }
+ 
+ .post .info {
+     padding-top: 10px;
+     vertical-align: middle;
+ }
+ 
+ .post .date {
+     padding-right: 22px;
+ }
+ 
+ .post .info img {
+     padding-right: 8px;
+ }
+ /* tag  */
+ 
+ .tag .list {
+     width: 272px;
+     padding: 0 5px 5px 0;
+ }
+ 
+ .tag .list a {
+     display: inline-block;
+     padding: 12px 13px;
+     text-align: center;
+     font-family: Ubuntu-Light;
+     font-size: 16px;
+     background-color: rgb(28, 33, 43);
+     color: #b2bacf;
+ }
+ /* photo  */
+ 
+ .photo {
+     width: 276px;
+ }
+ 
+ .photo .item {
+     padding: 0 5px 5px 0;
+     font-size: 0;
+ }
+ /* a中包含img解决方法
+其实解决方法不止一种：
+1.将图像定义成    img:{display:block;}
+2.给父级设置固定高度，然后   overflow:hidden
+3.设置  font-size:0;
+4.设置 img 的 vertical-align: bottom;
+5.设置 img 的 margin-bottom: -4px;
+*/
+ /* bottom */
+ 
+ .bottom {
+     background-color: #171b24;
+ }
+ 
+ .bottom .container {
+     padding: 30px 0;
+ }
+ 
+ .bottom,
+ .bottom a {
+     font-family: Ubuntu-Light;
+     font-size: 14px;
+     color: #cdd1dd;
+ }
+ 
+ .bottom a {
+     padding-left: 30px;
+ }

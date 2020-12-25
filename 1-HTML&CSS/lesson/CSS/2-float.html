@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box {
+				width: 200px;
+				height: 200px;
+				background-color: orange;
+				color: white;
+				font-size: 24px;
+			}
+
+			.fl {
+				float: left;
+			}
+
+			.fr {
+				float: right;
+			}
+
+			.clear {
+				clear: both;
+			}
+
+			.bottom {
+				height: 50px;
+				background-color: green;
+			}
+
+			.item {
+				width: 500px;
+				height: 100px;
+				background-color: yellow;
+			}
+		</style>
+	</head>
+
+	<body>
+		<fieldset id="">
+			<legend>浮动 & 清除浮动</legend>
+			<div class="parent">
+				<div class="box fl">
+					1
+				</div>
+				<div class="box fl">
+					2
+				</div>
+				<div class="box fl">
+					3
+				</div>
+				<div class="clear"></div>
+			</div>
+
+			<div class="bottom"></div>
+		</fieldset>
+		<!-- 浮动的排列 -->
+		<fieldset id="">
+			<legend>浮动的排列</legend>
+			<div class="list">
+				<div class="item fl">1</div>
+				<div class="item fl">2</div>
+				<div class="item fl">3</div>
+				<div class="item fl">4</div>
+				<div class="clear"></div>
+			</div>
+		</fieldset>
+		<!-- 排列不整齐 -->
+		<fieldset id="">
+			<legend>排列不整齐</legend>
+			<div class="list">
+				<div style="height: 104px;" class="item fl">1</div>
+				<div style="background-color: pink;" class="item fl">2</div>
+				<div style="background-color: green;" class="item fl">3</div>
+				<div class="item fl">4</div>
+				<div class="clear"></div>
+			</div>
+		</fieldset>
+
+	</body>
+
+</html>

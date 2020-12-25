@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="./fonts/font-awesome/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="./fonts/iconfonts/iconfont.css">
+		<style type="text/css">
+			a:link {
+				color: red;
+			}
+
+			a:visited {
+				color: green;
+			}
+
+			a:hover {
+				color: blue;
+			}
+
+			a:active {
+				color: orange;
+			}
+
+			.box-1 {
+				width: 100px;
+				height: 100px;
+				border: 2px solid orange;
+				background-color: blue;
+				color: white;
+			}
+
+			.box-1:hover {
+				border: 2px solid black;
+				background-color: white;
+				color: blue;
+			}
+
+			.table tbody tr:first-child {
+				background-color: pink;
+			}
+
+			.table tbody tr:last-child {
+				background-color: yellow;
+			}
+
+			.box-2::before {
+				content: '❀';
+				/* 必要属性 */
+			}
+
+			.box-2::after {
+				content: url(./img/95742.png);
+			}
+
+			.clearfix::after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+
+			.icon-gears {
+				font-size: 72px;
+				color: blue;
+			}
+
+			.icon-gears:hover {
+				color: red;
+			}
+
+			.icon-egg {
+				font-size: 72px;
+				color: orange;
+			}
+		</style>
+	</head>
+
+	<body>
+		<fieldset id="">
+			<legend>伪类</legend>
+
+			<p>
+				<a href="http://www.s.com/">未访问：link</a>
+			</p>
+			<p>
+				<a href="http://www.baidu.com/">访问过：visited</a>
+			</p>
+			<p>
+				<a href="#">鼠标经过：hover</a>
+				<div class="box-1">
+					div的hover
+				</div>
+			</p>
+			<p>
+				<a href="#">活动的链接：active</a>
+			</p>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>child伪类</legend>
+
+			<table class="table" width="100%" border="1" cellpadding="20">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>姓名</th>
+						<th>年龄</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>黄小米</td>
+						<td>28</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>黄渤</td>
+						<td>40</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>黄磊</td>
+						<td>45</td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>黄晓明</td>
+						<td>38</td>
+					</tr>
+				</tbody>
+			</table>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>伪元素</legend>
+			<p>1、基础语法</p>
+			<p class="box-2">
+				《木兰花令》 纳兰性德
+				人生若只如初见，何事秋风悲画扇？
+				等闲变却故人心，却道故人心易变。
+				骊山语罢清宵半，泪雨零铃终不怨。
+				何如薄倖锦衣郎，比翼连枝当日愿！
+			</p>
+			<p>2、清除浮动</p>
+			<ul class="team-list clearfix">
+				<li class="fl">黄磊</li>
+				<li class="fl">黄小米</li>
+				<li class="fl">孙红雷</li>
+			</ul>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>字体图标</legend>
+			<p>1、字体图标使用，需要征求设计师的意见</p>
+			<p>2、兼容性有问题，一般 IE>9 可以使用</p>
+			<p>
+				<i class="fa fa-gears icon-gears"></i>
+			</p>
+			<p>
+				<span class="iconfont icon-caidan icon-egg"></span>
+			</p>
+		</fieldset>
+	</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!-- 重置样式表必须放置第一位 -->
+		<link rel="stylesheet" href="./css/reset.css">
+
+		<style type="text/css">
+			a {
+				color: orange;
+				font-size: 16px;
+			}
+
+			p.box {
+				height: 50px;
+				border: 2px solid orange;
+			}
+
+			.box {
+				height: 100px;
+			}
+
+			#box {
+				height: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>就近原则</legend>
+			<a href="#">就近原则</a>
+		</fieldset>
+		
+		<fieldset id="">
+			<legend>提高优先级</legend>
+			<p>1、在原有的基础上，添加祖先元素的class类</p>
+			<p class="box" id="box">
+				box1
+			</p>
+		</fieldset>
+		
+	</body>
+
+</html>

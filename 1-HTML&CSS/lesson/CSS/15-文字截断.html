@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			a {
+				text-decoration: none;
+			}
+
+			ul {
+				list-style: none;
+				padding: 0;
+			}
+
+			.relative {
+				position: relative;
+			}
+
+			.clip {
+				overflow: hidden;
+			}
+
+			.box {
+				width: 200px;
+				height: 200px;
+				margin-bottom: 20px;
+				background-color: rgb(0, 0, 255, 0.5);
+				color: white;
+			}
+
+			.content {
+				position: absolute;
+				right: -10px;
+				top: 0;
+				width: 100px;
+				height: 100px;
+				background-color: green;
+
+			}
+
+			/* 单行文字截断 */
+			.news-list {
+				width: 300px;
+				border: 2px solid orange;
+				padding: 10px;
+				font-size: 16px;
+			}
+
+			.news-list li {
+				padding: 10px 0;
+				border-bottom: 1px solid #EEEEEE;
+				white-space: nowrap;
+				/* 文字不允许折行 */
+				overflow: hidden;
+				/* 裁剪超出部分 */
+				text-overflow: ellipsis;
+				/* 文字省略符号 */
+			}
+
+			.line-clamp {
+				display: -webkit-box;
+				-webkit-line-clamp: 2; /* 几行开始截断 */
+				-webkit-box-orient: vertical;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				word-break: break-all; /* 对超长数字/超长英文断行 */
+			}
+		</style>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>overflow基本用法</legend>
+			<div class="box relative" style="overflow: visible;">
+				<p>visible</p>
+				<p>visible</p>
+				<p>visible</p>
+				<p>visible</p>
+				<p>visible</p>
+				<p>visible</p>
+				<p>visible</p>
+				<p>visible</p>
+				<p>visible</p>
+			</div>
+			<div class="box relative" style="overflow: hidden;">
+				<div class="content">hidden</div>
+			</div>
+			<div class="box relative" style="overflow: scroll;">
+				<p>scroll</p>
+				<p>scroll</p>
+				<p>scroll</p>
+				<p>scroll</p>
+				<p>scroll</p>
+				<p>scroll</p>
+				<p>scroll</p>
+				<p>scroll</p>
+				<p>scroll</p>
+				<p>scroll</p>
+			</div>
+			<div class="box relative" style="overflow: auto;">
+				<p>auto</p>
+				<p>auto</p>
+				<p>auto</p>
+				<p>auto</p>
+				<p>auto</p>
+				<p>auto</p>
+				<p>auto</p>
+				<p>auto</p>
+				<p>auto</p>
+				<p>auto</p>
+			</div>
+		</fieldset>
+		<fieldset id="">
+			<legend>单行文字截断</legend>
+			<p>overflow / white-space / text-overflow</p>
+			<ul class="news-list">
+				<li>
+					<a href="#">用一篇全面干货，帮你了解超多设计师着迷的「Riso印刷」</a>
+				</li>
+				<li>
+					<a href="#">木言-《看不见的河》</a>
+				</li>
+				<li>
+					<a href="#">想要给视频加背景音？这里全是免费可商用的原创音乐素材！</a>
+				</li>
+			</ul>
+		</fieldset>
+		<fieldset id="">
+			<legend>多行文本截断</legend>
+
+			<p class="line-clamp">
+				新华社里约热内卢12月23日电(记者陈威华赵焱)新年即将到来，巴西新冠疫情依然十分严峻。主要由华商组成的巴西里约华人联谊会(以下简称华联会)近日面向当地多家机构举行“赠人玫瑰手留余香”慈善物资捐赠活动，得到巴西各级政府和民众的赞许。
+				据华联会秘书长苏子梁介绍，华联会每年都举行针对当地孤儿院、敬老院和福利院等机构的捐助活动，以回馈当地社会。今年由于疫情严重，巴西失业率上升，底层民众生计艰难。华联会购买了一批专供老人和儿童的食品以及防疫物资，捐给由当地政府推荐的4家机构。
+			</p>
+		</fieldset>
+	</body>
+</html>

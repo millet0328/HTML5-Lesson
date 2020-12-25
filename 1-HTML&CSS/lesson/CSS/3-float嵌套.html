@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>浮动的嵌套</title>
+		<style>
+			.fl {
+				float: left;
+			}
+
+			.fr {
+				float: right;
+			}
+
+			.clear {
+				clear: both;
+			}
+
+			/* 版心 */
+			.container {
+				width: 1000px;
+				margin: 0 auto;
+			}
+
+			.logo {
+				width: 100px;
+				height: 60px;
+				background-color: orange;
+			}
+
+			.link {
+				width: 60px;
+				height: 60px;
+				background-color: pink;
+			}
+
+			.nav {
+				width: 400px;
+				background-color: blue;
+			}
+
+			.bg-blue {
+				background-color: blue;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="bg-blue">
+			<div class="container">
+				<div class="logo fl">
+					logo
+				</div>
+				<div class="nav fr">
+					<div class="link fl">link-1</div>
+					<div class="link fl">link-2</div>
+					<div class="link fl">link-3</div>
+					<div class="link fl">link-4</div>
+					<div class="link fl">link-5</div>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -5,4 +5,4 @@
 
 2、写好注释，class命名规范，页面首先显示正常，以实际代码的合理性为标准来评分！
 
-3、text-align:center对于图片img同样生效，请百度具体使用方法
+3、text-align:center对于图片img/button按钮同样生效，请百度具体使用方法

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			ul.list {
+				list-style: none;
+			}
+
+			.fl {
+				float: left;
+			}
+
+			.clear {
+				clear: both;
+			}
+
+			.list li {
+				float: left;
+				padding: 10px 20px;
+				border: 1px solid orange;
+				margin-right: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<fieldset id="">
+			<legend>列表：默认样式</legend>
+			<!-- 结构相同的一组数据 -->
+			<ul>
+				<li>黄磊</li>
+				<li>张艺兴</li>
+				<li>黄渤</li>
+				<li>王迅</li>
+				<li>孙红雷</li>
+			</ul>
+		</fieldset>
+		<fieldset id="">
+			<legend>列表 + 浮动</legend>
+			<ul class="list">
+				<li class="fl">黄磊</li>
+				<li class="fl">张艺兴</li>
+				<li class="fl">黄渤</li>
+				<li class="fl">王迅</li>
+				<li class="fl">孙红雷</li>
+				<div class="clear"></div>
+			</ul>
+			<ul class="list">
+				<li>黄磊</li>
+				<li>张艺兴</li>
+				<li>黄渤</li>
+				<li>王迅</li>
+				<li>孙红雷</li>
+				<div class="clear"></div>
+			</ul>
+		</fieldset>
+
+	</body>
+</html>

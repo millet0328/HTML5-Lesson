@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box-1 {
+				position: static;
+				width: 100px;
+				height: 100px;
+				background-color: blue;
+				color: white;
+			}
+
+			.floor-box {
+				position: fixed;
+				right: 10px;
+				bottom: 10px;
+				z-index: 10000;
+				border: 1px solid black;
+			}
+
+			.floor-box ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.floor-box li {
+				padding: 10px 20px;
+				background-color: orange;
+				border-bottom: 1px solid black;
+			}
+
+			.floor-box a {
+				text-decoration: none;
+			}
+
+			.box-2 {
+				padding: 20px;
+				border: 1px solid orange;
+			}
+
+			.box-2 .text {
+				position: relative;
+				bottom: 10px;
+				left: 10px;
+			}
+
+			/* 工具类 */
+			.relative {
+				position: relative;
+			}
+
+			.photo {
+				width: 400px;
+			}
+
+			.photo .cover {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				color: white;
+				text-align: center;
+				background-color: rgba(0, 0, 0, 0.5);
+			}
+
+			.photo .title .category {
+				font-size: 12px;
+				padding-top: 5px;
+			}
+
+			.photo .title {
+				position: relative;
+				top: 50%;
+				margin-top: -21px;
+			}
+
+			.box-3 {
+				height: 200px;
+				border: 2px solid orange;
+			}
+
+			.layer-1 {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 200px;
+				height: 150px;
+				background-color: rgba(255, 255, 0, 0.5);
+			}
+
+			.layer-2 {
+				position: absolute;
+				left: 20px;
+				top: 20px;
+				width: 200px;
+				height: 150px;
+				background-color: rgba(0, 255, 0, 0.5);
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- 静态定位 -->
+		<fieldset id="static">
+			<legend>静态定位:没有定位</legend>
+
+			<div class="box-1">static</div>
+		</fieldset>
+		<!-- 固定定位 -->
+		<fieldset id="fixed">
+			<legend>固定定位:fixed定位</legend>
+			<p>1、参照物：浏览器窗口</p>
+			<p>2、脱离DOM流，不占据空间</p>
+			<p>3、必须配合top/bottom/left/right四个方位才能生效</p>
+			<p>4、上下选一个，左右选一个</p>
+			<p>5、除非特殊用途，定位的时候，不要用margin</p>
+
+			<div class="floor-box">
+				<ul>
+					<li>
+						<a href="#static">static定位</a>
+					</li>
+					<li>
+						<a href="#fixed">fixed定位</a>
+					</li>
+					<li>
+						<a href="#relative">relative定位</a>
+					</li>
+					<li>
+						<a href="#absolute">absolute定位</a>
+					</li>
+					<li>
+						<a href="#z-index">z-index</a>
+					</li>
+					<li>
+						<a href="#static">返回顶部</a>
+					</li>
+				</ul>
+			</div>
+
+		</fieldset>
+		<!-- 相对定位 -->
+		<fieldset id="relative">
+			<legend>相对定位：relative定位</legend>
+			<p>1、参照物：自身</p>
+			<p>2、存在DOM流中，占据原先的空间</p>
+			<p>3、必须配合top/bottom/left/right四个方位才能生效</p>
+			<p>4、上下选一个，左右选一个</p>
+			<p>5、微调某一个元素的位置，常被用来作为绝对定位元素的参照物。</p>
+			<div class="box-2">
+				<img src="./img/95742.png" alt="">
+				<span class="text">relative</span>
+				<span>后面的span</span>
+			</div>
+		</fieldset>
+		<!-- 绝对定位 -->
+		<fieldset id="absolute">
+			<legend>绝对定位：absolute定位</legend>
+			<p>
+				1、参照物：最靠近的已定位（fixed/relative/absolute）祖先元素，如果没有已定位的祖先元素，那么它的位置相对于<html>或者<body>定位;
+			</p>
+			<p>2、脱离DOM流，不占据空间。</p>
+			<p>3、必须配合top/bottom/left/right四个方位才能生效</p>
+			<p>4、上下选一个，左右选一个</p>
+			<p>5、常用作动画结构</p>
+
+			<div class="photo relative">
+				<img width="400" src="./img/1525490815187.jpg">
+				<div class="cover">
+					<div class="title">
+						<span class="name">伦敦野生动物</span>
+						<div class="category">动物摄影</div>
+					</div>
+				</div>
+			</div>
+		</fieldset>
+		<!-- z-index -->
+		<fieldset id="z-index">
+			<legend>z-index</legend>
+			<p>1、两个定位元素，默认条件下，后面盖住前面</p>
+			<p>2、同一个参照物，z-index数值越大，越靠前</p>
+			<div class="box-3 relative">
+				<div class="layer-1">1</div>
+				<div class="layer-2">2</div>
+			</div>
+		</fieldset>
+	</body>
+
+</html>
