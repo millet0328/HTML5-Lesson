@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var person = {
+				name: '黄小米',
+				age: 25,
+				sex: '女',
+			}
+			// 查询属性
+			var birthYear = 2020 - person.age;
+			person['name'];
+			// 增加属性
+			person.job = 'teacher';
+			person.boyFriend = {
+				name: "张艺兴",
+				age: 28
+			}
+			// 修改属性
+			person.job = 'singer';
+			// 删除属性
+			delete person.boyFriend;
+		</script>
+	</body>
+</html>

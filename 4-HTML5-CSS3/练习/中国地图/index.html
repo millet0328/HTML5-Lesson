@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="lib/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-3.5.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="map/js/china.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/china-main-city-map.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			#main {
+				width: 1000px;
+				height: 700px;
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="main"></div>
+		<script type="text/javascript">
+			var myChart = echarts.init(document.getElementById('main'));
+			//存储切换的每一级地图信息
+			var mapStack = [];
+			var curMap = {};
+			$.get('map/map/china.json', function(res) {
+				console.log(res);
+				echarts.registerMap('chinaMap', res);
+				// 指定图表的配置项和数据
+				var option = {
+					tooltip: { //提示框组件。
+						show: true, //显示提示标签
+						formatter: '{b}', //提示标签格式 {b}代表区域名称 
+						backgroundColor: "#ffc7fa", //提示标签背景颜色
+						textStyle: { color: "#fff" } //提示标签字体颜色
+					},
+					series: {
+						type: "map",
+						map: "chinaMap",
+						roam: true, //设置允许缩放 以及拖动
+						label: { //label 名称显示  show：true
+							show: true, //显示省份标签
+							textStyle: {
+								color: "#333"
+							} //省份标签字体颜色
+						},
+						zoom: 1, //设置初始化缩放比例
+						//center:[118.000923, 36.275807],//设置地图中心点的坐标
+						itemStyle: { //地图区域的多边形 图形样式。
+							normal: {
+								borderWidth: 0.5, //区域边框宽度
+								borderColor: '#009fe8', //区域边框颜色
+								areaColor: "#cccccc", //区域颜色
+								opacity: 1,
+								borderType: "dotted", //点状边框
+							},
+							emphasis: { //对应的鼠标悬浮效果  高亮样式
+								borderWidth: 0.5,
+								borderColor: '#43cb00',
+								areaColor: "#5555ff",
+								shadowBlur: 20, //阴影模糊大小
+								shadowColor: 'rgba(0, 0, 0, 0.5)'
+							}
+						},
+					}
+				};
+				//加载option数据地图
+				myChart.setOption(option);
+			});
+			// 点击触发
+			myChart.on('click', function(params) {
+				var name = params.name;
+				console.log(name);
+				var mapCode = cityMap[name];
+				if (!mapCode) {
+					return;
+				}
+				loadMap(mapCode, name);
+				//将上一级地图信息压入mapStack
+				mapStack.push({
+					mapCode: curMap.mapCode,
+					mapName: curMap.mapName
+				});
+			});
+			function loadMap(mapCode, mapName) {
+				$.getJSON('china-main-city/' + mapCode + '.json', function(data) {
+					if (data) {
+						echarts.registerMap(mapName, data);
+						var option = {
+							tooltip: {
+								trigger: 'item',
+								formatter: '{b}'
+							},
+							series: [{
+								name: '',
+								type: 'map',
+								mapType: mapName,
+								selectedMode: 'multiple',
+								label: {
+									normal: {
+										show: true
+									},
+									emphasis: {
+										show: true
+									}
+								},
+								data: []
+							}]
+						};
+						myChart.setOption(option);
+						//存储当前地图的信息
+						curMap = {
+							mapCode: mapCode,
+							mapName: mapName
+						};
+					}
+				});
+			}
+		</script>
+	</body>
+</html>

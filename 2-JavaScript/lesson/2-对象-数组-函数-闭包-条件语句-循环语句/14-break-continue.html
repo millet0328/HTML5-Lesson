@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 1、计算[34,125]之间第一个被23整除的数字
+			for (var i = 34; i <= 125; i++) {
+				if (i % 23 == 0) {
+					console.log('第一个被23整除的数字：%d', i);
+					break;
+				}
+			}
+			// 2、计算[7,30]之间，不能整除11的数字有哪些？
+			for (var i = 7; i <= 30; i++) {
+				if (i % 11 == 0) {
+					continue;
+				}
+				console.log(i);
+			}
+		</script>
+	</body>
+</html>

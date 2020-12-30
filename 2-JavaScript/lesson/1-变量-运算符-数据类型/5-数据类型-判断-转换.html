@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			//1、 简单数据类型判断
+			var a = 3.14;
+			var b = '3.14';
+			typeof a
+
+			// 2、引用数据类型判断
+			var person = {
+				name: '黄小米',
+				age: 20,
+			}
+			var arr = ['数学', '英语'];
+
+			arr instanceof Array;  // true
+			
+			person instanceof Object; // true
+			person instanceof Array; // false
+			
+			// 类型转换
+			// 字符 => 数字
+			var x = '10';
+			var y = parseInt(x);
+			var z = Number(x);
+			// 数字 => 字符
+			var m = 20;
+			var n = m.toString();
+			// 布尔 => 数字
+			var e = false;
+			var f = Number(e);
+			// 数字 => 布尔
+			var a = 4;
+			var b = Boolean(a);
+			
+		</script>
+	</body>
+</html>

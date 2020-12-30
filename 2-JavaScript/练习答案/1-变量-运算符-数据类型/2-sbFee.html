@@ -62,7 +62,7 @@
         sbData.gongShang.base * sbData.gongShang.personPercent +
         sbData.shiYe.base * sbData.shiYe.personPercent +
         sbData.shengYu.base * sbData.shengYu.personPercent;
-    console.log(self);
+    console.log('个人缴费：%f',self);
     //公司缴费
     var company =
         sbData.yangLao.base * sbData.yangLao.companyPercent +
@@ -70,8 +70,7 @@
         sbData.gongShang.base * sbData.gongShang.companyPercent +
         sbData.shiYe.base * sbData.shiYe.companyPercent +
         sbData.shengYu.base * sbData.shengYu.companyPercent;
-    console.log(company);
-
+    console.log('公司缴费：%f',company);
     // 第二种方法
     function cal(key) {
         return sbData[key].base * sbData[key].personPercent;

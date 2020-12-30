@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>if语句变体</title>
+	</head>
+	<body>
+		<input type="text" name="" id="txt" value="" />
+		<button id="btn" type="button">按钮</button>
+		<!--js-->
+		<script type="text/javascript">
+			//查找元素
+			var oBtn = document.getElementById("btn");
+			var oTxt = document.getElementById("txt");
+			//绑定事件
+			oBtn.onclick = function() {
+				// 获取value
+				var num = oTxt.value;
+				//value为空
+				if (num == '') {
+					alert("请填写一个数字！");
+					return false;
+				};
+				// 判断奇偶数
+				if (num % 2) {
+					console.log('%s 是奇数', num);
+				} else {
+					console.log('%s 是偶数', num);
+				}
+			}
+		</script>
+	</body>
+</html>

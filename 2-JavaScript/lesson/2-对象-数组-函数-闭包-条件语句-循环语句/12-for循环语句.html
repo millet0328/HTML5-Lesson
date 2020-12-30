@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 简单循环
+			for (var i = 0; i < 3; i++) {
+				// console.log(i);
+			}
+			// 求0-1024之间能被7整除的数字
+			var result = '';
+			for (var i = 0; i <= 1024; i++) {
+				if (i % 7 == 0) {
+					result = result + i + ' '
+				}
+			}
+			// 1~1024之间,能被7整除的数,总共有多少个
+			var num = 0;
+			for (var i = 1; i <= 1024; i++) {
+				if (i % 7 == 0) {
+					num++;
+				}
+			}
+			// 求和运算
+			var sum = 0;
+			for (var i = 0; i <= 100; i++) {
+				sum = sum + i
+			}
+			// 数学成绩
+			var math = [65, 98, 46, 78, 68, 35, 64, 85];
+			//总成绩
+			var total = 0;
+			for (var i = 0; i < math.length; i++) {
+				total += math[i];
+			}
+			// 平均成绩
+			var avg = total / math.length;
+			// 评委评分规则，去掉最高分，去掉最低分，剩下的算平均分
+			var score = [65, 89, 78, 4, 87, 45, 68, 98, 36, 65]
+			var min = score[0];
+			var max = score[0];
+			var total = 0;
+			for (var i = 0; i < score.length; i++) {
+				if (min > score[i]) {
+					min = score[i];
+				}
+				if (max < score[i]) {
+					max = score[i];
+				}
+				total = total + score[i];
+			}
+			var res = (total - min - max) / (score.length - 2);
+
+			console.log("min:" + min + " max:" + max);
+		</script>
+	</body>
+</html>
