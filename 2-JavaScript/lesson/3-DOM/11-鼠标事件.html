@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			.box {
+				width: 200px;
+				height: 200px;
+				padding: 10px;
+				margin: 10px 0;
+				background-color: yellow;
+			}
+
+			.flower {
+				position: absolute;
+				left: 0;
+				top: 0;
+				font-size: 40px;
+				color: pink;
+				cursor: pointer;
+			}
+
+			.demo {
+				position: relative;
+				padding: 20px;
+				border: 2px solid orange;
+				min-height: 300px;
+			}
+
+			.bg {
+				background: url(img/cf.jpg) no-repeat center;
+				height: 900px;
+				background-size: cover;
+				cursor: crosshair;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<fieldset id="">
+			<legend>鼠标事件</legend>
+			<p>
+				1、mouseover、mouseout：支持事件冒泡，鼠标移动到自身时候会触发事件，同时移动到其子元素身上也<b style="color: red;">会</b>触发事件
+			</p>
+			<p>
+				2、mouseenter、mouseleave：不支持事件冒泡，鼠标移动到自身是会触发事件，但是移动到其子元素身上<b style="color: red;">不会</b>触发事件
+			</p>
+			<div class="demo">
+				<div id="box-1" class="box">mouseover、mouseout</div>
+				<div id="box-2" class="box">mouseenter、mouseleave</div>
+			</div>
+
+			<script type="text/javascript">
+				// 查找元素
+				var oBox1 = document.querySelector('#box-1');
+				var oBox2 = document.querySelector('#box-2');
+				var oDemo = document.querySelector('.demo');
+
+				// 移入事件
+				oBox1.onmouseover = function() {
+					this.style.backgroundColor = "pink";
+				}
+				// 移出事件
+				oBox1.onmouseout = function() {
+					this.style.backgroundColor = "yellow";
+				}
+
+				// 移入事件
+				oBox2.onmouseenter = function() {
+					this.style.backgroundColor = "green";
+				}
+				// 移出事件
+				oBox2.onmouseleave = function() {
+					this.style.backgroundColor = "yellow";
+				}
+
+				oDemo.onmouseover = function() {
+					console.log('demo元素触发mouseover事件！')
+				}
+				oDemo.onmouseout = function() {
+					console.log('demo元素触发mouseout事件！')
+				}
+
+				oDemo.onmouseenter = function() {
+					console.log('demo元素触发mouseenter事件！')
+				}
+				oDemo.onmouseleave = function() {
+					console.log('demo元素触发mouseleave事件！')
+				}
+			</script>
+		</fieldset>
+		<fieldset id="">
+			<legend>mousemove事件</legend>
+
+			<div class="demo bg">
+				<img width="100" src="./img/bullet1.png" alt="">
+				<img width="100" src="./img/bullet2.png" alt="">
+			</div>
+		</fieldset>
+	</body>
+
+</html>

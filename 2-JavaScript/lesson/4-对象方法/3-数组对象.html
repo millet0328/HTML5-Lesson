@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			var arr = [1, 2, 3, 4];
+			// unshift
+			arr.unshift(0);
+			// push
+			arr.push(5);
+			// shift
+			arr.shift();
+			// pop
+			arr.pop();
+			// splice(删除的index,删除的个数,增加的元素....)
+			arr.splice(1, 2, 7, 8, 9);
+			// push应用场景：构建一个新数组
+			// 求0-100之间能被7整除的数,将结果放在数组中
+			var data = [];
+			for (var i = 0; i < 100; i++) {
+				if (i % 7 == 0) {
+					data.push(i);
+				}
+			}
+			// 数组合并
+			// 数组 => 字符串 join
+			// 将上面的data结果用"0-7-14-21"字符串表示
+			var result = data.join('-');
+			// 字符串 => 数组 split
+			result.split('-');
+			// 数组排序 sort
+			var unsort = [1, 42, 65, 46, 28, 65, 53, 1, 32, 7, 65, 46, 1, 53, 6, 46, 65, 32, 28, 39, 65, 32, 1, 23, 65, 32, 39,
+				65,
+				46, 53, 46, 53, 65, 32, 53, 28, 65, 1, 53, 65, 23, 32, 7, 65, 32, 46, 6, 1, 53, 46, 7, 53, 9, 23, 46, 7, 53, 6, 1,
+				65, 28, 7, 28, 32, 65, 23, 46, 7, 53, 9
+			];
+			unsort.sort(function(a, b) {
+				return b - a;
+			});
+			// 对象数组排序
+			var team = [{
+				name: "黄磊",
+				age: 48,
+			}, {
+				name: "黄渤",
+				age: 46,
+			}, {
+				name: "张艺兴",
+				age: 28,
+			}, {
+				name: "王迅",
+				age: 42,
+			}, {
+				name: "罗志祥",
+				age: 43,
+			}, {
+				name: "孙红雷",
+				age: 47,
+			}]
+			// a,b代表数组一个元素
+			team.sort(function(a, b) {
+				if (a.age > b.age) {
+					return 1;
+				} else {
+					return -1;
+				}
+				return a.age - b.age;
+			});
+			// 排序算法 冒泡 快速 二分法
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			// 函数定义
+			function sum(m, n) {
+				var total = 0;
+				for (var i = m; i <= n; i++) {
+					total += i;
+				}
+				// console.log(total);
+				return total;
+			}
+			sum(0, 100);
+			sum(15, 75);
+			// return函数，判断奇偶数
+			function isEven(x) {
+				if (x % 2 == 0) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+			// 1+....+320的总和，
+			// 如果得到偶数，总和*12
+			// 如果得到奇数，总和/7
+			var result = sum(1, 320);
+			var flag = isEven(result);
+			if (flag) {
+				console.log(result * 12);
+			} else {
+				console.log(result / 7);
+			}
+		</script>
+	</body>
+
+</html>

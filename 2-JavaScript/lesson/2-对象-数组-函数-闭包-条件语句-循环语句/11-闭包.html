@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			// 闭包概念
+			function outerFun() {
+				var a = 0;
+
+				function innerFun() {
+					a++;
+					console.log(a);
+				}
+				return innerFun;
+			}
+			var obj1 = outerFun();
+			obj1(); //结果为1
+			obj1(); //结果为2
+			var obj2 = outerFun();
+			obj2(); //结果为1
+			obj2(); //结果为2
+			
+			obj1(); //结果为3
+			obj2(); //结果为3
+			//闭包题目-1
+			function foo(x) {
+				var num = 3;
+				return function(y) {
+					console.log(x + y + (++num));
+				}
+			}
+			var bar = foo(5);
+			bar(20);
+		</script>
+	</body>
+
+</html>

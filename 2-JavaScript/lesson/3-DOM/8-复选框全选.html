@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<form>
+			<!-- 布尔属性 -->
+			<p class="lesson">
+				<label>课程：</label>
+				<label>
+					<input type="checkbox"> 语文
+				</label>
+				<label>
+					<input type="checkbox"> 数学
+				</label>
+				<label>
+					<input type="checkbox"> 英语
+				</label>
+				<label>
+					<input type="checkbox"> 政治
+				</label>
+				<label>
+					<input type="checkbox"> 物理
+				</label>
+				<label>
+					<input type="checkbox"> 化学
+				</label>
+				<label>
+					<input type="checkbox"> 生物
+				</label>
+			</p>
+			<p>
+				<label>
+					<input id="chkAll" type="checkbox">全选
+				</label>
+				<label>
+					<input id="chkReverse" type="checkbox">反选
+				</label>
+			</p>
+		</form>
+		<script type="text/javascript">
+			// 查找元素
+			var oLessons = document.querySelectorAll('.lesson input[type=checkbox]');
+			var oChkAll = document.getElementById('chkAll');
+			var oChkReverse = document.getElementById('chkReverse');
+			// 反选
+			oChkReverse.onclick = function() {
+				for (var i = 0; i < oLessons.length; i++) {
+					// 获取当前选中状态
+					var checked = oLessons[i].checked
+					// 取反
+					oLessons[i].checked = !checked;
+				}
+			}
+			// 全选
+			oChkAll.onclick = function() {
+				// 获取当前的选中状态
+				var checked = oChkAll.checked;
+				for (var i = 0; i < oLessons.length; i++) {
+					oLessons[i].checked = checked;
+				}
+				// if (checked) {
+				// 	for (var i = 0; i < oLessons.length; i++) {
+				// 		oLessons[i].checked = true;
+				// 	}
+				// } else {
+				// 	for (var i = 0; i < oLessons.length; i++) {
+				// 		oLessons[i].checked = false;
+				// 	}
+				// }
+			}
+		</script>
+	</body>
+</html>

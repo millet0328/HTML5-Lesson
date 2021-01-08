@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.box {
+				width: 200px;
+				height: 200px;
+				background-color: orange;
+			}
+		</style>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>HTML事件处理程序</legend>
+
+			<div class="box" onclick="handleClick()"></div>
+
+			<script type="text/javascript">
+				function handleClick() {
+					console.log('HTML事件处理...')
+				}
+			</script>
+		</fieldset>
+		<fieldset id="">
+			<legend>DOM 0级事件处理程序</legend>
+			<p>
+				1、不允许重复绑定事件
+			</p>
+			<div id="box-2" class="box"></div>
+
+			<script type="text/javascript">
+				// 查找元素
+				var oBox2 = document.querySelector('#box-2');
+
+				oBox2.onclick = function() {
+					console.log('DOM 0级别事件处理程序')
+				}
+				// 重复绑定click
+				oBox2.onclick = function() {
+					console.log('box2 重新绑定事件')
+				}
+			</script>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>DOM 2级事件处理程序</legend>
+			<p>
+				1、有兼容性问题，IE>=9以上
+			</p>
+			<p>
+				2、允许重复绑定事件
+			</p>
+			<div id="box-3" class="box"></div>
+
+			<script>
+				// 查找元素
+				var oBox3 = document.querySelector('#box-3');
+
+				oBox3.addEventListener('click', function() {
+					console.log('DOM 2级事件处理程序')
+				});	
+				
+				oBox3.addEventListener('click', function() {
+					console.log('box3 重新绑定事件')
+				});	
+			</script>
+		</fieldset>
+	</body>
+</html>

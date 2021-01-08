@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>JS模拟placeholder属性</legend>
+			<p>
+				<label>
+					账号：
+					<input type="text" id="username" value="请输入手机号或邮箱">
+				</label>
+			</p>
+			<script type="text/javascript">
+				// 查找元素
+				var oUsername = document.getElementById("username");
+
+				// 获得焦点
+				oUsername.onfocus = function() {
+					// 获取当前的value
+					var val = this.value;
+					if (val == '请输入手机号或邮箱') {
+						// 清空value
+						this.value = '';
+					}
+				}
+				// 失去焦点
+				oUsername.onblur = function() {
+					// 获取当前的value
+					var val = this.value;
+					if (!val) {
+						this.value = '请输入手机号或邮箱';
+					}
+				}
+			</script>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>change事件</legend>
+			<form action="">
+				<p>
+					<label>
+						密码：
+						<input type="text" id="password" placeholder="请输入6位数字密码">
+					</label>
+				</p>
+			</form>
+			<script type="text/javascript">
+				//查找元素
+				var oPassword = document.getElementById('password')
+
+				oPassword.onchange = function() {
+					// 获取当前表单的value
+					var val = this.value.trim();
+					// 判断是否数字
+					var isValid = isNaN(val);
+					if (isValid || val.length != 6) {
+						console.log('%s不是数字', this.value);
+						this.style.borderColor = "red";
+					} else {
+						console.log('%s是数字', this.value);
+						this.style.borderColor = "green";
+					}
+				}
+			</script>
+		</fieldset>
+		<fieldset id="">
+			<legend>input事件</legend>
+
+			<p>
+				<label>搜索：</label>
+				<input id="search-text" type="text" placeholder="请输入关键词">
+			</p>
+			<script type="text/javascript">
+				// 查找元素
+				var oSearch = document.getElementById('search-text');
+
+				oSearch.oninput = function() {
+					console.log('输入：%s', this.value);
+				}
+			</script>
+		</fieldset>
+	</body>
+</html>

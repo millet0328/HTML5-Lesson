@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style type="text/css">
+			.chat-box {
+				padding: 10px;
+				border: 2px solid blue;
+				margin-top: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			// 字符数组
+			var str = 'Hello World!';
+		</script>
+
+		<fieldset id="">
+			<legend>过滤违禁词</legend>
+			<div class="box">
+				<input type="text" id="content" placeholder="请输入聊天内容!" />
+				<button type="button" id="send">发送</button>
+				<div class="chat-box">
+					<p>我说：分开发</p>
+				</div>
+			</div>
+			<script type="text/javascript">
+				// 查找元素
+				var oContent = document.getElementById('content');
+				var oSendBtn = document.getElementById('send');
+				var oChatBox = document.querySelector('.chat-box');
+
+				oSendBtn.onclick = function() {
+					// 获取value
+					var txt = oContent.value;
+					// 检索字符串
+					var isHas = txt.indexOf('SB');
+					// 存在违禁词
+					if (isHas >= 0) {
+						txt = txt.replace('SB', '**');
+					}
+
+					var oP = document.createElement('p');
+					oP.innerText = '我说：' + txt;
+					oChatBox.appendChild(oP);
+				}
+			</script>
+
+		</fieldset>
+
+
+		<fieldset id="">
+			<legend>手机号码重新格式化</legend>
+			<p>
+				<input type="text" id="tel" placeholder="请输入手机号码">
+				<button id="convert" type="button">格式化</button>
+			</p>
+			<script type="text/javascript">
+				// 查找元素
+				var oTel = document.querySelector('#tel');
+				var oConvert = document.querySelector('#convert');
+
+				oConvert.onclick = function() {
+					// 获取value
+					var tel = oTel.value;
+					// 分段截取
+					tel = tel.substr(0, 3) + ' ' + tel.substr(3, 4) + ' ' + tel.substr(7, 4)
+					// 重新赋值
+					oTel.value = tel;
+				}
+			</script>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>字符串 => 数组</legend>
+
+			<p>
+				https://detail.tmall.com/item.htm?
+				spm=875.7931836/B.20161011.4.7bb14265hBSAvE <br>
+				&pvid=ac9169cf-8c4a-4124-8653-d8989da45ee7 <br>
+				&pos=4 <br>
+				&acm=201509290.1003.1.1286473 <br>
+				&id=628235860448 <br>
+				&scm=1007.12710.81708.100200300000000 <br>
+				&skuId=4634632366350 <br>
+			</p>
+
+			<script type="text/javascript">
+				var search =
+					'spm=875.7931836/B.20161011.4.7bb14265hBSAvE&pvid=ac9169cf-8c4a-4124-8653-d8989da45ee7&pos=4&acm=201509290.1003.1.1286473&id=628235860448&scm=1007.12710.81708.100200300000000&skuId=4634632366350'
+				var query = search.split('&');
+				var result = {};
+				query.forEach(function(item) {
+					var arr = item.split('=');
+					result[arr[0]] = arr[1];
+				});
+				console.log(result)
+			</script>
+		</fieldset>
+	</body>
+
+</html>

@@ -8,24 +8,17 @@
 
 <body>
     计算公元1年至今的闰年有哪些，总数是多少个？
-    <div id="result"></div>
     <script type="text/javascript">
-    <!-- 查找元素 -->
-    var oRes = document.getElementById("result");
-    
-    var output = '';
-    var leapYear = "";
-    var leapYearNum = ""
-    for (var i = 1; i <= 2020; i++) {
-        if ((i % 4 == 0 && i % 100 != 0) || i % 400 == 0) {
-            leapYear = i;
-            leapYearNum++;
-            output += "第" + leapYearNum + "个闰年：" + leapYear + '<br/>';
+        var leapYear = "";
+        var leapYearNum = ""
+        for (var i = 1; i <= 2020; i++) {
+            if ((i % 4 == 0 && i % 100 != 0) || i % 400 == 0) {
+                leapYear = leapYear + i + ' ';
+                leapYearNum++;
+            }
         }
-    }
-    oRes.innerHTML = output;
-
-    alert("闰年个数：" + leapYearNum)
+        console.log('闰年：%s', leapYear);
+        console.log('闰年总个数：%d', leapYearNum);
     </script>
 </body>
 

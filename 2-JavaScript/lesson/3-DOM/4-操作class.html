@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.demo {
+				position: relative;
+				height: 240px;
+				padding: 10px;
+			}
+
+			.box {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 200px;
+				height: 200px;
+				background-color: orange;
+				transition: all 0.5s;
+			}
+
+			.box.active {
+				left: 800px;
+			}
+		</style>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>操作className</legend>
+			<div class="demo">
+				<div id="box-1" class="box"></div>
+			</div>
+
+			<script type="text/javascript">
+				// 查找元素
+				var oBox1 = document.querySelector('#box-1');
+				// 绑定事件
+				oBox1.onclick = function() {
+					// 获取当前的class
+					var cls = oBox1.className;
+					if (cls == 'box') {
+						// 修改className
+						oBox1.className = 'box active';
+					} else {
+						oBox1.className = 'box';
+					}
+				}
+			</script>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>操作classList</legend>
+			<p>兼容性：IE >= 10</p>
+			<p>1、添加class:add()，移除class：remove()</p>
+			<p>2、判断是否包含某个class:contains()</p>
+			<p>3、添加和移除两个方法合一：toggle()</p>
+			<div class="demo">
+				<div id="box-2" class="box"></div>
+			</div>
+			<script type="text/javascript">
+				// 查找元素
+				var oBox2 = document.querySelector('#box-2');
+
+				oBox2.onclick = function() {
+					// 获取当前的classList
+					var cls = oBox2.classList;
+					// 判断是否有active
+					var isHave = oBox2.classList.contains('active');
+					if (isHave) {
+						// 移除class
+						oBox2.classList.remove('active');
+					} else {
+						// 添加class
+						oBox2.classList.add('active');
+					}
+					// 等价于
+					// oBox2.classList.toggle('active');
+				}
+			</script>
+		</fieldset>
+	</body>
+</html>

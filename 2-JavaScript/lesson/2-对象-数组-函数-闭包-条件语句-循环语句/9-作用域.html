@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			//全局变量
+			var globalData = 3.14;
+			
+			for (var i = 0; i < 5; i++) {
+				// console.log(i)
+			}
+			
+			function sum(m, n) {
+				var total = 0;
+				for (var i = m; i <= n; i++) {
+					total += i;
+				}
+				return total;
+			}
+
+			function minus(x, y) {
+				var total = x - y;
+				console.log(globalData)
+			}
+			sum(3, 5);
+			minus(9, 2);
+			console.log(total);
+		</script>
+	</body>
+
+</html>

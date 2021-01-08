@@ -118,7 +118,6 @@
             oQueue.appendChild(oSpan);
         }
         //左边加
-        
         lAddBtn.onclick = function() {
             var oSpan = document.createElement("span");
             oSpan.innerText = oTxt.value;
@@ -126,6 +125,7 @@
         }
         //左边减
         lDelBtn.onclick = function() {
+            console.log(oQueue.firstChild);
             oQueue.removeChild(oQueue.firstChild);
         }
         //右边减

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+
+	<body>
+		<fieldset id="">
+			<legend>计算器</legend>
+			<input type="text" name="" id="num1" value="" /> *
+			<input type="text" name="" id="num2" value="" />
+			<button type="button" id="cal">计算</button>
+			<script type="text/javascript">
+				window.onload = function() {
+					var oNum1 = document.getElementById("num1");
+					var oNum2 = document.getElementById("num2");
+					var oCal = document.getElementById("cal");
+					//绑定事件
+					oCal.onclick = function() {
+						var num1 = oNum1.value;
+						var num2 = oNum2.value;
+						var res = num1 * num2;
+						alert(res);
+					}
+				}
+			</script>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>计算总价</legend>
+
+			<table id="table" width="100%" cellpadding="20" border="1">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>书名</th>
+						<th>作者</th>
+						<th>价格</th>
+						<th>数量</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>西游记</td>
+						<td>吴承恩</td>
+						<td>40.5</td>
+						<td>1</td>
+						<td><button type="button">x</button></td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>红楼梦</td>
+						<td>曹雪芹</td>
+						<td>35.5</td>
+						<td>3</td>
+						<td><button type="button">x</button></td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>水浒传</td>
+						<td>施耐庵</td>
+						<td>42.7</td>
+						<td>1</td>
+						<td><button type="button">x</button></td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>三国演义</td>
+						<td>罗贯中</td>
+						<td>53.2</td>
+						<td>1</td>
+						<td><button type="button">x</button></td>
+					</tr>
+				</tbody>
+			</table>
+			<p>
+				总共：<span class="num">x</span> 本书，总价：<span class="total">y</span>元
+			</p>
+			<script>
+				// 查找元素
+				var oTable = document.getElementById('table');
+				var oTr = oTable.querySelectorAll('tbody tr');
+				var oNum = document.querySelector('.num');
+				var oTotal = document.querySelector('.total');
+				
+				var total = 0;
+				var cost = 0;
+				for (var i = 0; i < oTr.length; i++) {
+					var num = Number(oTr[i].querySelectorAll('td')[4].innerText.trim());
+					var price = Number(oTr[i].querySelectorAll('td')[3].innerText.trim());
+					total += num;
+					cost += num * price
+				}
+				
+				oNum.innerText = total;
+				oTotal.innerText = cost.toFixed(2);
+			</script>
+		</fieldset>
+	</body>
+
+</html>

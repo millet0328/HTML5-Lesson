@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			button {
+				outline: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<button id="toggle" type="button">白天</button>
+		<script>
+			// 查找元素
+			var oToggle = document.getElementById('toggle');
+
+			oToggle.onclick = function() {
+				// 获取当前文本
+				var txt = oToggle.innerText;
+				if (txt == '白天') {
+					oToggle.innerText = '晚上';
+					oToggle.style.border = '2px solid black';
+					oToggle.style.backgroundColor = 'orange';
+					document.body.style.backgroundColor = '#666';
+				} else {
+					oToggle.innerText = '白天';
+					oToggle.style.border = '2px solid orange';
+					oToggle.style.backgroundColor = 'white';
+					document.body.style.backgroundColor = 'white';
+				}
+			}
+		</script>
+	</body>
+</html>

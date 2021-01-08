@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box1 {
+				padding: 50px;
+				background-color: #33CCCC;
+			}
+
+			.box2 {
+				width: 200px;
+				height: 200px;
+				padding: 30px;
+				background-color: #FF9900;
+			}
+
+			.box3 {
+				width: 160px;
+				height: 100px;
+				padding: 20px;
+				background-color: greenyellow;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box1">
+			box1
+			<div class="box2">
+				box2
+				<div class="box3">
+					box3
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			// 查找元素
+			var oBox1 = document.querySelector(".box1");
+			var oBox2 = oBox1.querySelector(".box2");
+			var oBox3 = oBox2.querySelector(".box3");
+			// 绑定事件
+			oBox1.onclick = function() {
+				alert("box1--触发了click事件");
+			}
+			oBox2.onclick = function(e) {
+				// 阻止冒泡
+		 		e.stopPropagation();
+				alert("box2--触发了click事件");
+			}
+			oBox3.onclick = function() {
+				alert("box3--触发了click事件");
+			}
+		</script>
+	</body>
+
+</html>
