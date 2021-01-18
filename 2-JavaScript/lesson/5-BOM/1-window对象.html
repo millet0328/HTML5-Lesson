@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 全局变量是 window 对象的属性。
+			var a = 3.14;
+			// 全局函数是 window 对象的方法。
+			function add () {
+				console.log('加法...')
+			}
+			console.dir(window);
+		</script>
+		<script type="text/javascript">
+			var x = 100;
+			
+			function test() {
+				var x = 200;
+				console.log(this.x) // ?
+			}
+			
+			test();
+		</script>
+		
+	</body>
+</html>

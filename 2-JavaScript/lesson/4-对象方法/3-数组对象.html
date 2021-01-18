@@ -5,6 +5,17 @@
 		<meta charset="utf-8" />
 		<title></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style type="text/css">
+			.price.up::after {
+				content: "↑";
+				color: blue;
+			}
+
+			.price.down::after {
+				content: "↓";
+				color: orange;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -34,12 +45,27 @@
 			var result = data.join('-');
 			// 字符串 => 数组 split
 			result.split('-');
+		</script>
+		<script type="text/javascript">
 			// 数组排序 sort
 			var unsort = [1, 42, 65, 46, 28, 65, 53, 1, 32, 7, 65, 46, 1, 53, 6, 46, 65, 32, 28, 39, 65, 32, 1, 23, 65, 32, 39,
 				65,
 				46, 53, 46, 53, 65, 32, 53, 28, 65, 1, 53, 65, 23, 32, 7, 65, 32, 46, 6, 1, 53, 46, 7, 53, 9, 23, 46, 7, 53, 6, 1,
 				65, 28, 7, 28, 32, 65, 23, 46, 7, 53, 9
 			];
+
+			unsort.sort(function(a, b) {
+				if (a > b) {
+					return 1;
+				}
+				if (a < b) {
+					return -1;
+				}
+				if (a == b) {
+					return 0;
+				}
+			});
+			// 简化版
 			unsort.sort(function(a, b) {
 				return b - a;
 			});
@@ -64,16 +90,109 @@
 				age: 47,
 			}]
 			// a,b代表数组一个元素
-			team.sort(function(a, b) {
-				if (a.age > b.age) {
-					return 1;
-				} else {
-					return -1;
-				}
-				return a.age - b.age;
+			team.sort(function(itemA, itemB) {
+				return itemA.age - itemB.age;
 			});
 			// 排序算法 冒泡 快速 二分法
 		</script>
+		<fieldset id="">
+			<legend>DOM元素 排序</legend>
+			<table id="table" width="100%" cellpadding="20" border="1">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>书名</th>
+						<th>作者</th>
+						<th class="price">价格</th>
+						<th>数量</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>西游记</td>
+						<td>吴承恩</td>
+						<td>40.5</td>
+						<td>1</td>
+						<td><button type="button">x</button></td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>红楼梦</td>
+						<td>曹雪芹</td>
+						<td>35.5</td>
+						<td>3</td>
+						<td><button type="button">x</button></td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>水浒传</td>
+						<td>施耐庵</td>
+						<td>42.7</td>
+						<td>1</td>
+						<td><button type="button">x</button></td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>三国演义</td>
+						<td>罗贯中</td>
+						<td>53.2</td>
+						<td>1</td>
+						<td><button type="button">x</button></td>
+					</tr>
+				</tbody>
+			</table>
+			<script type="text/javascript">
+				// 查找元素
+				var oTbody = document.querySelector('#table tbody');
+				var oPrice = document.querySelector('.price');
+
+				var sort = -1; //默认从小到大排序
+				oPrice.onclick = function() {
+					var isDown = this.classList.contains('down');
+					// 类数组 -- nodeList
+					var oTr = oTbody.querySelectorAll('tr');
+					// 转化真实数组
+					var books = [];
+					for (var i = 0; i < oTr.length; i++) {
+						books.push(oTr[i]);
+					}
+					if (isDown) {
+						this.classList.remove('down');
+						this.classList.add('up');
+						// books.sort(function(itemA, itemB) {
+						// 	var priceA = itemA.children[3].innerText.trim();
+						// 	var priceB = itemB.children[3].innerText.trim();
+						// 	return priceB - priceA;
+						// });
+					} else {
+						this.classList.remove('up');
+						this.classList.add('down');
+						// books.sort(function(itemA, itemB) {
+						// 	var priceA = itemA.children[3].innerText.trim();
+						// 	var priceB = itemB.children[3].innerText.trim();
+						// 	return priceA - priceB;
+						// });
+					}
+					// 排序
+					sort = -sort;
+					books.sort(function(itemA, itemB) {
+						var priceA = itemA.children[3].innerText.trim();
+						var priceB = itemB.children[3].innerText.trim();
+						if (priceA > priceB) {
+							return sort;
+						} else {
+							return -sort;
+						}
+					});
+					// 插入DOM
+					books.forEach(function(item) {
+						oTbody.appendChild(item);
+					});
+				}
+			</script>
+		</fieldset>
 	</body>
 
 </html>

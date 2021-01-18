@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+
+	<body>
+		<fieldset id="">
+			<legend>抽奖</legend>
+			<p>
+				<button id="btn" type="button">抽奖</button>
+			</p>
+			<p>
+				抽奖结果：<span class="result"></span>
+			</p>
+			<script type="text/javascript">
+				// 查找元素
+				var oBtn = document.getElementById('btn');
+				var oResult = document.querySelector('.result');
+
+				oBtn.onclick = function() {
+					// 范围：[0,1)
+					var x = Math.random();
+					// 一等奖 150万 概率 0.0001%
+					if (x >= 0.9999) {
+						oResult.innerText = "一等奖 150万";
+					}
+					// 二等级 100元 概率 5%
+					if (x < 0.9999 && x >= 0.95) {
+						oResult.innerText = "二等级 100元";
+					}
+					// 三等奖 50元 概率 10%
+					if (x < 0.95 && x >= 0.85) {
+						oResult.innerText = "三等奖 50元";
+					}
+					// 四等奖 10元 概率 15%
+					if (x < 0.85 && x >= 0.70) {
+						oResult.innerText = "四等奖 10元";
+					}
+					// 五等奖 5元 概率 30%
+					if (x < 0.70 && x >= 0.40) {
+						oResult.innerText = "五等奖 5元";
+					}
+					// 谢谢惠顾 概率 39.9999%
+					if (x < 0.40) {
+						oResult.innerText = "谢谢惠顾";
+					}
+				}
+			</script>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>抽号</legend>
+			<p>
+				<input id="max" type="text" placeholder="请输入座号最大值" />
+				<button id="extract" type="button">抽取座号</button>
+			</p>
+			<p>
+				座号：<span class="seat"></span>
+			</p>
+			<script type="text/javascript">
+				// 查找元素
+				var oExtract = document.querySelector('#extract');
+				var oMax = document.querySelector('#max');
+				// 缓存已抽取座号
+				var exist = [];
+
+				oExtract.onclick = function() {
+					// 产生随机数 [0,50) 
+					var x = Math.random() * 50;
+					// 产生随机数 [10,50) 
+					var y = Math.random() * 40 + 10;
+					// 产生随机整数 [10,50)
+					var z = Math.floor(Math.random() * 40 + 10)
+
+					// 获取最大值
+					var max = oMax.value;
+					// 递归函数
+					function random() {
+						var num = Math.floor(Math.random() * max + 1);
+						// 判断数字是否抽取过？
+						var isExist = exist.indexOf(num) >= 0;
+						if (isExist) {
+							return random();
+						} else {
+							exist.push(num);
+							return num;
+						}
+					}
+					// 判断座号是否全部产生？
+					if (exist.length == max) {
+						alert('座号已全部抽取完毕！')
+						return;
+					}
+					// 抽取数字
+					var num = random();
+					console.log(num);
+				}
+			</script>
+		</fieldset>
+
+		<script type="text/javascript">
+			//阶乘 n! =  1*2*3*4*5*....*n
+			function f(n) {
+				if (n == 0 || n == 1) {
+					return n;
+				}
+				return f(n - 1) * n;
+			}
+			// 菲波那切数列 F(1)=1，F(2)=1 f(n) = f(n - 1) + f(n - 2) (n>=3)
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>jquery仿淘宝商城选择商品尺寸与大小颜色功能</title>
+		<link rel="stylesheet" type="text/css" href="css/base.css" />
+		<script src="js/jquery-3.4.1.min.js"></script>
+	</head>
+
+	<body>
+		<div class="tab">
+			<a href="img-type.html">带图片选择</a>
+			<a href="text-type.html" class="cur">纯文本选择</a>
+		</div>
+		<div class="info-panel">
+			<!--规格属性-->
+			<div class="spec-box">
+				<div class="item clearfix">
+					<div class="label fl">
+						市场价:
+					</div>
+					<div class="mkt-price fl">
+						<del>$<b>13.00</b></del>
+					</div>
+				</div>
+				<div class="item clearfix">
+					<div class="label fl">
+						本网价:
+					</div>
+					<div class="price fl">
+						$<b>13.00</b>
+					</div>
+				</div>
+				<div class="item clearfix">
+					<div class="label fl">
+						颜色:
+					</div>
+					<ul class="spec-list text fl">
+						<li title="白色">
+							白色
+						</li>
+						<li title="粉色">
+							粉色
+						</li>
+						<li title="蓝色">
+							蓝色
+						</li>
+						<li title="绿色">
+							绿色
+						</li>
+						<li title="黄色">
+							黄色
+						</li>
+						<li title="灰色">
+							灰色
+						</li>
+					</ul>
+				</div>
+				<div class="item clearfix">
+					<div class="label fl">
+						尺码:
+					</div>
+					<ul class="spec-list text fl">
+						<li title="S">
+							S
+						</li>
+						<li title="M">
+							M
+						</li>
+						<li title="L">
+							L
+						</li>
+						<li title="XL">
+							XL
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//隐式迭代
+		$('.spec-list li').click(function() {
+			var flag = $(this).hasClass('selected');
+			if (flag) {
+				$(this).removeClass('selected');
+			} else {
+				$(this).siblings('li').removeClass('selected');
+				$(this).addClass('selected');
+			}
+		});
+	});
+</script>

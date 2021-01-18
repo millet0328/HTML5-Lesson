@@ -60,10 +60,9 @@
 				<p>
 					<input type="text" class="hour" placeholder="小时">
 					<input type="text" class="min" placeholder="分钟">
-					<input type="text" class="sec" placeholder="秒">
 					<select class="symbol">
-						<option value="am">AM</option>
-						<option value="pm">PM</option>
+						<option value="AM">AM</option>
+						<option value="PM">PM</option>
 					</select>
 					<button id="setBtn" type="button">设置闹钟</button>
 				</p>
@@ -80,19 +79,19 @@
 				var now = new Date();
 				var year = now.getFullYear();
 				var month = now.getMonth() + 1;
-				var day = now.getDate();
+				var date = now.getDate();
 				var weekday = now.getDay();
 				var hour = now.getHours();
 				var min = now.getMinutes();
 				var sec = now.getSeconds();
 				var week = ["日", "一", "二", "三", "四", "五", "六"]
 				// 显示日期、星期
-				oDate.innerText = year + "-" + fix(month) + "-" + fix(day);
+				oDate.innerText = year + "-" + fix(month) + "-" + fix(date);
 				oWeekday.innerText = "星期" + week[weekday];
 				// 显示时间
 				oTime.innerHTML = fixHour(hour) + " : " + fix(min) + " : " + fix(sec) + " <i>" + format(hour) + "</i>";
 			}
-			// 开启定时器
+			// 默认显示当前时间
 			clock()
 			timer = setInterval(clock, 1000);
 			// 修正小于10的数字
@@ -125,23 +124,30 @@
 			var oSetBtn = document.getElementById("setBtn");
 			var oHour = document.querySelector(".hour");
 			var oMin = document.querySelector(".min");
-			var oSec = document.querySelector(".sec");
 			var oSymbol = document.querySelector(".symbol");
 			// 设置闹钟
 			oSetBtn.onclick = function() {
 				// 获取value
 				var hour = oHour.value;
 				var min = oMin.value;
-				var sec = oSec.value;
 				var symbol = oSymbol.value;
+				var tick;
 				// 判断是否有效数值
-				if (!isHourValid(hour) || !isMinValid(min) || !isMinValid(sec)) {
+				if (!isHourValid(hour) || !isMinValid(min)) {
 					alert("请输入合法的数值");
 					return;
 				}
 				// 闹钟
-				
-
+				function ring() {
+					var current = new Date();
+					var currentHour = current.getHours();
+					var currentMin = current.getMinutes();
+					var ext = format(currentHour);
+					if (hour == currentHour && min == currentMin && symbol == ext) {
+						alert('闹钟时间到！')
+					}
+				}
+				tick = setInterval(ring, 1000);
 			}
 			// 判断是否有效数值
 			function isHourValid(val) {

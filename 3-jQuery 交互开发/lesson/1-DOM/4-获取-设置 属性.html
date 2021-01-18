@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery-3.5.1.min.js"></script>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>常规标签属性(attribute)-attr()</legend>
+
+			<button id="btn" type="button">按钮</button>
+			<p>
+				<img class="photo" width="400" src="./img/1535003161767.jpg" alt="">
+			</p>
+			<script type="text/javascript">
+				$('#btn').click(function() {
+					// 获取属性
+					var width = $('.photo').attr('width');
+					// 设置属性
+					$('.photo').attr('width', width * 1.05);
+				});
+			</script>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>表单属性-prop</legend>
+			<form action="">
+				<p>
+					<label>密码：</label>
+					<input class="password" type="password">
+					<span class="eye">☺</span>
+				</p>
+			</form>
+			<script type="text/javascript">
+				$('.eye').click(function() {
+					// 获取属性
+					var type = $('.password').prop('type');
+
+					// 设置属性
+					if (type == 'password') {
+						$('.password').prop('type', 'text');
+					} else {
+						$('.password').prop('type', 'password');
+					}
+				});
+			</script>
+		</fieldset>
+		<!-- jQuery -->
+		<script type="text/javascript">
+			// // 布尔值 -- 切换
+			// var isShow = false; //标志密码显示/隐藏状态
+			// $('.eye').click(function() {
+			// 	if (isShow == false) {
+			// 		$(".password").prop("type", "text");
+			// 		isShow = true;
+			// 	} else {
+			// 		$(".password").prop("type", "password");
+			// 		isShow = false;
+			// 	}
+			// });
+		</script>
+	</body>
+</html>

@@ -42,7 +42,7 @@
 					var isHas = txt.indexOf('SB');
 					// 存在违禁词
 					if (isHas >= 0) {
-						txt = txt.replace('SB', '**');
+						txt = txt.replace(/SB/ig, '**');
 					}
 
 					var oP = document.createElement('p');

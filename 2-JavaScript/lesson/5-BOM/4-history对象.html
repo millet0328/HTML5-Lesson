@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>history对象</legend>
+
+			<p>
+				<a href="https://www.baidu.com/">百度</a>
+			</p>
+			<p>
+				<button id="back" type="button">后退</button>
+				<button id="forward" type="button">前进</button>
+			</p>
+		</fieldset>
+		<script type="text/javascript">
+			// 查找元素
+			var oBack = document.getElementById('back');
+			var oForward = document.getElementById('forward');
+
+			oBack.onclick = function() {
+				history.back();
+			}
+			
+			oForward.onclick = function() {
+				history.forward();
+			}
+		</script>
+	</body>
+</html>

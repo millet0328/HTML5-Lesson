@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 延迟3s执行
+			setTimeout(function() {
+				document.body.style.backgroundColor = "orange";
+			}, 3000);
+		</script>
+
+		<script type="text/javascript">
+			// setTimeout永远最后一个执行
+			console.log(1);
+
+			setTimeout(function() {
+				console.log(2)
+			}, 0)
+
+			setTimeout(function() {
+				console.log(3)
+			}, 50)
+
+			console.log(4);
+		</script>
+
+		<script type="text/javascript">
+			// 执行顺序
+			for (var i = 1; i <= 5; i++) {
+				setTimeout(function() {
+					console.log(i);
+				}, i * 100);
+			}
+		</script>
+	</body>
+</html>

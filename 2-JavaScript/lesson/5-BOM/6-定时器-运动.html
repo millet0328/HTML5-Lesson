@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style type="text/css">
+			.box {
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				width: 100px;
+				height: 100px;
+				background-color: #FF1493;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--方块-->
+		<div class="box"></div>
+
+		<script type="text/javascript">
+			// 查找元素
+			var oBox = document.querySelector('.box');
+			var timer;
+			// 极大值 = 窗口高度 - box的高度
+			var maxTop = window.innerHeight - oBox.offsetHeight;
+			var maxLeft = window.innerWidth - oBox.offsetWidth;
+			// X轴位移
+			var stepX = 10;
+			// Y轴位移
+			var stepY = 10;
+
+			function move() {
+				// 获取当前的left/top
+				var left = oBox.offsetLeft;
+				var top = oBox.offsetTop;
+				// 判断是否到达边界
+				if (left > maxLeft || left < 0) {
+					stepX = -stepX;
+					oBox.style.backgroundColor = randomColor();
+				}
+				
+				if (top > maxTop || top < 0) {
+					stepY = -stepY;
+					oBox.style.backgroundColor = randomColor();
+				}
+				
+				oBox.style.left = left + stepX + 'px';
+				oBox.style.top = top + stepY + 'px';
+			}
+			// 随机颜色
+			function randomColor() {
+				// [0,255]的随机数
+				var r = Math.floor(Math.random() * 256);
+				var g = Math.floor(Math.random() * 256);
+				var b = Math.floor(Math.random() * 256);
+				// 格式：rgb(10,35,255)
+				var color = 'rgb(' + r + ',' + g + ',' + b + ')';
+				return color;
+			}
+			oBox.onclick = function() {
+				// 清除定时器
+				clearInterval(timer);
+				// 绑定定时器
+				timer = setInterval(move, 50);
+			}
+		</script>
+	</body>
+
+</html>

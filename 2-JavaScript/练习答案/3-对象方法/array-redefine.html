@@ -18,20 +18,22 @@
         var arr = [1,2,3,4,5,6,2,3,3,3,3,4,4,4,4,5,5,5,23,2,2,3,4,6,1,5,8,7,9,7,6,1,2,2,5,7,8,4,9]
 
         function noRepeat(arr) {
-            //储存对象
+            // 缓存数字出现频率
             var obj = {};
+			// 缓存去重之后的数组
             var result = [];
             for (var i = 0; i < arr.length; i++) {
                 if (obj[arr[i]]) {
-                    //这个数字重复
+                    //这个数字重复，次数+1
                     obj[arr[i]]++;
                     continue;
                 } else {
-                    //这个数字不重复
+                    //这个数字首次出现
                     obj[arr[i]] = 1;
                     result.push(arr[i]);
                 }
             }
+            console.log(obj);
             return result;
         }
         var res = noRepeat(arr);

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>阻止默认事件</legend>
+			<ol>
+				<li>a链接调转页面</li>
+				<li>type=submit的按钮默认触发submit事件</li>
+				<li>右键菜单</li>
+			</ol>
+
+			<p>
+				链接：<a id="link" href="https://www.baidu.com/">href跳转</a>
+			</p>
+			<script type="text/javascript">
+				// 查找元素
+				var oLink = document.getElementById('link');
+
+				oLink.onclick = function(e) {
+					// 阻止默认事件
+					e.preventDefault();
+					// 跳转页面
+					// 相对路径
+					// location.href = "./window对象.html"
+					// 绝对路径
+					location.href = "https://www.jd.com/";
+				}
+			</script>
+		</fieldset>
+		<fieldset id="">
+			<legend>阻止表单提交</legend>
+
+			<form>
+				<p>
+					<label>账户：</label>
+					<input type="text" name="username">
+				</p>
+				<p>
+					<button id="submit" type="submit">提交按钮</button>
+				</p>
+			</form>
+			<script type="text/javascript">
+				var oSubmit = document.getElementById("submit");
+				oSubmit.onclick = function(e) {
+					e.preventDefault();
+				}
+			</script>
+		</fieldset>
+	</body>
+</html>

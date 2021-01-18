@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>Location对象</legend>
+			<p>
+				<button id="btn" type="button">刷新</button>
+			</p>
+			<p class="time">
+
+			</p>
+			<script type="text/javascript">
+				// 查找元素
+				var oTime = document.querySelector('.time');
+				var oBtn = document.getElementById('btn');
+
+				oTime.innerText = new Date().toLocaleString();
+
+				oBtn.onclick = function() {
+					// 刷新页面
+					location.reload();
+				}
+			</script>
+		</fieldset>
+	</body>
+</html>
