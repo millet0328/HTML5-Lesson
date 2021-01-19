@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				margin: 0;
+			}
+
+			.bar {
+				position: relative;
+				text-align: center;
+				border: 4px solid orange;
+				background-color: white;
+			}
+
+			.bar.fixed {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+			}
+
+			.bar-box {
+				height: 55px;
+			}
+		</style>
+	</head>
+	<body>
+		<img class="goods" width="100%" src="img/goods.png">
+		<div class="bar-box">
+			<div class="bar">
+				<img src="img/bar.png">
+			</div>
+		</div>
+		<img class="detail" width="100%" src="img/detail.jpg">
+
+		<script src="js/jquery-3.5.1.min.js"></script>
+		<script type="text/javascript">
+			var maxTop = $('.bar').offset().top;
+			$(window).scroll(function() {
+				var scrollTop = $(document).scrollTop();
+				if (scrollTop >= maxTop) {
+					$('.bar').addClass('fixed');
+				} else {
+					$('.bar').removeClass('fixed');
+				}
+			});
+		</script>
+	</body>
+</html>

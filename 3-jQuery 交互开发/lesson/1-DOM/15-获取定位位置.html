@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.parent {
+				position: relative;
+				border: 3px solid orange;
+				height: 300px;
+			}
+
+			.box {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100px;
+				height: 100px;
+				background-color: deeppink;
+			}
+		</style>
+	</head>
+	<body>
+		<div style="height: 400px;">前置的DIV:400px</div>
+		<div class="parent">
+			<div id="box" class="box"></div>
+		</div>
+		<script src="js/jquery-3.5.1.min.js"></script>
+		<script type="text/javascript">
+			// 边界值
+			var maxTop, maxLeft;
+			// box的宽高
+			var boxW = $('#box').width();
+			var boxH = $('#box').height();
+			// 计算边界值
+			function calc() {
+				// parent的宽高
+				var parentW = $('.parent').width();
+				var parentH = $('.parent').height();
+				// 边界值
+				maxLeft = parentW - boxW;
+				maxTop = parentH - boxH;
+			}
+			// 默认运行
+			calc();
+			// 窗口改变事件
+			$(window).resize(function() {
+				calc();
+				$('#box').css({ left: 0, top: 0 });
+			});
+
+			$(document).keydown(function(e) {
+				// 获取box相对于parent的距离
+				var top = $('#box').position().top;
+				var left = $('#box').position().left;
+
+				switch (e.keyCode) {
+					case 37:
+						// 左
+						if (left <= 0) {
+							$('#box').css('left', 0);
+							return;
+						}
+						$('#box').css('left', left - 10);
+						break;
+					case 39:
+						// 右
+						if (left >= maxLeft) {
+							$('#box').css('left', maxLeft);
+							return;
+						}
+						$('#box').css('left', left + 10);
+						break;
+					case 38:
+						// 上	
+						if (top <= 0) {
+							$('#box').css('top', 0);
+							return;
+						}
+						$('#box').css('top', top - 10);
+						break;
+					case 40:
+						// 下
+						if (top >= maxTop) {
+							$('#box').css('top', maxTop);
+							return;
+						}
+						$('#box').css('top', top + 10);
+						break;
+					default:
+						break;
+				}
+			});
+		</script>
+	</body>
+</html>

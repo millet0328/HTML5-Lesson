@@ -26,7 +26,7 @@
 				<tr>
 					<th><input type="checkbox"></th>
 					<th>书名</th>
-					<th>价格</th>
+					<th class="price">价格</th>
 					<th>数量</th>
 					<th>操作</th>
 				</tr>
@@ -62,23 +62,40 @@
 				</tr>
 			</tbody>
 		</table>
-		<p class="summary">总计：总共<span class="account">X</span>本书，总共花费<span class="cost">Y</span>元</p>
-	</body>
-	<script src="js/jquery-3.4.1.min.js"></script>
-	<script type="text/javascript">
-		// 计算图书的总数
-		var total = 0;
-		var cost = 0;
-		$('.table tbody tr').each(function(i) {
-			var num = $(this).find('td').eq(3).text();
-			var price = $(this).find('td').eq(2).text();
-			// 数量
-			total += parseInt(num);
-			// 价格
-			cost += num * price;
-		});
-		$('.account').text(total);
-		$('.cost').text(cost);
+		<p class="summary">总计：总共 <span class="account">X</span> 本书，总共花费 <span class="cost">Y</span> 元</p>
 
-	</script>
+		<script src="js/jquery-3.5.1.min.js"></script>
+		<script type="text/javascript">
+			var account = 0;
+			var cost = 0;
+			$('.table tbody tr').each(function(index) {
+				var price = $(this).find('td').eq(2).text().trim();
+				var num = $(this).find('td').eq(3).text().trim();
+				account += parseFloat(num);
+				cost += num * price;
+			});
+			$('.account').text(account);
+			$('.cost').text(cost);
+		</script>
+		<script type="text/javascript">
+			$('.price').click(function() {
+				var arr = [];
+				// 转化真实数组
+				$('.table tbody tr').each(function() {
+					arr.push($(this));
+				});
+				// 排序
+				arr.sort(function(itemA, itemB) {
+					var priceA = $(itemA).find('td').eq(2).text().trim();
+					var priceB = $(itemB).find('td').eq(2).text().trim();
+					return priceA - priceB;
+				})
+				// 插入文档
+				arr.forEach(function (item) {
+					$('.table tbody').append(item);
+				})
+			});
+		</script>
+	</body>
+
 </html>
