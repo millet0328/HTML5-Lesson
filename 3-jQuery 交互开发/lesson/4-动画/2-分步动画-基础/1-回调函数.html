@@ -17,15 +17,16 @@
 	<body>
 		<div class="box"></div>
 
-		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="js/jquery-3.5.1.min.js"></script>
+
 		<script type="text/javascript">
 			$('.box').click(function() {
-				$(this).animate({ left: '1200px' }, function() {
-					$(this).animate({ top: '500px' }, function() {
-						$(this).animate({ left: '0px', top: '500px' }, function() {
-							$(this).animate({ left: 0, top: 0 });
+				$('.box').animate({ left: '1000px' }, function() {
+					$('.box').animate({ top: '500px' }, function() {
+						$('.box').animate({ left: 0 }, function() {
+							$('.box').animate({ top: 0 })
 						});
-					});
+					})
 				});
 			});
 		</script>

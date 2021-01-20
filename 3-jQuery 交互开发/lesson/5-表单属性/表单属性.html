@@ -12,10 +12,6 @@
 				padding: 4px 20px;
 			}
 
-			.register[disabled] {
-				background-color: gray;
-			}
-
 			.input-control {
 				outline: 0;
 				border: 1px solid gray;
@@ -50,10 +46,10 @@
 			<p>
 				<label>性别：</label>
 				<label>
-					<input type="radio" class="sex" name="sex" value="男" /> 男
+					<input type="radio" checked class="sex" name="sex" value="man" /> 男
 				</label>
 				<label>
-					<input checked type="radio" class="sex" name="sex" value="女" /> 女
+					<input type="radio" class="sex" name="sex" value="woman" /> 女
 				</label>
 			</p>
 			<p>
@@ -78,7 +74,7 @@
 				<label>学历：</label>
 				<select class="degree">
 					<option value="高中">高中</option>
-					<option value="专科">专科</option>
+					<option selected value="专科">专科</option>
 					<option value="本科">本科</option>
 					<option value="研究生">研究生</option>
 					<option value="博士">博士</option>
@@ -91,27 +87,28 @@
 			</p>
 			<p>
 				<label class="lisence">
-					<input checked type="checkbox" />我已阅读网站的用户协议
+					<input checked type="checkbox" /> 我已阅读网站的用户协议
 				</label>
 			</p>
 			<p>
-				<button id="register" class="register btn" type="button">注 册</button>
+				<button id="register" class="btn" type="button">注 册</button>
 			</p>
 		</form>
 		<script src="js/jquery-3.4.1.min.js"></script>
 		<script type="text/javascript">
 			// 协议 按钮disabled
-			$('.lisence input').click(function() {
-				// 获取复选框的状态
-				var isChecked = $(this).prop('checked');
+			$('.lisence').click(function(e) {
+				// 获取表单checked属性
+				var isChecked = $(this).find('input:checkbox').prop('checked');
+				// 设置按钮disabled属性
 				$('#register').prop('disabled', !isChecked);
 			});
 			// change事件 -- 表单验证
 			$('.username').change(function() {
-				// 获取当前的value
+				// 获取value
 				var username = $(this).val();
 				// 正则
-				var reg = /(\w|[\u4e00-\u9fa5]){6,}/;
+				var reg = /(\w|[\u4e00-\u9fa5]){6,}/
 				var isValid = reg.test(username);
 				if (isValid) {
 					$(this).css('border', '1px solid green');
@@ -119,55 +116,45 @@
 					$(this).css('border', '1px solid red');
 				}
 			});
-			$('.password').change(function() {
-				// 获取当前的value
-				var password = $(this).val();
-				// 正则 
-				var reg = /[0-9]{6,}/;
-				var isValid = reg.test(password);
-				if (isValid) {
-					$(this).css('border', '1px solid green');
-				} else {
-					$(this).css('border', '1px solid red');
-				}
-			});
-			
 			// 全选 -- 正方向 点击全选=>项目全选中/全取消	
 			$('#chkAll').click(function() {
-				// 获取当前的状态
-				var isChkAll = $(this).prop('checked');
-				console.log(isChkAll);
-				$('input[name=hobby]').prop('checked', isChkAll);
+				// 获取当前状态
+				var isChecked = $(this).prop('checked');
+				$('input[name=hobby]').prop('checked', isChecked);
 			});
 			// 全选 -- 反方向 项目选中/取消 => 全选的状态
 			$('input[name=hobby]').click(function() {
-				// checkbox的总数
+				// 总数
 				var total = $('input[name=hobby]').length;
-				// 选中的checkbox的个数
-				var checked = $('input[name=hobby]:checked').length;
-				$('#chkAll').prop('checked', total == checked);
+				// 选中的数量
+				var num = $('input[name=hobby]:checked').length;
+				// 判断全选状态
+				if (num == total) {
+					$('#chkAll').prop('checked', true);
+				} else {
+					$('#chkAll').prop('checked', false);
+				}
 			});
 			// 监听输入input 某些事件没有简写，只能on方法能够使用
 			$('.info').on('input', function() {
-				// 获取textarea已经输入的文字长度
-				var len = $(this).val().length;
-				$(this).siblings('small').text('已经输入' + len + '字');
+				// 当前输入字数
+				var num = $(this).val().length;
+				console.log('当前字数：%s', num);
 			});
-
 			// 提取表单的数值
 			$('#register').click(function() {
-				// 获取单选框选中的value
+				// 单选框value
 				var sex = $('input[name=sex]:checked').val();
-				console.log(sex);
-				// 获取复选框选中的value
+				console.log('性别：%s', sex);
+				// 复选框value
 				var hobby = [];
 				$('input[name=hobby]:checked').each(function() {
-					var favor = $(this).val();
-					hobby.push(favor)
+					hobby.push($(this).val());
 				});
-				console.log(hobby.join(','))
-				// 获取select下拉框的value
+				console.log('爱好：%s', hobby.join(','));
+				// select框value
 				var degree = $('.degree').val();
+				console.log('学历：%s', degree);
 			});
 		</script>
 	</body>

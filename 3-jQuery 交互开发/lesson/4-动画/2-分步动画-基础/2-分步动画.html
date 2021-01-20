@@ -34,19 +34,5 @@
 		</div>
 	</body>
 	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-	<script type="text/javascript">
-		// 分布动画
-		$('.ssale_list li').mouseenter(function() {
-			$(this).find('.band_box').stop().animate({ bottom: 0 }, function() {
-				$(this).find('.title,.sologan').stop(true).animate({ top: 0 })
-			});
-		});
-		// 
-		$('.ssale_list li').mouseleave(function() {
-			$(this).find('.title,.sologan').stop(true).animate({ top: '40px' }, function() {
-				$(this).parent('.band_box').stop(true).animate({ bottom: '-60px' })
-			})
-		});
-	</script>
-
+	<script src="./js/animation.js"></script>
 </html>

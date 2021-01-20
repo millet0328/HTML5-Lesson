@@ -395,6 +395,7 @@
 			<div class="item">场景展示</div>
 			<div class="item">新闻资讯</div>
 		</div>
+
 		<script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/superslide.2.1.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
@@ -419,109 +420,72 @@
 				}
 			});
 		</script>
+
 		<script type="text/javascript">
-			$('.title_box .title_cn').click(function() {
-				// 获取当前的显示状态
-				var flag = $(this).siblings('.title_en').is(':visible');
-				if (flag) {
-					$(this).siblings('.title_en').hide('fast');
+			// show/hide
+			$('.title_cn').click(function() {
+				var isVisible = $(this).siblings('.title_en').is(":visible");
+				if (isVisible) {
+					$(this).siblings('.title_en').hide('slow');
 				} else {
-					$(this).siblings('.title_en').show('fast');
+					$(this).siblings('.title_en').show('slow');
 				}
 			});
 
+			// fadeIn/fadeOut
 			$('.news_box li').mouseenter(function() {
-				$(this).find('.news_date').stop(true).fadeOut('slow');
+				$(this).find('.news_date').stop(true).fadeOut();
 			});
 			$('.news_box li').mouseleave(function() {
-				$(this).find('.news_date').stop(true).fadeIn('slow');
+				$(this).find('.news_date').stop(true).fadeIn();
 			});
-			// 导航栏
+
+			// slideUp/slideDown
 			$('.navbar li').hover(function() {
 				$(this).find('dl').stop(true).slideDown();
 			}, function() {
 				$(this).find('dl').stop(true).slideUp();
-			});
+			})
 
+			// 自定义动画animate
 			$('.works_box .item').hover(function() {
-				$(this).find('.cover').stop(true).animate({
-					top: '0px'
-				});
+				$(this).find('.cover').stop(true).animate({ top: 0 });
 			}, function() {
-				$(this).find('.cover').stop(true).animate({
-					top: '100%'
-				});
+				$(this).find('.cover').stop(true).animate({ top: "100%" });
 			});
 
 			$('.theme_box li').hover(function() {
-				$(this).siblings('li').find('img').stop(true).animate({
-					opacity: 0.3
-				});
+				$(this).siblings('li').find('img').stop(true).animate({ opacity: 0.3 });
 			}, function() {
-				$(this).siblings('li').find('img').stop(true).animate({
-					opacity: 1
-				});
+				$(this).siblings('li').find('img').stop(true).animate({ opacity: 1 });
 			});
-		</script>
-		<script type="text/javascript">
-			// 窗口滚动事件
-			$(window).scroll(function() {
-				// scrollTop
-				var scrollTop = $(document).scrollTop();
-				console.log(scrollTop);
-				// 显示/隐藏 回到顶部
-				if (scrollTop >= 400) {
-					$('.backTop').stop(true).fadeIn();
-				} else {
-					$('.backTop').stop(true).fadeOut();
-				}
 
-				if (scrollTop > 0) {
-					$('#nav').css({
-						position: 'fixed',
-						backgroundColor: 'rgba(0,0,0,0.7)'
-					});
-					$('.logo').stop(true).fadeOut(function() {
-						$('.navbar').stop(true).animate({ paddingLeft: 0 });
-					});
+			// 滚动事件
+			$(window).scroll(function() {
+				var scrollTop = $(document).scrollTop();
+				if (scrollTop >= 550) {
+					$('.backTop').fadeIn();
 				} else {
-					$('#nav').css({
-						position: 'absolute',
-						backgroundColor: 'rgba(0,0,0,0.3)'
-					});
-					$('.navbar').stop(true).animate({ paddingLeft: '175px' }, function() {
-						$('.logo').stop(true).fadeIn();
-					});
+					$('.backTop').fadeOut();
 				}
 			});
+
 			// 回到顶部
 			$('.backTop').click(function() {
-				$('html,body').stop(true).animate({ scrollTop: 0 });
+				$('html,body').animate({ scrollTop: 0 });
 			});
+
 			// 楼层跳转
 			$('.floor-box .item').click(function() {
-				// 获取索引值
+				// 切换active
+				$(this).addClass('active').siblings().removeClass('active');
+				// 获取索引
 				var i = $(this).index();
-				// 高亮显示
-				$('.floor-box .item').removeClass('active');
-				$(this).addClass('active');
-				// 计算楼层相对于document顶部的top值
+				// 对应楼层距离顶部的高度
 				var top = $('.title_box').eq(i).offset().top;
-				// 滚动窗口
-				$('html,body').stop(true).animate({ scrollTop: top });
+				// 滚动页面
+				$('html,body').animate({ scrollTop: top });
 			});
-			// 滚动过程中，相应楼层高亮显示
-			// $(window).scroll(function() {
-			// 	// scrollTop
-			// 	var scrollTop = $(document).scrollTop();
-			// 	$('.title_box').each(function(index) {
-			// 		var top = $(this).offset().top;
-			// 		var short = top - scrollTop;
-			// 		if (short <= 0) {
-			// 			$('.floor-box .item').removeClass('active').eq(index).addClass('active');
-			// 		}
-			// 	});
-			// });
 		</script>
 	</body>
 
