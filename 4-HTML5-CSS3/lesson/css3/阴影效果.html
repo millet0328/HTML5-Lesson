@@ -4,25 +4,53 @@
 		<meta charset="utf-8">
 		<title></title>
 		<style>
-			.box {
-				width: 300px;
-				height: 300px;
-				padding: 10px;
-				border: 2px solid white;
-				transition: all 1s;
+			body {
+				background-color: #EEEEEE;
 			}
-			
-			.box:hover {
-				box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2) inset;
+
+			.shadow {
+				width: 263px;
+				padding: 10px;
+				border-radius: 6px;
+				background-color: white;
+				box-shadow: 0px 5px 16px 4px rgba(0, 0, 0, 0.2);
+			}
+
+			.goods {
+				position: relative;
+				top: 0;
+				width: 263px;
+				padding: 10px;
+				border-radius: 6px;
+				background-color: white;
+				transition: all 0.5s;
+			}
+
+			.goods:hover {
+				top: -5px;
+				box-shadow: 0px 8px 20px 4px rgba(0, 0, 0, 0.2);
 			}
 		</style>
 	</head>
 	<body>
-		<p>
-			<div class="box">
-				<img width="300" src="img/winter-hat.jpg">
-			</div>
-		</p>
+		<fieldset id="">
+			<legend>基础语法</legend>
 
+			<p>
+				<div class="shadow">
+					<img src="./img/photo05.jpg" alt="">
+				</div>
+			</p>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>动画</legend>
+
+			<p>
+				<div class="goods">
+					<img src="./img/photo05.jpg" alt="">
+				</div>
+			</p>
+		</fieldset>
 	</body>
 </html>

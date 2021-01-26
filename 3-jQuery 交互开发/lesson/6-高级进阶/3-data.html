@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!-- 自定义属性 data-*** 将数据保存至标签上 -->
+		<h1 data-name="黄小米" data-age="26">Hello World!</h1>
+
+		<button id="fetch" type="button">获取data数据</button>
+		<button id="save" type="button">存储data数据</button>
+
+		<script src="js/jquery-3.5.1.min.js"></script>
+
+		<script type="text/javascript">
+			// 提取数据
+			$('#fetch').click(function() {
+				var name = $('h1').data('name');
+				var age = $('h1').data('age');
+				var sex = $('h1').data('sex');
+
+				console.log(name, age, sex);
+			});
+
+			// 存储数据
+			$('#save').click(function() {
+				$('h1').data('sex', '女');
+			});
+		</script>
+	</body>
+</html>

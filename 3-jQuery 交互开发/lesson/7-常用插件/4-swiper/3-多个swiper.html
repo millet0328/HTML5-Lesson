@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="./lib/swiper/css/swiper-bundle.min.css" />
+
+		<style type="text/css">
+			.banner-box {
+				width: 790px;
+				height: 340px;
+			}
+
+			.seckill-box {
+				margin: 20px;
+				height: 300px;
+			}
+
+			.seckill-box .goods {
+				border: 1px solid blue;
+				padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="swiper-container banner-box">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<img src="img/1.jpg">
+				</div>
+				<div class="swiper-slide">
+					<img src="img/2.jpg">
+				</div>
+				<div class="swiper-slide">
+					<img src="img/3.jpg">
+				</div>
+			</div>
+			<!-- 如果需要分页器 -->
+			<div class="swiper-pagination"></div>
+
+			<!-- 如果需要导航按钮 -->
+			<div class="swiper-button-prev"></div>
+			<div class="swiper-button-next"></div>
+
+		</div>
+
+		<div class="swiper-container seckill-box">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<div class="goods">
+						<img width="100%" src="./img/3.jpg" alt="">
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="goods">
+						<img width="100%" src="./img/3.jpg" alt="">
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="goods">
+						<img width="100%" src="./img/3.jpg" alt="">
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="goods">
+						<img width="100%" src="./img/3.jpg" alt="">
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="goods">
+						<img width="100%" src="./img/3.jpg" alt="">
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="goods">
+						<img width="100%" src="./img/3.jpg" alt="">
+					</div>
+				</div>
+			</div>
+			<!-- Add Pagination -->
+			<div class="swiper-pagination"></div>
+			<!-- Add Arrows -->
+			<div class="swiper-button-next"></div>
+			<div class="swiper-button-prev"></div>
+		</div>
+
+		<script src="./lib/swiper/js/swiper-bundle.min.js"></script>
+
+		<script>
+			var swiper1 = new Swiper('.banner-box', {
+				loop: true, // 循环模式选项
+
+				// 如果需要分页器
+				pagination: {
+					el: '.swiper-pagination',
+				},
+
+				// 如果需要前进后退按钮
+				navigation: {
+					nextEl: '.swiper-button-next',
+					prevEl: '.swiper-button-prev',
+				},
+			})
+		</script>
+		<script>
+			var swiper2 = new Swiper('.seckill-box', {
+				slidesPerView: 3,
+				spaceBetween: 30,
+				slidesPerGroup: 3,
+				loop: true,
+				loopFillGroupWithBlank: true,
+				pagination: {
+					el: '.swiper-pagination',
+					clickable: true,
+				},
+				navigation: {
+					nextEl: '.swiper-button-next',
+					prevEl: '.swiper-button-prev',
+				},
+			});
+		</script>
+	</body>
+</html>

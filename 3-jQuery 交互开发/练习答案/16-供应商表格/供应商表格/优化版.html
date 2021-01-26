@@ -202,15 +202,16 @@
         // 隐藏
         $tbody.on("click", ".hide", function() {
             var $td = $(this).parent().siblings('td').eq(3);
-            // 获取email地址
-            var email = $td.text();
-            // 判断是否有title
-            if ($td.data('email')) {
-                $td.text($td.data('email'));
+            // 获取原有email地址
+            var origin = $td.text();
+            // 判断是否有email
+			var email = $td.data('email');
+            if (email) {
+                $td.text(email);
                 $td.removeData('email');
             } else {
-                $td.data('email', email);
-                var text = email.replace(/\w/g, '*');
+                $td.data('email', origin);
+                var text = origin.replace(/\w/g, '*');
                 $td.text(text);
             }
         });

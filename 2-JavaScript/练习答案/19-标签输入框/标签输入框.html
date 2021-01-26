@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		.tag_input_box .tag {
+			background-color: blue;
+			color: white;
+			padding: 4px 10px;
+			display: inline-block;
+			margin-right: 6px;
+		}
+
+		/* 伪元素在js/jQuery无法查找 */
+		.tag_input_box .tag i {
+			display: inline-block;
+			margin-left: 10px;
+			font-style: normal;
+			cursor: pointer;
+		}
+
+		.tag_input_box .tag_input {
+			border: 0;
+			outline: 0;
+			line-height: 27px;
+			font-size: 24px;
+			min-width: 360px;
+		}
+
+		.tag_input_box {
+			border: 1px solid #ddd;
+			padding: 6px;
+
+		}
+	</style>
+</head>
+
+<body>
+	<h3>标签输入框</h3>
+	<ol>
+		<li>输入文字，按下enter键，自动生成标签</li>
+		<li>输入文字，以逗号分割，按下enter键，同时生成多个标签</li>
+		<li>触发input框change事件，同样能够生成标签</li>
+		<li>标签有删除功能，点击删除图标，删除此标签</li>
+	</ol>
+	<div class="tag_input_box">
+		<span class="tag_box"></span>
+		<input class="tag_input" type="text" placeholder="请输入标签，多个标签以逗号分隔" id="tag_input" value="" />
+	</div>
+
+	<script type="text/javascript">
+		// 查找元素 element对象
+		var oInput = document.getElementById("tag_input");
+		var oTagBox = document.querySelector('.tag_box');
+
+		oInput.onchange = function () {
+			// 获取value
+			var txt = oInput.value;
+			// 将所有的中文逗号，replace成英文逗号
+			txt = txt.replace(/，/g, ',');
+			// 将字符串切割数组
+			var arr = txt.split(',');
+			// 生成标签
+			arr.forEach(function (item, index) {
+				// 去除空格
+				item = item.trim();
+				// 判断是否为空值,空值不会生成标签
+				if (!item) {
+					return;
+				}
+				// 生成元素 <span></span>
+				var oSpan = document.createElement("span");
+				// 修饰元素
+				oSpan.className = "tag";
+				oSpan.innerHTML = item + '<i>x</i>';
+				// 插入元素
+				oTagBox.appendChild(oSpan);
+			});
+			// 转化标签之后，清空value
+			oInput.value = "";
+		}
+		// 删除标签 => 事件委托
+		oTagBox.addEventListener('click', function (e) {
+			if (e.target.tagName == "I") {
+				this.removeChild(e.target.parentNode);
+			}
+		})
+	</script>
+</body>
+
+</html>

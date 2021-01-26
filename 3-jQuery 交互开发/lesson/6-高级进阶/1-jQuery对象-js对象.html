@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery-3.5.1.min.js"></script>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>jQuery对象 vs js对象</legend>
+			
+			<ul class="list">
+				<li>黄小米</li>
+				<li>黄磊</li>
+				<li>黄渤</li>
+				<li>张艺兴</li>
+				<li>孙红雷</li>
+				<li>王迅</li>
+			</ul>
+			<script type="text/javascript">
+				// jQuery对象
+				var $Li = $('.list li');
+				// 调用jQuery方法
+				$Li.show();
+				// 调用js方法，报错！！！
+				// $Li.appendChild();
+				
+				console.log($Li);
+				// js对象
+				var oLi = document.querySelectorAll('.list li');
+				// 调用jQuery方法，报错！！！
+				// oLi.show();
+				
+				console.dir(oLi);
+			</script>
+		</fieldset>
+	</body>
+</html>

@@ -4,51 +4,71 @@
 		<meta charset="utf-8">
 		<title></title>
 		<style type="text/css">
-			.search-btn {
-				padding: 10px 30px;
-				font-size: 21px;
+			.search-box .btn {
 				background-color: orange;
-				border: 0;
 				color: white;
+				border: 0;
 				outline: 0;
-				border-top-right-radius: 6px;
-				border-bottom-right-radius: 6px;
+				padding: 10px 30px;
+				vertical-align: middle;
+				border-top-right-radius: 3px;
+				border-bottom-right-radius: 3px;
 			}
 
-			.search-text {
-				padding: 14px 6px;
-				border: 2px solid orange;
-				border-top-left-radius: 6px;
-				border-bottom-left-radius: 6px;
+			.search-box .keyword {
+				vertical-align: middle;
+				padding: 7px 4px;
+				border: 1px solid orange;
+				line-height: 22px;
+				outline: 0;
+				border-top-left-radius: 3px;
+				border-bottom-left-radius: 3px;
 			}
 
-			.fl {
-				float: left;
+			.round-btn {
+				background-color: orange;
+				color: white;
+				border: 0;
+				outline: 0;
+				padding: 10px 30px;
+				border-radius: 50px;
 			}
 
-			.clearfix::after {
-				content: "";
-				display: block;
-				clear: both;
-			}
-
-			.avatar img {
-				width: 160px;
-				height: 160px;
+			.circle {
 				border-radius: 50%;
-				overflow: hidden;
-				border: 2px solid lightgray;
+				border: 1px solid black;
+				padding: 4px;
+				transition: all 0.5s;
+			}
+
+			.circle:hover {
+				border-radius: 4px;
 			}
 		</style>
 	</head>
 	<body>
-		<div class="clearfix">
-			<input class="search-text fl" type="text">
-			<button class="search-btn fl">搜 索</button>
-		</div>
+		<fieldset id="">
+			<legend>基础语法</legend>
+			<ol>
+				<li>一般圆角范围 3px ~ 5px</li>
+			</ol>
+			<div class="search-box">
+				<input class="keyword" type="text"><button class="btn" type="button">搜索</button>
+			</div>
+		</fieldset>
 
-		<div class="avatar">
-			<img width="160" src="img/winter-hat.jpg" alt="">
-		</div>
+		<fieldset id="">
+			<legend>椭圆</legend>
+
+			<button class="round-btn" type="button">椭圆按钮</button>
+
+		</fieldset>
+
+		<fieldset id="">
+			<legend>圆形</legend>
+
+			<img class="circle" width="200" src="./img/winter-hat.jpg">
+
+		</fieldset>
 	</body>
 </html>
