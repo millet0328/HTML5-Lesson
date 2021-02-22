@@ -12,6 +12,7 @@
 		<button id="delete" type="button">删cookie</button>
 		<button id="update" type="button">改cookie</button>
 		<button id="read" type="button">查cookie</button>
+
 		<script type="text/javascript">
 			function setCookie(cname, cvalue, exdays) {
 				var d = new Date();
@@ -41,36 +42,44 @@
 			var oRead = document.getElementById("read");
 			// 添加数据
 			oCreate.onclick = function() {
+				// 会话状态
+				document.cookie = 'username = 刘备';
 				// 有效期
-				var time = new Date();
-				time.setFullYear(time.getFullYear() + 1);
-				document.cookie = "brother=张飞;expires=" + time.toString();
+				// document.cookie = 'sex = 男;expires=' + new Date(2022, 0, 1).toGMTString();
+				setCookie('sex', '男', 365);
 				// 对象
-				var person = { name: "刘备", age: 1000 };
+				var person = { name: '黄小米', age: 25 };
+				// 对象 => JSON
 				var json = JSON.stringify(person);
-				document.cookie = 'user=' + json;
+				setCookie('person', json, 10);
 				// 数组
-				var team = ['刘备', '关羽', '张飞'];
-				team = JSON.stringify(team);
-				setCookie('team', team, 720);
+				var team = ['赵云', '诸葛亮', '黄忠'];
+				// 数组 => JSON
+				var json = JSON.stringify(team);
+				setCookie('team', json, 10);
 			}
 			// 删除cookie
 			oDelete.onclick = function() {
-				document.cookie = "brother=";
+				document.cookie = 'sex=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
 			}
 			// 修改cookie
 			oUpdate.onclick = function() {
-				document.cookie = "username=关羽";
+				document.cookie = 'username = 关羽';
 			}
 			// 获取cookie
 			oRead.onclick = function() {
+				var username = getCookie('username');
+				console.log('username:%s', username)
 				// 获取对象
-				var person = getCookie('user');
-				person = JSON.parse(person);
+				var json = getCookie('person');
+				// JSON => 对象
+				var person = JSON.parse(json);
+				console.log('person:%o', person);
 				// 获取数组
-				var team = getCookie('team');
-				team = JSON.parse(team);
-				console.log(team);
+				var json = getCookie('team');
+				// JSON => 数组
+				var team = JSON.parse(json);
+				console.log('team:%o', team);
 			}
 		</script>
 	</body>

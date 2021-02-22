@@ -12,7 +12,7 @@
 		<div class="cart-box">
 			<div class="cart_header clearfix">
 				<div class="left fl">
-					精选特卖
+					购物车
 				</div>
 				<div class="right fr">
 					<ul class="clearfix">
@@ -24,7 +24,7 @@
 				</div>
 			</div>
 			<div class="cart_content">
-				<!--<div class="cart_item clearfix">
+				<div class="cart_item clearfix">
 					<div class="photo fl">
 						<img src="img/guess/guess04.jpg">
 					</div>
@@ -53,7 +53,7 @@
 					<div class="actions fl">
 						删除
 					</div>
-				</div> -->
+				</div>
 
 			</div>
 			<div class="carriage-tips">
@@ -75,27 +75,51 @@
 				return "";
 			}
 		</script>
-		<script>
+		<script type="text/javascript">
 			$(document).ready(function() {
-				// 1.页面加载完成，获取cookie中的cart数据
-				var cart = getCookie('cart');
-				if (cart) {
-					cart = JSON.parse(cart);
-				} else {
-					cart = [];
-				}
-				// 2.渲染数据
-				cart.forEach(function(item, index) {
-					var $item = $('<div class="cart_item clearfix">' +
-						'<div class="photo fl"><img src="' + item.photo + '"></div>' +
-						'<div class="name fl">' + item.name + '</div>' +
-						'<div class="price fl">' + item.price + '</div>' +
-						'<div class="quantity fl"><div class="sum_box"><div class="minus">-</div>' +
-						'<div class="num">' + item.num + '</div><div class="add">+</div></div></div>' +
-						'<div class="subtotal fl">￥' + item.price.slice(1) * item.num +
-						'</div><div class="actions fl">删除</div></div>');
-					$('.cart_content').append($item);
+				// 获取cookie
+				var json = getCookie('cart');
+				// json => 数组
+				var cart = JSON.parse(json);
+
+				var html = '';
+				cart.forEach(function(item) {
+					// 模板字符串
+					html += `
+				<div class="cart_item clearfix">
+					<div class="photo fl">
+						<img src="${item.photo}">
+					</div>
+					<div class="name fl">
+						${item.name}
+					</div>
+					<div class="price fl">
+						${item.price}
+					</div>
+					<div class="quantity fl">
+						<div class="sum_box">
+							<div class="minus">
+								-
+							</div>
+							<div class="num">
+								${item.num}
+							</div>
+							<div class="add">
+								+
+							</div>
+						</div>
+					</div>
+					<div class="subtotal fl">
+						&yen;979
+					</div>
+					<div class="actions fl">
+						删除
+					</div>
+				</div>`
 				});
+				
+				$('.cart_content').html(html);
+				
 			});
 		</script>
 	</body>

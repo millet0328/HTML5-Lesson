@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box {
+				width: 200px;
+				height: 200px;
+				background-color: #000000;
+				position: absolute;
+				left: 0;
+				top: 0;
+				color: #FFFFFF;
+				line-height: 200px;
+				font-size: 20px;
+				cursor: move;
+			}
+
+			.wrap {
+				position: relative;
+				min-height: 300px;
+				border: 2px solid yellow;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--
+		<div style="height: 600px;">模拟前置内容</div>
+		<fieldset id="">
+			<legend>mouse时间模拟拖拽效果</legend>
+
+			<div class="wrap">
+
+			</div>
+		</fieldset>
+		-->
+		<div id="box" class="box">拖拽测试一下</div>
+		<script type="text/javascript">
+			// 查找元素
+			var oBox = document.getElementById('box');
+			
+			// 禁用文字选中
+			oBox.onselectstart = function() {
+				return false;
+			}
+			// 禁用文字拖拽
+			oBox.ondragstart = function() {
+				return false;
+			}
+			// 鼠标按下
+			oBox.onmousedown = function(e) {
+				// 起点
+				var originX = e.clientX;
+				var originY = e.clientY;
+				// 初始的left/top
+				var left = oBox.offsetLeft;
+				var top = oBox.offsetTop;
+				// 鼠标移动
+				document.onmousemove = function(e) {
+					// 终点
+					var endX = e.clientX;
+					var endY = e.clientY;
+					// 位移距离
+					var distanceX = endX - originX;
+					var distanceY = endY - originY;
+					// 重新赋值left/top
+					oBox.style.left = left + distanceX + 'px';
+					oBox.style.top = top + distanceY + 'px';
+				}
+			}
+			// 鼠标抬起 -- 移除事件
+			oBox.onmouseup = function() {
+				document.onmousemove = null;
+			}
+		</script>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<!--<script>
+			var $box = $('#box');
+			$box.on('mousedown', function(e) {
+				//鼠标的X Y
+				var mouseX = e.clientX;
+				var mouseY = e.clientY;
+
+				//box的left top
+				var boxLeft = $(this).offset().left;
+				var boxTop = $(this).offset().top;
+				//修正文字选中
+				$box.on('selectstart dragstart', function() {
+					return false;
+				});
+				//拖拽过程-mousemove
+				$box.on('mousemove', moveHandle);
+
+				function moveHandle(e) {
+					//X Y轴的距离 
+					var distanceX = e.clientX - mouseX;
+					var distanceY = e.clientY - mouseY;
+					//赋值box的新left/top
+					$(this).css('left', boxLeft + distanceX);
+					$(this).css('top', boxTop + distanceY);
+				}
+				//拖拽结束-mouseup
+				$(document).on('mouseup', function() {
+					$box.off('mousemove', moveHandle);
+				});
+			})
+		</script>-->
+
+	</body>
+
+</html>

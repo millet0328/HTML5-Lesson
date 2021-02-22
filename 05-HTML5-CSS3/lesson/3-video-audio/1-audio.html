@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<fieldset id="">
+			<legend>audio基础写法</legend>
+
+			<audio controls src="./assets/audio/sky-city.mp3">
+				当前浏览器不支持audio
+			</audio>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>audio兼容</legend>
+
+			<audio controls>
+				<source src="assets/audio/horse.mp3">
+				<source src="assets/audio/horse.ogg">
+				当前浏览器不支持audio
+			</audio>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>js控制音频</legend>
+
+			<button id="play" type="button">播放</button>
+			<button id="pause" type="button">暂停</button>
+
+			<audio id="music" src="assets/audio/south%20Mountain.mp3">
+				当前浏览器不支持audio
+			</audio>
+			<script type="text/javascript">
+				// 查找元素
+				var oMusic = document.getElementById('music');
+				var oPlay = document.getElementById('play');
+				var oPause = document.getElementById('pause');
+				// 播放
+				oPlay.onclick = function() {
+					oMusic.play();
+				}
+				// 暂停
+				oPause.onclick = function() {
+					oMusic.pause();
+				}
+			</script>
+		</fieldset>
+	</body>
+
+</html>

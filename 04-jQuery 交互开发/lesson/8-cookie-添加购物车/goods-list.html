@@ -200,41 +200,41 @@
 				return "";
 			}
 		</script>
+
 		<script type="text/javascript">
 			$('.add_cart').click(function() {
-				// 获取商品数据-goods
-				var id = $(this).parents('li').data('id');
-				var name = $(this).siblings('.title').text().trim();
-				var photo = $(this).siblings('.photo').find('img').attr('src');
-				var price = $(this).siblings('.price').text().trim();
-				var goods = {
-					id: id,
-					name: name,
-					photo: photo,
-					price: price,
-					num: 1,
-				}
-				// 1.提取cookie中购物车数组
+				// 提取商品数据
+				var obj = {};
+				obj.num = 1;
+				obj.id = $(this).parent('li').data('id');
+				obj.photo = $(this).siblings('.photo').find('img').attr('src');
+				obj.name = $(this).siblings('.title').text().trim();
+				obj.price = $(this).siblings('.price').text().trim();
+				// 获取cookie中的cart;
 				var cart = getCookie('cart');
-				if (cart) {
-					// 2.JSON转换成数组
+				// 判断cart是否存在
+				if (cart.length) {
+					// JSON => 数组
 					cart = JSON.parse(cart);
 				} else {
 					cart = [];
 				}
-				// 3.在cart查找此商品，
-				var i = cart.findIndex(function(item, index) { return item.id == id; });
-				if (i >= 0) {
-					// 如果有，数量+1
-					cart[i].num += 1;
-				} else {
-					// 如果无，push进数组
-					cart.push(goods);
+				// 根据id判断是否存在重复商品
+				var isExist = false;
+				for (var i = 0; i < cart.length; i++) {
+					if (cart[i].id == obj.id) {
+						cart[i].num++;
+						isExist = true;
+						break;
+					}
 				}
-				// 4.转换成JSON
-				cart = JSON.stringify(cart);
-				// 5.存储至cookie
-				setCookie('cart', cart);
+				// 不存在重复商品
+				if (!isExist) {
+					cart.push(obj);
+				}
+				// 存储到cookie
+				var json = JSON.stringify(cart);
+				setCookie('cart', json, 365);
 			});
 		</script>
 	</body>

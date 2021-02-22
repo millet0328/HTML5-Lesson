@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>video基础语法</legend>
+
+			<video width="400" controls src="./assets/video/mov_cartoon.mp4"></video>
+
+		</fieldset>
+
+		<fieldset id="">
+			<legend>video常用属性</legend>
+
+			<video width="800" controls autoplay muted loop src="./assets/video/demo.mp4"></video>
+
+		</fieldset>
+
+		<fieldset id="">
+			<legend>video视频js控制</legend>
+			
+			<video id="video" width="800" src="./assets/video/larva.mp4"></video>
+			
+			<p>
+				<button id="play" type="button">播放</button>
+				<button id="pause" type="button">暂停</button>
+				<button id="muted" type="button">静音</button>
+				<button id="speedUp" type="button">加速*3.0</button>
+				<button id="speedDown" type="button">减速*0.5</button>
+			</p>
+			<p>
+				<span class="current-time">00:00:00</span>
+				/
+				<span class="total-time"></span>
+			</p>
+		</fieldset>
+		
+		<script type="text/javascript">
+			window.onload = function() {
+				// 查找元素
+				var oVideo = document.getElementById('video');
+				var oPlay = document.getElementById('play');
+				var oPause = document.getElementById('pause');
+				var oMuted = document.getElementById('muted');
+				var oSpeedUp = document.getElementById('speedUp');
+				var oSpeedDown = document.getElementById('speedDown');
+				// 播放
+				oPlay.onclick = function() {
+					oVideo.play();
+				}
+				// 暂停
+				oPause.onclick = function() {
+					oVideo.pause();
+				}
+				// 静音切换
+				oMuted.onclick = function() {
+					// 获取当前的音量
+					oVideo.muted = !oVideo.muted;
+					console.log(oVideo.muted)
+				}
+				// 设置音量
+
+				// 加速播放3.0
+				oSpeedUp.onclick = function() {
+					oVideo.playbackRate = 3.0
+				}
+				// 慢速播放0.5
+				oSpeedDown.onclick = function() {
+					oVideo.playbackRate = 0.5;
+				}
+				// 视频总长度，秒
+				function convert_second(seconds) {
+					var sec = parseInt(seconds % 60);
+					var min = parseInt(seconds / 60);
+					var hour = parseInt(seconds / 60 / 60);
+
+					function fix(num) {
+						return num < 10 ? ('0' + num) : num;
+					}
+					return fix(hour) + ':' + fix(min) + ":" + fix(sec);
+				}
+				document.querySelector('.total-time').innerText = convert_second(oVideo.duration);
+				// 获取正在播放的位置，秒
+				var oCurrentTime = document.querySelector('.current-time');
+				oVideo.addEventListener('timeupdate', function() {
+					oCurrentTime.innerText = convert_second(oVideo.currentTime);
+				});
+			}
+		</script>
+	</body>
+</html>
