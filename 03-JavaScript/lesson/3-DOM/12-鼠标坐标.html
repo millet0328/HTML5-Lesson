@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			.demo {
+				position: relative;
+				border: 2px solid black;
+				min-height: 800px;
+				/* cursor: none; */
+			}
+
+			.bg {
+				background: url(./img/cf.jpg) top center;
+				background-size: cover;
+			}
+
+			.aimer {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100px;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<fieldset id="">
+			<legend>鼠标move事件</legend>
+
+			<div class="demo bg"></div>
+
+			<script type="text/javascript">
+				var oBg = document.querySelector('.bg');
+
+				// 鼠标移入
+				oBg.onmouseenter = function() {
+					// 创建标签
+					var oBullet = document.createElement('img');
+					// 修饰元素
+					oBullet.className = 'aimer';
+					oBullet.src = './img/aimer.png';
+					// 插入元素
+					oBg.appendChild(oBullet);
+					oBg.onmousemove = function(e) {
+						oBullet.style.left = e.pageX - 50 - oBg.offsetLeft + 'px';
+						oBullet.style.top = e.pageY - 50 - oBg.offsetTop + 'px';
+					}
+				}
+				oBg.onmouseleave = function() {
+					oBg.innerHTML = '';
+				}
+			</script>
+		</fieldset>
+	</body>
+</html>

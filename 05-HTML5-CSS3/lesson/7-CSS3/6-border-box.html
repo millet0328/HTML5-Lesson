@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style type="text/css">
+			html,
+			body {
+				margin: 0;
+			}
+
+			ul,
+			li {
+				padding: 0;
+				list-style: none;
+			}
+
+			.clearfix::after {
+				content: '';
+				clear: both;
+				display: block;
+			}
+
+			.list li {
+				width: calc(25% - 20px);
+				float: left;
+				margin: 10px;
+				padding: 5px;
+				border: 1px solid orange;
+				/* 改变盒模型 */
+				box-sizing: border-box;
+			}
+
+			.list li img {
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<ul class="list clearfix">
+			<li><img src="./img/photo05.jpg"></li>
+			<li><img src="./img/photo05.jpg"></li>
+			<li><img src="./img/photo05.jpg"></li>
+			<li><img src="./img/photo05.jpg"></li>
+		</ul>
+	</body>
+
+</html>

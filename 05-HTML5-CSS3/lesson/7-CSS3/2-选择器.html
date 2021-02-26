@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			tbody tr:first-child {
+				background-color: pink;
+			}
+
+			tbody tr:last-child {
+				background-color: yellow;
+			}
+
+			/* 偶数项 */
+			tbody tr:nth-child(even) {
+				background-color: white;
+			}
+
+			/* 奇数项 */
+			tbody tr:nth-child(odd) {
+				background-color: lightcyan;
+			}
+
+			tbody tr:nth-child(3n) {
+				background-color: orange;
+			}
+		</style>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>伪类选择器</legend>
+			<ol>
+				<li>nth-child选择器序号从1开始</li>
+				<li>nth-child支持奇数/偶数项，odd，even</li>
+				<li>nth-child支持公式，例如3n，2n+1</li>
+			</ol>
+		</fieldset>
+		<table width="100%" border="1" cellpadding="20" align="center">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>姓名</th>
+					<th>年龄</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>黄渤</td>
+					<td>42</td>
+					<td><button type="button">x</button></td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>张艺兴</td>
+					<td>28</td>
+					<td><button type="button">x</button></td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>王迅</td>
+					<td>42</td>
+					<td><button type="button">x</button></td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>孙红雷</td>
+					<td>38</td>
+					<td><button type="button">x</button></td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>黄小米</td>
+					<td>26</td>
+					<td><button type="button">x</button></td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>黄小米</td>
+					<td>26</td>
+					<td><button type="button">x</button></td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>黄小米</td>
+					<td>26</td>
+					<td><button type="button">x</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

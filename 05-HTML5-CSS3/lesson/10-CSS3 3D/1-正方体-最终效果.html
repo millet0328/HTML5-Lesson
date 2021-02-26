@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.stage {
+				/* 对子元素开启3D效果 */
+				transform-style: preserve-3d;
+				animation: rushIn 10s;
+			}
+
+			.cube {
+				position: relative;
+				width: 200px;
+				height: 200px;
+				border: 1px solid blue;
+				margin: 200px auto;
+				/* 对子元素开启3D效果 */
+				transform-style: preserve-3d;
+				animation: circle 5s 6s linear infinite;
+			}
+
+			@keyframes rushIn {
+				from {
+					transform: perspective(100px);
+				}
+
+				to {
+					transform: perspective(6000px);
+				}
+			}
+
+			@keyframes circle {
+				from {
+					transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+				}
+
+				to {
+					transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+				}
+			}
+
+			.cube li {
+				width: 200px;
+				height: 200px;
+				text-align: center;
+				line-height: 200px;
+				border: 1px solid black;
+				position: absolute;
+				left: 0;
+				top: 0;
+				transition: all 0.5s;
+			}
+
+			.cube li:nth-child(1) {
+				background-color: rgba(255, 0, 0, 0.5);
+				transform: translateZ(100px);
+			}
+
+			.cube:hover li:nth-child(1) {
+				transform: translateZ(200px);
+			}
+
+			.cube li:nth-child(2) {
+				background-color: rgba(255, 192, 0, 0.5);
+				transform: rotateY(90deg) translateZ(100px);
+			}
+
+			.cube:hover li:nth-child(2) {
+				transform: rotateY(90deg) translateZ(200px);
+			}
+
+			.cube li:nth-child(3) {
+				background-color: rgba(255, 255, 0, 0.5);
+				transform: rotateY(180deg) translateZ(100px);
+			}
+
+			.cube:hover li:nth-child(3) {
+				transform: rotateY(180deg) translateZ(200px);
+			}
+
+			.cube li:nth-child(4) {
+				background-color: rgba(146, 208, 80, 0.5);
+				transform: rotateY(270deg) translateZ(100px);
+			}
+
+			.cube:hover li:nth-child(4) {
+				transform: rotateY(270deg) translateZ(200px);
+			}
+
+			.cube li:nth-child(5) {
+				background-color: rgba(0, 176, 80, 0.5);
+				transform: rotateX(90deg) translateZ(100px);
+			}
+
+			.cube:hover li:nth-child(5) {
+				transform: rotateX(90deg) translateZ(200px);
+			}
+
+			.cube li:nth-child(6) {
+				background-color: rgba(0, 176, 240, 0.5);
+				transform: rotateX(-90deg) translateZ(100px);
+			}
+
+			.cube:hover li:nth-child(6) {
+				transform: rotateX(-90deg) translateZ(200px);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="stage">
+			<ul class="cube">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+			</ul>
+		</div>
+	</body>
+</html>

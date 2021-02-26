@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			html,
+			body {
+				height: 100%;
+				margin: 0;
+			}
+
+			.demo {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 400px;
+				border: 2px solid orange;
+			}
+
+			.box {
+				border: 2px solid green;
+			}
+		</style>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>垂直居中</legend>
+
+			<ol>
+				<li>优点：宽高不固定，不需要定位，不会脱离DOM流</li>
+				<li>缺点：兼容性不好 IE>=10</li>
+			</ol>
+
+			<div class="demo">
+				<div class="box">
+					<img width="100" src="./img/face.png" alt="">
+				</div>
+			</div>
+		</fieldset>
+	</body>
+</html>

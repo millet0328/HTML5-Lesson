@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>存储对象</legend>
+			<ol>
+				<li>不能直接存储原始对象</li>
+				<li>先把原生对象转换为JSON，再存储</li>
+				<li>JSON.stringfy：object ==> JSON </li>
+				<li>JSON.parse：JSON ==> object</li>
+			</ol>
+			<p>
+				<button id="save" type="button">存储person</button>
+				<button id="fetch" type="button">提取person</button>
+			</p>
+			<script type="text/javascript">
+				var person = {
+					name: "黄小米",
+					age: 26,
+					sex: "女"
+				}
+				// 查找元素
+				var oBtn = document.getElementById('save');
+				var oFetch = document.getElementById('fetch');
+				// person存储
+				oBtn.onclick = function() {
+					// object => JSON
+					var json = JSON.stringify(person);
+					// 存储
+					sessionStorage.person = json;
+				}
+				// 提取person
+				oFetch.onclick = function() {
+					// 提取json
+					var json = sessionStorage.person;
+					// JSON => object
+					var person = JSON.parse(json);
+					
+					console.log(person);
+				}
+			</script>
+		</fieldset>
+	</body>
+</html>

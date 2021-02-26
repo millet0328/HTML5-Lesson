@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title></title>
+		<style type="text/css">
+			#container {
+				width: 1000px;
+				height: 600px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container"></div>
+
+		<script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=d559d34deaf5461ac14da27d6526ae88"></script>
+
+		<script type="text/javascript">
+			var map = new AMap.Map('container', {
+				zoom: 11, //级别
+				center: [116.397428, 39.90923], //中心点坐标
+				viewMode: '3D' //使用3D视图
+			});
+			var marker = new AMap.Marker({
+				position: [116.481181, 39.989792]
+			})
+			map.add(marker);
+			marker.on('click', onMarkerClick); //绑定click事件
+		</script>
+	</body>
+</html>

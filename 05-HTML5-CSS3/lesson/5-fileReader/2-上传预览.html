@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+
+	<body>
+		<fieldset id="">
+			<legend>读取文件 => 预览图片</legend>
+
+			<p>
+				<input id="file" type="file">
+			</p>
+			<p id="preview">
+
+			</p>
+			<script type="text/javascript">
+				// 查找元素
+				var oFile = document.querySelector('#file');
+				var oPreview = document.querySelector('#preview');
+
+				// change事件
+				oFile.onchange = function() {
+					// 获取选择的文件
+					var file = oFile.files[0];
+					// 生成reader
+					var reader = new FileReader();
+					// 读取文件
+					reader.readAsDataURL(file);
+					// 读取结果
+					reader.onload = function() {
+						// 创建标签
+						var oImg = document.createElement('img');
+						// 修饰标签
+						oImg.src = reader.result;
+						// 插入标签
+						oPreview.appendChild(oImg);
+					}
+				}
+			</script>
+		</fieldset>
+
+	</body>
+</html>

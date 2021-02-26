@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				margin: 0;
+			}
+
+			.list {
+				display: flex;
+				flex-wrap: wrap;
+				padding: 10px;
+				background-color: lightcyan;
+			}
+
+			.list .item {
+				width: 200px;
+				height: 350px;
+				border: 2px solid deeppink;
+				margin: 10px;
+				padding: 5px;
+				background-color: orange;
+			}
+
+			.user-card {
+				display: flex;
+				padding: 20px;
+				/* 横轴对齐 */
+				justify-content: space-between;
+				/* 纵轴对齐 */
+				align-items: center;
+				border: 1px solid #EEEEEE;
+				box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+			}
+		</style>
+	</head>
+
+	<body>
+		<fieldset id="">
+			<legend>容器属性</legend>
+
+			<div class="list">
+				<div class="item">item1</div>
+				<div class="item">item2</div>
+				<div class="item">item3</div>
+				<div class="item">item4</div>
+				<div class="item">item5</div>
+				<div class="item">item6</div>
+				<div class="item">item7</div>
+				<div class="item">item8</div>
+				<div class="item">item9</div>
+				<div class="item">item10</div>
+				<div class="item">item11</div>
+				<div class="item">item12</div>
+			</div>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>横轴/纵轴对齐</legend>
+
+			<div class="user-card">
+				<img class="avatar" src="./img/face.png" alt="">
+				<div class="nickname">黄小米</div>
+				<div class="position">技术部 | 前端开发工程师</div>
+			</div>
+
+		</fieldset>
+	</body>
+
+</html>

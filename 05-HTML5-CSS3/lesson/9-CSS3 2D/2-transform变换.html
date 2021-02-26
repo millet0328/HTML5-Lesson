@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>transition</title>
+		<style>
+			p {
+				width: 200px;
+				height: 200px;
+				margin: 10px 0;
+				background-color: orange;
+				transition: all 1s;
+			}
+
+			.box1.active {
+				transform: translate(0px,-30px);
+			}
+			
+			.box2.active {
+				transform: scale(0.7);
+			}
+			
+			.box3.active {
+				transform: rotate(45deg);
+			}
+			
+			.box4.active {
+				transform: skew(-20deg);
+			}
+			
+			.box5.active {
+				transform: translateX(600px) rotate(720deg) scale(0.7);
+				background-color: blue;
+			}
+		</style>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('p').click(function() {
+					$(this).toggleClass('active');
+				});
+			})
+		</script>
+	</head>
+	<body>
+		<ol>
+			<li>弥补CSS实现复杂的变换</li>
+			<li>兼容性：IE>=9</li>
+			<li>浏览器内部实现，性能较好</li>
+		</ol>
+		<fieldset id="">
+			<legend>transform:translate变换</legend>
+			<ol>
+				<li>沿着X/Y轴位移，可以为负值，单位px、百分比</li>
+				<li>元素占据以前的位置</li>
+			</ol>
+			<p class="box1">translate</p>
+			<p class="basic-box">参照物</p>
+
+		</fieldset>
+
+		<fieldset id="">
+			<legend>transform:scale放大缩小</legend>
+			<ol>
+				<li>scale以1为界限，大于1 => 放大；小于1 => 缩小</li>
+				<li>元素占据以前的位置</li>
+			</ol>
+			<p class="box2">scale</p>
+			<p class="basic-box">参照物</p>
+
+		</fieldset>
+
+		<fieldset id="">
+			<legend>transform:rotate旋转</legend>
+			<ol>
+				<li>角度单位是deg，旋转90度：rotate(90deg)</li>
+				<li>元素占据以前的位置</li>
+			</ol>
+			<p class="box3">rotate</p>
+			<p class="basic-box">参照物</p>
+
+		</fieldset>
+
+		<fieldset id="">
+			<legend>transform:skew倾斜</legend>
+			<ol>
+				<li>角度单位是deg，旋转90度：rotate(90deg)</li>
+				<li>元素占据以前的位置</li>
+			</ol>
+			<p class="box4">skew</p>
+			<p class="basic-box">参照物</p>
+
+		</fieldset>
+
+		<fieldset id="">
+			<legend>transform:多个变换同时使用</legend>
+
+			<p class="box5">同时使用多个变换</p>
+			<p class="basic-box">参照物</p>
+
+		</fieldset>
+	</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="./js/jquery-3.3.1.min.js"></script>
+		<style type="text/css">
+			.box1 {
+				width: 200px;
+				height: 200px;
+				background-color: orange;
+			}
+
+			.box2 {
+				width: 200px;
+				height: 200px;
+				background-color: pink;
+				transition: all 2s;
+			}
+
+			.box2:hover {
+				background-color: blue;
+				box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+			}
+		</style>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>兼容性好：jQuery动画</legend>
+
+			<ol>
+				<li>原理：基于js运算来改变属性值</li>
+				<li>兼容性：IE>=6，非常好</li>
+				<li>缺点：操作DOM频繁，性能较差</li>
+			</ol>
+			<p>
+				<button id="btn1" type="button">开始</button>
+			</p>
+
+			<div class="box1"></div>
+
+			<script type="text/javascript">
+				$('#btn1').click(function() {
+					$('.box1').slideUp(6000);
+				});
+			</script>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>transition动画</legend>
+
+			<ol>
+				<li>浏览器内部实现，性能较好</li>
+				<li>兼容性：IE >= 10</li>
+			</ol>
+
+			<p>
+				<div class="box2"></div>
+			</p>
+		</fieldset>
+	</body>
+</html>

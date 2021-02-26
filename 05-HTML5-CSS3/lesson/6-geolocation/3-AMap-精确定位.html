@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title></title>
+		<style type="text/css">
+			#container {
+				width: 1000px;
+				height: 600px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container"></div>
+
+		<script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=d559d34deaf5461ac14da27d6526ae88"></script>
+
+		<script type="text/javascript">
+			var map = new AMap.Map('container', {
+				resizeEnable: true
+			});
+
+			AMap.plugin('AMap.Geolocation', function() {
+				var geolocation = new AMap.Geolocation({
+					enableHighAccuracy: true, //是否使用高精度定位，默认:true
+					timeout: 10000, //超过10秒后停止定位，默认：5s
+					position: 'RB', //定位按钮的停靠位置
+					buttonOffset: new AMap.Pixel(10, 20), //定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+					zoomToAccuracy: true, //定位成功后是否自动调整地图视野到定位点
+				});
+				map.addControl(geolocation);
+				geolocation.getCurrentPosition(function(status, result) {
+					if (status == 'complete') {
+						var marker = new AMap.Marker({
+							position: [result.position.lng, result.position.lat] //位置
+						})
+						map.add(marker); //添加到地图
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

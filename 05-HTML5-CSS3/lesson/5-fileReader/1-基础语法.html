@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>读取文件 => 二进制、Buffer</legend>
+
+			<p>
+				<input id="file" type="file">
+			</p>
+
+			<script type="text/javascript">
+				// 查找元素
+				var oFile = document.querySelector('#file');
+
+				// change事件
+				oFile.onchange = function() {
+					// 获取选择的文件
+					var file = oFile.files[0];
+					// 生成reader
+					var reader = new FileReader();
+					// 读取文件
+					reader.readAsArrayBuffer(file);
+					// 读取结果
+					reader.onload = function() {
+						console.log(reader.result);
+					}
+				}
+			</script>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>读取文件 => 文本</legend>
+
+			<p>
+				<input id="file-text" type="file">
+			</p>
+
+			<p id="preview">
+
+			</p>
+
+			<script type="text/javascript">
+				// 查找元素
+				var oFileText = document.querySelector('#file-text');
+				var oPreview = document.querySelector('#preview');
+				// change事件
+				oFileText.onchange = function() {
+					// 获取选择的文件
+					var file = oFileText.files[0];
+					// 生成reader
+					var reader = new FileReader();
+					// 读取文件
+					reader.readAsText(file);
+					// 读取结果
+					reader.onload = function() {
+						oPreview.innerText = reader.result;
+					}
+				}
+			</script>
+		</fieldset>
+	</body>
+</html>

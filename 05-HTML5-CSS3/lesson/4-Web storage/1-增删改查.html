@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<fieldset id="">
+			<legend>webStorage的增删改查</legend>
+			<p>
+				<button id="create" type="button">增加</button>
+				<button id="remove" type="button">删除</button>
+				<button id="update" type="button">修改</button>
+				<button id="query" type="button">查询</button>
+			</p>
+			<script>
+				// 查找元素
+				var oCreate = document.querySelector('#create');
+				var oRemove = document.querySelector('#remove');
+				var oUpdate = document.querySelector('#update');
+				var oQuery = document.querySelector('#query');
+
+				// 增加
+				oCreate.onclick = function() {
+					// 会话存储
+					sessionStorage.master = '刘备';
+					// 永久存储
+					localStorage.master = '刘备';
+				}
+				// 修改
+				oUpdate.onclick = function() {
+					localStorage.master = '曹丕';
+				}
+				// 删除
+				oRemove.onclick = function() {
+					localStorage.removeItem('master');
+				}
+				// 查询
+				oQuery.onclick = function() {
+					console.log('master', localStorage.master);
+				}
+			</script>
+		</fieldset>
+	</body>
+
+</html>

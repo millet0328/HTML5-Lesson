@@ -38,22 +38,21 @@
 				// 查找元素
 				var oBg = document.querySelector('.bg');
 				var oSound = document.getElementById('sound');
-				
+
 				oBg.onclick = function(e) {
 					// 创建标签
 					var oBullet = document.createElement('img');
 					// 修饰元素
 					oBullet.className = 'bullet';
 					oBullet.src = 'assets/img/bullet1.png';
-					oBullet.style.left = e.offsetX - 25 + 'px';
-					oBullet.style.top = e.offsetY - 25 + 'px';
+					oBullet.style.left = e.pageX - 25 - oBg.offsetLeft + 'px';
+					oBullet.style.top = e.pageY - 25 - oBg.offsetTop + 'px';
 					// 插入元素
 					oBg.appendChild(oBullet);
 					// 播放音效
 					oSound.load();
 					oSound.play();
 				}
-				// bug：无法点击同一个点，定位错误
 			</script>
 		</fieldset>
 	</body>

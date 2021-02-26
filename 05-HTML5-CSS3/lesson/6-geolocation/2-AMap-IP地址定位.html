@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title></title>
+		<style type="text/css">
+			#container {
+				width: 1000px;
+				height: 600px;
+			}
+		</style>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>IP地址定位</legend>
+
+			<div id="container"></div>
+
+		</fieldset>
+
+		<script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=d559d34deaf5461ac14da27d6526ae88"></script>
+
+		<script type="text/javascript">
+			var map = new AMap.Map('container');
+
+			AMap.plugin('AMap.CitySearch', function() { //异步加载插件
+				//实例化城市查询类
+				var citysearch = new AMap.CitySearch();
+
+				citysearch.getLocalCity(function(status, result) {
+					
+					if (status === 'complete' && result.info === 'OK') {
+						
+						console.log(result.province, result.city);
+						
+						map.setBounds(result.bounds);
+						
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

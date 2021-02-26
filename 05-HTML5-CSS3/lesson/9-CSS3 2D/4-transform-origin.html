@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			p {
+				width: 200px;
+				height: 200px;
+				margin: 10px 0;
+				background-color: orange;
+				transition: all 1s;
+				transform-origin: right bottom;
+			}
+
+			.box1.active {
+				transform: rotate(45deg);
+			}
+		</style>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('p').click(function() {
+					$(this).toggleClass('active');
+				});
+			})
+		</script>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>transform-origin:原点</legend>
+			<ol>
+				<li>默认情况下，原点是元素的中心点</li>
+				<li>定义变换的原点位置</li>
+			</ol>
+			
+			<p class="box1">原点</p>
+			<p class="basic-box">参照物</p>
+
+		</fieldset>
+	</body>
+</html>

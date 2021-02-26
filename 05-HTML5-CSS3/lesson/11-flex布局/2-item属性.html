@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.demo-1,
+			.demo-2,
+			.demo-3,
+			.demo-4 {
+				display: flex;
+				margin-top: 10px;
+			}
+
+			.box1 {
+				height: 200px;
+				background-color: #0077AA;
+			}
+
+			.box2 {
+				height: 200px;
+				background-color: orange;
+			}
+
+			.demo-1 .box1 {
+				flex-grow: 1;
+			}
+
+			.demo-1 .box2 {
+				flex-grow: 2;
+			}
+
+			.demo-2 .box1 {
+				width: 25%;
+			}
+
+			.demo-2 .box2 {
+				width: 75%;
+				flex-shrink: 0;
+			}
+
+			.demo-3 .box1 {
+				flex-basis: 400px;
+			}
+
+			.demo-3 .box2 {
+				flex-basis: 600px;
+			}
+
+			.demo-4 .box1 {
+				flex-basis: 400px;
+			}
+
+			.demo-4 .box2 {
+				flex: 1;
+			}
+		</style>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>flex-grow</legend>
+			<ol>
+				<li>默认值：flex-grow：0 不放大</li>
+				<li>flex-grow：1 按比例放大</li>
+			</ol>
+			<div class="demo-1">
+				<div class="box1">flex-grow:1</div>
+				<div class="box2">flex-grow:2</div>
+			</div>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>flex-shrink</legend>
+			<ol>
+				<li>默认值：flex-shrink：1 可以缩小</li>
+				<li>flex-shrink：0 不允许缩小</li>
+			</ol>
+			<div class="demo-2">
+				<div class="box1">25% flex-shrink：1</div>
+				<div class="box2">75% flex-shrink：0</div>
+				<div class="box1">25% flex-shrink：1</div>
+			</div>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>flex-basis</legend>
+			<ol>
+				<li>它可以设为跟width或height属性一样的值（比如350px），则项目将占据固定空间。</li>
+			</ol>
+			<div class="demo-3">
+				<div class="box1">flex-basis:400px</div>
+				<div class="box2">flex-basis:600px</div>
+			</div>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>flex常用缩写</legend>
+			<ol>
+				<li>常用来等分布局，flex:1，flex:2</li>
+				<li>flex:1还可以将剩余空间填满。</li>
+			</ol>
+			<div class="demo-1">
+				<div class="box1">flex:1</div>
+				<div class="box2">flex:2</div>
+			</div>
+			<div class="demo-4">
+				<div class="box1">flex-basis:400px</div>
+				<div class="box2">flex:1</div>
+			</div>
+		</fieldset>
+	</body>
+</html>

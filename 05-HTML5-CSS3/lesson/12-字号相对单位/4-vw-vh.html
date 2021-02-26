@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style type="text/css">
+			.out-box {
+				font-size: 40px;
+				border: 2px solid blue;
+				padding: 20px;
+			}
+
+			.inner-box {
+				font-size: 1vw;
+				border: 2px solid red;
+				padding: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>vw、vh</legend>
+
+			<ol>
+				<li>
+					规定：viewport（整个窗口）宽度 = 100vw；
+				</li>
+				<li>
+					规定：viewport（整个窗口）高度 = 100vh；
+				</li>
+				<li>
+					<pre>
+						   窗口宽度         	  ?
+						————————————   =   ——————
+						    100vw            2vw
+					</pre>
+				</li>
+			</ol>
+			<div class="out-box">
+				<p>外部文字</p>
+				<div class="inner-box">内部文字</div>
+			</div>
+		</fieldset>
+
+	</body>
+</html>
