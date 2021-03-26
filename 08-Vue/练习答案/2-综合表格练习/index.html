@@ -25,7 +25,8 @@
 					</div>
 					<div class="form-group">
 						<label for="">变色：</label>
-						<button type="button" @click="isOpen = ! isOpen" :class="{'btn-danger':isOpen}" class="btn btn-info">{{isOpen?"关闭":"开启"}}移入变色</button>
+						<button type="button" @click="isOpen = ! isOpen" :class="{'btn-danger':isOpen}"
+							class="btn btn-info">{{isOpen?"关闭":"开启"}}移入变色</button>
 					</div>
 				</form>
 				<br />
@@ -51,7 +52,7 @@
 							<td>{{item.name}}</td>
 							<td>{{item.age}}</td>
 							<td>
-								<a @click.prevent="handleDel(index)">删除</a>
+								<a href="#" @click.prevent="handleDel(index)">删除</a>
 							</td>
 						</tr>
 					</tbody>
@@ -65,7 +66,8 @@
 					</div>
 					<div class="form-group">
 						<label for="">排序：</label>
-						<button type="button" class="btn btn-info" @click="handleSort">年龄{{isASC>0?'从小到大':'从大到小'}}排序</button>
+						<button type="button" class="btn btn-info"
+							@click="handleSort">年龄{{ isASC>0 ? '从小到大' : '从大到小'}}排序</button>
 					</div>
 				</form>
 			</div>
@@ -141,8 +143,9 @@
 							alert('请输入合法的年龄！');
 							return;
 						}
-						// 添加数据
-						this.lists.push({ ...this.formData });
+						// 添加数据--深拷贝
+						var copy = JSON.parse(JSON.stringify(this.formData));
+						this.lists.push(copy);
 						// 清空表单
 						this.formData = {
 							name: '',

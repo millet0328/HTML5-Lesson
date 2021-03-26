@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.person-list {
+				display: flex;
+				flex-wrap: wrap;
+			}
+
+			.person {
+				width: 200px;
+				margin: 10px;
+				box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+			}
+
+			.person .color {
+				height: 200px;
+				text-align: center;
+				background-color: orange;
+			}
+
+			.person .info {
+				padding: 15px;
+			}
+
+			.person .info .stage {
+				margin-top: 15px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<person-list></person-list>
+		</div>
+		<script src="./lib/vue/vue.js"></script>
+		<script id="tmpl-person" type="text/x-template">
+			<div class="person">
+				<div class="color" :style="{backgroundColor:color}"></div>
+				<div class="info">
+					<div class="name">姓名：{{name}}</div>
+					<div class="stage">
+						<label>评级：</label>
+						<input @change="_handleChange" type="color" v-model="rateColor">
+					</div>
+				</div>
+			</div>
+		</script>
+		<script type="text/javascript">
+			Vue.component('person', {
+				// 组件内部数据
+				data: function() {
+					return {
+						rateColor: '',
+					}
+				},
+				methods: {
+					_handleChange: function() {
+						// 发送事件，携带数据
+						this.$emit('rate', this.rateColor);
+					}
+				},
+				// 组件外部数据
+				props: ['name', 'color'],
+				template: '#tmpl-person',
+			});
+
+			Vue.component('person-list', {
+				// 组件内部数据
+				data: function() {
+					return {
+						team: [
+							{ name: '刘备', color: '#FFF000' },
+							{ name: '关羽', color: '#FFF000' },
+							{ name: '张飞', color: '#FFF000' },
+							{ name: '赵云', color: '#FFF000' },
+							{ name: '黄忠', color: '#FFF000' },
+							{ name: '马超', color: '#FFF000' },
+							{ name: '庞统', color: '#FFF000' },
+							{ name: '姜维', color: '#FFF000' },
+							{ name: '魏延', color: '#FFF000' },
+						]
+					}
+				},
+				methods: {
+					handleRate: function(person, color) {
+						person.color = color;
+					}
+				},
+				template: `
+				<div class="person-list">
+					<person v-for="person in team" @rate="handleRate(person,$event)" :name="person.name" :color="person.color"></person>
+				</div>`
+			});
+
+			var app = new Vue({
+				el: "#app",
+			});
+		</script>
+	</body>
+</html>

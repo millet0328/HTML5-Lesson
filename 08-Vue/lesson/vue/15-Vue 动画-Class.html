@@ -7,26 +7,30 @@
 			.box {
 				width: 200px;
 				height: 200px;
-				background-color: blue;
+				background-color: orange;
 				transition: all 0.5s;
 			}
 
+			.box:hover {
+				box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+			}
+
 			.box.active {
-				transform: translateX(300px) rotate(360deg);
-				background-color: yellow;
+				transform: translateX(800px) rotate(360deg);
 			}
 		</style>
 	</head>
 	<body>
 		<div id="app">
-			<div class="box" :class="{active:isOpen}" @click="isOpen=!isOpen"></div>
+			<div class="box" :class="{active:isActive}" @click="isActive = !isActive">
+			</div>
 		</div>
 		<script src="lib/vue/vue.js"></script>
 		<script type="text/javascript">
 			let app = new Vue({
 				el: "#app",
 				data: {
-					isOpen: false
+					isActive: false
 				}
 			});
 		</script>

@@ -15,11 +15,11 @@
 					<form>
 						<div class="form-group">
 							<label for="nickname">昵称：</label>
-							<input type="text" class="form-control" v-model="form.nickname" placeholder="请填写昵称">
+							<input v-model.trim="form.nickname" type="text" class="form-control" placeholder="请填写昵称">
 						</div>
 						<div class="form-group">
 							<label for="message">留言：</label>
-							<textarea class="form-control" v-model="form.message" rows="3"></textarea>
+							<textarea v-model.trim="form.msg" class="form-control" rows="3"></textarea>
 						</div>
 						<button @click="handlePost" type="button" class="btn btn-primary">发表留言</button>
 					</form>
@@ -31,9 +31,9 @@
 				<div class="panel-heading">最新留言</div>
 				<!-- List group -->
 				<ul class="list-group">
-					<li v-for="msg in msgList" class="list-group-item">
-						<h5><span class="text-primary">{{msg.nickname}}</span> 说:</h5>
-						{{msg.message}}
+					<li v-for="item in messages" class="list-group-item">
+						<h5><span class="text-primary">{{item.nickname}}</span> 说:</h5>
+						{{item.msg}}
 						<div class="clearfix">
 							<button type="button" class="btn btn-link pull-right">删除</button>
 							<button type="button" class="btn btn-link pull-right">编辑</button>
@@ -78,19 +78,18 @@
 				el: "#app",
 				data: {
 					form: {
-						nickname: "",
-						message: "",
+						nickname: '',
+						msg: '',
 					},
-					msgList: [{
-						nickname: "黄小米",
-						message: "Hello Vue!",
-					}],
+					messages: [
+						{ nickname: "黄小米", msg: 'Hello Vue!' }
+					],
 				},
 				methods: {
 					handlePost: function() {
-						// 深拷贝、浅拷贝
+						// 深拷贝
 						var copy = JSON.parse(JSON.stringify(this.form));
-						this.msgList.unshift(copy);
+						this.messages.unshift(copy);
 					}
 				}
 			});

@@ -19,9 +19,11 @@
 		<div id="app">
 			<div @click="handleOuter" class="outer-box">
 				外部
-				<div @click.stop="handleInner" class="inner-box">
-					<a @click.prevent="handleLink" href="http://www.baidu.com/">百度一下</a>
+				<div @click.stop="handleInner('内部')" class="inner-box">
 					内部
+					<p>
+						<a @click.prevent="handleNavi" href="http://www.baidu.com/">即将去百度</a>
+					</p>
 				</div>
 			</div>
 		</div>
@@ -30,16 +32,14 @@
 			var app = new Vue({
 				el: "#app",
 				methods: {
-					handleInner: function(event) {
-						// 阻止冒泡
-						console.log("内部");
+					handleInner: function(part) {
+						console.log(`${part}--clicked`);
 					},
-					handleOuter: function() {
-						console.log("外部");
+					handleOuter: function(e) {
+						console.log('外部--clicked');
 					},
-					handleLink: function(event) {
-						// 阻止默认事件
-						location.href = "http://www.jd.com/"
+					handleNavi: function() {
+						location.assign('http://www.jd.com/');
 					}
 				}
 			});

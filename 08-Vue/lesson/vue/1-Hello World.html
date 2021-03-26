@@ -6,40 +6,62 @@
 	</head>
 	<body>
 		<div id="app">
-			<h3>{{ message }}</h3>
-			<p>姓名：{{person.name}}</p>
-			<p>
-				年龄：{{person.age}}
-				<button v-on:click="handleIncrease" type="button">+</button>
-			</p>
-			<p>性别：{{person.sex ? "男":"女"}}</p>
-			<p>
-				<button v-on:click="handleCheck" type="button">查询年龄</button>
-			</p>
+			<fieldset id="">
+				<legend>文本：v-text</legend>
+				<!-- 占位符 -->
+				<h1>{{message}}</h1>
+				<h1 v-text="message"></h1>
+			</fieldset>
+			<fieldset id="">
+				<legend>转换</legend>
+				<p>
+					姓名：{{person.name}}
+				</p>
+				<p>
+					年龄：{{person.age}}
+					<button v-on:click="handleDecrease" type="button">-</button>
+					<button v-on:click="handleIncrease" type="button">+</button>
+				</p>
+				<p>
+					性别：{{ person.sex===0 ? '女':'男'}}
+				</p>
+			</fieldset>
+			<fieldset id="">
+				<legend>绑定事件</legend>
+
+				<button v-on:click="handleClick" type="button">触发click</button>
+			</fieldset>
 		</div>
 		<script src="lib/vue/vue.js"></script>
 		<script type="text/javascript">
-			var app = new Vue({
-				el: "#app", //范围
-				data: { //视图的状态
+			// 实例化
+			var vm = new Vue({
+				el: '#app',
+				data: {
 					message: "Hello Vue!",
 					person: {
 						name: "黄小米",
 						age: 25,
-						sex: 0,
+						sex: 0
 					}
 				},
-				methods: { //视图的行为
-					handleCheck: function() {
-						// 获取data里面的数据
-						console.log(this.person.age);
+				// 事件、方法
+				methods: {
+					handleClick: function() {
+						console.log('clicked!');
 					},
+					// 增加
 					handleIncrease: function() {
-						// data中的数据变化，自动引起View视图的变化
-						this.person.age = this.person.age + 1;
+						// 获取当前年龄
+						console.log('当前年龄：', this.person.age);
+						this.person.age ++;
+					},
+					// 减少
+					handleDecrease: function() {
+						this.person.age --;
 					},
 				}
-			})
+			});
 		</script>
 	</body>
 </html>

@@ -4,16 +4,17 @@
 		<meta charset="utf-8">
 		<title></title>
 		<style type="text/css">
-			.btn {
-				padding: 8px 30px;
-				border: 1px solid black;
-				margin-right: 20px;
+			.type {
+				padding: 8px 20px;
+				border: 2px solid #EEEEEE;
+				background-color: white;
+				outline: 0;
+				margin-right: 10px;
 			}
 
-			.btn.active {
-				background-color: blue;
-				color: white;
-				border-color: blue;
+			.type.active {
+				border-color: orange;
+				color: orange;
 			}
 		</style>
 	</head>
@@ -22,7 +23,10 @@
 			<fieldset id="">
 				<legend>批量修改</legend>
 				<p>
-					<button v-for="item in group" @click="handleCheck(item)" :class="{active:item.isActive}" class="btn" type="button">{{item.color}}</button>
+					<button v-for="item in specs" @click="handleSelect(item)" class="type"
+						:class="{active:item.selected}" type="button">
+						{{item.name}}
+					</button>
 				</p>
 			</fieldset>
 		</div>
@@ -31,32 +35,24 @@
 			var app = new Vue({
 				el: "#app",
 				data: {
-					group: [{
-						color: "红色",
-						isActive: false,
-					}, {
-						color: "黄色",
-						isActive: false,
-					}, {
-						color: "蓝色",
-						isActive: false,
-					}, {
-						color: "绿色",
-						isActive: false,
-					}, {
-						color: "粉色",
-						isActive: false,
-					}, ]
+					specs: [
+						{ name: '红色', selected: false },
+						{ name: '黄色', selected: false },
+						{ name: '蓝色', selected: false },
+						{ name: '绿色', selected: false },
+						{ name: '橙色', selected: false },
+					]
 				},
 				methods: {
-					handleCheck: function(item) {
-						this.group.forEach(function(el) {
-							if (el == item) {
-								item.isActive = !item.isActive;
+					handleSelect: function(type) {
+						this.specs.forEach(function(item) {
+							if (type == item) {
+								type.selected = !type.selected;
 							} else {
-								el.isActive = false;
+								item.selected = false;
 							}
 						});
+
 					}
 				}
 			});

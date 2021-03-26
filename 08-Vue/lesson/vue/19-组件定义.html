@@ -3,66 +3,100 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="viewport"
+			content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<style type="text/css">
-			.counter button {
-				padding: 6px 20px;
-				border: 1px solid #999999;
-				background-color: #EEEEEE;
-				outline: 0;
-				font-size: 18px;
+			.counter-box {
+				display: inline-flex;
+				align-items: center;
+				text-align: center;
 			}
 
-			.counter span {
-				color: blue;
-				font-weight: bold;
-				margin: 0 10px;
-				display: inline-block;
+			.counter-box .num {
+				min-width: 60px;
+				border-top: 1px solid #ddd;
+				border-bottom: 1px solid #ddd;
+				line-height: 33px;
+			}
+
+			.counter-box button {
+				background-color: white;
+				padding: 6px 15px;
+				border: 1px solid #ddd;
+				border-radius: 4px;
+				font-size: 18px;
+				outline: 0;
+			}
+
+			.counter-box button[disabled] {
+				border-color: #eee;
+			}
+
+			.counter-box .down {
+				border-top-right-radius: 0;
+				border-bottom-right-radius: 0;
+			}
+
+			.counter-box .up {
+				border-top-left-radius: 0;
+				border-bottom-left-radius: 0;
 			}
 		</style>
 	</head>
 
 	<body>
 		<div id="app">
-			<p>
+			<fieldset id="">
+				<legend>1、组件定义</legend>
+				<ol>
+					<li>组件注册分为2种，全局注册、局部注册</li>
+					<li>全局注册组件在实例化new Vue之前</li>
+					<li>组件名称避开HTML5标签名，不允许使用header、footer、nav、section</li>
+					<li>组件option == new Vue option</li>
+				</ol>
+
 				<counter></counter>
-			</p>
-			<p>
-				<counter></counter>
-			</p>
+
+			</fieldset>
 		</div>
-		<script src="lib/vue/vue.js" type="text/javascript" charset="utf-8"></script>
-		<script id="tmpl" type="x-template">
-			<div class="counter">
-				<button @click="handleDecrease" type="button">-</button>
-				<span>{{count}}</span>
-				<button @click="count++" type="button">+</button>
+		<script src="lib/vue/vue.js"></script>
+		<script id="tmpl" type="text/x-template">
+			<div class="counter-box">
+				<button @click="handleDown" :disabled="count == 1" class="down" type="button">-</button>
+				<span class="num">{{count}}</span>
+				<button @click="handleUp" class="up" type="button">+</button>
 			</div>
 		</script>
-		<script>
-			// 禁止跟HTML5标签重名，如header/footer/nav禁止使用
+		<script type="text/javascript">
+			// 全局注册组件
 			Vue.component('counter', {
-				// option
+				// 组件内部数据
 				data: function() {
 					return {
-						count: 0
+						count: 1
 					}
 				},
 				methods: {
-					handleDecrease: function() {
-						if (this.count <= 0) {
+					handleDown: function() {
+						if (this.count <= 1) {
 							return;
 						}
 						this.count--;
 					},
+					handleUp: function() {
+						this.count++;
+					}
 				},
-				computed: {},
-				template: '#tmpl',
+				// 组件HTML
+				template: "#tmpl"
 			});
-
 			var app = new Vue({
-				el: "#app",
+				el: '#app',
+				data: {},
+				methods: {},
+				computed: {},
+				watch: {},
 			});
 		</script>
 	</body>

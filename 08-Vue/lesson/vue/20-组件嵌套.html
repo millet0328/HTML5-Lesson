@@ -3,61 +3,54 @@
 	<head>
 		<meta charset="utf-8">
 		<title>组件嵌套--slot</title>
-		<style type="text/css">
-
-		</style>
 	</head>
 	<body>
 		<div id="app">
 			<component-a>
-				<template v-slot:part-b>
-					<component-b></component-b>
-				</template>
-				<template v-slot:part-c>
+				<template v-slot:first>
 					<component-c></component-c>
+				</template>
+				
+				<template v-slot:second>
+					<component-b></component-b>
 				</template>
 			</component-a>
 		</div>
 
 		<script src="lib/vue/vue.js"></script>
-
-		<script id="tmpl-a" type="x-template">
+		<script id="tmpl-a" type="text/x-template">
 			<fieldset id="">
 				<legend>组件A</legend>
-				<p>
-					<slot name="part-b"></slot>
-				</p>
-				<p>内容A</p>
-				<p>
-					<slot name="part-c"></slot>
-				</p>
+				<slot name="first"></slot>
+				<p>A组件---内容</p>
+				<slot name="second"></slot>
 			</fieldset>
 		</script>
-		<script id="tmpl-b" type="x-template">
+		<script id="tmpl-b" type="text/x-template">
 			<fieldset id="">
 				<legend>组件B</legend>
-				<p>内容B</p>
+				<p>B组件---内容</p>
 			</fieldset>
 		</script>
-		<script id="tmpl-c" type="x-template">
+		<script id="tmpl-c" type="text/x-template">
 			<fieldset id="">
 				<legend>组件C</legend>
-				<p>内容C</p>
+				<p>C组件---内容</p>
 			</fieldset>
 		</script>
 		<script type="text/javascript">
-			// 组件A
 			Vue.component('component-a', {
-				template: '#tmpl-a',
+				template: '#tmpl-a'
 			});
-			// 组件B
+
 			Vue.component('component-b', {
-				template: '#tmpl-b',
+				template: '#tmpl-b'
 			});
-			// 组件C
+
 			Vue.component('component-c', {
-				template: '#tmpl-c',
+				template: '#tmpl-c'
 			});
+
 			var app = new Vue({
 				el: "#app",
 			});

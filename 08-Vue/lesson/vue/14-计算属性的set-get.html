@@ -29,17 +29,20 @@
 					lastName: {{lastName}}
 				</p>
 				<p>
+					fullName: {{fullName}}
+				</p>
+				<p>
 					fullName:<input type="text" v-model="fullName" />
-					<button @click=" fullName = '黄 小米' " type="button">改名</button>
+					<button @click="fullName = '麦克 杰克逊'" type="button">改名</button>
 				</p>
 			</fieldset>
 			<fieldset id="">
 				<legend>复选框的全选功能</legend>
-				<table width="100%" border="1" cellspacing="" cellpadding="20">
+				<table width="100%" border="1" cellpadding="20">
 					<thead>
 						<tr>
 							<th>
-								<input type="checkbox" v-model="checkedAll">
+								<input type="checkbox" v-model="checkAll">
 							</th>
 							<th>#</th>
 							<th>书名</th>
@@ -113,25 +116,27 @@
 					}]
 				},
 				computed: {
-					checkedAll: {
+					checkAll: {
 						set: function(val) {
 							this.books.forEach(function(item) {
 								item.isChecked = val;
 							});
 						},
 						get: function() {
-							var num = 0;
-							this.books.forEach(function(item) {
+							// 已选中的复选框
+							var num = this.books.reduce(function(total, item) {
 								if (item.isChecked) {
-									num++;
+									return total + 1
+								} else {
+									return total + 0;
 								}
-							});
-							return num == this.books.length;
+							}, 0);
+							return this.books.length == num;
 						}
 					},
 					fullName: {
 						set: function(newValue) {
-							let arr = newValue.split(' ');
+							var arr = newValue.split(' ');
 							this.firstName = arr[0];
 							this.lastName = arr[arr.length - 1];
 						},
@@ -141,12 +146,20 @@
 					},
 					total: function() {
 						return this.books.reduce(function(total, item) {
-							return total += item.num;
+							if (item.isChecked) {
+								return total += item.num;
+							} else {
+								return total;
+							}
 						}, 0);
 					},
 					cost: function() {
 						return this.books.reduce(function(total, item) {
-							return total += item.num * item.price;
+							if (item.isChecked) {
+								return total += item.num * item.price;
+							} else {
+								return total;
+							}
 						}, 0);
 					}
 				},

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style type="text/css">
+			/* 手机端 + iPad端 */
+			@media screen and (min-width:320px) and (max-width:1024px) {
+				.container {
+					width: 100%;
+					margin: 0 auto;
+				}
+				
+				.pc-header {
+					display: none;
+				}
+			}
+
+			/* PC端 */
+			@media screen and (min-width:1024px) {
+				.container {
+					width: 1200px;
+					margin: 0 auto;
+				}
+
+				.ipad-header {
+					display: none;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="container">
+				<!-- PC -->
+				<div class="pc-header">
+					<img width="100%" src="./img/pc.png" alt="">
+				</div>
+				<!-- ipad -->
+				<div class="ipad-header">
+					<img width="100%" src="./img/ipad.png" alt="">
+				</div>
+			</div>
+		</header>
+
+	</body>
+</html>

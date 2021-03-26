@@ -20,11 +20,11 @@
 				},
 				computed: {
 					reversedMessage: function() {
-						var result = this.message.split('').reverse().join('');
+						var arr = this.message.split('');
+						var result = arr.reverse().join('');
 						return result;
-					}
+					},
 				},
-				
 			});
 		</script>
 	</body>

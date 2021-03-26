@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>响应式页面</title>
+		<style type="text/css">
+			body {
+				margin: 0;
+			}
+
+			ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.goods-list .photo img {
+				display: block;
+			}
+
+			/* 手机端 */
+			@media screen and (min-width:320px) and (max-width:767px) {
+				html {
+					/* font-size相当于是100px */
+					font-size: 13.3333vw;
+				}
+
+				.goods-list li {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					padding: 0.25rem 0.17rem;
+					border-bottom: 0.01rem solid #EEEEEE;
+				}
+
+				.goods-list .photo img {
+					width: 2.6rem;
+				}
+
+				.goods-list .photo {
+					margin-right: 0.29rem;
+				}
+
+				.goods-list .name {
+					font-size: 0.28rem;
+					color: #333333;
+					padding-bottom: 0.21rem;
+					width: 3.6rem;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
+
+				.goods-list .des {
+					font-size: 0.2rem;
+					color: #d93e3e;
+				}
+
+				.info-box {
+					font-size: 0.24rem;
+					color: #666666;
+					padding-top: 0.25rem;
+				}
+
+				.info-box .account>div,
+				.info-box .price>div {
+					margin-bottom: 0.14rem;
+				}
+
+				.info-box .score {
+					font-size: 0.3rem;
+					color: #be4141;
+					font-weight: bold;
+				}
+			}
+
+			/* iPad端 */
+			@media screen and (min-width:768px) and (max-width:1024px) {
+				html {
+					/* font-size相当于是100px */
+					font-size: 13.3333vw;
+				}
+
+				.goods-list {
+					padding: 0 0.15rem;
+					background-color: #f8f8f8;
+				}
+
+				.goods-list .content {
+					display: flex;
+					flex-wrap: wrap;
+				}
+
+				.goods-list li {
+					width: 2.28rem;
+					margin: 0.05rem;
+					border: 0.01rem solid #e5e5e5;
+					background-color: white;
+				}
+
+				.goods-list .photo img {
+					width: 100%;
+				}
+
+				.goods-list .photo {
+					border-bottom: 0.01rem solid #EEEEEE;
+				}
+
+				.goods-list .name {
+					font-size: 0.14rem;
+					color: #333333;
+					text-align: center;
+					padding: 0.17rem 0 0.08rem 0;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
+
+				.goods-list .des {
+					font-size: 0.12rem;
+					color: #d93e3e;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
+
+				.info-box {
+					display: flex;
+					justify-content: space-between;
+					font-size: 0.12rem;
+					color: #666666;
+					padding: 0.22rem 0.18rem 0.13rem 0.18rem;
+				}
+
+				.info-box .account {
+					order: 2;
+				}
+
+				.info-box .price {
+					order: 1;
+				}
+
+				.info-box .stock,
+				.info-box .market {
+					margin-bottom: 0.11rem;
+				}
+
+				.info-box .score {
+					font-size: 0.15rem;
+					color: #be4141;
+					font-weight: bold;
+				}
+			}
+
+			/* PC端 */
+			@media screen and (min-width:1025px) {
+				html {
+					font-size: 100px;
+				}
+
+				.container {
+					width: 12rem;
+					margin: 0 auto;
+				}
+
+				.goods-list {
+					padding: 0 0.15rem;
+					background-color: #f8f8f8;
+				}
+
+				.goods-list .content {
+					display: flex;
+					flex-wrap: wrap;
+				}
+
+				.goods-list li {
+					width: 2.75rem;
+					margin: 0.115rem;
+					border: 0.01rem solid #e5e5e5;
+					background-color: white;
+				}
+
+				.goods-list .photo img {
+					width: 100%;
+				}
+
+				.goods-list .photo {
+					border-bottom: 0.01rem solid #EEEEEE;
+				}
+
+				.goods-list .name {
+					font-size: 0.14rem;
+					color: #333333;
+					text-align: center;
+					padding: 0.17rem 0 0.08rem 0;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
+
+				.goods-list .des {
+					font-size: 0.12rem;
+					color: #d93e3e;
+					text-align: center;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
+
+				.info-box {
+					display: flex;
+					justify-content: space-between;
+					font-size: 0.12rem;
+					color: #666666;
+					padding: 0.22rem 0.18rem 0.13rem 0.18rem;
+				}
+
+				.info-box .account {
+					order: 2;
+				}
+
+				.info-box .price {
+					order: 1;
+				}
+
+				.info-box .stock,
+				.info-box .market {
+					margin-bottom: 0.11rem;
+				}
+
+				.info-box .score {
+					font-size: 0.15rem;
+					color: #be4141;
+					font-weight: bold;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="goods-list">
+			<div class="container">
+				<ul class="content">
+					<li>
+						<div class="photo">
+							<img src="./img/photo-1.png" alt="">
+						</div>
+						<div class="">
+							<div class="name">WMF-中华长柄炒锅中华长柄炒锅（28cm）</div>
+							<div class="des">商品描述商品描述商品描述商品描述商品描述</div>
+							<div class="info-box">
+								<div class="account">
+									<div class="stock">库存：12</div>
+									<div class="changed">已兑换：23</div>
+								</div>
+								<div class="price">
+									<div class="market">市场价格：￥2000</div>
+									<div class="score">积分：1693</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="photo">
+							<img src="./img/photo-1.png" alt="">
+						</div>
+						<div class="">
+							<div class="name">WMF-中华长柄炒锅（28cm）</div>
+							<div class="des">商品描述商品描述商品描述商品描述商品描述</div>
+							<div class="info-box">
+								<div class="account">
+									<div class="stock">库存：12</div>
+									<div class="changed">已兑换：23</div>
+								</div>
+								<div class="price">
+									<div class="market">市场价格：￥2000</div>
+									<div class="score">积分：1693</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="photo">
+							<img src="./img/photo-1.png" alt="">
+						</div>
+						<div class="">
+							<div class="name">WMF-中华长柄炒锅（28cm）</div>
+							<div class="des">商品描述商品描述商品描述商品描述商品描述</div>
+							<div class="info-box">
+								<div class="account">
+									<div class="stock">库存：12</div>
+									<div class="changed">已兑换：23</div>
+								</div>
+								<div class="price">
+									<div class="market">市场价格：￥2000</div>
+									<div class="score">积分：1693</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="photo">
+							<img src="./img/photo-1.png" alt="">
+						</div>
+						<div class="">
+							<div class="name">WMF-中华长柄炒锅（28cm）</div>
+							<div class="des">商品描述商品描述商品描述商品描述商品描述</div>
+							<div class="info-box">
+								<div class="account">
+									<div class="stock">库存：12</div>
+									<div class="changed">已兑换：23</div>
+								</div>
+								<div class="price">
+									<div class="market">市场价格：￥2000</div>
+									<div class="score">积分：1693</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="photo">
+							<img src="./img/photo-1.png" alt="">
+						</div>
+						<div class="">
+							<div class="name">WMF-中华长柄炒锅（28cm）</div>
+							<div class="des">商品描述商品描述商品描述商品描述商品描述</div>
+							<div class="info-box">
+								<div class="account">
+									<div class="stock">库存：12</div>
+									<div class="changed">已兑换：23</div>
+								</div>
+								<div class="price">
+									<div class="market">市场价格：￥2000</div>
+									<div class="score">积分：1693</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>

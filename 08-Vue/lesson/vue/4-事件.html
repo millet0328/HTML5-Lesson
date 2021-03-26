@@ -9,8 +9,8 @@
 			<fieldset id="">
 				<legend>事件传参</legend>
 				<p>
-					<button v-on:click="handleClick('红色')" type="button">红色</button>
-					<button v-on:click="handleClick('蓝色')" type="button">蓝色</button>
+					<button v-on:click="handleClick('天生我材必有用')" type="button">李白</button>
+					<button v-on:click="handleClick('国破山河在,城春草木深')" type="button">杜甫</button>
 				</p>
 			</fieldset>
 		</div>
@@ -19,8 +19,8 @@
 			var app = new Vue({
 				el: "#app",
 				methods: {
-					handleClick: function(color) {
-						console.log(color);
+					handleClick: function(word) {
+						alert(word);
 					}
 				}
 			});

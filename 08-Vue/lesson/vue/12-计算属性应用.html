@@ -48,7 +48,8 @@
 				</tbody>
 			</table>
 			<p>
-				总共选择<span class="red">{{total}}</span>本书，总共花费<span class="red">{{cost}}</span>元
+				总共选择<span class="red">{{total}}</span>本书，
+				总共花费<span class="red">{{cost}}</span>元
 			</p>
 		</div>
 		<script src="lib/vue/vue.js" type="text/javascript" charset="utf-8"></script>
@@ -82,6 +83,18 @@
 						price: 20.0
 					}]
 				},
+				computed: {
+					total: function() {
+						return this.books.reduce(function(total, item) {
+							return total + item.num;
+						}, 0);
+					},
+					cost: function() {
+						return this.books.reduce(function(total, item) {
+							return total + item.num * item.price;
+						}, 0);
+					}
+				},
 				methods: {
 					handleDecrease: function(book) {
 						if (book.num <= 1) {
@@ -94,21 +107,17 @@
 						this.books.splice(i, 1);
 					}
 				},
-				computed: {
-					total: function() {
-						return this.books.reduce(function(total, item) {
-							return total += item.num;
-						}, 0);
-					},
-					cost: function() {
-						return this.books.reduce(function(total, item) {
-							return total += item.num * item.price;
-						}, 0);
-					}
-				}
 			})
 		</script>
 		<script type="text/javascript">
+			// 简单数组求和
+			var score = [32, 65, 98, 47, 65, 12];
+
+			var sum = score.reduce(function(total, item, index) {
+				return total + item;
+			});
+
+			// 对象数组
 			var arr = [
 				{ name: "黄小米", age: 25 },
 				{ name: "黄渤", age: 45 },
@@ -117,10 +126,9 @@
 				{ name: "王迅", age: 40 },
 				{ name: "孙红雷", age: 46 },
 			];
-			var result = arr.reduce(function(total, item, index) {
-				return total += item.age;
-			}, 0)
-			var avg = result / arr.length;
+			var sum = arr.reduce(function(total, item, index) {
+				return total + item.age;
+			}, 0);
 		</script>
 	</body>
 
