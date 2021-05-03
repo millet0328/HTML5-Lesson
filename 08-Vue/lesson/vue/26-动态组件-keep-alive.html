@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.active {
+				font-weight: bold;
+				color: blue;
+			}
+
+			button {
+				padding: 6px 15px;
+				margin: 0 10px 10px 0;
+			}
+
+			section {
+				padding: 10px;
+				min-height: 300px;
+				border: 2px solid #DDDDDD;
+				box-shadow: 0px 0 10px 0 rgba(0, 0, 0, 0.3);
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+			<fieldset id="">
+				<legend>动态组件</legend>
+				<ol>
+					<li>is属性决定显示哪一个组件</li>
+				</ol>
+				<component is="tab-archive" class="tab-content"></component>
+			</fieldset>
+			<fieldset id="">
+				<legend>keep-alive</legend>
+				<ol>
+					<li>作用：缓存组件的状态/数据，避免反复重渲染导致的性能问题</li>
+				</ol>
+				<button v-for="tab in tabs" :key="tab" :class="{ active: currentTab === tab }"
+					@click="currentTab = tab">{{ tab }}</button>
+				<keep-alive>
+					<component :is="currentTabComponent" class="tab-content"></component>
+				</keep-alive>
+			</fieldset>
+		</div>
+		<script src="lib/vue/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Vue.component('tab-home', {
+				template: '<section>Home component</section>'
+			})
+			Vue.component('tab-posts', {
+				data: function() {
+					return {
+						count: 1
+					}
+				},
+				template: '<section><button @click="count++" type="button">次数：{{count}}</button></section>'
+			})
+			Vue.component('tab-archive', {
+				template: '<section>Archive component</section>'
+			})
+
+			new Vue({
+				el: '#app',
+				data: {
+					currentTab: 'Home',
+					tabs: ['Home', 'Posts', 'Archive']
+				},
+				computed: {
+					currentTabComponent: function() {
+						return 'tab-' + this.currentTab.toLowerCase()
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

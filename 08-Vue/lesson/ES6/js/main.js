@@ -1,11 +1,10 @@
 import { year, fullName } from './profile.js';
 
-import friend from './data.js';
+import people from './data.js';
 
-// 计算年龄
 var age = new Date().getFullYear() - year;
-console.log('年龄：%s', age);
+var name = fullName();
 
-console.log('歌手的名字：%s', fullName());
+console.log('%s 现在将 %i 岁', name, age);
 
-console.log(friend);
+console.log(people);

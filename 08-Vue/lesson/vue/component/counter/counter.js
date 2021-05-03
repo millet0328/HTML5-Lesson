@@ -1,24 +1,44 @@
+// 全局注册组件
 Vue.component('counter', {
-	// props：外部数据
-	props: ['value', 'min', 'max', 'step'],
-	methods: {
-		handleIncrease: function() {
-			if (this.value >= this.max) {
-				return;
-			}
-			this.$emit('up');
+	// 组件内部数据
+	// 组件外部数据
+	props: {
+		min: {
+			type: Number,
+			default: 1,
 		},
-		handleDecrease: function() {
-			if (this.value <= this.min) {
-				return;
-			}
-			this.$emit('down');
+		max: Number,
+		step: {
+			type: Number,
+			default: 1,
+		},
+		value: {
+			type: Number,
+			default: 1,
 		}
 	},
+	methods: {
+		handleDown: function() {
+			var next = this.value - this.step;
+			if (next <= this.min) {
+				next = this.min;
+			}
+			this.$emit('update:value', next);
+		},
+		handleUp: function() {
+			var next = this.value + this.step;
+			if (next >= this.max) {
+				next = this.max;
+			}
+			this.$emit('update:value', next);
+		}
+	},
+	// 组件HTML
 	template: `
-			<div class="counter">
-				<button @click="handleDecrease" class="decrease" type="button">-</button>
-				<span class="number">{{value}}</span>
-				<button @click="handleIncrease" class="increase" type="button">+</button>
-			</div>`
+	<div class="counter-box">
+		<button @click="handleDown" :disabled="value == min" class="down" type="button">-</button>
+		<span class="num">{{value}}</span>
+		<button @click="handleUp" class="up" type="button">+</button>
+	</div>
+	`
 });

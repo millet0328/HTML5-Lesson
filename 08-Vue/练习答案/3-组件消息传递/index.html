@@ -67,16 +67,16 @@
 			<div class="button-box">
 				<h3>按钮组</h3>
 				<p>
-					<button @click="addHandle" class="bg-blue" type="button">A[+]</button>
+					<button @click="handleAdd" class="bg-blue" type="button">A[+]</button>
 				</p>
 				<p>
-					<button @click="removeHandle" class="bg-black" type="button">B[-]</button>
+					<button @click="handleRemove" class="bg-black" type="button">B[-]</button>
 				</p>
 				<p>
-					<button @click="oddHandle" class="bg-blue" type="button">C[+1]</button>
+					<button @click="handleOdd" class="bg-blue" type="button">C[+1]</button>
 				</p>
 				<p>
-					<button @click="evenHandle" class="bg-black" type="button">D[-1]</button>
+					<button @click="handleEven" class="bg-black" type="button">D[-1]</button>
 				</p>
 			</div>
 		</div>
@@ -110,21 +110,21 @@
 				list
 			},
 			methods: {
-				addHandle: function () {
+				handleAdd: function () {
 					let x = Math.floor(Math.random() * 100)
 					this.list.unshift(x);
 				},
-				removeHandle: function () {
+				handleRemove: function () {
 					this.list.pop();
 				},
-				oddHandle: function () {
+				handleOdd: function () {
 					this.list.forEach((item, index) => {
 						if (index % 2 == 1) {
 							this.$set(this.list, index, item + 1);
 						}
 					});
 				},
-				evenHandle: function () {
+				handleEven: function () {
 					this.list.forEach((item, index) => {
 						if (index % 2 == 0) {
 							this.$set(this.list, index, item - 1);

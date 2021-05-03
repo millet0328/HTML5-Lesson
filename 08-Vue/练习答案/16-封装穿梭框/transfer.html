@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="./component/Transfer/tansfer.css" />
+	</head>
+	<body>
+		<ol>
+			<li>
+				参照element框架中的<a href="https://element.eleme.cn/#/zh-CN/component/transfer">穿梭框</a>完成组件的封装
+			</li>
+			<li>
+				可以全选、单选，实现左右的跳换。
+			</li>
+			<li>
+				组件拥有data属性，允许传入外部数据
+			</li>
+			<li>
+				组件拥有value属性，代表右侧组件的结果，可以通过value获取到已选中的选项
+			</li>
+		</ol>
+		<div id="app">
+			<transfer :data="leftData" v-model="selected"></transfer>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="./component/Transfer/transfer.js"></script>
+		<script>
+			var app = new Vue({
+				el: "#app",
+				data: {
+					leftData: [
+						{ key: '1', label: '测试项1', disabled: false, isChecked: false, },
+						{ key: '2', label: '测试项2', disabled: false, isChecked: false, },
+						{ key: '3', label: '测试项3', disabled: false, isChecked: false, },
+					],
+					selected: []
+				},
+
+			});
+		</script>
+	</body>
+</html>

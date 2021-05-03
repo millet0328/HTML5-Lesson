@@ -8,11 +8,11 @@
 	<body>
 		<script type="text/javascript">
 			// promise实例
-			let promise = new Promise(function(resolve, reject) {
-				// 模拟异步请求
+			var promise = new Promise(function(resolve, reject) {
+				// 模拟异步代码
 				setTimeout(function() {
-					var x = Math.random(); // [0,1)
-					if (x >= 0.5) {
+					var x = Math.random();
+					if (x > 0.5) {
 						// 成功
 						resolve(x);
 					} else {
@@ -21,17 +21,17 @@
 					}
 				}, 500);
 			});
+
 			// 捕获结果
 			// then 捕获成功
-			promise.then(function(value) {
-				// 成功
-				console.log('成功：x=%s', value);
+			promise.then(function(x) {
+				console.log('成功：x = %f', x);
 			});
 			// catch 捕获失败
-			promise.catch(function(err) {
-				// 失败
-				console.log('失败：x=%s', err);
-			})
+			promise.catch(function (x) {
+				console.log('失败：x = %f', x);
+			});
+			
 			// 实例
 			console.log(promise);
 		</script>

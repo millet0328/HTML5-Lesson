@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title></title>
+	<style type="text/css">
+		.container {
+			width: 1200px;
+			margin: 0 auto;
+		}
+
+		.border-box {
+			border: 1px solid #CCCCCC;
+			padding: 60px;
+		}
+
+		.star-box {
+			position: relative;
+		}
+
+		.star-box i {
+			position: relative;
+			display: inline-block;
+			width: 24px;
+			height: 22px;
+			background: url(img/stars.png);
+			background-position: 0 0;
+			z-index: 2;
+		}
+
+		.star-box i.active {
+			background-position: 0 -25px;
+		}
+
+		.star-box .full-star {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 22px;
+			height: 22px;
+			background: url(img/stars.png);
+			background-position: 0 -25px;
+			z-index: 5;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<div class="container">
+			<div class="border-box">
+				<rate v-model="star" :texts="comments"></rate>
+			</div>
+		</div>
+	</div>
+	<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		Vue.component('rate', {
+			data: function () {
+				return {
+					num: this.value - 1, //移入移出
+				}
+			},
+			props: {
+				value: {
+					type: Number,
+					default: 0,
+				},
+				texts: {
+					type: Array,
+					default: function () {
+						return ['极差', '失望', '一般', '满意', '惊喜'];
+					},
+				}
+			},
+			computed: {
+				commentText() {
+					return this.texts[this.num];
+				}
+			},
+			methods: {
+				handleClick(i) {
+					this.num = i;
+					this.$emit('input', i + 1);
+				},
+				handleEnter(i) {
+					if (this.value <= i) {
+						this.num = i;
+					}
+				},
+				handleLeave(i) {
+					if (this.value <= i) {
+						this.num = this.value - 1;
+					}
+				}
+			},
+			template: `
+				<div class="star-box">
+					<i v-for="(item,index) in texts" class="star" @mouseenter="handleEnter(index)"
+						@mouseleave="handleLeave(index)" @click="handleClick(index)"
+						:class="{active:num >= index}"></i>
+					<p>当前评价:{{commentText}}</p>
+				</div>
+				`
+		});
+		var app = new Vue({
+			el: "#app",
+			data: {
+				star: 1,
+				comments: ["非常差，回去再练练", "真的是差，都不忍心说你了", "一般，还过得去吧", "很好，是我想要的东西", "太完美了，此物只得天上有，人间哪得几回闻!"]
+			},
+		});
+	</script>
+</body>
+
+</html>

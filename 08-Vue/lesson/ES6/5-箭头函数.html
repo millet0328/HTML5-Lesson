@@ -9,55 +9,67 @@
 	</head>
 
 	<body>
-		<h1>Hello World!</h1>
-		<script type="text/javascript">
-			document.body.onclick = function() {
-				console.log(this)
-			}
-			
-			setTimeout(function() {
-				console.log(this.x);
-			}, 1000);
-		</script>
-		<script>
-			// ES5版本
-			var person = {
-				name: '黄小米',
-				talk: function() {
-					let self = this;
-					setTimeout(function() {
-						console.log('我是' + self.name);
-					}, 1000);
+		<fieldset id="">
+			<legend>箭头函数4种写法</legend>
+
+			<ol>
+				<li>函数体中，单条语句，有return</li>
+				<li>函数体中，多条语句，有/无return</li>
+			</ol>
+			<script type="text/javascript">
+				// 无参数
+				var sum = () => 10 + 1;
+				// 单个参数
+				var sum = x => x + 1;
+				// 参数 >= 2
+				var sum = (x, y) => x + y;
+			</script>
+			<script type="text/javascript">
+				// 无return
+				var sum = (x, y) => {
+					x++;
+					y--;
 				}
-			}
-			// ES6箭头函数
-			var person = {
-				name: '黄小米',
-				talk: function() {
-					setTimeout(() => {
-						console.log('我是' + this.name);
-					}, 1000);
+				// 有return
+				var sum = (x, y) => {
+					x++;
+					y--;
+					return x + y
+				};
+			</script>
+		</fieldset>
+		<fieldset id="">
+			<legend>解决this指向的问题</legend>
+			<script type="text/javascript">
+				var x = 100;
+				setTimeout(function() {
+					console.log(this.x);
+				}, 1000);
+			</script>
+			<script>
+				// ES5版本
+				var person = {
+					name: '黄小米',
+					talk: function() {
+						let self = this;
+						setTimeout(function() {
+							console.log('我是' + self.name);
+						}, 1000);
+					}
 				}
-			}
-			person.talk();
-		</script>
-		<script>
-			// 箭头函数 单条语句，有return;
-			var sum = x => x + 1;
-			var sum = () => 10 + 1;
-			var sum = (x, y) => x + y;
-			// 箭头函数，多条语句/无return
-			var sum = (x, y) => {
-				x++;
-				y--;
-			}
-			// 总结格式
-			var sum = (x, y) => {
-				x++;
-				y--;
-				return x + y
-			};
-		</script>
+				person.talk();
+				// ES6箭头函数
+				var person = {
+					name: '黄小米',
+					talk: function() {
+						setTimeout(() => {
+							console.log('我是' + this.name);
+						}, 1000);
+					}
+				}
+				person.talk();
+			</script>
+		</fieldset>
 	</body>
 
 </html>

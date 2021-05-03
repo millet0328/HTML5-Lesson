@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="component/counter/counter.css" />
+	</head>
+	<body>
+		<div id="app">
+			<fieldset id="">
+				<legend>独立组件</legend>
+				<counter :min="2" :max="10" :step="2" :value.sync="count"></counter>
+			</fieldset>
+		</div>
+		<script src="./lib/vue/vue.js"></script>
+		<script src="component/counter/counter.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					count: 1
+				}
+			})
+		</script>
+	</body>
+</html>

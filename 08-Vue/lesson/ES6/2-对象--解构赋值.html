@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<fieldset id="">
+			<legend>解构赋值</legend>
+
+			<ol>
+				<li>简化对象的生成</li>
+				<li>主要用途：提取对象中的数据，存储到变量中</li>
+			</ol>
+			<script type="text/javascript">
+				let cat = 'ken'
+				let dog = 'lili'
+				let zoo = { cat, dog }
+				zoo //Object {cat: "ken", dog: "lili"}
+
+				let person = {
+					name: '黄小米',
+					age: 26,
+					salary: 6000,
+				}
+
+				let { age, salary } = person;
+			</script>
+		</fieldset>
+		<fieldset id="">
+			<legend>对象简化写法</legend>
+
+			<script type="text/javascript">
+				let wife = {
+					name: "孙尚香",
+					major: "射手",
+				}
+				let obj = {
+					name: "刘备",
+					major: "打野",
+					wife,
+					sleep() {
+						console.log('zzz....')
+					}
+				}
+			</script>
+		</fieldset>
+	</body>
+
+</html>

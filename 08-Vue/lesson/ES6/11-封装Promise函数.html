@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 封装promise函数
+			function random() {
+				let promise = new Promise(function(resolve, reject) {
+					// 模拟异步代码
+					setTimeout(function() {
+						var x = Math.random();
+						if (x > 0.5) {
+							// 成功
+							resolve(x);
+						} else {
+							// 失败
+							reject(x);
+						}
+					}, 500);
+				});
+				return promise;
+			}
+		</script>
+		<script type="text/javascript">
+			// 封装一个支持promise的GET方法
+			function getJSON(url, data) {
+				return new Promise(function(resolve, reject) {
+					// 1、实例
+					let ajax = new XMLHttpRequest();
+					// 2、设置参数
+					ajax.open('GET', url, true);
+					// 3、发送
+					ajax.send(data);
+					// 4、监听readyState
+					ajax.onreadystatechange = function() {
+						if (ajax.status == 200) {
+							// 成功
+							let res = JSON.parse(ajax.responseText);
+							resolve(res);
+						} else {
+							// 失败
+							reject(ajax.statusText);
+						}
+					}
+				});
+			}
+			getJSON('/stock/name')
+				.then((res1) => {
+					// 捕获成功返回的JSON
+					let { name } = res1;
+					return getJSON('/stock/code', { name });
+				})
+				.then((res2) => {
+					// 捕获第二次返回的结果
+					let { code } = res;
+					return getJSON('/stock/price', { code });
+				})
+				.then((res3) => {
+					// 捕获第三次返回的结果
+					let { price } = res;
+					console.log("股票价格：" + price);
+				});
+		</script>
+	</body>
+</html>

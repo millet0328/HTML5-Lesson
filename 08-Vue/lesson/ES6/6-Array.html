@@ -7,45 +7,70 @@
 	</head>
 
 	<body>
+		<fieldset id="">
+			<legend>数组方法总结</legend>
+			<ol>
+				<li>不修改原始数组，返回新数组：slice、concat、map、filter</li>
+				<li>对空数组无效：forEach、every、filter、find、findIndex、map、reduce、reduceRight、some</li>
+				<li>修改原始数组：push、pop、shift、unshift、splice、sort、forEach、reverse</li>
+			</ol>
+		</fieldset>
 		<script>
 			var student = [
-				{ name: '黄小米' },
-				{ name: '黄磊' },
-				{ name: '张艺兴' },
-				{ name: '孙红雷' }
+				{ name: '黄渤', age: 42 },
+				{ name: '黄磊', age: 50 },
+				{ name: '张艺兴', age: 30 },
+				{ name: '孙红雷', age: 45 }
 			]
+
 			var score = [45, 65, 87, 98, 56, 78];
+
 			// concat:return一个新数组
-			var total = student.concat(score);
+			var newArray = student.concat(score);
+
 			// every:student数组人名是否都姓黄？
 			var isValid = student.every((item, index) => {
-				return item.name.indexOf('黄') == 0
+				return item.name.indexOf('黄') == 0;
 			});
+			
+			// some 是否有一个90分以上的元素？
+			var isGreat = score.some((item, index) => item > 90);
+			
 			// filter:筛选出分数>=60 的元素，return一个新数组
 			var filtered = score.filter((item, index) => item >= 60);
-			// find:查找数组,return 符合条件的第一个元素
-			var firstFiltered = score.find((item, index) => item >= 60);
-			// findIndex:return 符合条件的第一个元素的索引
+
+			// find:查找第一个大于35岁的人
+			var firstFiltered = student.find((item, index) => item.age >= 35);
+
+			// findIndex：return 符合条件的第一个元素的索引
 			var firstIndex = score.findIndex((item, index) => item >= 60);
-			// includes:适用于简单数组
+
+			// includes：score是否存在一个元素等于98，适用于简单数组
+			var isExist = score.includes(96);
+
+			// indexOf：
+			var existIndex = score.indexOf(98);
 
 			// forEach 改变原始数组
 
 			// map：简单数组，return一个新数组，不改变原始数组
 			var newScore = score.map((item, index) => item + 10);
+
 			// map：复杂数组，return一个新数组，会改变原始数组,如何不改变原始数组？
 			var newStudent = student.map((item, index) => {
+				// 深拷贝
 				var copy = JSON.parse(JSON.stringify(item));
-				copy.age = Math.floor(Math.random() * 100)
+				copy.salary = Math.floor(Math.random() * 1000 + 5000);
 				return copy;
 			});
+
 			// reduce，简单数组求和
-			var sum = score.reduce((total, item, index) => total += item);
+			var sum = score.reduce((total, item, index) => total + item);
+
 			// reduce，复杂数组求和
-			var year = newStudent.reduce((total, item, index) => total += item.age, 0);
-			// reverse
-			// some 是否有一个90分以上的元素
-			var isGreat = score.some((item, index) => item > 90);
+			var year = student.reduce((total, item, index) => total + item.age, 0);
+
+			// reverse 修改原始数组
 		</script>
 	</body>
 

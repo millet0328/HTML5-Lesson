@@ -28,17 +28,15 @@
 			 */
 			async function subtract() {
 				let x = await random();
-				console.log('x=%f', x);
 				let y = await random();
-				console.log('y=%f',y);
 				if (x > y) {
 					return x - y;
 				} else {
 					return y - x;
 				}
 			}
-			subtract().then((data) => {
-				console.log('x-y=%f', data);
+			subtract().then(function (res) {
+				console.log('随机2个数字，相差',res);
 			});
 		</script>
 	</body>

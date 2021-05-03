@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var person = {
+				name: "黄小米"
+			}
+
+			function Point(x, y) {
+				this.x = x;
+				this.y = y;
+			}
+
+			// call，
+			// Point.call(person, 1, 1);
+
+			// apply，数组传参
+			// Point.apply(person, [3, 3]);
+			
+			// bind--绑定this，生成一个新的函数
+			var creat = Point.bind(person);
+			// creat(2, 2);
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>组件局部注册</title>
+	</head>
+	<body>
+		<div id="app">
+			<ol>
+				<li>局部注册组件本质上是一个对象，对象内的节点 == 全局注册options</li>
+				<li>组件只能在注册的组件内部使用。</li>
+			</ol>
+			<component-a></component-a>
+		</div>
+		<script src="lib/vue/vue.js"></script>
+		<script type="text/javascript">
+			// 定义局部组件
+			var componentB = {
+				template: `
+				<fieldset id="">
+					<legend>组件B</legend>
+					<p>组件B -- 内容</p>
+				</fieldset>
+				`
+			}
+			var componentA = {
+				components: {
+					'section-b': componentB,
+				},
+				template: `
+				<fieldset id="">
+					<legend>组件A</legend>
+					<p>组件A -- 内容</p>
+					<section-b></section-b>
+				</fieldset>
+				`
+			}
+			// 根组件--局部注册
+			var app = new Vue({
+				el: "#app",
+				components: {
+					// '组件名': '配置对象'
+					'component-a': componentA,
+				},
+			});
+		</script>
+	</body>
+</html>

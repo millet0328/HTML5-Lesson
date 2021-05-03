@@ -4,33 +4,12 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<link rel="stylesheet" type="text/css" href="component/counter/counter.css" />
 		<style type="text/css">
-			.switch {
-				display: inline-block;
-				width: 100px;
-				padding: 4px;
-				height: 30px;
-				box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2) inset;
-				border-radius: 20px;
-				transition: all 0.5s;
-			}
-
-			.switch .point {
-				width: 30px;
-				height: 30px;
-				border-radius: 50%;
-				display: inline-block;
-				box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
-				background-color: white;
-				transition: all 0.5s;
-			}
-
-			.switch.active {
-				background-color: lightgreen;
-			}
-
-			.switch.active .point {
-				transform: translateX(70px);
+			.red {
+				color: red;
+				font-weight: bold;
+				padding: 0 10px;
 			}
 		</style>
 	</head>
@@ -39,40 +18,123 @@
 		<div id="app">
 			<fieldset id="">
 				<legend>sync修饰符</legend>
+				<table width="100%" border="1" cellpadding="20">
+					<thead>
+						<tr>
+							<th>
+								<input type="checkbox" v-model="checkAll">
+							</th>
+							<th>#</th>
+							<th>书名</th>
+							<th>作者</th>
+							<th>价格</th>
+							<th>数量</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody align="center">
+						<tr v-for="(book,index) in books" v-bind:key="book.id">
+							<th>
+								<input type="checkbox" v-model="book.isChecked">
+							</th>
+							<td>{{book.id}}</td>
+							<td>{{book.name}}</td>
+							<td>{{book.author}}</td>
+							<td>￥{{book.price}}</td>
+							<td>
+								<counter :value.sync="book.num"></counter>
+							</td>
+							<td>
+								<button v-on:click="handleRemove(index)" type="button">×</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 				<p>
-					<switch-button :checked.sync="isActive"></switch-button>
-					<!-- 等价于 -->
-					<!-- <switch-button @update:checked="handleSwitch($event)" :checked="isActive"></switch-button> -->
+					总共选择<span class="red">{{total}}</span>本书，总共花费<span class="red">{{cost}}</span>元
 				</p>
 			</fieldset>
 		</div>
-		<script src="lib/vue/vue.js" type="text/javascript" charset="utf-8"></script>
-		<script id="tmpl-switch" type="x-template">
-			<div class="switch" :class="{active:checked}" @click="_handleSwitch">
-				<i class="point"></i>
-			</div>
-		</script>
-		<script type="text/javascript">
-			Vue.component('switch-button', {
-				props: ['checked'],
-				template: '#tmpl-switch',
-				methods: {
-					_handleSwitch: function() {
-						this.$emit('update:checked',!this.checked);
-					}
-				}
-			});
-
+		<script src="lib/vue/vue.js"></script>
+		<script src="component/counter/counter.js"></script>
+		<script>
 			var app = new Vue({
 				el: "#app",
 				data: {
-					isActive: false,
+					books: [{
+						isChecked: false,
+						id: 1,
+						author: '曹雪芹',
+						name: '红楼梦',
+						num: 1,
+						price: 32.0
+					}, {
+						isChecked: false,
+						id: 2,
+						author: '施耐庵',
+						name: '水浒传',
+						num: 2,
+						price: 30.0
+					}, {
+						isChecked: false,
+						id: 3,
+						author: '罗贯中',
+						name: '三国演义',
+						num: 3,
+						price: 24.0
+					}, {
+						isChecked: false,
+						id: 4,
+						author: '吴承恩',
+						name: '西游记',
+						num: 1,
+						price: 20.0
+					}]
+				},
+				computed: {
+					checkAll: {
+						set: function(val) {
+							this.books.forEach(function(item) {
+								item.isChecked = val;
+							});
+						},
+						get: function() {
+							// 已选中的复选框
+							var num = this.books.reduce(function(total, item) {
+								if (item.isChecked) {
+									return total + 1
+								} else {
+									return total + 0;
+								}
+							}, 0);
+							return this.books.length == num;
+						}
+					},
+					total: function() {
+						return this.books.reduce(function(total, item) {
+							if (item.isChecked) {
+								return total += item.num;
+							} else {
+								return total;
+							}
+						}, 0);
+					},
+					cost: function() {
+						return this.books.reduce(function(total, item) {
+							if (item.isChecked) {
+								return total += item.num * item.price;
+							} else {
+								return total;
+							}
+						}, 0);
+					}
 				},
 				methods: {
-					// handleSwitch: function($event) {
-					// 	this.isActive = $event;
-					// }
-				}
+					// 删除操作
+					handleRemove: function(i) {
+						this.books.splice(i, 1);
+					}
+				},
 			});
 		</script>
 	</body>

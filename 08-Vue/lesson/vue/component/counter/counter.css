@@ -1,31 +1,35 @@
-.counter {
-	display: flex;
+.counter-box {
+	display: inline-flex;
 	align-items: center;
-	width: 200px;
-}
-
-.counter .decrease,
-.counter .increase {
-	padding: 6px 20px;
-	border: 1px solid #999999;
-	border-radius: 3px;
-	font-size: 18px;
-}
-
-.counter .decrease {
-	border-top-right-radius: 0px;
-	border-bottom-right-radius: 0px;
-}
-
-.counter .increase {
-	border-top-left-radius: 0px;
-	border-bottom-left-radius: 0px;
-}
-
-.counter .number {
-	padding: 6px;
 	text-align: center;
-	min-width: 100px;
-	border-top: 1px solid #999999;
-	border-bottom: 1px solid #999999;
+}
+
+.counter-box .num {
+	min-width: 60px;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	line-height: 33px;
+}
+
+.counter-box button {
+	background-color: white;
+	padding: 6px 15px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 18px;
+	outline: 0;
+}
+
+.counter-box button[disabled] {
+	border-color: #eee;
+}
+
+.counter-box .down {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.counter-box .up {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
 }
