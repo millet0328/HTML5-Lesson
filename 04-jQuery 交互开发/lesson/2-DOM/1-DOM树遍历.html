@@ -11,12 +11,12 @@
 			}
 
 			.spec-list span.selected {
-				border-color: red;
+				border-color: orange;
 				background-color: lightyellow;
 			}
 
 			.spec-list span:hover {
-				border-color: darkred;
+				border-color: lightgreen;
 			}
 		</style>
 	</head>
@@ -42,8 +42,10 @@
 		<script src="js/jquery-3.5.1.min.js"></script>
 		<script type="text/javascript">
 			$('.spec-list span').click(function() {
-				$(this).siblings('span').removeClass('selected');
-				$(this).addClass('selected');
+				// 去掉兄弟元素的选中状态
+				$(this).siblings("span").removeClass("selected");
+				// 将自己选中
+				$(this).addClass("selected");
 			});
 		</script>
 	</body>

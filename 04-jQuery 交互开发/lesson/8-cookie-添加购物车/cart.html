@@ -24,7 +24,7 @@
 				</div>
 			</div>
 			<div class="cart_content">
-				<div class="cart_item clearfix">
+				<!-- 				<div class="cart_item clearfix">
 					<div class="photo fl">
 						<img src="img/guess/guess04.jpg">
 					</div>
@@ -53,8 +53,7 @@
 					<div class="actions fl">
 						删除
 					</div>
-				</div>
-
+				</div> -->
 			</div>
 			<div class="carriage-tips">
 				运费 : 自营商品已满足新会员专享全场38元包邮
@@ -77,49 +76,22 @@
 		</script>
 		<script type="text/javascript">
 			$(document).ready(function() {
-				// 获取cookie
-				var json = getCookie('cart');
-				// json => 数组
-				var cart = JSON.parse(json);
-
-				var html = '';
-				cart.forEach(function(item) {
-					// 模板字符串
-					html += `
-				<div class="cart_item clearfix">
-					<div class="photo fl">
-						<img src="${item.photo}">
-					</div>
-					<div class="name fl">
-						${item.name}
-					</div>
-					<div class="price fl">
-						${item.price}
-					</div>
-					<div class="quantity fl">
-						<div class="sum_box">
-							<div class="minus">
-								-
-							</div>
-							<div class="num">
-								${item.num}
-							</div>
-							<div class="add">
-								+
-							</div>
-						</div>
-					</div>
-					<div class="subtotal fl">
-						&yen;979
-					</div>
-					<div class="actions fl">
-						删除
-					</div>
-				</div>`
-				});
-				
-				$('.cart_content').html(html);
-				
+				// 读取cookie
+				var cart = getCookie('cart');
+				if (cart) {
+					var goodsList = JSON.parse(cart);
+					// 渲染列表
+					var html = '';
+					goodsList.forEach(function(item, index) {
+						html += '<div class="cart_item clearfix"><div class="photo fl"><img src="' + item.photo +
+							'"></div><div class="name fl">' + item.name +
+							'</div><div class="price fl">' + item.price +
+							'</div><div class="quantity fl"><div class="sum_box"><div class="minus">-</div><div class="num">' +
+							item.num +
+							'</div><div class="add">+</div></div></div><div class="subtotal fl">&yen;979</div><div class="actions fl">删除</div></div>'
+					});
+					$('.cart_content').html(html);
+				}
 			});
 		</script>
 	</body>

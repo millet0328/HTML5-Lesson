@@ -12,7 +12,6 @@
 		<button id="delete" type="button">删cookie</button>
 		<button id="update" type="button">改cookie</button>
 		<button id="read" type="button">查cookie</button>
-
 		<script type="text/javascript">
 			function setCookie(cname, cvalue, exdays) {
 				var d = new Date();
@@ -36,50 +35,48 @@
 		</script>
 		<script type="text/javascript">
 			// 查找元素
-			var oCreate = document.getElementById("create");
-			var oDelete = document.getElementById("delete");
-			var oUpdate = document.getElementById("update");
-			var oRead = document.getElementById("read");
-			// 添加数据
+			var oCreate = document.getElementById('create');
+			var oDelete = document.getElementById('delete');
+			var oUpdate = document.getElementById('update');
+			var oRead = document.getElementById('read');
+			// 添加cookie
 			oCreate.onclick = function() {
-				// 会话状态
-				document.cookie = 'username = 刘备';
-				// 有效期
-				// document.cookie = 'sex = 男;expires=' + new Date(2022, 0, 1).toGMTString();
-				setCookie('sex', '男', 365);
-				// 对象
-				var person = { name: '黄小米', age: 25 };
-				// 对象 => JSON
-				var json = JSON.stringify(person);
-				setCookie('person', json, 10);
-				// 数组
-				var team = ['赵云', '诸葛亮', '黄忠'];
-				// 数组 => JSON
-				var json = JSON.stringify(team);
-				setCookie('team', json, 10);
+				// 会话状态，关闭浏览器，立即清空
+				document.cookie = "username=moz";
+				// 有效期，到期之前，不会清空
+				var maxDate = new Date(2030, 4, 1).toGMTString();
+				document.cookie = "fullname=黄小米;expires=" + maxDate;
+				setCookie('country', 'china', 365);
+				// 存储对象，先转换，对象 => JSON
+				var person = { name: "黄小米", age: 25 };
+				document.cookie = "hero=" + JSON.stringify(person);
+				// 存数组，先转换，数组 => JSON
+				var team = ["刘备", "关羽", "张飞"];
+				var group = [
+					{ name: "刘备", role: "战士" },
+					{ name: "关羽", role: "战士" },
+					{ name: "张飞", role: "坦克" },
+				];
+				setCookie('ShuGuo', JSON.stringify(group));
 			}
 			// 删除cookie
 			oDelete.onclick = function() {
-				document.cookie = 'sex=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+				var endDate = new Date(1970, 0, 1).toGMTString();
+				document.cookie = "fullname=;expires=" + endDate;
 			}
 			// 修改cookie
 			oUpdate.onclick = function() {
-				document.cookie = 'username = 关羽';
+				document.cookie = "username=orz";
 			}
-			// 获取cookie
+			// 查询cookie
 			oRead.onclick = function() {
-				var username = getCookie('username');
-				console.log('username:%s', username)
-				// 获取对象
-				var json = getCookie('person');
-				// JSON => 对象
-				var person = JSON.parse(json);
-				console.log('person:%o', person);
-				// 获取数组
-				var json = getCookie('team');
-				// JSON => 数组
-				var team = JSON.parse(json);
-				console.log('team:%o', team);
+				var user = getCookie('username');
+				// 取对象，先转换，JSON => 对象
+				var hero = getCookie('hero');
+				var person = JSON.parse(hero);
+				// 取数组，先转换，JSON => 数组
+				var group = JSON.parse(getCookie('ShuGuo'));
+				console.log(group);
 			}
 		</script>
 	</body>

@@ -15,6 +15,7 @@
 				this.lessons = ['Math', 'Physics'];
 			}
 			Person.prototype = {
+				team: "巅峰队",
 				constructor: Person, //原型方式会将对象的constructor变为Object，此处强制指回Person
 				getName: function() {
 					return this.name;
@@ -23,7 +24,6 @@
 			var person1 = new Person('Jack', 19, 'SoftWare Engneer');
 			person1.lessons.push('Biology');
 			var person2 = new Person('Tom', 39, 'Mechanical Engneer');
-
 		</script>
 	</body>
 

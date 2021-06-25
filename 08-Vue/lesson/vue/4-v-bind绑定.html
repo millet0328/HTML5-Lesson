@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="lib/vue/vue.js"></script>
+	</head>
+
+	<body>
+		<fieldset id="">
+			<legend>属性绑定：v-bind</legend>
+			<style type="text/css">
+				.website-list {
+					padding: 0 20px;
+					list-style: none;
+					display: flex;
+					align-items: center;
+				}
+
+				.website-list li a {
+					padding: 10px;
+					display: flex;
+					align-items: center;
+					text-decoration: none;
+				}
+
+				.website-list li .name {
+					margin-left: 20px;
+					color: #666;
+				}
+			</style>
+			<div id="app1">
+				<ul class="website-list">
+					<li v-for="item in websites">
+						<a :href="item.link">
+							<img :src="item.logo" width="40" class="logo" alt="">
+							<span class="name">{{item.name}}</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<script type="text/javascript">
+				var app1 = new Vue({
+					el: "#app1",
+					data: {
+						websites: [{
+								name: "京东",
+								logo: 'https://pc-index-static.cdn.bcebos.com/pc-index-nav/00001/导航List_京东.png',
+								link: 'https://www.jd.com/',
+							},
+							{
+								name: "天猫",
+								logo: 'https://pc-index-static.cdn.bcebos.com/pc-index-nav/00001/导航List_天猫.png',
+								link: 'https://www.tmall.com/',
+							}
+						],
+					}
+				});
+			</script>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>绑定class：switch组件</legend>
+			<style type="text/css">
+				.switch {
+					display: inline-block;
+					width: 100px;
+					padding: 4px;
+					height: 30px;
+					margin: 20px 0;
+					box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2) inset;
+					border-radius: 20px;
+					transition: all 0.5s;
+				}
+
+				.switch .point {
+					width: 30px;
+					height: 30px;
+					border-radius: 50%;
+					display: inline-block;
+					box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+					background-color: white;
+					transition: all 0.5s;
+				}
+
+				.switch.active {
+					background-color: lightgreen;
+				}
+
+				.switch.active .point {
+					transform: translateX(70px);
+				}
+			</style>
+			<div id="app2">
+				<div :class="{active:isOpen}" @click="isOpen = !isOpen" class="switch">
+					<i class="point"></i>
+				</div>
+			</div>
+			<script type="text/javascript">
+				var app2 = new Vue({
+					el: "#app2",
+					data: {
+						isOpen: false,
+					}
+				});
+			</script>
+		</fieldset>
+
+	</body>
+
+</html>

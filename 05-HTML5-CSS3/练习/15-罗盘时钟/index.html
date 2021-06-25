@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+</head>
+<body>
+<div class="bg">
+    <div class="clock">
+        <div class="tool-bar">
+            <div>
+                <span class="year"></span>
+                <span>年</span>
+            </div>
+            <div>月</div>
+            <div>日</div>
+            <div>时</div>
+            <div>分</div>
+            <div>秒</div>
+        </div>
+        <section class="month"></section>
+        <section class="day"></section>
+        <section class="hour"></section>
+        <section class="minute"></section>
+        <section class="second"></section>
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+    // 查找元素
+    var oMonth = document.querySelector(".month");
+    var oDay = document.querySelector(".day");
+    var oHour = document.querySelector(".hour");
+    var oMinute = document.querySelector(".minute");
+    var oSecond = document.querySelector(".second");
+    var oYear = document.querySelector(".year");
+
+    var monthRadius = 60;
+    var dayRadius = 120;
+    var hourRadius = 180;
+    var minuteRadius = 240;
+    var secondRadius = 300;
+
+    function clock() {
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+        var date = now.getDate();
+        var hour = now.getHours();
+        var minute = now.getMinutes();
+        var second = now.getSeconds();
+
+        oSecond.style.transform = "rotate(" + -second * 6 + "deg)";
+        changeColor(oSecond, second)
+
+        oMinute.style.transform = "rotate(" + -minute * 6 + "deg)";
+        changeColor(oMinute, minute)
+
+        oHour.style.transform = "rotate(" + -hour * 360 / 24 + "deg)";
+        changeColor(oHour, hour)
+
+        oDay.style.transform = "rotate(" + -date * 360 / 30 + "deg)";
+        changeColor(oDay, date - 1)
+
+        oMonth.style.transform = "rotate(" + -month * 360 / 12 + "deg)";
+        changeColor(oMonth, month - 1)
+
+        oYear.innerText = year;
+    }
+
+    function changeColor(element, index) {
+        Array.from(element.children).forEach(function (item, i) {
+            if (i == index) {
+                item.style.color = 'red';
+            } else {
+                item.style.color = '#000';
+            }
+        })
+    }
+
+    //绘制表盘
+    wheel(oMonth, monthRadius, 1, 13, 12);
+    wheel(oDay, dayRadius, 1, 31, 30);
+    wheel(oHour, hourRadius, 0, 24, 24);
+    wheel(oMinute, minuteRadius, 0, 60, 60);
+    wheel(oSecond, secondRadius, 0, 60, 60);
+
+    function wheel(element, radius, start, end, length) {
+        for (var i = start; i < end; i++) {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            var oDiv = document.createElement("div");
+            var avd = 360 / length;
+            oDiv.innerText = i;
+            oDiv.style.transform = `rotate(${avd * i}deg) translateX(${radius}px)`;
+            element.appendChild(oDiv);
+        }
+    }
+
+    function start() {
+        setInterval(clock, 1000);
+    }
+
+    start();
+</script>
+</body>
+</html>

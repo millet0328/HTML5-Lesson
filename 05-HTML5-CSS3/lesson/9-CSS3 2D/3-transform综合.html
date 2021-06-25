@@ -15,28 +15,11 @@
 				width: 275px;
 				margin: 20px 12px;
 				border: 3px solid #FFFFFF;
-				overflow: hidden;
-				/* 动画过渡 */
 				transition: all 0.5s;
 			}
 
-			.team-box li:hover {
-				border: 3px solid #383838;
-			}
-
-			.team-box li:hover .info {
-				background-color: #383838;
-				color: white;
-			}
-
-			.team-box li:hover .photo img {
-				/* 放大 */
-				transform: scale(1.1);
-			}
-
 			.team-box .photo {
-				/* 裁剪超出区域 */
-				overflow: hidden; 
+				overflow: hidden;
 			}
 
 			.team-box .photo>img {
@@ -45,11 +28,24 @@
 				transition: all 0.5s;
 			}
 
+			.team-box li:hover .photo img {
+				transform: scale(1.1);
+			}
+
+			.team-box li:hover {
+				border-color: #1d1d1d;
+			}
+
 			.team-box .info {
 				color: #474747;
 				padding: 33px 20px;
 				background-color: #FFFFFF;
 				transition: all 0.5s;
+			}
+
+			.team-box li:hover .info {
+				background-color: #1d1d1d;
+				color: white;
 			}
 
 			.info .name {

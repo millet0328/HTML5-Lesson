@@ -19,10 +19,10 @@
 		<div id="app">
 			<div @click="handleOuter" class="outer-box">
 				外部
-				<div @click.stop="handleInner('内部')" class="inner-box">
+				<div @click.stop="handleInner" class="inner-box">
 					内部
 					<p>
-						<a @click.prevent="handleNavi" href="http://www.baidu.com/">即将去百度</a>
+						<a @click.prevent href="http://www.baidu.com/">即将去百度</a>
 					</p>
 				</div>
 			</div>
@@ -32,15 +32,12 @@
 			var app = new Vue({
 				el: "#app",
 				methods: {
-					handleInner: function(part) {
-						console.log(`${part}--clicked`);
+					handleInner: function() {
+						console.log('内部 clicked!')
 					},
-					handleOuter: function(e) {
-						console.log('外部--clicked');
+					handleOuter: function() {
+						console.log('外部 clicked!')
 					},
-					handleNavi: function() {
-						location.assign('http://www.jd.com/');
-					}
 				}
 			});
 		</script>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>bootstrap4--学生成绩表</title>
+	<!-- bootstrap 4 -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body>
+	<div id="app" class="container">
+		<div class="card mb-3">
+			<div class="card-header bg-dark text-white">
+				作业要求
+			</div>
+			<div class="card-body">
+				<ol>
+					<li>在表单中填写数据，点击录入按钮，插入新的学生成绩。</li>
+					<li>渲染表格的数据，并显示每一个学生的总分，<b class="text-danger">PS</b>:并不需要添加总分这一字段。</li>
+					<li>点击表格的表头【数学、语文、英语】，对应的数据按照从大到小排序，<b class="text-danger">再次点击</b>从小到大排序。</li>
+					<li>选择班级，填入学生姓名，点击搜索按钮，<b class="text-danger">高亮</b>显示符合条件的学生</li>
+					<li>选择科目，填入分数最小值，最大值，验证两个数值大小顺序，点击筛选按钮，<b class="text-danger">高亮</b>符合条件的学生</li>
+					<li><b class="text-danger">附加题</b>：选择科目，填入分数最小值，最大值，验证两个数值大小顺序，点击筛选按钮，<b
+							class="text-danger">只显示</b>符合条件的学生</li>
+				</ol>
+			</div>
+		</div>
+		<div class="card mb-3">
+			<div class="card-header text-white bg-dark">
+				录入成绩
+			</div>
+			<div class="card-body">
+				<form>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">姓名：</label>
+						<div class="col-sm-10">
+							<input type="text" id="username" class="form-control" placeholder="请输入学生姓名">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">班级：</label>
+						<div class="col-sm-10">
+							<select id="grade" class="form-control">
+								<option value="三年级1班">三年级1班</option>
+								<option value="三年级2班">三年级2班</option>
+								<option value="三年级3班">三年级3班</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">数学：</label>
+						<div class="col-sm-10">
+							<input type="text" id="math" class="form-control" placeholder="请输入数学成绩">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">语文：</label>
+						<div class="col-sm-10">
+							<input type="text" id="chinese" class="form-control" placeholder="请输入语文成绩">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">英语：</label>
+						<div class="col-sm-10">
+							<input type="text" id="english" class="form-control" placeholder="请输入英语成绩">
+						</div>
+					</div>
+					<div class="form-group">
+						<button type="button" id="insert" class="btn btn-primary">录入</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="card mb-3">
+			<div class="card-header text-white bg-dark">
+				筛选搜索
+			</div>
+			<div class="card-body">
+				<form>
+					<div class="form-group row search">
+						<label class="col-sm-1 col-form-label">搜索</label>
+						<div class="input-group col-sm-5">
+							<select class="form-control">
+								<option value="三年级1班">三年级1班</option>
+								<option value="三年级2班">三年级2班</option>
+								<option value="三年级3班">三年级3班</option>
+							</select>
+						</div>
+						<div class="input-group col-sm-6">
+							<input type="text" class="form-control name" placeholder="请输入学生姓名">
+							<div class="input-group-append">
+								<button id="search" class="btn btn-primary" type="button">搜索</button>
+							</div>
+						</div>
+					</div>
+					<div class="form-group row filter">
+						<label class="col-sm-1 col-form-label">筛选</label>
+						<div class="input-group col-sm-5">
+							<div class="input-group-prepend">
+								<select class="form-control">
+									<option value="3">数学</option>
+									<option value="4">语文</option>
+									<option value="5">英语</option>
+								</select>
+							</div>
+							<input type="text" id="min" class="form-control" placeholder="分数最小值">
+						</div>
+						<div class="col-sm-1 text-center">——</div>
+						<div class="input-group col-sm-5">
+							<input type="text" id="max" class="form-control" placeholder="分数最大值">
+							<div class="input-group-append">
+								<button id="filter_btn" class="btn btn-primary" type="button">筛选</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<table class="table table-bordered">
+			<thead class="thead-dark">
+				<tr>
+					<th>#</th>
+					<th>班级</th>
+					<th>姓名</th>
+					<th data-sort="1">数学</th>
+					<th data-sort="1">语文</th>
+					<th data-sort="1">英语</th>
+					<th>总分</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>三年级2班</td>
+					<td>Bob</td>
+					<td>97</td>
+					<td>89</td>
+					<td>67</td>
+					<td>253</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>三年级2班</td>
+					<td>黄小米</td>
+					<td>54</td>
+					<td>35</td>
+					<td>78</td>
+					<td>167</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>三年级1班</td>
+					<td>黄磊</td>
+					<td>99</td>
+					<td>35</td>
+					<td>78</td>
+					<td>167</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+	<script src="./js/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript">
+		// 录入成绩
+		$("#insert").click(function () {
+			// 提取表单
+			var name = $('#username').val();
+			var grade = $('#grade').val();
+			var math = $('#math').val();
+			var english = $("#english").val();
+			var chinese = $('#chinese').val();
+			// 表单校验
+			var nameIsvalid = /^([\u4e00-\u9fa5]{2,20}|[a-zA-Z.\s]{2,20})$/.test(name);
+			if (!nameIsvalid) {
+				alert('姓名格式错误！');
+				return;
+			}
+			var mathIsvalid = /^(100|[1-9]?[0-9](\.[1-9])?)$/.test(math);
+			if (!mathIsvalid) {
+				alert('数学成绩不合规！');
+				return;
+			}
+			var chineseIsvalid = /^(100|[1-9]?[0-9](\.[1-9])?)$/.test(chinese);
+			if (!chineseIsvalid) {
+				alert('语文成绩不合规！');
+				return;
+			}
+			var englishIsvalid = /^(100|[1-9]?[0-9](\.[1-9])?)$/.test(english);
+			if (!englishIsvalid) {
+				alert('英语成绩不合规！');
+				return;
+			}
+			var total = parseFloat(math) + parseFloat(english) + parseFloat(chinese);
+			var id = $('.table tbody tr').length + 1;
+			// 生成元素
+			var $tr = $('<tr><td>' + id + '</td><td>' + grade +
+				'</td><td>' + name + '</td><td>' + math + '</td><td>' + chinese + '</td><td>' + english +
+				'</td><td>' + total + '</td></tr>');
+			// 插入tr
+			$('.table tbody').append($tr);
+			// 重置表单
+			$('form')[0].reset();
+		});
+		// DOM排序
+		$('.table thead th').click(function () {
+			// 获取当前th的索引
+			var i = $(this).index();
+			// 当前排序规则
+			var sort = $(this).data('sort');
+			// 排序
+			var $tr = $('.table tbody tr');
+			$tr.sort(function (itemA, itemB) {
+				var mathA = $(itemA).find('td').eq(i).text().trim();
+				var mathB = $(itemB).find('td').eq(i).text().trim();
+				return (mathB - mathA) * sort;
+			});
+			$(this).data('sort', -sort);
+			// 清空->插入
+			$('.table tbody').empty().append($tr);
+		});
+		// 搜索
+		$('#search').click(function () {
+			// 搜索条件
+			var grade = $('.search select').val().trim();
+			var name = $('.search .name').val().trim();
+			// 清空背景色
+			$('.table tbody tr').css('background', "white");
+			// 高亮显示
+			$('.table tbody tr:contains(' + grade + '):contains(' + name + ')').css('background', 'orange');
+		});
+		// 筛选
+		$('#filter_btn').click(function () {
+			// 筛选条件
+			var subject = $('.filter select').val(); //科目的value是对应表格的td索引
+			var min = $('#min').val();
+			var max = $('#max').val();
+
+			var minIsvalid = /^(100|[1-9]?[0-9](\.[1-9])?)$/.test(min);
+			if (!minIsvalid) {
+				alert('分数最小值不合规！');
+				return;
+			}
+			var maxIsvalid = /^(100|[1-9]?[0-9](\.[1-9])?)$/.test(max);
+			if (!maxIsvalid) {
+				alert('分数最大值不合规！');
+				return;
+			}
+			if (parseFloat(min) > parseFloat(max)) {
+				alert('分数范围有误！');
+				return;
+			}
+			$('.table tbody tr').each(function () {
+				var score = $(this).find('td').eq(subject).text().trim();
+				if (score > parseFloat(min) && score < parseFloat(max)) {
+					$(this).css('background', "pink");
+				} else {
+					$(this).css('background', "white");
+				}
+			});
+		});
+	</script>
+</body>
+
+</html>

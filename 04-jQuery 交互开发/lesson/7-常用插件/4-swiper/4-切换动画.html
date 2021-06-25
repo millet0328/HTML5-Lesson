@@ -58,10 +58,19 @@
 		</div>
 
 		<script src="./lib/swiper/js/swiper-bundle.min.js"></script>
-
 		<script>
-			var mySwiper = new Swiper('.swiper-container', {
+			var mySwiper = new Swiper('.banner-box', {
 				loop: true, // 循环模式选项
+				// 如果需要分页器
+				pagination: {
+					el: '.swiper-pagination',
+				},
+
+				// 如果需要前进后退按钮
+				navigation: {
+					nextEl: '.swiper-button-next',
+					prevEl: '.swiper-button-prev',
+				},
 				on: {
 					init: function(swiper) {
 						slide = this.slides.eq(0);
@@ -76,9 +85,10 @@
 					transitionEnd: function() {
 						slide = this.slides.eq(this.activeIndex);
 						slide.addClass('ani-slide');
+
 					},
 				}
-			})
+			});
 		</script>
 	</body>
 </html>

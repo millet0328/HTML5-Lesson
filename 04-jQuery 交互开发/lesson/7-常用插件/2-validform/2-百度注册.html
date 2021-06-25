@@ -12,24 +12,22 @@
 		<form class="form" id="form">
 			<p class="form-control">
 				<label>用户名</label>
-				<input datatype="/^[\u4e00-\u9fa5]{1,7}$|^[A-z]{1,14}$/" errormsg="中英文均可,最长14个英文或7个汉字!" class="input-control" type="text" placeholder="请设置用户名：" />
-				<span class="msg">提示</span>
+				<input datatype="/^[\u4e00-\u9fa5]{1,7}$|^[A-z]{1,14}$/" errormsg="中英文均可,最长14个英文或7个汉字!"
+					class="input-control" type="text" placeholder="请设置用户名：" />
+
 			</p>
 			<p class="form-control">
 				<label>手机号</label>
 				<input datatype="m" errormsg="请输入11位的手机号码!" class="input-control" type="text" placeholder="可用于登录找回密码" />
-				<span class="msg">提示</span>
 			</p>
 			<p class="form-control">
 				<label>密码</label>
-				<input datatype="/^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?!([^(0-9a-zA-Z)])+$).{8,14}$/" errormsg="8-14个字符,字母/数字/标点至少包含2种"  class="input-control" type="password"
-				 placeholder="请输入登录密码" />
-				<span class="msg">提示</span>
+				<input datatype="/^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?!([^(0-9a-zA-Z)])+$).{8,14}$/"
+					errormsg="8-14个字符,字母/数字/标点至少包含2种" class="input-control" type="password" placeholder="请输入登录密码" />
 			</p>
 			<p class="form-control">
 				<label>验证码</label>
 				<input datatype="n4-6" errormsg="验证码4-6位数字" class="input-control" type="text" placeholder="请输入验证码" />
-				<span class="msg">提示</span>
 			</p>
 			<p>
 				<button class="login btn" type="submit">注册</button>
@@ -40,18 +38,23 @@
 		<script type="text/javascript">
 			$('#form').Validform({
 				tiptype: function(msg, o, cssctl) {
-					var $parent = o.obj.parents('.form-control');
-					var $msg = o.obj.siblings('.msg');
-					$parent.removeClass('success error');
-					// 显示信息
-					$msg.text(msg);
-					// 验证成功
+					var $parent = o.obj.parent();
+					// 判断是否有msg标签
+					var isHave = $parent.find('.msg').length > 0;
+					if (isHave) {
+						$parent.find('.msg').text(msg);
+					} else {
+						// 生成信息提示
+						var $msg = $('<span class="msg">' + msg + '</span>');
+						$parent.append($msg);
+					}
+					// 通过验证
 					if (o.type == 2) {
-						$parent.addClass('success');
+						$parent.removeClass("success error").addClass("success");
 					}
 					// 验证失败
 					if (o.type == 3) {
-						$parent.addClass('error');
+						$parent.removeClass('success error').addClass("error");
 					}
 				}
 			});

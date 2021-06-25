@@ -5,110 +5,203 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="./lib/swiper/css/swiper-bundle.min.css" />
-
-		<style type="text/css">
-			.banner-box {
-				width: 790px;
-				height: 340px;
+		<link rel="stylesheet" type="text/css" href="lib/swiper/css/swiper-bundle.min.css" />
+		<style>
+			.banner {
+				width: 800px;
 			}
 
-			.seckill-box {
-				margin: 20px;
-				height: 300px;
+			.banner .swiper-slide img,
+			.goods .swiper-slide img {
+				width: 140px;
 			}
 
-			.seckill-box .goods {
-				border: 1px solid blue;
-				padding: 10px;
+			.banner .swiper-slide a,
+			.goods .swiper-slide a {
+				display: inline-block;
+				color: #666;
+				font-size: 14px;
+				text-decoration: none;
+				border: 1px solid #eee;
+				padding: 20px;
+				padding-bottom: 0;
+			}
+
+			.banner .swiper-pagination {
+				bottom: 0;
+			}
+
+			.goods {
+				margin: 50px auto;
+				width: 1000px;
 			}
 		</style>
 	</head>
 	<body>
-
-		<div class="swiper-container banner-box">
+		<div class="swiper-container banner">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide">
-					<img src="img/1.jpg">
+					<a href="https://www.jd.com/">
+						<img src="https://img30.360buyimg.com/seckillcms/s280x280_jfs/t1/195516/33/5189/198753/60af6367E59d05ca7/1efcee66ce1f5ad0.png.webp"
+							alt="">
+						<p class="name">商品名称</p>
+						<p class="price">价格：1000</p>
+					</a>
 				</div>
 				<div class="swiper-slide">
-					<img src="img/2.jpg">
+					<a href="https://www.jd.com/">
+						<img src="https://img20.360buyimg.com/seckillcms/s280x280_jfs/t1/189134/1/4958/87242/60accbabE1752d332/4697a55023182fd7.jpg.webp"
+							alt="">
+						<p class="name">商品名称</p>
+						<p class="price">价格：1000</p>
+					</a>
 				</div>
 				<div class="swiper-slide">
-					<img src="img/3.jpg">
+					<a href="https://www.jd.com/">
+						<img src="https://img30.360buyimg.com/seckillcms/s280x280_jfs/t1/195516/33/5189/198753/60af6367E59d05ca7/1efcee66ce1f5ad0.png.webp"
+							alt="">
+						<p class="name">商品名称</p>
+						<p class="price">价格：1000</p>
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<a href="https://www.jd.com/">
+						<img src="https://img20.360buyimg.com/seckillcms/s280x280_jfs/t1/189134/1/4958/87242/60accbabE1752d332/4697a55023182fd7.jpg.webp"
+							alt="">
+						<p class="name">商品名称</p>
+						<p class="price">价格：1000</p>
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<a href="https://www.jd.com/">
+						<img src="https://img30.360buyimg.com/seckillcms/s280x280_jfs/t1/195516/33/5189/198753/60af6367E59d05ca7/1efcee66ce1f5ad0.png.webp"
+							alt="">
+						<p class="name">商品名称</p>
+						<p class="price">价格：1000</p>
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<a href="https://www.jd.com/">
+						<img src="https://img20.360buyimg.com/seckillcms/s280x280_jfs/t1/189134/1/4958/87242/60accbabE1752d332/4697a55023182fd7.jpg.webp"
+							alt="">
+						<p class="name">商品名称</p>
+						<p class="price">价格：1000</p>
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<a href="https://www.jd.com/">
+						<img src="https://img30.360buyimg.com/seckillcms/s280x280_jfs/t1/195516/33/5189/198753/60af6367E59d05ca7/1efcee66ce1f5ad0.png.webp"
+							alt="">
+						<p class="name">商品名称</p>
+						<p class="price">价格：1000</p>
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<a href="https://www.jd.com/">
+						<img src="https://img20.360buyimg.com/seckillcms/s280x280_jfs/t1/189134/1/4958/87242/60accbabE1752d332/4697a55023182fd7.jpg.webp"
+							alt="">
+						<p class="name">商品名称</p>
+						<p class="price">价格：1000</p>
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<a href="https://www.jd.com/">
+						<img src="https://img30.360buyimg.com/seckillcms/s280x280_jfs/t1/195516/33/5189/198753/60af6367E59d05ca7/1efcee66ce1f5ad0.png.webp"
+							alt="">
+						<p class="name">商品名称</p>
+						<p class="price">价格：1000</p>
+					</a>
 				</div>
 			</div>
-			<!-- 如果需要分页器 -->
-			<div class="swiper-pagination"></div>
-
 			<!-- 如果需要导航按钮 -->
 			<div class="swiper-button-prev"></div>
 			<div class="swiper-button-next"></div>
-
+			<!-- 如果需要分页器 -->
+			<div class="swiper-pagination"></div>
 		</div>
 
-		<div class="swiper-container seckill-box">
+		<div class="swiper-container goods">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide">
-					<div class="goods">
-						<img width="100%" src="./img/3.jpg" alt="">
-					</div>
+					<a href="https://www.jd.com/">
+						<img src="https://img30.360buyimg.com/seckillcms/s280x280_jfs/t1/195516/33/5189/198753/60af6367E59d05ca7/1efcee66ce1f5ad0.png.webp"
+							alt="">
+						<p class="name">商品名称</p>
+						<p class="price">价格：1000</p>
+					</a>
 				</div>
 				<div class="swiper-slide">
-					<div class="goods">
-						<img width="100%" src="./img/3.jpg" alt="">
-					</div>
+					<a href="https://www.jd.com/">
+						<img src="https://img20.360buyimg.com/seckillcms/s280x280_jfs/t1/189134/1/4958/87242/60accbabE1752d332/4697a55023182fd7.jpg.webp"
+							alt="">
+						<p class="name">商品名称</p>
+						<p class="price">价格：1000</p>
+					</a>
 				</div>
 				<div class="swiper-slide">
-					<div class="goods">
-						<img width="100%" src="./img/3.jpg" alt="">
-					</div>
+					<a href="https://www.jd.com/">
+						<img src="https://img30.360buyimg.com/seckillcms/s280x280_jfs/t1/195516/33/5189/198753/60af6367E59d05ca7/1efcee66ce1f5ad0.png.webp"
+							alt="">
+						<p class="name">商品名称</p>
+						<p class="price">价格：1000</p>
+					</a>
 				</div>
 				<div class="swiper-slide">
-					<div class="goods">
-						<img width="100%" src="./img/3.jpg" alt="">
-					</div>
+					<a href="https://www.jd.com/">
+						<img src="https://img20.360buyimg.com/seckillcms/s280x280_jfs/t1/189134/1/4958/87242/60accbabE1752d332/4697a55023182fd7.jpg.webp"
+							alt="">
+						<p class="name">商品名称</p>
+						<p class="price">价格：1000</p>
+					</a>
 				</div>
 				<div class="swiper-slide">
-					<div class="goods">
-						<img width="100%" src="./img/3.jpg" alt="">
-					</div>
+					<a href="https://www.jd.com/">
+						<img src="https://img30.360buyimg.com/seckillcms/s280x280_jfs/t1/195516/33/5189/198753/60af6367E59d05ca7/1efcee66ce1f5ad0.png.webp"
+							alt="">
+						<p class="name">商品名称</p>
+						<p class="price">价格：1000</p>
+					</a>
 				</div>
 				<div class="swiper-slide">
-					<div class="goods">
-						<img width="100%" src="./img/3.jpg" alt="">
-					</div>
+					<a href="https://www.jd.com/">
+						<img src="https://img20.360buyimg.com/seckillcms/s280x280_jfs/t1/189134/1/4958/87242/60accbabE1752d332/4697a55023182fd7.jpg.webp"
+							alt="">
+						<p class="name">商品名称</p>
+						<p class="price">价格：1000</p>
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<a href="https://www.jd.com/">
+						<img src="https://img30.360buyimg.com/seckillcms/s280x280_jfs/t1/195516/33/5189/198753/60af6367E59d05ca7/1efcee66ce1f5ad0.png.webp"
+							alt="">
+						<p class="name">商品名称</p>
+						<p class="price">价格：1000</p>
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<a href="https://www.jd.com/">
+						<img src="https://img20.360buyimg.com/seckillcms/s280x280_jfs/t1/189134/1/4958/87242/60accbabE1752d332/4697a55023182fd7.jpg.webp"
+							alt="">
+						<p class="name">商品名称</p>
+						<p class="price">价格：1000</p>
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<a href="https://www.jd.com/">
+						<img src="https://img30.360buyimg.com/seckillcms/s280x280_jfs/t1/195516/33/5189/198753/60af6367E59d05ca7/1efcee66ce1f5ad0.png.webp"
+							alt="">
+						<p class="name">商品名称</p>
+						<p class="price">价格：1000</p>
+					</a>
 				</div>
 			</div>
-			<!-- Add Pagination -->
-			<div class="swiper-pagination"></div>
-			<!-- Add Arrows -->
-			<div class="swiper-button-next"></div>
-			<div class="swiper-button-prev"></div>
+			<!-- 滚动条 -->
+			<div class="swiper-scrollbar"></div>
 		</div>
-
-		<script src="./lib/swiper/js/swiper-bundle.min.js"></script>
-
-		<script>
-			var swiper1 = new Swiper('.banner-box', {
-				loop: true, // 循环模式选项
-
-				// 如果需要分页器
-				pagination: {
-					el: '.swiper-pagination',
-				},
-
-				// 如果需要前进后退按钮
-				navigation: {
-					nextEl: '.swiper-button-next',
-					prevEl: '.swiper-button-prev',
-				},
-			})
-		</script>
-		<script>
-			var swiper2 = new Swiper('.seckill-box', {
-				slidesPerView: 3,
-				spaceBetween: 30,
+		<script src="lib/swiper/js/swiper-bundle.min.js"></script>
+		<script type="text/javascript">
+			var swiper1 = new Swiper('.banner', {
+				slidesPerView: 4,
 				slidesPerGroup: 3,
 				loop: true,
 				loopFillGroupWithBlank: true,
@@ -119,6 +212,15 @@
 				navigation: {
 					nextEl: '.swiper-button-next',
 					prevEl: '.swiper-button-prev',
+				},
+			});
+
+			var swiper2 = new Swiper('.goods', {
+				autoplay: true,
+				slidesPerView: 6,
+				scrollbar: {
+					el: '.swiper-scrollbar',
+					hide: true,
 				},
 			});
 		</script>

@@ -13,9 +13,11 @@
 			//动物类
 			function Animal(sex) {
 				this.species = "动物";
+				this.English = "Animal";
 				this.sex = sex;
 				this.legs = 4;
 			}
+
 			Animal.prototype = {
 				constructor: Animal,
 				eat: function(food) {
@@ -27,7 +29,7 @@
 			}
 			// Cat猫科动物：继承Animal的所有属性、方法
 			function Cat(sex, type, color) {
-				// 1、继承父级的属性
+				// 1、继承Animal父级的属性
 				Animal.call(this, sex);
 				// 自身的属性
 				this.type = type;
@@ -44,6 +46,7 @@
 			}
 
 			var xiaoBai = new Cat('公', '加菲', 'white');
+			
 		</script>
 	</body>
 

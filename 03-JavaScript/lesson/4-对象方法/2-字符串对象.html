@@ -39,7 +39,8 @@
 					// 获取value
 					var txt = oContent.value;
 					// 检索字符串
-					var isHas = txt.indexOf('SB');
+					// var isHas = txt.indexOf('SB');
+					var isHas = txt.search(/SB/ig);
 					// 存在违禁词
 					if (isHas >= 0) {
 						txt = txt.replace(/SB/ig, '**');
@@ -92,14 +93,15 @@
 
 			<script type="text/javascript">
 				var search =
-					'spm=875.7931836/B.20161011.4.7bb14265hBSAvE&pvid=ac9169cf-8c4a-4124-8653-d8989da45ee7&pos=4&acm=201509290.1003.1.1286473&id=628235860448&scm=1007.12710.81708.100200300000000&skuId=4634632366350'
-				var query = search.split('&');
+					'?spm=875.7931836/B.20161011.4.7bb14265hBSAvE&pvid=ac9169cf-8c4a-4124-8653-d8989da45ee7&pos=4&acm=201509290.1003.1.1286473&id=628235860448&scm=1007.12710.81708.100200300000000&skuId=4634632366350'
+				var query = search.substr(1);
+				var arr = query.split('&');
 				var result = {};
-				query.forEach(function(item) {
-					var arr = item.split('=');
-					result[arr[0]] = arr[1];
+				arr.forEach(function(item, index) {
+					var tmp = item.split('=');
+					result[tmp[0]] = tmp[1];
 				});
-				console.log(result)
+				console.log(result);
 			</script>
 		</fieldset>
 	</body>

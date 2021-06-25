@@ -22,14 +22,14 @@
 					oCal.onclick = function() {
 						var num1 = oNum1.value;
 						var num2 = oNum2.value;
-						var res = num1 * num2;
+						var res = (num1 * num2).toFixed(2);
 						alert(res);
 					}
 				}
 			</script>
 		</fieldset>
 
-		<fieldset id="">
+		<fieldset>
 			<legend>计算总价</legend>
 
 			<table id="table" width="100%" cellpadding="20" border="1">
@@ -56,7 +56,7 @@
 						<td>2</td>
 						<td>红楼梦</td>
 						<td>曹雪芹</td>
-						<td>35.5</td>
+						<td>35.1</td>
 						<td>3</td>
 						<td><button type="button">x</button></td>
 					</tr>
@@ -64,16 +64,16 @@
 						<td>3</td>
 						<td>水浒传</td>
 						<td>施耐庵</td>
-						<td>42.7</td>
-						<td>1</td>
+						<td>40.7</td>
+						<td>3</td>
 						<td><button type="button">x</button></td>
 					</tr>
 					<tr>
 						<td>4</td>
 						<td>三国演义</td>
 						<td>罗贯中</td>
-						<td>53.2</td>
-						<td>1</td>
+						<td>53.4</td>
+						<td>2</td>
 						<td><button type="button">x</button></td>
 					</tr>
 				</tbody>
@@ -83,22 +83,20 @@
 			</p>
 			<script>
 				// 查找元素
-				var oTable = document.getElementById('table');
-				var oTr = oTable.querySelectorAll('tbody tr');
+				var oTr = document.querySelectorAll('#table tbody tr');
 				var oNum = document.querySelector('.num');
 				var oTotal = document.querySelector('.total');
-				
+
+				var sum = 0;
 				var total = 0;
-				var cost = 0;
 				for (var i = 0; i < oTr.length; i++) {
-					var num = Number(oTr[i].querySelectorAll('td')[4].innerText.trim());
-					var price = Number(oTr[i].querySelectorAll('td')[3].innerText.trim());
-					total += num;
-					cost += num * price
+					var num = parseInt(oTr[i].querySelectorAll('td')[4].innerText.trim());
+					var price = parseFloat(oTr[i].querySelectorAll('td')[3].innerText.trim());
+					sum += num;
+					total += num * price;
 				}
-				
-				oNum.innerText = total;
-				oTotal.innerText = cost.toFixed(2);
+				oNum.innerText = sum;
+				oTotal.innerText = total.toFixed(2);
 			</script>
 		</fieldset>
 	</body>

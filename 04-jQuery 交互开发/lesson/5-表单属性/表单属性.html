@@ -120,6 +120,7 @@
 			$('#chkAll').click(function() {
 				// 获取当前状态
 				var isChecked = $(this).prop('checked');
+				
 				$('input[name=hobby]').prop('checked', isChecked);
 			});
 			// 全选 -- 反方向 项目选中/取消 => 全选的状态
@@ -129,11 +130,13 @@
 				// 选中的数量
 				var num = $('input[name=hobby]:checked').length;
 				// 判断全选状态
-				if (num == total) {
-					$('#chkAll').prop('checked', true);
-				} else {
-					$('#chkAll').prop('checked', false);
-				}
+				$('#chkAll').prop('checked', num == total);
+				// 等价于
+				// if (num == total) {
+				// 	$('#chkAll').prop('checked', true);
+				// } else {
+				// 	$('#chkAll').prop('checked', false);
+				// }
 			});
 			// 监听输入input 某些事件没有简写，只能on方法能够使用
 			$('.info').on('input', function() {

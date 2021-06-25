@@ -106,12 +106,9 @@
 		<script src="lib/jQuery/jquery-3.5.1.min.js"></script>
 		<script type="text/javascript">
 			$('.tab .title li').click(function() {
-				// 切换class
-				$(this).addClass('active').siblings('li').removeClass('active');
-				// 获取索引
-				var  i = $(this).index();
-				// 切换content
-				$(this).parent().siblings('.content').find('li').eq(i).show().siblings('li').hide();
+				var i = $(this).index();
+				$(this).addClass('active').siblings().removeClass("active");
+				$(this).parents(".tab").find(".content li").hide().eq(i).show();
 			});
 		</script>
 	</body>

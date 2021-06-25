@@ -13,24 +13,24 @@
 			}
 
 			.box1.active {
-				transform: translate(0px,-30px);
+				transform: translate(0px, -30px);
 			}
-			
+
 			.box2.active {
-				transform: scale(0.7);
+				transform: scale(0.8);
 			}
-			
+
 			.box3.active {
 				transform: rotate(45deg);
 			}
-			
+
 			.box4.active {
 				transform: skew(-20deg);
 			}
-			
+
 			.box5.active {
-				transform: translateX(600px) rotate(720deg) scale(0.7);
-				background-color: blue;
+				transform: rotate(720deg) scale(0.7) translateX(600px);
+				background-color: deeppink;
 			}
 		</style>
 		<script src="js/jquery-3.3.1.min.js"></script>
@@ -56,7 +56,6 @@
 			</ol>
 			<p class="box1">translate</p>
 			<p class="basic-box">参照物</p>
-
 		</fieldset>
 
 		<fieldset id="">
@@ -84,7 +83,7 @@
 		<fieldset id="">
 			<legend>transform:skew倾斜</legend>
 			<ol>
-				<li>角度单位是deg，旋转90度：rotate(90deg)</li>
+				<li>角度单位是deg，旋转90度：skew(90deg)</li>
 				<li>元素占据以前的位置</li>
 			</ol>
 			<p class="box4">skew</p>

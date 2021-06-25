@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title></title>
+		<script src="lib/vue/vue.js"></script>
+	</head>
+
+	<body>
+		<fieldset id="">
+			<legend>非变异方法</legend>
+			<ol>
+				<li>非变异方法：不会改变原始数组，计算完成返回新数组</li>
+				<li>filter、concat、slice、map</li>
+			</ol>
+			<div id="app1">
+				<p>
+					数学成绩：
+					<b v-for="item in score">{{item}} </b>
+				</p>
+				<p>
+					筛选结果：
+					<b v-for="item in result">{{item}} </b>
+				</p>
+				<button @click="handleFilter" type="button">筛选大于60的成绩</button>
+			</div>
+			<script type="text/javascript">
+				var app1 = new Vue({
+					el: "#app1",
+					data: {
+						score: [57, 65, 87, 36, 98, 24, 78],
+						result: [],
+					},
+					methods: {
+						handleFilter: function() {
+							this.result = this.score.filter(function(item) {
+								return item >= 60;
+							});
+						}
+					}
+				});
+			</script>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>简单数组，直接赋值，view不更新</legend>
+			<ol>
+				<li>纯数字数组，纯字符串数组，根据索引直接赋值，view不更新</li>
+				<li>$set方法，强制更新view</li>
+				<li>$set(数组名称,索引,新数值)</li>
+			</ol>
+			<div id="app2">
+				<ul>
+					<li v-for="(item,index) in arr">
+						{{item}}
+						<button @click="handleRandom(index)" type="button">随机生成</button>
+					</li>
+				</ul>
+			</div>
+			<script type="text/javascript">
+				var app2 = new Vue({
+					el: "#app2",
+					data: {
+						arr: [32, 65, 48, 98, 15, 24]
+					},
+					methods: {
+						handleRandom: function(i) {
+							var x = Math.floor(Math.random() * 100);
+							this.$set(this.arr, i, x);
+						}
+					}
+				});
+			</script>
+		</fieldset>
+	</body>
+
+</html

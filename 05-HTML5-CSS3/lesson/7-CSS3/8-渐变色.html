@@ -6,37 +6,34 @@
 		<title></title>
 		<style type="text/css">
 			.linear {
-				height: 300px;
-				background: linear-gradient(to right, pink, orange 25%, purple 50%, yellow);
-			}
-
-			.search-btn {
-				padding: 10px 30px;
-				font-size: 16px;
-				color: white;
-				border: 0;
-				background: linear-gradient(to right, rgb(26, 235, 227), rgb(47, 136, 229));
+				height: 200px;
+				background: linear-gradient(to right, red 0%, orange 20%, yellow 40%, green 60%, blue 80%, purple 100%);
 			}
 
 			.ball {
 				width: 200px;
 				height: 200px;
-				margin: 20px 0;
-				box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-				background: radial-gradient(circle at center, red, orange);
+				border-radius: 50%;
+				background: radial-gradient(circle at top left, #c8e3fa, #e62490);
+				box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
 			}
 		</style>
 	</head>
 
 	<body>
-
-		<p>
+		<fieldset id="">
+			<legend>线性渐变</legend>
+			<p>
 			<div class="linear"></div>
-		</p>
+			</p>
+		</fieldset>
+		<fieldset id="">
+			<legend>径向渐变</legend>
 
-		<button class="search-btn" type="button">搜索</button>
-
-		<div class="ball"></div>
+			<p>
+			<div class="ball"></div>
+			</p>
+		</fieldset>
 	</body>
 
 </html>

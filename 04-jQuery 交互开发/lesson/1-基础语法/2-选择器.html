@@ -4,7 +4,8 @@
 	<head>
 		<meta charset="utf-8" />
 		<title></title>
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="viewport"
+			content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<style type="text/css">
 			.table td,
 			.table th {
@@ -82,17 +83,17 @@
 				<button id="toggle" type="button">按钮</button>
 			</p>
 			<p>
-				<div class="box" style="display: none;">
-					display
-				</div>
+			<div class="box" style="display: none;">
+				display
+			</div>
 
-				<div class="box" style="opacity: 0;">
-					opacity
-				</div>
+			<div class="box" style="opacity: 0;">
+				opacity
+			</div>
 
-				<div class="box" style="visibility:hidden">
-					visibility
-				</div>
+			<div class="box" style="visibility:hidden">
+				visibility
+			</div>
 			</p>
 		</fieldset>
 		<fieldset id="">
@@ -139,10 +140,10 @@
 			$('#search').click(function() {
 				// 获取value
 				var txt = $('#keyword').val().trim();
-				// 所有tr
-				$('.table tbody tr').css('background-color','white');
-				// 搜索结果高亮
-				$('.table tbody tr:contains("' + txt + '")').css('background-color', 'lightblue');
+				// 清空所有背景色
+				$('.table tbody tr').css('background-color', 'white');
+				// 选中含有特定文字的元素
+				$('.table tbody tr:contains("' + txt + '")').css("background-color", "orange");
 			});
 		</script>
 	</body>

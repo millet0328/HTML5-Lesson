@@ -1,0 +1,82 @@
+.header {
+	position: relative;
+	background-color: white;
+	padding: 3.73vw 2.8vw;
+	text-align: center;
+	font-size: 3.73vw;
+	color: #555555;
+}
+
+.header .arrow-left {
+	position: absolute;
+	left: 2.8vw;
+	width: 2.67vw;
+	height: 4.67vw;
+}
+
+/* 列表 */
+.address-list {
+	margin-top: 2.67vw;
+	padding-bottom: 15.73vw;
+}
+
+.address-list li {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 3.73vw 2.8vw;
+	margin-bottom: 2.67vw;
+	background-color: white;
+	font-size: 3.73vw;
+	color: #333333;
+}
+
+.address-list .top {
+	display: flex;
+	align-items: center;
+	padding-bottom: 4.8vw;
+}
+
+.address-list .info .default {
+	font-size: 2.67vw;
+	border: 0.5px solid #c55a5c;
+	padding: 0.8vw 2vw;
+	border-radius: 0.67vw;
+	margin-left: 4vw;
+}
+
+.address-list .info .name {
+	min-width: 31.6vw;
+}
+
+.address-list .info .detail {
+	font-size: 3.2vw;
+	color: #666666;
+	width: 57vw;
+}
+
+.address-list .edit,
+.address-list .remove {
+	width: 4.8vw;
+	height: 4.8vw;
+}
+
+.address-list .info {
+	width: 72.4vw;
+}
+
+/* 新建收货地址 */
+.insert-button {
+	position: fixed;
+	bottom: 4.13vw;
+	left: 50%;
+	transform: translateX(-50%);
+	display: inline-block;
+	background-color: #c55a5c;
+	color: white;
+	width: 94.4vw;
+	padding: 3.2vw 0;
+	text-align: center;
+	font-size: 3.73vw;
+	border-radius: 0.53vw;
+}

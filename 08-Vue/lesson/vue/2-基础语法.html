@@ -4,70 +4,91 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<script src="./lib/vue/vue.js"></script>
 	</head>
 
 	<body>
-		<div id="app">
-			<fieldset id="">
-				<legend>v-html</legend>
-				<p>
-					v-text: {{detail}}
-				</p>
-				<p>
-					v-html: <b v-html="detail"></b>
-				</p>
-			</fieldset>
+		<fieldset>
+			<legend>v-html</legend>
 
-			<fieldset id="">
-				<legend>v-if</legend>
+			<div id="app1">
 				<p>
-					姓名：{{person.name}}
+					v-text绑定：<b v-text="rawHTML"></b>
 				</p>
 				<p>
-					年龄：{{person.age}}
+					v-html绑定：<b v-html="rawHTML"></b>
 				</p>
-				<p>
-					手机：
-					<b v-if="vip">{{person.tel}}</b>
-					<span v-else>保密</span>
-					<button v-on:click="vip = true" type="button">{{ vip ? "金牌会员":"vip可查，成为vip？"}}</button>
+			</div>
+
+			<script>
+				var app1 = new Vue({
+					el: "#app1",
+					data: {
+						rawHTML: '<span style="color:blue;font-size: 14px;">蓝色</span>'
+					}
+				});
+			</script>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>v-if</legend>
+			<div id="app2">
+				<p>姓名：{{person.name}}</p>
+				<p>年龄：{{person.age}}</p>
+				<p>薪资：
+					<b v-if="isVip">{{person.salary}}</b>
+					<span v-else>***</span>
+					元
+					<button v-on:click="handleVip" type="button">{{isVip ? '隐藏' : '成为会员？'}}</button>
 				</p>
-			</fieldset>
-			
-			<fieldset id="">
-				<legend>v-show</legend>
-				<p>
-					姓名：{{person.name}}
-				</p>
-				<p>
-					年龄：{{person.age}}
-				</p>
+			</div>
+			<script type="text/javascript">
+				var app2 = new Vue({
+					el: '#app2',
+					data: {
+						isVip: false,
+						person: {
+							name: "黄小米",
+							age: 25,
+							salary: 5000,
+						}
+					},
+					methods: {
+						handleVip: function() {
+							this.isVip = true;
+						}
+					}
+				});
+			</script>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>v-show</legend>
+
+			<div id="app3">
+				<p>户主：{{account.name}}</p>
 				<p>
 					余额：
-					<b v-show="isVisible">{{person.money}}</b>
-					<span v-show="!isVisible">***</span>元
-					<button v-on:click="isVisible = !isVisible" type="button">{{ isVisible ? '隐藏':'显示'}}</button>
+					<span v-show="visible">{{account.money}}</span>
+					<span v-show="!visible">***</span>
+					元
+					<button v-on:click="visible = !visible" type="button">{{visible ? '隐藏':'显示'}}</button>
 				</p>
-			</fieldset>
-		</div>
+			</div>
 
-		<script src="lib/vue/vue.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-			var app = new Vue({
-				el: "#app",
-				data: {
-					detail: '<span style="color:blue">蓝色</span>',
-					person: {
-						name: "黄小米",
-						age: 25,
-						tel: '15863008280',
-						money: 100000,
-					},
-					vip: false,
-					isVisible: false,
-				}
-			});
-		</script>
+			<script type="text/javascript">
+				var app3 = new Vue({
+					el: "#app3",
+					data: {
+						visible: false,
+						account: {
+							name: "黄小米",
+							money: 425236.50
+						}
+					}
+				});
+			</script>
+		</fieldset>
 	</body>
 
 </html>

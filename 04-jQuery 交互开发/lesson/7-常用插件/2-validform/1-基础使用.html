@@ -1,40 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 	<head>
-		<meta charset="utf-8">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title></title>
-		<link rel="stylesheet" href="./lib/Validform/css/style.css">
+		<link rel="stylesheet" type="text/css" href="lib/Validform/css/style.css" />
 	</head>
 	<body>
-		<form id="form">
+		<form class="register_form">
 			<p>
-				<label>账户：</label>
-				<input type="text" datatype="s5-16" errormsg="账户至少5个字符,最多16个字符！">
+				<label>账号：</label>
+				<input type="text" datatype="s3-16" errormsg="账户至少3个字符,最多16个字符！">
 			</p>
 			<p>
 				<label>密码：</label>
-				<input type="password" name="password" datatype="n6-18">
+				<input type="password" name="password" datatype="n6-20" errormsg="密码至少6个数字,最多20个数字">
 			</p>
 			<p>
-				<label>确认密码：</label>
-				<input type="password" datatype="*" recheck="password" errormsg="您两次输入的密码不一致！">
+				<label>确认：</label>
+				<input type="password" recheck="password" datatype="*" errormsg="您两次输入的账号密码不一致！">
 			</p>
 			<p>
-				<label>手机号码：</label>
-				<input type="text" datatype="m" />
+				<label>手机：</label>
+				<input type="text"
+					datatype="/^(13[0-9]|14[01456879]|15[0-3,5-9]|16[2567]|17[0-8]|18[0-9]|19[0-3,5-9])d{8}$/"
+					errormsg="手机号码必须是11位数字">
 			</p>
 			<p>
-				<!-- 提交按钮 -->
-				<button type="submit">注 册</button>
+				<label>性别：</label>
+				<label>
+					<input type="radio" name="sex" value="男" /> 男
+				</label>
+				<label>
+					<input type="radio" name="sex" datatype="*" value="女" /> 女
+				</label>
 			</p>
+			<p>
+				<label>学历：</label>
+				<select datatype="*" errormsg="请选择学历">
+					<option value="">请选择学历</option>
+					<option value="专科">专科</option>
+					<option value="本科">本科</option>
+					<option value="研究生">研究生</option>
+				</select>
+			</p>
+			<button type="submit">注册</button>
 		</form>
 		<script src="lib/jQuery/jquery-3.5.1.min.js"></script>
 		<script src="lib/Validform/js/Validform_v5.3.2_min.js"></script>
-
 		<script type="text/javascript">
-			// 初始化
-			$('#form').Validform({
-				tiptype: 4
+			$('.register_form').Validform({
+				tiptype: 4,
 			});
 		</script>
 	</body>

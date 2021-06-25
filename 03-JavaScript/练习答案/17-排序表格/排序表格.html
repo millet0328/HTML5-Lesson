@@ -59,9 +59,9 @@
     <table>
         <thead id="jsHeader">
             <tr>
-                <th onclick="sortData('product', 'asc')">product</th>
-                <th onclick="sortData('price', 'asc')">price</th>
-                <th onclick="sortData('sales', 'asc')">sales</th>
+                <th data-sort="asc" onclick="handleThead('product',this)">product</th>
+                <th data-sort="asc" onclick="handleThead('price',this)">price</th>
+                <th data-sort="asc" onclick="handleThead('sales',this)">sales</th>
             </tr>
         </thead>
         <tbody id="jsList">
@@ -124,7 +124,7 @@
             var oTr = oTbody.querySelectorAll('#jsList tr');
             // 伪数组=>数组
             var arr = [];
-            oTr.forEach(function(item, index) {
+            oTr.forEach(function (item, index) {
                 arr.push(item);
             });
             // 转换type
@@ -150,7 +150,7 @@
                 oTh[i].className = 'sort-' + order;
             }
             // 数组排序
-            arr.sort(function(a, b) {
+            arr.sort(function (a, b) {
                 var valA = parseFloat(a.cells[i].innerText);
                 var valB = parseFloat(b.cells[i].innerText);
                 if (valA > valB) {
@@ -160,12 +160,23 @@
                 }
             });
             // 将数组插入页面显示
-            arr.forEach(function(item, index) {
+            arr.forEach(function (item, index) {
                 oTbody.appendChild(item);
             });
 
         }
+
         sortData('price', 'asc');
+
+        function handleThead(type, target) {
+            var order = target.getAttribute("data-sort");
+            sortData(type, order);
+            if (order == "asc") {
+                target.setAttribute("data-sort", "desc");
+            } else {
+                target.setAttribute("data-sort", "asc");
+            }
+        }
     </script>
 </body>
 

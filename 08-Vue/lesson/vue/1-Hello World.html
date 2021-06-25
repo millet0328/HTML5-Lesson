@@ -3,65 +3,77 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
+		<script src="lib/vue/vue.js"></script>
 	</head>
 	<body>
-		<div id="app">
-			<fieldset id="">
-				<legend>文本：v-text</legend>
-				<!-- 占位符 -->
-				<h1>{{message}}</h1>
-				<h1 v-text="message"></h1>
-			</fieldset>
-			<fieldset id="">
-				<legend>转换</legend>
-				<p>
-					姓名：{{person.name}}
-				</p>
-				<p>
-					年龄：{{person.age}}
-					<button v-on:click="handleDecrease" type="button">-</button>
-					<button v-on:click="handleIncrease" type="button">+</button>
-				</p>
-				<p>
-					性别：{{ person.sex===0 ? '女':'男'}}
-				</p>
-			</fieldset>
-			<fieldset id="">
-				<legend>绑定事件</legend>
-
-				<button v-on:click="handleClick" type="button">触发click</button>
-			</fieldset>
-		</div>
-		<script src="lib/vue/vue.js"></script>
-		<script type="text/javascript">
-			// 实例化
-			var vm = new Vue({
-				el: '#app',
-				data: {
-					message: "Hello Vue!",
-					person: {
-						name: "黄小米",
-						age: 25,
-						sex: 0
+		<fieldset id="">
+			<legend>v-text</legend>
+			<div id="app1">
+				<h3>{{ message }}</h3>
+				<!-- 等价于 -->
+				<h3 v-text="message"></h3>
+			</div>
+			<script type="text/javascript">
+				var app1 = new Vue({
+					el: '#app1',
+					data: {
+						message: "Hello Vue!"
 					}
-				},
-				// 事件、方法
-				methods: {
-					handleClick: function() {
-						console.log('clicked!');
+				});
+			</script>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>三元运算符转换</legend>
+
+			<div id="app2">
+				<p>姓名：{{person.name}}</p>
+				<p>年龄：{{person.age}}</p>
+				<p>性别：{{person.sex === 1 ? '男' : '女'}}</p>
+			</div>
+
+			<script type="text/javascript">
+				var app2 = new Vue({
+					el: "#app2",
+					data: {
+						person: {
+							name: "黄小米",
+							age: 25,
+							sex: 0
+						}
+					}
+				});
+			</script>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>绑定事件</legend>
+
+			<p id="app3">
+				<button v-on:click="handleDecrease" type="button">-</button>
+				<span>{{count}}</span>
+				<button v-on:click="handleIncrease" type="button">+</button>
+			</p>
+
+			<script>
+				var app3 = new Vue({
+					el: "#app3",
+					data: {
+						count: 1
 					},
-					// 增加
-					handleIncrease: function() {
-						// 获取当前年龄
-						console.log('当前年龄：', this.person.age);
-						this.person.age ++;
-					},
-					// 减少
-					handleDecrease: function() {
-						this.person.age --;
-					},
-				}
-			});
-		</script>
+					methods: {
+						handleIncrease: function() {
+							console.log('当前count:', this.count);
+							this.count += 1;
+						},
+						handleDecrease: function() {
+							if (this.count > 1) {
+								this.count -= 1;
+							}
+						}
+					}
+				});
+			</script>
+		</fieldset>
 	</body>
 </html>

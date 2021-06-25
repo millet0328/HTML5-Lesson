@@ -2,81 +2,104 @@
 <html lang="zh">
 	<head>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="viewport"
+			content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title></title>
-		<style type="text/css">
-			body {
-				margin: 0;
-				background-color: #f4f8f7;
-			}
-
-			header {
-				padding: 3.73vw 2.8vw;
-				background-color: white;
-			}
-
-			header .title {
-				font-size: 3.73vw;
-				color: #555;
-				text-align: center;
-			}
-
-			.address-list {
-				margin: 0;
-				padding: 0;
-				list-style: none;
-			}
-
-			.address-list li {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				padding: 3.87vw 2.93vw;
-				margin-top: 2.67vw;
-				font-size: 3.73vw;
-				color: #333;
-				background-color: white;
-			}
-
-			.address-list .user {
-				display: flex;
-				align-items: center;
-				padding-bottom: 4.8vw;
-			}
-
-			.address-list .user .name {
-				flex: 1;
-				padding-right: 3.6vw;
-			}
-
-			.address-list .address {
-				font-size: 3.28vw;
-				color: #666;
-			}
-		</style>
+		<link rel="stylesheet" href="./css/reset.css">
+		<link rel="stylesheet" type="text/css" href="css/address.css" />
 	</head>
 	<body>
-		<header>
-			<div class="title">收货地址</div>
-		</header>
-		<!-- 收货地址列表 -->
+		<!-- header -->
+		<div class="header">
+			<img class="arrow-left" src="./img/arrow.png" alt="">
+			<span class="title">收货地址</span>
+		</div>
+		<!-- 地址列表 -->
 		<ul class="address-list">
 			<li>
-				<div class="left">
-					<div class="user">
-						<div class="name">黄小米</div>
-						<div class="tel">15863008280</div>
+				<div class="info">
+					<div class="top">
+						<span class="name">黄渤</span>
+						<span class="tel">15863008280</span>
+						<div class="default">默认</div>
 					</div>
-					<div class="address">
-						山东省济南市历下区长沙路320号
+					<div class="detail">
+						山东省青岛市城阳区春阳路169号盈园国际商务中心516室
 					</div>
 				</div>
-				<div class="right">
-					<button type="button">编辑</button>
-					<button type="button">删除</button>
+				<img class="edit" src="./img/edit.png" alt="">
+				<img class="remove" src="./img/remove.png" alt="">
+			</li>
+			<li>
+				<div class="info">
+					<div class="top">
+						<span class="name">爱新觉罗 玄烨</span>
+						<span class="tel">15863008280</span>
+					</div>
+					<div class="detail">
+						山东省青岛市城阳区春阳路169号盈园国际商务中心516室
+					</div>
 				</div>
+				<img class="edit" src="./img/edit.png" alt="">
+				<img class="remove" src="./img/remove.png" alt="">
+			</li>
+			<li>
+				<div class="info">
+					<div class="top">
+						<span class="name">张艺兴</span>
+						<span class="tel">15863008280</span>
+					</div>
+					<div class="detail">
+						山东省青岛市城阳区春阳路169号盈园国际商务中心516室
+					</div>
+				</div>
+				<img class="edit" src="./img/edit.png" alt="">
+				<img class="remove" src="./img/remove.png" alt="">
+			</li>
+			<li>
+				<div class="info">
+					<div class="top">
+						<span class="name">张艺兴</span>
+						<span class="tel">15863008280</span>
+					</div>
+					<div class="detail">
+						山东省青岛市城阳区春阳路169号盈园国际商务中心516室
+					</div>
+				</div>
+				<img class="edit" src="./img/edit.png" alt="">
+				<img class="remove" src="./img/remove.png" alt="">
+			</li>
+			<li>
+				<div class="info">
+					<div class="top">
+						<span class="name">张艺兴</span>
+						<span class="tel">15863008280</span>
+					</div>
+					<div class="detail">
+						山东省青岛市城阳区春阳路169号盈园国际商务中心516室
+					</div>
+				</div>
+				<img class="edit" src="./img/edit.png" alt="">
+				<img class="remove" src="./img/remove.png" alt="">
+			</li>
+			<li>
+				<div class="info">
+					<div class="top">
+						<span class="name">张艺兴</span>
+						<span class="tel">15863008280</span>
+					</div>
+					<div class="detail">
+						山东省青岛市城阳区春阳路169号盈园国际商务中心516室
+					</div>
+				</div>
+				<img class="edit" src="./img/edit.png" alt="">
+				<img class="remove" src="./img/remove.png" alt="">
 			</li>
 		</ul>
+		<!-- 新建button -->
+		<a href="#" class="insert-button">
+			新建收货地址
+		</a>
 	</body>
 </html>

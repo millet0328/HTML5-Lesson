@@ -5,40 +5,52 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="./lib/swiper/css/swiper-bundle.min.css" />
-		<style type="text/css">
+		<link rel="stylesheet" type="text/css" href="lib/swiper/css/swiper-bundle.min.css" />
+		<style>
 			.banner {
+				width: 100%;
 				height: 480px;
-				background-position: top center;
+			}
+
+			.banner .swiper-slide a {
+				display: block;
+				height: 100%;
+				background-repeat: no-repeat;
+				background-position: center;
 			}
 		</style>
 	</head>
 	<body>
-		<div class="swiper-container">
+		<div class="swiper-container banner">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide">
-					<div class="banner" style="background-image: url(img/20200831143752.jpg);"></div>
+					<a href="https://www.jd.com/" style="background-image: url(img/20200821163554.jpg);">
+						
+					</a>
 				</div>
 				<div class="swiper-slide">
-					<div class="banner" style="background-image: url(img/20200821163554.jpg);"></div>
+					<a href="https://www.jd.com/" style="background-image: url(img/20200831143752.jpg);">
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<a href="https://www.jd.com/" style="background-image: url(img/20200821163554.jpg);">
+
+					</a>
 				</div>
 			</div>
 			<!-- 如果需要分页器 -->
 			<div class="swiper-pagination"></div>
 
 			<!-- 如果需要导航按钮 -->
-			
 			<div class="swiper-button-prev"></div>
 			<div class="swiper-button-next"></div>
 
 		</div>
 
-		<script src="./lib/swiper/js/swiper-bundle.min.js"></script>
-
-		<script>
-			var mySwiper = new Swiper('.swiper-container', {
+		<script src="lib/swiper/js/swiper-bundle.min.js"></script>
+		<script type="text/javascript">
+			var mySwiper = new Swiper('.banner', {
 				loop: true, // 循环模式选项
-
 				// 如果需要分页器
 				pagination: {
 					el: '.swiper-pagination',
@@ -49,8 +61,7 @@
 					nextEl: '.swiper-button-next',
 					prevEl: '.swiper-button-prev',
 				},
-			})
+			});
 		</script>
-
 	</body>
 </html>
