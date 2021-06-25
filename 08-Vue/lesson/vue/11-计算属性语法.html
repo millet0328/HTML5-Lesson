@@ -18,12 +18,15 @@
 				data: {
 					message: "Hello World!"
 				},
+				methods: {},
 				computed: {
 					reversedMessage: function() {
+						// 推导过程
 						var arr = this.message.split('');
 						var result = arr.reverse().join('');
+						// return 最终结果
 						return result;
-					},
+					}
 				},
 			});
 		</script>

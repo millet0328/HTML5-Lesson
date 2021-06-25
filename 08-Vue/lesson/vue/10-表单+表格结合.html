@@ -60,6 +60,7 @@
 					handlePost: function() {
 						// 深拷贝
 						var copy = JSON.parse(JSON.stringify(this.form));
+						
 						this.messages.push(copy);
 						// 清空表单
 						this.form = {
