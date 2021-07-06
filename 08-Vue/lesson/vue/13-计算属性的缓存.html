@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="lib/vue/vue.js"></script>
+	</head>
+
+	<body>
+		<fieldset id="">
+			<legend>计算属性：computed</legend>
+			<div id="app1">
+				<p @click="message = '计算属性'">
+					第一次：{{reversedMessage}}
+				</p>
+				<p @click="message = '计算属性'">
+					第二次：{{reversedMessage}}
+				</p>
+			</div>
+			<script type="text/javascript">
+				var app1 = new Vue({
+					el: "#app1",
+					data: {
+						message: "Hello Vue!"
+					},
+					computed: {
+						reversedMessage: function() {
+							console.log(`计算属性：${new Date().getTime()}`);
+							return this.message.split('').reverse().join('');
+						}
+					}
+				});
+			</script>
+		</fieldset>
+		<fieldset id="">
+			<legend>普通函数：methods</legend>
+			<div id="app2">
+				<p @click="message = '函数方法'">
+					第一次：{{reversedMessage()}}
+				</p>
+				<p @click="message = '函数方法'">
+					第二次：{{reversedMessage()}}
+				</p>
+			</div>
+			<script type="text/javascript">
+				var app2 = new Vue({
+					el: "#app2",
+					data: {
+						message: "Hello Vue!"
+					},
+					methods: {
+						reversedMessage: function() {
+							console.log(`函数方法：${new Date().getTime()}`);
+							return this.message.split('').reverse().join('');
+						}
+					}
+				});
+			</script>
+		</fieldset>
+	</body>
+
+</html>

@@ -55,49 +55,41 @@
 					<li>组件名称避开HTML5标签名，不允许使用header、footer、nav、section</li>
 					<li>组件option == new Vue option</li>
 				</ol>
-
+				<!-- 组件的使用 -->
 				<counter></counter>
-
 			</fieldset>
 		</div>
 		<script src="lib/vue/vue.js"></script>
-		<script id="tmpl" type="text/x-template">
+		<script id="counter-tmpl" type="text/x-template">
 			<div class="counter-box">
-				<button @click="handleDown" :disabled="count == 1" class="down" type="button">-</button>
+				<button @click="handleDecrease" :disabled="count===1" class="down" type="button">-</button>
 				<span class="num">{{count}}</span>
-				<button @click="handleUp" class="up" type="button">+</button>
+				<button @click="count++" class="up" type="button">+</button>
 			</div>
 		</script>
 		<script type="text/javascript">
 			// 全局注册组件
 			Vue.component('counter', {
-				// 组件内部数据
 				data: function() {
 					return {
 						count: 1
 					}
 				},
 				methods: {
-					handleDown: function() {
-						if (this.count <= 1) {
-							return;
+					handleDecrease: function() {
+						if (this.count > 1) {
+							this.count--;
 						}
-						this.count--;
-					},
-					handleUp: function() {
-						this.count++;
 					}
 				},
-				// 组件HTML
-				template: "#tmpl"
+				template: "#counter-tmpl"
 			});
-			// 根组件
+			// 实例化
 			var app = new Vue({
 				el: '#app',
-				data: {},
-				methods: {},
-				computed: {},
-				watch: {},
+				data: {
+					message: "Hello Vue!"
+				}
 			});
 		</script>
 	</body>

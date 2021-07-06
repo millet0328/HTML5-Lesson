@@ -5,6 +5,8 @@ var year = 1958;
 function fullName() {
 	return firstName + ' ' + lastName
 }
+// 私有化
+var deathDay = 2009;
 
 export {
 	firstName,

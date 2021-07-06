@@ -3,7 +3,8 @@
 
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="viewport"
+			content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title>学生成绩表</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 	</head>
@@ -21,7 +22,8 @@
 						<li>点击表格的表头（数学、语文、英语），对应的数据按照从大到小排序，<b class="text-danger">再次点击</b>从小到大排序。</li>
 						<li>选择班级，填入学生姓名，点击搜索按钮，<b class="text-danger">高亮</b>显示符合条件的学生</li>
 						<li>选择科目，填入分数最小值，最大值，验证两个数值大小顺序，点击筛选按钮，<b class="text-danger">高亮</b>符合条件的学生</li>
-						<li><b class="text-danger">附加题</b>：选择科目，填入分数最小值，最大值，验证两个数值大小顺序，点击筛选按钮，<b class="text-danger">只显示</b>符合条件的学生</li>
+						<li><b class="text-danger">附加题</b>：选择科目，填入分数最小值，最大值，验证两个数值大小顺序，点击筛选按钮，<b
+								class="text-danger">只显示</b>符合条件的学生</li>
 					</ol>
 				</div>
 			</div>
@@ -34,7 +36,8 @@
 						<div class="form-group row">
 							<label class="col-sm-2 col-form-label">姓名：</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" v-model.trim="formData.name" placeholder="请输入学生姓名">
+								<input type="text" class="form-control" v-model.trim="formData.name"
+									placeholder="请输入学生姓名">
 							</div>
 						</div>
 						<div class="form-group row">
@@ -50,19 +53,22 @@
 						<div class="form-group row">
 							<label class="col-sm-2 col-form-label">数学：</label>
 							<div class="col-sm-10">
-								<input type="number" class="form-control" v-model.number="formData.Math" placeholder="请输入数学成绩">
+								<input type="number" class="form-control" v-model.number="formData.Math"
+									placeholder="请输入数学成绩">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-2 col-form-label">语文：</label>
 							<div class="col-sm-10">
-								<input type="number" class="form-control" v-model.number="formData.Chinese" placeholder="请输入语文成绩">
+								<input type="number" class="form-control" v-model.number="formData.Chinese"
+									placeholder="请输入语文成绩">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-2 col-form-label">英语：</label>
 							<div class="col-sm-10">
-								<input type="number" class="form-control" v-model.number="formData.English" placeholder="请输入英语成绩">
+								<input type="number" class="form-control" v-model.number="formData.English"
+									placeholder="请输入英语成绩">
 							</div>
 						</div>
 						<div class="form-group">
@@ -110,7 +116,7 @@
 							<div class="input-group col-sm-5">
 								<input type="text" class="form-control" v-model.number="max" placeholder="分数最大值">
 								<div class="input-group-append">
-									<button @click="filterHandle" class="btn btn-primary" type="button">筛选</button>
+									<button @click="handleFilter" class="btn btn-primary" type="button">筛选</button>
 								</div>
 							</div>
 						</div>
@@ -196,26 +202,42 @@
 					},
 					// 各学科排序
 					handleSort(cls) {
+						var self = this;
 						this[cls + 'Order'] = -this[cls + 'Order'];
-						this.scores.sort((itemA, itemB) => {
+						this.scores.sort(function(itemA, itemB) {
 							if (itemA[cls] >= itemB[cls]) {
-								return this[cls + 'Order'];
+								return self[cls + 'Order'];
 							} else {
-								return -this[cls + 'Order'];
+								return -self[cls + 'Order'];
 							}
 						});
-						this.sortflag = -this.sortflag;
 					},
 					// 搜索
 					handleSearch() {
-						this.scores.forEach((item) => {
-							if (item.name == this.keyName && item.class == this.keyClass) {
+						var self = this;
+						this.scores.forEach(function(item) {
+							if (item.name == self.keyName && item.class == self.keyClass) {
 								item.active = true;
 							} else {
 								item.active = false;
 							}
 						});
 					},
+					// 筛选
+					handleFilter() {
+						if (this.min > this.max) {
+							alert(`错误——最小值：${this.min} 大于 最大值：${this.max}`);
+							return;
+						}
+						var self = this;
+						this.scores.forEach(function(item) {
+							if (item[self.subject] > self.min && item[self.subject] < self.max) {
+								item.active = true;
+							} else {
+								item.active = false;
+							}
+						})
+					}
 					// 附加题:布尔值结合v-show
 				}
 			})

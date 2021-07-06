@@ -5,24 +5,117 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="component/counter/counter.css" />
+		<style type="text/css">
+			.counter-box {
+				display: inline-flex;
+				align-items: center;
+				text-align: center;
+			}
+
+			.counter-box .num {
+				min-width: 60px;
+				border-top: 1px solid #ddd;
+				border-bottom: 1px solid #ddd;
+				line-height: 33px;
+			}
+
+			.counter-box button {
+				background-color: white;
+				padding: 6px 15px;
+				border: 1px solid #ddd;
+				border-radius: 4px;
+				font-size: 18px;
+				outline: 0;
+			}
+
+			.counter-box button[disabled] {
+				border-color: #eee;
+			}
+
+			.counter-box .down {
+				border-top-right-radius: 0;
+				border-bottom-right-radius: 0;
+			}
+
+			.counter-box .up {
+				border-top-left-radius: 0;
+				border-bottom-left-radius: 0;
+			}
+		</style>
 	</head>
 	<body>
 		<div id="app">
 			<fieldset id="">
 				<legend>独立组件</legend>
-				<counter :min="2" :max="10" :step="2" :value.sync="count"></counter>
+				<counter :count="num" @down="handleChange($event)" @up="handleChange($event)"></counter>
 			</fieldset>
 		</div>
-		<script src="./lib/vue/vue.js"></script>
-		<script src="component/counter/counter.js"></script>
+		<script src="lib/vue/vue.js"></script>
+		<script id="counter-tmpl" type="text/x-template">
+			<div class="counter-box">
+				<button @click="handleDecrease" :disabled="count===min" class="down" type="button">-</button>
+				<span class="num">{{count}}</span>
+				<button @click="handleIncrease" :disabled="count===max" class="up" type="button">+</button>
+			</div>
+		</script>
+		<script type="text/javascript">
+			// 全局注册组件
+			Vue.component('counter', {
+				// data属性：组件内部的数据
+
+				// props属性：组件外部的数据
+				props: {
+					count: {
+						type: Number,
+						default: 1,
+						required: true,
+					},
+					min: {
+						type: Number,
+						default: 1,
+					},
+					max: {
+						type: Number,
+						default: 99999,
+					},
+					step: {
+						type: Number,
+						default: 1,
+					},
+				},
+				methods: {
+					handleDecrease: function() {
+						var next = this.count - this.step;
+						if (next >= this.min) {
+							this.$emit('down', next);
+						} else {
+							this.$emit('down', this.min);
+						}
+					},
+					handleIncrease: function() {
+						var next = this.count + this.step;
+						if (next <= this.max) {
+							this.$emit('up', next)
+						} else {
+							this.$emit('up', this.max)
+						}
+					}
+				},
+				template: "#counter-tmpl"
+			});
+		</script>
 		<script type="text/javascript">
 			var app = new Vue({
 				el: "#app",
 				data: {
-					count: 1
+					num: 1
+				},
+				methods: {
+					handleChange: function(x) {
+						this.num = x;
+					},
 				}
-			})
+			});
 		</script>
 	</body>
 </html>

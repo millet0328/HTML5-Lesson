@@ -24,9 +24,10 @@
 					name: '黄小米',
 					age: 26,
 					salary: 6000,
+					score: [100, 99, 87, 56]
 				}
 
-				let { age, salary } = person;
+				let { age, salary, } = person;
 			</script>
 		</fieldset>
 		<fieldset id="">
@@ -45,6 +46,29 @@
 						console.log('zzz....')
 					}
 				}
+				new Vue({
+					el: "#app",
+					methods: {
+						handleClick: function() {
+							console.log('clicked')
+						},
+						handleClick() {
+							console.log('clicked')
+						}
+					}
+				});
+				Vue.component("counter", {
+					data: function() {
+						return {
+							count: 1
+						}
+					},
+					data() {
+						return {
+							count: 1
+						}
+					}
+				})
 			</script>
 		</fieldset>
 	</body>

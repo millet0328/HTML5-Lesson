@@ -5,18 +5,16 @@
 		<title></title>
 	</head>
 	<body>
+
 		<script type="text/javascript">
 			// 封装promise函数
 			function random() {
-				let promise = new Promise(function(resolve, reject) {
-					// 模拟异步代码
+				var promise = new Promise(function(resolve, reject) {
 					setTimeout(function() {
 						var x = Math.random();
-						if (x > 0.5) {
-							// 成功
+						if (x >= 0.5) {
 							resolve(x);
 						} else {
-							// 失败
 							reject(x);
 						}
 					}, 500);
@@ -47,21 +45,22 @@
 					}
 				});
 			}
-			getJSON('/stock/name')
-				.then((res1) => {
-					// 捕获成功返回的JSON
+			// 伪代码
+
+			// 1.关键词 => 股票名称
+			getJSON("/stock/name", "haier")
+				.then(function(res1) {
 					let { name } = res1;
-					return getJSON('/stock/code', { name });
+					return getJSON("/stock/code", name);
 				})
-				.then((res2) => {
-					// 捕获第二次返回的结果
-					let { code } = res;
-					return getJSON('/stock/price', { code });
+				// 2.股票名称 => 股票code代码
+				.then(function(res2) {
+					let { code } = res2;
+					return getJSON("/stock/price", code);
 				})
-				.then((res3) => {
-					// 捕获第三次返回的结果
-					let { price } = res;
-					console.log("股票价格：" + price);
+				// 3.股票code代码 => 股票价格
+				.then(function(res3) {
+					let { price } = res3;
 				});
 		</script>
 	</body>

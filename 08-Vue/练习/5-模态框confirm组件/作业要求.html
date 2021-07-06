@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<h3>作业要求：参照iview的<a href="http://v1.iviewui.com/components/modal">Modal组件</a>，完成下列功能：</h3>
+		<div id="app">
+			<table width="100%" border="1" cellpadding="20">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>书名</th>
+						<th>作者</th>
+						<th>价格</th>
+						<th>数量</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody align="center">
+					<tr v-for="(book,index) in books" v-bind:key="book.id">
+						<td>{{book.id}}</td>
+						<td>{{book.name}}</td>
+						<td>{{book.author}}</td>
+						<td>{{book.price}}</td>
+						<td>{{book.num}}</td>
+						<td><button type="button">x</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<ol>
+			<li>
+				封装一个confirm-modal组件，样式参照截图，注意附带黑色遮罩！
+			</li>
+			<li>点击"删除"按钮，打开模态框，确认是否删除</li>
+			<li>模态框的标题、内容能够自定义</li>
+			<li>点击"确定"，触发confirm事件，关闭弹窗，alert删除成功！</li>
+			<li>点击"取消"，"×"按钮，均关闭模态框</li>
+		</ol>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					books: [{
+						id: 1,
+						author: '曹雪芹',
+						name: '红楼梦',
+						num: 1,
+						price: 32.0
+					}, {
+						id: 2,
+						author: '施耐庵',
+						name: '水浒传',
+						num: 1,
+						price: 30.0
+					}, {
+						id: 3,
+						author: '罗贯中',
+						name: '三国演义',
+						num: 1,
+						price: 24.0
+					}, {
+						id: 4,
+						author: '吴承恩',
+						name: '西游记',
+						num: 1,
+						price: 20.0
+					}],
+				}
+			});
+		</script>
+	</body>
+</html>

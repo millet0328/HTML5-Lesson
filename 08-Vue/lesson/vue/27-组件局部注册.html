@@ -7,7 +7,7 @@
 	<body>
 		<div id="app">
 			<ol>
-				<li>局部注册组件本质上是一个对象，对象内的节点 == 全局注册options</li>
+				<li>局部注册组件本质上是一个对象，对象内的节点 == 全局注册options，data，props，methods，computed</li>
 				<li>组件只能在注册的组件内部使用。</li>
 			</ol>
 			<component-a></component-a>
@@ -15,6 +15,14 @@
 		<script src="lib/vue/vue.js"></script>
 		<script type="text/javascript">
 			// 定义局部组件
+			var component = {
+				data() {},
+				props: [],
+				methods: {},
+				computed: {},
+				template: '',
+			}
+
 			var componentB = {
 				template: `
 				<fieldset id="">
@@ -23,24 +31,28 @@
 				</fieldset>
 				`
 			}
+			
 			var componentA = {
 				components: {
-					'section-b': componentB,
+					componentB
 				},
 				template: `
 				<fieldset id="">
 					<legend>组件A</legend>
 					<p>组件A -- 内容</p>
-					<section-b></section-b>
+					<component-b></component-b>
 				</fieldset>
 				`
 			}
+
 			// 根组件--局部注册
 			var app = new Vue({
 				el: "#app",
 				components: {
 					// '组件名': '配置对象'
-					'component-a': componentA,
+					'sectionA': componentA,
+					componentA,
+					//等价于 "componentA": componentA
 				},
 			});
 		</script>

@@ -130,7 +130,7 @@ Vue.component('transfer', {
 			<ul class="list">
 				<li v-for="(item,index) in left" :key="item.key" class="item">
 					<label>
-						<input v-model="item.isChecked" type="checkbox" />
+						<input v-model="item.isChecked" :disabled="item.disabled" type="checkbox" />
 						<span>{{item.label}}</span>
 					</label>
 				</li>
@@ -150,7 +150,7 @@ Vue.component('transfer', {
 			<ul class="list">
 				<li v-for="(item,index) in right" :key="item.key" class="item">
 					<label>
-						<input v-model="item.isChecked" type="checkbox" />
+						<input v-model="item.isChecked" :disabled="item.disabled" type="checkbox" />
 						<span>{{item.label}}</span>
 					</label>
 				</li>

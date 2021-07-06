@@ -12,7 +12,7 @@
 				// 模拟异步代码
 				setTimeout(function() {
 					var x = Math.random();
-					if (x > 0.5) {
+					if (x >= 0.5) {
 						// 成功
 						resolve(x);
 					} else {
@@ -29,13 +29,12 @@
 			});
 			// catch 捕获失败
 			promise.catch(function (x) {
-				console.log('失败：x = %f', x);
+				console.error('失败：x = %f', x);
 			});
 			
 			// 实例
 			console.log(promise);
 		</script>
-
 	</body>
 
 </html>

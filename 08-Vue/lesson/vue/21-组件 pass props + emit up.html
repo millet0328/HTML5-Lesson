@@ -28,7 +28,6 @@
 		.blog-post .right {
 			flex: 1;
 			padding-right: 50px;
-
 		}
 
 		.blog-post .right h3 {
@@ -60,36 +59,35 @@
 
 <body>
 	<div id="app">
-		<blog-post v-for="(blog,index) in blogs" :data="blog" @follow="blog.isFollow = !blog.isFollow"
-			@remove="handleRemove(index)" :key="blog.id">
+		<blog-post v-for="(blog,index) in blogs" @remove="handleRemove(index)" @follow="handleFollow(blog)"
+			:follow="blog.isFollow" :photo="blog.img" :title="blog.title" :description="blog.des" :key="blog.id">
 		</blog-post>
 	</div>
 	<script src="lib/vue/vue.js" type="text/javascript" charset="utf-8"></script>
 	<script id="tmpl-blog" type="text/x-template">
-		<div class="blog-post">
-			<div class="left">
-				<img :src="data.img" width="100" />
+			<div class="blog-post">
+				<div class="left">
+					<img :src="photo" width="200" />
+				</div>
+				<div class="right">
+					<h3 class="title">{{title}}</h3>
+					<div class="description">{{description}}</div>
+				</div>
+				<button @click="_handleRemove" type="button">×</button>
+				<button @click="$emit('follow')" :class="{ focus : follow }" type="button">{{ follow ? "已关注": "关注"}}</button>
 			</div>
-			<div class="right">
-				<h3 class="title">{{data.title}}</h3>
-				<div class="description">{{data.des}}</div>
-			</div>
-			<button @click="_handleRemove" type="button">×</button>
-			<button @click="$emit('follow')" :class="{focus:data.isFollow}" type="button">{{data.isFollow ? '已关注' : '关注'}}</button>
-		</div>
-	</script>
+		</script>
 	<script type="text/javascript">
+		// blog-post组件
 		Vue.component('blog-post', {
-			// 组件内部数据：data
-			// 组件外部数据：props
-			props: ['data'],
+			props: ['title', 'description', 'photo', 'follow'],
 			methods: {
 				_handleRemove: function () {
-					// 通知外部触发事件
+					// 通知父级元素，触发remove事件
 					this.$emit('remove');
 				},
 			},
-			template: '#tmpl-blog',
+			template: "#tmpl-blog",
 		});
 
 		var app = new Vue({
@@ -98,26 +96,26 @@
 				blogs: [{
 					id: 1,
 					title: 'Taro 3 正式版发布：开放式跨端跨框架解决方案',
-					img: './img/0.jpg',
+					img: 'http://news.qingdaonews.com/images/2021-06/24/519eb943-1b81-4c29-8b5f-ee70a42d053a.jpg',
 					des: '凹凸曼 - yuche 从 Taro 第一个版本发布到现在，Taro 已经接受了来自于开源社区两年多的考验。今天我们很高兴地在党的生日发布 Taro 3（Taro Next）正式版，希望 Taro 未来的更多两年能像一名共产主义战士一样经受住更多的考验。以下是 Taro 3 的一些新增特性：',
 					isFollow: false,
 				}, {
 					id: 2,
 					title: 'CSS 三大特性 层叠 继承 优先级',
-					img: './img/avatar.png',
+					img: 'https://x0.ifengimg.com/ucms/2021_26/4E7F7752B85792E56EBA3AE2A5E6AFED546A8E30_size808_w1920_h1056.jpg',
 					des: 'css三大特性 层叠性: 如果一个属性通过两个相同选择器设置到同一个元素上，相同的属性就会出现冲突,那么这个时候一个属性就会将另一个属性层叠掉,采用的是就近原则 继承性: 子标签会继承父标签的某些样式 一般以font­,line­,color,text­,list­,都能继承',
 					isFollow: true,
 				}, {
 					id: 3,
 					title: '使用javaScript实现一个队列',
 					fontSize: 18,
-					img: './img/0.jpg',
+					img: 'http://news.qingdaonews.com/images/2021-06/24/519eb943-1b81-4c29-8b5f-ee70a42d053a.jpg',
 					des: '1.队列是遵循先进先出（FIFO)原则的一组有序的项，队列在尾部添加元素，并从顶部移除元素，最新添加的元素必须排在队列的末尾。生活中常见的例子如排队等。 2.创建一个队列类 class Queue{ constructor(){ this.count = 0;//记录队列的数量 this.lowes ...',
 					isFollow: false,
 				}, {
 					id: 4,
 					title: 'vue中8种组件通信方式, 值得收藏!',
-					img: './img/avatar.png',
+					img: 'https://x0.ifengimg.com/ucms/2021_26/4E7F7752B85792E56EBA3AE2A5E6AFED546A8E30_size808_w1920_h1056.jpg',
 					des: 'vue是数据驱动视图更新的框架, 所以对于vue来说组件间的数据通信非常重要，那么组件之间如何进行数据通信的呢？ 首先我们需要知道在vue中组件之间存在什么样的关系, 才更容易理解他们的通信方式, 就好像过年回家，坐着一屋子的陌生人，相互之间怎么称呼，这时就需要先知道自己和他们之间是什么样的关系。',
 					isFollow: false,
 				}],
@@ -125,7 +123,10 @@
 			methods: {
 				handleRemove: function (i) {
 					this.blogs.splice(i, 1);
-				}
+				},
+				handleFollow: function (blog) {
+					blog.isFollow = !blog.isFollow;
+				},
 			}
 		});
 	</script>

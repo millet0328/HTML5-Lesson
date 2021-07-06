@@ -1,3 +1,4 @@
+s
 <!DOCTYPE html>
 <html>
 
@@ -32,10 +33,10 @@
 			var isValid = student.every((item, index) => {
 				return item.name.indexOf('黄') == 0;
 			});
-			
+
 			// some 是否有一个90分以上的元素？
 			var isGreat = score.some((item, index) => item > 90);
-			
+
 			// filter:筛选出分数>=60 的元素，return一个新数组
 			var filtered = score.filter((item, index) => item >= 60);
 
@@ -45,7 +46,7 @@
 			// findIndex：return 符合条件的第一个元素的索引
 			var firstIndex = score.findIndex((item, index) => item >= 60);
 
-			// includes：score是否存在一个元素等于98，适用于简单数组
+			// includes：score是否存在一个元素等于96，适用于简单数组
 			var isExist = score.includes(96);
 
 			// indexOf：
@@ -60,7 +61,7 @@
 			var newStudent = student.map((item, index) => {
 				// 深拷贝
 				var copy = JSON.parse(JSON.stringify(item));
-				copy.salary = Math.floor(Math.random() * 1000 + 5000);
+				copy.salary = Math.floor(Math.random() * 100000);
 				return copy;
 			});
 

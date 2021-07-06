@@ -1,10 +1,10 @@
+// 按需加载
 import { year, fullName } from './profile.js';
 
+// 全部加载
 import people from './data.js';
 
 var age = new Date().getFullYear() - year;
-var name = fullName();
 
-console.log('%s 现在将 %i 岁', name, age);
+console.log('今年年龄：',age);
 
-console.log(people);

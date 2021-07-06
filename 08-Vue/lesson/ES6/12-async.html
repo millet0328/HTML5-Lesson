@@ -66,18 +66,17 @@
 			// 3、await必须跟一个Promise实例，如果不是，自动转换成promise；
 			async function test() {
 				return await 3.14;
-				// 等价于
-				// return await Promise.resolve(3.14);
+				// 等价于 return await Promise.resolve(3.14);
 			}
 			let x = test();
-			console.log(x);
 			// 4、async函数 return出去的是什么？Promise对象
 			async function move() {
 				return 'moved 100m';
+				// 等价于 return  Promise.resolve('moved 100m');
 			}
 			let result = move();
 			console.log(result);
-			// 5、使用try...catch来捕获async函数中的失败情况
+			// 5、使用 try...catch来捕获async函数中的失败情况
 		</script>
 	</body>
 
