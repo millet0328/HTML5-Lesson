@@ -44,6 +44,10 @@
 			Cat.prototype.speak = function() {
 				console.log('miao.......')
 			}
+			// 自由方法 覆盖 原型方法
+			Cat.prototype.eat = function() {
+				console.log('eat fish.......')
+			}
 
 			var xiaoBai = new Cat('公', '加菲', 'white');
 			
