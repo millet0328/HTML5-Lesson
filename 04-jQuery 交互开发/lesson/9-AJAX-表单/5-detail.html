@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<title></title>
+
+		<!-- Bootstrap -->
+		<link href="./lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+		<!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+		<!--[if lt IE 9]>
+			<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+			<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<!--课程信息-->
+		<div class="container">
+			<div class="card w-50">
+				<!-- <img src="img/c9daef14771532dde62df89a0eda4b9a.jpg" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">课程名称课程名称</h5>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item  d-flex justify-content-between align-items-center">
+						<div>主讲：</div>
+						<div>Jack 教授</div>
+					</li>
+					<li class="list-group-item  d-flex justify-content-between align-items-center">
+						<div>成员：</div>
+						<div>
+							<span class="badge bg-primary">茶山刘</span>
+							<span class="badge bg-primary">茶山刘</span>
+							<span class="badge bg-primary">茶山刘</span>
+						</div>
+					</li>
+					<li class="list-group-item  d-flex justify-content-between align-items-center">
+						<div>Email：</div>
+						<div>71556154@qq.com</div>
+					</li>
+					<li class="list-group-item  d-flex justify-content-between align-items-center">
+						<div>状态：</div>
+						<div>
+							<span class="text-success">开课</span>
+							<span class="text-danger">停课</span>
+						</div>
+					</li>
+				</ul> -->
+			</div>
+		</div>
+
+	</body>
+	<script src="./lib/jQuery/jquery-1.12.4.min.js"></script>
+	<script src="./lib/mock/mock.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mock-json.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/public.js"></script>
+	<script type="text/javascript">
+		// 获取地址参数query
+		var id = GetRequest().id;
+		$.getJSON('/course', { id: id }, function(res) {
+			$('.card').html(`
+				<img src="${res.image}" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">${res.title}</h5>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item  d-flex justify-content-between align-items-center">
+						<div>主讲：</div>
+						<div>${res.teacher}</div>
+					</li>
+					<li class="list-group-item  d-flex justify-content-between align-items-center">
+						<div>成员：</div>
+						<div>
+						${
+							res.partners.map(function (item) {
+								return ` <span class="badge bg-primary">${item}</span> `
+							})
+						}
+						</div>
+					</li>
+					<li class="list-group-item  d-flex justify-content-between align-items-center">
+						<div>Email：</div>
+						<div>${res.email}</div>
+					</li>
+					<li class="list-group-item  d-flex justify-content-between align-items-center">
+						<div>状态：</div>
+						<div>
+							<span class="${res.startClass ? 'text-success' : 'text-danger'}">${res.startClass ? '开课' : '停课'}</span>
+						</div>
+					</li>
+				</ul>
+		`)
+		})
+	</script>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<script src="js/jquery-3.6.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+			}
+
+			body {
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+
+			}
+
+			/* 容器的样式 */
+			.container {
+				width: 100%;
+				height: 100%;
+				padding-left: 0%;
+				box-sizing: border-box;
+				background: url(img/14.jpg) center center/cover;
+				user-select: none;
+			}
+
+			/* 默认方块的样式 */
+			span {
+				display: inline-block;
+				width: calc((100% - 45px)/10);
+				height: calc((100% - 40px)/11);
+				background-color: #fff;
+				box-sizing: border-box;
+				margin-right: 5px;
+			}
+
+			span:nth-child(10n) {
+				margin-right: 0;
+			}
+
+			/* 点击后的方块样式 */
+			span.fall {
+				position: relative;
+				pointer-events: none;
+				animation: animated 3s linear forwards;
+			}
+
+			/* 方块动画 */
+			@keyframes animated {
+				0% {
+					top: 0;
+					transform: rotate(0);
+				}
+
+				100% {
+					top: 1000px;
+					transform: rotate(40deg);
+				}
+			}
+		</style>
+
+	</head>
+	<body>
+		<div class="container"></div>
+		<script type="text/javascript">
+			$(function() {
+				var container = document.querySelector(".container"); //获取容器
+				var str = ""; //添加元素的变量
+				var state = 0; //用来记录点击了多少个方块
+				//添加span，铺满容器
+				for (var i = 1; i <= 120; i++) {
+					str += "<span></span>";
+				}
+				container.innerHTML = str;
+				//获取所有的span方块
+				var allspan = document.querySelectorAll("span");
+				$('span').addClass('span');
+				//遍历每个span，添加一个点击事件，点击时执行fall这个函数
+				$('.container').click(function(e) {
+					var target = event.target;
+					if ($(target).hasClass('span')) {
+						fall(e.target);
+					}
+				});
+				//事件监听每个span，被点击时添加class
+				//添加class函数
+				function fall(ele) {
+					var array = ["#ee3f4d", "#5a1216", "#eea2a4", "#cc163a", "#eea6b7", "#a7a8bd", "#2376b7", "#5cb3cc",
+						"#12a182",
+						"#f8df72"
+					];
+					// 当点了15个方块，所有方块都落下
+					if (state == 15) {
+						for (item of allspan) {
+							item.className = "fall";
+							//随机数组中的颜色
+							item.style.backgroundColor = array[Math.floor(Math.random() * 10)];
+							//加一点点延迟
+							item.style.animationDelay = Math.floor(Math.random() * 10) * .1 + "s";
+						}
+						//否则就添加class
+					} else {
+						ele.className = "fall";
+						ele.style.backgroundColor = array[Math.floor(Math.random() * 10)];
+						state++; //方块数点击加1
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

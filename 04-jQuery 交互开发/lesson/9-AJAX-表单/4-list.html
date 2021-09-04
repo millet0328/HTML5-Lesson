@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	<title></title>
+
+	<!-- Bootstrap -->
+	<link href="./lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+	<!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+	<!--[if lt IE 9]>
+			<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+			<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+	<div class="container" style="padding-top: 60px;">
+		<!--课程表格-->
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>课程类型</th>
+					<th>课程班级</th>
+					<th>上课教室</th>
+					<th>上课时间</th>
+					<th>学生数量</th>
+					<th>课程内容</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- <tr>
+						<td>1</td>
+						<td>英语</td>
+						<td>CET-4</td>
+						<td>8-305</td>
+						<td>8：00-12：00</td>
+						<td>20</td>
+						<td><a href="./4-detail.html">详情>></a></td>
+					</tr> -->
+			</tbody>
+		</table>
+	</div>
+	<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	<script src="lib/jQuery/jquery-1.12.4.min.js"></script>
+	<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	<script src="./lib/mock/mock.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mock-json.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		// 页面一打开，加载数据
+		$.getJSON('/courses/list', function (res) {
+			var html = '';
+			res.forEach(function (course) {
+				html += `
+					<tr>
+						<td>${course.id}</td>
+						<td>${course.courseType}</td>
+						<td>${course.courseName}</td>
+						<td>${course.position}</td>
+						<td>${course.classTime}</td>
+						<td>${course.studentNum}</td>
+						<td><a href="./5-detail.html?id=${course.id}">详情>></a></td>
+					</tr>`;
+			})
+			$('.table tbody').html(html);
+		})
+	</script>
+</body>
+
+</html>

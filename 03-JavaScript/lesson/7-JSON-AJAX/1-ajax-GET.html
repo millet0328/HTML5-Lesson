@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<fieldset id="">
+		<legend>基础ajax过程</legend>
+		<ol>
+			<li>创建XMLHttpRequest对象</li>
+			<li>规定请求的类型、URL 以及是否异步处理请求。</li>
+			<li>将请求发送到服务器</li>
+			<li>监听readyState，触发回调函数，操作DOM显示结果</li>
+		</ol>
+	</fieldset>
+	<p>
+		<button id="send" type="button">发送请求</button>
+	</p>
+	<fieldset id="">
+		<legend>返回数据</legend>
+
+		<div class="preivew">
+			<p>姓名：<span id="fullname"></span></p>
+			<p>昵称：<span id="nickname"></span></p>
+		</div>
+	</fieldset>
+	<script type="text/javascript">
+		// 查找元素
+		var oSend = document.getElementById('send');
+		var oFullname = document.getElementById('fullname');
+		var oNickname = document.getElementById('nickname');
+
+		oSend.addEventListener('click', function () {
+			// 1、创建对象
+			var ajax = new XMLHttpRequest();
+			// 2、设置请求
+			ajax.open('GET', './data/band.json', true);
+			// 3、发送请求
+			ajax.send();
+			// 4、监听readyState
+			ajax.onreadystatechange = function () {
+				if (ajax.readyState === 4) {
+					var res = JSON.parse(ajax.responseText);
+					oFullname.innerText = res.realName;
+					oNickname.innerText = res.nickName;
+				}
+			}
+		});
+	</script>
+</body>
+
+</html>

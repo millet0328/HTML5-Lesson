@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			/* 随机点名的整个盒子 */
+			#box {
+				width: 500px;
+				margin: 100px auto;
+			}
+
+			/* 开始结束 */
+			#box1 {
+				width: 498px;
+				height: 90px;
+				text-align: center;
+				border: 1px solid red;
+				padding-top: 10px;
+			}
+
+			h3 {
+				margin-top: 10px;
+				margin-bottom: 5px;
+				font-size: 14px;
+			}
+
+			/* 被点中人的名字 */
+			p {
+				font-size: 20px;
+			}
+
+			/* 班级所有人的名字 */
+			#ul {
+				width: 498px;
+				text-align: center;
+				border: 1px solid red;
+			}
+
+			#ul li {
+				list-style: none;
+			}
+
+			/* 每个人的样式 */
+			.current {
+				width: 120px;
+				height: 40px;
+				line-height: 40px;
+				border: 1px solid #9bb1a2;
+				border-radius: 5px;
+				text-align: center;
+				display: inline-block;
+				margin: 10px;
+				font-size: 16px;
+				color:white;
+			}
+		</style>
+		<script src="js/jquery-3.6.0.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="box">
+			<div id="box1">
+				<button id="start">开始点名</button>
+				<button id="stop">停下来</button>
+				<h3>随机点名</h3>
+				<!-- 被点中的人的名字 -->
+				<p id="p1"></p>
+			</div>
+			<!-- 存放人员 -->
+			<ul id="ul"></ul>
+		</div>
+		<script type="text/javascript">
+			$(function() {
+				// 存放班级所有人的名字数组
+				var arr = ['徐婧倩', '田慧珍', '李凤娇', '孙成龙', '李成昊', '张振龙', '李帅', '刘仍佳', '杨孝振', '周灿', '孔令莉', '郭可', '徐娜娜',
+					'孙敏', '颜福华', '秦汉奇', '王沛儒', '陆超凡', '杜王孟龙', '苏诚', '尚美玉', '张权'
+				];
+				//随机颜色rgb
+				function color() {
+					// math.floor返回小于参数的最小整数；
+					var r = Math.floor(Math.random() * 255);
+					var g = Math.floor(Math.random() * 255);
+					var b = Math.floor(Math.random() * 255);
+					var rgb = 'rgb(' + r + ',' + g + ',' + b + ')';
+					return rgb;
+				}
+				// 是一个遍历方法 遍历每个数组元素。 增加委托
+				$.each(arr, function(index, e) {
+					//创建li
+					var li = $('<li>');
+					// html() 方法返回或设置被选元素中匹配元素的 内容
+					li.html(arr[index]);
+					li.css({
+						'background': color()
+					})
+					li.addClass('current');
+					$('ul').append(li);
+				});
+				// 开始点名
+				$('#start').click(function() {
+					// setInterval() 计时器方法，可按照指定的周期（以毫秒计）来调用函数或计算表达式。
+					timer = setInterval(function() {
+						// 生成随机数
+						random = Math.floor(Math.random() * arr.length);
+						$.each(arr, function(index, e) {
+							$('#p1').html();
+							$('li').eq(index).css('background', color());
+						})
+					}, 400)
+				});
+				// 停下来
+				$('#stop').click(function() {
+					// 清除Interval()方法
+					clearInterval(timer);
+					$('#p1').html($('ul li').eq(random).html());
+				});
+			})
+		</script>
+	</body>
+</html>

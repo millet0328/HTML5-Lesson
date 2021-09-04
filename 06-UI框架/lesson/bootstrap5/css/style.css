@@ -1,0 +1,4 @@
+.user-menu .dropdown-menu[data-bs-popper] {
+	right: 0;
+	left: auto;
+}

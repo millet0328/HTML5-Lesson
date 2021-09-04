@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css" />
+
+		<title>Hello, world!</title>
+	</head>
+	<body>
+		<div class="container">
+			<button data-bs-toggle="modal" data-bs-target="#removeModal" type="button" class="btn btn-primary">
+				data启动方式
+			</button>
+			<button type="button" id="openBtn" class="btn btn-primary">Javascript启动方式</button>
+			<!-- Modal模态框 -->
+			<div id="removeModal" class="modal" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">确认消息</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<p>确定要删除此数据吗？</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+							<button type="button" class="btn btn-primary">确认</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Option 1: Bootstrap Bundle with Popper -->
+		<script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script>
+			// 查找元素
+			var oBtn = document.getElementById('openBtn');
+			var oRemoveModal = document.getElementById('removeModal');
+			// 实例化
+			var removeModal = new bootstrap.Modal(oRemoveModal);
+
+			oBtn.addEventListener('click', function() {
+				removeModal.show();
+			});
+		</script>
+	</body>
+</html>

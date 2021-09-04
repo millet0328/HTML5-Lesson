@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="lib/jQuery/jquery-1.12.4.min.js"></script>
+		<script src="./lib/mock/mock.js"></script>
+		<script src="js/mock-json.js"></script>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>两个ajax并行</legend>
+			<ol>
+				<li>两个ajax执行顺序，未知</li>
+			</ol>
+			<script type="text/javascript">
+				// ajax1
+				$.getJSON('/courses/list', { pageindex: 1, pagesize: 20 }, function(res) {
+					console.log('并行', 1);
+				});
+				// ajax2
+				$.getJSON('/course', { id: 1 }, function(res) {
+					console.log('并行', 2);
+				});
+			</script>
+		</fieldset>
+		<fieldset id="">
+			<legend>方案1：callback嵌套</legend>
+
+			<script type="text/javascript">
+				// ajax1
+				$.getJSON('/courses/list', { pageindex: 1, pagesize: 20 }, function(res) {
+					console.log('callback嵌套', 1);
+					// ajax2
+					$.getJSON('/course', { id: 1 }, function(res) {
+						console.log('callback嵌套', 2);
+					});
+				});
+			</script>
+		</fieldset>
+		<fieldset id="">
+			<legend>方案2：强制同步</legend>
+
+			<script type="text/javascript">
+				// ajax1
+				$.ajax({
+					type: "GET",
+					url: "/courses/list",
+					data: { pageindex: 1, pagesize: 20 },
+					async: false,
+					success: function(res) {
+						console.log('强制同步', 1);
+					}
+				})
+				// ajax2
+				$.ajax({
+					type: "GET",
+					url: "/course",
+					data: { id: 1 },
+					async: false,
+					success: function(res) {
+						console.log('强制同步', 2);
+					}
+				})
+			</script>
+		</fieldset>
+	</body>
+</html>
