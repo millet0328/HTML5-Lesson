@@ -15,12 +15,13 @@
     <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
     <script type="text/babel">
-        const element = (
-            <React.Fragment>
-                <h1>Some title</h1>
-                <div>Some content</div>
-            </React.Fragment>
-        );
+        const element =
+            (
+                <>
+                    <h1>Some title</h1>
+                    <div>Some content</div>
+                </>
+            );
         ReactDOM.render(
             element,
             document.getElementById('app')
