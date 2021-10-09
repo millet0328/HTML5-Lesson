@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <fieldset>
+        <legend>拷贝</legend>
+        <ol>
+            <li>将a的数据复制给b</li>
+            <li>引用数据类型不能通过简单的赋值进行复制。</li>
+            <li>浅拷贝：假设B复制了A，当修改A时，如果B也跟着变了，说明这是浅拷贝，拿人手短。本质上，拷贝的是指针(内存)地址</li>
+            <li>深拷贝：假设B复制了A，当修改A时，如果B没有发生变化，说明这是深拷贝，自食其力。本质上，拷贝的是数据，在内存中重新生成的一份数据</li>
+        </ol>
+        <script>
+            var a = 1;
+            var b = a; // 栈内存会开辟一个新的内存空间，此时b和a都是相互独立的
+        </script>
+        <script>
+            var person1 = { name: "黄小米", age: 25 };
+            var person2 = person1;  // 赋值的内存地址，两者存在关联关系
+        </script>
+    </fieldset>
+    <fieldset>
+        <legend>深拷贝实现方式：JSON方法</legend>
+        <ol>
+            <li>这种方式无法拷贝 正则表达式、undefined，function</li>
+        </ol>
+        <script>
+            var person3 = {
+                name: "黄小米",
+                age: 25,
+                salary: undefined,
+                tel: /^1[34789]\d{9}$/,
+                school: {
+                    name: '山东大学',
+                    location: '济南'
+                },
+                sleep: function () {
+                    console.log('zzz....')
+                }
+            }
+
+            var person4 = JSON.parse(JSON.stringify(person3));
+
+        </script>
+    </fieldset>
+</body>
+
+</html>

@@ -48,13 +48,13 @@
 				<button id="check" type="button">获取JSON</button>
 			</p>
 			<script type="text/javascript">
-				$('#check').onclick = function() {
+				$('#check').click(function() {
 					$.getJSON('./data/band.json', function(res) {
 						console.log('ajax返回响应');
 					})
 					// 同步
 					console.log('我是ajax之后的同步代码！');
-				}
+				});
 			</script>
 		</fieldset>
 	</body>

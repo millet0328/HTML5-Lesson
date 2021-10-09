@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport"
+			content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<!--[if lt IE9]> 
+<script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+<![endif]-->
+		<style type="text/css">
+			.am-padding-vertical-sm {
+				padding: 10px 0;
+			}
+
+			.am-padding-sm {
+				padding: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="am-padding-sm">
+			<label for="">数量：</label>
+			<input type="text" name="number" value="" pattern="^\d*$" />
+		</div>
+		<div class="am-padding-sm">
+			<label for="">图片：</label>
+			<input type="file" id="file" name="file" multiple>
+		</div>
+		<div class="am-padding-sm">
+			<button id="btn" type="button">提交</button>
+		</div>
+	</body>
+	<script type="text/javascript">
+		// 查找元素
+		var oBtn = document.getElementById('btn');
+		var oNumber = document.querySelector('input[name=number]');
+		var oFile = document.getElementById('file');
+		oBtn.onclick = function() {
+			// 提取value
+			var num = oNumber.value;
+			// File对象
+			var photo = oFile.files[0];
+			// FormData  ==> Form标签
+			var formData = new FormData();
+			// 追加数据
+			formData.append('number', num);
+			formData.append('file', photo);
+			
+			var ajax = new XMLHttpRequest();
+			ajax.open('POST', '/api/path', true);
+			ajax.send(formData);
+
+		}
+	</script>
+
+</html>

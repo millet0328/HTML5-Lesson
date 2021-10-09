@@ -1,81 +1,119 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-		<style type="text/css">
-			.input-box {
-				display: inline-block;
-				position: relative;
-			}
 
-			.input-box input {
-				width: 240px;
-				padding: 6px;
-				border: 1px solid #bbb;
-				border-radius: 4px;
-				outline: 0;
-			}
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		.input-box {
+			display: inline-block;
+			position: relative;
+		}
 
-			.input-box i {
-				position: absolute;
-				top: 50%;
-				right: 8px;
-				transform: translateY(-50%);
-				display: inline-block;
-				width: 18px;
-				height: 18px;
-				line-height: 18px;
-				border-radius: 50%;
-				background-color: #ccc;
-				color: black;
-				font-style: normal;
-				text-align: center;
-				font-size: 12px;
-				transition: all 0.5s;
-				opacity: 0;
-				cursor: pointer;
-			}
+		.input-box input {
+			width: 240px;
+			padding: 6px;
+			border: 1px solid #bbb;
+			border-radius: 4px;
+			outline: 0;
+		}
 
-			.input-box:hover i {
-				opacity: 1;
-			}
-		</style>
-	</head>
-	<body>
-		<fieldset id="">
-			<legend>组件的v-model</legend>
-			<ol>
-				<li>组件内部定义的时候，必须有一个props属性叫value</li>
-				<li>组件内部定义的时候，$emit出去事件必须叫input事件</li>
-				<li>不仅仅给input表单使用，可以给任何标签使用</li>
-			</ol>
-			<div id="app">
-				<clear-input v-model="username"></clear-input>
+		.input-box i {
+			position: absolute;
+			top: 50%;
+			right: 8px;
+			transform: translateY(-50%);
+			display: inline-block;
+			width: 18px;
+			height: 18px;
+			line-height: 16px;
+			border-radius: 50%;
+			background-color: #ccc;
+			color: black;
+			font-style: normal;
+			text-align: center;
+			font-size: 12px;
+			transition: all 0.5s;
+			opacity: 0;
+			cursor: pointer;
+		}
+
+		.input-box:hover i {
+			opacity: 1;
+		}
+	</style>
+</head>
+
+<body>
+	<fieldset id="">
+		<legend>组件的v-model</legend>
+		<ol>
+			<li>组件内部定义的时候，必须有一个props属性叫value</li>
+			<li>组件内部定义的时候，$emit出去事件名称必须叫input事件</li>
+			<li>不仅仅给input表单使用，可以给任何标签使用</li>
+		</ol>
+		<div id="app">
+			<form action="">
+				<p>
+					<label>账户：</label>
+					<v-input v-model="username" clear></v-input>
+				</p>
+				<p>
+					<label>密码：</label>
+					<v-input v-model="password" password></v-input>
+				</p>
+				<p>
+					<button type="button">编辑</button>
+				</p>
+			</form>
+		</div>
+		<script src="./lib/vue/vue.js"></script>
+		<script id="input-tmpl" type="text/x-template">
+			<div class="input-box">
+				<input :type="type" :value="value" @input="$emit('input',$event.target.value)">
+				<i @click="$emit('input','')" v-if="clear" class="clear">x</i>
+				<i @click="defaultType = !defaultType" v-if="password" class="eye">显</i>
 			</div>
-			<script src="./lib/vue/vue.js"></script>
-			<script id="tmpl-input" type="text/x-template">
-				<div class="input-box">
-					<input type="text" :value="value" @input="$emit('input',$event.target.value)">
-					<i @click="$emit('input','')">X</i>
-				</div>
-			</script>
-			<script type="text/javascript">
-				Vue.component('clear-input', {
-					props: ['value'],
-					template: "#tmpl-input"
-				});
-			</script>
-			<script type="text/javascript">
-				var app = new Vue({
-					el: "#app",
-					data: {
-						username: "黄小米"
+		</script>
+		<script>
+			// v-input组件
+			Vue.component('v-input', {
+				// 组件内部数据
+				data: function () {
+					return {
+						defaultType: this.password,
 					}
-				});
-			</script>
-		</fieldset>
+				},
+				// 组件外部数据
+				props: {
+					value: String,
+					clear: {
+						type: Boolean,
+						default: false,
+					},
+					password: {
+						type: Boolean,
+						default: false,
+					}
+				},
+				computed: {
+					type: function () {
+						return this.defaultType ? 'password' : 'text';
+					}
+				},
+				template: "#input-tmpl",
+			});
 
-	</body>
+			var app = new Vue({
+				el: "#app",
+				data: {
+					username: "黄小米",
+					password: '123',
+				}
+			});
+		</script>
+	</fieldset>
+
+</body>
 
 </html>

@@ -1,162 +1,164 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<script src="lib/vue/vue.js"></script>
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="lib/vue/vue.js"></script>
+</head>
 
-	<body>
-		<fieldset id="">
-			<legend>简单数组</legend>
-			<div id="app1">
-				<p>
-					<button v-for="item in team" type="button">{{item}}</button>
-				</p>
-				<p>
-					<button v-for="item in 5" type="button">{{item}}</button>
-				</p>
-			</div>
-			<script type="text/javascript">
-				var app1 = new Vue({
-					el: '#app1',
-					data: {
-						team: ['黄渤', '黄磊', '张艺兴', '王迅', '孙红雷', '罗志祥']
-					}
-				});
-			</script>
-		</fieldset>
-
-		<fieldset id="">
-			<legend>对象数组</legend>
-			<style type="text/css">
-				.hero-list {
-					padding: 20px 0;
-					display: flex;
-					align-items: center;
-					justify-content: space-between;
+<body>
+	<fieldset id="">
+		<legend>简单数组</legend>
+		<div id="app1">
+			<p>
+				<button v-for="item in team" type="button">{{item}}</button>
+			</p>
+			<p>
+				<button v-for="item in 5" type="button">{{item}}</button>
+			</p>
+		</div>
+		<script type="text/javascript">
+			var app1 = new Vue({
+				el: "#app1",
+				data: {
+					team: ['黄渤', '张艺兴', '黄磊', '罗志祥', '王迅', '孙红雷']
 				}
+			});
+		</script>
+	</fieldset>
 
-				.hero-list .hero {
-					padding: 0 20px;
-					background-color: orange;
-					box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-				}
-			</style>
-			<div id="app2">
-				<div class="hero-list">
-					<div v-for="item in heros" class="hero">
-						<p>姓名：{{item.name}}</p>
-						<p>职位：{{item.position}}</p>
-					</div>
+	<fieldset id="">
+		<legend>对象数组</legend>
+		<style type="text/css">
+			.hero-list {
+				padding: 20px 0;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+			}
+
+			.hero-list .hero {
+				padding: 0 20px;
+				background-color: orange;
+				box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+			}
+		</style>
+		<div id="app2">
+			<div class="hero-list">
+				<div v-for="item in heros" class="hero">
+					<p>姓名：{{item.name}}</p>
+					<p>角色：{{item.role}}</p>
 				</div>
 			</div>
+		</div>
+		<script type="text/javascript">
+			var app2 = new Vue({
+				el: "#app2",
+				data: {
+					heros: [
+						{ name: "刘备", role: "主公" },
+						{ name: "关羽", role: "武将" },
+						{ name: "张飞", role: "坦克" },
+						{ name: "诸葛亮", role: "军师" },
+						{ name: "赵云", role: "武将" },
+						{ name: "黄忠", role: "武将" },
+					]
+				}
+			});
+		</script>
 
-			<script type="text/javascript">
-				var app2 = new Vue({
-					el: "#app2",
-					data: {
-						heros: [
-							{ name: "刘备", position: '主公' },
-							{ name: "诸葛亮", position: '丞相' },
-							{ name: '张飞', position: '武将' },
-							{ name: '关羽', position: '武将' },
-							{ name: '赵云', position: '武将' },
-							{ name: '庞统', position: '文臣' },
-						]
+	</fieldset>
+	<fieldset id="">
+		<legend>操作数组</legend>
+		<ol>
+			<li>点击价格，能够排序</li>
+			<li>第一次排序，从小到大；第二次排序，从大到小；依次循环</li>
+		</ol>
+		<table id="app3" border="1" cellpadding="20" width="100%">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>书名</th>
+					<th>作者</th>
+					<th @click="handleSort">单价</th>
+					<th>数量</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody align="center">
+				<tr v-for="item in books" v-bind:key="item.id">
+					<td>{{item.id}}</td>
+					<td>{{item.name}}</td>
+					<td>{{item.author}}</td>
+					<td>{{item.price}}</td>
+					<td>{{item.num}}</td>
+					<td>
+						<button type="button">x</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<script>
+			var app3 = new Vue({
+				el: "#app3",
+				data: {
+					books: [
+						{ id: 1, author: '曹雪芹', name: '红楼梦', num: 1, price: 32.0 },
+						{ id: 2, author: '施耐庵', name: '水浒传', num: 1, price: 30.0 },
+						{ id: 3, author: '罗贯中', name: '三国演义', num: 1, price: 24.0 },
+						{ id: 4, author: '吴承恩', name: '西游记', num: 1, price: 20.0 },
+					],
+					order: 1,
+				},
+				methods: {
+					handleSort: function () {
+						var self = this;
+						this.books.sort(function (itemA, itemB) {
+							return (itemA.price - itemB.price) * self.order;
+						})
+						this.order = -this.order;
 					}
-				});
-			</script>
-		</fieldset>
-		<fieldset id="">
-			<legend>操作数组</legend>
-			<ol>
-				<li>点击价格，能够排序</li>
-			</ol>
-			<table id="app3" width="100%" border="1" cellpadding="20">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>书名</th>
-						<th>作者</th>
-						<th v-on:click="handleSort">价格</th>
-						<th>数量</th>
-						<th>操作</th>
-					</tr>
-				</thead>
-				<tbody align="center">
-					<tr v-for="(book,index) in books">
-						<td>索引：{{index}}--{{book.id}}</td>
-						<td>{{book.name}}</td>
-						<td>{{book.author}}</td>
-						<td>{{book.price}}</td>
-						<td>
-							<button type="button">-</button>
-							<span>{{book.num}}</span>
-							<button type="button">+</button>
-						</td>
-						<td>
-							<button type="button">x</button>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-
-			<script type="text/javascript">
-				var app3 = new Vue({
-					el: '#app3',
-					data: {
-						books: [
-							{ id: 1, author: '曹雪芹', name: '红楼梦', num: 1, price: 32.0 },
-							{ id: 2, author: '施耐庵', name: '水浒传', num: 1, price: 30.0 },
-							{ id: 3, author: '罗贯中', name: '三国演义', num: 1, price: 24.0 },
-							{ id: 4, author: '吴承恩', name: '西游记', num: 1, price: 20.0 }
-						]
+				}
+			});
+		</script>
+	</fieldset>
+	<fieldset id="">
+		<legend>嵌套数组</legend>
+		<div id="app4">
+			<ul>
+				<li v-for="country in countries">
+					<p>国家：{{country.name}}——主公：{{country.master}}</p>
+					<ul>
+						<li v-for="hero in country.heroes">{{hero}}</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			var app4 = new Vue({
+				el: "#app4",
+				data: {
+					countries: [{
+						name: "魏国",
+						master: "曹操",
+						heroes: ['夏侯惇', '夏侯渊', '夏侯霸', '张郃', '司马懿', '许褚', '典韦', '曹丕']
 					},
-					methods: {
-						handleSort: function() {
-							this.books.sort(function(bookA, bookB) {
-								return bookA.price - bookB.price;
-							});
-						},
+					{
+						name: "蜀国",
+						master: "刘备",
+						heroes: ['关羽', '张飞', '赵云', '马超', '黄忠', '诸葛亮', '庞统', '姜维']
+					},
+					{
+						name: "吴国",
+						master: "孙权",
+						heroes: ['周瑜', '陆逊', '鲁肃', '黄盖', '甘宁', '太史慈', '吕蒙', '孙策']
 					}
-				})
-			</script>
-		</fieldset>
-		<fieldset id="">
-			<legend>嵌套数组</legend>
-
-			<div id="app4">
-				<dl>
-					<template v-for="item in country">
-						<dt>{{item.name}}---{{item.master}}</dt>
-						<dd v-for="person in item.hero">{{person}}</dd>
-					</template>
-				</dl>
-			</div>
-
-			<script type="text/javascript">
-				var app4 = new Vue({
-					el: '#app4',
-					data: {
-						country: [{
-							name: '魏国',
-							master: '曹操',
-							hero: ['夏侯惇', '夏侯渊', '于禁', '典韦', '司马懿', '许褚']
-						}, {
-							name: '蜀国',
-							master: '刘备',
-							hero: ['关羽', '张飞', '诸葛亮', '黄忠', '赵云', '姜维']
-						}, {
-							name: '吴国',
-							master: '孙权',
-							hero: ['周瑜', '孙策', '陆逊', '甘宁', '太史慈', '黄盖']
-						}]
-					}
-				})
-			</script>
-		</fieldset>
-	</body>
+					]
+				}
+			});
+		</script>
+	</fieldset>
+</body>
 
 </html>

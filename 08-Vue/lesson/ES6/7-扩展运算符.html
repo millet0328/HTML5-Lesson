@@ -1,94 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>扩展运算符</title>
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>扩展运算符</title>
+</head>
 
-	<body>
+<body>
 
-		<script>
-			// 扩展运算符 -- 对象
-			var obj1 = { a: 1, b: 2 };
-			var obj2 = { b: 4, c: 3 };
-			// 合并对象
-			var obj3 = { ...obj1, ...obj2 };
+	<script>
+		// 扩展运算符 -- 对象
+		var obj1 = { a: 1, b: 2 };
+		var obj2 = { b: 4, c: 3 };
+		// 合并对象
+		var obj3 = { ...obj1, ...obj2 };
 
-			// 扩展运算符 -- 数组
-			var arr1 = [1, 2];
-			var arr2 = [3, 4];
-			// 合并数组
-			var arr3 = [...arr1, ...arr2];
-		</script>
-		<script type="text/javascript">
-			// 引用数据类型
-			var person1 = { name: "黄小米", age: 25 };
-			var person2 = person1;
-			person2.age = 30;
+		// 扩展运算符 -- 数组
+		var arr1 = [1, 2];
+		var arr2 = [3, 4];
+		// 合并数组
+		var arr3 = [...arr1, ...arr2];
+	</script>
+	<script type="text/javascript">
+		// 引用数据类型
+		var person1 = { name: "黄小米", age: 25 };
+		var person2 = person1;
+		person2.age = 30;
 			// person1.age = ?;
-		</script>
-		<script type="text/javascript">
-			// 适合浅拷贝
-			var point1 = { x: 0, y: 0 }
-			// 浅拷贝--es5版
-			function shallow_copy(obj) {
-				var copy = {};
-				for (let key in obj) {
-					copy[key] = obj[key];
-				}
-				return copy;
+	</script>
+	<script type="text/javascript">
+		// 适合浅拷贝
+		var point1 = { x: 0, y: 0 }
+		// 浅拷贝--es5版
+		function shallow_copy(obj) {
+			var copy = {};
+			for (let key in obj) {
+				copy[key] = obj[key];
 			}
-			// 浅拷贝--es6版
-			var point3 = { ...point1 };
+			return copy;
+		}
+		// 浅拷贝--es6版
+		var point3 = { ...point1 };
 
-			// 浅拷贝：只复制指向某个对象的指针，而不复制对象本身，新旧对象还是共享同一块内存。
-		</script>
-		<script type="text/javascript">
-			// 适合深拷贝
-			var point2 = { pos: { x: 0, y: 0 }, color: "black" };
+		// 浅拷贝：适应于简单数据类型。对于复合数据类型（对象/数组），只复制指向某个对象的指针，而不复制对象本身，新旧对象还是共享同一块内存。
+	</script>
+	<script type="text/javascript">
+		// 适合深拷贝
+		var point2 = { pos: { x: 0, y: 0 }, color: "black" };
 
-			var point4 = { ...point2 };
+		var point4 = { ...point2 };
 
-			// point4.pos.x = 1
+		// point4.pos.x = 1
 
-			// 深拷贝--es5版 对象/数组
-			//递归： n! = 1*2*3*2*....n
-			//递归： 斐波那契数列：F(0) = 0; F(1) = 1; F(n) = F(n-1) + F(n-2);
-			function clone(target) {
-				// 判断拷贝的数据类型
-				// 初始化变量result 成为最终克隆的数据
-				let result, targetType = checkedType(target)
-				if (targetType === 'object') {
-					result = {}
-				} else if (targetType === 'Array') {
-					result = []
+		// 深拷贝--es5版 对象/数组
+		//递归： n! = 1*2*3*4*....n
+
+		function factorial(n) {
+			if (n === 0) return 1;
+			if (n > 0) {
+				return n * factorial(n - 1);
+			}
+		}
+		factorial(0) == 1
+		factorial(1) == 1 * factorial(0);
+		factorial(2) == 2 * factorial(1);
+		factorial(3) == 3 * factorial(2);
+		factorial(4) == 4 * factorial(3);
+
+		//递归： 斐波那契数列：F(0) = 0; F(1) = 1; F(n) = F(n-1) + F(n-2);
+
+		//定义检测数据类型的功能函数
+		function checkedType(target) {
+			return Object.prototype.toString.call(target).slice(8, -1)
+		}
+		//实现深度克隆---对象/数组
+		function clone(target) {
+			//判断拷贝的数据类型
+			//初始化变量result 成为最终克隆的数据
+			let result,
+				targetType = checkedType(target)
+			if (targetType === 'Object') {
+				result = {}
+			} else if (targetType === 'Array') {
+				result = []
+			} else {
+				return target
+			}
+			//遍历目标数据
+			for (let i in target) {
+				//获取遍历数据结构的每一项值。
+				let value = target[i]
+				//判断目标结构里的每一值是否存在对象/数组
+				if (checkedType(value) === 'Object' || checkedType(value) === 'Array') {
+					//对象/数组里嵌套了对象/数组
+					//继续遍历获取到value值
+					result[i] = clone(value)
 				} else {
-					return target
+					//获取到value值是基本的数据类型或者是函数。
+					result[i] = value
 				}
-				// 遍历目标数据
-				for (let i in target) {
-					// 获取遍历数据结构的每一项值。
-					let value = target[i]
-					// 判断目标结构里的每一值是否存在对象/数组
-					if (checkedType(value) === 'Object' ||
-						checkedType(value) === 'Array') { //对象/数组里嵌套了对象/数组
-						// 继续遍历获取到value值
-						result[i] = clone(value)
-					} else {
-						// 获取到value值是基本的数据类型或者是函数。
-						result[i] = value;
-					}
-				}
-				return result
 			}
-			// 深拷贝--JSON方法
-			var point5 = JSON.parse(JSON.stringify(point2));
-			
-			point5.pos.x = 5;
-			
-		</script>
-	</body>
+			return result
+		}
+		// 深拷贝--JSON方法，缺陷：无法拷贝undefined、function、RegExp等等类型。
+		var point5 = JSON.parse(JSON.stringify(point2));
+
+		point5.pos.x = 5;
+
+	</script>
+</body>
 
 </html>

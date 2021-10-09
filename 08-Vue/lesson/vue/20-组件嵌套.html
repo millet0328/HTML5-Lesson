@@ -1,57 +1,100 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>组件嵌套--slot</title>
-	</head>
-	<body>
-		<div id="app">
+
+<head>
+	<meta charset="utf-8">
+	<title>组件嵌套</title>
+	<script src="lib/vue/vue.js"></script>
+</head>
+
+<body>
+	<fieldset id="">
+		<legend>组件嵌套--slot</legend>
+		<div id="app1">
 			<component-a>
-				<template v-slot:before>
-					<component-b></component-b>
-				</template>
-				<template v-slot:after>
-					<component-c></component-c>
-				</template>
+				<component-b></component-b>
 			</component-a>
 		</div>
-		<script src="lib/vue/vue.js"></script>
-		<script id="tmpl-A" type="text/x-template">
-			<fieldset id="">
-				<legend>组件A</legend>
-				<slot name="before"></slot>
-				<p>组件A----内容</p>
-				<slot name="after"></slot>
-			</fieldset>
-		</script>
-		<script id="tmpl-B" type="text/x-template">
-			<fieldset id="">
-				<legend>组件B</legend>
-				<p>组件B----内容</p>
-			</fieldset>
-		</script>
-		<script id="tmpl-C" type="text/x-template">
-			<fieldset id="">
-				<legend>组件C</legend>
-				<p>组件C----内容</p>
-			</fieldset>
-		</script>
 		<script type="text/javascript">
-			//组件A
+			// 组件A
 			Vue.component('component-a', {
-				template: "#tmpl-A"
+				template: `
+					<fieldset id="">
+						<legend>组件A</legend>
+						<p>组件A---内容</p>
+						<slot></slot>
+					</fieldset>
+					`
 			});
-			//组件B
+			// 组件B
 			Vue.component('component-b', {
-				template: "#tmpl-B"
+				template: `
+					<fieldset id="">
+						<legend>组件B</legend>
+						<p>组件B---内容</p>
+					</fieldset>
+					`
 			});
-			//组件C
-			Vue.component('component-c', {
-				template: "#tmpl-C"
-			});
-			var app = new Vue({
-				el: "#app",
+			var app1 = new Vue({
+				el: "#app1"
 			});
 		</script>
-	</body>
+	</fieldset>
+
+	<fieldset id="">
+		<legend>具名插槽</legend>
+
+		<div id="app2">
+			<home-page>
+
+				<template v-slot:header>
+					<section-header></section-header>
+				</template>
+
+				<template v-slot:footer>
+					<section-footer></section-footer>
+				</template>
+
+			</home-page>
+		</div>
+
+		<script type="text/javascript">
+			// 组件C
+			Vue.component('home-page', {
+				template: `
+					<fieldset id="">
+						<legend>主页</legend>
+						<slot name="header"></slot>
+						<p>main---内容</p>
+						<slot name="footer"></slot>
+					</fieldset>
+					`
+			});
+			// 组件section-header
+			Vue.component('section-header', {
+				template: `
+					<fieldset id="">
+						<legend>header</legend>
+						<p>header---内容</p>
+						<slot></slot>
+					</fieldset>
+					`
+			});
+			// 组件section-footer
+			Vue.component('section-footer', {
+				template: `
+					<fieldset id="">
+						<legend>footer</legend>
+						<p>footer---内容</p>
+						<slot></slot>
+					</fieldset>
+					`
+			});
+			var app2 = new Vue({
+				el: "#app2",
+			});
+		</script>
+	</fieldset>
+</body>
+
 </html>

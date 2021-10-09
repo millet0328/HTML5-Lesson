@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!--  <script src="jQuery.js"></script>-->
+	</head>
+	<body>
+		<div style=" position:fixed; left:0; top:0; width:100%; height:100%; text-align:center;">
+			<canvas id="cav" width="" height=""></canvas>
+		</div>
+
+		<script>
+			var cav = document.getElementById('cav');
+			var width = cav.width = window.screen.width;
+			var height = cav.height = window.screen.height;
+			var yPositions = new Array(200).join(0).split(''); //创建长度200的数组，初始全为0，代表y轴坐标
+			var ctx = cav.getContext('2d');
+
+			var draw = function() {
+				ctx.fillStyle = 'rgba(0,0,0,.05)';
+				ctx.fillRect(0, 0, width, height);
+
+				yPositions.forEach((y, index) => { //遍历每个元素，使用函数进行处理,y当前元素值，index当前元素索引
+
+					//生成随机Unicode字符,范围[65,465)
+					text = String.fromCharCode(Math.floor(65 + Math.random() * 400));
+
+					//字符x轴坐标
+					x = (index * 10);
+
+					//画随机生成的字符
+					ctx.fillText(text, x, y);
+					ctx.fillStyle = '#00b100';
+					ctx.font = '27px';
+
+					//如果当前y轴坐标不大于这个随机数，则y轴坐标+10继续画字符，否则从0开始
+					y > Math.random() * 1e4 ? yPositions[index] = 0 : yPositions[index] = y + 10;
+				});
+				requestAnimationFrame(draw);
+			};
+
+			requestAnimationFrame(draw);
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+<!--①用ctx.fillStyle=’rgba(0,0,0,.05)’; ctx.fillRect(0,0,width,height); 反复生成opacity为0.5的半透明黑色背景
+    ②用String.fromCharCode(1e2+Math.random()*33)随机生成字母
+    ③用x = (index * 10);和yPositions[index] = y + 10;确定显示字母的位置
+    ④用fillText(text, x, y); 在指定位置显示一个字母
+    ⑤用setInterval(draw, 33)设定刷新间隔 以上步骤循环进行。-->

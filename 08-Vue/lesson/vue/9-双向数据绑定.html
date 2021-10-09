@@ -1,126 +1,130 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<script src="lib/vue/vue.js"></script>
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="lib/vue/vue.js"></script>
+</head>
 
-	<body>
-		<fieldset>
-			<legend>基本双向数据绑定</legend>
-			<div id="app1">
-				<p>
-					<input type="text" v-model="fullname">
-				</p>
-			</div>
-			<script type="text/javascript">
-				var app1 = new Vue({
-					el: "#app1",
-					data: {
-						fullname: "黄小米",
-					}
-				});
-			</script>
-		</fieldset>
+<body>
+	<fieldset>
+		<legend>基本双向数据绑定</legend>
+		<div id="app1">
+			<p>
+				<input type="text" v-model="fullname">
+			</p>
+		</div>
+		<script type="text/javascript">
+			var app1 = new Vue({
+				el: "#app1",
+				data: {
+					fullname: "黄小米",
+				}
+			});
+		</script>
+	</fieldset>
 
-		<fieldset>
-			<legend>v-model语法糖</legend>
+	<fieldset>
+		<legend>v-model语法糖</legend>
 
-			<div id="app2">
-				<p>
-					<input type="text" v-bind:value="fullname" v-on:input="fullname = $event.target.value">
-				</p>
-			</div>
-			<script type="text/javascript">
-				var app2 = new Vue({
-					el: '#app2',
-					data: {
-						fullname: "黄小米",
-					},
-				});
-			</script>
-		</fieldset>
+		<div id="app2">
+			<p>
+				<input type="text" v-bind:value="fullname" v-on:input="fullname = $event.target.value">
+			</p>
+		</div>
+		<script type="text/javascript">
+			var app2 = new Vue({
+				el: '#app2',
+				data: {
+					fullname: "黄小米",
+				},
+			});
+		</script>
+	</fieldset>
 
-		<fieldset>
-			<legend>表单双向数据绑定</legend>
-			<div id="app3">
-				<p>
-					<label>账户：</label>
-					<input type="text" v-model="username" placeholder="请输入账户">
-				</p>
-				<p>
-					<label>性别：</label>
-					<label>
-						<input name="sex" v-model="sex" value="男" type="radio"> 男
-					</label>
-					<label>
-						<input name="sex" v-model="sex" value="女" type="radio"> 女
-					</label>
-				</p>
-				<p>
-					<label>爱好：</label>
-					<label>
-						<input v-model="favor" type="checkbox" value="漫画"> 漫画
-					</label>
-					<label>
-						<input v-model="favor" type="checkbox" value="摄影"> 摄影
-					</label>
-					<label>
-						<input v-model="favor" type="checkbox" value="吉他"> 吉他
-					</label>
-					<label>
-						<input v-model="favor" type="checkbox" value="手工"> 手工
-					</label>
-				</p>
-				<p>
-					<label>学历：</label>
-					<select v-model="degree">
-						<option value="专科">专科</option>
-						<option value="本科">本科</option>
-						<option value="研究生">研究生</option>
-						<option value="博士">博士</option>
-					</select>
-				</p>
-			</div>
-			<script type="text/javascript">
-				var app3 = new Vue({
-					el: "#app3",
-					data: {
-						username: "",
-						sex: "男",
-						favor: ["手工"],
-						degree: "",
-					}
-				});
-			</script>
-		</fieldset>
+	<fieldset>
+		<legend>表单双向数据绑定</legend>
+		<div id="app3">
+			<p>
+				<label>账户：</label>
+				<input type="text" v-model="username" placeholder="请输入账户">
+			</p>
+			<p>
+				<label>性别：</label>
+				<label>
+					<input name="sex" v-model="sex" value="男" type="radio"> 男
+				</label>
+				<label>
+					<input name="sex" v-model="sex" value="女" type="radio"> 女
+				</label>
+			</p>
+			<p>
+				<label>爱好：</label>
+				<label>
+					<input v-model="favor" type="checkbox" value="漫画"> 漫画
+				</label>
+				<label>
+					<input v-model="favor" type="checkbox" value="摄影"> 摄影
+				</label>
+				<label>
+					<input v-model="favor" type="checkbox" value="吉他"> 吉他
+				</label>
+				<label>
+					<input v-model="favor" type="checkbox" value="手工"> 手工
+				</label>
+			</p>
+			<p>
+				<label>学历：</label>
+				<select v-model="degree">
+					<option value="专科">专科</option>
+					<option value="本科">本科</option>
+					<option value="研究生">研究生</option>
+					<option value="博士">博士</option>
+				</select>
+			</p>
+		</div>
+		<script type="text/javascript">
+			var app3 = new Vue({
+				el: "#app3",
+				data: {
+					username: "",
+					sex: "男",
+					favor: ["手工"],
+					degree: "",
+				}
+			});
+		</script>
+	</fieldset>
 
-		<fieldset id="">
-			<legend>修饰符</legend>
+	<fieldset id="">
+		<legend>修饰符</legend>
 
-			<div id="app4">
-				<p>
-					葡萄：8.0元/斤 <input type="number" v-model.number="grape" />斤
-				</p>
-				<p>
-					西瓜：1.5元/斤 <input type="number" v-model.number="watermelon" />斤
-				</p>
-				<p>
-					总价：{{ grape * 8.0 + watermelon * 1.5 }} 元
-				</p>
-			</div>
-			<script type="text/javascript">
-				var app4 = new Vue({
-					el: '#app4',
-					data: {
-						grape: 0,
-						watermelon: 0
-					}
-				});
-			</script>
-		</fieldset>
-	</body>
+		<div id="app4">
+			<p>
+				语文：<input type="number" v-model.number="chinese" />分
+			</p>
+			<p>
+				数学：<input type="number" v-model.number="math" />分
+			</p>
+			<p>
+				英语：<input type="number" v-model.number="english" />分
+			</p>
+			<p>
+				总价：{{ chinese + math + english }} 元
+			</p>
+		</div>
+		<script type="text/javascript">
+			var app4 = new Vue({
+				el: '#app4',
+				data: {
+					chinese: 0,
+					math: 0,
+					english: 0,
+				}
+			});
+		</script>
+	</fieldset>
+</body>
 
 </html>

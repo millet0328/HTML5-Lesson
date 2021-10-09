@@ -1,62 +1,68 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
 
-	<body>
-		<fieldset id="">
-			<legend>let：块级作用域</legend>
-			<ol>
-				<li>可能出现块级作用域：while循环、if语句、for循环、function函数</li>
-			</ol>
-			<script type="text/javascript">
-				for (var i = 0; i < 5; i++) {
-					setTimeout(function() {
-						i; //5 5 5 5 5
-					}, 0);
-				}
+<body>
+	<fieldset id="">
+		<legend>let：块级作用域</legend>
+		<ol>
+			<li>可能出现块级作用域：while循环、if语句、switch语句、for循环、function函数</li>
+		</ol>
+		<script type="text/javascript">
+			setTimeout(function () {
+				console.log(1);
+			}, 0);
+			setTimeout(function () {
+				console.log(2);
+			}, 0);
 
-				for (let i = 0; i < 5; i++) {
-					setTimeout(function() {
-						i; //0 1 2 3 4
-					}, 0);
-				}
+			for (var i = 0; i < 5; i++) {
+				setTimeout(function () {
+					i; //5 5 5 5 5
+				}, 0);
+			}
 
-				var a = [];
-				for (let i = 0; i < 10; i++) {
-					a[i] = function() {
-						console.log(i);
-					};
-				}
-				a[6](); // 6
-			</script>
-		</fieldset>
-		<fieldset id="">
-			<legend>const</legend>
-			<ol>
-				<li>const声明的常量，一旦生命，不允许更改。</li>
-				<li>
-					const实际上保证的，并不是变量的值不得改动，而是变量指向的那个内存地址不得改动。对于简单类型的数据（数值、字符串、布尔值），值就保存在变量指向的那个内存地址，因此等同于常量。
-				</li>
-				<li>
-					但对于复合类型的数据（主要是对象和数组），变量指向的内存地址，保存的只是一个指针，const只能保证这个指针是固定的，至于它指向的数据结构是不是可变的，就完全不能控制了。因此，将一个对象声明为常量必须非常小心。
-				</li>
-			</ol>
-			<script type="text/javascript">
-				const PI = 3.1415926;
+			for (let i = 0; i < 5; i++) {
+				setTimeout(function () {
+					i; //0 1 2 3 4
+				}, 0);
+			}
 
-				const person = {
-					name: "黄小米",
-					age: 25,
-				}
+			var a = [];
+			for (var i = 0; i < 10; i++) {
+				a[i] = function () {
+					console.log(i);
+				};
+			}
+		</script>
+	</fieldset>
+	<fieldset id="">
+		<legend>const</legend>
+		<ol>
+			<li>const声明的常量，一旦生命，不允许更改。</li>
+			<li>
+				const实际上保证的，并不是变量的值不得改动，而是变量指向的那个内存地址不得改动。对于简单类型的数据（数值、字符串、布尔值），值就保存在变量指向的那个内存地址，因此等同于常量。
+			</li>
+			<li>
+				但对于复合类型的数据（主要是对象和数组），变量指向的内存地址，保存的只是一个指针，const只能保证这个指针是固定的，至于它指向的数据结构是不是可变的，就完全不能控制了。因此，将一个对象声明为常量必须非常小心。
+			</li>
+		</ol>
+		<script type="text/javascript">
+			const PI = 3.1415926;
 
-				person.name = "诸葛亮";
-			</script>
-		</fieldset>
+			const person = {
+				name: "黄小米",
+				age: 25,
+			}
 
-	</body>
+			person.name = "诸葛亮";
+		</script>
+	</fieldset>
+
+</body>
 
 </html>

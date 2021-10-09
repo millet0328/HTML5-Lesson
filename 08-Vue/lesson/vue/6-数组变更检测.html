@@ -19,25 +19,47 @@
 			<div id="app1">
 				<p>
 					数学成绩：
-					<b v-for="item in score">{{item}} </b>
+					<b v-for="item in score"> {{item}} </b>
 				</p>
 				<p>
 					筛选结果：
-					<b v-for="item in result">{{item}} </b>
+					<b v-for="item in result"> {{item}} </b>
 				</p>
 				<button @click="handleFilter" type="button">筛选大于60的成绩</button>
+				<p>
+					转化等级：
+					<b v-for="item in grade"> {{item}} </b>
+				</p>
+				<button @click="handleGrade" type="button">转化等级</button>
 			</div>
 			<script type="text/javascript">
 				var app1 = new Vue({
 					el: "#app1",
 					data: {
-						score: [57, 65, 87, 36, 98, 24, 78],
+						score: [65, 38, 98, 78, 12, 65, 34, 29, 56],
 						result: [],
+						grade: [],
 					},
 					methods: {
 						handleFilter: function() {
 							this.result = this.score.filter(function(item) {
-								return item >= 60;
+								return item > 60;
+							});
+						},
+						handleGrade: function() {
+							this.grade = this.score.map(function(item) {
+								if (item < 60) {
+									return 'D';
+								}
+								if (item >= 60 && item < 75) {
+									return 'C';
+								}
+								if (item >= 75 && item < 85) {
+									return 'B';
+								}
+								if (item >= 85) {
+									return 'A';
+								}
 							});
 						}
 					}
@@ -55,8 +77,7 @@
 			<div id="app2">
 				<ul>
 					<li v-for="(item,index) in arr">
-						{{item}}
-						<button @click="handleRandom(index)" type="button">随机生成</button>
+						{{item}} <button @click="handleRandom(index)" type="button">？</button>
 					</li>
 				</ul>
 			</div>
@@ -64,11 +85,13 @@
 				var app2 = new Vue({
 					el: "#app2",
 					data: {
-						arr: [32, 65, 48, 98, 15, 24]
+						arr: [21, 35, 48, 68, 46, 98, 87, 32]
 					},
 					methods: {
 						handleRandom: function(i) {
-							var x = Math.floor(Math.random() * 100);
+							// 随机生成 [10-100)
+							var x = Math.floor(Math.random() * 90 + 10);
+							// 根据索引强制更新view
 							this.$set(this.arr, i, x);
 						}
 					}

@@ -1,76 +1,78 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
 
-	<body>
-		<fieldset id="">
-			<legend>解构赋值</legend>
+<body>
+	<fieldset id="">
+		<legend>解构赋值</legend>
 
-			<ol>
-				<li>简化对象的生成</li>
-				<li>主要用途：提取对象中的数据，存储到变量中</li>
-			</ol>
-			<script type="text/javascript">
-				let cat = 'ken'
-				let dog = 'lili'
-				let zoo = { cat, dog }
-				zoo //Object {cat: "ken", dog: "lili"}
+		<ol>
+			<li>简化对象的生成</li>
+			<li>主要用途：提取对象中的数据，存储到变量中</li>
+		</ol>
+		<script type="text/javascript">
+			let cat = 'ken'
+			let dog = 'lili'
+			let zoo = { cat, dog }
+			zoo //Object {cat: "ken", dog: "lili"}
 
-				let person = {
-					name: '黄小米',
-					age: 26,
-					salary: 6000,
-					score: [100, 99, 87, 56]
+			let person = {
+				name: '黄小米',
+				age: 26,
+				salary: 6000,
+				score: [100, 99, 87, 56]
+			}
+			let { salary } = person;
+			// 等价于
+			// let salary = person.salary;
+
+		</script>
+	</fieldset>
+	<fieldset id="">
+		<legend>对象简化写法</legend>
+
+		<script type="text/javascript">
+			let wife = {
+				name: "孙尚香",
+				major: "射手",
+			}
+			let obj = {
+				name: "刘备",
+				major: "打野",
+				wife,
+				sleep() {
+					console.log('zzz....')
 				}
-
-				let { age, salary, } = person;
-			</script>
-		</fieldset>
-		<fieldset id="">
-			<legend>对象简化写法</legend>
-
-			<script type="text/javascript">
-				let wife = {
-					name: "孙尚香",
-					major: "射手",
-				}
-				let obj = {
-					name: "刘备",
-					major: "打野",
-					wife,
-					sleep() {
-						console.log('zzz....')
-					}
-				}
-				new Vue({
-					el: "#app",
-					methods: {
-						handleClick: function() {
-							console.log('clicked')
-						},
-						handleClick() {
-							console.log('clicked')
-						}
-					}
-				});
-				Vue.component("counter", {
-					data: function() {
-						return {
-							count: 1
-						}
+			}
+			new Vue({
+				el: "#app",
+				methods: {
+					handleClick: function () {
+						console.log('clicked')
 					},
-					data() {
-						return {
-							count: 1
-						}
+					handleClick() {
+						console.log('clicked')
 					}
-				})
-			</script>
-		</fieldset>
-	</body>
+				}
+			});
+			Vue.component("counter", {
+				data: function () {
+					return {
+						count: 1
+					}
+				},
+				data() {
+					return {
+						count: 1
+					}
+				}
+			})
+		</script>
+	</fieldset>
+</body>
 
 </html>

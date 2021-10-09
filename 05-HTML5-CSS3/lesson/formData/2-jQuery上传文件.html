@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.am-padding-vertical-sm {
+				padding: 10px 0;
+			}
+
+			.am-padding-sm {
+				padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="am-padding-sm">
+			<label for="">数量：</label>
+			<input type="text" name="number" value="" pattern="^\d*$" />
+		</div>
+		<div class="am-padding-sm">
+			<label for="">图片：</label>
+			<input type="file" id="file" name="file" multiple>
+		</div>
+		<div class="am-padding-sm">
+			<button id="btn" type="button">提交</button>
+		</div>
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			$('#btn').click(function() {
+				// 提取value
+				var num = $('input[name=number]').val();
+				// File对象
+				var photo = $('#file')[0].files[0];
+				// FormData  ==> Form标签
+				var formData = new FormData();
+				// 追加数据
+				formData.append('number', num);
+				formData.append('file', photo);
+
+				// ajax
+				$.ajax({
+					type: "POST",
+					url: "/api/path",
+					processData: false, //data项传参不转化
+					contentType: false, //不设置content-type
+					data: formData,
+					success: function(res) {
+
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
