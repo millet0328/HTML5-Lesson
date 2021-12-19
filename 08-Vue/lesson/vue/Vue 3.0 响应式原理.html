@@ -26,6 +26,18 @@
 					return Reflect.set(target, propKey, value, receiver);
 				}
 			});
+			
+			let arr = [1, 2, 3, 4];
+			let newArr = new Proxy(arr, {
+				get: function(target, propKey, receiver) {
+					console.log(`getting ${propKey}!`);
+					return Reflect.get(target, propKey, receiver);
+				},
+				set: function(target, propKey, value, receiver) {
+					console.log(`setting ${propKey}!`);
+					return Reflect.set(target, propKey, value, receiver);
+				}
+			});
 		</script>
 	</body>
 </html>

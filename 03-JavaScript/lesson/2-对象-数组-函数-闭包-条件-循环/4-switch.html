@@ -1,52 +1,55 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-		<style type="text/css">
-			input {
-				padding: 8px;
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		input {
+			padding: 8px;
+		}
+
+		button {
+			padding: 6px 20px;
+			font-size: 14px;
+		}
+	</style>
+</head>
+
+<body>
+	<fieldset id="">
+		<legend>switch语句</legend>
+		<input id="txt" type="text" placeholder="请输入诗人名号！">
+		<button id="btn" type="button">显示</button>
+
+	</fieldset>
+
+	<script>
+		// 查找元素 Object
+		var oTxt = document.getElementById('txt');
+		var oBtn = document.getElementById('btn');
+
+		// 绑定事件
+		oBtn.onclick = function () {
+			// 获取value
+			var txt = oTxt.value;
+
+			switch (txt) {
+				case '诗仙':
+					console.log(txt + ':李白');
+					break;
+				case '诗圣':
+					console.log(txt + ':杜甫');
+					break;
+				case '诗鬼':
+					console.log(txt + ':李贺');
+					break;
+				default:
+					console.log('查无此人！');
+					break;
 			}
+		}
+	</script>
+</body>
 
-			button {
-				padding: 6px 20px;
-				font-size: 14px;
-			}
-		</style>
-	</head>
-	<body>
-		<fieldset id="">
-			<legend>switch语句</legend>
-			<input id="txt" type="text">
-			<button id="btn" type="button">显示</button>
-
-		</fieldset>
-
-		<script>
-			// 查找元素 Object
-			var oTxt = document.getElementById('txt');
-			var oBtn = document.getElementById('btn');
-
-			// 绑定事件
-			oBtn.onclick = function() {
-				// 获取value
-				var txt = oTxt.value;
-
-				switch (txt) {
-					case '诗仙':
-						console.log(txt + ':李白');
-						break;
-					case '诗圣':
-						console.log(txt + ':杜甫');
-						break;
-					case '诗鬼':
-						console.log(txt + ':李贺');
-						break;
-					default:
-						console.log('查无此人！');
-						break;
-				}
-			}
-		</script>
-	</body>
 </html>
