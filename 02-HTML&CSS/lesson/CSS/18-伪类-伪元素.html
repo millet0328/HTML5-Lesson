@@ -2,133 +2,84 @@
 <html>
 
 	<head>
-		<meta charset="UTF-8">
+		<meta charset="utf-8">
 		<title></title>
+		<!-- 引入font-aswesome -->
 		<link rel="stylesheet" type="text/css" href="./fonts/font-awesome/css/font-awesome.min.css" />
-		<link rel="stylesheet" href="./fonts/iconfonts/iconfont.css">
-		<style type="text/css">
-			a:link {
-				color: red;
-			}
-
-			a:visited {
-				color: green;
-			}
-
-			a:hover {
-				color: blue;
-			}
-
-			a:active {
-				color: orange;
-			}
-
-			li {
-				list-style: none;
-				padding: 0;
-			}
-
-			.box-1 {
-				width: 100px;
-				height: 100px;
-				border: 2px solid orange;
-				background-color: blue;
-				color: white;
-			}
-
-			.box-1:hover {
-				border: 2px solid black;
-				background-color: white;
-				color: blue;
-			}
-
-			.table tbody tr:first-child {
-				background-color: pink;
-			}
-
-			.table tbody tr:last-child {
-				background-color: yellow;
-			}
-
-			.box-2::before {
-				content: '❀';
-				/* 必要属性 */
-			}
-
-			.box-2::after {
-				content: url(./img/95742.png);
-			}
-
-			.fl {
-				float: left;
-			}
-
-			.team-list li {
-				padding: 10px 20px;
-				margin-right: 20px;
-				background-color: orange;
-			}
-
-			.clearfix::after {
-				content: '';
-				display: block;
-				clear: both;
-			}
-
-			.clear {
-				clear: both;
-			}
-
-			.icon-gears {
-				font-size: 72px;
-				color: blue;
-			}
-
-			.icon-gears:hover {
-				color: red;
-			}
-
-			.icon-egg {
-				font-size: 72px;
-				color: orange;
-			}
-
-			.box-3 {
-				width: 100px;
-				height: 100px;
-				background-color: orange;
-				margin: 10px;
-			}
-
-			.box-3:last-child {
-				background-color: pink;
-			}
-		</style>
 	</head>
 
 	<body>
 		<fieldset id="">
-			<legend>伪类</legend>
+			<legend>链接伪类</legend>
+			<style type="text/css">
+				a:link {
+					color: red;
+				}
 
+				a:visited {
+					color: #999999;
+				}
+
+				a:hover {
+					color: orange;
+				}
+
+				.box-1 {
+					width: 100px;
+					height: 100px;
+					background-color: orange;
+					margin: 10px 0;
+					border: 2px solid transparent;
+				}
+
+				.box-1:hover {
+					background-color: green;
+					border: 2px solid red;
+				}
+
+				a:active {
+					color: deeppink;
+				}
+
+				.box-2 {
+					width: 100px;
+					height: 100px;
+					background-color: orange;
+					margin: 10px 0;
+				}
+
+				.box-2:active {
+					background-color: deeppink;
+				}
+			</style>
 			<p>
-				<a href="http://www.s.com/">未访问：link</a>
+				<a href="http://www.orz.com/">未访问的链接：link</a>
 			</p>
 			<p>
-				<a href="http://www.baidu.com/">访问过：visited</a>
+				<a href="https://www.baidu.com/">访问过的链接：visited</a>
 			</p>
 			<p>
-				<a href="#">鼠标经过：hover</a>
-			<div class="box-1">
-				div的hover
-			</div>
+				<a href="#">鼠标经过链接：hover</a>
 			</p>
+			<div class="box-1">鼠标经过</div>
 			<p>
-				<a href="#">活动的链接：active</a>
+				<a href="#">激活的链接：active</a>
 			</p>
+			<div class="box-2">按下鼠标</div>
 		</fieldset>
 
 		<fieldset id="">
 			<legend>child伪类</legend>
+
+			<style type="text/css">
+				.table tbody tr:first-child {
+					background-color: yellow;
+				}
+
+				.table tbody tr:last-child {
+					background-color: orange;
+				}
+			</style>
 			<table class="table" width="100%" border="1" cellpadding="20">
 				<thead>
 					<tr>
@@ -162,44 +113,93 @@
 			</table>
 		</fieldset>
 		<fieldset id="">
-			<legend>last-child</legend>
+			<legend>last-child 失误</legend>
+			<ol>
+				<li>浏览器在解析选择器的时候，按照从右到左解析</li>
+				<li>最后一个子元素是.clear，但是再往左解析，发现是.item作为last-child，条件不符</li>
+			</ol>
+			<style type="text/css">
+				.fl {
+					float: left;
+				}
 
-			<div>
-				<div class="box-3 fl"></div>
-				<div class="box-3 fl"></div>
-				<div class="box-3 fl"></div>
-				<div class="box-3 fl"></div>
+				.clear {
+					clear: both;
+				}
+
+				.team .item {
+					padding: 10px 30px;
+					background-color: orange;
+					margin-right: 20px;
+				}
+
+				.team .item:last-child {
+					background-color: #0086B3;
+				}
+			</style>
+			<div class="team">
+				<div class="item fl">黄小米</div>
+				<div class="item fl">黄渤</div>
+				<div class="item fl">黄磊</div>
+				<div class="item fl">张艺兴</div>
 				<div class="clear"></div>
 			</div>
 		</fieldset>
 
 		<fieldset id="">
 			<legend>伪元素</legend>
+			<ol>
+				<li>伪元素在CSS样式中，必须有content属性；</li>
+			</ol>
 			<p>1、基础语法</p>
-			<p class="box-2">
-				《木兰花令》 纳兰性德
-				人生若只如初见，何事秋风悲画扇？
-				等闲变却故人心，却道故人心易变。
-				骊山语罢清宵半，泪雨零铃终不怨。
-				何如薄倖锦衣郎，比翼连枝当日愿！
+			<style type="text/css">
+				.box-3::before {
+					content: "❀";
+				}
+
+				.box-3::after {
+					content: url(./img/95742.png);
+				}
+			</style>
+			<p class="box-3">
+				2015年4月13日，就职于河南省实验中学的女教师顾少强，下定决心向学校申请辞职。当时，顾少强在学校发放的便签纸上，随手写下了她申请辞职的理由——“世界那么大，我想去看看！”写完这封辞职信之后，顾少强掏出手机拍了一张照片，并发布在了自己的朋友圈里。
 			</p>
+
 			<p>2、清除浮动</p>
-			<ul class="team-list clearfix">
-				<li class="fl">黄磊</li>
-				<li class="fl">黄小米</li>
-				<li class="fl">孙红雷</li>
-			</ul>
+			<style type="text/css">
+				.clearfix::after {
+					content: '';
+					clear: both;
+					display: block;
+				}
+			</style>
+			<div class="team clearfix">
+				<div class="item fl">黄小米</div>
+				<div class="item fl">黄渤</div>
+				<div class="item fl">黄磊</div>
+				<div class="item fl">张艺兴</div>
+			</div>
 		</fieldset>
 
 		<fieldset id="">
 			<legend>字体图标</legend>
-			<p>1、字体图标使用，需要征求设计师的意见</p>
-			<p>2、兼容性有问题，一般 IE>9 可以使用</p>
-			<p>
-				<i class="fa fa-gears icon-gears"></i>
-			</p>
-			<p>
-				<span class="iconfont icon-caidan icon-egg"></span>
+			<ol>
+				<li>字体图标使用，需要征求设计师的意见</li>
+				<li>兼容性有问题，一般 IE>9 可以使用</li>
+			</ol>
+
+			<style type="text/css">
+				.box-4 .fa-grav {
+					font-size: 48px;
+					color: blue;
+				}
+
+				.box-4 .fa-grav:hover {
+					color: orange;
+				}
+			</style>
+			<p class="box-4">
+				<i class="fa fa-grav"></i>
 			</p>
 		</fieldset>
 	</body>

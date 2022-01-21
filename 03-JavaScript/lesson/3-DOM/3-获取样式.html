@@ -14,20 +14,33 @@
 		</style>
 	</head>
 	<body>
-		<button id="btn" type="button">按钮</button>
-		<div class="box"></div>
-		<script type="text/javascript">
-			var oBtn = document.getElementById("btn");
-			var oBox = document.querySelector(".box");
-			oBtn.onclick = function() {
-				// 获取样式
-				var w = parseFloat(getComputedStyle(oBox).width);
-				var h = parseFloat(getComputedStyle(oBox).height);
-				w += 40;
-				h += 40;
-				oBox.style.width = w + 'px';
-				oBox.style.height = h + 'px';
-			}
-		</script>
+		<fieldset id="">
+			<legend>计算样式</legend>
+			<ol>
+				<li>每点击一次，box都要增大10px</li>
+			</ol>
+			<button id="btn" type="button">按钮</button>
+			<div class="box"></div>
+
+			<script type="text/javascript">
+				// 查找元素
+				var oBtn = document.getElementById('btn');
+				var oBox = document.querySelector('.box');
+
+				// 绑定事件
+				oBtn.onclick = function() {
+					// 获取当前的宽、高
+					var width = parseInt(getComputedStyle(oBox).width);
+					var height = parseInt(getComputedStyle(oBox).height);
+					// 增加10
+					width += 10;
+					height += 10;
+					// 修改样式
+					oBox.style.width = width + 'px';
+					oBox.style.height = height + 'px';
+				}
+			</script>
+		</fieldset>
+
 	</body>
 </html>

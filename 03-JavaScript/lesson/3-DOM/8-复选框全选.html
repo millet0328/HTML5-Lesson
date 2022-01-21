@@ -42,34 +42,39 @@
 		</form>
 		<script type="text/javascript">
 			// 查找元素
-			var oLessons = document.querySelectorAll('.lesson input[type=checkbox]');
-			var oChkAll = document.getElementById('chkAll');
-			var oChkReverse = document.getElementById('chkReverse');
+			var oChkAll = document.querySelector('#chkAll');
+			var oChkReverse = document.querySelector('#chkReverse');
+			var oLesson = document.querySelectorAll('.lesson input[type="checkbox"]');
+
+			// 全选--正方向
+			oChkAll.onclick = function() {
+				// 获取全选框状态
+				var isChecked = this.checked;
+
+				oLesson.forEach(function(element) {
+					element.checked = isChecked
+				});
+			}
+			// 全选--反方向
+			oLesson.forEach(function(element) {
+				element.onclick = function() {
+					// 选中的个数
+					var count = 0;
+					oLesson.forEach(function(item) {
+						if (item.checked) {
+							count++;
+						}
+					});
+					// 全选框状态
+					oChkAll.checked = (count == oLesson.length);
+				}
+			})
 			// 反选
 			oChkReverse.onclick = function() {
-				for (var i = 0; i < oLessons.length; i++) {
-					// 获取当前选中状态
-					var checked = oLessons[i].checked
-					// 取反
-					oLessons[i].checked = !checked;
-				}
-			}
-			// 全选
-			oChkAll.onclick = function() {
-				// 获取当前的选中状态
-				var checked = oChkAll.checked;
-				for (var i = 0; i < oLessons.length; i++) {
-					oLessons[i].checked = checked;
-				}
-				// if (checked) {
-				// 	for (var i = 0; i < oLessons.length; i++) {
-				// 		oLessons[i].checked = true;
-				// 	}
-				// } else {
-				// 	for (var i = 0; i < oLessons.length; i++) {
-				// 		oLessons[i].checked = false;
-				// 	}
-				// }
+				oLesson.forEach(function(element) {
+					// 获取当前的状态，取反
+					element.checked = !element.checked
+				});
 			}
 		</script>
 	</body>

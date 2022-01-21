@@ -1,80 +1,71 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-"http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title></title>
-	</head>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title></title>
+</head>
 
-	<body>
-		<form action="" method="post">
-			<div>
-				<label for="user">
-                账号：
-                <input type="text" name="" id="user" value="" />
-            </label>
-			</div>
-			<div>
-				<label for="password">
-                密码：
-                <input type="password" name="" id="password" value="" />
-            </label>
-			</div>
-			<label for="province">
-            省份：
+<body>
+    <form>
+        <p>
+            <label>账号：</label>
+            <input type="text" />
+        </p>
+        <p>
+            <label>密码：</label>
+            <input type="password" />
+        </p>
+        <p for="province">
+            <label>省份：</label>
             <select name="province" id="province">
                 <option value="">请选择省份</option>
                 <option value="北京">北京</option>
                 <option value="天津">天津</option>
                 <option value="山东">山东</option>
             </select>
-        </label>
-			<br />
-			<label for="city">
-            城市：
-            <select name="city" id="city">
+        </p>
+        <p for="city">
+            <label>城市：</label>
+            <select>
                 <option value="">请选择城市</option>
                 <option value="青岛">青岛</option>
                 <option value="潍坊">潍坊</option>
                 <option value="滨州">滨州</option>
             </select>
-        </label>
-			<br />
-			<label for="area">
-            市区：
-            <select name="area" id="area">
+        </p>
+        <p for="area">
+            <label>市区：</label>
+            <select>
                 <option value="">请选择市区</option>
                 <option value="市北区" selected="selected">市北区</option>
                 <option value="市南区">市南区</option>
                 <option value="崂山区">崂山区</option>
             </select>
-        </label>
-			<br />
-			<label for="">
-            地址：
-            <input type="text" name="" id="address" value="" />
-        </label>
-			<br />
-			<label for="sex">
-            性别：
-            <label for="man">
-                <input type="radio" name="sex" id="man" value="1" />男
+        </p>
+        <p for="">
+            <label>地址：</label>
+            <input type="text" />
+        </p>
+        <p for="sex">
+            <label>性别：</label>
+            <label>
+                <input type="radio" name="sex" value="1" />男
             </label>
-			<label for="woman">
-                <input type="radio" name="sex" id="woman" value="0" />女
+            <label>
+                <input type="radio" name="sex" value="0" />女
             </label>
-			</label>
-			<br />
-			<label for="ticket">
-            <input type="checkbox" name="" id="ticket" value="" />我同意
-        </label>
-			<a href="#" title="允许读取您的私人信息或者微博账户">《用户使用协议》</a>
-			<br />
-			<input type="button" name="" id="reg" value="注册" />
-			<input type="reset" name="" id="" value="重填" />
-		</form>
+        </p>
+        <p>
+            <input type="checkbox" /> 我同意
+            <a href="#" title="允许读取您的私人信息或者微博账户">《用户使用协议》</a>
+        </p>
+        <p>
+            <button type="submit">注册</button>
+            <button type="reset">重填</button>
+        </p>
+    </form>
 
-	</body>
+</body>
 
 </html>

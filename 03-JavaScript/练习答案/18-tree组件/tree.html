@@ -1,101 +1,140 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-		<style>
-			.tree span:hover {
-		      font-weight: bold;
-		    }
-		
-		    .tree span {
-		      cursor: pointer;
-		    }
-		  </style>
-	</head>
-	<body>
-		<ul class="tree" id="tree">
-			<li>Animals
-				<ul>
-					<li>Mammals
-						<ul>
-							<li>Cows</li>
-							<li>Donkeys</li>
-							<li>Dogs</li>
-							<li>Tigers</li>
-						</ul>
-					</li>
-					<li>Other
-						<ul>
-							<li>Snakes</li>
-							<li>Birds</li>
-							<li>Lizards</li>
-						</ul>
-					</li>
-				</ul>
-			</li>
-			<li>Fishes
-				<ul>
-					<li>Aquarium
-						<ul>
-							<li>Guppy</li>
-							<li>Angelfish</li>
-						</ul>
-					</li>
-					<li>Sea
-						<ul>
-							<li>Sea trout</li>
-						</ul>
-					</li>
-				</ul>
-			</li>
-		</ul>
-		<ol>
-			<li>创建一个的树形菜单,如上：</li>
-			<li>点击某一个节点可以显示/隐藏子节点</li>
-			<li>只能有一个事件处理程序（使用委托）。</li>
-			<li>对节点标题以外（在空白处）的点击不会做任何处理。</li>
-			<li>具体效果请参考：<a href="https://zh.javascript.info/event-delegation" style="color:red">示例</a></li>
-		</ol>
-		<script type="text/javascript">
-			/**
-			 * 1.将每个树节点的标题都包装到 <span> 中。
-			 * 2.在 :hover 上使用 CSS 样式，并精确地处理文本上的点击事件
-			 */
-			var oLi = document.querySelectorAll('.tree li');
-			for (var i = 0; i < oLi.length; i++) {
-				// 获取文本
-				var txt = oLi[i].firstChild.textContent;
-				// 创建标签
-				var oSpan = document.createElement('span');
-				// 修改标签
-				oSpan.innerHTML = txt;
-				// 插入标签
-				oLi[i].replaceChild(oSpan, oLi[i].firstChild);
-			}
-			/**
-			 * 3.为 tree 的根节点设置一个处理程序，事件委托来处理 <span> 标题上的点击事件。 
-			 */
-			var oTree = document.getElementById('tree');
 
-			oTree.onclick = function(event) {
-				var ele = event.target
-				if (ele.tagName != 'SPAN') {
-					return;
-				}
-				var oUl = ele.nextElementSibling;
-				// 判断是否存在下一级
-				if (!oUl) {
-					return;
-				}
-				// 获取当前的显示状态
-				var display = getComputedStyle(oUl).display;
-				if (display == 'block') {
-					oUl.style.display = "none";
-				} else {
-					oUl.style.display = "block";
-				}
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style>
+		.tree span:hover {
+			font-weight: bold;
+		}
+
+		.tree span {
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+	<ul class="tree" id="tree">
+		<li>
+			<span>人类</span>
+			<ul>
+				<li>
+					<span>蜀国</span>
+					<ul>
+						<li>
+							<span>刘备</span>
+							<ul>
+								<li><span>刘禅</span></li>
+							</ul>
+						</li>
+						<li>
+							<span>关羽</span>
+							<ul>
+								<li><span>关凤</span></li>
+								<li><span>关鲍</span></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<span>魏国</span>
+					<ul>
+						<li>
+							<span>曹操</span>
+							<ul>
+								<li><span>曹丕</span></li>
+								<li><span>曹植</span></li>
+							</ul>
+						</li>
+						<li>
+							<span>司马懿</span>
+							<ul>
+								<li><span>司马昭</span></li>
+								<li><span>司马师</span></li>
+								<li><span>司马炎</span></li>
+							</ul>
+						</li>
+						<li><span>典韦</span></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<span>Animals</span>
+			<ul>
+				<li>
+					<span>Mammals</span>
+					<ul>
+						<li><span>Cows</span></li>
+						<li><span>Donkeys</span></li>
+						<li><span>Dogs</span></li>
+						<li><span>Tigers</span></li>
+					</ul>
+				</li>
+				<li>
+					<span>Other</span>
+					<ul>
+						<li><span>Snakes</span></li>
+						<li><span>Birds</span></li>
+						<li><span>Lizards</span></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<span>Fishes</span>
+			<ul>
+				<li>
+					<span>Aquarium</span>
+					<ul>
+						<li><span>Guppy</span></li>
+						<li><span>Angelfish</span></li>
+					</ul>
+				</li>
+				<li>
+					<span>Sea</span>
+					<ul>
+						<li><span>Sea trout</span></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	<ol>
+		<li>创建一个的树形菜单,如上：</li>
+		<li>点击某一个节点可以显示/隐藏子节点</li>
+		<li>最底层节点，无法折叠</li>
+		<li>只能有一个事件处理程序（使用事件委托）。</li>
+		<li>对节点标题以外（在空白处）的点击不会做任何处理。</li>
+		<li>具体效果请参考：<a href="https://zh.javascript.info/event-delegation#shu-xing-cai-dan" style="color:red">示例</a></li>
+	</ol>
+	<script type="text/javascript">
+		/**
+		 * 1.为 tree 的根节点设置一个处理程序，事件委托来处理 <span> 标题上的点击事件。 
+		 */
+		var oTree = document.getElementById('tree');
+
+		oTree.onclick = function (event) {
+			var ele = event.target
+			if (ele.tagName != 'SPAN') {
+				return;
 			}
-		</script>
-	</body>
+			var oUl = ele.nextElementSibling;
+			// 判断是否存在下一级
+			if (!oUl) {
+				return;
+			}
+			// 获取当前的显示状态
+			var display = getComputedStyle(oUl).display;
+			if (display == 'block') {
+				oUl.style.display = "none";
+			} else {
+				oUl.style.display = "block";
+			}
+		}
+	</script>
+</body>
+
 </html>

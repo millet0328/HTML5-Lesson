@@ -12,7 +12,7 @@
 			// 基础语法
 			var pattern = new RegExp("[0-9]");
 			var pattern = new RegExp("\\d");
-			var pattern = /\d/;
+			var pattern = /^1(3\d|4[5-9]|5[0-35-9]|6[567]|7[0-8]|8\d|9[0-35-9])\d{8}$/;
 		</script>
 
 		<fieldset id="">
@@ -27,19 +27,56 @@
 				var oText = document.getElementById('tel');
 
 				oBtn.onclick = function() {
-					// 获取value
-					var txt = oText.value;
-					var reg = /^1(3\d{2}|4[14-9]\d|5([0-35689]\d|7[1-79])|66\d|7[2-35-8]\d|8\d{2}|9[13589]\d)\d{7}$/;
-
-					var isValid = reg.test(txt);
+					var reg = /^1(3\d|4[5-9]|5[0-35-9]|6[567]|7[0-8]|8\d|9[0-35-9])\d{8}$/;
+					// 获取表单value
+					var tel = oText.value;
+					// 校验
+					var isValid = reg.test(tel);
 
 					if (isValid) {
-						oText.style.border = '2px solid green';
+						oText.style.border = "1px solid green";
 					} else {
-						oText.style.border = '2px solid red';
+						oText.style.border = "1px solid red";
 					}
 				}
 			</script>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>过滤违禁词</legend>
+			<ol>
+				<li>search：检索字符串，正则表达式</li>
+				<li>replace：替换字符串，正则表达式</li>
+			</ol>
+			<div class="box">
+				<input type="text" id="content" placeholder="请输入聊天内容!" />
+				<button type="button" id="send">发送</button>
+				<div class="chat-box">
+					<p>我说：分开发</p>
+				</div>
+			</div>
+			<script type="text/javascript">
+				// 查找元素
+				var oContent = document.getElementById('content');
+				var oSendBtn = document.getElementById('send');
+				var oChatBox = document.querySelector('.chat-box');
+
+				oSendBtn.onclick = function() {
+					// 获取value
+					var text = oContent.value;
+					// 检索字符串
+					var isExist = text.search(/sb/i) >= 0;
+					// 存在违禁词，替换字符串
+					if (isExist) {
+						text = text.replace(/sb/gi, '**');
+					}
+					// 发送留言
+					var oP = document.createElement('p');
+					oP.innerText = '我说：' + text;
+					oChatBox.appendChild(oP);
+				}
+			</script>
+
 		</fieldset>
 	</body>
 

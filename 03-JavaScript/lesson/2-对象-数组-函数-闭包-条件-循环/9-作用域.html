@@ -10,12 +10,21 @@
 		<script type="text/javascript">
 			//全局变量
 			var globalData = 3.14;
-			
+
 			for (var i = 0; i < 5; i++) {
-				// console.log(i)
+
 			}
-			
+			// console.log(i)
+
+			// 局部变量
+			function fun1() {
+				var flag = true;
+			}
+		</script>
+		<script type="text/javascript">
+			// 局部作用域
 			function sum(m, n) {
+				// 局部变量
 				var total = 0;
 				for (var i = m; i <= n; i++) {
 					total += i;
@@ -27,9 +36,32 @@
 				var total = x - y;
 				console.log(globalData)
 			}
-			sum(3, 5);
-			minus(9, 2);
-			console.log(total);
+
+			console.log(total); //undefined
+		</script>
+		<script type="text/javascript">
+			// 作用域链
+			var tick = 0
+
+			function outerFun() {
+				var tick = 1;
+				function innerFun () {
+					console.log(tick)
+				}
+				innerFun()
+			}
+			outerFun();
+		</script>
+		<script type="text/javascript">
+			// 隐式声明
+			function implicit() {
+				var x = '我是局部变量';
+
+				y = '我想当局部变量';
+			}
+			implicit();
+			
+			console.log(y);
 		</script>
 	</body>
 

@@ -1,11 +1,10 @@
-/*version: 2.7.0 */
-
+/*重置样式表：version: 2.7.0 */
 html,
 body {
     color: #898989;
-    background: #FFF;
+    background-color: #FFF;
     font-family: "Microsoft YaHei UI", "Microsoft YaHei UI Light", "微软雅黑", "宋体", Helvetica-Black-SemiBold, Tahoma, Arial, sans-serif;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 body,
@@ -59,7 +58,6 @@ optgroup {
     font-weight: inherit;
 }
 
-del,
 ins {
     text-decoration: none;
 }

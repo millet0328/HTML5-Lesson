@@ -4,32 +4,40 @@
 		<meta charset="utf-8">
 		<title></title>
 		<style type="text/css">
-			button {
+			button[type="button"] {
 				outline: 0;
+				padding: 6px 30px;
 			}
 		</style>
 	</head>
 	<body>
-		<button id="toggle" type="button">白天</button>
-		<script>
-			// 查找元素
-			var oToggle = document.getElementById('toggle');
+		<fieldset id="">
+			<legend>获取、修改--文字、样式</legend>
 
-			oToggle.onclick = function() {
-				// 获取当前文本
-				var txt = oToggle.innerText;
-				if (txt == '白天') {
-					oToggle.innerText = '晚上';
-					oToggle.style.border = '2px solid black';
-					oToggle.style.backgroundColor = 'orange';
-					document.body.style.backgroundColor = '#666';
-				} else {
-					oToggle.innerText = '白天';
-					oToggle.style.border = '2px solid orange';
-					oToggle.style.backgroundColor = 'white';
-					document.body.style.backgroundColor = 'white';
+			<button id="toggle" type="button">白天</button>
+
+			<script>
+				// 查找元素
+				var oToggle = document.querySelector('#toggle');
+
+				// 绑定事件
+				oToggle.onclick = function() {
+					// 获取标签当前文字
+					var text = oToggle.innerText;
+					if (text == "白天") {
+						// 修改标签文字
+						oToggle.innerText = "晚上";
+						// 修改CSS样式
+						document.body.style.backgroundColor = "#666";
+					} else {
+						oToggle.innerText = "白天";
+						// 修改CSS样式
+						document.body.style.backgroundColor = "#FFF";
+					}
 				}
-			}
-		</script>
+			</script>
+		</fieldset>
+
+
 	</body>
 </html>

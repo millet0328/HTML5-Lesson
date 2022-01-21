@@ -8,7 +8,9 @@ body {
 	font-size: 12px;
 	color: #666666;
 }
-
+body{
+	margin: 0;
+}
 .fz14 {
 	font-size: 14px;
 }
@@ -17,13 +19,13 @@ body {
 	color: #34b8de;
 }
 
+.white {
+	color: #FFFFFF;
+}
+
 a {
 	color: #666666;
 	text-decoration: none;
-}
-
-.white {
-	color: #FFFFFF;
 }
 
 .bg_white {
@@ -139,7 +141,6 @@ a {
 
 .title_box .title {
 	font-size: 18px;
-	color: #36bae0;
 	border: 1px solid #3cbce1;
 	padding: 10px;
 	display: inline-block;

@@ -1,55 +1,60 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-	<meta charset="utf-8">
-	<title></title>
-	<style type="text/css">
-		input {
-			padding: 8px;
-		}
-
-		button {
-			padding: 6px 20px;
-			font-size: 14px;
-		}
-	</style>
-</head>
-
-<body>
-	<fieldset id="">
-		<legend>switch语句</legend>
-		<input id="txt" type="text" placeholder="请输入诗人名号！">
-		<button id="btn" type="button">显示</button>
-
-	</fieldset>
-
-	<script>
-		// 查找元素 Object
-		var oTxt = document.getElementById('txt');
-		var oBtn = document.getElementById('btn');
-
-		// 绑定事件
-		oBtn.onclick = function () {
-			// 获取value
-			var txt = oTxt.value;
-
-			switch (txt) {
-				case '诗仙':
-					console.log(txt + ':李白');
-					break;
-				case '诗圣':
-					console.log(txt + ':杜甫');
-					break;
-				case '诗鬼':
-					console.log(txt + ':李贺');
-					break;
-				default:
-					console.log('查无此人！');
-					break;
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			input {
+				padding: 8px;
 			}
-		}
-	</script>
-</body>
+
+			button {
+				padding: 6px 20px;
+				font-size: 14px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<fieldset id="">
+			<legend>switch语句</legend>
+			<p>
+				<input id="txt" type="text" placeholder="请输入诗人名号！">
+				<button id="btn" type="button">显示</button>
+			</p>
+			<script type="text/javascript">
+				// 查找元素
+				var oBtn = document.getElementById('btn');
+				var oTxt = document.getElementById('txt');
+
+				oBtn.onclick = function() {
+					// 获取表单value
+					var text = oTxt.value;
+					// 枚举条件
+					switch (text) {
+						case "诗仙":
+							console.log("%s--李白", text);
+							break;
+						case "诗圣":
+							console.log("%s--杜甫", text);
+							break;
+						case "诗杰":
+							console.log("%s--王勃", text);
+							break;
+						case "诗鬼":
+							console.log("%s--李贺", text);
+							break;
+						case "诗佛":
+							console.log("%s--王维", text);
+							break;
+						default:
+							console.log("查询不到结果！")
+							break;
+					}
+				}
+			</script>
+		</fieldset>
+	</body>
 
 </html>

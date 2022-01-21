@@ -10,23 +10,27 @@
 				name: '黄小米',
 				age: 25,
 				sex: '女',
-				talk:function () {
+				talk: function() {
 					console.log('say something!')
 				}
 			}
 			// 查询属性
-			var birthYear = 2020 - person.age;
-			person['name'];
+			var birthYear = 2022 - person.age;
+			person["sex"];
+
 			// 增加属性
 			person.job = 'teacher';
 			person.boyFriend = {
-				name: "张艺兴",
-				age: 28
+				name: "鹿晗",
+				age: 32,
 			}
+
 			// 修改属性
-			person.job = 'singer';
+			person.age = 24;
+
 			// 删除属性
 			delete person.boyFriend;
+
 			// 方法调用
 			person.talk();
 		</script>

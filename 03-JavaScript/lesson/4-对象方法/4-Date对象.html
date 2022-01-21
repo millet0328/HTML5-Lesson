@@ -17,14 +17,20 @@
 			</p>
 			<script>
 				// 查找元素
+				var oStart = document.getElementById('start');
+				var oStop = document.getElementById('stop');
 				var oTime = document.querySelector('.time');
-				var oStart = document.querySelector('#start');
-				var oStop = document.querySelector('#stop');
-				// 全局变量 timeID
+				// 定时器变量
 				var timer;
+				// 修正两位数字
+				function fix(n) {
+					if (n < 10) {
+						return '0' + n;
+					}
+					return n;
+				}
 
 				function clock() {
-					// 当前时间
 					var now = new Date();
 					// 年
 					var year = now.getFullYear();
@@ -32,32 +38,28 @@
 					var month = now.getMonth() + 1;
 					// 日
 					var date = now.getDate();
-					// 星期
-					var day = now.getDay();
-					// 时
+					// 小时
 					var hour = now.getHours();
-					// 分
+					// 分钟
 					var min = now.getMinutes();
 					// 秒
 					var sec = now.getSeconds();
 					// 毫秒
 					var msec = now.getMilliseconds();
-					// 补零
-					function fix(x) {
-						if (x < 10) {
-							return '0' + x;
-						}
-						return x;
-					}
-					// 2021-01-11 16:02:48
-					oTime.innerText = year + '-' + fix(month) + '-' + fix(date) +
-						' ' + fix(hour) + ':' + fix(min) + ":" + fix(sec) + ':' + msec
+
+					var time = year + '-' + fix(month) + '-' + fix(date) + ' ' + fix(hour) + ':' + fix(min) + ':' + fix(sec) +
+						":" + msec
+					oTime.innerText = time;
 				}
 
 				oStart.onclick = function() {
-					// 1、清除原有定时器
+					// 清除上一次定时器
 					clearInterval(timer);
-					// 2、绑定新的定时器
+					// 一般写法
+					// setInterval(function() {
+					// 	clock();
+					// }, 1000);
+					// 简化版
 					timer = setInterval(clock, 1000);
 				}
 
@@ -66,19 +68,21 @@
 				}
 			</script>
 		</fieldset>
+
 		<fieldset id="">
 			<legend>倒计时</legend>
-			<p class="tick">
-
-			</p>
+			<p class="tick"></p>
 			<script>
+				// 查找元素
+				var oTick = document.querySelector('.tick');
+
 				function tick() {
 					// 未来时间
-					var future = new Date(2022, 0, 1);
+					var future = new Date(2022, 0, 21, 15);
+					// 现在时间
+					var now = new Date();
 					// 过去时间
 					var past = new Date(1840, 0, 1);
-					// 当前时间
-					var now = new Date();
 					// 时间差
 					var rest = future - now;
 					// 豪秒
@@ -92,13 +96,11 @@
 					// 天
 					var day = parseInt(rest / (1000 * 60 * 60 * 24) % 365);
 
-					// 查找元素
-					var oTick = document.querySelector('.tick');
-					oTick.innerText = day + '天' + hour + '时' + min + '分' + sec + '秒' + msec + '毫秒'
+					oTick.innerText = day + '天' + hour + '时' + min + '分' + sec + '秒' + msec + '毫秒';
 				}
-				var ticker;
 
-				ticker = setInterval(tick, 10);
+				// 设置定时器
+				setInterval(tick, 1);
 			</script>
 		</fieldset>
 		<fieldset id="">
@@ -115,7 +117,14 @@
 				<button type="button">设置闹钟</button>
 			</p>
 			<script>
-
+			
+				var now = new Date();
+				// 设置月份
+				now.setMonth(1);
+				// 设置几号
+				now.setDate(14);
+				
+				console.log(now);
 			</script>
 		</fieldset>
 

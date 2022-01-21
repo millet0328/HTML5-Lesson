@@ -3,32 +3,46 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
-		<style type="text/css">
-			.box {
-				width: 100px;
-				height: 100px;
-				background-color: pink;
-				margin: 10px;
-			}
 
-			.pointer {
-				cursor: pointer;
-			}
-
-			.move {
-				cursor: move;
-			}
-		</style>
 	</head>
 	<body>
-		<div class="box">
-			默认
-		</div>
-		<div class="box pointer">
-			pointer
-		</div>
-		<div class="box move">
-			move
-		</div>
+		<fieldset id="">
+			<legend>cursor:pointer</legend>
+			<style type="text/css">
+				.box-1 {
+					width: 100px;
+					height: 100px;
+					background-color: orange;
+					cursor: pointer;
+				}
+			</style>
+			<div class="box-1">pointer</div>
+		</fieldset>
+		
+		<fieldset id="">
+			<legend>cursor:move</legend>
+			<style type="text/css">
+				.box-2 {
+					width: 100px;
+					height: 100px;
+					background-color: orange;
+					cursor: move;
+				}
+			</style>
+			<div class="box-2">move</div>
+		</fieldset>
+		
+		<fieldset id="">
+			<legend>cursor:crosshair</legend>
+			<style type="text/css">
+				.box-3 {
+					width: 100px;
+					height: 100px;
+					background-color: orange;
+					cursor: crosshair;
+				}
+			</style>
+			<div class="box-3">crosshair</div>
+		</fieldset>
 	</body>
 </html>

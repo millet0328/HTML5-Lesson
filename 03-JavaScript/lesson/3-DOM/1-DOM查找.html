@@ -68,10 +68,6 @@
 				background-color: pink;
 				display: none;
 			}
-
-			.title {
-				color: red;
-			}
 		</style>
 	</head>
 
@@ -88,7 +84,7 @@
 		<div>
 			<h1 id="title" class="title">一对"CP"</h1>
 		</div>
-		<div class="face" id="content">
+		<div class="content" id="content">
 			<img src="img/120045g1eplnbpbz4fluz0.jpeg" />
 			<p>
 				爱朔州网2月23日消息，此前曾报道胡歌、霍建华两位男神赴北海道拍大片，这组大片将在《时尚芭莎》3月下封面大片亮相。
@@ -109,28 +105,29 @@
 				<p>新的评论<b>x</b></p>
 			</div>
 		</div>
-
 		<script type="text/javascript">
+			// 通过id查找元素
+			var oTxt = document.getElementById("txt");
 			// 通过name查找元素
-			var oSex = document.getElementsByName('sex');
+			var oRadio = document.getElementsByName("sex");
 			// 标签名字查找元素
-			var oDiv = document.getElementsByTagName('p');
+			var oP = document.getElementsByTagName('p');
 			// 通过class类名查找元素
-			var oFace = document.getElementsByClassName('face');
+			var oContent = document.getElementsByClassName('content');
 			// querySelectorAll 复数
-			var oP = document.querySelectorAll('#content p');
+			var oComment = document.querySelectorAll('.result p');
 			// querySelector 单数 第一个
-			var oP = document.querySelector('#content p');
+			var oCommentFirst = document.querySelector('.result p');
 			// 查找下一级
-			var oLink = oP.querySelector('a');
+			var oLink = oCommentFirst.querySelector('b');
 		</script>
 		<script type="text/javascript">
-			// 查找元素
-			var oTitle = document.getElementById('title');
+			// 查找元素 => element对象
+			var oTitle = document.querySelector('.title');
 			// 修改文字
-			oTitle.innerText = '霍建华、胡歌'
+			oTitle.innerText = "霍建华、胡歌冰天雪地";
 			// 修改HTML
-			oTitle.innerHTML = '<span class="red">霍建华、胡歌</span>冰天雪地'
+			oTitle.innerHTML = '霍建华、胡歌<a href="http://baike.baidu.com/">北海道</a>冰天雪地';
 		</script>
 	</body>
 

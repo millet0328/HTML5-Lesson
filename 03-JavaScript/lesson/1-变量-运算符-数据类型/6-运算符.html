@@ -18,70 +18,52 @@
 
 	<body>
 		<fieldset id="">
-			<legend>运算符：求余</legend>
-			<form action="">
-				<input id="input_1" type="text" placeholder="请输入一个整数,判断奇偶数">
-				<button id="btn_1" type="button">判断</button>
-			</form>
-			<script type="text/javascript">
-				// 查找元素
-				var oInput1 = document.getElementById('input_1');
-				var oBtn1 = document.getElementById('btn_1');
-
-				// 绑定事件
-				oBtn1.onclick = function() {
-					// 获取value
-					var num = oInput1.value;
-
-					if (num % 2) {
-						console.log('%s 是奇数', num);
-					} else {
-						console.log('%s 是偶数', num);
-					}
-				}
-			</script>
-		</fieldset>
-		<fieldset id="">
 			<legend>递增，递减</legend>
-
-			<button id="up" type="button">+</button>
-			<input id="input_2" type="text" value="1" />
-			<button id="down" type="button">-</button>
-
+			<form>
+				<p>
+					<button id="up" type="button">+</button>
+					<input id="count" type="text" value="">
+					<button id="down" type="button">-</button>
+				</p>
+			</form>
 			<script type="text/javascript">
 				// 查找元素
 				var oUp = document.getElementById('up');
 				var oDown = document.getElementById('down');
-				var oInput2 = document.getElementById('input_2');
+				var oCount = document.getElementById('count');
 
 				// 绑定事件
 				oUp.onclick = function() {
-					// 获取value
-					var num = oInput2.value;
-					num++;
-					// 修改value
-					oInput2.value = num;
+					// 获取当前count值
+					var count = parseFloat(oCount.value);
+					//判断是否是数字
+					if (!count) {
+						alert('请输入合法的数字！');
+						// 清空value
+						oCount.value = '';
+						return false;
+					}
+					// 累加1
+					count++;
+					// 赋值
+					oCount.value = count;
 				}
-
 				oDown.onclick = function() {
-					// 获取value
-					var num = oInput2.value;
-					num--;
-					// 修改value
-					oInput2.value = num;
+					// 获取当前count值
+					var count = oCount.value;
+					// 判断是否为空
+					if (!count) {
+						alert('数字不能为空！')
+					}
+					if (count > 1) {
+						count--;
+					}
+					// 赋值
+					oCount.value = count;
 				}
 			</script>
 		</fieldset>
 
-		<script type="text/javascript">
-			var text = age < 18 ? '年龄太小' : '年龄已达到';
-			// 等价于
-			if (age < 18) {
-				text = '年龄太小'
-			} else {
-				text = '年龄已达到'
-			}
-		</script>
 	</body>
 
 </html>

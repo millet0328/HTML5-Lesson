@@ -31,7 +31,6 @@
 
 		<fieldset>
 			<legend>计算总价</legend>
-
 			<table id="table" width="100%" cellpadding="20" border="1">
 				<thead>
 					<tr>
@@ -81,21 +80,26 @@
 			<p>
 				总共：<span class="num">x</span> 本书，总价：<span class="total">y</span>元
 			</p>
-			<script>
+			<script type="text/javascript">
 				// 查找元素
 				var oTr = document.querySelectorAll('#table tbody tr');
 				var oNum = document.querySelector('.num');
 				var oTotal = document.querySelector('.total');
-
-				var sum = 0;
+				// 书本总数
+				var num = 0;
+				// 书本总价
 				var total = 0;
-				for (var i = 0; i < oTr.length; i++) {
-					var num = parseInt(oTr[i].querySelectorAll('td')[4].innerText.trim());
-					var price = parseFloat(oTr[i].querySelectorAll('td')[3].innerText.trim());
-					sum += num;
-					total += num * price;
-				}
-				oNum.innerText = sum;
+				oTr.forEach(function(element) {
+					// 数量
+					var n = parseInt(element.children[4].innerText);
+					// 数量求和
+					num += n;
+					// 单价
+					var p = element.children[3].innerText;
+					// 总价求和
+					total += (n * p);
+				});
+				oNum.innerText = num;
 				oTotal.innerText = total.toFixed(2);
 			</script>
 		</fieldset>

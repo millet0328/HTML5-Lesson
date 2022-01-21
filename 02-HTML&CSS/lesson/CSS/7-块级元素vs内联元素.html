@@ -3,47 +3,52 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
-		<style type="text/css">
-			.block-box {
-				width: 300px;
-				height: 100px;
-				background-color: orange;
-			}
 
-			.inline-box {
-				background-color: pink;
-				padding: 20px;
-				margin: 10px;
-			}
-
-			.test {
-				background-color: blue;
-			}
-
-			.inline-block {
-				background-color: pink;
-				padding: 20px;
-				margin: 10px;
-				display: inline-block;
-			}
-		</style>
 	</head>
 	<body>
 		<fieldset id="">
 			<legend>块级元素特征</legend>
-
+			<style type="text/css">
+				.block-box {
+					width: 300px;
+					height: 100px;
+					background-color: orange;
+				}
+			</style>
 			<div class="block-box"></div>
+			<p>下一个元素</p>
 		</fieldset>
 		<fieldset id="">
 			<legend>内链元素特征</legend>
-			<p class="test">
+			<style type="text/css">
+				.test {
+					background-color: blue;
+				}
+
+				.inline-box {
+					width: 800px;
+					height: 400px;
+					margin: 20px;
+					padding: 10px;
+					background-color: pink;
+				}
+			</style>
+			<div class="test">
 				<span class="inline-box">内联元素</span>
-				<span class="inline-box">内联元素</span>
-			</p>
+				<span class="inline-box">内联元素，大小由内部元素撑开</span>
+			</div>
 		</fieldset>
 
 		<fieldset id="">
 			<legend>内链元素--解决方案</legend>
+			<style type="text/css">
+				.inline-block {
+					background-color: pink;
+					padding: 20px;
+					margin: 10px;
+					display: inline-block;
+				}
+			</style>
 			<p class="test">
 				<a href="#" class="inline-block">内联button</a>
 				<a href="http://www.baidu.com/" target="_blank" class="inline-block">内联button</a>

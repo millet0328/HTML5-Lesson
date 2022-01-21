@@ -4,182 +4,86 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="css/form.css" />
+		<style type="text/css">
+			.input-control {
+				padding: 6px;
+				width: 300px;
+			}
+
+			.register {
+				display: block;
+				padding: 15px 60px;
+			}
+
+			.radio-control {
+				width: 15px;
+				height: 15px;
+			}
+
+			.checkbox-control {
+				width: 15px;
+				height: 15px;
+			}
+		</style>
 	</head>
 
 	<body>
-		<form action="http://www.baidu.com/" method="get">
-			<table border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td>账&nbsp;&nbsp;号</td>
-					<td colspan="3">
-						<input type="text" name="account" id="account" value="" class="cstd" />
-					</td>
-				</tr>
-				<tr>
-					<td>密&nbsp;&nbsp;码</td>
-					<td colspan="3" class="cstd">
-						<input type="password" name="password" id="password" value="" class="cstd" />
-					</td>
+		<fieldset id="">
+			<legend>表单操作</legend>
 
-				</tr>
-				<tr>
-					<td>性&nbsp;&nbsp;别</td>
-					<td>
-						<label for="man"><input type="radio" name="sex" id="man" value="1" class="btn"/>男</label></td>
-					<td><label for="woman"><input type="radio" name="sex" id="woman" value="0" class="btn"/>女</label></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>爱&nbsp;&nbsp;好</td>
-					<td>
-						<label for=""><input type="checkbox" name="fav" id="" value="苹果" class="btn"/>苹果</label>
-					</td>
-					<td>
-						<label for=""><input type="checkbox" name="fav" id="" value="香蕉" class="btn"/>香蕉</label>
-					</td>
-					<td>
-						<label for=""><input type="checkbox" name="" id="checkAll" value="全选" class="btn"/>全选</label>
-					</td>
-				</tr>
-				<tr>
-					<td>生&nbsp;&nbsp;日</td>
-					<td>
-						<select name="year">
-							<option value="1999">1999年</option>
-							<option value="1998">1998年</option>
-							<option value="1997">1997年</option>
-							<option value="1996">1996年</option>
-							<option value="">1995年</option>
-							<option value="">1994年</option>
-							<option value="">1993年</option>
-							<option value="">1992年</option>
-							<option value="">1991年</option>
-						</select>
-					</td>
-					<td>
-						<select name="month">
-							<option value="1">1月</option>
-							<option value="2">2月</option>
-							<option value="">3月</option>
-							<option value="">4月</option>
-							<option value="">5月</option>
-							<option value="">6月</option>
-							<option value="">7月</option>
-							<option value="">8月</option>
-							<option value="">9月</option>
-							<option value="">10月</option>
-							<option value="">11月</option>
-							<option value="">12月</option>
-
-						</select>
-					</td>
-					<td>
-						<select name="day">
-							<option value="1">1日</option>
-							<option value="2">1日</option>
-							<option value="">3日</option>
-							<option value="">4日</option>
-							<option value="">5日</option>
-
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td>地&nbsp;&nbsp;区</td>
-					<td colspan="3">
-						<select name="location" class="bottom_se">
-							<option value="山东&nbsp;&nbsp;&nbsp;济南 &nbsp;&nbsp;&nbsp;章丘">山东&nbsp;&nbsp;&nbsp;济南 &nbsp;&nbsp;&nbsp;章丘</option>
-							<option value="山东&nbsp;&nbsp;&nbsp;潍坊 &nbsp;&nbsp;&nbsp;寿光">山东&nbsp;&nbsp;&nbsp;潍坊 &nbsp;&nbsp;&nbsp;寿光</option>
-							<option value="">山东&nbsp;&nbsp;&nbsp;威海 &nbsp;&nbsp;&nbsp;龙城</option>
-						</select>
-					</td>
-
-				</tr>
-				<tr>
-					<td>婚姻状况</td>
-					<td>
-						<label for="fuck"><input type="radio" name="marriage" id="fuck" value="fuck" class="btn"/>已婚</label></td>
-					<td><label for="onfuck"><input type="radio" name="marriage" id="unfuck" value="unfuck" class="btn"/>未婚</label></td>
-					<td><label for="fuckwhat"><input type="radio" name="marriage" id="fuckwhat" value="fuckwhat"class="btn" />丧偶</label></td>
-				</tr>
-				<tr>
-					<td colspan="4">
-						<input type="button" class="bottom_ta" name="" id="reg" value="立即注册" />
-					</td>
-				</tr>
-			</table>
-		</form>
+			<form>
+				<p>
+					<label>账号：</label>
+					<input type="text" name="username" class="input-control" />
+				</p>
+				<p>
+					<label>密码：</label>
+					<input type="password" name="password" class="input-control" />
+				</p>
+				<p>
+					<label>性别：</label>
+					<label><input type="radio" name="sex" checked class="radio-control" value="男" /> 男</label>
+					<label><input type="radio" name="sex" class="radio-control" value="女" /> 女</label>
+				</p>
+				<p>
+					<label>爱好：</label>
+					<label><input type="checkbox" name="fav" class="checkbox-control" value="music" /> 音乐</label>
+					<label><input type="checkbox" name="fav" class="checkbox-control" value="cartoon" /> 漫画</label>
+					<label><input type="checkbox" name="fav" class="checkbox-control" value="photo" /> 摄影</label>
+				</p>
+				<p>
+					<label>学历：</label>
+					<select name="education">
+						<option value="1">专科</option>
+						<option value="2">本科</option>
+						<option value="3">研究生</option>
+						<option value="4">博士</option>
+					</select>
+				</p>
+				<p>
+					<button type="button" class="register">立即注册</button>
+				</p>
+			</form>
+		</fieldset>
 
 		<script type="text/javascript">
-			window.onload = function() {
-				var oReg = document.getElementById("reg");
-				var oAccount = document.getElementById("account");
-				var oPassword = document.getElementById("password");
-				//单选按钮组
-				var oSex = document.getElementsByName("sex");
-				//复选框组
-				var oFav = document.getElementsByName("fav");
-				//select组
-				var oYear = document.getElementsByName("year")[0];
-				//全选
-				var oChkAll = document.getElementById("checkAll");
-				//全选
-				oChkAll.onclick = function() {
-					for(var i = 0; i < oFav.length; i++) {
-						oFav[i].checked = this.checked;
-					}
-				}
-				//复选框组
-				for(var i = 0; i < oFav.length; i++) {
-					oFav[i].onclick = function() {
-						//如果全选
-						if(isChkAll()) {
-							oChkAll.checked = true;
-						} else {
-							oChkAll.checked = false;
-						}
-					}
-				}
-				//判断是否全选
-				function isChkAll() {
-					var all = oFav.length;
-					var chk = 0;
-					for(var i = 0; i < oFav.length; i++) {
-						if(oFav[i].checked) {
-							chk++;
-						}
-					}
-					if(all == chk) {
-						return true;
-					} else {
-						return false;
-					}
-				}
+			// 查找元素
+			var oRegister = document.querySelector('.register');
 
-				//注册
-				oReg.onclick = function() {
-					var count = oAccount.value;
-					var passwrd = oPassword.value;
-					//性别
-					for(var i = 0; i < oSex.length; i++) {
-						if(oSex[i].checked) {
-							var sex = oSex[i].value;
-						}
-					}
-					//爱好
-					var arr = []
-					for(var i = 0; i < oFav.length; i++) {
-						if(oFav[i].checked) {
-							arr.push(oFav[i].value);
-						}
-					}
-					var fav = arr.join(",");
-
-					//出生日期
-					var year = oYear.selectedOptions[0].value;
-				}
-			}
+			oRegister.addEventListener('click', function() {
+				// 单选框
+				var oSex = document.querySelector('input[name="sex"]:checked');
+				var sex = oSex.value;
+				// 复选框
+				var oFav = document.querySelectorAll('input[name="fav"]:checked');
+				var fav = [];
+				oFav.forEach(function(element) {
+					fav.push(element.value);
+				});
+				// 学历
+				var oEducation = document.querySelector('select[name="education"]');
+				var education = oEducation.value;
+			});
 		</script>
 	</body>
 

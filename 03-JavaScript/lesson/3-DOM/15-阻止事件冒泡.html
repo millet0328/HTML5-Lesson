@@ -47,11 +47,11 @@
 				alert("box1--触发了click事件");
 			}
 			oBox2.onclick = function(e) {
-				// 阻止冒泡
-		 		e.stopPropagation();
 				alert("box2--触发了click事件");
 			}
-			oBox3.onclick = function() {
+			oBox3.onclick = function(e) {
+				// 阻止冒泡
+				e.stopPropagation();
 				alert("box3--触发了click事件");
 			}
 		</script>

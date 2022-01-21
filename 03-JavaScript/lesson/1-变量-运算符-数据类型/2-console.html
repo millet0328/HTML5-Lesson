@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>字符串占位符</legend>
+
+			<button id="btn1" type="button">测试字符串占位符</button>
+
+			<script>
+				// 查找元素
+				var oBtn1 = document.getElementById('btn1');
+
+				// 绑定事件处理函数
+				oBtn1.onclick = function() {
+					// string
+					var brother = 'Dean';
+					var sister = 'Lucy';
+					console.log('%s and %s are friends', brother, sister);
+				}
+			</script>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>数字占位符</legend>
+
+			<button id="btn2" type="button">测试数字占位符</button>
+
+			<script>
+				// 查找元素
+				var oBtn2 = document.getElementById('btn2');
+
+				// 绑定事件处理函数
+				oBtn2.onclick = function() {
+					console.log('12 * 36 = %d', 12 * 36);
+					console.log('12.345 * 36.56135 = %f', 12.345 * 36.56135);
+				}
+			</script>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>打印变量</legend>
+
+			<button id="btn3" type="button">打印变量</button>
+
+			<script type="text/javascript">
+				// 查找元素
+				var oBtn3 = document.getElementById('btn3');
+				
+				console.log(oBtn3);
+			</script>
+		</fieldset>
+	</body>
+</html>

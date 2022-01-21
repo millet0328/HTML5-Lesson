@@ -6,51 +6,62 @@
 	</head>
 	<body>
 		<script type="text/javascript">
-			// 基本数据类型
-			var str1 = '黄小米说："你好!"';
-			var str2 = "100";
-
+			// 基本数据类型：number、string、boolean、null、undefined
 			var num = 3.14;
 
-			var flag = true; // false
+			var word = '世界那么大，我想去看看！';
 
-			var empty = null; //空值
+			var isValid = true;
 
-			var temp = undefined; //未定义
-			// 引用数据类型
-			var person = {
-				name: '黄小米', //属性（键：值 --- 键值对）
+			var empty = null; //空
+
+			var temp = undefined; //暂时为空
+
+			// 引用数据类型：对象、数组、函数
+			var person1 = {
+				name: "黄小米",
 				age: 25,
 				isMarry: false,
 			}
+
 			// 空对象
 			var obj = {};
+
 			// 数组 格式一样的一组数据
-			var score = [95, 36, 48, 37, 65, 98];
-			var lesson = ['语文', '数学', '英语'];
+			var math = [65, 87, 94, 32, 45];
+
+			var students = ['Dean', 'Sam', 'Jack', 'Lucy'];
+
 			// 空数组
 			var arr = [];
-			// 下标/索引
-			score[1]
+
+			// 下标/索引 index
+			students[2]
+
 			// 数组--特殊化的对象
-			var lesson = {
-				0: '语文',
-				1: '数学',
-				2: '英语',
+			var group = {
+				0: 'Dean',
+				1: 'Sam',
+				2: 'Jack',
+				3: 'Lucy'
 			}
 			// 对象数组
 			var team = [
-				{ name: "黄磊", age: 48 },
 				{ name: "黄渤", age: 42 },
-				{ name: "张艺兴", age: 28 },
+				{ name: "黄磊", age: 54 },
+				{ name: "孙红雷", age: 48 },
+				{ name: "张艺兴", age: 32 },
+				{ name: "王迅", age: 46 },
 			]
-
-			var friend = {
-				name: '黄小米',
-				age: 25,
-				fav:['摄影','漫画','美食']
+			// 对象嵌套对象
+			var person2 = {
+				name: "王力宏",
+				age: 38,
+				wife: {
+					name: "李靓蕾",
+					age: 30,
+				}
 			}
-			// 如何判定数组这种数据类型
 		</script>
 	</body>
 </html>

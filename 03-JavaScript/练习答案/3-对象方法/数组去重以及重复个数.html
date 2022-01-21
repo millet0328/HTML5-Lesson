@@ -11,30 +11,66 @@
 		var arr = [1, 42, 65, 46, 28, 65, 53, 1, 32, 7, 65, 46, 1, 53, 6, 46, 65, 32, 28, 39, 65, 32, 1, 23, 65, 32, 39, 65, 46, 53, 46, 53, 65, 32, 53, 28, 65, 1, 53, 65, 23, 32, 7, 65, 32, 46, 6, 1, 53, 46, 7, 53, 9, 23, 46, 7, 53, 6, 1, 65, 28, 7, 28, 32, 65, 23, 46, 7, 53, 9]
 		1、将数组重复的数字去除
 		2、求出现频率最高的十个数字
-		3、将其打印至有序列表result中
 	</pre>
     <ol id="result">
     </ol>
-    <script type="text/javascript">
-    window.onload = function() {
-        var arr = [1, 42, 65, 46, 28, 65, 53, 1, 32, 7, 65, 46, 1, 53, 6, 46, 65, 32, 28, 39, 65, 32, 1, 23, 65, 32, 39, 65, 46, 53, 46, 53, 65, 32, 53, 28, 65, 1, 53, 65, 23, 32, 7, 65, 32, 46, 6, 1, 53, 46, 7, 53, 9, 23, 46, 7, 53, 6, 1, 65, 28, 7, 28, 32, 65, 23, 46, 7, 53, 9];
-        // 频率
-        var obj = {};
-        // 去重之后的数组
-        var pureArray = [];
-        arr.forEach(function(item, index) {
-            if (obj[item]) {
-                // 在obj中存在
-                obj[item] = obj[item] + 1;
-            } else {
-                // 在obj中不存在
-                obj[item] = 1;
-                pureArray.push(item);
+    <script>
+        // 方法一
+        function unique(arr) {
+            if (!Array.isArray(arr)) {
+                console.log('type error!')
+                return
             }
-        });
-        console.log(obj);
-        console.log(pureArray);
-    }
+            var array = [];
+            for (var i = 0; i < arr.length; i++) {
+                if (array.indexOf(arr[i]) === -1) {
+                    array.push(arr[i])
+                }
+            }
+            return array;
+        }
+        // 方法二 兼容性IE >=14
+        function unique(arr) {
+            if (!Array.isArray(arr)) {
+                console.log('type error!')
+                return
+            }
+            var array = [];
+            for (var i = 0; i < arr.length; i++) {
+                if (!array.includes(arr[i])) {//includes 检测数组是否有某个值
+                    array.push(arr[i]);
+                }
+            }
+            return array
+        }
+    </script>
+    <script type="text/javascript">
+        window.onload = function () {
+            var arr = [1, 42, 65, 46, 28, 65, 53, 1, 32, 7, 65, 46, 1, 53, 6, 46, 65, 32, 28, 39, 65, 32, 1, 23, 65, 32, 39, 65, 46, 53, 46, 53, 65, 32, 53, 28, 65, 1, 53, 65, 23, 32, 7, 65, 32, 46, 6, 1, 53, 46, 7, 53, 9, 23, 46, 7, 53, 6, 1, 65, 28, 7, 28, 32, 65, 23, 46, 7, 53, 9];
+            // 频率数组
+            var frequency = [];
+            // 去重之后的数组
+            var pureArray = [];
+            arr.forEach(function (item, index) {
+                var i = pureArray.indexOf(item);
+                if (i >= 0) {
+                    // 在pureArray中存在
+                    frequency[i].count++;
+                } else {
+                    // 在pureArray中不存在
+                    frequency.push({ value: item, count: 1 });
+                    pureArray.push(item);
+                }
+            });
+            // 排序
+            frequency.sort(function (itemA, itemB) {
+                return itemB.count - itemA.count;
+            });
+            // 输出前十个
+
+            console.log(frequency);
+            console.log(pureArray);
+        }
     </script>
 </body>
 

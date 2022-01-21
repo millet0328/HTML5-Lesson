@@ -5,70 +5,79 @@
 		<title></title>
 	</head>
 	<body>
+
 		<fieldset id="">
 			<legend>表单</legend>
-
-			<form action="">
+			<form>
 				<p>
-					<label>账户：</label>
-					<input type="text">
-				</p>
-				<p>
-					<label>手机：</label>
-					<input type="text">
+					<label>账号：</label>
+					<input type="text" placeholder="请输入手机号码">
 				</p>
 				<p>
 					<label>密码：</label>
-					<input type="password">
+					<input type="password" placeholder="请输入6位密码">
 				</p>
 				<p>
+					<!-- 单选框组：必须name相同 -->
+					<!-- checked：布尔属性 -->
 					<label>性别：</label>
 					<label>
-						<input name="sex" type="radio"> 男
+						<input name="sex" type="radio" checked> 男
 					</label>
 					<label>
 						<input name="sex" type="radio"> 女
 					</label>
 				</p>
 				<p>
+					<!-- 复选框组：必须name相同 -->
 					<label>爱好：</label>
+					<label>
+						<input type="checkbox" checked> 漫画
+					</label>
 					<label>
 						<input type="checkbox"> 摄影
 					</label>
 					<label>
-						<input type="checkbox"> 绘画
+						<input type="checkbox"> 游戏
 					</label>
 					<label>
-						<input type="checkbox"> 唱歌
+						<input type="checkbox"> 运动
+					</label>
+					<label>
+						<input type="checkbox"> 民谣
 					</label>
 				</p>
 				<p>
+					<!-- selected：布尔属性 -->
 					<label>学历：</label>
 					<select>
-						<option value="">高中</option>
-						<option value="">大专</option>
-						<option value="">本科</option>
-						<option value="">研究生</option>
-						<option value="">博士</option>
+						<option>大专</option>
+						<option selected>本科</option>
+						<option>研究生</option>
+						<option>博士</option>
 					</select>
 				</p>
+				<!-- cols(columns-列)：30个字 -->
+				<!-- rows(rows-行)：10行 -->
+				<!-- 标签中间不能有空格！！！ -->
 				<p>
 					<label>简介：</label>
-					<textarea cols="30" rows="5"></textarea>
+					<textarea cols="60" rows="5"></textarea>
 				</p>
 				<p>
 					<!-- 按钮写法1 -->
 					<input type="button" value="input按钮">
 					<!-- 按钮写法2 内部可以放其他元素-->
-					<button type="button">button 普通按钮</button>
+					<button type="button">button按钮</button>
 					<!-- 提交按钮：自动触发form的提交行为 -->
-					<button type="submit">提交按钮</button>
+					<button type="submit">submit按钮</button>
 					<!-- 重置按钮 -->
-					<button type="reset">重置按钮</button>
+					<button type="reset">reset按钮</button>
 					<!-- 如果不写type属性，默认是submit按钮 -->
-					<button>type省略</button>
+					<button>type属性缺失</button>
 				</p>
 			</form>
+
 		</fieldset>
 	</body>
 </html>

@@ -9,7 +9,6 @@
 				position: relative;
 				border: 2px solid black;
 				min-height: 800px;
-				/* cursor: none; */
 			}
 
 			.bg {
@@ -43,7 +42,7 @@
 					// 修饰元素
 					oBullet.className = 'aimer';
 					oBullet.src = './img/aimer.png';
-					// 插入元素
+					// 插入元素L
 					oBg.appendChild(oBullet);
 					oBg.onmousemove = function(e) {
 						oBullet.style.left = e.pageX - 50 - oBg.offsetLeft + 'px';
@@ -51,6 +50,7 @@
 					}
 				}
 				oBg.onmouseleave = function() {
+					this.
 					oBg.innerHTML = '';
 				}
 			</script>

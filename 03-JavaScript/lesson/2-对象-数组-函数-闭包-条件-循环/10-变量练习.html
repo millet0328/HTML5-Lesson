@@ -7,25 +7,25 @@
 	<body>
 		<script type="text/javascript">
 			// 全局变量 vs 局部变量
-			function outerFun() {
+			function fun1() {
 				a = 0;
 				console.log(a);
 			}
 			var a = 4;
-			outerFun(); //结果为0
-			console.log(a); //结果为4
+			fun1(); //结果为0
+			console.log(a); //结果为0
 
-			function outerFun() {
+			function fun2() {
 				var x = 0;
 				console.log(x);
 			}
 			var x = 4;
-			outerFun(); //结果为0
+			fun2(); //结果为0
 			console.log(x); //结果为4
 		</script>
 		<script>
 			// 变量提升
-			function test() {
+			function fun3() {
 				console.log(x);
 				var x = 3;
 				console.log(x);
@@ -35,17 +35,17 @@
 				// x = 3;
 				// console.log(x);
 			}
-			test();
+			fun3();
 			// 变量提升
 			console.log(v1);
 			var v1 = 100;
 
-			function foo() {
+			function fun4() {
 				console.log(v1);
 				var v1 = 200;
 				console.log(v1);
 			}
-			foo();
+			fun4();
 			console.log(v1);
 		</script>
 	</body>

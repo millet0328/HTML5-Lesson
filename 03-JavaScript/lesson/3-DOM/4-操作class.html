@@ -6,7 +6,7 @@
 		<style type="text/css">
 			.demo {
 				position: relative;
-				height: 240px;
+				min-height: 160px;
 				padding: 10px;
 			}
 
@@ -14,10 +14,10 @@
 				position: absolute;
 				left: 0;
 				top: 0;
-				width: 200px;
-				height: 200px;
+				width: 150px;
+				height: 150px;
 				background-color: orange;
-				transition: all 0.5s;
+				transition: all 1s;
 			}
 
 			.box.active {
@@ -31,16 +31,15 @@
 			<div class="demo">
 				<div id="box-1" class="box"></div>
 			</div>
-
 			<script type="text/javascript">
 				// 查找元素
-				var oBox1 = document.querySelector('#box-1');
-				// 绑定事件
+				var oBox1 = document.getElementById('box-1');
+
 				oBox1.onclick = function() {
-					// 获取当前的class
-					var cls = oBox1.className;
-					if (cls == 'box') {
-						// 修改className
+					// 获取当前的class属性
+					var className = oBox1.className;
+					// 修改class属性
+					if (className == 'box') {
 						oBox1.className = 'box active';
 					} else {
 						oBox1.className = 'box';
@@ -51,31 +50,34 @@
 
 		<fieldset id="">
 			<legend>操作classList</legend>
-			<p>兼容性：IE >= 10</p>
-			<p>1、添加class:add()，移除class：remove()</p>
-			<p>2、判断是否包含某个class:contains()</p>
-			<p>3、添加和移除两个方法合一：toggle()</p>
+			<ol>
+				<li>兼容性：IE >= 10</li>
+				<li>添加class:add()，移除class：remove()</li>
+				<li>判断是否包含某个class:contains()</li>
+				<li>添加和移除两个方法合一：toggle()</li>
+			</ol>
+
 			<div class="demo">
 				<div id="box-2" class="box"></div>
 			</div>
+
 			<script type="text/javascript">
 				// 查找元素
-				var oBox2 = document.querySelector('#box-2');
+				var oBox2 = document.getElementById("box-2");
 
+				// 绑定事件
 				oBox2.onclick = function() {
-					// 获取当前的classList
-					var cls = oBox2.classList;
-					// 判断是否有active
-					var isHave = oBox2.classList.contains('active');
-					if (isHave) {
-						// 移除class
-						oBox2.classList.remove('active');
-					} else {
-						// 添加class
-						oBox2.classList.add('active');
-					}
-					// 等价于
-					// oBox2.classList.toggle('active');
+					// // 判断是否包含active
+					// var isExsit = oBox2.classList.contains('active');
+
+					// if (isExsit) {
+					// 	// 移除class
+					// 	oBox2.classList.remove('active');
+					// } else {
+					// 	// 添加class
+					// 	oBox2.classList.add('active');
+					// }
+					oBox2.classList.toggle('active');
 				}
 			</script>
 		</fieldset>

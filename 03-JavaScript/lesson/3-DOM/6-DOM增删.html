@@ -36,60 +36,15 @@
 				clear: both;
 				display: block;
 			}
-
-			.box1 {
-				width: 800px;
-				height: 800px;
-				background-color: #000;
-			}
-
-			.box2 {
-				width: 600px;
-				height: 600px;
-				background-color: #FF0;
-			}
-
-			.box3 {
-				width: 200px;
-				height: 200px;
-				background-color: blue;
-			}
-
-			.modal {
-				position: fixed;
-				left: 0;
-				right: 0;
-				top: 0;
-				bottom: 0;
-				margin: auto;
-				width: 400px;
-				height: 200px;
-				padding: 20px;
-				background-color: pink;
-				display: none;
-			}
-
-			.title {
-				color: red;
-			}
 		</style>
 	</head>
 
 	<body>
-		<p>
-			<label>性别：</label>
-			<label>
-				<input type="radio" name="sex" /> 男
-			</label>
-			<label>
-				<input type="radio" name="sex" /> 女
-			</label>
-		</p>
 		<div>
-			<h1 id="title" class="title">一对"CP"</h1>
+			<h1 class="title">一对"CP"</h1>
 		</div>
-		<div class="face" id="content">
-			<img src="img/120045g1eplnbpbz4fluz0.jpeg" />
+		<div class="content" id="content">
+			<img width="600" src="img/120045g1eplnbpbz4fluz0.jpeg" />
 			<p>
 				爱朔州网2月23日消息，此前曾报道胡歌、霍建华两位男神赴北海道拍大片，这组大片将在《时尚芭莎》3月下封面大片亮相。
 			</p>
@@ -112,35 +67,35 @@
 
 		<script type="text/javascript">
 			// 查找元素
-			var oTxt = document.getElementById('txt');
 			var oBtn = document.getElementById('btn');
+			var oTxt = document.getElementById('txt');
 			var oResult = document.getElementById('result');
 
 			oBtn.onclick = function() {
 				// 获取评论文字，trim()：去掉两头空格
-				var txt = oTxt.value.trim();
+				var text = oTxt.value.trim();
 				// 判断评论是否为空
-				if (txt == '') {
-					alert('请输入具体的评论内容！');
+				if (!text) {
+					alert("请输入评论内容！");
 					return;
 				}
 				// 创建标签
 				var oP = document.createElement('p');
 				// 修饰内容
-				oP.innerHTML = txt + '<b>x</b>';
-				// 插入元素
+				oP.innerHTML = text + '<b>x</b>';
+				// 尾部插入元素
 				// oResult.appendChild(oP);
-				oResult.insertBefore(oP, oResult.firstChild);
+				// 头部插入元素
+				oResult.insertBefore(oP, oResult.firstChild)
 				// 清空value
 				oTxt.value = '';
 			}
-
 			// 删除操作
 			// 事件委托，将事件委托给自己的祖先元素，保证它在页面一开始就存在
 			oResult.onclick = function(event) {
-				// event事件对象，event.target：实际点击的元素
-				if (event.target.tagName == 'B') {
-					oResult.removeChild(event.target.parentNode);
+				// event.target实际点击的元素，判断是否点击的删除按钮
+				if (event.target.tagName === "B") {
+					event.target.parentElement.remove();
 				}
 			}
 		</script>

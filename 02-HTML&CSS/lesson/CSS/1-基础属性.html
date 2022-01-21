@@ -4,12 +4,86 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<!-- 外部样式表 -->
 		<link rel="stylesheet" href="./css/basic.css">
 	</head>
 
 	<body>
-		<div class="box">
-			1
-		</div>
+		<fieldset id="">
+			<legend>内部样式表</legend>
+			<ol>
+				<li>内部样式表一般写在head内部</li>
+				<li>项目中不要大量使用，写demo示例使用。</li>
+			</ol>
+			<style type="text/css">
+				.box-1 {
+					width: 100px;
+					height: 100px;
+					background-color: orange;
+					font-size: 12px;
+					color: #0066EE;
+					text-align: center;
+				}
+			</style>
+
+			<div class="box-1">Hello CSS</div>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>外部样式表</legend>
+			<ol>
+				<li>一般写在head内部，通过link导入</li>
+				<li>项目中推荐使用</li>
+			</ol>
+
+			<div class="box-2"></div>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>标签选择器、后代选择器</legend>
+
+			<style type="text/css">
+				/* 影响范围太广，一般不单独使用 */
+				ul {
+					background-color: pink;
+				}
+
+				/* 结合其他选择器，限定标签选择器影响范围 */
+				.list li {
+					background-color: lightgreen;
+				}
+
+				/* 后台选择器，中间部分可以省略 */
+				.list li a .price {
+					color: orange;
+				}
+				.list .price {
+					color: orange;
+				}
+			</style>
+
+			<ul class="list">
+				<li>
+					<a href="#">
+						<div class="name">商品名称</div>
+						<div class="price">￥199.00元</div>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<div class="name">商品名称</div>
+						<div class="price">￥199.00元</div>
+					</a>
+				</li>
+			</ul>
+
+			<ul>
+				<li>黄小米</li>
+				<li>黄渤</li>
+				<li>黄磊</li>
+				<li>张艺兴</li>
+				<li>王迅</li>
+			</ul>
+		</fieldset>
 	</body>
 </html>

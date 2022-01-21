@@ -14,8 +14,10 @@
 				birthday: '1988-03-28'
 			}
 			for (key in person) {
-				console.log(key + ':' + person[key])
+				// console.log(person[key]);
 			}
+		</script>
+		<script type="text/javascript">
 			// forEach
 			var students = [
 				{ name: "黄小米", code: "3018", age: 16, score: 584 },
@@ -24,19 +26,18 @@
 				{ name: "黄晓明", code: "3021", age: 17, score: 530 },
 			];
 			// 平均年龄 -- for
-			var sumAge = 0;
+			var totalAge = 0;
 			for (var i = 0; i < students.length; i++) {
-				sumAge += students[i].age;
+				totalAge += students[i].age;
 			}
-			var avgAge = sumAge / students.length;
-			console.log('平均年龄：%f', avgAge);
+			var avgAge = totalAge / students.length;
+
 			// 高考平均成绩 --forEach
-			var sumScore = 0;
+			var totalScore = 0;
 			students.forEach(function(item, index) {
-				sumScore += item.score;
+				totalScore += item.score;
 			});
-			var avgScore = sumScore / students.length;
-			console.log('平均高考成绩：%f', avgScore);
+			var avgScore = totalScore / students.length;
 		</script>
 	</body>
 </html>

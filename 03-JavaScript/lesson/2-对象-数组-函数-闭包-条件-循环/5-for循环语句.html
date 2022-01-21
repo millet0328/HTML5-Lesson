@@ -8,53 +8,62 @@
 		<script type="text/javascript">
 			// 简单循环
 			for (var i = 0; i < 3; i++) {
-				// console.log(i);
+				// console.log(i)
 			}
 			// 求0-1024之间能被7整除的数字
-			var result = '';
 			for (var i = 0; i <= 1024; i++) {
 				if (i % 7 == 0) {
-					result = result + i + ' '
+					// console.log(i)
 				}
 			}
 			// 1~1024之间,能被7整除的数,总共有多少个
-			var num = 0;
+			var count = 0;
 			for (var i = 1; i <= 1024; i++) {
 				if (i % 7 == 0) {
-					num++;
+					count++;
 				}
 			}
-			// 求和运算
+			console.log('能被7整除的数字总共有 %d 个', count);
+			// 求和运算：求1-100之间的数字总和
 			var sum = 0;
-			for (var i = 0; i <= 100; i++) {
-				sum = sum + i
+			for (var i = 1; i <= 100; i++) {
+				sum = sum + i;
+				// sum += i;
 			}
+			console.log("1+2+3+....+100 = %d", sum);
+
 			// 数学成绩
-			var math = [65, 98, 46, 78, 68, 35, 64, 85];
-			//总成绩
+			var math = [32, 65, 78, 98, 45, 64, 12, 35, 67, 87];
+
+			// 数组求和
 			var total = 0;
 			for (var i = 0; i < math.length; i++) {
 				total += math[i];
 			}
+			console.log('数学总成绩：%d', total);
+
 			// 平均成绩
 			var avg = total / math.length;
+			console.log('数学平均成绩：%d', avg);
+
 			// 评委评分规则，去掉最高分，去掉最低分，剩下的算平均分
-			var score = [65, 89, 78, 4, 87, 45, 68, 98, 36, 65]
-			var min = score[0];
+			var score = [32, 65, 78, 64, 15, 98, 35, 57, 32, 54, 65]
 			var max = score[0];
-			var total = 0;
+			var min = score[0];
+			var totalScore = 0;
+
 			for (var i = 0; i < score.length; i++) {
-				if (min > score[i]) {
-					min = score[i];
-				}
-				if (max < score[i]) {
+				// 将数组中的值进行比较
+				if (score[i] >= max) {
 					max = score[i];
 				}
-				total = total + score[i];
+				if (score[i] <= min) {
+					min = score[i];
+				}
+				totalScore += score[i];
 			}
-			var res = (total - min - max) / (score.length - 2);
-
-			console.log("min:" + min + " max:" + max);
+			var avgScore = (totalScore - max - min) / (score.length - 2);
+			console.log('平均得分：%f', avgScore);
 		</script>
 	</body>
 </html>

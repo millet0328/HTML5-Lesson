@@ -4,42 +4,6 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<style>
-			.bg-1 {
-				height: 300px;
-				background-image: url(./img/1525490815187.jpg);
-			}
-
-			.bg-2 {
-				height: 100px;
-				background-image: url(img/95742.png);
-				background-repeat: repeat;
-			}
-
-			.bg-3 {
-				border: 1px solid orange;
-				height: 300px;
-				background-image: url(img/top-5-hot-graphic-design-2018.jpg);
-				background-repeat: no-repeat;
-				background-position: top center;
-			}
-
-			.banner {
-				height: 475px;
-				background: url(./img/banner.jpg) no-repeat top center;
-			}
-
-			.bg-4 {
-				height: 200px;
-				border: 1px solid orange;
-				background: url(img/bg.png);
-			}
-
-			body {
-				background: url(img/bg.jpg);
-				background-attachment: fixed;
-			}
-		</style>
 	</head>
 
 	<body>
@@ -50,28 +14,80 @@
 		</fieldset>
 		<fieldset id="">
 			<legend>基本属性</legend>
-			<p>
-				<div class="bg-1"></div>
-			</p>
-			<p>
-				<div class="bg-2"></div>
-			</p>
-			<p>
-				<div class="bg-3"></div>
-			</p>
+			<style type="text/css">
+				.bg-1 {
+					background-image: url(./img/1525490815187.jpg);
+					height: 520px;
+					margin-bottom: 10px;
+				}
+			</style>
+			<!-- background-image -->
+			<div class="bg-1">background-image</div>
+			
+			<!-- background-repeat -->
+			<style type="text/css">
+				.bg-2 {
+					background-image: url(./img/bg.png);
+					height: 100px;
+					margin-bottom: 10px;
+					background-repeat: repeat;
+				}
+			</style>
+			<div class="bg-2">background-repeat：平铺</div>
+			
+			<!-- background-position -->
+			<style type="text/css">
+				.bg-3 {
+					background-image: url(./img/graphic-design.jpg);
+					background-repeat: no-repeat;
+					background-position: top center;
+					height: 300px;
+					border: 1px solid black;
+					margin-bottom: 10px;
+				}
+			</style>
+			<div class="bg-3">background-position</div>
+			
+			<style type="text/css">
+				.bg-4 {
+					background-image: url(./img/pic.jpg);
+					background-attachment: fixed;
+					height: 400px;
+					margin-bottom: 10px;
+				}
+			</style>
+			<!-- 固定背景：background-attachment -->
+			<div class="bg-4">background-attachment</div>
 		</fieldset>
 		<!-- banner图片 -->
 		<fieldset id="">
 			<legend>banner图片</legend>
+			<!-- 背景图解决方案 -->
+			<style type="text/css">
+				.banner-1 {
+					background: url(./img/banner.jpg) top center no-repeat;
+					height: 680px;
+					margin-bottom: 20px;
+				}
+			</style>
+			<div class="banner-1"></div>
+			
+			<!-- margin负距解决方案 -->
+			<style type="text/css">
+				.banner-2 {
+					overflow: hidden;
+				}
 
-			<div class="banner"></div>
+				.banner-2 img {
+					position: relative;
+					left: 50%;
+					margin-left: -960px;
+				}
+			</style>
+			<div class="banner-2">
+				<img src="./img/banner.jpg" alt="">
+			</div>
 		</fieldset>
-		<fieldset id="">
-			<legend>图案平铺</legend>
-
-			<div class="bg-4"></div>
-		</fieldset>
-		<!-- 固定背景：background-attachment -->
 	</body>
 
 </html>

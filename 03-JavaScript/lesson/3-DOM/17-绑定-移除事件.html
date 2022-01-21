@@ -14,44 +14,56 @@
 	<body>
 		<fieldset id="">
 			<legend>绑定/移除：DOM 0级事件处理程序</legend>
-			<p>
-				1、不允许重复绑定事件
-			</p>
-			<div id="box-2" class="box"></div>
+			<ol>
+				<li>兼容性好</li>
+				<li>不允许重复绑定事件</li>
+			</ol>
+			<div id="box-1" class="box"></div>
 
 			<script type="text/javascript">
 				// 查找元素
-				var oBox2 = document.querySelector('#box-2');
+				var oBox1 = document.querySelector('#box-1');
 				// 绑定事件
-				oBox2.onclick = function() {
+				oBox1.onclick = function() {
 					console.log('DOM 0级别事件处理程序')
 				}
 				// 移除事件
-				oBox2.onclick = null
+				oBox1.onclick = null
 			</script>
 		</fieldset>
 
 		<fieldset id="">
 			<legend>绑定/移除：DOM 2级事件处理程序</legend>
-			<p>
-				1、有兼容性问题，IE>=9以上
-			</p>
-			<p>
-				2、允许重复绑定事件
-			</p>
-			<div id="box-3" class="box"></div>
 
+			<p>
+				<button id="bind" type="button">绑定</button>
+				<button id="unbind" type="button">移除</button>
+			</p>
+
+			<div id="box-2" class="box"></div>
 			<script>
 				// 查找元素
-				var oBox3 = document.querySelector('#box-3');
+				var oBox2 = document.querySelector('#box-2');
+				var oBind = document.getElementById('bind');
+				var oUnbind = document.getElementById('unbind');
 
-				function handleClick() {
-					console.log('DOM 2级事件处理程序')
+				function handleEnter() {
+					oBox2.style.backgroundColor = "deeppink";
+				}
+
+				function handleLeave() {
+					oBox2.style.backgroundColor = "orange";
 				}
 				// 绑定事件
-				oBox3.addEventListener('click', handleClick);
+				oBind.addEventListener('click', function() {
+					oBox2.addEventListener('mouseenter', handleEnter);
+					oBox2.addEventListener('mouseleave', handleLeave);
+				});
 				// 移除事件
-				oBox3.removeEventListener('click', handleClick);
+				oUnbind.addEventListener('click', function() {
+					oBox2.removeEventListener('mouseenter', handleEnter);
+					oBox2.removeEventListener('mouseleave', handleLeave);
+				});
 			</script>
 		</fieldset>
 	</body>

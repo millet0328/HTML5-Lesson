@@ -6,57 +6,57 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="css/reset.css" />
     <style type="text/css">
-    .main {
-        padding: 20px;
-    }
+        .main {
+            padding: 20px;
+        }
 
-    .txt_center {
-        text-align: center;
-    }
+        .txt_center {
+            text-align: center;
+        }
 
-    .txt_left {
-        text-align: left;
-    }
+        .txt_left {
+            text-align: left;
+        }
 
-    .number {
-        padding: 4px 6px;
-        color: #3EAFE0;
-        font-size: 14px;
-        font-weight: bold;
-    }
+        .number {
+            padding: 4px 6px;
+            color: #3EAFE0;
+            font-size: 14px;
+            font-weight: bold;
+        }
 
-    .requestList li {
-        list-style: decimal;
-        padding: 8px 0;
-    }
+        .requestList li {
+            list-style: decimal;
+            padding: 8px 0;
+        }
 
-    .question,
-    .requestList {
-        font-size: 14px;
-        padding-bottom: 10px;
-    }
+        .question,
+        .requestList {
+            font-size: 14px;
+            padding-bottom: 10px;
+        }
 
-    .button {
-        padding: 4px 12px;
-        font-size: 14px;
-    }
+        .button {
+            padding: 4px 12px;
+            font-size: 14px;
+        }
 
-    .queue {
-        min-height: 60px;
-        padding: 30px 0;
-    }
+        .queue {
+            min-height: 60px;
+            padding: 30px 0;
+        }
 
-    .queue span {
-        width: 18px;
-        display: inline-block;
-        background-color: #00A2E8;
-        margin: 2px;
-        -webkit-transition: all 2s ease-in;
-        -moz-transition: all 2s ease-in;
-        -ms-transition: all 2s ease-in;
-        -o-transition: all 2s ease-in;
-        transition: all 2s ease-in;
-    }
+        .queue span {
+            width: 18px;
+            display: inline-block;
+            background-color: #00A2E8;
+            margin: 2px;
+            -webkit-transition: all 4s ease-in;
+            -moz-transition: all 4s ease-in;
+            -ms-transition: all 4s ease-in;
+            -o-transition: all 4s ease-in;
+            transition: all 4s ease-in;
+        }
     </style>
 </head>
 
@@ -99,89 +99,87 @@
         </ol>
     </div>
     <script type="text/javascript">
-    //查找元素
-    var lAddBtn = document.getElementById("lAddBtn");
-    var rAddBtn = document.getElementById("rAddBtn");
-    var lDelBtn = document.getElementById("lDelBtn");
-    var rDelBtn = document.getElementById("rDelBtn");
-    var oTxt = document.getElementById("txt");
-    var oQueue = document.querySelectorAll(".queue")[0];
-    var oSortBtn = document.getElementById("sortBtn");
-    //绑定事件
-    //右边加
-    rAddBtn.onclick = function() {
-        var oSpan = document.createElement("span");
-        oSpan.style.height = 2 * oTxt.value + "px";
-        oSpan.title = oTxt.value;
-        oQueue.appendChild(oSpan);
-    }
-    //左边加
-    lAddBtn.onclick = function() {
-        if (getChild() > 20) {
-            alert("已达到最大值！");
-            return;
+        //查找元素
+        var lAddBtn = document.getElementById("lAddBtn");
+        var rAddBtn = document.getElementById("rAddBtn");
+        var lDelBtn = document.getElementById("lDelBtn");
+        var rDelBtn = document.getElementById("rDelBtn");
+        var oTxt = document.getElementById("txt");
+        var oQueue = document.querySelectorAll(".queue")[0];
+        var oSortBtn = document.getElementById("sortBtn");
+        //绑定事件
+        //右边加
+        rAddBtn.onclick = function () {
+            var oSpan = document.createElement("span");
+            oSpan.style.height = 2 * oTxt.value + "px";
+            oSpan.title = oTxt.value;
+            oQueue.appendChild(oSpan);
         }
-        var oSpan = document.createElement("span");
-        oSpan.style.height = 2 * oTxt.value + "px";
-        oSpan.title = oTxt.value;
-        oQueue.insertBefore(oSpan, oQueue.firstChild);
-    }
-    //左边减
-    lDelBtn.onclick = function() {
-        oQueue.removeChild(oQueue.firstChild);
-    }
-    //右边减
-    rDelBtn.onclick = function() {
-        oQueue.removeChild(oQueue.lastChild)
-    }
-    //事件委托
-    oQueue.onclick = function(event) {
-        if (event.target.tagName == "SPAN") {
-            this.removeChild(event.target);
+        //左边加
+        lAddBtn.onclick = function () {
+            if (getChild() > 20) {
+                alert("已达到最大值！");
+                return;
+            }
+            var oSpan = document.createElement("span");
+            oSpan.style.height = 2 * oTxt.value + "px";
+            oSpan.title = oTxt.value;
+            oQueue.insertBefore(oSpan, oQueue.firstElementChild);
         }
-    }
-    //nodeList 排序
-    oSortBtn.onclick = function() {
-        //1-数组排序
-        //				var arr = [];
-        //				var oChild = oQueue.querySelectorAll("span");
-        //				for(var i = 0; i < oChild.length; i++) {
-        //					arr.push(oChild[i].title);
-        //				}
-        //				arr.sort(function(a, b) {
-        //					return a - b;
-        //				})
-        //				oQueue.innerHTML = "";
-        //				for(var i = 0; i < arr.length; i++) {
-        //					var oSpan = document.createElement("span");
-        //					oSpan.style.height = 2 * arr[i] + "px";
-        //					oSpan.title = arr[i];
-        //					oQueue.appendChild(oSpan);
-        //				}
-        //2-冒泡排序
-        var oChild = oQueue.querySelectorAll("span");
-        var temp_h;
-        var temp_t;
-        for (var i = 0; i < oChild.length; i++) {
-            for (var j = 0; j < oChild.length - i - 1; j++) {
-                if (oChild[j].title > oChild[j + 1].title) {
-                    temp_h = 2 * oChild[j + 1].title + "px";
-                    temp_t = oChild[j + 1].title;
-                    oChild[j + 1].style.height = 2 * oChild[j].title + "px"
-                    oChild[j + 1].title = oChild[j].title;
-                    oChild[j].style.height = temp_h;
-                    oChild[j].title = temp_t;
+        //左边减
+        lDelBtn.onclick = function () {
+            oQueue.removeChild(oQueue.firstElementChild);
+        }
+        //右边减
+        rDelBtn.onclick = function () {
+            oQueue.removeChild(oQueue.lastElementChild)
+        }
+        //事件委托
+        oQueue.onclick = function (event) {
+            if (event.target.tagName == "SPAN") {
+                this.removeChild(event.target);
+            }
+        }
+        //nodeList 排序
+        oSortBtn.onclick = function () {
+            //1-数组排序
+            // var arr = [];
+            // var oChild = oQueue.querySelectorAll("span");
+            // for (var i = 0; i < oChild.length; i++) {
+            //     arr.push(oChild[i].title);
+            // }
+            // arr.sort(function (a, b) {
+            //     return a - b;
+            // })
+            // oQueue.innerHTML = "";
+            // for (var i = 0; i < arr.length; i++) {
+            //     var oSpan = document.createElement("span");
+            //     oSpan.style.height = 2 * arr[i] + "px";
+            //     oSpan.title = arr[i];
+            //     oQueue.appendChild(oSpan);
+            // }
+            //2-冒泡排序
+            var oChild = oQueue.querySelectorAll("span");
+            var temp_h;
+            var temp_t;
+            for (var i = 0; i < oChild.length; i++) {
+                for (var j = 0; j < oChild.length - i - 1; j++) {
+                    if (oChild[j].title > oChild[j + 1].title) {
+                        temp_h = 2 * oChild[j + 1].title + "px";
+                        temp_t = oChild[j + 1].title;
+                        oChild[j + 1].style.height = 2 * oChild[j].title + "px"
+                        oChild[j + 1].title = oChild[j].title;
+                        oChild[j].style.height = temp_h;
+                        oChild[j].title = temp_t;
+                    }
                 }
             }
-
         }
-
-    }
-    //检查有多少个子元素
-    function getChild() {
-        var child = oQueue.querySelectorAll("span").length;
-        return child;
-    }
+        //检查有多少个子元素
+        function getChild() {
+            var child = oQueue.querySelectorAll("span").length;
+            return child;
+        }
     </script>
 </body>
 

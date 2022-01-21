@@ -15,13 +15,11 @@
 	</head>
 
 	<body>
-		<script type="text/javascript">
-			// 字符数组
-			var str = 'Hello World!';
-		</script>
-
 		<fieldset id="">
 			<legend>过滤违禁词</legend>
+			<ol>
+				<li>检索字符串：indexOf 结果==-1，代表没有；结果>=0，代表有</li>
+			</ol>
 			<div class="box">
 				<input type="text" id="content" placeholder="请输入聊天内容!" />
 				<button type="button" id="send">发送</button>
@@ -37,23 +35,22 @@
 
 				oSendBtn.onclick = function() {
 					// 获取value
-					var txt = oContent.value;
+					var text = oContent.value;
 					// 检索字符串
-					// var isHas = txt.indexOf('SB');
-					var isHas = txt.search(/SB/ig);
-					// 存在违禁词
-					if (isHas >= 0) {
-						txt = txt.replace(/SB/ig, '**');
+					// var isHave = text.indexOf("SB");
+					var isHave = text.includes('SB');
+					// 存在违禁词，替换字符串
+					if (isHave) {
+						text = text.replace('SB', '**');
 					}
-
+					// 发送留言
 					var oP = document.createElement('p');
-					oP.innerText = '我说：' + txt;
+					oP.innerText = '我说：' + text;
 					oChatBox.appendChild(oP);
 				}
 			</script>
 
 		</fieldset>
-
 
 		<fieldset id="">
 			<legend>手机号码重新格式化</legend>
@@ -65,14 +62,22 @@
 				// 查找元素
 				var oTel = document.querySelector('#tel');
 				var oConvert = document.querySelector('#convert');
+				// 格式化状态
+				var isConvert = false;
 
 				oConvert.onclick = function() {
+					// 判断是否格式化
+					if (isConvert) {
+						return;
+					}
 					// 获取value
-					var tel = oTel.value;
+					var tel = oTel.value.trim();
 					// 分段截取
-					tel = tel.substr(0, 3) + ' ' + tel.substr(3, 4) + ' ' + tel.substr(7, 4)
+					tel = tel.slice(0, 3) + ' ' + tel.slice(3, 7) + ' ' + tel.slice(7, 11)
 					// 重新赋值
 					oTel.value = tel;
+					// 修改状态
+					isConvert = true;
 				}
 			</script>
 		</fieldset>
@@ -81,8 +86,7 @@
 			<legend>字符串 => 数组</legend>
 
 			<p>
-				https://detail.tmall.com/item.htm?
-				spm=875.7931836/B.20161011.4.7bb14265hBSAvE <br>
+				https://detail.tmall.com/item.htm?spm=875.7931836/B.20161011.4.7bb14265hBSAvE <br>
 				&pvid=ac9169cf-8c4a-4124-8653-d8989da45ee7 <br>
 				&pos=4 <br>
 				&acm=201509290.1003.1.1286473 <br>
@@ -92,16 +96,19 @@
 			</p>
 
 			<script type="text/javascript">
-				var search =
-					'?spm=875.7931836/B.20161011.4.7bb14265hBSAvE&pvid=ac9169cf-8c4a-4124-8653-d8989da45ee7&pos=4&acm=201509290.1003.1.1286473&id=628235860448&scm=1007.12710.81708.100200300000000&skuId=4634632366350'
-				var query = search.substr(1);
-				var arr = query.split('&');
-				var result = {};
-				arr.forEach(function(item, index) {
-					var tmp = item.split('=');
-					result[tmp[0]] = tmp[1];
+				var link =
+					"https://detail.tmall.com/item.htm?spm=875.7931836/B.20161011.4.7bb14265hBSAvE&pvid=ac9169cf-8c4a-4124-8653-d8989da45ee7&pos=4&acm=201509290.1003.1.1286473&id=628235860448&scm=1007.12710.81708.100200300000000&skuId=4634632366350"
+				// 检索问号所在位置
+				var i = link.indexOf('?');
+				var queryString = link.slice(i + 1);
+				var query = queryString.split('&');
+
+				var obj = {};
+				query.forEach(function(item) {
+					var arr = item.split('=');
+					obj[arr[0]] = arr[1];
 				});
-				console.log(result);
+				console.log(obj);
 			</script>
 		</fieldset>
 	</body>

@@ -8,7 +8,7 @@
 			input {
 				padding: 8px;
 			}
-
+		
 			button {
 				padding: 6px 20px;
 				font-size: 14px;
@@ -35,22 +35,22 @@
 				// 绑定事件
 				oBtn.onclick = function() {
 					// 获取value
-					var num1 = oNum1.value;
-					var num2 = oNum2.value;
+					var num1 = parseFloat(oNum1.value);
+					var num2 = parseFloat(oNum2.value);
 					// 判断是否为数字
-					var isNum1Valid = isNaN(num1);
-					if (isNum1Valid) {
-						console.log('%s 不是数字', num1);
-						return;
+					if (!num1) {
+						alert('第一个数字不合法！');
+						// 清空value
+						oNum1.value = '';
+						return false;
 					}
-
-					var isNum2Valid = isNaN(num2);
-					if (isNum2Valid) {
-						console.log('%s 不是数字', num2);
-						return;
+					if (!num2) {
+						alert('第二个数字不合法！');
+						// 清空value
+						oNum2.value = '';
+						return false;
 					}
-
-					var result = parseFloat(num1) + parseFloat(num2);
+					var result = num1 + num2;
 					console.log('%s + %s = %s', num1, num2, result);
 				}
 			</script>

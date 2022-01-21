@@ -13,19 +13,19 @@
 		</form>
 		<script type="text/javascript">
 			// 查找元素
-			var oPassword = document.getElementById('password');
+			var oPassword = document.querySelector('#password');
 			var oEye = document.querySelector('.eye');
 
 			oEye.onclick = function() {
-				// 获取密码框的type属性
+				// 当前的type
 				var type = oPassword.getAttribute('type');
 				
-				if (type == 'password') {
+				if (type === 'password') {
 					oPassword.setAttribute('type', 'text');
 				} else {
 					oPassword.setAttribute('type', 'password');
 				}
-			};
+			}
 		</script>
 	</body>
 </html>

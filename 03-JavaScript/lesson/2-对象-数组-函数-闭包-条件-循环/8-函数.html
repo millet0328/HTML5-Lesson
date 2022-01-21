@@ -14,11 +14,29 @@
 				for (var i = m; i <= n; i++) {
 					total += i;
 				}
-				// console.log(total);
+				console.log("%d +....+ %d = %d", m, n, total);
+			}
+
+			// 函数调用
+			// sum() m == undefined , n == undefined
+		</script>
+		<script type="text/javascript">
+			/*
+			 * 求 1+2+....+320的总和
+			 * 如果得到偶数，总和*12
+			 * 如果得到奇数，总和/7
+			 */
+
+			// sum函数 => 带return函数
+			function sum(m, n) {
+				var total = 0;
+				for (var i = m; i <= n; i++) {
+					total += i;
+				}
+				console.log("%d +....+ %d = %d", m, n, total);
 				return total;
 			}
-			sum(0, 100);
-			sum(15, 75);
+
 			// return函数，判断奇偶数
 			function isEven(x) {
 				if (x % 2 == 0) {
@@ -27,16 +45,31 @@
 					return false;
 				}
 			}
-			// 1+....+320的总和，
-			// 如果得到偶数，总和*12
-			// 如果得到奇数，总和/7
+
 			var result = sum(1, 320);
+
 			var flag = isEven(result);
+
 			if (flag) {
-				console.log(result * 12);
+				console.log('最终结果：%f * 12 = %f', result, result * 12)
 			} else {
-				console.log(result / 7);
+				console.log('最终结果：%f / 7 = %f', result, result / 12)
 			}
+		</script>
+
+		<script type="text/javascript">
+			// arguments参数数组
+			// 任意n个数字的平均值
+			function average() {
+				var total = 0;
+				for (var i = 0; i < arguments.length; i++) {
+					total += arguments[i]
+				}
+				return total / arguments.length
+			}
+			average(12, 35)
+			average(12, 35, 98, 57, 65);
+			average(12, 35, 38, 87);
 		</script>
 	</body>
 

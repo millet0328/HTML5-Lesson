@@ -1,57 +1,92 @@
 .container {
-	width: 1000px;
-	margin: 0 auto;
+    width: 1000px;
+    margin: 0 auto;
 }
 
 .fl {
-	float: left;
+    float: left;
 }
 
 .fr {
-	float: right;
+    float: right;
 }
 
 .clear {
-	clear: both;
+    clear: both;
 }
 
-.title-box {
-	border-left: 6px solid #d30000;
-	padding-left: 21px;
+/* 示例1 */
+.article {
+    width: 454px;
 }
 
-.title-box .title {
-	font-size: 27px;
-	color: #000000;
-	margin-bottom: 11px;
+.article .title-box {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #cdcaca;
+    margin-bottom: 44px;
 }
 
-.title-box .subtitle {
-	font-size: 12px;
-	color: #6B6B6B;
-	width: 462px;
+.article .title-box .name {
+    border-left: 4px solid #34b8de;
+    padding-left: 16px;
+    font-size: 16px;
+    color: #34b8de;
 }
 
-.quality-box .name {
-	margin-top: 21px;
-	font-size: 14px;
-	color: #6b6b6b;
+.article .title-box .more {
+    font-size: 16px;
+    color: #aeaeae;
 }
 
-.quality-box .en {
-	font-size: 12px;
-	color: #6b6b6b;
-	margin-top: 9px;
+.article-list .item {
+    padding-bottom: 21px;
 }
 
-.quality-box .item {
-	width: 221px;
-	margin-right: 38px;
-	text-align: center;
+.article-list .item .title {
+    font-size: 14px;
+    color: #474747;
 }
 
-.quality-box .content {
-	padding-top: 40px;
-	padding-bottom: 84px;
-	width: 1038px;
+.article-list .item .date {
+    font-size: 12px;
+    color: #b4b4b4;
+}
+
+/* 示例2 */
+.quality .title {
+    border-left: 6px solid #d30000;
+    padding-left: 21px;
+    margin-bottom: 40px;
+}
+
+.quality .title .name {
+    font-size: 27px;
+    color: black;
+    font-weight: bold;
+    margin-bottom: 11px;
+}
+
+.quality .title .des {
+    width: 456px;
+    font-size: 12px;
+    color: #6b6b6b;
+}
+
+.quality .content {
+    text-align: center;
+    color: #6B6B6B;
+    width: 1038px;
+}
+
+.quality .content .cn {
+    font-size: 14px;
+    margin: 22px 0 9px 0;
+}
+
+.quality .content .en {
+    font-size: 12px;
+}
+
+.quality .content .item {
+    margin-right: 38px;
 }

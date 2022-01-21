@@ -1,40 +1,72 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-	</head>
-	<body>
-		<fieldset>
-			<legend>绝对路径 跳转外部地址</legend>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+
+<body>
+	<!-- 绝对路径 跳转外部地址 -->
+	<fieldset id="">
+		<legend>绝对路径：跳转外部地址</legend>
+		
+		<a href="http://www.baidu.com/">百度一下</a>
+	</fieldset>
+	<!-- 相对路径：跳转本地文件 -->
+	<fieldset id="">
+		<legend>相对路径：跳转本地文件</legend>
+		
+		<!-- 当前目录查找 ：./ -->
+		<a href="./2-标签.html">标签页</a>
+		<!-- 省略情况 -->
+		<a href="1-Hello World.html">Hello World</a>
+		<!-- 下一级目录 -->
+		<a href="user/info.html">用户信息</a>
+	</fieldset>
+	<!-- 图片链接 -->
+	<fieldset id="">
+		<legend>图片链接</legend>
+		
+		<a target="_blank" href="http://www.jd.com/">
+			<img width="200" src="./img/0.jpg" >
+		</a>
+		
+	</fieldset>
+	<!-- 常见错误：嵌套链接 -->
+	<fieldset id="">
+		<legend>常见错误</legend>
+		
+		<!-- 嵌套链接 -->
+		<a href="http://www.58.com/">
+			58同城
 			<p>
-				<a target="_blank" href="https://www.baidu.com">百度一下</a>
+				在发布的“2021中国民营企业品牌50强”榜单中，<a href="http://www.qq.com/">腾讯</a>和阿里巴巴分别排名榜单第二、三名。排名第4至10位的是小米、三一集团、京东集团、海尔集团、网易、云账户和TCL。位列第一名的则是华为。数据显示，2021年上半年，华为实现销售收入3204亿元，同比下降29.43%，净利润率为9.8%。
 			</p>
-		</fieldset>
-		<!-- 相对路径 跳转本地文件 -->
-		<fieldset id="">
-			<legend>相对路径 跳转本地文件</legend>
-			<p>
-				<!-- 当前目录查找： ./ -->
-				<a href="./2-标签.html">标签</a>
-				<!-- 省略情况 -->
-				<a href="1-Hello World.html">Hello World</a>
-			</p>
-		</fieldset>
-		<!-- 图片链接 -->
-		<fieldset id="">
-			<legend>链接嵌套标签</legend>
-			<p>
-				<a href="http://weibo.com/">
-					<img width="200" src="./img/0.jpg" alt="给我来个小和尚" />
-				</a>
-			</p>
-			<p>
-				<a href="http://www.jd.com">
-					外层
-					<a href="http://www.baidu.com">内层</a>
-				</a>
-			</p>
-		</fieldset>
-	</body>
+		</a>
+		<!-- 把a标签当成普通标签使用 -->
+		<a class="mi">小米商城</a>
+	</fieldset>
+	<!-- 邮箱链接 -->
+	<fieldset id="">
+		<legend>邮箱链接</legend>
+		<ol>
+			<li>需要配套的邮箱软件才能有效，例如outlook，foxmail，网易邮箱大师</li>
+		</ol>
+		<p>
+			公司邮箱：<a href="mailto:nn880328@126.com">nn880328@126.com</a>
+		</p>
+	</fieldset>
+	<!-- 电话链接 -->
+	<fieldset id="">
+		<legend>电话链接：</legend>
+		<ol>
+			<li>只要点击链接，自动拨打电话</li>
+		</ol>
+		<p>
+			联系电话：<a href="tel:15863008280">15863008280</a>
+		</p>
+	</fieldset>
+</body>
+
 </html>

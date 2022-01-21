@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>比较函数</title>
+</head>
+
+<body>
+    <script>
+        // return函数，判断奇偶数
+        function isEven(x) {
+            if (x % 2 == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function compare(m, n) {
+            // 两个偶数
+            if (isEven(m) && isEven(n)) {
+                return m + n;
+            }
+            // 两个奇数
+            if (!isEven(m) && !isEven(n)) {
+                if (m >= n) {
+                    return m - n;
+                } else {
+                    return n - m;
+                }
+                // return (m >= n) ? (m - n):(n - m)
+            }
+            // 一奇一偶
+            if (m >= n) {
+                return m / n;
+            } else {
+                return n / m;
+            }
+            // return (m >= n) ? (m / n) : (n / m)
+        }
+    </script>
+</body>
+
+</html>

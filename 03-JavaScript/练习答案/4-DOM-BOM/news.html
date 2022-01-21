@@ -5,36 +5,36 @@
     <meta charset="UTF-8">
     <title></title>
     <style type="text/css">
-    body {
-        font-family: "微软雅黑";
-    }
+        body {
+            font-family: "微软雅黑";
+        }
 
-    .face img {
-        max-width: 100%;
-    }
+        .face img {
+            max-width: 100%;
+        }
 
-    .result {
-        margin-top: 20px;
-        padding: 10px 10px 0 10px;
-        border: 1px solid #CCCCCC;
-        color: #e77064;
-    }
+        .result {
+            margin-top: 20px;
+            padding: 10px 10px 0 10px;
+            border: 1px solid #CCCCCC;
+            color: #e77064;
+        }
 
-    .result p {
-        position: relative;
-        margin-top: 0;
-        padding-left: 10px;
-        padding-right: 20px;
-        border-left: 4px solid #E77064;
-    }
+        .result p {
+            position: relative;
+            margin-top: 0;
+            padding-left: 10px;
+            padding-right: 20px;
+            border-left: 4px solid #E77064;
+        }
 
-    .result p span {
-        content: "X";
-        position: absolute;
-        right: 0;
-        top: 0;
-        cursor: pointer;
-    }
+        .result p span {
+            content: "X";
+            position: absolute;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -45,10 +45,12 @@
     <div class="face" id="content">
         <img src="https://image11.m1905.cn/uploadfile/2016/0223/20160223045150542814.jpg" />
         <p>
-            <span></span>爱朔州网2月23日消息，此前曾报道胡歌、霍建华两位男神赴北海道拍大片，这组大片将在《时尚芭莎》3月下封面大片亮相。</p>
+            <span></span>爱朔州网2月23日消息，此前曾报道胡歌、霍建华两位男神赴北海道拍大片，这组大片将在《时尚芭莎》3月下封面大片亮相。
+        </p>
         <p>大片中两位男神CP雪地嬉戏基情满满。</p>
         <p>这
-            <a href="2-BOM.html">高颜值</a>和大长腿，小编表示血槽已空啊……</p>
+            <a href="2-BOM.html">高颜值</a>和大长腿，小编表示血槽已空啊……
+        </p>
     </div>
     <div class="comment">
         <input type="text" name="" id="txt" value="" />
@@ -66,37 +68,48 @@
         </div>
     </div>
     <script type="text/javascript">
-    // 所有操作必须使用js来完成
-    // 1.让文章标题《一对"CP"》文字居中，并改成《胡歌霍建华北海道拍写真 雪中上演“冬季恋歌”》
-    // 2.将图片的宽度改为600px
-    // 3.点击标题隐藏图片，再次点击显示图片
-    var oTitle = document.querySelector("#title h1");
-    var oPhoto = document.querySelector("#content img");
+        // 所有操作必须使用js来完成
+        // 1.让文章标题《一对"CP"》文字居中，并改成《胡歌霍建华北海道拍写真 雪中上演“冬季恋歌”》
+        // 2.将图片的宽度改为600px
+        // 3.点击标题隐藏图片，再次点击显示图片
+        var oTitle = document.querySelector("#title h1");
+        var oPhoto = document.querySelector("#content img");
 
-    oTitle.style.textAlign = "center";
-    oTitle.innerText = "胡歌霍建华北海道拍写真 雪中上演“冬季恋歌”";
-    oPhoto.style.width = "600px";
-    //一个元素点击出现两种结果
-    //判断display
-    oTitle.onclick = function() {
-        var status = getComputedStyle(oPhoto).display;
-        if (status == "inline") {
-            oPhoto.style.display = "none";
-        } else {
-            oPhoto.style.display = "inline";
+        oTitle.style.textAlign = "center";
+
+        oTitle.innerText = "胡歌霍建华北海道拍写真 雪中上演“冬季恋歌”";
+
+        oPhoto.style.width = "600px";
+        //一个元素点击出现两种结果
+        //判断display
+        oTitle.onclick = function () {
+            var status = getComputedStyle(oPhoto).display;
+            if (status == "inline") {
+                oPhoto.style.display = "none";
+            } else {
+                oPhoto.style.display = "inline";
+            }
         }
-    }
-    //布尔值标明状态
-    var flag = true; //标明图片的显示/隐藏
-    oTitle.onclick = function() {
-        if (flag) {
-            oPhoto.style.display = "none";
-            flag = false;
-        } else {
-            oPhoto.style.display = "block";
-            flag = true;
+        //布尔值标明状态
+        var flag = true; //标明图片的显示/隐藏
+        oTitle.onclick = function () {
+            if (flag) {
+                oPhoto.style.display = "none";
+                flag = false;
+            } else {
+                oPhoto.style.display = "block";
+                flag = true;
+            }
         }
-    }
+
+        // 错误代码
+        // oTitle.onclick = function () {
+        //     if (oPhoto.style.display == "inline") {
+        //         oPhoto.style.display = "none";
+        //     } else {
+        //         oPhoto.style.display = "inline";
+        //     }
+        // }
     </script>
 </body>
 

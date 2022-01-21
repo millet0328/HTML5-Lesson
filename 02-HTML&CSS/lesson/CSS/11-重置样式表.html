@@ -3,40 +3,42 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
-		<!-- 重置浏览器默认样式 -->
+		<!-- 重置浏览器默认样式，排第一位 -->
 		<link rel="stylesheet" href="./css/reset.css">
-		<style>
+		<!-- 自定义样式 -->
+		<style type="text/css">
 			.nav {
 				background-color: #00008B;
-			}
-
-			.nav .menu {
-				padding: 10px;
-			}
-
-			.nav .menu a {
-				color: white;
+				padding: 20px 0;
 				font-size: 16px;
+			}
+
+			.nav .link a {
+				color: white;
+				font-weight: bold;
+				padding: 0 10px;
 			}
 		</style>
 	</head>
 	<body>
 		<fieldset id="">
 			<legend>示例：导航链接</legend>
-			<!-- 导航链接 -->
 			<div class="nav">
 				<div class="container">
-					<div class="menu fl">
+					<div class="link fl">
+						<a href="#">首页</a>
+					</div>
+					<div class="link fl">
 						<a href="#">国内</a>
 					</div>
-					<div class="menu fl">
+					<div class="link fl">
 						<a href="#">国际</a>
 					</div>
-					<div class="menu fl">
+					<div class="link fl">
 						<a href="#">财经</a>
 					</div>
-					<div class="menu fl">
-						<a href="#">娱乐</a>
+					<div class="link fl">
+						<a href="#">军事</a>
 					</div>
 					<div class="clear"></div>
 				</div>
@@ -47,17 +49,20 @@
 			<div class="nav">
 				<div class="container">
 					<ul>
-						<li class="menu fl">
+						<li class="link fl">
+							<a href="#">首页</a>
+						</li>
+						<li class="link fl">
 							<a href="#">国内</a>
 						</li>
-						<li class="menu fl">
+						<li class="link fl">
 							<a href="#">国际</a>
 						</li>
-						<li class="menu fl">
+						<li class="link fl">
 							<a href="#">财经</a>
 						</li>
-						<li class="menu fl">
-							<a href="#">娱乐</a>
+						<li class="link fl">
+							<a href="#">军事</a>
 						</li>
 						<div class="clear"></div>
 					</ul>

@@ -1,79 +1,133 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-	</head>
-	<body>
-		<fieldset id="">
-			<legend>表格</legend>
-			<table width="100%" border="1" cellpadding="20">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>书名</th>
-						<th>作者</th>
-						<th>价格</th>
-						<th>数量</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>1</td>
-						<td>西游记</td>
-						<td>吴承恩</td>
-						<td>40.00</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>三国演义</td>
-						<td>罗贯中</td>
-						<td>50.00</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>红楼梦</td>
-						<td>曹雪芹</td>
-						<td>30.00</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>水浒传</td>
-						<td>施耐庵</td>
-						<td>60.00</td>
-						<td>1</td>
-					</tr>
-				</tbody>
-			</table>
-		</fieldset>
-		
-		<fieldset id="">
-			<legend>合并单元格</legend>
-			<table width="100%" border="1" cellpadding="20">
-				<thead>
-					<tr>
-						<th>标题1</th>
-						<th>标题2</th>
-						<th>标题3</th>
-						<th>标题4</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td colspan="2">data1</td>
-						<td>data2</td>
-						<td rowspan="2">data3</td>
-					</tr>
-					<tr>
-						<td>data1</td>
-						<td>data2</td>
-						<td>data3</td>
-					</tr>
-				</tbody>
-			</table>
-		</fieldset>
-	</body>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+
+<body>
+	<fieldset id="">
+		<legend>基础表格</legend>
+		<table width="100%" border="1" cellpadding="20">
+			<!-- 表头 -->
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>姓名</th>
+					<th width="40">性别</th>
+					<th>学校</th>
+					<th>专业</th>
+				</tr>
+			</thead>
+			<!-- 表主体 -->
+			<tbody align="center">
+				<tr>
+					<td>1</td>
+					<td>黄小米</td>
+					<td>女</td>
+					<td>青岛大学</td>
+					<td>计算机科学</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>黄渤</td>
+					<td>男</td>
+					<td>青岛理工大学</td>
+					<td>音乐</td>
+				</tr>
+			</tbody>
+		</table>
+	</fieldset>
+	<fieldset>
+		<legend>合并单元格</legend>
+		<table width="100%" border="1" cellspacing="" cellpadding="20">
+			<thead>
+				<tr>
+					<th>Header</th>
+					<th>Header</th>
+					<th>Header</th>
+					<th>Header</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="2">Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>Data</td>
+					<td>Data</td>
+					<td colspan="2">Data</td>
+				</tr>
+			</tbody>
+		</table>
+	</fieldset>
+	<fieldset id="">
+		<legend>案例分析</legend>
+		<table width="100%" border="1" cellpadding="20">
+			<thead>
+				<tr>
+					<th rowspan="2">订单号</th>
+					<th rowspan="2">姓名</th>
+					<th colspan="3">收货地址</th>
+					<th rowspan="2">商品</th>
+					<th rowspan="2">价格</th>
+					<th rowspan="2">数量</th>
+				</tr>
+				<tr>
+					<th>省份</th>
+					<th>市区</th>
+					<th>地址</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="2">10003684</td>
+					<td rowspan="2">黄小米</td>
+					<td rowspan="2">山东省</td>
+					<td rowspan="2">青岛市</td>
+					<td rowspan="2">崂山区南京路350号</td>
+					<td>iphone plus 手机</td>
+					<td>7999.0</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>airpods耳机</td>
+					<td>499.0</td>
+					<td>2</td>
+				</tr>
+				<tr>
+					<td rowspan="2">10009897</td>
+					<td rowspan="2">张艺兴</td>
+					<td rowspan="2">湖北省</td>
+					<td rowspan="2">武汉市</td>
+					<td rowspan="2">江夏区南京路350号</td>
+					<td>小米 12</td>
+					<td>7999.0</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>电动牙刷</td>
+					<td>499.0</td>
+					<td>1</td>
+				</tr>
+			</tbody>
+		</table>
+	</fieldset>
+</body>
+
 </html>
