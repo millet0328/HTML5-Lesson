@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-	</head>
-	<body>
-		<fieldset id="">
-			<legend>获取/设置 CSS</legend>
-			<button id="btn" type="button">按钮</button>
 
-		</fieldset>
-		<script src="js/jquery-3.5.1.min.js"></script>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
 
-		<script type="text/javascript">
-			$('#btn').click(function() {
-				// 获取字号
-				var size = parseFloat($(this).css('font-size'));
-				// 设置字号
-				$(this).css('font-size', size + 5);
-			});
-		</script>
-	</body>
+<body>
+	<fieldset id="">
+		<legend>获取/设置 CSS</legend>
+		<button id="btn" type="button">按钮</button>
+
+	</fieldset>
+	<script src="js/jquery-3.6.0.min.js"></script>
+
+	<script type="text/javascript">
+		$('#btn').click(function () {
+			// 获取字号
+			var size = parseFloat($(this).css('font-size'));
+			// 设置字号
+			$(this).css('font-size', size + 5);
+		});
+	</script>
+</body>
+
 </html>

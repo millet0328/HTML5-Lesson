@@ -40,10 +40,12 @@
 			}
 		</script>
 	</fieldset>
+
 	<fieldset id="">
 		<legend>const</legend>
 		<ol>
-			<li>const声明的常量，一旦生命，不允许更改。</li>
+			<li>const声明的常量，一旦声明，不允许更改。</li>
+			<li>const声明的常量，必须立即初始化一个值。</li>
 			<li>
 				const实际上保证的，并不是变量的值不得改动，而是变量指向的那个内存地址不得改动。对于简单类型的数据（数值、字符串、布尔值），值就保存在变量指向的那个内存地址，因此等同于常量。
 			</li>
@@ -60,6 +62,28 @@
 			}
 
 			person.name = "诸葛亮";
+		</script>
+	</fieldset>
+
+	<fieldset id="">
+		<legend>let/const：变量会提升，但不初始化，无法使用</legend>
+		<ol>
+			<li>javascript中所有的声明（函数、var、let、const、class）都被提升至词法环境中</li>
+			<li>var声明会被初始化为undefined，但是let和const声明没有初始化</li>
+		</ol>
+		<script type="text/javascript">
+			if (true) {
+				console.log(a); //Cannot access 'a' before initialization
+				let a = 3;
+			}
+		</script>
+		<script type="text/javascript">
+			// 
+			if (true) {
+				let b;
+				console.log(b); //undefined
+				b = 5;
+			}
 		</script>
 	</fieldset>
 

@@ -1,32 +1,34 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-		<style type="text/css">
-			.parent {
-				position: relative;
-				border: 3px solid orange;
-				height: 300px;
-			}
 
-			.box {
-				position: absolute;
-				left: 0;
-				top: 0;
-				width: 100px;
-				height: 100px;
-				background-color: deeppink;
-			}
-		</style>
-	</head>
-	<body>
-		<div style="height: 400px;">前置的DIV:400px</div>
-		<div class="parent">
-			<div id="box" class="box"></div>
-		</div>
-		<script src="js/jquery-3.5.1.min.js"></script>
-		<script type="text/javascript">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		.parent {
+			position: relative;
+			border: 3px solid orange;
+			height: 300px;
+		}
+
+		.box {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100px;
+			height: 100px;
+			background-color: deeppink;
+		}
+	</style>
+</head>
+
+<body>
+	<div style="height: 400px;">前置的DIV:400px</div>
+	<div class="parent">
+		<div id="box" class="box"></div>
+	</div>
+	<script src="js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
 			// 边界值
 			var maxTop, maxLeft;
 			// box的宽高
@@ -91,6 +93,7 @@
 						break;
 				}
 			});
-		</script>
-	</body>
+	</script>
+</body>
+
 </html>

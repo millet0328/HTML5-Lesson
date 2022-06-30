@@ -1,40 +1,45 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-		<style>
-			.box{
-				width: 1000px;
-				padding: 20px;
-				margin: 20px auto;
-				border: 2px solid #ddd;
-				min-height: 200px;
-			}
-			.btn{
-				border: 2px solid orange;
-				outline: 0;
-				padding: 10px 20px;
-				background-color: white;
-			}
-			.box .btn{
-				margin: 10px;
-			}
-		</style>
-	</head>
-	<body>
-		<button class="btn" type="button">本体按钮</button>
 
-		<div class="box"></div>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style>
+		.box {
+			width: 1000px;
+			padding: 20px;
+			margin: 20px auto;
+			border: 2px solid #ddd;
+			min-height: 200px;
+		}
 
-		<script src="js/jquery-3.5.1.min.js"></script>
-		<script>
+		.btn {
+			border: 2px solid orange;
+			outline: 0;
+			padding: 10px 20px;
+			background-color: white;
+		}
+
+		.box .btn {
+			margin: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<button class="btn" type="button">本体按钮</button>
+
+	<div class="box"></div>
+
+	<script src="js/jquery-3.6.0.min.js"></script>
+	<script>
 			$('.btn').click(function() {
 				// 克隆一个副本
 				var $copy = $(this).clone(true);
 				$copy.text('克隆体');
 				$('.box').append($copy);
 			});
-		</script>
-	</body>
+	</script>
+</body>
+
 </html>

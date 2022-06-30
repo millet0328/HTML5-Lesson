@@ -1,67 +1,70 @@
 <!DOCTYPE html>
 <html lang="zh">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title></title>
-		<link rel="stylesheet" type="text/css" href="lib/swiper/css/swiper-bundle.min.css" />
-		<style>
-			.banner {
-				width: 100%;
-				height: 480px;
-			}
 
-			.banner .swiper-slide a {
-				display: block;
-				height: 100%;
-				background-repeat: no-repeat;
-				background-position: center;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="swiper-container banner">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide">
-					<a href="https://www.jd.com/" style="background-image: url(img/20200821163554.jpg);">
-						
-					</a>
-				</div>
-				<div class="swiper-slide">
-					<a href="https://www.jd.com/" style="background-image: url(img/20200831143752.jpg);">
-					</a>
-				</div>
-				<div class="swiper-slide">
-					<a href="https://www.jd.com/" style="background-image: url(img/20200821163554.jpg);">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="lib/swiper/css/swiper-bundle.min.css" />
+	<style>
+		.banner {
+			width: 100%;
+			height: 480px;
+		}
 
-					</a>
-				</div>
+		.banner .swiper-slide a {
+			display: block;
+			height: 100%;
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="swiper banner">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide">
+				<a href="https://www.jd.com/" style="background-image: url(img/20200821163554.jpg);">
+
+				</a>
 			</div>
-			<!-- 如果需要分页器 -->
-			<div class="swiper-pagination"></div>
+			<div class="swiper-slide">
+				<a href="https://www.jd.com/" style="background-image: url(img/20200831143752.jpg);">
+				</a>
+			</div>
+			<div class="swiper-slide">
+				<a href="https://www.jd.com/" style="background-image: url(img/20200821163554.jpg);">
 
-			<!-- 如果需要导航按钮 -->
-			<div class="swiper-button-prev"></div>
-			<div class="swiper-button-next"></div>
-
+				</a>
+			</div>
 		</div>
+		<!-- 如果需要分页器 -->
+		<div class="swiper-pagination"></div>
 
-		<script src="lib/swiper/js/swiper-bundle.min.js"></script>
-		<script type="text/javascript">
-			var mySwiper = new Swiper('.banner', {
-				loop: true, // 循环模式选项
-				// 如果需要分页器
-				pagination: {
-					el: '.swiper-pagination',
-				},
+		<!-- 如果需要导航按钮 -->
+		<div class="swiper-button-prev"></div>
+		<div class="swiper-button-next"></div>
 
-				// 如果需要前进后退按钮
-				navigation: {
-					nextEl: '.swiper-button-next',
-					prevEl: '.swiper-button-prev',
-				},
-			});
-		</script>
-	</body>
+	</div>
+
+	<script src="lib/swiper/js/swiper-bundle.min.js"></script>
+	<script type="text/javascript">
+		var mySwiper = new Swiper('.banner', {
+			loop: true, // 循环模式选项
+			// 如果需要分页器
+			pagination: {
+				el: '.swiper-pagination',
+			},
+
+			// 如果需要前进后退按钮
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+		});
+	</script>
+</body>
+
 </html>

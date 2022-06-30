@@ -17,7 +17,7 @@
 					console.log(i)
 				}
 				if (true) {
-					console.log('最后执行！')
+					console.log('if语句，最后执行！')
 				}
 			</script>
 		</fieldset>
@@ -31,8 +31,8 @@
 			</ol>
 			<script type="text/javascript">
 				setTimeout(function() {
-					console.log('异步执行！');
-				}, 0);
+					console.log('500ms，异步执行！');
+				},500);
 
 				console.log('同步代码执行！');
 			</script>
@@ -51,7 +51,7 @@
 				$('#check').click(function() {
 					$.getJSON('./data/band.json', function(res) {
 						console.log('ajax返回响应');
-					})
+					});
 					// 同步
 					console.log('我是ajax之后的同步代码！');
 				});

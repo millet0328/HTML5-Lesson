@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+
+<body>
+	<script type="text/javascript">
+		const target = { a: 1 };
+		const source1 = { b: 2 };
+		const source2 = { c: 3 };
+
+		Object.assign(target, source1, source2);
+		target // {a:1, b:2, c:3}
+
+		// 最佳实践
+		let result = Object.assign({}, target, source1, source2);
+		result // {a:1, b:2, c:3}
+	</script>
+
+	<script>
+		// 开启 strict mode (严格模式)
+		'use strict';
+		let person = { name: "黄小米", age: 25 };
+		Object.freeze(person);
+
+		person.age = 30;
+
+		// 如果不希望vue监控这个对象，就可以使用Object.freeze()冻结对象，此对象就会变成只读模式
+	</script>
+	<script>
+		const animal = {
+			name: "哺乳动物",
+			say: function () {
+				console.log(`My name is ${this.name}`);
+			}
+		};
+
+		const cat = Object.create(animal);
+
+		cat.name = 'cat'; // "name" 属性是cat对象的，cat对象原型上有个name，已经被覆盖。
+		cat.age = 10; // 自身的对象属性
+
+		cat.say();
+		// 调用原型上的方法，输出: "My name is cat"
+	</script>
+</body>
+
+</html>

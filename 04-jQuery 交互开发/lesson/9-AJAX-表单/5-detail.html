@@ -63,6 +63,7 @@
 	<script type="text/javascript">
 		// 获取地址参数query
 		var id = GetRequest().id;
+		// ajax获取详情
 		$.getJSON('/course', { id: id }, function(res) {
 			$('.card').html(`
 				<img src="${res.image}" class="card-img-top" alt="...">

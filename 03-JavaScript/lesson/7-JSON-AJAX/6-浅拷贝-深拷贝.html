@@ -22,8 +22,88 @@
             var b = a; // 栈内存会开辟一个新的内存空间，此时b和a都是相互独立的
         </script>
         <script>
-            var person1 = { name: "黄小米", age: 25 };
-            var person2 = person1;  // 赋值的内存地址，两者存在关联关系
+            var obj1 = { a: 1, b: 2 };
+            var obj2 = obj1;  // 赋值的内存地址，两者存在关联关系
+        </script>
+    </fieldset>
+    <fieldset>
+        <legend>浅拷贝的实现</legend>
+        <ol>
+            <li>浅拷贝：适应于简单数据类型。对于复合数据类型（对象/数组），只复制指向某个对象的指针，而不复制对象本身，新旧对象还是共享同一块内存。</li>
+        </ol>
+        <script>
+            // 适合浅拷贝
+            var point1 = { x: 0, y: 0 }
+            // 浅拷贝--es5版
+            function shallow_copy(obj) {
+                var copy = {};
+                for (let key in obj) {
+                    copy[key] = obj[key];
+                }
+                return copy;
+            }
+            var point2 = shallow_copy(point1);
+        </script>
+    </fieldset>
+    <fieldset>
+        <legend>递归函数</legend>
+        <ol>
+            <li>直接或间接调用函数自己：（自己调用自己）</li>
+        </ol>
+        <script>
+            //递归： n! = 1*2*3*4*....n
+
+            function factorial(n) {
+                if (n === 0) return 1;
+                if (n > 0) {
+                    return n * factorial(n - 1);
+                }
+            }
+            factorial(0) == 1
+            factorial(1) == 1 * factorial(0);
+            factorial(2) == 2 * factorial(1);
+            factorial(3) == 3 * factorial(2);
+            factorial(4) == 4 * factorial(3);
+
+			//递归： 斐波那契数列：F(0) = 0; F(1) = 1; F(n) = F(n-1) + F(n-2);
+
+        </script>
+    </fieldset>
+    <fieldset>
+        <legend>深拷贝实现方式：递归方法</legend>
+        <ol>
+            <li>递归函数运算，适用于对象嵌套多层</li>
+        </ol>
+        <script>
+            var person1 = {
+                name: "黄小米",
+                age: 25,
+                friend: {
+                    name: "张艺兴",
+                    age: 30
+                }
+            };
+
+            //使用递归的方式实现数组、对象的深拷贝
+            function deepClone(obj) {
+                //判断拷贝的要进行深拷贝的是数组还是对象，是数组的话进行数组拷贝，对象的话进行对象拷贝
+                var objClone = Array.isArray(obj) ? [] : {};
+                //进行深拷贝的不能为空，并且是对象或者是
+                if (obj && typeof obj === "object") {
+                    for (key in obj) {
+                        if (obj.hasOwnProperty(key)) {
+                            if (obj[key] && typeof obj[key] === "object") {
+                                objClone[key] = deepClone(obj[key]);
+                            } else {
+                                objClone[key] = obj[key];
+                            }
+                        }
+                    }
+                }
+                return objClone;
+            }
+
+            var person2 = deepClone(person1);
         </script>
     </fieldset>
     <fieldset>
@@ -47,7 +127,6 @@
             }
 
             var person4 = JSON.parse(JSON.stringify(person3));
-
         </script>
     </fieldset>
 </body>

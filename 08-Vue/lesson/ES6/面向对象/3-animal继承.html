@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="utf-8" />
-		<title></title>
-		<meta name="viewport"
-			content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-	</head>
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<meta name="viewport"
+		content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+</head>
 
-	<body>
-		<script type="text/javascript">
-			//动物类
-			function Animal(sex) {
-				this.species = "动物";
-				this.English = "Animal";
-				this.sex = sex;
-				this.legs = 4;
-			}
+<body>
+	<script type="text/javascript">
+		//动物类
+		function Animal(sex) {
+			this.species = "动物";
+			this.English = "Animal";
+			this.sex = sex;
+			this.legs = 4;
+		}
 
-			Animal.prototype = {
-				constructor: Animal,
-				eat: function(food) {
-					console.log("em......")
-				},
-				sleep: function() {
-					console.log("zzzzzzzz")
-				}
+		Animal.prototype = {
+			constructor: Animal,
+			eat: function (food) {
+				console.log("em......")
+			},
+			sleep: function () {
+				console.log("zzzzzzzz")
 			}
-			// Cat猫科动物：继承Animal的所有属性、方法
-			function Cat(sex, type, color) {
-				// 1、继承Animal父级的属性
-				Animal.call(this, sex);
-				// 自身的属性
-				this.type = type;
-				this.color = color;
-			}
-			// 2、继承父类原型的方法
-			Cat.prototype = Object.create(Animal.prototype);
-			// 3、强制声明其构造函数
-			Cat.prototype.constructor = Cat;
+		}
+		// Cat猫科动物，继承Animal的所有属性、方法
+		function Cat(sex, type, color) {
+			// 1、继承Animal父级的属性
+			Animal.call(this, sex);
+			// 自身的属性
+			this.type = type;
+			this.color = color;
+		}
+		// 2、继承父类原型的方法
+		Cat.prototype = Object.create(Animal.prototype);
+		// 3、强制声明其构造函数
+		Cat.prototype.constructor = Cat;
 
-			// 猫科动物自有的原型方法
-			Cat.prototype.speak = function() {
-				console.log('miao.......')
-			}
-			// 自由方法 覆盖 原型方法
-			Cat.prototype.eat = function() {
-				console.log('eat fish.......')
-			}
+		// 猫科动物自有的原型方法
+		Cat.prototype.speak = function () {
+			console.log('miao.......')
+		}
+		// 自有方法 覆盖 原型方法
+		Cat.prototype.eat = function () {
+			console.log('eat fish.......')
+		}
 
-			var xiaoBai = new Cat('公', '加菲', 'white');
-		</script>
-	</body>
+		var xiaoBai = new Cat('公', '加菲', 'white');
+	</script>
+</body>
 
 </html>

@@ -1,6 +1,6 @@
 //获取url参数对象
 Mock.Random.extend({
-	courses: function(date) {
+	courses: function (date) {
 		var courses = ['音乐课', '舞蹈课', '地理课'];
 		return this.pick(courses)
 	}
@@ -18,11 +18,11 @@ let { courses } = Mock.mock({
 		classTime: '@datetime("M月d日起 每周三 HH:mm")',
 		detail: {
 			startClass: '@bool', // 布尔值，可以传入参数设置频率
-			createData: '@datetime("yyyy-MM-dd A HH:mm:ss")', // 返回日期
-			title: '@ctitle(8)',
+			createData: '@datetime("yyyy-MM-dd HH:mm:ss A")', // 返回日期
+			title: '@courses',
 			image: '@dataImage("200x100")', // 模拟图片
 			teacher: '@cname', // 中文名
-			'partners|3': [
+			'partners|1-4': [
 				'@cname' // 英文名
 			],
 			website: '@url',
@@ -31,7 +31,7 @@ let { courses } = Mock.mock({
 	}]
 });
 //获取课程信息
-Mock.mock(RegExp('/course' + "[?&]([^?&=]+)=([^?&=]*)"), 'get', function(options) {
+Mock.mock(RegExp('/course' + "[?&]([^?&=]+)=([^?&=]*)"), 'get', function (options) {
 	var params = new URL(options.url, "http://localhost").searchParams;
 	var id = params.get('id');
 	if (!id) {
@@ -44,7 +44,7 @@ Mock.mock(RegExp('/course' + "[?&]([^?&=]+)=([^?&=]*)"), 'get', function(options
 	return response.detail;
 });
 //获取课程列表
-Mock.mock(RegExp('/courses/list' + "([?&]([^?&=]+)=([^?&=]*))*"), 'get', function(options) {
+Mock.mock(RegExp('/courses/list' + "([?&]([^?&=]+)=([^?&=]*))*"), 'get', function (options) {
 	var params = new URL(options.url, "http://localhost").searchParams;
 	var pageindex = params.get('pageindex') || 1;
 	var pagesize = params.get('pagesize') || 10;
@@ -60,7 +60,7 @@ Mock.mock(RegExp('/courses/list' + "([?&]([^?&=]+)=([^?&=]*))*"), 'get', functio
  * email:邮箱账号
  * password:密码
  */
-Mock.mock('/login', 'post', function(options) {
+Mock.mock('/login', 'post', function (options) {
 	var data = new URLSearchParams(options.body);
 	var email = data.get('email');
 	var password = data.get('password');
@@ -80,7 +80,7 @@ Mock.mock('/login', 'post', function(options) {
  * email:邮箱账号
  * password:密码
  */
-Mock.mock('/register', 'post', function(options) {
+Mock.mock('/register', 'post', function (options) {
 	var data = new URLSearchParams(options.body);
 	var email = data.get('email');
 	var password = data.get('password');

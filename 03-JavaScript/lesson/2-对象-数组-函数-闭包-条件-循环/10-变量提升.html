@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+
+<body>
+	<ol>
+		<li></li>
+	</ol>
+	<script>
+		// 变量提升---1
+		function fun3() {
+			console.log(x);
+			var x = 3;
+			console.log(x);
+			// 等价于
+			// var x;
+			// console.log(x);
+			// x = 3;
+			// console.log(x);
+		}
+		fun3();
+
+
+		// 变量提升---2
+		console.log(v1);
+		var v1 = 100;
+
+		function fun4() {
+			console.log(v1);
+			var v1 = 200;
+			console.log(v1);
+		}
+		fun4();
+		console.log(v1);
+	</script>
+</body>
+
+</html>

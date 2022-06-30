@@ -1,73 +1,74 @@
 @charset "utf-8";
 
 .form {
-	width: 430px;
-	margin: 50px auto;
-	padding: 60px;
-	border: 1px solid #ddd;
+    width: 430px;
+    margin: 50px auto;
+    padding: 60px;
+    border: 1px solid #ddd;
 }
 
 .form label {
-	display: inline-block;
-	width: 65px;
-	height: 42px;
-	line-height: 42px;
-	margin-right: 10px;
-	text-align: right;
-	font-size: 14px;
-	color: #666;
-	font-weight: 700;
+    display: inline-block;
+    width: 65px;
+    height: 42px;
+    line-height: 42px;
+    margin-right: 10px;
+    text-align: right;
+    font-size: 14px;
+    color: #666;
+    font-weight: 700;
 }
 
 .form .form-control {
-	position: relative;
-	margin: 35px 0;
+    position: relative;
+    margin: 35px 0;
 }
 
 .form .input-control {
-	display: inline-block;
-	width: 328px;
-	height: 19px;
-	border: 1px solid #DDDDDD;
-	font-size: 16px;
-	padding: 11px 10px;
+    display: inline-block;
+    width: 328px;
+    height: 19px;
+    border: 1px solid #DDDDDD;
+    font-size: 16px;
+    padding: 11px 10px;
+    outline: 0;
 }
 
 .login {
-	border: none;
-	width: 350px;
-	background-color: #4490f7;
-	font-size: 16px;
-	height: 50px;
-	font-weight: 700;
-	cursor: pointer;
-	color: #fff;
-	background-image: none;
-	margin-left: 75px;
-	border-radius: 5px;
+    border: none;
+    width: 350px;
+    background-color: #4490f7;
+    font-size: 16px;
+    height: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #fff;
+    background-image: none;
+    margin-left: 75px;
+    border-radius: 5px;
 }
 
 .msg {
-	display: inline-block;
-	padding: 4px 10px 4px 78px;
-	font-size: 13px;
-	display: none;
+    display: inline-block;
+    padding: 4px 10px 4px 78px;
+    font-size: 13px;
+    display: none;
 }
 
 .error .input-control {
-	border-color: red;
+    border-color: red;
 }
 
 .error .msg {
-	display: block;
-	color: red;
+    display: block;
+    color: red;
 }
 
 .success .input-control {
-	border-color: limegreen;
+    border-color: limegreen;
 }
 
 .success .msg {
-	display: block;
-	color: limegreen;
+    display: block;
+    color: limegreen;
 }

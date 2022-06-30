@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--自己的css-->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+
+<body>
+    <!--选项卡1-->
+    <div id="app" class="wrap">
+        <div class="tab">
+            <ul class="tab-title">
+                <li v-for="(item,index) in tabs" @click="current = index" :class="{active:current===index}">
+                    {{item.title}}
+                </li>
+            </ul>
+            <ul class="tab-content">
+                <li v-for="(item,index) in tabs" v-show="current===index">
+                    <div v-html="item.content"></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                tabs: [
+                    {
+                        title: "详情",
+                        content: "第一个详情",
+                    },
+                    {
+                        title: "评价",
+                        content: "<h3>评价，渲染HTML代码</h3>",
+                    },
+                    {
+                        title: "活动",
+                        content: '<p>活动，渲染<b style="color:blue">HTML</b>代码</p>',
+                    },
+                    {
+                        title: "问答",
+                        content: "第四个问答",
+                    },
+                ],
+                current: 0,
+            }
+        });
+    </script>
+</body>
+
+</html>

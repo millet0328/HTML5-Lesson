@@ -1,52 +1,55 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-		<style type="text/css">
-			.spec-list span {
-				display: inline-block;
-				padding: 10px 20px;
-				border: 2px solid #ccc;
-			}
 
-			.spec-list span.selected {
-				border-color: orange;
-				background-color: lightyellow;
-			}
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		.spec-list span {
+			display: inline-block;
+			padding: 10px 20px;
+			border: 2px solid #ccc;
+		}
 
-			.spec-list span:hover {
-				border-color: lightgreen;
-			}
-		</style>
-	</head>
-	<body>
-		<fieldset id="">
-			<legend>DOM树遍历</legend>
+		.spec-list span.selected {
+			border-color: orange;
+			background-color: lightyellow;
+		}
 
-			<p class="spec-list">
-				<span>XS</span>
-				<span>S</span>
-				<span>M</span>
-				<span>L</span>
-			</p>
+		.spec-list span:hover {
+			border-color: lightgreen;
+		}
+	</style>
+</head>
 
-			<p class="spec-list">
-				<span>红色</span>
-				<span>黄色</span>
-				<span>绿色</span>
-				<span>蓝色</span>
-			</p>
+<body>
+	<fieldset id="">
+		<legend>DOM树遍历</legend>
 
-		</fieldset>
-		<script src="js/jquery-3.5.1.min.js"></script>
-		<script type="text/javascript">
+		<p class="spec-list">
+			<span>XS</span>
+			<span>S</span>
+			<span>M</span>
+			<span>L</span>
+		</p>
+
+		<p class="spec-list">
+			<span>红色</span>
+			<span>黄色</span>
+			<span>绿色</span>
+			<span>蓝色</span>
+		</p>
+
+	</fieldset>
+	<script src="js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
 			$('.spec-list span').click(function() {
 				// 去掉兄弟元素的选中状态
 				$(this).siblings("span").removeClass("selected");
 				// 将自己选中
 				$(this).addClass("selected");
 			});
-		</script>
-	</body>
+	</script>
+</body>
+
 </html>

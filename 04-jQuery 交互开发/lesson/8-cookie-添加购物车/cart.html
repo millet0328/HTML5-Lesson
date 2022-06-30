@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<link rel="stylesheet" type="text/css" href="css/reset.css" />
-		<link rel="stylesheet" type="text/css" href="css/cart.css" />
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="css/cart.css" />
+</head>
 
-	<body>
-		<div class="cart-box">
-			<div class="cart_header clearfix">
-				<div class="left fl">
-					购物车
-				</div>
-				<div class="right fr">
-					<ul class="clearfix">
-						<li>单价</li>
-						<li>数量</li>
-						<li>小计</li>
-						<li>操作</li>
-					</ul>
-				</div>
+<body>
+	<div class="cart-box">
+		<div class="cart_header clearfix">
+			<div class="left fl">
+				购物车
 			</div>
-			<div class="cart_content">
-				<!-- 				<div class="cart_item clearfix">
+			<div class="right fr">
+				<ul class="clearfix">
+					<li>单价</li>
+					<li>数量</li>
+					<li>小计</li>
+					<li>操作</li>
+				</ul>
+			</div>
+		</div>
+		<div class="cart_content">
+			<!-- 				<div class="cart_item clearfix">
 					<div class="photo fl">
 						<img src="img/guess/guess04.jpg">
 					</div>
@@ -54,46 +54,46 @@
 						删除
 					</div>
 				</div> -->
-			</div>
-			<div class="carriage-tips">
-				运费 : 自营商品已满足新会员专享全场38元包邮
-			</div>
 		</div>
-		<script src="js/jquery-3.5.1.min.js"></script>
-		<script type="text/javascript">
-			function getCookie(cname) {
-				var name = cname + "=";
-				var ca = document.cookie.split(';');
-				for (var i = 0; i < ca.length; i++) {
-					var c = ca[i].trim();
-					var arrC = c.split("=");
-					if (arrC[0] == cname) {
-						return arrC[1];
-					}
+		<div class="carriage-tips">
+			运费 : 自营商品已满足新会员专享全场38元包邮
+		</div>
+	</div>
+	<script src="js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		function getCookie(cname) {
+			var name = cname + "=";
+			var ca = document.cookie.split(';');
+			for (var i = 0; i < ca.length; i++) {
+				var c = ca[i].trim();
+				var arrC = c.split("=");
+				if (arrC[0] == cname) {
+					return arrC[1];
 				}
-				return "";
 			}
-		</script>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				// 读取cookie
-				var cart = getCookie('cart');
-				if (cart) {
-					var goodsList = JSON.parse(cart);
-					// 渲染列表
-					var html = '';
-					goodsList.forEach(function(item, index) {
-						html += '<div class="cart_item clearfix"><div class="photo fl"><img src="' + item.photo +
-							'"></div><div class="name fl">' + item.name +
-							'</div><div class="price fl">' + item.price +
-							'</div><div class="quantity fl"><div class="sum_box"><div class="minus">-</div><div class="num">' +
-							item.num +
-							'</div><div class="add">+</div></div></div><div class="subtotal fl">&yen;979</div><div class="actions fl">删除</div></div>'
-					});
-					$('.cart_content').html(html);
-				}
-			});
-		</script>
-	</body>
+			return "";
+		}
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// 读取cookie
+			var cart = getCookie('cart');
+			if (cart) {
+				var goodsList = JSON.parse(cart);
+				// 渲染列表
+				var html = '';
+				goodsList.forEach(function (item, index) {
+					html += '<div class="cart_item clearfix"><div class="photo fl"><img src="' + item.photo +
+						'"></div><div class="name fl">' + item.name +
+						'</div><div class="price fl">' + item.price +
+						'</div><div class="quantity fl"><div class="sum_box"><div class="minus">-</div><div class="num">' +
+						item.num +
+						'</div><div class="add">+</div></div></div><div class="subtotal fl">&yen;979</div><div class="actions fl">删除</div></div>'
+				});
+				$('.cart_content').html(html);
+			}
+		});
+	</script>
+</body>
 
 </html>

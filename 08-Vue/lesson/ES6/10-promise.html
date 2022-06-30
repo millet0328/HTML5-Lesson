@@ -1,40 +1,41 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<title></title>
-	</head>
 
-	<body>
-		<script type="text/javascript">
-			// promise实例
-			var promise = new Promise(function(resolve, reject) {
-				// 模拟异步代码
-				setTimeout(function() {
-					var x = Math.random();
-					if (x >= 0.5) {
-						// 成功
-						resolve(x);
-					} else {
-						// 失败
-						reject(x);
-					}
-				}, 500);
-			});
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
 
-			// 捕获结果
-			// then 捕获成功
-			promise.then(function(x) {
-				console.log('成功：x = %f', x);
-			});
-			// catch 捕获失败
-			promise.catch(function (x) {
-				console.error('失败：x = %f', x);
-			});
-			
-			// 实例
-			console.log(promise);
-		</script>
-	</body>
+<body>
+	<script type="text/javascript">
+		// promise实例
+		let promise = new Promise(function (resolve, reject) {
+			// 模拟异步操作
+			setTimeout(() => {
+				let x = Math.random();
+				if (x >= 0.5) {
+					// 成功，调用resolve，状态 pending => fulfilled
+					resolve(x);
+				} else {
+					// 失败，调用reject，状态 pending => rejected
+					reject(x);
+				}
+			}, 500);
+		});
+
+		// 查看实例
+		console.log(promise);
+
+		// 捕获结果
+		// then 捕获成功
+		promise.then((value) => {
+			console.log('成功状态值：', value);
+		});
+		// catch 捕获失败
+		promise.catch((error) => {
+			console.log('失败状态值：', error);
+		});
+	</script>
+</body>
 
 </html>

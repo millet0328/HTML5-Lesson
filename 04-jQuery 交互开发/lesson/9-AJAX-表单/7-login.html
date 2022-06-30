@@ -50,7 +50,9 @@
 			var password = $('input[name=password]').val();
 
 			$.post('/login', { email: email, password: password }, function (res) {
+				// 实际使用不需要写，由于模拟api接口问题
 				res = JSON.parse(res);
+				
 				if (res.status) {
 					location.assign('./4-list.html');
 				}

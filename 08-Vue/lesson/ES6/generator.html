@@ -1,21 +1,58 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
 
-	<body>
-		<script type="text/javascript">
-			function* helloWorldGenerator() {
-				yield 'hello';
-				yield 'world';
-				return 'ending';
+<body>
+	<script type="text/javascript">
+		// 抽签
+		function* draw() {
+			let arr = ['上上签', '中上签', '中下签', '下下签'];
+			function random() {
+				return Math.floor(Math.random() * 3);
 			}
+			yield arr[random()];
+			yield arr[random()];
+			yield arr[random()];
+		}
+		// 指针对象（Iterator对象），函数内部代码没有执行
+		let pointer = draw();
 
-			var hw = helloWorldGenerator();
-		</script>
-	</body>
+		// next方法
+		var first = pointer.next();
+		// {value: '上上签', done: false}
+
+		var second = pointer.next();
+		// {value: '中上签', done: false}
+
+		var third = pointer.next();
+		// {value: '中下签', done: true}
+
+		var fourth = pointer.next();
+		// {value: 'undefined', done: true}
+	</script>
+	<script type="text/javascript">
+		// 伪代码
+		function* fetch_price(keyword) {
+			// 1.关键词 => 股票名称
+			let { name } = yield getJSON("/stock/name", { keyword });
+			// 2.股票名称 => 股票code代码
+			let { code } = yield getJSON("/stock/code", { name });
+			// 3.股票code代码 => 股票价格
+			let { price } = yield getJSON("/stock/price", { code });
+
+			return `股票价格：${price}`;
+		}
+		// 为了获取股票价格，不断去调用next()
+		let needle = fetch_price();
+		needle.next();
+		needle.next();
+		needle.next();
+		needle.next();
+	</script>
+</body>
 
 </html>

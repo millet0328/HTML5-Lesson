@@ -102,22 +102,31 @@
 
 		<div id="app4">
 			<p>
-				语文：<input type="number" v-model.number="chinese" />分
+				<label>姓名：</label>
+				<input type="text" v-model.trim="fullname">
 			</p>
 			<p>
-				数学：<input type="number" v-model.number="math" />分
+				<label>语文：</label>
+				<input type="number" v-model.number="chinese" />分
 			</p>
 			<p>
-				英语：<input type="number" v-model.number="english" />分
+				<label>数学：</label>
+				<input type="number" v-model.number="math" />分
 			</p>
 			<p>
-				总价：{{ chinese + math + english }} 元
+				<label>英语：</label>
+				<input type="number" v-model.number="english" />分
+			</p>
+			<p>
+				<label>总分：</label>
+				{{ chinese + math + english }} 分
 			</p>
 		</div>
 		<script type="text/javascript">
 			var app4 = new Vue({
 				el: '#app4',
 				data: {
+					fullname: '',
 					chinese: 0,
 					math: 0,
 					english: 0,

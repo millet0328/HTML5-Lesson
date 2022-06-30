@@ -1,83 +1,105 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
 
-	<body>
-		<script>
-			const getJSON = function(url) {
-				const promise = new Promise(function(resolve, reject) {
-					const handler = function() {
-						if (this.readyState !== 4) {
-							return;
-						}
-						if (this.status === 200) {
-							resolve(this.response);
-						} else {
-							reject(new Error(this.statusText));
-						}
-					};
-					const ajax = new XMLHttpRequest();
-					ajax.open("GET", url);
-					ajax.onreadystatechange = handler;
-					ajax.send();
-				});
-				return promise;
-			};
-		</script>
-		<script type="text/javascript">
-			// 股票名称
-			getJSON("/stock/name", { keyword: "腾讯" })
-				.then(function(res) {
-					let { name } = res;
-					// 股票代码
-					return getJSON("/stock/code", { name })
-				})
-				.then(function(res) {
-					let { code } = res;
-					// 股票价格
-					return getJSON("/stock/price", { code })
-				})
-				.then(function(res) {
-					let { price } = res;
-					console.log('股票价格：' + price);
-				});
-
-			async function getStockPrice() {
-				// 股票名称
-				let { name } = await getJSON("/stock/name", { keyword: "腾讯" });
+<body>
+	<script>
+		// 封装一个支持promise的GET方法
+		function getJSON(url, data) {
+			return new Promise(function (resolve, reject) {
+				// 转换object => queryString
+				function param(obj = {}) {
+					if (!obj) return '';
+					let arr = Object.keys(obj).map(key => {
+						if (obj[key] === undefined) return ''
+						return encodeURIComponent(key) + '=' + encodeURIComponent(obj[key])
+					});
+					return arr.join("&");
+				}
+				// 1、实例
+				let ajax = new XMLHttpRequest();
+				// 2、设置参数
+				ajax.open('GET', url, true);
+				// 3、发送
+				ajax.send(param(data));
+				// 4、监听readyState
+				ajax.onreadystatechange = function () {
+					if (ajax.status == 200) {
+						// 成功
+						let res = JSON.parse(ajax.responseText);
+						resolve(res);
+					} else {
+						// 失败
+						reject(ajax.statusText);
+					}
+				}
+			});
+		}
+	</script>
+	<script type="text/javascript">
+		// 股票名称
+		getJSON("/stock/name", { keyword: "腾讯" })
+			.then(function (res) {
+				let { name } = res;
 				// 股票代码
-				let { code } = await getJSON("/stock/code", { name });
+				return getJSON("/stock/code", { name })
+			})
+			.then(function (res) {
+				let { code } = res;
 				// 股票价格
-				let { price } = await getJSON("/stock/price", { code });
+				return getJSON("/stock/price", { code })
+			})
+			.then(function (res) {
+				let { price } = res;
 				console.log('股票价格：' + price);
-			}
-		</script>
-		<script type="text/javascript">
-			// async函数将异步操作，按照同步代码的方式书写,更容易理解；
+			});
 
-			// 1、await:then方法的语法糖， 捕获Promise对象resolve出来的值
+		async function getStockPrice() {
+			// 股票名称
+			let { name } = await getJSON("/stock/name", { keyword: "腾讯" });
+			// 股票代码
+			let { code } = await getJSON("/stock/code", { name });
+			// 股票价格
+			let { price } = await getJSON("/stock/price", { code });
+			console.log('股票价格：' + price);
+		}
+	</script>
+	<script type="text/javascript">
+		// async函数将异步操作，按照同步代码的方式书写,更容易理解；
 
-			// 2、async、await必须配套使用；
+		// 1、await:then方法的语法糖， 捕获Promise对象resolve出来的值
 
-			// 3、await必须跟一个Promise实例，如果不是，自动转换成promise；
-			async function test() {
-				return await 3.14;
-				// 等价于 return await Promise.resolve(3.14);
+		// 2、async、await必须配套使用；
+
+		// 3、await必须跟一个Promise实例，如果不是，自动转换成promise；
+		async function test() {
+			return await 3.14;
+			// 等价于 return await Promise.resolve(3.14);
+		}
+		let x = test();
+		// 4、async函数 return出去的是什么？Promise对象
+		async function move() {
+			return 'moved 100m';
+			// 等价于 return  Promise.resolve('moved 100m');
+		}
+		let result = move();
+
+		// 5、使用 try...catch来捕获async函数中的失败情况
+		async function catch_me() {
+			try {
+				var x = await Promise.resolve(10);
+				let y = await Promise.reject(-5);
+				console.log('成功：%f + %f = %f', x, y, x + y);
+			} catch (e) {
+				let z = await Promise.resolve(5);
+				console.log('捕获失败：%f + %f = %f', x, z, x + z);
 			}
-			let x = test();
-			// 4、async函数 return出去的是什么？Promise对象
-			async function move() {
-				return 'moved 100m';
-				// 等价于 return  Promise.resolve('moved 100m');
-			}
-			let result = move();
-			
-			// 5、使用 try...catch来捕获async函数中的失败情况
-		</script>
-	</body>
+		}
+	</script>
+</body>
 
 </html>

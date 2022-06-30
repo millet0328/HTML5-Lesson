@@ -204,3 +204,7 @@ a:active {
 .container:after {
     clear: both;
 }
+
+.relative {
+    position: relative;
+}

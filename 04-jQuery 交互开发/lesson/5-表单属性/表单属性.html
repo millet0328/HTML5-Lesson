@@ -1,101 +1,103 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-		<style type="text/css">
-			.register {
-				background-color: blue;
-				color: white;
-				border: 1px solid darkblue;
-				outline: 0;
-				padding: 4px 20px;
-			}
 
-			.input-control {
-				outline: 0;
-				border: 1px solid gray;
-				padding: 6px 10px;
-				color: blue;
-			}
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		.register {
+			background-color: blue;
+			color: white;
+			border: 1px solid darkblue;
+			outline: 0;
+			padding: 4px 20px;
+		}
 
-			/* 单选、复选框样式不可更改 */
-			.degree {
-				width: 200px;
-				color: red;
-				padding: 4px 10px;
-				border: 1px solid green;
-			}
-		</style>
-	</head>
-	<body>
-		<form>
-			<p>
-				<label>账号：</label>
-				<input placeholder="请输入至少6位用户名" class="username input-control" type="text">
-			</p>
-			<p>
-				<label>密码：</label>
-				<input placeholder="请输入至少6位数字" class="password input-control" type="password">
-				<b class="eye">👀</b>
-			</p>
-			<p>
-				<label>推荐：</label>
-				<input class="input-control" type="text" readonly value="XPOS">
-			</p>
-			<p>
-				<label>性别：</label>
-				<label>
-					<input type="radio" checked class="sex" name="sex" value="man" /> 男
-				</label>
-				<label>
-					<input type="radio" class="sex" name="sex" value="woman" /> 女
-				</label>
-			</p>
-			<p>
-				<label>爱好：</label>
-				<label>
-					<input name="hobby" value="电影" type="checkbox"> 电影
-				</label>
-				<label>
-					<input name="hobby" value="旅游" type="checkbox"> 旅游
-				</label>
-				<label>
-					<input name="hobby" value="摄影" type="checkbox"> 摄影
-				</label>
-				<label>
-					<input name="hobby" value="绘画" type="checkbox"> 绘画
-				</label>
-				<label>
-					<input id="chkAll" type="checkbox"> 全选
-				</label>
-			</p>
-			<p>
-				<label>学历：</label>
-				<select class="degree">
-					<option value="高中">高中</option>
-					<option selected value="专科">专科</option>
-					<option value="本科">本科</option>
-					<option value="研究生">研究生</option>
-					<option value="博士">博士</option>
-				</select>
-			</p>
-			<p>
-				<label>介绍：</label>
-				<textarea class="info" placeholder="请输入至少100字的自我介绍" rows="5" cols="40"></textarea>
-				<small></small>
-			</p>
-			<p>
-				<label class="lisence">
-					<input checked type="checkbox" /> 我已阅读网站的用户协议
-				</label>
-			</p>
-			<p>
-				<button id="register" class="btn" type="button">注 册</button>
-			</p>
-		</form>
-		<script src="js/jquery-3.5.1.min.js"></script>
-		<script type="text/javascript">
+		.input-control {
+			outline: 0;
+			border: 1px solid gray;
+			padding: 6px 10px;
+			color: blue;
+		}
+
+		/* 单选、复选框样式不可更改 */
+		.degree {
+			width: 200px;
+			color: red;
+			padding: 4px 10px;
+			border: 1px solid green;
+		}
+	</style>
+</head>
+
+<body>
+	<form>
+		<p>
+			<label>账号：</label>
+			<input placeholder="请输入至少6位用户名" class="username input-control" type="text">
+		</p>
+		<p>
+			<label>密码：</label>
+			<input placeholder="请输入至少6位数字" class="password input-control" type="password">
+			<b class="eye">👀</b>
+		</p>
+		<p>
+			<label>推荐：</label>
+			<input class="input-control" type="text" readonly value="XPOS">
+		</p>
+		<p>
+			<label>性别：</label>
+			<label>
+				<input type="radio" checked class="sex" name="sex" value="man" /> 男
+			</label>
+			<label>
+				<input type="radio" class="sex" name="sex" value="woman" /> 女
+			</label>
+		</p>
+		<p>
+			<label>爱好：</label>
+			<label>
+				<input name="hobby" value="电影" type="checkbox"> 电影
+			</label>
+			<label>
+				<input name="hobby" value="旅游" type="checkbox"> 旅游
+			</label>
+			<label>
+				<input name="hobby" value="摄影" type="checkbox"> 摄影
+			</label>
+			<label>
+				<input name="hobby" value="绘画" type="checkbox"> 绘画
+			</label>
+			<label>
+				<input id="chkAll" type="checkbox"> 全选
+			</label>
+		</p>
+		<p>
+			<label>学历：</label>
+			<select class="degree">
+				<option value="高中">高中</option>
+				<option selected value="专科">专科</option>
+				<option value="本科">本科</option>
+				<option value="研究生">研究生</option>
+				<option value="博士">博士</option>
+			</select>
+		</p>
+		<p>
+			<label>介绍：</label>
+			<textarea class="info" placeholder="请输入至少100字的自我介绍" rows="5" cols="40"></textarea>
+			<small></small>
+		</p>
+		<p>
+			<label class="lisence">
+				<input checked type="checkbox" /> 我已阅读网站的用户协议
+			</label>
+		</p>
+		<p>
+			<button id="register" class="btn" type="button">注 册</button>
+		</p>
+	</form>
+	<script src="js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
 			// 协议 按钮disabled
 			$('.lisence').click(function(e) {
 				// 获取表单checked属性
@@ -159,6 +161,7 @@
 				var degree = $('.degree').val();
 				console.log('学历：%s', degree);
 			});
-		</script>
-	</body>
+	</script>
+</body>
+
 </html>

@@ -46,6 +46,7 @@
 				// 有效期，到期之前，不会清空
 				var maxDate = new Date(2030, 4, 1).toGMTString();
 				document.cookie = "fullname=黄小米;expires=" + maxDate;
+				
 				setCookie('country', 'china', 365);
 				// 存储对象，先转换，对象 => JSON
 				var person = { name: "黄小米", age: 25 };
@@ -72,8 +73,7 @@
 			oRead.onclick = function() {
 				var user = getCookie('username');
 				// 取对象，先转换，JSON => 对象
-				var hero = getCookie('hero');
-				var person = JSON.parse(hero);
+				var person = JSON.parse(getCookie('hero'));
 				// 取数组，先转换，JSON => 数组
 				var group = JSON.parse(getCookie('ShuGuo'));
 				console.log(group);

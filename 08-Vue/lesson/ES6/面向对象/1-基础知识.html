@@ -9,21 +9,28 @@
 	<body>
 		<script type="text/javascript">
 			function Person(name, age, job) {
-				this.name = name;
-				this.age = age;
-				this.job = job;
-				this.lessons = ['Math', 'Physics'];
+			    this.name = name;
+			    this.age = age;
+			    this.job = job;
+			    this.lessons = ['Math', 'Physics'];
 			}
+			// 方法一：constructor指向存在问题
 			Person.prototype = {
-				team: "巅峰队",
-				constructor: Person, //原型方式会将对象的constructor变为Object，此处强制指回Person
-				getName: function() {
-					return this.name;
-				}
+			    constructor: Person, //原型方式会将对象的constructor变为Object，此处强制指回Person
+			    getName: function() {
+			        return this.name;
+			    }
 			}
+
 			var person1 = new Person('Jack', 19, 'SoftWare Engneer');
 			person1.lessons.push('Biology');
+			console.log(person1.lessons); //Math,Physics,Biology
+			
 			var person2 = new Person('Tom', 39, 'Mechanical Engneer');
+			console.log(person2.lessons); //Math,Physics
+			
+			console.log(person1.getName === person2.getName); //true,//共享原型中定义方法
+
 		</script>
 	</body>
 

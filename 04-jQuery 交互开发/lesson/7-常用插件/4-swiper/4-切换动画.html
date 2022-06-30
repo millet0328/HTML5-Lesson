@@ -1,94 +1,97 @@
 <!DOCTYPE html>
 <html lang="zh">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title></title>
-		<link rel="stylesheet" type="text/css" href="./lib/swiper/css/swiper-bundle.min.css" />
 
-		<style type="text/css">
-			.banner-box {
-				width: 790px;
-				height: 340px;
-			}
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="./lib/swiper/css/swiper-bundle.min.css" />
 
-			.banner-box .title {
-				position: absolute;
-				left: 0;
-				right: 0;
-				bottom: 0;
-				padding: 10px;
-				background-color: rgba(0, 0, 0, 0.6);
-				color: white;
-				opacity: 0;
-				transition: all 1s;
-			}
+	<style type="text/css">
+		.banner-box {
+			width: 790px;
+			height: 340px;
+		}
 
-			.ani-slide .title {
-				bottom: 20px;
-				opacity: 1;
-			}
-		</style>
-	</head>
-	<body>
+		.banner-box .title {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			padding: 10px;
+			background-color: rgba(0, 0, 0, 0.6);
+			color: white;
+			opacity: 0;
+			transition: all 1s;
+		}
 
-		<div class="swiper-container banner-box">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide">
-					<img src="img/1.jpg">
-					<div class="title">标题文字标题文字标题文字标题文字标题文字标题文字</div>
-				</div>
-				<div class="swiper-slide">
-					<img src="img/2.jpg">
-					<div class="title">标题文字标题文字标题文字标题文字标题文字标题文字</div>
-				</div>
-				<div class="swiper-slide">
-					<img src="img/3.jpg">
-					<div class="title">标题文字标题文字标题文字标题文字标题文字标题文字</div>
-				</div>
+		.ani-slide .title {
+			bottom: 20px;
+			opacity: 1;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="swiper banner-box">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide">
+				<img src="img/1.jpg">
+				<div class="title">标题文字标题文字标题文字标题文字标题文字标题文字</div>
 			</div>
-			<!-- 如果需要分页器 -->
-			<div class="swiper-pagination"></div>
-
-			<!-- 如果需要导航按钮 -->
-			<div class="swiper-button-prev"></div>
-			<div class="swiper-button-next"></div>
-
+			<div class="swiper-slide">
+				<img src="img/2.jpg">
+				<div class="title">标题文字标题文字标题文字标题文字标题文字标题文字</div>
+			</div>
+			<div class="swiper-slide">
+				<img src="img/3.jpg">
+				<div class="title">标题文字标题文字标题文字标题文字标题文字标题文字</div>
+			</div>
 		</div>
+		<!-- 如果需要分页器 -->
+		<div class="swiper-pagination"></div>
 
-		<script src="./lib/swiper/js/swiper-bundle.min.js"></script>
-		<script>
-			var mySwiper = new Swiper('.banner-box', {
-				loop: true, // 循环模式选项
-				// 如果需要分页器
-				pagination: {
-					el: '.swiper-pagination',
+		<!-- 如果需要导航按钮 -->
+		<div class="swiper-button-prev"></div>
+		<div class="swiper-button-next"></div>
+
+	</div>
+
+	<script src="./lib/swiper/js/swiper-bundle.min.js"></script>
+	<script>
+		var mySwiper = new Swiper('.banner-box', {
+			loop: true, // 循环模式选项
+			// 如果需要分页器
+			pagination: {
+				el: '.swiper-pagination',
+			},
+
+			// 如果需要前进后退按钮
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+			on: {
+				init: function (swiper) {
+					slide = this.slides.eq(0);
+					slide.addClass('ani-slide');
 				},
-
-				// 如果需要前进后退按钮
-				navigation: {
-					nextEl: '.swiper-button-next',
-					prevEl: '.swiper-button-prev',
+				transitionStart: function () {
+					for (i = 0; i < this.slides.length; i++) {
+						slide = this.slides.eq(i);
+						slide.removeClass('ani-slide');
+					}
 				},
-				on: {
-					init: function(swiper) {
-						slide = this.slides.eq(0);
-						slide.addClass('ani-slide');
-					},
-					transitionStart: function() {
-						for (i = 0; i < this.slides.length; i++) {
-							slide = this.slides.eq(i);
-							slide.removeClass('ani-slide');
-						}
-					},
-					transitionEnd: function() {
-						slide = this.slides.eq(this.activeIndex);
-						slide.addClass('ani-slide');
+				transitionEnd: function () {
+					slide = this.slides.eq(this.activeIndex);
+					slide.addClass('ani-slide');
 
-					},
-				}
-			});
-		</script>
-	</body>
+				},
+			}
+		});
+	</script>
+</body>
+
 </html>

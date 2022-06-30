@@ -3,24 +3,48 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
-		<style type="text/css">
-			.out-box {
-				font-size: 40px;
-				border: 2px solid blue;
-				padding: 20px;
-			}
 
-			.inner-box {
-				font-size: 50%;
-				border: 2px solid red;
-				padding: 20px;
-			}
-		</style>
 	</head>
 	<body>
-		<div class="out-box">
-			<p>外部文字</p>
-			<div class="inner-box">内部文字</div>
-		</div>
+		<fieldset id="">
+			<legend>font-size</legend>
+			<style type="text/css">
+				.out-box {
+					font-size: 40px;
+					border: 2px solid blue;
+					padding: 20px;
+				}
+
+				.inner-box {
+					font-size: 50%;
+					border: 2px solid red;
+					padding: 20px;
+				}
+			</style>
+			<div class="out-box">
+				<p>外部文字</p>
+				<div class="inner-box">内部文字</div>
+			</div>
+		</fieldset>
+		<fieldset id="">
+			<legend>width</legend>
+			<style type="text/css">
+				.parent-box {
+					width: 600px;
+					height: 300px;
+					background-color: orange;
+					padding: 10px;
+				}
+
+				.child-box {
+					width: 50%;
+					height: 50%;
+					background-color: black;
+				}
+			</style>
+			<div class="parent-box">
+				<div class="child-box"></div>
+			</div>
+		</fieldset>
 	</body>
 </html>

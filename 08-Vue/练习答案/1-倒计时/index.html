@@ -16,7 +16,7 @@
 				<label for="total">总秒数：</label>
 				<input type="text" class="form-control" v-model="total" id="total" placeholder="填写总秒数">
 			</div>
-			<button type="button" @click="start" class="btn btn-success">开始</button>
+			<button type="button" @click="handleStart" class="btn btn-success">开始</button>
 			<div class="form-group">
 				<label for="tick">倒计时：</label>
 				<input type="text" class="form-control" v-model="tick" id="tick" placeholder="倒计时">
@@ -35,11 +35,14 @@
 			methods: {
 				start: function () {
 					clearInterval(this.clock);
+					// 验证
 					if (this.total <= 0) {
 						alert("请填写大于0的整数！");
 						return false;
 					}
+					// 赋值总秒数
 					this.tick = this.total;
+					
 					var self = this;
 					this.clock = setInterval(function () {
 						if (self.tick > 1) {

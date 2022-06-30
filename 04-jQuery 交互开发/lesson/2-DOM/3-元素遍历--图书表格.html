@@ -1,71 +1,73 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-		<style type="text/css">
-			.table {
-				text-align: center;
-				font-size: 18px;
-			}
 
-			.account {
-				color: blue;
-				font-weight: bold;
-			}
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		.table {
+			text-align: center;
+			font-size: 18px;
+		}
 
-			.cost {
-				color: orange;
-				font-weight: bold;
-			}
-		</style>
-	</head>
-	<body>
-		<table class="table" width="100%" border="1" cellpadding="10">
-			<thead>
-				<tr>
-					<th><input type="checkbox"></th>
-					<th>书名</th>
-					<th class="price">价格</th>
-					<th>数量</th>
-					<th>操作</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><input type="checkbox"></td>
-					<td>西游记</td>
-					<td>45</td>
-					<td>1</td>
-					<td><button type="button">x</button></td>
-				</tr>
-				<tr>
-					<td><input type="checkbox"></td>
-					<td>水浒传</td>
-					<td>48</td>
-					<td>2</td>
-					<td><button type="button">x</button></td>
-				</tr>
-				<tr>
-					<td><input type="checkbox"></td>
-					<td>红楼梦</td>
-					<td>40</td>
-					<td>1</td>
-					<td><button type="button">x</button></td>
-				</tr>
-				<tr>
-					<td><input type="checkbox"></td>
-					<td>三国演义</td>
-					<td>50</td>
-					<td>2</td>
-					<td><button type="button">x</button></td>
-				</tr>
-			</tbody>
-		</table>
-		<p class="summary">总计：总共 <span class="account">X</span> 本书，总共花费 <span class="cost">Y</span> 元</p>
+		.account {
+			color: blue;
+			font-weight: bold;
+		}
 
-		<script src="js/jquery-3.5.1.min.js"></script>
-		<script type="text/javascript">
+		.cost {
+			color: orange;
+			font-weight: bold;
+		}
+	</style>
+</head>
+
+<body>
+	<table class="table" width="100%" border="1" cellpadding="10">
+		<thead>
+			<tr>
+				<th><input type="checkbox"></th>
+				<th>书名</th>
+				<th class="price">价格</th>
+				<th>数量</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><input type="checkbox"></td>
+				<td>西游记</td>
+				<td>45</td>
+				<td>1</td>
+				<td><button type="button">x</button></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox"></td>
+				<td>水浒传</td>
+				<td>48</td>
+				<td>2</td>
+				<td><button type="button">x</button></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox"></td>
+				<td>红楼梦</td>
+				<td>40</td>
+				<td>1</td>
+				<td><button type="button">x</button></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox"></td>
+				<td>三国演义</td>
+				<td>50</td>
+				<td>2</td>
+				<td><button type="button">x</button></td>
+			</tr>
+		</tbody>
+	</table>
+	<p class="summary">总计：总共 <span class="account">X</span> 本书，总共花费 <span class="cost">Y</span> 元</p>
+
+	<script src="js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
 			var account = 0;
 			var cost = 0;
 			$('.table tbody tr').each(function(index) {
@@ -77,28 +79,28 @@
 			});
 			$('.account').text(account);
 			$('.cost').text(cost);
-		</script>
-		
-		
-		<script type="text/javascript">
-			$('.price').click(function() {
-				var arr = [];
-				// 转化真实数组
-				$('.table tbody tr').each(function() {
-					arr.push($(this));
-				});
-				// 排序
-				arr.sort(function(itemA, itemB) {
-					var priceA = $(itemA).find('td').eq(2).text().trim();
-					var priceB = $(itemB).find('td').eq(2).text().trim();
-					return priceA - priceB;
-				})
-				// 插入文档
-				arr.forEach(function (item) {
-					$('.table tbody').append(item);
-				})
+	</script>
+
+
+	<script type="text/javascript">
+		$('.price').click(function () {
+			var arr = [];
+			// 转化真实数组
+			$('.table tbody tr').each(function () {
+				arr.push($(this));
 			});
-		</script>
-	</body>
+			// 排序
+			arr.sort(function (itemA, itemB) {
+				var priceA = $(itemA).find('td').eq(2).text().trim();
+				var priceB = $(itemB).find('td').eq(2).text().trim();
+				return priceA - priceB;
+			})
+			// 插入文档
+			arr.forEach(function (item) {
+				$('.table tbody').append(item);
+			})
+		});
+	</script>
+</body>
 
 </html>

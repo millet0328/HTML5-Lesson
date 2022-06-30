@@ -1,132 +1,135 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>vue响应式原理</title>
-	</head>
-	<body>
-		<fieldset id="">
-			<legend>对象的动态属性</legend>
 
-			<ol>
-				<li>对象除了静态属性以外，还拥有动态属性</li>
-				<li>设置动态属性有两种方法：1、定义对象的时候定义动态属性。2、Object.defineProperty</li>
-			</ol>
-			<script>
-				// 对象--静态属性
-				let person = {
-					name: '黄小米',
-					birthYear: 1995,
-				}
-				// 对象--定义属性
-				Object.defineProperty(person, 'sex', {
-					value: '女'
-				});
-				// 对象--动态属性--方法1
-				var apple = {
-					name: "苹果",
-					price: 1.5,
-					num: 2,
-					set cost(value) {
-						this.num = value / this.price;
-					},
-					get cost() {
-						return this.num * this.price;
-					}
-				}
-				// 对象--动态属性--方法2
-				Object.defineProperty(person, 'age', {
-					set(newValue) {
-						console.log("set")
-						this.birthYear = new Date().getFullYear() - newValue;
-					},
-					get() {
-						console.log('get')
-						return new Date().getFullYear() - this.birthYear;
-					}
-				});
-			</script>
-		</fieldset>
-		<fieldset id="">
-			<legend>简化版的数据绑定</legend>
-			<p>
-				<label>修改 text：</label>
-				<input type="text" oninput="handleInput(this)" />
-			</p>
-			<p>
-				data.text：<span v-text="data.text"></span>
-			</p>
-			<script type="text/javascript">
-				//初始化对象 
-				var data = {
-					text: "Hello Vue!"
-				}
-				// 动态属性
-				Object.defineProperty(data, '_text', {
-					value: "Hello Vue!",
-					writable: true,
-				});
-				Object.defineProperty(data, 'text', {
-					set(newValue) {
-						console.log("修改text，操作DOM");
-						document.querySelector('[v-text="data.text"]').innerText = newValue;
-						this._text = newValue;
-					},
-					get() {
-						console.log('get')
-						return this._text;
-					}
-				});
-				// 绑定事件
-				function handleInput(target) {
-					data.text = target.value;
-				}
-			</script>
-		</fieldset>
-		<fieldset id="">
-			<legend>Observe Data过程</legend>
+<head>
+	<meta charset="utf-8">
+	<title>vue响应式原理</title>
+</head>
 
-			<ol>
-				<li>Observe Data：将某一个对象里面的所有属性转化为动态属性，从而监控到属性的变化</li>
-				<li>Observe Data底层原理：Object.defineProperty、递归运算</li>
-			</ol>
-		</fieldset>
+<body>
+	<fieldset id="">
+		<legend>对象的动态属性</legend>
+
+		<ol>
+			<li>对象除了静态属性以外，还拥有动态属性</li>
+			<li>设置动态属性有两种方法：1、定义对象的时候定义动态属性。2、Object.defineProperty</li>
+		</ol>
+		<script>
+			// 对象--静态属性
+			let person = {
+				name: '黄小米',
+				birthYear: 1995,
+			}
+			// 对象--定义属性
+			Object.defineProperty(person, 'sex', {
+				value: '女'
+			});
+			// 对象--动态属性--方法1
+			var apple = {
+				name: "苹果",
+				price: 1.5,
+				num: 2,
+				set cost(value) {
+					this.num = value / this.price;
+				},
+				get cost() {
+					return this.num * this.price;
+				}
+			}
+			// 对象--动态属性--方法2
+			Object.defineProperty(person, 'age', {
+				set(newValue) {
+					console.log("set")
+					this.birthYear = new Date().getFullYear() - newValue;
+				},
+				get() {
+					console.log('get')
+					return new Date().getFullYear() - this.birthYear;
+				}
+			});
+		</script>
+	</fieldset>
+	<fieldset id="">
+		<legend>简化版的数据绑定</legend>
+		<p>
+			<label>修改 text：</label>
+			<input type="text" oninput="handleInput(this)" />
+		</p>
+		<p>
+			data.text：<span v-text="data.text"></span>
+		</p>
 		<script type="text/javascript">
-			// 响应式原理
-			let book = {
-				name: "鬼吹灯",
-				author: "天下霸唱",
-				price: 65,
-				press: {
-					name: "工业出版社"
-				}
+			//初始化对象 
+			var data = {
+				text: "Hello Vue!"
 			}
-			Observe(book);
-
-			function Observe(data) {
-				if (!data || typeof data !== 'object') {
-					return;
+			// 动态属性
+			Object.defineProperty(data, '_text', {
+				value: "Hello Vue!",
+				writable: true,
+			});
+			Object.defineProperty(data, 'text', {
+				set(newValue) {
+					console.log("修改text，操作DOM");
+					document.querySelector('[v-text="data.text"]').innerText = newValue;
+					this._text = newValue;
+				},
+				get() {
+					console.log('get')
+					return this._text;
 				}
-				Object.keys(data).forEach((key) => {
-					createReactive(data, key, data[key])
-				});
-			}
-
-			function createReactive(data, key, value) {
-				Observe(value);
-				Object.defineProperty(data, key, {
-					enumerable: true, // 可枚举
-					configurable: false, // 不能再define
-					set(newValue) {
-						console.log('set');
-						value = newValue;
-					},
-					get() {
-						console.log('get')
-						return value;
-					}
-				});
+			});
+			// 绑定事件
+			function handleInput(target) {
+				data.text = target.value;
 			}
 		</script>
-	</body>
+	</fieldset>
+	<fieldset id="">
+		<legend>Observe Data过程</legend>
+
+		<ol>
+			<li>Observe Data：将某一个对象里面的所有属性转化为动态属性，从而监控到属性的变化</li>
+			<li>Observe Data底层原理：Object.defineProperty、递归运算</li>
+		</ol>
+	</fieldset>
+	<script type="text/javascript">
+		// 响应式原理
+		let book = {
+			name: "鬼吹灯",
+			author: "天下霸唱",
+			price: 65,
+			press: {
+				name: "工业出版社"
+			}
+		}
+		Observe(book);
+
+		function Observe(data) {
+			if (!data || typeof data !== 'object') {
+				return;
+			}
+			Object.keys(data).forEach((key) => {
+				createReactive(data, key, data[key])
+			});
+		}
+
+		function createReactive(data, key, value) {
+			Observe(value);
+			Object.defineProperty(data, key, {
+				enumerable: true, // 可枚举
+				configurable: false, // 不能再define
+				set(newValue) {
+					console.log('set');
+					value = newValue;
+				},
+				get() {
+					console.log('get')
+					return value;
+				}
+			});
+		}
+	</script>
+</body>
+
 </html>

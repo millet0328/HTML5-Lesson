@@ -1,75 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title></title>
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title></title>
+</head>
 
-	<body>
-		<fieldset id="">
-			<legend>箭头函数4种写法</legend>
+<body>
+	<fieldset id="">
+		<legend>箭头函数4种写法</legend>
 
-			<ol>
-				<li>函数体中，单条语句，有return</li>
-				<li>函数体中，多条语句，有/无return</li>
-			</ol>
-			<script type="text/javascript">
-				// 无参数
-				var sum = () => 10 + 1;
-				// 单个参数
-				var sum = x => x + 1;
-				// 参数 >= 2
-				var sum = (x, y) => x + y;
-			</script>
-			<script type="text/javascript">
-				// 无return
-				var sum = (x, y) => {
-					x++;
-					y--;
+		<ol>
+			<li>函数体中，单条语句，有return</li>
+			<li>函数体中，多条语句，有/无return</li>
+		</ol>
+		<script type="text/javascript">
+			// 无参数
+			var sum = () => 10 + 1;
+			// 单个参数
+			var sum = x => x + 1;
+			// 参数 >= 2
+			var sum = (x, y) => x + y;
+		</script>
+		<script type="text/javascript">
+			// 应用
+			var arr = [12, 65, 98, 74, 65, 38, 19];
+
+			this.arr.filter((item, index) => item > 60);
+
+			this.arr.map((item, index) => item * 2);
+
+			this.arr.reduce((total, item, index) => total + item);
+		</script>
+		<script type="text/javascript">
+			// 无return
+			var sum = (x, y) => {
+				x++;
+				y--;
+			}
+			// 有return
+			var sum = (x, y) => {
+				x++;
+				y--;
+				return x + y
+			};
+		</script>
+	</fieldset>
+	<fieldset id="">
+		<legend>解决this指向的问题</legend>
+		<script type="text/javascript">
+			var x = 100;
+			setTimeout(function () {
+				console.log(this.x);
+			}, 1000);
+		</script>
+		<script>
+			// ES5版本
+			var person = {
+				name: '黄小米',
+				talk: function () {
+					let self = this;
+					setTimeout(function () {
+						console.log('我是' + self.name);
+					}, 1000);
 				}
-				// 有return
-				var sum = (x, y) => {
-					x++;
-					y--;
-					return x + y
-				};
-			</script>
-		</fieldset>
-		<fieldset id="">
-			<legend>解决this指向的问题</legend>
-			<script type="text/javascript">
-				var x = 100;
-				setTimeout(function() {
-					console.log(this.x);
-				}, 1000);
-			</script>
-			<script>
-				// ES5版本
-				var person = {
-					name: '黄小米',
-					talk: function() {
-						let self = this;
-						setTimeout(function() {
-							console.log('我是' + self.name);
-						}, 1000);
-					}
+			}
+			person.talk();
+			// ES6箭头函数
+			var person = {
+				name: '黄小米',
+				talk: function () {
+					setTimeout(() => {
+						console.log('我是' + this.name);
+					}, 1000);
 				}
-				person.talk();
-				// ES6箭头函数
-				var person = {
-					name: '黄小米',
-					talk: function() {
-						setTimeout(() => {
-							console.log('我是' + this.name);
-						}, 1000);
-					}
-				}
-				person.talk();
-			</script>
-		</fieldset>
-	</body>
+			}
+			person.talk();
+		</script>
+		<script>
+			// 箭头函数不可用于vue的事件处理函数，因为this指向已经特殊处理过了。
+			// var app = new Vue({
+			// 	el: "#app",
+			// 	data: {
+			// 		count: 1,
+			// 	},
+			// 	methods: {
+			// 		handleClick: function () {
+			// 			console.log('当前的count值：', this.count);
+			// 		},
+			// 		handleClick() {
+			// 			console.log('当前的count值：', this.count);
+			// 		},
+			// 		handleClick: () => {
+			// 			console.log('当前的count值：', this.count);
+			// 		},
+			// 	}
+			// })
+		</script>
+	</fieldset>
+</body>
 
 </html>

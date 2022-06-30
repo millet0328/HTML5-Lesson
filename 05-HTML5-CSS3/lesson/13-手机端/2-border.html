@@ -3,12 +3,19 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="viewport"
+			content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link rel="stylesheet" type="text/css" href="css/reset.css" />
 		<style type="text/css">
 			.menu,
-			.list {
+			.list,
+			.default {
 				padding: 0 5vw;
+			}
+
+			.default li {
+				min-height: 10vw;
+				border-bottom: 1px solid #ddd;
 			}
 
 			.menu li {
@@ -29,11 +36,22 @@
 				left: 0;
 				bottom: 0;
 				border-bottom: 1px solid #000;
-				transform: scaleY(0.1);
+				transform: scaleY(0.2);
 			}
 		</style>
 	</head>
 	<body>
+		<fieldset id="">
+			<legend>边框：1px</legend>
+
+			<ul class="default">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</fieldset>
 		<fieldset id="">
 			<legend>纤细边框：0.1vw</legend>
 

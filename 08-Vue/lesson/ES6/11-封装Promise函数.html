@@ -1,67 +1,84 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-	</head>
-	<body>
 
-		<script type="text/javascript">
-			// 封装promise函数
-			function random() {
-				var promise = new Promise(function(resolve, reject) {
-					setTimeout(function() {
-						var x = Math.random();
-						if (x >= 0.5) {
-							resolve(x);
-						} else {
-							reject(x);
-						}
-					}, 500);
-				});
-				return promise;
-			}
-		</script>
-		<script type="text/javascript">
-			// 封装一个支持promise的GET方法
-			function getJSON(url, data) {
-				return new Promise(function(resolve, reject) {
-					// 1、实例
-					let ajax = new XMLHttpRequest();
-					// 2、设置参数
-					ajax.open('GET', url, true);
-					// 3、发送
-					ajax.send(data);
-					// 4、监听readyState
-					ajax.onreadystatechange = function() {
-						if (ajax.status == 200) {
-							// 成功
-							let res = JSON.parse(ajax.responseText);
-							resolve(res);
-						} else {
-							// 失败
-							reject(ajax.statusText);
-						}
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+
+<body>
+
+	<script type="text/javascript">
+		// 封装promise函数
+		function random() {
+			var promise = new Promise(function (resolve, reject) {
+				setTimeout(function () {
+					var x = Math.random();
+					if (x >= 0.5) {
+						resolve(x);
+					} else {
+						reject(x);
 					}
-				});
-			}
-			// 伪代码
+				}, 500);
+			});
+			return promise;
+		}
+	</script>
+	<script type="text/javascript">
+		// 封装一个支持promise的GET方法
+		function getJSON(url, data) {
+			return new Promise(function (resolve, reject) {
+				// 转换object => queryString
+				function param(obj = {}) {
+					if (!obj) return '';
+					let arr = Object.keys(obj).map(key => {
+						if (obj[key] === undefined) return ''
+						return encodeURIComponent(key) + '=' + encodeURIComponent(obj[key])
+					});
+					return arr.join("&");
+				}
+				// 1、实例
+				let ajax = new XMLHttpRequest();
+				// 2、设置参数
+				ajax.open('GET', url, true);
+				// 3、发送
+				ajax.send(param(data));
+				// 4、监听readyState
+				ajax.onreadystatechange = function () {
+					if (ajax.status == 200) {
+						// 成功
+						let res = JSON.parse(ajax.responseText);
+						resolve(res);
+					} else {
+						// 失败
+						reject(ajax.statusText);
+					}
+				}
+			});
+		}
+		// 伪代码
 
-			// 1.关键词 => 股票名称
-			getJSON("/stock/name", "haier")
-				.then(function(res1) {
-					let { name } = res1;
-					return getJSON("/stock/code", name);
-				})
-				// 2.股票名称 => 股票code代码
-				.then(function(res2) {
-					let { code } = res2;
-					return getJSON("/stock/price", code);
-				})
-				// 3.股票code代码 => 股票价格
-				.then(function(res3) {
-					let { price } = res3;
-				});
-		</script>
-	</body>
+		// 1.关键词 => 股票名称
+		getJSON("/stock/name", { keyword: "haier" })
+			.then(function (res1) {
+				let { name } = res1;
+				return getJSON("/stock/code", name);
+			})
+			// 2.股票名称 => 股票code代码
+			.then(function (res2) {
+				let { code } = res2;
+				return getJSON("/stock/price", code);
+			})
+			// 3.股票code代码 => 股票价格
+			.then(function (res3) {
+				let { price } = res3;
+				console.log("股票价格：" + price);
+			})
+			// 4.捕获错误
+			.catch(function (error) {
+				throw error;
+			})
+	</script>
+</body>
+
 </html>

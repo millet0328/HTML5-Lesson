@@ -28,7 +28,7 @@
 			class ColorPoint extends Point {
 
 				constructor(x, y, color) {
-					// Point.call(this,x,y)
+					// 继承父类属性
 					super(x, y);
 					// 自身属性
 					this.color = color;
@@ -50,17 +50,30 @@
 
 			// 父类constructor没有参数
 			class Animal {
-				constructor() {
-					this.species = "动物类"
+				constructor(sex) {
+					this.species = "动物类";
+					this.English = "Animal";
+					this.sex = sex;
+					this.legs = 4;
+				}
+				eat(food) {
+					console.log("em......")
+				}
+				sleep() {
+					console.log("zzzzzzzz")
 				}
 			}
+
 			class Cat extends Animal {
-				constructor(type, color) {
-					super();
+				constructor(sex, type, color) {
+					// 继承父类属性
+					super(sex);
+					// 自身的属性
 					this.type = type;
 					this.color = color;
 				}
 			}
+
 			// constructor可以省略情况
 			class Dog extends Animal {
 				// 父类constructor没有参数，子类没有自有属性
@@ -68,7 +81,7 @@
 					super()
 				}
 				// 上面这种情况，可以不写，它自动生成相应的代码
-				
+
 			}
 
 			/**

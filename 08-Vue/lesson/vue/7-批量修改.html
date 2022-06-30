@@ -1,80 +1,86 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-		<style type="text/css">
-			.type {
-				padding: 8px 20px;
-				border: 2px solid #EEEEEE;
-				background-color: white;
-				outline: 0;
-				margin-right: 10px;
-			}
 
-			.type.active {
-				border-color: orange;
-				color: orange;
-			}
-		</style>
-		<script src="lib/vue/vue.js"></script>
-	</head>
-	<body>
-		<fieldset id="">
-			<legend>1、添加自定义数据</legend>
-			<div id="app1">
-				<p>
-					<button v-for="item in specs" @click="handleSelect(item)" :class="{ active : item.selected }"
-						class="type" type="button">
-						{{item.name}}
-					</button>
-				</p>
-			</div>
-			<script type="text/javascript">
-				var app1 = new Vue({
-					el: "#app1",
-					data: {
-						specs: [
-							{ name: '红色', selected: false },
-							{ name: '橙色', selected: false },
-							{ name: '黄色', selected: false },
-							{ name: '绿色', selected: false },
-							{ name: '青色', selected: false },
-							{ name: '蓝色', selected: false },
-						]
-					},
-					methods: {
-						handleSelect: function(item) {
-							this.specs.forEach(function(color) {
-								color.selected = false;
-							});
-							item.selected = true;
-						}
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		.type {
+			padding: 8px 20px;
+			border: 2px solid #EEEEEE;
+			background-color: white;
+			outline: 0;
+			margin-right: 10px;
+		}
+
+		.type.active {
+			border-color: orange;
+			color: orange;
+		}
+	</style>
+	<script src="lib/vue/vue.js"></script>
+</head>
+
+<body>
+	<fieldset id="">
+		<legend>1、添加自定义数据</legend>
+		<div id="app1">
+			<p>
+				<button v-for="item in specs" @click="handleSelect(item)" :class="{ active : item.selected }"
+					class="type" type="button">
+					{{item.name}}
+				</button>
+			</p>
+		</div>
+		<script type="text/javascript">
+			var app1 = new Vue({
+				el: "#app1",
+				data: {
+					specs: [
+						{ name: '红色', selected: false },
+						{ name: '橙色', selected: false },
+						{ name: '黄色', selected: false },
+						{ name: '绿色', selected: false },
+						{ name: '青色', selected: false },
+						{ name: '蓝色', selected: false },
+					]
+				},
+				methods: {
+					handleSelect: function (item) {
+						this.specs.forEach(function (color) {
+							color.selected = false;
+						});
+						item.selected = true;
 					}
-				});
-			</script>
-		</fieldset>
+				}
+			});
+		</script>
+	</fieldset>
 
-		<fieldset id="">
-			<legend>2、索引</legend>
+	<fieldset id="">
+		<legend>2、索引</legend>
+		<ol>
+			<li>current：当前点击元素的索引</li>
+			<li>当前点击元素的索引 == 按钮本身的索引</li>
+		</ol>
+		<div id="app2">
+			<p>
+				<button v-for="(item,index) in colors" @click="current = index" :class="{ active : current === index }"
+					type="button" class="type">
+					{{item}}
+				</button>
+			</p>
+		</div>
+		<script type="text/javascript">
+			var app2 = new Vue({
+				el: "#app2",
+				data: {
+					current: -1, //当前选中项的索引
+					colors: ['红色', '橙色', '黄色', '绿色', '青色'],
+				}
+			});
+		</script>
+	</fieldset>
+</body>
 
-			<div id="app2">
-				<p>
-					<button v-for="(item,index) in colors" @click="current = index"
-						:class="{ active : current === index }" type="button" class="type">
-						{{item}}
-					</button>
-				</p>
-			</div>
-			<script type="text/javascript">
-				var app2 = new Vue({
-					el: "#app2",
-					data: {
-						current: -1, //当前选中项的索引
-						colors: ['红色', '橙色', '黄色', '绿色', '青色'],
-					}
-				});
-			</script>
-		</fieldset>
-	</body>
 </html>

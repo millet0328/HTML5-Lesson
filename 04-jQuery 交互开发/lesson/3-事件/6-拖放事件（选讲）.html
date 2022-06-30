@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>jQuery版拖拽事件</title>
-		<style type="text/css">
-			.box {
-				position: absolute;
-				left: 0;
-				top: 0;
-				width: 200px;
-				height: 200px;
-				border: 2px solid blue;
-				transition: background-color 0.5s;
-			}
 
-			.wrap {
-				position: relative;
-				min-height: 600px;
-				border: 2px solid yellow;
-			}
-		</style>
-	</head>
-	<body>
-		<div style="height: 600px;">模拟前置内容</div>
-		<div class="wrap">
-			<div class="box"></div>
-		</div>
-		<script src="js/jquery-3.5.1.min.js"></script>
-		<script type="text/javascript">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery版拖拽事件</title>
+	<style type="text/css">
+		.box {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 200px;
+			height: 200px;
+			border: 2px solid blue;
+			transition: background-color 0.5s;
+		}
+
+		.wrap {
+			position: relative;
+			min-height: 600px;
+			border: 2px solid yellow;
+		}
+	</style>
+</head>
+
+<body>
+	<div style="height: 600px;">模拟前置内容</div>
+	<div class="wrap">
+		<div class="box"></div>
+	</div>
+	<script src="js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
 			// 边界值
 			var maxLeft = $('.wrap').innerWidth() - $('.box').outerWidth();
 			var maxTop = $('.wrap').innerHeight() - $('.box').outerHeight();
@@ -88,6 +90,7 @@
 			 1、蓝色框无法超出去上、下、左、右四条边界
 			 2、每次蓝色框碰到边界线，随机改变背景色
 			 */
-		</script>
-	</body>
+	</script>
+</body>
+
 </html>
