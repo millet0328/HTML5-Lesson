@@ -79,7 +79,7 @@
 			</style>
 			<ol>
 				<li>普通DOM流，垂直margin会合并</li>
-				<li>解决方案：尽量使用padding</li>
+				<li>解决方案：使用padding</li>
 			</ol>
 			<div class="company">
 				<div class="container">
@@ -88,22 +88,48 @@
 			</div>
 
 		</fieldset>
-		<!-- 块级元素左右居中 -->
-		<fieldset id="">
-			<legend>块级元素左右居中</legend>
-			<style type="text/css">
-				.box-center {
+
+		<fieldset>
+			<legend>边框</legend>
+
+			<ol>
+				<li>边框绘制的夹角</li>
+				<li>如何使用CSS写一个三角形？</li>
+			</ol>
+			<style>
+				.border-box {
 					width: 200px;
-					height: 60px;
-					background-color: orange;
-					margin: 20px auto;
+					height: 200px;
+					border-top: 2px solid blue;
+					border-left: 4px solid red;
+					border-bottom: 3px solid green;
+					border-right: 5px solid transparent;
+				}
+
+				.triangle {
+					border: 16px solid transparent;
+					border-bottom-color: blue;
+					display: inline-block;
+				}
+
+				.dashed-box {
+					width: 200px;
+					height: 200px;
+					border: 2px dashed black;
+					margin: 5px 0;
+				}
+
+				.dotted-box {
+					width: 200px;
+					height: 200px;
+					border: 2px dotted black;
+					margin: 5px 0;
 				}
 			</style>
-			<ol>
-				<li>固定宽度的块级元素</li>
-				<li>左右margin必须是auto</li>
-			</ol>
-			<div class="box-center"></div>
+			<div class="border-box"></div>
+			<span class="triangle"></span>
+			<div class="dashed-box"></div>
+			<div class="dotted-box"></div>
 		</fieldset>
 	</body>
 

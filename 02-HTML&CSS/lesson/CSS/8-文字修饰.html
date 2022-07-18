@@ -8,17 +8,6 @@
 
 	<body>
 		<fieldset id="">
-			<legend>字体样式</legend>
-
-			<style>
-				.font {
-					font-family: "时尚中黑简体";
-				}
-			</style>
-			<p class="font">font-family：字体段落样式，字体段落样式，字体段落样式，字体段落样式，字体段落样式</p>
-		</fieldset>
-
-		<fieldset id="">
 			<legend>段落样式</legend>
 
 			<style type="text/css">
@@ -28,21 +17,32 @@
 					text-indent: 2em;
 				}
 
-				.align-middle {
-					background-color: orange;
-					height: 60px;
-					line-height: 60px;
+				.link {
+					width: 100px;
+					background-color: blue;
+					color: white;
+					text-align: center;
+					height: 40px;
+					line-height: 40px;
+					margin: 5px 0;
+				}
+
+				.dynamic-link {
+					background-color: blue;
+					color: white;
+					margin: 5px 0;
+					display: inline-block;
+					padding: 10px 30px;
 				}
 			</style>
 			<p class="paragraph">
-				LPL有很多外援选手，前段时间，蛇蛇、Theshy加入了WBG，再加上sofm总共三位外援，因为规则限制的存在，无法同时登场比赛。解决这个问题的唯一方法就是外援选手转为本土选手。最终在选手和战队协商下，sofm转为本土选手，他也成为LPL第三个转本土的选手，没想到紧接着第四个就来了，而且是Rookie选手。
+				央视报道，库奇斯表示，德国将从8月1日开始停止进口俄罗斯煤炭，从12月31日开始停止进口俄罗斯石油，这也将从根本上改变德国的能源供应。此前，俄罗斯的煤炭和石油占德国进口的40%以上。但库奇斯同时也承认，比起煤炭和石油，要摆脱对俄罗斯天然气的依赖更加困难。他表示，欧盟每年从俄罗斯进口约1580亿立方米的天然气，而美国和卡塔尔能向欧洲提供的液化天然气仅为300亿立方米，这二者之间有着巨大的差距。
 			</p>
-			<div class="align-middle">
-				垂直居中，垂直居中，垂直居中，垂直居中
-			</div>
+			<div class="link">新闻中心</div>
+			<div class="dynamic-link">新闻中心新闻中心新闻中心新闻中心新闻中心</div>
 		</fieldset>
 		<fieldset id="">
-			<legend>文字对齐：text-align</legend>
+			<legend>内联元素居中：text-align</legend>
 			<ol>
 				<li>对齐：不单单文字可以使用，所有内联元素都可以使用</li>
 			</ol>
@@ -50,47 +50,107 @@
 				.text-center {
 					text-align: center;
 				}
-
+		
 				.text-right {
 					text-align: right;
 				}
 			</style>
-			<p class="text-center">居中对齐</p>
-			<p class="text-right">右对齐</p>
+			<p class="text-center">
+				<span>居中对齐</span>
+			</p>
+			<p class="text-right">
+				<a href="#">右对齐</a>
+			</p>
 			<p class="text-right">
 				<img width="200" src="./img/1525490815187.jpg" alt="">
 			</p>
-
 		</fieldset>
 
-		<fieldset id="">
-			<legend>链接样式:必须指定到a标签才能生效！</legend>
+		<fieldset>
+			<legend>text-decoration</legend>
 			<style>
-				.link {
-					color: orange;
-				}
-
-				.link a {
-					text-decoration: none;
-					color: green;
-				}
-
-				.price {
+				.line-through {
 					text-decoration: line-through;
 				}
 			</style>
+			<p>原价：<del>359.00</del></p>
+			<p>原价：<span class="line-through">999.00</span></p>
+			<ol>
+				<li>去除a标签链接默认样式：text-decoration:none</li>
+			</ol>
+			<style>
+				.reset-line {
+					text-decoration: none;
+				}
+			</style>
 			<p>
-				<a href="#">普通链接样式</a>
+				<a href="#">链接默认样式</a>
 			</p>
+			<p>
+				<a class="reset-line" href="#">链接：去除底边线</a>
+			</p>
+		</fieldset>
+		<fieldset>
+			<legend>链接样式：颜色</legend>
+			<style>
+				.fl {
+					float: left;
+				}
 
-			<p class="link">
-				<span>继承颜色</span> <a href="#">去掉默认链接样式</a>
-			</p>
-			<p>
-				原价：<del>￥399.0</del>
-			</p>
-			<p>
-				原价：<span class="price">￥399.0</span>
+				.clear {
+					clear: both;
+				}
+
+				.nav {
+					padding: 15px 0;
+					border-top: 1px solid black;
+					border-bottom: 1px solid black;
+				}
+
+				.nav .item {
+					padding: 0 10px;
+					color: orange;
+				}
+
+				.nav .item a {
+					text-decoration: none;
+					color: hotpink;
+				}
+
+				.nav .item+.item {
+					border-left: 1px solid black;
+				}
+			</style>
+			<ol>
+				<li>链接样式:必须指定到a标签才能生效！</li>
+			</ol>
+			<div class="nav">
+				<div class="item fl">
+					<a href="#">联系我们</a>
+				</div>
+				<div class="item fl">
+					<a href="#">网站地图</a>
+				</div>
+				<div class="item fl">
+					<a href="#">客服电话</a>
+				</div>
+				<div class="item fl">
+					<a href="#">隐私权限</a>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>首行缩进：text-indent</legend>
+			<style>
+				.passage {
+					font-size: 14px;
+					line-height: 32px;
+					text-indent: 2em;
+				}
+			</style>
+			<p class="passage">
+				网络空间关乎人类命运，网络空间未来应由世界各国共同开创。自2015年在第二届世界互联网大会开幕式上创造性提出“构建网络空间命运共同体”的重要理念以来，习近平主席多次围绕这一理念发表重要论述，表达出中国加强国际合作、共治网络空间的意愿，推动中国与世界各国构建更加公平合理、开放包容、安全稳定、富有生机活力的网络空间。
 			</p>
 		</fieldset>
 
@@ -120,6 +180,16 @@
 				<img class="vertical-middle" src="./img/95742.png" width="50" alt="">
 				<span class="vertical-middle">我想垂直居中</span>
 			</p>
+		</fieldset>
+		<fieldset id="">
+			<legend>字体样式</legend>
+
+			<style>
+				.font {
+					font-family: "时尚中黑简体";
+				}
+			</style>
+			<p class="font">font-family：字体段落样式，字体段落样式，字体段落样式，字体段落样式，字体段落样式</p>
 		</fieldset>
 	</body>
 

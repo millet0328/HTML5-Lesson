@@ -1,0 +1,103 @@
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.clear {
+	clear: both;
+}
+
+.container {
+	width: 980px;
+	margin: 0 auto;
+}
+
+/* 新闻中心 */
+.news-center {
+	width: 295px;
+	margin-left: 15px;
+	margin-right: 32px;
+}
+
+.news-section .title {
+	font-size: 14px;
+	color: rgba(0, 0, 0, 0.8);
+	border-bottom: 1px solid #d9d9d9;
+	padding-bottom: 3px;
+	margin-bottom: 9px;
+}
+
+.news-center .top .right {
+	margin-left: 12px;
+}
+
+.news-center .right .item {
+	font-size: 12px;
+	color: rgba(0, 0, 0, 0.68);
+	margin-bottom: 4px;
+}
+
+.news-center .right .more {
+	margin-top: 18px;
+	font-size: 12px;
+	color: #002646;
+}
+
+.news-center .bottom {
+	margin-top: 27px;
+}
+
+.news-center .bottom .item {
+	font-size: 12px;
+	color: rgba(0, 0, 0, 0.67);
+	margin-bottom: 4px;
+}
+
+/* 今日大田 */
+.today-news {
+	width: 295px;
+	margin-right: 35px;
+}
+
+.today-news .item {
+	margin-bottom: 16px;
+}
+
+.today-news .item .text {
+	width: 168px;
+	font-size: 12px;
+	color: rgba(0, 0, 0, 0.68);
+	margin: 0;
+	margin-left: 11px;
+}
+
+/* 今日动态 */
+.recent-news .name {
+	font-size: 12px;
+	color: #002646;
+	margin-top: 16px;
+}
+
+.footer {
+	margin-top: 25px;
+	border-top: 1px solid #ececec;
+	border-bottom: 1px solid #ececec;
+	padding: 11px 0;
+	font-size: 12px;
+}
+
+.footer .copyright {
+	color: #b1b1b1;
+}
+
+.footer .nav .item {
+	padding: 0 10px;
+	line-height: 15px;
+}
+
+.footer .nav .item+.item {
+	border-left: 1px solid #808080;
+}

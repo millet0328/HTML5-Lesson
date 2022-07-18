@@ -1,14 +1,57 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-		<style>
 
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style>
+
+	</style>
+</head>
+
+<body>
+	<!-- 内联元素：text-align:center -->
+	<fieldset id="">
+		<legend>内联元素居中：text-align</legend>
+		<ol>
+			<li>对齐：不单单文字可以使用，所有内联元素都可以使用</li>
+		</ol>
+		<style type="text/css">
+			.text-center {
+				text-align: center;
+			}
+
+			.text-right {
+				text-align: right;
+			}
 		</style>
-	</head>
-	<body>
-		<!-- 内联元素：text-align:center -->
-		<!-- 块级元素: margin:0 auto; width:300px -->
-	</body>
+		<p class="text-center">
+			<span>居中对齐</span>
+		</p>
+		<p class="text-right">
+			<a href="#">右对齐</a>
+		</p>
+		<p class="text-right">
+			<img width="200" src="./img/1525490815187.jpg" alt="">
+		</p>
+	</fieldset>
+	<!-- 块级元素：左右居中 -->
+	<fieldset id="">
+		<legend>块级元素：左右居中</legend>
+		<style type="text/css">
+			.box-center {
+				width: 200px;
+				height: 60px;
+				background-color: orange;
+				margin: 20px auto;
+			}
+		</style>
+		<ol>
+			<li>固定宽度的块级元素</li>
+			<li>左右margin必须是auto</li>
+		</ol>
+		<div class="box-center"></div>
+	</fieldset>
+</body>
+
 </html>

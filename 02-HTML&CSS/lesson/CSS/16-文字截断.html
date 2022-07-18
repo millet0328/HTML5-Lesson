@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			a {
+				text-decoration: none;
+			}
+
+			ul {
+				list-style: none;
+				padding: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>overflow基本用法</legend>
+			<style type="text/css">
+				.box-1 {
+					width: 200px;
+					height: 200px;
+					margin: 50px 0;
+					background-color: pink;
+				}
+			</style>
+			<!-- visible -->
+			<div class="box-1" style="overflow: visible;">
+				<p>visible</p>
+				<p>visible</p>
+				<p>visible</p>
+				<p>visible</p>
+				<p>visible</p>
+				<p>visible</p>
+				<p>visible</p>
+			</div>
+			<!-- hidden -->
+			<div class="box-1" style="overflow: hidden;">
+				<p>hidden</p>
+				<p>hidden</p>
+				<p>hidden</p>
+				<p>hidden</p>
+				<p>hidden</p>
+				<p>hidden</p>
+				<p>hidden</p>
+			</div>
+			<!-- scroll -->
+			<div class="box-1" style="overflow: scroll;">
+				<p>scroll</p>
+				<p>scroll</p>
+				<p>scroll</p>
+				<p>scroll</p>
+				<p>scroll</p>
+				<p>scroll</p>
+				<p>scroll</p>
+			</div>
+			<!-- overflow-x /overflow-y -->
+			<div class="box-1" style="overflow-y: scroll;">
+				<p>scroll</p>
+				<p>scroll</p>
+				<p>scroll</p>
+				<p>scroll</p>
+				<p>scroll</p>
+				<p>scroll</p>
+				<p>scroll</p>
+			</div>
+			<!-- auto -->
+			<div class="box-1" style="overflow: auto;">
+				<p>auto</p>
+				<p>auto</p>
+				<p>auto</p>
+				<p>auto</p>
+				<p>auto</p>
+				<p>auto</p>
+				<p>auto</p>
+			</div>
+		</fieldset>
+		<fieldset id="">
+			<legend>单行文字截断</legend>
+			<p>overflow / white-space / text-overflow</p>
+			<style type="text/css">
+				.news-list {
+					width: 300px;
+					padding: 10px;
+					border: 2px solid orange;
+				}
+
+				.news-list li {
+					padding: 10px 0;
+					border-bottom: 1px solid pink;
+					/* 强制一行显示 */
+					white-space: nowrap;
+					/* 超出范围的文字裁减掉 */
+					overflow: hidden;
+					/* 裁剪文字，省略号 */
+					text-overflow: ellipsis;
+				}
+			</style>
+			<ul class="news-list">
+				<li>
+					<a href="#" title="向着世界一流军队前进">向着世界一流军队前进</a>
+				</li>
+				<li>
+					<a href="#" title="美方为18名官员申请签证参加北京冬奥？外交部回应">美方为18名官员申请签证参加北京冬奥？外交部回应</a>
+				</li>
+				<li>
+					<a href="#" title="乡村振兴让乡亲们过上好光景">乡村振兴让乡亲们过上好光景</a>
+				</li>
+				<li>
+					<a href="#" title="三只松鼠模特儿:眯眯眼不配做中国人?怀旧风迎合西方审美?">三只松鼠模特儿:眯眯眼不配做中国人?怀旧风迎合西方审美?</a>
+				</li>
+				<li>
+					<a href="#" title="《天目全球抗疫排行榜》第20期发布 中国继续领跑榜单">《天目全球抗疫排行榜》第20期发布 中国继续领跑榜单</a>
+				</li>
+			</ul>
+		</fieldset>
+		<fieldset id="">
+			<legend>多行文本截断</legend>
+			<ol>
+				<li>兼容性特别差，只支持谷歌浏览器、Edge同等类型浏览器</li>
+			</ol>
+			<style type="text/css">
+				.line-clamp {
+					display: -webkit-box;
+					-webkit-line-clamp: 2;
+					/* 几行开始截断 */
+					-webkit-box-orient: vertical;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					word-break: break-all;
+					/* 对超长数字/超长英文断行 */
+				}
+			</style>
+			<p class="line-clamp">
+				新华社里约热内卢12月23日电(记者陈威华赵焱)新年即将到来，巴西新冠疫情依然十分严峻。主要由华商组成的巴西里约华人联谊会(以下简称华联会)近日面向当地多家机构举行“赠人玫瑰手留余香”慈善物资捐赠活动，得到巴西各级政府和民众的赞许。
+				据华联会秘书长苏子梁介绍，华联会每年都举行针对当地孤儿院、敬老院和福利院等机构的捐助活动，以回馈当地社会。今年由于疫情严重，巴西失业率上升，底层民众生计艰难。华联会购买了一批专供老人和儿童的食品以及防疫物资，捐给由当地政府推荐的4家机构。
+			</p>
+		</fieldset>
+	</body>
+</html>

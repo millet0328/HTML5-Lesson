@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="./css/reset.css">
+		<style>
+			.container {
+				width: 1170px;
+				margin: 0 auto;
+			}
+
+			ol {
+				margin: 16px;
+
+				padding-left: 40px;
+			}
+
+			ol li {
+				list-style: decimal;
+			}
+		</style>
+	</head>
+	<body>
+		<fieldset>
+			<legend>方法一：平分margin</legend>
+			<ol>
+				<li>不按照设计图要求，左右对齐版心</li>
+				<li>修改margin，更改为左右margin</li>
+			</ol>
+			<img src="./img/左右margin.jpg" alt="">
+			<style>
+				.services-1 li {
+					width: 363px;
+					padding: 75px 0 60px 0;
+					margin: 0 13px;
+				}
+
+				.services-1 li .pic {
+					width: 37px;
+					padding-right: 29px;
+				}
+
+				.services-1 li .content {
+					width: 297px;
+				}
+
+				.services-1 li .title {
+					font-size: 23px;
+					color: #6a7884;
+				}
+
+				.services-1 li .txt {
+					line-height: 23px;
+				}
+			</style>
+			<div class="services-1">
+				<div class="container">
+					<ul>
+						<li class="fl">
+							<div class="pic fl"><img class="vertical-mid" src="./img/icon-smartphone--blue.png" alt="">
+							</div>
+							<div class="content fl">
+								<div class="title">Fully Responsive</div>
+								<div class="txt">Curabitur varius mattis lacus a varius. In in sagittis nibh. Aenean
+									aliquam
+									bibendum est quis dignissim. Nullam viverra urna ac enim porttitor.</div>
+							</div>
+							<div class="clear"></div>
+						</li>
+						<li class="fl">
+							<div class="pic fl"><img class="vertical-mid" src="./img/icon-share-blue.png" alt=""></div>
+							<div class="content fl">
+								<div class="title">Community BuddyPress</div>
+								<div class="txt">Curabitur varius mattis lacus a varius. In in sagittis nibh. Aenean
+									aliquam
+									bibendum est quis dignissim. Nullam viverra urna ac enim porttitor.</div>
+							</div>
+							<div class="clear"></div>
+						</li>
+						<li class="fl">
+							<div class="pic fl"><img class="vertical-mid" src="./img/icon-fix-blue.png" alt=""></div>
+							<div class="content fl">
+								<div class="title">Multipurpose Panel</div>
+								<div class="txt">Curabitur varius mattis lacus a varius. In in sagittis nibh. Aenean
+									aliquam
+									bibendum est quis dignissim. Nullam viverra urna ac enim porttitor.</div>
+							</div>
+							<div class="clear"></div>
+						</li>
+						<li class="fl">
+							<div class="pic fl"><img class="vertical-mid" src="./img/icon-heart-blue.png" alt=""></div>
+							<div class="content fl">
+								<div class="title">Lovely Design</div>
+								<div class="txt">Curabitur varius mattis lacus a varius. In in sagittis nibh. Aenean
+									aliquam
+									bibendum est quis dignissim. Nullam viverra urna ac enim porttitor.</div>
+							</div>
+							<div class="clear"></div>
+						</li>
+						<li class="fl">
+							<div class="pic fl"><img class="vertical-mid" src="./img/icon-lightbulb-blue.png" alt="">
+							</div>
+							<div class="content fl">
+								<div class="title">So Much Ideas</div>
+								<div class="txt">Curabitur varius mattis lacus a varius. In in sagittis nibh. Aenean
+									aliquam
+									bibendum est quis dignissim. Nullam viverra urna ac enim porttitor.</div>
+							</div>
+							<div class="clear"></div>
+						</li>
+						<li class="fl">
+							<div class="pic fl"><img class="vertical-mid" src="./img/icon-home-blue.png" alt=""></div>
+							<div class="content fl">
+								<div class="title"><span class="vertical-mid">Stay Home</span><img
+										src="./img/icon-smile.png" alt="" class="vertical-mid"></div>
+								<div class="txt">Curabitur varius mattis lacus a varius. In in sagittis nibh. Aenean
+									aliquam
+									bibendum est quis dignissim. Nullam viverra urna ac enim porttitor.</div>
+							</div>
+							<div class="clear"></div>
+						</li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+			</div>
+		</fieldset>
+		<fieldset id="">
+			<legend>方法二：拓宽列表容器</legend>
+			<img src="./img/拓宽父级容器.jpg" alt="">
+			<ol>
+				版心宽度：1170px，手动拓宽列表父容器，增大尺寸，保证右侧item有足够的空间
+			</ol>
+			<style>
+				/* 5. services 模块 */
+
+				.services-2 ul {
+					width: 1210px;
+				}
+
+				.services-2 li {
+					width: 363px;
+					padding: 75px 40px 60px 0;
+				}
+
+				.services-2 li .pic {
+					width: 37px;
+					padding-right: 29px;
+				}
+
+				.services-2 li .content {
+					width: 297px;
+				}
+
+				.services-2 li .title {
+					font-size: 23px;
+					color: #6a7884;
+				}
+
+				.services-2 li .txt {
+					line-height: 23px;
+				}
+			</style>
+			<div class="services-2">
+				<div class="container">
+					<ul>
+						<li class="fl">
+							<div class="pic fl"><img class="vertical-mid" src="./img/icon-smartphone--blue.png" alt="">
+							</div>
+							<div class="content fl">
+								<div class="title">Fully Responsive</div>
+								<div class="txt">Curabitur varius mattis lacus a varius. In in sagittis nibh. Aenean
+									aliquam
+									bibendum est quis dignissim. Nullam viverra urna ac enim porttitor.</div>
+							</div>
+							<div class="clear"></div>
+						</li>
+						<li class="fl">
+							<div class="pic fl"><img class="vertical-mid" src="./img/icon-share-blue.png" alt=""></div>
+							<div class="content fl">
+								<div class="title">Community BuddyPress</div>
+								<div class="txt">Curabitur varius mattis lacus a varius. In in sagittis nibh. Aenean
+									aliquam
+									bibendum est quis dignissim. Nullam viverra urna ac enim porttitor.</div>
+							</div>
+							<div class="clear"></div>
+						</li>
+						<li class="fl">
+							<div class="pic fl"><img class="vertical-mid" src="./img/icon-fix-blue.png" alt=""></div>
+							<div class="content fl">
+								<div class="title">Multipurpose Panel</div>
+								<div class="txt">Curabitur varius mattis lacus a varius. In in sagittis nibh. Aenean
+									aliquam
+									bibendum est quis dignissim. Nullam viverra urna ac enim porttitor.</div>
+							</div>
+							<div class="clear"></div>
+						</li>
+						<li class="fl">
+							<div class="pic fl"><img class="vertical-mid" src="./img/icon-heart-blue.png" alt=""></div>
+							<div class="content fl">
+								<div class="title">Lovely Design</div>
+								<div class="txt">Curabitur varius mattis lacus a varius. In in sagittis nibh. Aenean
+									aliquam
+									bibendum est quis dignissim. Nullam viverra urna ac enim porttitor.</div>
+							</div>
+							<div class="clear"></div>
+						</li>
+						<li class="fl">
+							<div class="pic fl"><img class="vertical-mid" src="./img/icon-lightbulb-blue.png" alt="">
+							</div>
+							<div class="content fl">
+								<div class="title">So Much Ideas</div>
+								<div class="txt">Curabitur varius mattis lacus a varius. In in sagittis nibh. Aenean
+									aliquam
+									bibendum est quis dignissim. Nullam viverra urna ac enim porttitor.</div>
+							</div>
+							<div class="clear"></div>
+						</li>
+						<li class="fl">
+							<div class="pic fl"><img class="vertical-mid" src="./img/icon-home-blue.png" alt=""></div>
+							<div class="content fl">
+								<div class="title"><span class="vertical-mid">Stay Home</span><img
+										src="./img/icon-smile.png" alt="" class="vertical-mid"></div>
+								<div class="txt">Curabitur varius mattis lacus a varius. In in sagittis nibh. Aenean
+									aliquam
+									bibendum est quis dignissim. Nullam viverra urna ac enim porttitor.</div>
+							</div>
+							<div class="clear"></div>
+						</li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>方法三：nth-child选择器</legend>
+			<ol>
+				<li>兼容性不好，IE>=9</li>
+			</ol>
+			<style>
+				.services-3 li {
+					width: 363px;
+					padding: 75px 40px 60px 0;
+				}
+
+				.services-3 li:nth-child(3n) {
+					padding-right: 0;
+				}
+
+				.services-3 li .pic {
+					width: 37px;
+					padding-right: 29px;
+				}
+
+				.services-3 li .content {
+					width: 297px;
+				}
+
+				.services-3 li .title {
+					font-size: 23px;
+					color: #6a7884;
+				}
+
+				.services-3 li .txt {
+					line-height: 23px;
+				}
+			</style>
+			<div class="services-3">
+				<div class="container">
+					<ul>
+						<li class="fl">
+							<div class="pic fl"><img class="vertical-mid" src="./img/icon-smartphone--blue.png" alt="">
+							</div>
+							<div class="content fl">
+								<div class="title">Fully Responsive</div>
+								<div class="txt">Curabitur varius mattis lacus a varius. In in sagittis nibh. Aenean
+									aliquam
+									bibendum est quis dignissim. Nullam viverra urna ac enim porttitor.</div>
+							</div>
+							<div class="clear"></div>
+						</li>
+						<li class="fl">
+							<div class="pic fl"><img class="vertical-mid" src="./img/icon-share-blue.png" alt=""></div>
+							<div class="content fl">
+								<div class="title">Community BuddyPress</div>
+								<div class="txt">Curabitur varius mattis lacus a varius. In in sagittis nibh. Aenean
+									aliquam
+									bibendum est quis dignissim. Nullam viverra urna ac enim porttitor.</div>
+							</div>
+							<div class="clear"></div>
+						</li>
+						<li class="fl">
+							<div class="pic fl"><img class="vertical-mid" src="./img/icon-fix-blue.png" alt=""></div>
+							<div class="content fl">
+								<div class="title">Multipurpose Panel</div>
+								<div class="txt">Curabitur varius mattis lacus a varius. In in sagittis nibh. Aenean
+									aliquam
+									bibendum est quis dignissim. Nullam viverra urna ac enim porttitor.</div>
+							</div>
+							<div class="clear"></div>
+						</li>
+						<li class="fl">
+							<div class="pic fl"><img class="vertical-mid" src="./img/icon-heart-blue.png" alt=""></div>
+							<div class="content fl">
+								<div class="title">Lovely Design</div>
+								<div class="txt">Curabitur varius mattis lacus a varius. In in sagittis nibh. Aenean
+									aliquam
+									bibendum est quis dignissim. Nullam viverra urna ac enim porttitor.</div>
+							</div>
+							<div class="clear"></div>
+						</li>
+						<li class="fl">
+							<div class="pic fl"><img class="vertical-mid" src="./img/icon-lightbulb-blue.png" alt="">
+							</div>
+							<div class="content fl">
+								<div class="title">So Much Ideas</div>
+								<div class="txt">Curabitur varius mattis lacus a varius. In in sagittis nibh. Aenean
+									aliquam
+									bibendum est quis dignissim. Nullam viverra urna ac enim porttitor.</div>
+							</div>
+							<div class="clear"></div>
+						</li>
+						<li class="fl">
+							<div class="pic fl"><img class="vertical-mid" src="./img/icon-home-blue.png" alt=""></div>
+							<div class="content fl">
+								<div class="title"><span class="vertical-mid">Stay Home</span><img
+										src="./img/icon-smile.png" alt="" class="vertical-mid"></div>
+								<div class="txt">Curabitur varius mattis lacus a varius. In in sagittis nibh. Aenean
+									aliquam
+									bibendum est quis dignissim. Nullam viverra urna ac enim porttitor.</div>
+							</div>
+							<div class="clear"></div>
+						</li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+			</div>
+		</fieldset>
+	</body>
+</html>

@@ -7,27 +7,39 @@
 	</head>
 
 	<body>
-		<fieldset id="">
+		<fieldset>
 			<legend>列表：默认样式</legend>
-			<!-- 结构相同的一组数据 -->
-			<style type="text/css">
+			<ul>
+				<li>语文：150</li>
+				<li>数学：150</li>
+				<li>英语：150</li>
+				<li>物理：100</li>
+				<li>化学：100</li>
+			</ul>
+		</fieldset>
+		<fieldset>
+			<legend>列表：去除默认样式</legend>
+			<style>
 				.no-style {
 					list-style: none;
-					margin: 0;
 					padding: 0;
+					margin: 0;
 				}
 			</style>
 			<ul class="no-style">
+				<li>黄渤</li>
 				<li>黄磊</li>
 				<li>张艺兴</li>
-				<li>黄渤</li>
 				<li>王迅</li>
 				<li>孙红雷</li>
 			</ul>
 		</fieldset>
-
-		<fieldset id="">
-			<legend>1、列表 + 浮动</legend>
+		<fieldset>
+			<legend>列表+浮动</legend>
+			<ol>
+				<li>浮动可以将列表横向排列，但是要注意清除浮动</li>
+				<li>清除浮动的位置，暂时使用div来实现，后期换成after伪元素</li>
+			</ol>
 			<style>
 				.fl {
 					float: left;
@@ -37,22 +49,51 @@
 					clear: both;
 				}
 
-				.list li {
+				.list {
 					list-style: none;
-					padding: 10px 20px;
-					border: 1px solid orange;
-					margin-right: 20px;
+					padding: 0;
+				}
+
+				.list li {
+					padding: 10px 30px;
+					border: 1px solid orangered;
+					margin: 0 10px;
 				}
 			</style>
 			<ul class="list">
+				<li class="fl">黄渤</li>
 				<li class="fl">黄磊</li>
 				<li class="fl">张艺兴</li>
-				<li class="fl">黄渤</li>
 				<li class="fl">王迅</li>
 				<li class="fl">孙红雷</li>
 				<div class="clear"></div>
 			</ul>
 		</fieldset>
-		
+		<fieldset>
+			<legend>inline-block</legend>
+			<ol>
+				<li>优点：不需要浮动</li>
+				<li>缺点：中间会有一个空格的空隙</li>
+			</ol>
+			<style>
+				.nav {
+					list-style: none;
+					padding: 0;
+				}
+
+				.nav li {
+					display: inline-block;
+					padding: 10px 40px;
+					background-color: orange;
+				}
+			</style>
+			<ul class="nav">
+				<li>新闻</li>
+				<li>娱乐</li>
+				<li>财经</li>
+				<li>科技</li>
+				<li>体育</li>
+			</ul>
+		</fieldset>
 	</body>
 </html>
