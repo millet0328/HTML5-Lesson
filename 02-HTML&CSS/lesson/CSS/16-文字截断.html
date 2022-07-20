@@ -119,17 +119,21 @@
 			<legend>多行文本截断</legend>
 			<ol>
 				<li>兼容性特别差，只支持谷歌浏览器、Edge同等类型浏览器</li>
+				<li>适用于手机端页面</li>
 			</ol>
 			<style type="text/css">
 				.line-clamp {
+					/* 仅限webkit内核使用 */
 					display: -webkit-box;
-					-webkit-line-clamp: 2;
 					/* 几行开始截断 */
+					-webkit-line-clamp: 2;
+					line-clamp: 2;
 					-webkit-box-orient: vertical;
+					box-orient: vertical;
 					overflow: hidden;
 					text-overflow: ellipsis;
-					word-break: break-all;
 					/* 对超长数字/超长英文断行 */
+					word-break: break-all;
 				}
 			</style>
 			<p class="line-clamp">

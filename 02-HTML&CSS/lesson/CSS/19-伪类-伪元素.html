@@ -5,7 +5,7 @@
 		<meta charset="utf-8">
 		<title></title>
 		<!-- 引入font-aswesome -->
-		<link rel="stylesheet" type="text/css" href="./fonts/font-awesome/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="./fonts/font-awesome/css/font-awesome.min.css">
 	</head>
 
 	<body>
@@ -35,6 +35,8 @@
 				.box-1:hover {
 					background-color: green;
 					border: 2px solid red;
+					width: 300px;
+					color: white;
 				}
 
 				a:active {
@@ -135,6 +137,7 @@
 
 				.team .item:last-child {
 					background-color: #0086B3;
+					color: white;
 				}
 			</style>
 			<div class="team">
@@ -149,6 +152,7 @@
 		<fieldset id="">
 			<legend>伪元素</legend>
 			<ol>
+				<li>不可以手写标签，只能通过CSS定义</li>
 				<li>伪元素在CSS样式中，必须有content属性；</li>
 			</ol>
 			<p>1、基础语法</p>
@@ -169,18 +173,22 @@
 
 			<p>2、清除浮动</p>
 			<style type="text/css">
+				.team {
+					list-style: none;
+				}
+
 				.clearfix::after {
 					content: '';
 					clear: both;
 					display: block;
 				}
 			</style>
-			<div class="team clearfix">
-				<div class="item fl">黄小米</div>
-				<div class="item fl">黄渤</div>
-				<div class="item fl">黄磊</div>
-				<div class="item fl">张艺兴</div>
-			</div>
+			<ul class="team clearfix">
+				<li class="item fl">黄小米</li>
+				<li class="item fl">黄渤</li>
+				<li class="item fl">黄磊</li>
+				<li class="item fl">张艺兴</li>
+			</ul>
 		</fieldset>
 
 		<fieldset id="">
@@ -199,9 +207,19 @@
 				.box-4 .fa-grav:hover {
 					color: orange;
 				}
+
+				.box-4 .fa-thermometer {
+					font-size: 48px;
+					color: #0086B3;
+				}
+
+				.box-4 .fa-thermometer:hover {
+					color: deeppink;
+				}
 			</style>
 			<p class="box-4">
 				<i class="fa fa-grav"></i>
+				<i class="fa fa-thermometer"></i>
 			</p>
 		</fieldset>
 	</body>

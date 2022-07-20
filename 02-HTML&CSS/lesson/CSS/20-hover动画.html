@@ -4,118 +4,224 @@
 		<meta charset="utf-8">
 		<title></title>
 		<link rel="stylesheet" href="./css/reset.css">
-		<style type="text/css">
-			.goods-list {
-				padding: 30px 0;
-			}
 
-			.goods-list li {
-				float: left;
-				width: 360px;
-				border: 2px solid white;
-				transition: all 1s;
-			}
-
-			.goods-list .info-box {
-				transition: all 1s;
-			}
-
-			.goods-list .name {
-				padding: 30px 15px 20px 15px;
-				font-size: 17px;
-				color: #333333;
-			}
-
-			.goods-list .name a {
-				transition: all 1s;
-			}
-
-			.goods-list .des {
-				padding: 0px 15px 30px 15px;
-				font-size: 13px;
-				color: #666;
-				transition: all 1s;
-			}
-
-			.goods-list .keyword-box {
-				border-top: 1px solid #EEEEEE;
-				padding: 10px 15px;
-			}
-
-			.keyword-box a {
-				margin-right: 20px;
-				transition: all 1s;
-			}
-
-			.goods-list li:hover {
-				border-color: #04A07B;
-			}
-
-			.goods-list li:hover .info-box {
-				background-color: #04A07B;
-			}
-
-			.goods-list li:hover .info-box a {
-				color: white;
-			}
-
-			.goods-list li:hover .info-box .des {
-				color: white;
-			}
-		</style>
 	</head>
 	<body>
-		<div class="container">
-			<ul class="goods-list clearfix">
-				<li>
-					<div class="photo">
-						<img width="360" src="./img/1525490815187.jpg">
-					</div>
-					<div class="info-box">
-						<div class="name">
-							<a href="#">韩版时尚麻布包</a>
-						</div>
-						<div class="des">手持/顶喷花洒：外凸出水口采用环保硅胶，轻压或拭擦即可清洁</div>
-						<div class="keyword-box">
-							<a href="#">布包</a>
-							<a href="#">背包</a>
-							<a href="#">简约</a>
-						</div>
+		<fieldset>
+			<legend>基础动画</legend>
+			<style>
+				.search-btn {
+					display: inline-block;
+					padding: 10px 30px;
+					background-color: #04A07B;
+					color: white;
+					border: 1px solid transparent;
+				}
+
+				.search-btn:hover {
+					background-color: white;
+					color: #04A07B;
+					border: 1px solid #04A07B;
+				}
+			</style>
+			<a class="search-btn" href="#">搜索一下</a>
+
+			<style>
+				.nav {
+					margin: 10px 0;
+					background-color: #04A07B;
+				}
+
+				.nav li {
+					padding: 10px 30px;
+				}
+
+				.nav li a {
+					color: white;
+				}
+
+				.nav li:hover {
+					background-color: #027d5e;
+				}
+
+				.sub-nav {
+					position: absolute;
+					left: 0;
+					top: 37px;
+					width: 126px;
+					border: 1px solid #04A07B;
+					background-color: white;
+					display: none;
+				}
+
+				.nav li:hover .sub-nav {
+					display: block;
+				}
+
+				.sub-nav .item {
+					padding: 10px 30px;
+					margin: 5px;
+					background-color: #04A07B;
+				}
+			</style>
+			<ul class="nav clearfix">
+				<li class="fl relative">
+					<a href="#">首页</a>
+				</li>
+				<li class="fl relative">
+					<a href="#">新闻</a>
+					<div class="sub-nav">
+						<div class="item"><a href="#">港台新闻</a></div>
+						<div class="item"><a href="#">内地新闻</a></div>
+						<div class="item"><a href="#">欧美新闻</a></div>
 					</div>
 				</li>
-				<li>
-					<div class="photo">
-						<img width="360" src="./img/1525490815187.jpg">
-					</div>
-					<div class="info-box">
-						<div class="name">
-							<a href="#">韩版时尚麻布包</a>
-						</div>
-						<div class="des">手持/顶喷花洒：外凸出水口采用环保硅胶，轻压或拭擦即可清洁</div>
-						<div class="keyword-box">
-							<a href="#">布包</a>
-							<a href="#">背包</a>
-							<a href="#">简约</a>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="photo">
-						<img width="360" src="./img/1525490815187.jpg">
-					</div>
-					<div class="info-box">
-						<div class="name">
-							<a href="#">韩版时尚麻布包</a>
-						</div>
-						<div class="des">手持/顶喷花洒：外凸出水口采用环保硅胶，轻压或拭擦即可清洁</div>
-						<div class="keyword-box">
-							<a href="#">布包</a>
-							<a href="#">背包</a>
-							<a href="#">简约</a>
-						</div>
+				<li class="fl relative">
+					<a href="#">娱乐</a>
+					<div class="sub-nav">
+						<div class="item"><a href="#">港台娱乐</a></div>
+						<div class="item"><a href="#">内地娱乐</a></div>
+						<div class="item"><a href="#">欧美娱乐</a></div>
+						<div class="item"><a href="#">日韩娱乐</a></div>
 					</div>
 				</li>
 			</ul>
-		</div>
+		</fieldset>
+		<fieldset>
+			<legend>transition动画</legend>
+			<h3>CSS3属性，兼容性IE>=10</h3>
+			<style>
+				.submit-btn {
+					display: inline-block;
+					padding: 10px 30px;
+					background-color: #04A07B;
+					color: white;
+					border: 1px solid transparent;
+					transition: all 0.5s;
+				}
+
+				.submit-btn:hover {
+					background-color: white;
+					color: #04A07B;
+					border: 1px solid #04A07B;
+				}
+			</style>
+			<a class="submit-btn" href="#">提交信息</a>
+		</fieldset>
+		<fieldset>
+			<legend>hover追加选择器</legend>
+			<style type="text/css">
+				.goods-list {
+					padding: 30px 0;
+				}
+
+				.goods-list li {
+					float: left;
+					width: 360px;
+					border: 2px solid white;
+					transition: all 0.5s;
+				}
+
+				.goods-list .info-box {
+					transition: all 0.5s;
+				}
+
+				.goods-list .name {
+					padding: 30px 15px 20px 15px;
+					font-size: 17px;
+					color: #333333;
+				}
+
+				.goods-list .name a {
+					transition: all 0.5s;
+				}
+
+				.goods-list .des {
+					padding: 0px 15px 30px 15px;
+					font-size: 13px;
+					color: #666;
+					transition: all 0.5s;
+				}
+
+				.goods-list .keyword-box {
+					border-top: 1px solid #EEEEEE;
+					padding: 10px 15px;
+				}
+
+				.keyword-box a {
+					margin-right: 20px;
+					transition: all 0.5s;
+				}
+
+				.goods-list li:hover {
+					border-color: #04A07B;
+				}
+
+				.goods-list li:hover .info-box {
+					background-color: #04A07B;
+				}
+
+				.goods-list li:hover .info-box a {
+					color: white;
+				}
+
+				.goods-list li:hover .info-box .des {
+					color: white;
+				}
+			</style>
+			<div class="container">
+				<ul class="goods-list clearfix">
+					<li>
+						<div class="photo">
+							<img width="360" src="./img/1525490815187.jpg">
+						</div>
+						<div class="info-box">
+							<div class="name">
+								<a href="#">韩版时尚麻布包</a>
+							</div>
+							<div class="des">手持/顶喷花洒：外凸出水口采用环保硅胶，轻压或拭擦即可清洁</div>
+							<div class="keyword-box">
+								<a href="#">布包</a>
+								<a href="#">背包</a>
+								<a href="#">简约</a>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="photo">
+							<img width="360" src="./img/1525490815187.jpg">
+						</div>
+						<div class="info-box">
+							<div class="name">
+								<a href="#">韩版时尚麻布包</a>
+							</div>
+							<div class="des">手持/顶喷花洒：外凸出水口采用环保硅胶，轻压或拭擦即可清洁</div>
+							<div class="keyword-box">
+								<a href="#">布包</a>
+								<a href="#">背包</a>
+								<a href="#">简约</a>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="photo">
+							<img width="360" src="./img/1525490815187.jpg">
+						</div>
+						<div class="info-box">
+							<div class="name">
+								<a href="#">韩版时尚麻布包</a>
+							</div>
+							<div class="des">手持/顶喷花洒：外凸出水口采用环保硅胶，轻压或拭擦即可清洁</div>
+							<div class="keyword-box">
+								<a href="#">布包</a>
+								<a href="#">背包</a>
+								<a href="#">简约</a>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</fieldset>
+
 	</body>
 </html>

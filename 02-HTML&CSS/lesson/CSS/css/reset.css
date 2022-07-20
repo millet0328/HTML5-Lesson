@@ -183,7 +183,7 @@ a:active {
     content: "";
 }
 
-.clearfix:after {
+.clearfix::after {
     clear: both;
 }
 
@@ -194,14 +194,14 @@ a:active {
     *zoom: 1;
 }
 
-.container:before,
-.container:after {
+.container::before,
+.container::after {
     display: table;
     line-height: 0;
     content: "";
 }
 
-.container:after {
+.container::after {
     clear: both;
 }
 

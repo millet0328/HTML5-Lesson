@@ -1,118 +1,191 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-	<meta charset="UTF-8">
-	<title></title>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="./fonts/font-awesome/css/font-awesome.min.css">
+	</head>
 
-<body>
-	<fieldset id="">
-		<legend>按钮样式</legend>
-		<style type="text/css">
-			.btn-inline {
-				background-color: deeppink;
-				color: white;
-				border: 0;
-				padding: 10px 35px;
-				outline: 0;
-			}
+	<body>
+		<fieldset id="">
+			<legend>按钮样式</legend>
+			<style type="text/css">
+				.btn-inline {
+					background-color: deeppink;
+					color: white;
+					border: 0;
+					padding: 10px 35px;
+					outline: 0;
+				}
 
-			.btn-block {
-				background-color: deeppink;
-				color: white;
-				border: 2px solid pink;
-				padding: 10px 35px;
-				width: 300px;
-				outline: 0;
-			}
-		</style>
-		<p>
-			<button type="button" class="btn-inline">登 录</button>
-		</p>
-		<p>
-			<button type="button" class="btn-block">登 录</button>
-		</p>
-	</fieldset>
-	<fieldset id="">
-		<legend>表单样式</legend>
-		<style type="text/css">
-			.search-box .keywords {
-				width: 300px;
-				padding: 9px;
-				border: 0;
-				outline: 0;
-				font-size: 16px;
-				color: black;
-			}
+				.btn-block {
+					background-color: deeppink;
+					color: white;
+					border: 2px solid pink;
+					padding: 10px 35px;
+					width: 300px;
+					outline: 0;
+				}
+			</style>
+			<p>
+				<button type="button" class="btn-inline">登 录</button>
+			</p>
+			<p>
+				<button type="button" class="btn-block">登 录</button>
+			</p>
+		</fieldset>
 
-			.search-box .btn {
-				background-color: deeppink;
-				color: white;
-				padding: 10px 30px;
-				border: 0;
-			}
+		<fieldset id="">
+			<legend>单行文本框：input</legend>
+			<style>
+				.input-control {
+					width: 300px;
+					padding: 9px;
+					padding-left: 30px;
+					/* 兼容IE */
+					height: 16px;
+					color: blue;
+					font-weight: bold;
+					outline: 0;
+				}
 
-			.search-box .select {
-				border: 0;
-				padding: 10px;
-				outline: 0;
-			}
+				.password-box {
+					position: relative;
+					width: 322px;
+				}
 
-			.search-box {
-				border: 1px solid deeppink;
-				display: inline-block;
-			}
-		</style>
-		<div class="search-box">
-			<form action="" class="clearfix">
-				<select class="select">
-					<option value="">专科</option>
-					<option value="">本科</option>
-					<option value="">研究生</option>
-					<option value="">博士</option>
-				</select>
-				<input type="text" class="keywords">
-				<button type="button" class="btn">百度一下</button>
+				.password-box .fa-key {
+					position: absolute;
+					left: 10px;
+					top: 0;
+					bottom: 0;
+					margin: auto;
+					color: #999;
+					width: 16px;
+					height: 16px;
+				}
+			</style>
+			<div class="password-box">
+				<input class="input-control" type="text" />
+				<i class="fa fa-key"></i>
+			</div>
+		</fieldset>
+
+		<fieldset id="">
+			<legend>表单样式</legend>
+			<style type="text/css">
+				.search-box .keywords {
+					width: 300px;
+					padding: 9px;
+					border: 0;
+					outline: 0;
+					font-size: 16px;
+					color: black;
+				}
+
+				.search-box .btn {
+					background-color: deeppink;
+					color: white;
+					padding: 10px 30px;
+					border: 0;
+				}
+
+				.search-box .select {
+					border: 0;
+					padding: 10px;
+					outline: 0;
+				}
+
+				.search-box {
+					border: 1px solid deeppink;
+					display: inline-block;
+				}
+			</style>
+			<div class="search-box">
+				<form action="" class="clearfix">
+					<select class="select">
+						<option value="">专科</option>
+						<option value="">本科</option>
+						<option value="">研究生</option>
+						<option value="">博士</option>
+					</select>
+					<input type="text" class="keywords">
+					<button type="button" class="btn">百度一下</button>
+				</form>
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<legend>单选框/复选框--样式</legend>
+			<ol>
+				<li>单选框/复选框：可以更改宽/高</li>
+				<li>单选框/复选框：无法更改其他样式，除非使用特殊CSS属性，这种属性兼容性不好</li>
+			</ol>
+			<style>
+				.radio-control {
+					width: 20px;
+					height: 20px;
+					vertical-align: middle;
+				}
+
+				.checkbox-control {
+					width: 20px;
+					height: 20px;
+					-webkit-appearance: none;
+					border: 2px solid orange;
+					vertical-align: middle;
+				}
+			</style>
+			<form>
+				<p>
+					<label>性别：</label>
+					<label><input type="radio" name="sex" class="radio-control"> 男</label>
+					<label><input type="radio" name="sex" class="radio-control"> 女</label>
+				</p>
+				<p>
+					<label>爱好：</label>
+					<label><input type="checkbox" class="checkbox-control"> 摄影</label>
+					<label><input type="checkbox" class="checkbox-control"> 漫画</label>
+					<label><input type="checkbox" class="checkbox-control"> 象棋</label>
+					<label><input type="checkbox" class="checkbox-control"> 国画</label>
+					<label><input type="checkbox" class="checkbox-control"> 钓鱼</label>
+				</p>
 			</form>
-		</div>
-	</fieldset>
+		</fieldset>
+		<fieldset>
+			<legend>上传文件</legend>
+			<ol>
+				<li>input[type="file"]无法更改样式，只能通过自定义样式，覆盖的方式修改其样式。</li>
+			</ol>
+			<style>
+				.upload-box {
+					position: relative;
+					width: 200px;
+					height: 200px;
+					border: 1px solid black;
+					text-align: center;
+					line-height: 200px;
+					margin: 10px 0;
+					font-size: 24px;
+					color: #999;
+				}
 
-	<fieldset>
-		<legend>单选框/复选框--样式</legend>
-		<ol>
-			<li>单选框/复选框：可以更改宽/高</li>
-			<li>单选框/复选框：无法更改其他样式，除非使用特殊CSS属性，这种属性兼容性不好</li>
-		</ol>
-		<style>
-			.radio-control {
-				width: 20px;
-				height: 20px;
-			}
-
-			.checkbox-control {
-				width: 20px;
-				height: 20px;
-				-webkit-appearance: none;
-				border: 1px solid green;
-			}
-		</style>
-		<form>
-			<p>
-				<label>性别：</label>
-				<label><input type="radio" name="sex" class="radio-control"> 男</label>
-				<label><input type="radio" name="sex" class="radio-control"> 女</label>
-			</p>
-			<p>
-				<label>爱好：</label>
-				<label><input type="checkbox" class="checkbox-control"> 摄影</label>
-				<label><input type="checkbox" class="checkbox-control"> 漫画</label>
-				<label><input type="checkbox" class="checkbox-control"> 象棋</label>
-				<label><input type="checkbox" class="checkbox-control"> 国画</label>
-				<label><input type="checkbox" class="checkbox-control"> 钓鱼</label>
-			</p>
-		</form>
-	</fieldset>
-</body>
+				.upload-box .file-input {
+					position: absolute;
+					left: 0;
+					top: 0;
+					width: 100%;
+					height: 100%;
+					opacity: 0;
+					cursor: pointer;
+				}
+			</style>
+			<div class="upload-box">
+				<i class="fa fa-upload"></i>
+				<input class="file-input" type="file">
+			</div>
+		</fieldset>
+	</body>
 
 </html>

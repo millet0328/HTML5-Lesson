@@ -1,0 +1,54 @@
+.bg {
+	background: url(../img/bg.png);
+	height: 100%x;
+}
+
+.container {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.title .topic {
+	text-align: center;
+	padding-top: 56px;
+}
+
+.title .text {
+	text-align: center;
+}
+
+.title .words {
+	width: 574px;
+	font-size: 23px;
+	text-align: center;
+	padding-bottom: 29px;
+	border-top: 1px solid white;
+	margin: 0 auto;
+}
+
+.list li {
+	display: inline-block;
+}
+
+.list .info {
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	width: 288px;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.list .info .name {
+	padding: 5px 12px;
+	color: white;
+	font-size: 20px;
+}
+
+.list .info .english {
+	padding: 5px 12px;
+}
+
+.list .info .price {
+	color: red;
+	padding: 5px 12px;
+}
